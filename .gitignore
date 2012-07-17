@@ -1,0 +1,8 @@
+#Visual Studio
+[Oo]bj/
+[Bb]in/
+*.suo
+*.user
+
+#NuGet
+packages/
