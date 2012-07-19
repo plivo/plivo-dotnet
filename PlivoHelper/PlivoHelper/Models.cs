@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Plivo
+namespace Plivo.API
 {
     // Generic Models
     public class GenericResponse

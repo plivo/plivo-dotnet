@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using RestSharp;
 using RestSharp.Deserializers;
 
-namespace Plivo
+namespace Plivo.API
 {
     public class RestAPI
     {
@@ -26,17 +26,20 @@ namespace Plivo
 
         private IRestResponse<T> _request<T>(string resource, Dictionary<string, string> data, string http_method) where T : new()
         {
-            var request = new RestRequest();
-            request.Resource = resource;
+            var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
+
             // add the parameters to the request
             foreach (KeyValuePair<string, string> kvp in data)
                 request.AddParameter(kvp.Key, kvp.Value);
+
             //set the HTTP method for this request
             switch (http_method.ToUpper())
             {
                 case "GET": request.Method = Method.GET;
                     break;
                 case "POST": request.Method = Method.POST;
+                    request.Parameters.Clear();
+                    request.AddParameter("application/json", request.JsonSerializer.Serialize(data), ParameterType.RequestBody);
                     break;
                 case "DELETE": request.Method = Method.DELETE;
                     break;
@@ -57,7 +60,7 @@ namespace Plivo
                 value = dict[key];
                 dict.Remove(key);
             }
-            catch(KeyNotFoundException)
+            catch (KeyNotFoundException)
             {
                 Console.WriteLine("Missing mandatory parameter {0}.", key);
             }
@@ -77,7 +80,7 @@ namespace Plivo
 
         public IRestResponse<SubAccountList> get_subaccounts()
         {
-            return this._request <SubAccountList>("/Subaccount/", new Dictionary<string, string>(), "GET");
+            return this._request<SubAccountList>("/Subaccount/", new Dictionary<string, string>(), "GET");
         }
 
         public IRestResponse<SubAccount> get_subaccount(Dictionary<string, string> parameters)
@@ -98,6 +101,7 @@ namespace Plivo
             string resource = String.Format("/Subaccount/{0}/", subauth_id);
             return this._request<GenericResponse>(resource, parameters, "POST");
         }
+
         public IRestResponse<GenericResponse> delete_subaccount(Dictionary<string, string> parameters)
         {
             string subauth_id = this.get_key_value(ref parameters, "subauth_id");
@@ -106,6 +110,11 @@ namespace Plivo
         }
 
         // Applications //
+        public IRestResponse<ApplicationList> get_applications(Dictionary<string, string> parameters)
+        {
+            return this._request<ApplicationList>("/Application/", new Dictionary<string, string>(), "GET");
+        }
+
         public IRestResponse<Application> get_application(Dictionary<string, string> parameters)
         {
             string app_id = this.get_key_value(ref parameters, "app_id");
@@ -115,13 +124,13 @@ namespace Plivo
 
         public IRestResponse<GenericResponse> create_application(Dictionary<string, string> parameters)
         {
-            return this._request <GenericResponse>("/Application/", parameters, "POST");
+            return this._request<GenericResponse>("/Application/", parameters, "POST");
         }
 
         public IRestResponse<GenericResponse> modify_application(Dictionary<string, string> parameters)
         {
             string app_id = this.get_key_value(ref parameters, "app_id");
-            return this._request <GenericResponse>(String.Format("/Application/{0}/", app_id), parameters, "POST");
+            return this._request<GenericResponse>(String.Format("/Application/{0}/", app_id), parameters, "POST");
         }
 
         public IRestResponse<GenericResponse> delete_application(Dictionary<string, string> parameters)
@@ -130,7 +139,7 @@ namespace Plivo
             return this._request<GenericResponse>(String.Format("/Application/{0}/", app_id), new Dictionary<string, string>(), "DELETE");
         }
 
-        
+
         // Numbers //
         public IRestResponse<NumberList> get_numbers()
         {
@@ -163,7 +172,7 @@ namespace Plivo
         public IRestResponse<GenericResponse> link_application_number(Dictionary<string, string> parameters)
         {
             string number = this.get_key_value(ref parameters, "number");
-            return this._request <GenericResponse>(String.Format("/Number/{0}", number), parameters, "POST");
+            return this._request<GenericResponse>(String.Format("/Number/{0}", number), parameters, "POST");
         }
 
         public IRestResponse<GenericResponse> unlink_application_number(Dictionary<string, string> parameters)
@@ -386,66 +395,6 @@ namespace Plivo
             string endpoint_id = this.get_key_value(ref parameters, "endpoint_id");
             return this._request<GenericResponse>(String.Format("/Endpoint/{0}/", endpoint_id), new Dictionary<string, string>(), "DELETE");
         }
-
-        
-        //// Carriers //
-        //public Dictionary<string, string> get_carriers(Dictionary<string, string> parameters)
-        //{
-        //    return this._request("/Carrier/", new Dictionary<string, string>(), "GET");
-        //}
-
-        //public Dictionary<string, string> create_carrier(Dictionary<string, string> parameters)
-        //{
-        //    return this._request("/Carrier/", parameters, "POST");
-        //}
-
-        //public Dictionary<string, string> get_carrier(Dictionary<string, string> parameters)
-        //{
-        //    string carrier_id = this.get_key_value(ref parameters, "carrier_id");
-        //    return this._request(String.Format("/Carrier/{0}/", carrier_id), parameters, "GET");
-        //}
-
-        //public Dictionary<string, string> modify_carrier(Dictionary<string, string> parameters)
-        //{
-        //    string carrier_id = this.get_key_value(ref parameters, "carrier_id");
-        //    return this._request(String.Format("/Carrier/{0}/", carrier_id), parameters, "POST");
-        //}
-
-        //public Dictionary<string, string> delete_carrier(Dictionary<string, string> parameters)
-        //{
-        //    string carrier_id = this.get_key_value(ref parameters, "carrier_id");
-        //    return this._request(String.Format("/Carrier/{0}/", carrier_id), new Dictionary<string,string>(), "DELETE");
-        //}
-
-
-        //// Carrier Routings //
-        //public Dictionary<string, string> get_carrier_routings()
-        //{
-        //    return this._request("/CarrierRouting/", new Dictionary<string, string>(), "GET");
-        //}
-
-        //public Dictionary<string, string> create_carrier_routing(Dictionary<string, string> parameters)
-        //{
-        //    return this._request("/CarrierRouting/", parameters, "POST");
-        //}
-
-        //public Dictionary<string, string> get_carrier_routing(Dictionary<string, string> parameters)
-        //{
-        //    string routing_id = this.get_key_value(ref parameters, "routing_id");
-        //    return this._request(String.Format("/CarrierRouting/{0}/", routing_id), parameters, "GET");
-        //}
-
-        //public Dictionary<string, string> modify_carrier_routing(Dictionary<string, string> parameters)
-        //{
-        //    string routing_id = this.get_key_value(ref parameters, "routing_id");
-        //    return this._request(String.Format("/CarrierRouting/{0}/", routing_id), parameters, "POST");
-        //}
-
-        //public Dictionary<string, string> delete_carrier_routing(Dictionary<string, string> parameters)
-        //{
-        //    string routing_id = this.get_key_value(ref parameters, "routing_id");
-        //    return this._request(String.Format("/CarrierRouting/{0}/", routing_id), new Dictionary<string, string>(), "DELETE");
-        //}
 
 
         // Message //
