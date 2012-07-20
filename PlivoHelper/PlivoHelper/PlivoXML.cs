@@ -14,7 +14,7 @@ namespace Plivo.XML
     {
         public List<string> Nestables { get; set; }
         public List<string> ValidAttributes { get; set; }
-        public XElement Element { get; set; }
+        protected XElement Element { get; set; }
         protected Dictionary<string, string> Attributes { get; set; }
         protected string Name { get; set; }
 
@@ -22,14 +22,14 @@ namespace Plivo.XML
         {
             Name = this.GetType().Name;
             Element = new XElement(Name, body);
-            Attributes = attributes;
+            Attributes = attributes;   
         }
 
         public PlivoElement(Dictionary<string, string> attributes)
         {
             Name = this.GetType().Name;
             Element = new XElement(Name);
-            Attributes = attributes;
+            Attributes = attributes;   
         }
 
         public PlivoElement(string body)
@@ -44,7 +44,7 @@ namespace Plivo.XML
             Element = new XElement(Name);
         }
 
-        public void addAttributes()
+        protected void addAttributes()
         {
             foreach (KeyValuePair<string, string> kvp in Attributes)
             {
@@ -77,24 +77,98 @@ namespace Plivo.XML
             return val;
         }
 
-        public void Add(PlivoElement element)
+        public PlivoElement Add(PlivoElement element)
         {
             int posn = Nestables.FindIndex(n => n == element.Name);
             if (posn >= 0)
+            {
                 Element.Add(element.Element);
+                return this;
+            }
             else
                 throw new PlivoException(String.Format("Element {0} cannot be nested within {1}", element.Name, Name));
         }
 
-        public override string ToString()
+        public PlivoElement AddSpeak(string body, Dictionary<string, string> parameters)
         {
-            return SendXML().ToString();
+            return Add(new Speak(body, parameters));
         }
 
-        public XDocument SendXML()
+        public PlivoElement AddPlay(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new Play(body, parameters));
+        }
+
+        public PlivoElement AddGetDigits(Dictionary<string, string> parameters)
+        {
+            return Add(new GetDigits("", parameters));
+        }
+
+        public PlivoElement AddRecord(Dictionary<string, string> parameters)
+        {
+            return Add(new Record("", parameters));
+        }
+
+        public PlivoElement AddDial(Dictionary<string, string> parameters)
+        {
+            return Add(new Dial(parameters));
+        }
+
+        public PlivoElement AddNumber(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new Number(body, parameters));
+        }
+
+        public PlivoElement AddUser(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new User(body, parameters));
+        }
+
+        public PlivoElement AddRedirect(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new Redirect(body, parameters));
+        }
+
+        public PlivoElement AddWait(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new Wait(parameters));
+        }
+
+        public PlivoElement AddHangup(Dictionary<string, string> parameters)
+        {
+            return Add(new Hangup(parameters));
+        }
+
+        public PlivoElement AddPreAnswer()
+        {
+            return Add(new PreAnswer());
+        }
+
+        public PlivoElement AddConference(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new Conference(body, parameters));
+        }
+
+        public PlivoElement AddMessage(string body, Dictionary<string, string> parameters)
+        {
+            return Add(new Message(body, parameters));
+        }
+
+        public PlivoElement AddDTMF(string body)
+        {
+            return Add(new DTMF(body));
+        }
+
+        public override string ToString()
+        {
+            return SerializeToXML().ToString();
+        }
+
+        public XDocument SerializeToXML()
         {
             return new XDocument(Element);
         }
+
     }
 
     public class Response : PlivoElement
@@ -118,7 +192,7 @@ namespace Plivo.XML
             ValidAttributes = new List<string>();
             ValidAttributes.Add("");
         }
-    }
+    }    
 
     public class Dial : PlivoElement
     {
@@ -332,7 +406,7 @@ namespace Plivo.XML
             Nestables.Add("GetDigits");
             Nestables.Add("Wait");
             Nestables.Add("Redirect");
-            Nestables.Add("Message");
+            Nestables.Add("Message"); 
             Nestables.Add("DTMF'");
             ValidAttributes = new List<string>();
             ValidAttributes.Add("");
