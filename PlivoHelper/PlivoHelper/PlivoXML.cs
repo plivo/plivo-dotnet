@@ -5,43 +5,38 @@ using System.Xml.Linq;
 
 namespace Plivo.XML
 {
-    public class PlivoException : InvalidOperationException
+    public class PlivoException : Exception
     {
         public PlivoException(string message) : base(message) { }
     }
 
     public abstract class PlivoElement
     {
-        public List<string> Nestables { get; set; }
-        public List<string> ValidAttributes { get; set; }
+        protected List<string> Nestables { get; set; }
+        protected List<string> ValidAttributes { get; set; }
         protected XElement Element { get; set; }
         protected Dictionary<string, string> Attributes { get; set; }
-        protected string Name { get; set; }
 
         public PlivoElement(string body, Dictionary<string, string> attributes)
         {
-            Name = this.GetType().Name;
-            Element = new XElement(Name, body);
-            Attributes = attributes;   
+            Element = new XElement(this.GetType().Name, body);
+            Attributes = attributes;
         }
 
         public PlivoElement(Dictionary<string, string> attributes)
         {
-            Name = this.GetType().Name;
-            Element = new XElement(Name);
-            Attributes = attributes;   
+            Element = new XElement(this.GetType().Name);
+            Attributes = attributes;
         }
 
         public PlivoElement(string body)
         {
-            Name = this.GetType().Name;
-            Element = new XElement(Name, body);
+            Element = new XElement(this.GetType().Name, body);
         }
 
         public PlivoElement()
         {
-            Name = this.GetType().Name;
-            Element = new XElement(Name);
+            Element = new XElement(this.GetType().Name);
         }
 
         protected void addAttributes()
@@ -54,7 +49,7 @@ namespace Plivo.XML
                 if (posn >= 0)
                     Element.SetAttributeValue(key, _convert_values(val));
                 else
-                    throw new PlivoException(String.Format("Invalid attribute {0} for {1}", key, Name));
+                    throw new PlivoException(String.Format("Invalid attribute {0} for {1}", key, this.GetType().Name));
             }
         }
 
@@ -79,14 +74,14 @@ namespace Plivo.XML
 
         public PlivoElement Add(PlivoElement element)
         {
-            int posn = Nestables.FindIndex(n => n == element.Name);
+            int posn = Nestables.FindIndex(n => n == element.GetType().Name);
             if (posn >= 0)
             {
                 Element.Add(element.Element);
                 return this;
             }
             else
-                throw new PlivoException(String.Format("Element {0} cannot be nested within {1}", element.Name, Name));
+                throw new PlivoException(String.Format("Element {0} cannot be nested within {1}", element.GetType().Name, this.GetType().Name));
         }
 
         public PlivoElement AddSpeak(string body, Dictionary<string, string> parameters)
@@ -176,48 +171,27 @@ namespace Plivo.XML
         public Response()
             : base()
         {
-            Nestables = new List<string>();
-            Nestables.Add("Speak");
-            Nestables.Add("Play");
-            Nestables.Add("GetDigits");
-            Nestables.Add("Record");
-            Nestables.Add("Dial");
-            Nestables.Add("Message");
-            Nestables.Add("Redirect");
-            Nestables.Add("Wait");
-            Nestables.Add("Hangup");
-            Nestables.Add("PreAnswer");
-            Nestables.Add("Conference");
-            Nestables.Add("DTMF");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("");
+            Nestables = new List<string>()
+            {   "Speak", "Play", "GetDigits", "Record", "Dial", "Message", "Redirect",
+                "Wait", "Hangup", "PreAnswer", "Conference", "DTMF"
+            };
+            ValidAttributes = new List<string>() { "" };
         }
-    }    
+    }
 
     public class Dial : PlivoElement
     {
         public Dial(Dictionary<string, string> parameters)
             : base(parameters)
         {
-            Nestables = new List<string>();
-            Nestables.Add("Number");
-            Nestables.Add("User");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("action");
-            ValidAttributes.Add("method");
-            ValidAttributes.Add("hangupOnStar");
-            ValidAttributes.Add("timeLimit");
-            ValidAttributes.Add("timeout");
-            ValidAttributes.Add("callerId");
-            ValidAttributes.Add("callerName");
-            ValidAttributes.Add("confirmSound");
-            ValidAttributes.Add("confirmKey");
-            ValidAttributes.Add("dialMusic");
-            ValidAttributes.Add("callbackUrl");
-            ValidAttributes.Add("callbackMethod");
-            ValidAttributes.Add("redirect");
-            ValidAttributes.Add("digitsMatch");
-            ValidAttributes.Add("sipHeaders");
+            Nestables = new List<string>() 
+            {   "Number", "User" 
+            };
+            ValidAttributes = new List<string>() 
+            {   "action", "method", "hangupOnStar", "timeLimit", "timeout", "callerId",
+                "callerName", "confirmSound", "confirmKey", "dialMusic", "callbackUrl", 
+                "callbackMethod", "redirect", "digitsMatch", "sipHeaders" 
+            };
             addAttributes();
         }
     }
@@ -227,11 +201,10 @@ namespace Plivo.XML
         public Number(string body, Dictionary<string, string> parameters)
             : base(body, parameters)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("sendDigits");
-            ValidAttributes.Add("sendOnPreAnswer");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "sendDigits", "sendOnPreAnswer"
+            };
             addAttributes();
         }
     }
@@ -241,12 +214,10 @@ namespace Plivo.XML
         public User(string body, Dictionary<string, string> parameters)
             : base(body, parameters)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("sendDigits");
-            ValidAttributes.Add("sendOnPreAnswer");
-            ValidAttributes.Add("sipHeaders");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "sendDigits","sendOnPreAnswer", "sipHeaders"
+            };
             addAttributes();
         }
     }
@@ -256,27 +227,13 @@ namespace Plivo.XML
         public Conference(string body, Dictionary<string, string> parameters)
             : base(body, parameters)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("sendDigits");
-            ValidAttributes.Add("muted");
-            ValidAttributes.Add("enterSound");
-            ValidAttributes.Add("exitSound");
-            ValidAttributes.Add("startConferenceOnEnter");
-            ValidAttributes.Add("endConferenceOnExit");
-            ValidAttributes.Add("stayAlone");
-            ValidAttributes.Add("waitSound");
-            ValidAttributes.Add("maxMembers");
-            ValidAttributes.Add("timeLimit");
-            ValidAttributes.Add("hangupOnStar");
-            ValidAttributes.Add("action");
-            ValidAttributes.Add("method");
-            ValidAttributes.Add("callbackUrl");
-            ValidAttributes.Add("callbackMethod");
-            ValidAttributes.Add("digitsMatch");
-            ValidAttributes.Add("floorEvent");
-            ValidAttributes.Add("redirect");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter", 
+                "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit", 
+                "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
+                "floorEvent", "redirect"
+            };
             addAttributes();
         }
     }
@@ -286,21 +243,13 @@ namespace Plivo.XML
         public GetDigits(string body, Dictionary<string, string> parameters)
             : base(body, parameters)
         {
-            Nestables = new List<string>();
-            Nestables.Add("Speak");
-            Nestables.Add("Play");
-            Nestables.Add("Wait");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("action");
-            ValidAttributes.Add("method");
-            ValidAttributes.Add("timeout");
-            ValidAttributes.Add("finishOnKey");
-            ValidAttributes.Add("numDigits");
-            ValidAttributes.Add("retries");
-            ValidAttributes.Add("invalidDigitsSound");
-            ValidAttributes.Add("validDigits");
-            ValidAttributes.Add("playBeep");
-            ValidAttributes.Add("redirect");
+            Nestables = new List<string>()
+            {   "Speak", "Play", "Wait"
+            };
+            ValidAttributes = new List<string>()
+            {   "action", "method", "timeout", "finishOnKey", "numDigits", "retries",
+                "invalidDigitsSound", "validDigits", "playBeep", "redirect"
+            };
             addAttributes();
         }
     }
@@ -310,12 +259,10 @@ namespace Plivo.XML
         public Speak(string body, Dictionary<string, string> attributes)
             : base(body, attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("loop");
-            ValidAttributes.Add("language");
-            ValidAttributes.Add("voice");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "loop", "language", "voice" 
+            };
             addAttributes();
         }
     }
@@ -325,10 +272,10 @@ namespace Plivo.XML
         public Play(string body, Dictionary<string, string> attributes)
             : base(body, attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("loop");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "loop"
+            };
             addAttributes();
         }
     }
@@ -338,10 +285,10 @@ namespace Plivo.XML
         public Wait(Dictionary<string, string> attributes)
             : base(attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("length");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "length"
+            };
             addAttributes();
         }
     }
@@ -351,10 +298,10 @@ namespace Plivo.XML
         public Redirect(string body, Dictionary<string, string> attributes)
             : base(body, attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("method");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "method"
+            };
             addAttributes();
         }
     }
@@ -364,11 +311,10 @@ namespace Plivo.XML
         public Hangup(Dictionary<string, string> attributes)
             : base(attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("schedule");
-            ValidAttributes.Add("reason");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "schedule", "reason"
+            };
             addAttributes();
         }
     }
@@ -378,19 +324,11 @@ namespace Plivo.XML
         public Record(string body, Dictionary<string, string> attributes)
             : base(body, attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("action");
-            ValidAttributes.Add("method");
-            ValidAttributes.Add("timeout");
-            ValidAttributes.Add("finishOnKey");
-            ValidAttributes.Add("maxLength");
-            ValidAttributes.Add("playBeep");
-            ValidAttributes.Add("recordSession");
-            ValidAttributes.Add("startOnDialAnswer");
-            ValidAttributes.Add("redirect");
-            ValidAttributes.Add("fileFormat");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>()
+            {   "action", "method", "timeout", "finishOnKey", "maxLength", "playBeep",
+                "recordSession", "startOnDialAnswer", "redirect", "fileFormat"
+            };
             addAttributes();
         }
     }
@@ -400,16 +338,10 @@ namespace Plivo.XML
         public PreAnswer()
             : base()
         {
-            Nestables = new List<string>();
-            Nestables.Add("Play");
-            Nestables.Add("Speak");
-            Nestables.Add("GetDigits");
-            Nestables.Add("Wait");
-            Nestables.Add("Redirect");
-            Nestables.Add("Message"); 
-            Nestables.Add("DTMF'");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("");
+            Nestables = new List<string>()
+            {   "Play", "Speak", "GetDigits", "Wait", "Redirect", "Message", "DTMF"
+            };
+            ValidAttributes = new List<string>() { "" };
         }
     }
 
@@ -418,14 +350,10 @@ namespace Plivo.XML
         public Message(string body, Dictionary<string, string> attributes)
             : base(body, attributes)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("src");
-            ValidAttributes.Add("dst");
-            ValidAttributes.Add("type");
-            ValidAttributes.Add("callbackUrl");
-            ValidAttributes.Add("callbackMethod");
+            Nestables = new List<string>(){ "" };
+            ValidAttributes = new List<string>()
+            {   "src", "dst", "type", "callbackUrl", "callbackMethod"
+            };
             addAttributes();
         }
     }
@@ -435,10 +363,8 @@ namespace Plivo.XML
         public DTMF(string body)
             : base(body)
         {
-            Nestables = new List<string>();
-            Nestables.Add("");
-            ValidAttributes = new List<string>();
-            ValidAttributes.Add("");
+            Nestables = new List<string>() { "" };
+            ValidAttributes = new List<string>() { "" };
         }
     }
 }
