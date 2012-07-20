@@ -4,7 +4,7 @@ Plivo C# .NET Helper Library
 Description
 -----------
 
-The Plivo C# .NET helper simplifies the process of making PLIVO API Calls.
+The Plivo C# .NET helper simplifies the process of making PLIVO API calls and generating RESTXML.
 
 See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 
@@ -17,13 +17,15 @@ NuGet terminal
 > Install-Package RestSharp
 
 How to use
-----------
-	using System;
-	using System.Collections.Generic;
-	using RestSharp;
-	using Plivo.API;
+==========
+Plivo.API
+---------
+        using System;
+        using System.Collections.Generic;
+        using RestSharp;
+        using Plivo.API;
 	
-	namespace yourapp
+        namespace yourapp
 	{
     	      class Program
     	      {
@@ -52,5 +54,29 @@ How to use
                                 var requestuuid = response.Data.request_uuid;
                                 var error_or_request_uuid = String.IsNullOrEmpty(requestuuid) ? response.Content : requestuuid;
                        }
+                }
+         }
+         
+Plivo.XML
+---------
+        using System;
+        using System.Collection.Generic;
+        using Plivo.XML;
+        
+        namespace myrestxml
+        {
+                class Program
+                {
+                        static void Main(string[] args)
+                        {
+                                PlivoElement response = new Response();
+                                Dictionary<string, string> speak_params = new Dictionary<string, string>();
+                                speak_params.Add("loop", "3");
+                                speak_params.Add("language", "en-US");
+                                PlivoElement speak = new Speak("Go green, go Plivo", speak_params);
+                                response.Add(speak);
+                                Console.WriteLine(response.ToString());
+                                Console.Read();
+                        }
                 }
          }
