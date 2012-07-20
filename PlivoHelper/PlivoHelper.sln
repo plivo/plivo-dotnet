@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlivoHelper", "PlivoHelper\PlivoHelper.csproj", "{D89B2F10-5B3B-43B9-A95D-80144CBB08C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPlivoAPI", "TestPlivoAPI\TestPlivoAPI.csproj", "{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D89B2F10-5B3B-43B9-A95D-80144CBB08C7} = {D89B2F10-5B3B-43B9-A95D-80144CBB08C7}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,16 +23,6 @@ Global
 		{D89B2F10-5B3B-43B9-A95D-80144CBB08C7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D89B2F10-5B3B-43B9-A95D-80144CBB08C7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D89B2F10-5B3B-43B9-A95D-80144CBB08C7}.Release|x86.ActiveCfg = Release|Any CPU
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Debug|x86.ActiveCfg = Debug|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Debug|x86.Build.0 = Debug|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Release|Any CPU.ActiveCfg = Release|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Release|Mixed Platforms.Build.0 = Release|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Release|x86.ActiveCfg = Release|x86
-		{A8F4A284-72AC-4D65-BFC1-F03BEFCD9229}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
