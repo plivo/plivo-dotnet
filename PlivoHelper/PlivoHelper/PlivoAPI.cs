@@ -279,11 +279,11 @@ namespace Plivo.API
             return this._request<GenericResponse>("/Conference/", new Dictionary<string, string>(), "DELETE");
         }
 
-        //public Dictionary<string, string> get_live_conference(Dictionary<string, string> parameters)
-        //{
-        //    string conference_name = this.get_key_value(ref parameters, "conference_name");
-        //    return this._request(String.Format("/Conference/{0}/", conference_name), new Dictionary<string, string>(), "GET");
-        //}
+        public IRestResponse<Conference> get_live_conference(Dictionary<string, string> parameters)
+        {
+            string conference_name = this.get_key_value(ref parameters, "conference_name");
+            return this._request<Conference>(String.Format("/Conference/{0}/", conference_name), new Dictionary<string, string>(), "GET");
+        }
 
         public IRestResponse<GenericResponse> hangup_conference(Dictionary<string, string> parameters)
         {

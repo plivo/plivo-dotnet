@@ -192,6 +192,28 @@ namespace Plivo.API
         public List<string> conferences { get; set; }
     }
 
+	public class ConferenceMember
+    {
+        public string call_uuid { get; set; }
+        public string caller_name { get; set; }
+        public bool deaf { get; set; }
+        public string direction { get; set; }
+        public string from { get; set; }
+        public string join_time { get; set; }
+        public string member_id { get; set; }
+        public bool muted { get; set; }
+        public string to { get; set; }
+    }
+
+    public class Conference
+    {
+        public string api_id { get; set; }
+        public string conference_member_count { get; set; }
+        public string conference_name { get; set; }
+        public string conference_run_time { get; set; }
+        public List<ConferenceMember> members { get; set; }
+    }
+	
     // Endpoint Models
     public class EndpointMeta
     {
