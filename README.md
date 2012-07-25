@@ -25,28 +25,29 @@ Plivo.API
     using RestSharp;
     using Plivo.API;
     	
-    namespace yourapp
+    namespace mywebapp
     {
         class Program
     	{
             static void Main(string[] args)
             {
-                string authId=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX;
+                string authId=XXXXXXXXXXXXXXXXXXXXXXXX;
                 string authToken=YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY;
                                 				
                 // Creating the plivo client
                 RestAPI plivo = new RestAPI(authId, authToken);
                                  
                 // Making a Call
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
                 string from_number = "XXXXXXXXXXX";
                 string to_number = "YYYYYYYYYYY";
-                parameters.Add("from", from_number);
-                parameters.Add("to", to_number);
-                parameters.Add("answer_url", "http://some.domain.com/answer/");
-                parameters.Add("answer_method", "GET");
-                                   				
-                IRestResponse<Call> response = plivo.make_call(parameters);
+                                                   				
+                IRestResponse<Call> response = plivo.make_call(new Dictionary<string, string>() {
+                    { "from", from_number },
+                    { "to", to_number }, 
+                    { "answer_url", "http://some.domain.com/answer/" }, 
+                    { "answer_method", "GET" }
+                });
+                
                 // The "Outbound call" API response has three fields, namely, message, request_uuid, and api_id. 
                 // You can capture any of the above three fields 
                 // if it was a success, all the parameters of response would available.
@@ -70,13 +71,18 @@ Plivo.XML
             static void Main(string[] args)
             {
                 Response response = new Response();
-                Dictionary<string, string> speak_params = new Dictionary<string, string>();
-                speak_params.Add("loop", "3");
-                speak_params.Add("language", "en-US");
                 // add 'Speak' element to 'Response'
-                response.AddSpeak("Go green, go Plivo", speak_params);
+                response.AddSpeak("Go green, go Plivo", 
+                    new Dictionary<string, string>() {
+                        { "loop", "3" },
+                        { "language", "en-US");
+                });
                 // or you can add as below
-                //Speak speak = new Speak("Go green, go Plivo", speak_params);
+                //Speak speak = new Speak("Go green, go Plivo", 
+                //   new Dictionary<string, string>() {
+                //        { "loop", "3" },
+                //        { "language", "en-US");
+                //});
                 //response.Add(speak);
                 Console.WriteLine(response.ToString());
                 Console.Read();
