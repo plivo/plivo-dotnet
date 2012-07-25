@@ -66,7 +66,11 @@ namespace Plivo.XML
                     break;
                 case "post": val = value.ToUpper();
                     break;
-                default: val = value.ToLower();
+                case "man": val = value.ToUpper();
+                    break;
+                case "woman": val = value.ToUpper();
+                    break;
+                default: val = value;
                     break;
             }
             return val;
@@ -350,7 +354,7 @@ namespace Plivo.XML
         public Message(string body, Dictionary<string, string> attributes)
             : base(body, attributes)
         {
-            Nestables = new List<string>(){ "" };
+            Nestables = new List<string>() { "" };
             ValidAttributes = new List<string>()
             {   "src", "dst", "type", "callbackUrl", "callbackMethod"
             };
