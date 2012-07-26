@@ -21,6 +21,7 @@ Plivo.API
 ---------
     using System;
     using System.Collections.Generic;
+    using System.Reflection;
     using RestSharp;
     using Plivo.API;
     	
@@ -47,12 +48,19 @@ Plivo.API
                     { "answer_method", "GET" }
                 });
                 
-                // The "Outbound call" API response has three fields, namely, message, request_uuid, and api_id. 
-                // You can capture any of the above three fields 
-                // if it was a success, all the parameters of response would available.
-                // else if there was an error, the error will available in response.Content. 
-                var requestuuid = response.Data.request_uuid;
-                var error_or_request_uuid = String.IsNullOrEmpty(requestuuid) ? response.Content : requestuuid;
+                // The "Outbound call" API response has four properties -
+                // message, request_uuid, error, and api_id.
+                // error - contains the error response sent back from the server.
+                if (resp.Data != null)
+                {
+                    PropertyInfo[] properties = resp.Data.GetType().GetProperties();
+                    foreach (PropertyInfo property in properties)
+                        Console.WriteLine("{0}: {1}", property.Name, property.GetValue(resp.Data, null);
+                }
+                else
+                    // ErrorMessage - contains error related to network failure.
+                    Console.WriteLine(resp.ErrorMessage);
+                //Console.Read();
             }
         }
     }
