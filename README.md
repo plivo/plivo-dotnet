@@ -8,13 +8,12 @@ The Plivo C# .NET helper simplifies the process of making PLIVO API calls and ge
 
 See [Plivo Documentation](http://www.plivo.com/docs/) for more information.
 
-Prerequisites 
+Installation 
 =============
-This package depends on "RestSharp" for making API calls.
-You can install RestSharp using NuGet package manager in Visual Studio.
+This package can be installed using NuGet package manager in Visual Studio 2010 or later.
 
 NuGet terminal
-> Install-Package RestSharp
+> PM\> Install-Package Plivo
 
 How to use
 ==========
