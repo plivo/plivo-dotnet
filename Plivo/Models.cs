@@ -16,6 +16,7 @@ namespace Plivo.API
     {
         public string url { get; set; }
         public string message { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
     }
 
@@ -28,6 +29,7 @@ namespace Plivo.API
         public string created { get; set; }
         public bool enabled { get; set; }
         public string modified { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
         public bool postpaid { get; set; }
         public string state { get; set; }
@@ -55,11 +57,14 @@ namespace Plivo.API
         public string modified { get; set; }
         public string auth_id { get; set; }
         public string resource_uri { get; set; }
+        public string error { get; set; }
+        public string api_id { get; set; }
     }
 
     public class SubAccountList
     {
         public SubAccountMeta meta { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
         public List<SubAccount> objects { get; set; }
     }
@@ -80,7 +85,8 @@ namespace Plivo.API
         public bool default_app { get; set; }
         public string app_name { get; set; }
         public bool production_app { get; set; }
-        public string app_id { get; set; }
+        public string error { get; set; }
+        public string api_id { get; set; }
         public string hangup_url { get; set; }
         public string answer_url { get; set; }
         public string message_url { get; set; }
@@ -94,6 +100,7 @@ namespace Plivo.API
     public class ApplicationList
     {
         public ApplicationMeta meta { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
         public List<Application> objects { get; set; }
     }
@@ -120,12 +127,15 @@ namespace Plivo.API
         public string number_type { get; set; }
         public string added_on { get; set; }
         public string resource_uri { get; set; }
+        public string error { get; set; }
+        public string api_id { get; set; }
     }
 
     public class NumberList
     {
         public NumberMeta meta { get; set; }
         public string api_id { get; set; }
+        public string error { get; set; }
         public List<Number> objects { get; set; }
     }
 
@@ -135,6 +145,7 @@ namespace Plivo.API
         public string message { get; set; }
         public string request_uuid { get; set; }
         public string api_id { get; set; }
+        public string error { get; set; }
     }
 
     public class LiveCall
@@ -147,12 +158,14 @@ namespace Plivo.API
         public string caller_name { get; set; }
         public string call_uuid { get; set; }
         public string session_start { get; set; }
+        public string error { get; set; }
     }
 
     public class LiveCallList
     {
         public string api_id { get; set; }
         public List<string> calls { get; set; }
+        public string error { get; set; }
     }
 
     public class CDRMeta
@@ -176,11 +189,14 @@ namespace Plivo.API
         public string end_time { get; set; }
         public string call_uuid { get; set; }
         public string resource_uri { get; set; }
+        public string error { get; set; }
+        public string api_id { get; set; }
     }
 
     public class CDRList
     {
         public CDRMeta meta { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
         public List<CDR> objects { get; set; }
     }
@@ -188,6 +204,7 @@ namespace Plivo.API
     // Conference Models
     public class LiveConferenceList
     {
+        public string error { get; set; }
         public string api_id { get; set; }
         public List<string> conferences { get; set; }
     }
@@ -207,6 +224,7 @@ namespace Plivo.API
 
     public class Conference
     {
+        public string error { get; set; }
         public string api_id { get; set; }
         public string conference_member_count { get; set; }
         public string conference_name { get; set; }
@@ -217,11 +235,11 @@ namespace Plivo.API
     // Endpoint Models
     public class EndpointMeta
     {
-        public object previous { get; set; }
+        public string previous { get; set; }
         public int total_count { get; set; }
         public int offset { get; set; }
         public int limit { get; set; }
-        public object next { get; set; }
+        public string next { get; set; }
     }
 
     public class Endpoint
@@ -232,11 +250,14 @@ namespace Plivo.API
         public string endpoint_id { get; set; }
         public string password { get; set; }
         public string resource_uri { get; set; }
+        public string api_id { get; set; }
+        public string error { get; set; }
     }
 
     public class EndpointList
     {
         public EndpointMeta meta { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
         public List<Endpoint> objects { get; set; }
     }
@@ -246,6 +267,7 @@ namespace Plivo.API
     {
         public string message { get; set; }
         public List<string> message_uuid { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
     }
 }
