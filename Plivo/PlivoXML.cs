@@ -128,7 +128,7 @@ namespace Plivo.XML
             return Add(new Redirect(body, parameters));
         }
 
-        public PlivoElement AddWait(string body, Dictionary<string, string> parameters)
+        public PlivoElement AddWait(Dictionary<string, string> parameters)
         {
             return Add(new Wait(parameters));
         }
