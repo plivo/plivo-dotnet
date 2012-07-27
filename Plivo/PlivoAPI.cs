@@ -166,20 +166,20 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> unrent_number(Dictionary<string, string> parameters)
         {
             string number = this.get_key_value(ref parameters, "number");
-            return this._request<GenericResponse>(String.Format("/Number/{0}", number), new Dictionary<string, string>(), "DELETE");
+            return this._request<GenericResponse>(String.Format("/Number/{0}/", number), new Dictionary<string, string>(), "DELETE");
         }
 
         public IRestResponse<GenericResponse> link_application_number(Dictionary<string, string> parameters)
         {
             string number = this.get_key_value(ref parameters, "number");
-            return this._request<GenericResponse>(String.Format("/Number/{0}", number), parameters, "POST");
+            return this._request<GenericResponse>(String.Format("/Number/{0}/", number), parameters, "POST");
         }
 
         public IRestResponse<GenericResponse> unlink_application_number(Dictionary<string, string> parameters)
         {
             string number = this.get_key_value(ref parameters, "number");
             parameters.Add("app_id", "");
-            return this._request<GenericResponse>(String.Format("/Number/{0}", number), parameters, "POST");
+            return this._request<GenericResponse>(String.Format("/Number/{0}/", number), parameters, "POST");
         }
 
 

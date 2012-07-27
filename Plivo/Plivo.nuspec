@@ -2,15 +2,18 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
     <licenseUrl>https://github.com/plivo/plivo-dotnet/blob/master/LICENSE</licenseUrl>
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
-    <releaseNotes>Supports making Plivo APIs calls and generation of Plivo XML</releaseNotes>
+    <releaseNotes>
+    * 1.0.1 Minor fix for Number API calls
+    * 1.0   Supports making Plivo APIs calls and generation of Plivo XML
+    </releaseNotes>
     <copyright>Plivo Inc, Copyright 2012</copyright>
     <tags>Plivo REST voice SMS telephony API XML</tags>
   </metadata>
