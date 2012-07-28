@@ -27,11 +27,11 @@ namespace Plivo.API
         public string name { get; set; }
         public string cash_credits { get; set; }
         public string created { get; set; }
-        public bool enabled { get; set; }
+        public string enabled { get; set; }
         public string modified { get; set; }
         public string error { get; set; }
         public string api_id { get; set; }
-        public bool postpaid { get; set; }
+        public string postpaid { get; set; }
         public string state { get; set; }
         public string address { get; set; }
         public string timezone { get; set; }
@@ -45,7 +45,7 @@ namespace Plivo.API
         public int total_count { get; set; }
         public int offset { get; set; }
         public int limit { get; set; }
-        public object next { get; set; }
+        public string next { get; set; }
     }
 
     public class SubAccount
@@ -72,11 +72,11 @@ namespace Plivo.API
     // Application Models
     public class ApplicationMeta
     {
-        public object previous { get; set; }
+        public string previous { get; set; }
         public int total_count { get; set; }
         public int offset { get; set; }
         public int limit { get; set; }
-        public object next { get; set; }
+        public string next { get; set; }
     }
 
     public class Application
@@ -84,10 +84,13 @@ namespace Plivo.API
         public string fallback_method { get; set; }
         public bool default_app { get; set; }
         public string app_name { get; set; }
+        public string sub_account { get; set; }
         public bool production_app { get; set; }
-        public string error { get; set; }
-        public string api_id { get; set; }
+        public bool enabled { get; set; }
+        public string app_id { get; set; }
+        public bool public_uri { get; set; }
         public string hangup_url { get; set; }
+        public string sip_uri { get; set; }
         public string answer_url { get; set; }
         public string message_url { get; set; }
         public string resource_uri { get; set; }
@@ -108,29 +111,52 @@ namespace Plivo.API
     // Number Models
     public class NumberMeta
     {
-        public object previous { get; set; }
+        public string previous { get; set; }
         public int total_count { get; set; }
         public int offset { get; set; }
         public int limit { get; set; }
-        public object next { get; set; }
+        public string next { get; set; }
+    }
+
+    public class SearchMeta
+    {
+        public string previous { get; set; }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
+        public string next { get; set; }
     }
 
     public class Number
     {
+        public string country { get; set; }
+        public string region { get; set; }
         public bool voice_enabled { get; set; }
         public string description { get; set; }
         public bool plivo_number { get; set; }
         public bool sms_enabled { get; set; }
         public bool fax_enabled { get; set; }
         public string number { get; set; }
+        public string api_id { get; set; }
+        public int lata { get; set; }
+        public string voice_rate { get; set; }
         public string application { get; set; }
+        public string monthly_rental_rate { get; set; }
+        public string sms_rate { get; set; }
         public string number_type { get; set; }
+        public object sub_account { get; set; }
         public string added_on { get; set; }
         public string resource_uri { get; set; }
-        public string error { get; set; }
-        public string api_id { get; set; }
     }
 
+    public class SearchList
+    {
+        public SearchMeta meta { get; set; }
+        public string api_id { get; set; }
+        public string error { get; set; }
+        public List<Number> objects { get; set; }
+    }
+    
     public class NumberList
     {
         public NumberMeta meta { get; set; }
@@ -170,7 +196,7 @@ namespace Plivo.API
 
     public class CDRMeta
     {
-        public object previous { get; set; }
+        public string previous { get; set; }
         public int total_count { get; set; }
         public int offset { get; set; }
         public int limit { get; set; }
@@ -181,7 +207,7 @@ namespace Plivo.API
     {
         public int bill_duration { get; set; }
         public string total_amount { get; set; }
-        public object parent_call_uuid { get; set; }
+        public string parent_call_uuid { get; set; }
         public string call_direction { get; set; }
         public string to_number { get; set; }
         public string total_rate { get; set; }
