@@ -9,6 +9,7 @@ namespace Plivo.API
     public class GenericResponse
     {
         public string message { get; set; }
+        public string error { get; set; }
         public string api_id { get; set; }
     }
 
