@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.1.0 Multilingual speak support html entities
+            Added the new message APIs
+            Also updated various model attributes to handle json response
+    * 1.0.3 Minor fix to deal with GET request on few resources
     * 1.0.2 Minor fix for PlivoElement.AddWait method
     * 1.0.1 Minor fix for Number API calls
     * 1.0   Supports making Plivo APIs calls and generation of Plivo XML
