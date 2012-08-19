@@ -119,51 +119,52 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class SearchMeta
-    {
-        public string previous { get; set; }
-        public int total_count { get; set; }
-        public int offset { get; set; }
-        public int limit { get; set; }
-        public string next { get; set; }
-    }
-
     public class Number
     {
-        public string country { get; set; }
         public string region { get; set; }
         public bool voice_enabled { get; set; }
-        public string description { get; set; }
-        public bool plivo_number { get; set; }
         public bool sms_enabled { get; set; }
         public bool fax_enabled { get; set; }
         public string number { get; set; }
         public string api_id { get; set; }
-        public int lata { get; set; }
         public string voice_rate { get; set; }
         public string application { get; set; }
-        public string monthly_rental_rate { get; set; }
         public string sms_rate { get; set; }
         public string number_type { get; set; }
         public object sub_account { get; set; }
         public string added_on { get; set; }
         public string resource_uri { get; set; }
+        public string group_id { get; set; }
+        public string prefix { get; set; }
+        public string rental_rate { get; set; }
+        public string setup_rate { get; set; }
+        public int stock { get; set; }
+        [ObsoleteAttribute]
+        public string country { get; set; }
+        [ObsoleteAttribute]
+        public int lata { get; set; }
+        [ObsoleteAttribute("Use the attribute rental_rate instead")]
+        public string monthly_rental_rate { get; set; }
     }
 
-    public class SearchList
-    {
-        public SearchMeta meta { get; set; }
-        public string api_id { get; set; }
-        public string error { get; set; }
-        public List<Number> objects { get; set; }
-    }
-    
     public class NumberList
     {
         public NumberMeta meta { get; set; }
         public string api_id { get; set; }
         public string error { get; set; }
         public List<Number> objects { get; set; }
+    }
+
+    public class NumberStatus
+    {
+        public string number { get; set; }
+        public string status { get; set; }
+    }
+
+    public class NumberResponse
+    {
+        public List<NumberStatus> numbers { get; set; }
+        public string status { get; set; }
     }
 
     // Call Models
@@ -290,11 +291,42 @@ namespace Plivo.API
     }
 
     // Message Models
-    public class Message
+    public class MessageResponse
     {
         public string message { get; set; }
         public List<string> message_uuid { get; set; }
         public string error { get; set; }
         public string api_id { get; set; }
+    }
+
+    public class MessageMeta
+    {
+        public string previous { get; set; }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
+        public string next { get; set; }
+    }
+
+    public class Message
+    {
+        public string cloud_rate { get; set; }
+        public string carrier_rate { get; set; }
+        public string message_direction { get; set; }
+        public string to_number { get; set; }
+        public string message_state { get; set; }
+        public string total_amount { get; set; }
+        public string from_number { get; set; }
+        public string message_uuid { get; set; }
+        public string message_time { get; set; }
+        public string resource_uri { get; set; }
+        public string message_type { get; set; }
+    }
+
+    public class MessageList
+    {
+        public MessageMeta meta { get; set; }
+        public string api_id { get; set; }
+        public List<Message> objects { get; set; }
     }
 }

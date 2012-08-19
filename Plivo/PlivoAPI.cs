@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using System.Collections.Generic;
 using RestSharp;
 using RestSharp.Deserializers;
@@ -6,6 +7,11 @@ using dict = System.Collections.Generic.Dictionary<string, string>;
 
 namespace Plivo.API
 {
+    public class PlivoException : Exception
+    {
+        public PlivoException(string message) : base(message) { }
+    }
+
     public class RestAPI
     {
         private const string PlivoUrl = "https://api.plivo.com";
@@ -13,6 +19,7 @@ namespace Plivo.API
         public string AuthID { get; set; }
         public string AuthToken { get; set; }
         private RestClient client;
+
         public RestAPI(string auth_id, string auth_token, string version = "v1")
         {
             PlivoVersion = version;
@@ -25,13 +32,15 @@ namespace Plivo.API
             client.BaseUrl = String.Format("{0}/{1}/Account/{2}", PlivoUrl, PlivoVersion, AuthID);
         }
 
-        private IRestResponse<T> _request<T>(string resource, Dictionary<string, string> data, string http_method) where T : new()
+        private IRestResponse<T> _request<T>(string http_method, string resource, dict data)
+            where T : new()
         {
-            var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
+            var request = new RestRequest() 
+            { Resource = resource, RequestFormat = DataFormat.Json };
 
             // add the parameters to the request
             foreach (KeyValuePair<string, string> kvp in data)
-                request.AddParameter(kvp.Key, kvp.Value);
+                request.AddParameter(kvp.Key, HttpUtility.HtmlEncode(kvp.Value));
 
             //set the HTTP method for this request
             switch (http_method.ToUpper())
@@ -48,12 +57,12 @@ namespace Plivo.API
                     break;
             };
 
-            this.client.AddHandler("application/json", new JsonDeserializer());
-            IRestResponse<T> response = this.client.Execute<T>(request);
+            client.AddHandler("application/json", new JsonDeserializer());
+            IRestResponse<T> response = client.Execute<T>(request);
             return response;
         }
 
-        private string get_key_value(ref Dictionary<string, string> dict, string key)
+        private string get_key_value(ref dict dict, string key)
         {
             string value = "";
             try
@@ -63,352 +72,393 @@ namespace Plivo.API
             }
             catch (KeyNotFoundException)
             {
-                Console.WriteLine("Missing mandatory parameter {0}.", key);
+                throw new PlivoException(String.Format("Missing mandatory parameter {0}.", key));
             }
             return value;
         }
 
-// Accounts //
+        // Accounts //
         public IRestResponse<Account> get_account()
         {
             // had to add an additional space after / as RestSharp consumes it.
-            return _request<Account>("/ ", new dict(), "GET");
+            return _request<Account>("GET", "/ ", new dict());
         }
 
         public IRestResponse<GenericResponse> modify_account(dict parameters)
         {
             // had to add an additional space after / as RestSharp consumes it.
-            return _request<GenericResponse>("/ ", parameters, "POST");
+            return _request<GenericResponse>("POST", "/ ", parameters);
         }
 
         public IRestResponse<SubAccountList> get_subaccounts()
         {
-            return _request <SubAccountList>("/Subaccount/", new dict(), "GET");
+            return _request<SubAccountList>("GET", "/Subaccount/", new dict());
         }
 
         public IRestResponse<SubAccount> get_subaccount(dict parameters)
         {
             string subauth_id = get_key_value(ref parameters, "subauth_id");
-            return _request<SubAccount>(String.Format("/Subaccount/{0}/", subauth_id), parameters, "GET");
+            return _request<SubAccount>("GET", String.Format("/Subaccount/{0}/", subauth_id), parameters);
         }
 
         public IRestResponse<GenericResponse> create_subaccount(dict parameters)
         {
-            return _request<GenericResponse>("/Subaccount/", parameters, "POST");
+            return _request<GenericResponse>("POST", "/Subaccount/", parameters);
         }
 
         public IRestResponse<GenericResponse> modify_subaccount(dict parameters)
         {
             string subauth_id = get_key_value(ref parameters, "subauth_id");
-            string resource = String.Format("/Subaccount/{0}/ ", subauth_id);
-            return _request<GenericResponse>(resource, parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Subaccount/{0}/ ", subauth_id), parameters);
         }
 
         public IRestResponse<GenericResponse> delete_subaccount(dict parameters)
         {
             string subauth_id = get_key_value(ref parameters, "subauth_id");
-            string resource = String.Format("/Subaccount/{0}/", subauth_id);
-            return _request<GenericResponse>(resource, new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Subaccount/{0}/", subauth_id), new dict());
         }
 
         // Applications //
+        public IRestResponse<ApplicationList> get_applications()
+        {
+            return _request<ApplicationList>("GET", "/Application/", new dict());
+        }
+
         public IRestResponse<ApplicationList> get_applications(dict parameters)
         {
-            // had to add an additional slash as RestSharp consumes the trailing slash.
-            return _request<ApplicationList>("/Application//", parameters, "GET");
+            return _request<ApplicationList>("GET", "/Application/", parameters);
         }
 
         public IRestResponse<Application> get_application(dict parameters)
         {
             string app_id = get_key_value(ref parameters, "app_id");
-            string resource = String.Format("/Application/{0}/", app_id);
-            return _request<Application>(resource, new dict(), "GET");
+            return _request<Application>("GET", String.Format("/Application/{0}/", app_id), new dict());
         }
 
         public IRestResponse<GenericResponse> create_application(dict parameters)
         {
-            return _request <GenericResponse>("/Application/", parameters, "POST");
+            return _request<GenericResponse>("POST", "/Application/", parameters);
         }
 
         public IRestResponse<GenericResponse> modify_application(dict parameters)
         {
             string app_id = get_key_value(ref parameters, "app_id");
-            return _request <GenericResponse>(String.Format("/Application/{0}/", app_id), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Application/{0}/", app_id), parameters);
         }
 
         public IRestResponse<GenericResponse> delete_application(dict parameters)
         {
             string app_id = get_key_value(ref parameters, "app_id");
-            return _request<GenericResponse>(String.Format("/Application/{0}/", app_id), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Application/{0}/", app_id), new dict());
         }
 
-        
+
         // Numbers //
         public IRestResponse<NumberList> get_numbers()
         {
-            // had to add an additional slash as RestSharp consumes the trailing slash.
-            return _request<NumberList>("/Number//", new dict(), "GET");
+            return _request<NumberList>("GET", "/Number/", new dict());
         }
 
+        [Obsolete("Use search_number_group() instead")]
         public IRestResponse<NumberList> search_numbers(dict parameters)
         {
             // had to add an additional slash as RestSharp consumes the trailing slash.
-            return _request<NumberList>("/AvailableNumber//", parameters, "GET");
+            return _request<NumberList>("GET", "/AvailableNumber//", parameters);
+        }
+
+        public IRestResponse<NumberList> search_number_group(dict parameters)
+        {
+            // had to add an additional slash as RestSharp consumes the trailing slash.
+            return _request<NumberList>("GET", "/AvailableNumberGroup//", parameters);
         }
 
         public IRestResponse<Number> get_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request<Number>(String.Format("/Number/{0}/", number), new dict(), "GET");
+            return _request<Number>("GET", String.Format("/Number/{0}/", number), new dict());
         }
 
+        [Obsolete("Use rent_numbers() instead")]
         public IRestResponse<GenericResponse> rent_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request<GenericResponse>(String.Format("/AvailableNumber/{0}/", number), new dict(), "POST");
+            return _request<GenericResponse>("POST", String.Format("/AvailableNumber/{0}/", number), new dict());
+        }
+
+        public IRestResponse<NumberResponse> rent_numbers(dict parameters)
+        {
+            string group_id = get_key_value(ref parameters, "group_id");
+            return _request<NumberResponse>("POST", String.Format("/AvailableNumber/{0}/", group_id), new dict());
         }
 
         public IRestResponse<GenericResponse> unrent_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request<GenericResponse>(String.Format("/Number/{0}/", number), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Number/{0}/", number), new dict());
         }
 
         public IRestResponse<GenericResponse> link_application_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request <GenericResponse>(String.Format("/Number/{0}/", number), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Number/{0}/", number), parameters);
         }
 
         public IRestResponse<GenericResponse> unlink_application_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
             parameters.Add("app_id", "");
-            return _request<GenericResponse>(String.Format("/Number/{0}/", number), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Number/{0}/", number), parameters);
         }
 
 
         // Calls //
+        public IRestResponse<CDRList> get_cdrs()
+        {
+            // had to add an additional slash as RestSharp consumes the trailing slash.
+            return _request<CDRList>("GET", "/Call//", new dict());
+        }
+
         public IRestResponse<CDRList> get_cdrs(dict parameters)
         {
             // had to add an additional slash as RestSharp consumes the trailing slash.
-            return _request<CDRList>("/Call//", parameters, "GET");
+            return _request<CDRList>("GET", "/Call//", parameters);
         }
 
         public IRestResponse<CDR> get_cdr(dict parameters)
         {
             string record_id = get_key_value(ref parameters, "record_id");
-            return _request<CDR>(String.Format("/Call/{0}/", record_id), new dict(), "GET");
+            return _request<CDR>("GET", String.Format("/Call/{0}/", record_id), new dict());
         }
 
         public IRestResponse<LiveCallList> get_live_calls()
         {
             dict parameters = new dict();
             parameters.Add("status", "live");
-            return _request<LiveCallList>("/Call//", parameters, "GET");
+            // had to add an additional slash as RestSharp consumes the trailing slash.
+            return _request<LiveCallList>("GET", "/Call//", parameters);
         }
 
         public IRestResponse<LiveCall> get_live_call(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
             parameters.Add("status", "live");
-            return _request<LiveCall>(String.Format("/Call/{0}//", call_uuid), parameters, "GET");
+            return _request<LiveCall>("GET", String.Format("/Call/{0}/", call_uuid), parameters);
         }
 
         public IRestResponse<Call> make_call(dict parameters)
         {
-            return _request<Call>("/Call/", parameters, "POST");
+            return _request<Call>("POST", "/Call/", parameters);
         }
 
         public IRestResponse<GenericResponse> hangup_all_calls()
         {
-            return _request<GenericResponse>("/Call/", new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", "/Call/", new dict());
         }
 
         public IRestResponse<GenericResponse> hangup_call(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/", call_uuid), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/", call_uuid), new dict());
         }
 
         public IRestResponse<GenericResponse> transfer_call(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/", call_uuid), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Call/{0}/", call_uuid), parameters);
         }
 
         public IRestResponse<Record> record(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<Record>(String.Format("/Call/{0}/Record/", call_uuid), parameters, "POST");
+            return _request<Record>("POST", String.Format("/Call/{0}/Record/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> stop_record(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/Record/", call_uuid), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Record/", call_uuid), new dict());
         }
 
         public IRestResponse<GenericResponse> play(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/Play/", call_uuid), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Call/{0}/Play/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> stop_play(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/Play/", call_uuid), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Play/", call_uuid), new dict());
         }
 
         public IRestResponse<GenericResponse> speak(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/Speak/", call_uuid), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Call/{0}/Speak/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> send_digits(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>(String.Format("/Call/{0}/DTMF/", call_uuid), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Call/{0}/DTMF/", call_uuid), parameters);
         }
 
 
         // Conferences //
         public IRestResponse<LiveConferenceList> get_live_conferences()
         {
-            // had to add an additional slash as RestSharp consumes the trailing slash.
-            return _request<LiveConferenceList>("/Conference//", new dict(), "GET");
+            return _request<LiveConferenceList>("GET", "/Conference/", new dict());
         }
 
         public IRestResponse<GenericResponse> hangup_all_conferences()
         {
-            return _request<GenericResponse>("/Conference/", new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", "/Conference/", new dict());
         }
 
         public IRestResponse<Conference> get_live_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<Conference>(String.Format("/Conference/{0}/", conference_name), new dict(), "GET");
+            return _request<Conference>("GET", String.Format("/Conference/{0}/", conference_name), new dict());
         }
 
         public IRestResponse<GenericResponse> hangup_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/", conference_name), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/", conference_name), new dict());
         }
 
         public IRestResponse<GenericResponse> hangup_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/", conference_name, member_id), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> play_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), new dict(), "POST");
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> stop_play_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> speak_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Speak/", conference_name, member_id), new dict(), "POST");
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Speak/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> deaf_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), new dict(), "POST");
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> undeaf_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> mute_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), new dict(), "POST");
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> unmute_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> kick_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Member/{1}/Kick/", conference_name, member_id), new dict(), "POST");
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Kick/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<Record> record_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<Record>(String.Format("/Conference/{0}/Record/", conference_name), parameters, "POST");
+            return _request<Record>("POST", String.Format("/Conference/{0}/Record/", conference_name), parameters);
         }
 
         public IRestResponse<GenericResponse> stop_record_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<GenericResponse>(String.Format("/Conference/{0}/Record/", conference_name), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Record/", conference_name), new dict());
         }
 
 
         // Endpoints //
-        public IRestResponse<EndpointList> get_endpoints(dict parameters)
+        public IRestResponse<EndpointList> get_endpoints()
         {
-            // had to add an additional slash as RestSharp consumes the trailing slash.
-            return _request<EndpointList>("/Endpoint//", parameters, "GET");
+            return _request<EndpointList>("GET", "/Endpoint/", new dict());
         }
 
-        public IRestResponse<GenericResponse> create_endpoint(dict parameters)
+        public IRestResponse<EndpointList> get_endpoints(dict parameters)
         {
-            return _request<GenericResponse>("/Endpoint/", parameters, "POST");
+            return _request<EndpointList>("GET", "/Endpoint/", parameters);
+        }
+
+        public IRestResponse<Endpoint> create_endpoint(dict parameters)
+        {
+            return _request<Endpoint>("POST", "/Endpoint/", parameters);
         }
 
         public IRestResponse<Endpoint> get_endpoint(dict parameters)
         {
             string endpoint_id = get_key_value(ref parameters, "endpoint_id");
-            return _request<Endpoint>(String.Format("/Endpoint/{0}/", endpoint_id), new dict(), "GET");
+            return _request<Endpoint>("GET", String.Format("/Endpoint/{0}/", endpoint_id), new dict());
         }
 
         public IRestResponse<GenericResponse> modify_endpoint(dict parameters)
         {
             string endpoint_id = get_key_value(ref parameters, "endpoint_id");
-            return _request<GenericResponse>(String.Format("/Endpoint/{0}/", endpoint_id), parameters, "POST");
+            return _request<GenericResponse>("POST", String.Format("/Endpoint/{0}/", endpoint_id), parameters);
         }
 
         public IRestResponse<GenericResponse> delete_endpoint(dict parameters)
         {
             string endpoint_id = get_key_value(ref parameters, "endpoint_id");
-            return _request<GenericResponse>(String.Format("/Endpoint/{0}/", endpoint_id), new dict(), "DELETE");
+            return _request<GenericResponse>("DELETE", String.Format("/Endpoint/{0}/", endpoint_id), new dict());
         }
 
 
-        // Message //
-        public IRestResponse<Message> send_message(dict parameters)
+
+        // Messages //
+        public IRestResponse<MessageResponse> send_message(dict parameters)
         {
-            return _request<Message>("/Message/", parameters, "POST");
+            return _request<MessageResponse>("POST", "/Message/", parameters);
+        }
+
+        public IRestResponse<Message> get_message(dict parameters)
+        {
+            string record_id = get_key_value(ref parameters, "record_id");
+            return _request<Message>("GET", String.Format("/Message/{0}//", record_id), new dict());
+        }
+
+        public IRestResponse<MessageList> get_messages()
+        {
+            return _request<MessageList>("GET", "/Message/", new dict());
+        }
+
+        public IRestResponse<MessageList> get_messages(dict parameters)
+        {
+            return _request<MessageList>("GET", "/Message//", parameters);
         }
     }
 }
