@@ -250,6 +250,20 @@ namespace Plivo.API
             return _request<Call>("POST", "/Call/", parameters);
         }
 
+        public IRestResponse<Call> make_bulk_call(dict parameters, dict destNumberSipHeaders)
+        {
+            string destNumbers = "";
+            string headerSIP = "";
+            foreach (KeyValuePair<string, string> kvp in destNumberSipHeaders)
+            {
+                destNumbers += kvp.Key + "<";
+                headerSIP += kvp.Value + "<";
+            }
+            parameters.Add("to", destNumbers.Substring(0, destNumbers.Length - 1));
+            parameters.Add("sip_headers", headerSIP.Substring(0, headerSIP.Length - 1));
+            return _request<Call>("POST", "/Call/", parameters);
+        }
+
         public IRestResponse<GenericResponse> hangup_all_calls()
         {
             return _request<GenericResponse>("DELETE", "/Call/", new dict());

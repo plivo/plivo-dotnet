@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.1.1 Added method for making bulk calls with sip headers for each
     * 1.1.0 Multilingual speak support html entities
             Added the new message APIs
             Also updated various model attributes to handle json response
