@@ -332,7 +332,8 @@ namespace Plivo.XML
             Nestables = new list() { "" };
             ValidAttributes = new list()
             {   "action", "method", "timeout", "finishOnKey", "maxLength", "playBeep",
-                "recordSession", "startOnDialAnswer", "redirect", "fileFormat"
+                "recordSession", "startOnDialAnswer", "redirect", "fileFormat",
+                "callbackUrl", "callbackMethod"
             };
             addAttributes();
         }
