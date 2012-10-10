@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.1.4</version>
+    <version>1.1.5</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.1.5 Minor fix. Updated attributes for Conference Element.
     * 1.1.4 Minor fix. Updated attributes for Record Element.
     * 1.1.3 Minor fix for attribute error
     * 1.1.2 Added attribute to XML element Wait
