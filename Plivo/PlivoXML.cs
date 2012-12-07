@@ -107,7 +107,7 @@ namespace Plivo.XML
 
         public PlivoElement AddRecord(dict parameters)
         {
-            return Add(new Record("", parameters));
+            return Add(new Record(parameters));
         }
 
         public PlivoElement AddDial(dict parameters)
@@ -237,7 +237,8 @@ namespace Plivo.XML
             {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter", 
                 "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit", 
                 "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
-                "floorEvent", "redirect", "record", "recordFileFormat"
+                "floorEvent", "redirect", "record", "recordFileFormat", "transcriptionType", "transcriptionUrl",
+                "transcriptionMethod"
             };
             addAttributes();
         }
@@ -252,8 +253,8 @@ namespace Plivo.XML
             {   "Speak", "Play", "Wait"
             };
             ValidAttributes = new list()
-            {   "action", "method", "timeout", "finishOnKey", "numDigits", "retries",
-                "invalidDigitsSound", "validDigits", "playBeep", "redirect"
+            {   "action", "method", "timeout", "digitTimeout","finishOnKey", "numDigits", 
+                "retries", "invalidDigitsSound", "validDigits", "playBeep", "redirect"
             };
             addAttributes();
         }
@@ -326,14 +327,15 @@ namespace Plivo.XML
 
     public class Record : PlivoElement
     {
-        public Record(string body, dict attributes)
-            : base(body, attributes)
+        public Record(dict attributes)
+            : base(attributes)
         {
             Nestables = new list() { "" };
             ValidAttributes = new list()
             {   "action", "method", "timeout", "finishOnKey", "maxLength", "playBeep",
                 "recordSession", "startOnDialAnswer", "redirect", "fileFormat",
-                "callbackUrl", "callbackMethod"
+                "callbackUrl", "callbackMethod", "transcriptionType", "transcriptionUrl",
+                "transcriptionMethod"
             };
             addAttributes();
         }
