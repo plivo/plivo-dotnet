@@ -329,4 +329,33 @@ namespace Plivo.API
         public string api_id { get; set; }
         public List<Message> objects { get; set; }
     }
+    
+    // Incoming Carrier Models
+    
+    public class IncomingCarrierMeta
+    {
+        public string previous { get; set; }
+        public string total_count { get; set; }
+        public string offset { get; set; }
+        public string limit { get; set; }
+        public string next { get; set; }
+    }
+    
+    public class IncomingCarrier
+    {
+        public string carrier_id { get; set; }
+        public string ip_set { get; set; }
+        public string name { get; set; }
+        public string resource_uri { get; set; }
+        public string sms { get; set; }
+        public string voice { get; set; }
+    }
+    
+    public class IncomingCarrierList
+    {
+        public IncomingCarrierMeta meta { get; set; }
+        public string api_id { get; set; }
+        public string error { get; set; }
+        public List<IncomingCarrier> objects { get; set; }
+    }
 }
