@@ -3,6 +3,8 @@
 [Bb]in/
 *.suo
 *.user
+*.csproj
+packages.config
 
 #NuGet
 packages/
