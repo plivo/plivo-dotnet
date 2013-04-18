@@ -4,6 +4,7 @@ using System.Xml.Linq;
 using System.Web;
 using dict = System.Collections.Generic.Dictionary<string, string>;
 using list = System.Collections.Generic.List<string>;
+using Plivo.Util;
 
 namespace Plivo.XML
 {
@@ -21,7 +22,7 @@ namespace Plivo.XML
 
         public PlivoElement(string body, dict attributes)
         {
-            Element = new XElement(this.GetType().Name, HttpUtility.HtmlEncode(body));
+            Element = new XElement(this.GetType().Name, HtmlEntity.Convert(body));
             Attributes = attributes;
         }
 
@@ -33,7 +34,7 @@ namespace Plivo.XML
 
         public PlivoElement(string body)
         {
-            Element = new XElement(this.GetType().Name, HttpUtility.HtmlEncode(body));
+            Element = new XElement(this.GetType().Name, HtmlEntity.Convert(body));
         }
 
         public PlivoElement()
@@ -162,7 +163,7 @@ namespace Plivo.XML
 
         public override string ToString()
         {
-            return SerializeToXML().ToString();
+            return SerializeToXML().ToString().Replace("&amp;", "&");
         }
 
         protected XDocument SerializeToXML()
@@ -208,7 +209,7 @@ namespace Plivo.XML
         {
             Nestables = new list() { "" };
             ValidAttributes = new list()
-            {   "sendDigits", "sendOnPreAnswer"
+            {   "sendDigits", "sendOnPreAnswer", "sendDigitsMode"
             };
             addAttributes();
         }
