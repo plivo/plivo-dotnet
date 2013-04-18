@@ -331,7 +331,6 @@ namespace Plivo.API
     }
     
     // Incoming Carrier Models
-    
     public class IncomingCarrierMeta
     {
         public string previous { get; set; }
@@ -357,5 +356,106 @@ namespace Plivo.API
         public string api_id { get; set; }
         public string error { get; set; }
         public List<IncomingCarrier> objects { get; set; }
+    }
+
+    // Pricing
+    public class LocalNumberRental
+    {
+        public string rate { get; set; }
+    }
+
+    public class TollfreeNumberRental
+    {
+        public string rate { get; set; }
+    }
+
+    public class PhoneNumbers
+    {
+        public LocalNumberRental local { get; set; }
+        public TollfreeNumberRental tollfree { get; set; }
+    }
+
+    public class SipInboundPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class LocalInboundPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class TollfreeInboundPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class InboundVoicePricing
+    {
+        public SipInboundPricing ip { get; set; }
+        public LocalInboundPricing local { get; set; }
+        public TollfreeInboundPricing tollfree { get; set; }
+    }
+
+    public class SipOutboundPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class LocalOutboundPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class TollfreeOutboundPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class RatesPrefixes
+    {
+        public string rate { get; set; }
+        public List<string> prefix { get; set; }
+    }
+
+    public class OutboundVoicePricing
+    {
+        public SipOutboundPricing ip { get; set; }
+        public LocalOutboundPricing local { get; set; }
+        public TollfreeOutboundPricing tollfree { get; set; }
+        public List<RatesPrefixes> rates { get; set; }
+    }
+
+    public class VoiceRates
+    {
+        public InboundVoicePricing inbound { get; set; }
+        public OutboundVoicePricing outbound { get; set; }
+    }
+
+    public class InboundSmsPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class OutboundSmsPricing
+    {
+        public string rate { get; set; }
+    }
+
+    public class SmsRates
+    {
+        public InboundSmsPricing inbound { get; set; }
+        public OutboundSmsPricing outbound { get; set; }
+    }
+
+    public class PlivoPricing
+    {
+        public string country_code { get; set; }
+        public string country_iso { get; set; }
+        public string country { get; set; }
+        public PhoneNumbers phone_numbers { get; set; }
+        public VoiceRates voice { get; set; }
+        public SmsRates message { get; set; }
+        public string api_id { get; set; }
     }
 }

@@ -380,7 +380,7 @@ namespace Plivo.API
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/ /{1}/Deaf/", conference_name, member_id), new dict());
         }
 
         public IRestResponse<GenericResponse> mute_member(dict parameters)
@@ -452,7 +452,6 @@ namespace Plivo.API
         }
 
 
-
         // Messages //
         public IRestResponse<MessageResponse> send_message(dict parameters)
         {
@@ -473,6 +472,41 @@ namespace Plivo.API
         public IRestResponse<MessageList> get_messages(dict parameters)
         {
             return _request<MessageList>("GET", "/Message//", parameters);
+        }
+
+
+        // Inbound Carriers
+        public IRestResponse<IncomingCarrierList> get_incoming_carriers(dict parameters)
+        {
+            return _request<IncomingCarrierList>("GET", "/IncomingCarrier//", parameters);
+        }
+
+        public IRestResponse<IncomingCarrier> get_incoming_carrier(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "carrier_id");
+            return _request<IncomingCarrier>("GET", String.Format("/IncomingCarrier/{0}//", carrierId), parameters);
+        }
+
+        public IRestResponse<GenericResponse> create_incoming_carrier(dict parameters)
+        {
+            return _request<GenericResponse>("POST", "/IncomingCarrier/", parameters);
+        }
+
+        public IRestResponse<IncomingCarrier> modify_incoming_carrier(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "carrier_id");
+            return _request<IncomingCarrier>("POST", String.Format("/IncomingCarrier/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<GenericResponse> delete_incoming_carrier(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "carrier_id");
+            return _request<GenericResponse>("DELETE", String.Format("/IncomingCarrier/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<PlivoPricing> pricing(dict parameters)
+        { 
+            return _request<PlivoPricing>("GET", "/Pricing//", parameters);
         }
     }
 }
