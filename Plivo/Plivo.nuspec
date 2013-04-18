@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.1.7</version>
+    <version>1.2.0</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.2.0 Additional APIs coverage: incoming carrier and pricing. support for unicode.
     * 1.1.7 Minor change. Updated attributes for Conference and Record Elements.
     * 1.1.6 Minor change. Updated attributes for GetDigits Element.
     * 1.1.5 Minor change. Updated attributes for Conference Element.
