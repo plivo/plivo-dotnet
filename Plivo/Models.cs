@@ -131,7 +131,7 @@ namespace Plivo.API
         public string application { get; set; }
         public string sms_rate { get; set; }
         public string number_type { get; set; }
-        public object sub_account { get; set; }
+        public string sub_account { get; set; }
         public string added_on { get; set; }
         public string resource_uri { get; set; }
         public string group_id { get; set; }
