@@ -40,6 +40,14 @@ namespace Plivo.API
         public string resource_uri { get; set; }
     }
 
+    public class ResourceListMeta
+    {
+        public object previous { get; set; }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
+        public string next { get; set; }
+    }
     public class SubAccountMeta
     {
         public object previous { get; set; }
@@ -356,6 +364,52 @@ namespace Plivo.API
         public string api_id { get; set; }
         public string error { get; set; }
         public List<IncomingCarrier> objects { get; set; }
+    }
+
+    public class OutgoingCarrierMeta
+    {
+        public string previous { get; set; }
+        public string total_count { get; set; }
+        public string offset { get; set; }
+        public string limit { get; set; }
+        public string next { get; set; }
+    }
+    public class OutgoingCarrier
+    {
+        public string carrier_id { get; set; }
+        public string ips { get; set; }
+        public string prefix { get; set; }
+        public string failover_prefix { get; set; }
+        public string address { get; set; }
+        public string failover_address { get; set; }
+        public string enabled { get; set; }
+        public string retries { get; set; }
+        public string resource_uri { get; set; }
+    }
+
+    public class OutgoingCarrierList
+    {
+        public OutgoingCarrierMeta meta { get; set; }
+        public string api_id { get; set; }
+        public string error { get; set; }
+        public List<OutgoingCarrier> objects { get; set; }
+    }
+
+    public class OutgoingCarrierRouting
+    {
+        public string routing_id { get; set; }
+        public string digits { get; set; }
+        public int priority { get; set; }
+        public string outgoing_carrier { get; set; }
+        public string resource_uri { get; set; }
+    }
+
+    public class OutgoingCarrierRoutingList
+    {
+        public ResourceListMeta meta { get; set; }
+        public string api_id { get; set; }
+        public string error { get; set; }
+        public List<OutgoingCarrierRouting> objects { get; set; }
     }
 
     // Pricing

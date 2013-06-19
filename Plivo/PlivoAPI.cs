@@ -508,5 +508,63 @@ namespace Plivo.API
         { 
             return _request<PlivoPricing>("GET", "/Pricing//", parameters);
         }
+
+        // Outgoing Carriers
+        public IRestResponse<OutgoingCarrierList> get_outgoing_carriers()
+        {
+            return _request<OutgoingCarrierList>("GET", "/OutgoingCarrier/", new dict());
+        }
+
+        public IRestResponse<OutgoingCarrier> get_outgoing_carrier(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "carrier_id");
+            return _request<OutgoingCarrier>("GET", String.Format("/OutgoingCarrier/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<GenericResponse> create_outgoing_carrier(dict parameters)
+        {
+            return _request<GenericResponse>("POST", "/OutgoingCarrier/", parameters);
+        }
+
+        public IRestResponse<GenericResponse> modify_outgoing_carrier(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "carrier_id");
+            return _request<GenericResponse>("POST", String.Format("/OutgoingCarrier/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<GenericResponse> delete_outgoing_carrier(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "carrier_id");
+            return _request<GenericResponse>("DELETE", String.Format("/OutgoingCarrier/{0}/", carrierId), parameters);
+        }
+
+        // Outgoing Carrier Routings
+        public IRestResponse<OutgoingCarrierRoutingList> get_outgoing_carrier_routings()
+        {
+            return _request<OutgoingCarrierRoutingList>("GET", "/OutgoingCarrierRouting/", new dict());
+        }
+
+        public IRestResponse<OutgoingCarrierRouting> get_outgoing_carrier_routing(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "routing_id");
+            return _request<OutgoingCarrierRouting>("GET", String.Format("/OutgoingCarrierRouting/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<GenericResponse> create_outgoing_carrier_routing(dict parameters)
+        {
+            return _request<GenericResponse>("POST", "/OutgoingCarrierRouting/", parameters);
+        }
+
+        public IRestResponse<GenericResponse> modify_outgoing_carrier_routing(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "routing_id");
+            return _request<GenericResponse>("POST", String.Format("/OutgoingCarrierRouting/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<GenericResponse> delete_outgoing_carrier_routing(dict parameters)
+        {
+            string carrierId = get_key_value(ref parameters, "routing_id");
+            return _request<GenericResponse>("DELETE", String.Format("/OutgoingCarrierRouting/{0}/", carrierId), parameters);
+        }
     }
 }
