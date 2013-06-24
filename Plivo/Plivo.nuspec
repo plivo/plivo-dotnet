@@ -31,6 +31,9 @@
     </releaseNotes>
     <copyright>Plivo Inc, Copyright 2012</copyright>
     <tags>Plivo REST voice SMS telephony API XML</tags>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System" targetFramework="net40" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="bin\release\*.dll" target="lib\net40" />
