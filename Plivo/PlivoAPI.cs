@@ -35,8 +35,7 @@ namespace Plivo.API
         private IRestResponse<T> _request<T>(string http_method, string resource, dict data)
             where T : new()
         {
-            var request = new RestRequest() 
-            { Resource = resource, RequestFormat = DataFormat.Json };
+            var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
 
             // add the parameters to the request
             foreach (KeyValuePair<string, string> kvp in data)
@@ -80,8 +79,8 @@ namespace Plivo.API
         // Accounts //
         public IRestResponse<Account> get_account()
         {
+            return null;
             // had to add an additional space after / as RestSharp consumes it.
-            return _request<Account>("GET", "/ ", new dict());
         }
 
         public IRestResponse<GenericResponse> modify_account(dict parameters)
@@ -115,8 +114,20 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> delete_subaccount(dict parameters)
         {
             string subauth_id = get_key_value(ref parameters, "subauth_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Subaccount/{0}/", subauth_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Subaccount/{0}/", subauth_id), parameters);
         }
+
+        /* private static dict mask_if_empty_params(dict parameters)
+         {
+             if (parameters.Count >= 0)
+             {
+                 return parameters;
+             }
+             else{
+                 return new dict();
+             }
+
+         }*/
 
         // Applications //
         public IRestResponse<ApplicationList> get_applications()
@@ -132,7 +143,7 @@ namespace Plivo.API
         public IRestResponse<Application> get_application(dict parameters)
         {
             string app_id = get_key_value(ref parameters, "app_id");
-            return _request<Application>("GET", String.Format("/Application/{0}/", app_id), new dict());
+            return _request<Application>("GET", String.Format("/Application/{0}/", app_id), parameters);
         }
 
         public IRestResponse<GenericResponse> create_application(dict parameters)
@@ -149,7 +160,7 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> delete_application(dict parameters)
         {
             string app_id = get_key_value(ref parameters, "app_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Application/{0}/", app_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Application/{0}/", app_id), parameters);
         }
 
 
@@ -175,26 +186,26 @@ namespace Plivo.API
         public IRestResponse<Number> get_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request<Number>("GET", String.Format("/Number/{0}/", number), new dict());
+            return _request<Number>("GET", String.Format("/Number/{0}/", number), parameters);
         }
 
         [Obsolete("Use rent_numbers() instead")]
         public IRestResponse<GenericResponse> rent_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request<GenericResponse>("POST", String.Format("/AvailableNumber/{0}/", number), new dict());
+            return _request<GenericResponse>("POST", String.Format("/AvailableNumber/{0}/", number), parameters);
         }
 
         public IRestResponse<NumberResponse> rent_numbers(dict parameters)
         {
             string group_id = get_key_value(ref parameters, "group_id");
-            return _request<NumberResponse>("POST", String.Format("/AvailableNumber/{0}/", group_id), new dict());
+            return _request<NumberResponse>("POST", String.Format("/AvailableNumber/{0}/", group_id), parameters);
         }
 
         public IRestResponse<GenericResponse> unrent_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
-            return _request<GenericResponse>("DELETE", String.Format("/Number/{0}/", number), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Number/{0}/", number), parameters);
         }
 
         public IRestResponse<GenericResponse> link_application_number(dict parameters)
@@ -227,7 +238,7 @@ namespace Plivo.API
         public IRestResponse<CDR> get_cdr(dict parameters)
         {
             string record_id = get_key_value(ref parameters, "record_id");
-            return _request<CDR>("GET", String.Format("/Call/{0}/", record_id), new dict());
+            return _request<CDR>("GET", String.Format("/Call/{0}/", record_id), parameters);
         }
 
         public IRestResponse<LiveCallList> get_live_calls()
@@ -272,7 +283,7 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> hangup_call(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/", call_uuid), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> transfer_call(dict parameters)
@@ -290,7 +301,7 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> stop_record(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Record/", call_uuid), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Record/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> play(dict parameters)
@@ -302,7 +313,7 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> stop_play(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
-            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Play/", call_uuid), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Play/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> speak(dict parameters)
@@ -332,76 +343,76 @@ namespace Plivo.API
         public IRestResponse<Conference> get_live_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<Conference>("GET", String.Format("/Conference/{0}/", conference_name), new dict());
+            return _request<Conference>("GET", String.Format("/Conference/{0}/", conference_name), parameters);
         }
 
         public IRestResponse<GenericResponse> hangup_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/", conference_name), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/", conference_name), parameters);
         }
 
         public IRestResponse<GenericResponse> hangup_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> play_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> stop_play_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Play/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> speak_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Speak/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Speak/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> deaf_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> undeaf_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/ /{1}/Deaf/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Deaf/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> mute_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> unmute_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Mute/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<GenericResponse> kick_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
             string member_id = get_key_value(ref parameters, "member_id");
-            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Kick/", conference_name, member_id), new dict());
+            return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Kick/", conference_name, member_id), parameters);
         }
 
         public IRestResponse<Record> record_conference(dict parameters)
@@ -413,7 +424,7 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> stop_record_conference(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
-            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Record/", conference_name), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Record/", conference_name), parameters);
         }
 
 
@@ -436,7 +447,7 @@ namespace Plivo.API
         public IRestResponse<Endpoint> get_endpoint(dict parameters)
         {
             string endpoint_id = get_key_value(ref parameters, "endpoint_id");
-            return _request<Endpoint>("GET", String.Format("/Endpoint/{0}/", endpoint_id), new dict());
+            return _request<Endpoint>("GET", String.Format("/Endpoint/{0}/", endpoint_id), parameters);
         }
 
         public IRestResponse<GenericResponse> modify_endpoint(dict parameters)
@@ -448,7 +459,7 @@ namespace Plivo.API
         public IRestResponse<GenericResponse> delete_endpoint(dict parameters)
         {
             string endpoint_id = get_key_value(ref parameters, "endpoint_id");
-            return _request<GenericResponse>("DELETE", String.Format("/Endpoint/{0}/", endpoint_id), new dict());
+            return _request<GenericResponse>("DELETE", String.Format("/Endpoint/{0}/", endpoint_id), parameters);
         }
 
 
@@ -461,7 +472,7 @@ namespace Plivo.API
         public IRestResponse<Message> get_message(dict parameters)
         {
             string record_id = get_key_value(ref parameters, "record_id");
-            return _request<Message>("GET", String.Format("/Message/{0}//", record_id), new dict());
+            return _request<Message>("GET", String.Format("/Message/{0}//", record_id), parameters);
         }
 
         public IRestResponse<MessageList> get_messages()
@@ -505,7 +516,7 @@ namespace Plivo.API
         }
 
         public IRestResponse<PlivoPricing> pricing(dict parameters)
-        { 
+        {
             return _request<PlivoPricing>("GET", "/Pricing//", parameters);
         }
 
