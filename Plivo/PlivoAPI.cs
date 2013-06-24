@@ -2,6 +2,7 @@
 using System.Web;
 using System.Collections.Generic;
 using RestSharp;
+using Plivo.Util;
 using RestSharp.Deserializers;
 using dict = System.Collections.Generic.Dictionary<string, string>;
 
@@ -39,7 +40,7 @@ namespace Plivo.API
 
             // add the parameters to the request
             foreach (KeyValuePair<string, string> kvp in data)
-                request.AddParameter(kvp.Key, HttpUtility.HtmlEncode(kvp.Value));
+				request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value));
 
             //set the HTTP method for this request
             switch (http_method.ToUpper())
