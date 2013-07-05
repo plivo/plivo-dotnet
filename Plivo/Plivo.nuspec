@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.2.3</version>
+    <version>1.2.6</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.2.6 Fixed available number group for renting numbers.
+    * 1.2.5 Fix issues with packaging.
     * 1.2.3 Allow optional parameters on various APIs.
     * 1.2.2 Minor change. Fix for speak api method.
     * 1.2.0 Additional APIs coverage: incoming carrier and pricing. support for unicode.
