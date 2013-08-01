@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.2.7</version>
+    <version>1.2.8</version>
     <title>Plivo</title>
     <authors>Rakesh</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.2.8 Fixed issue with returning of nested XML object.
     * 1.2.7 Added 'recordWhenAlone' attribute in Conference XML.
     * 1.2.6 Fixed available number group for renting numbers.
     * 1.2.5 Fix issues with packaging.
