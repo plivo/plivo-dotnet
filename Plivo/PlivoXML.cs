@@ -84,7 +84,7 @@ namespace Plivo.XML
             if (posn >= 0)
             {
                 Element.Add(element.Element);
-                return this;
+                return element;
             }
             else
                 throw new PlivoException(String.Format("Element {0} cannot be nested within {1}", element.GetType().Name, this.GetType().Name));
