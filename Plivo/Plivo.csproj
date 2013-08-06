@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlivoLanguage.cs" />
+    <Compile Include="PlivoAudioFileFormat.cs" />
+    <Compile Include="PlivoGender.cs" />
+    <Compile Include="PlivoHttpMethod.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="PlivoAPI.cs" />
     <Compile Include="PlivoUtil.cs" />
