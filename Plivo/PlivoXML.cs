@@ -13,8 +13,6 @@ namespace Plivo.XML
 
     public abstract class PlivoElement
     {
-        protected list Nestables { get; set; }
-        protected list ValidAttributes { get; set; }
         protected XElement Element { get; set; }
 
         public PlivoElement(string body)
@@ -38,23 +36,13 @@ namespace Plivo.XML
 
         protected void Set(string key, string val)
         {
-            int posn = ValidAttributes.FindIndex(k => k == key);
-            if (posn >= 0)
                 Element.SetAttributeValue(key,val);
-            else
-                throw new PlivoException(String.Format("Invalid attribute {0} for {1}", key, this.GetType().Name));
         }
 
-        public PlivoElement Add(PlivoElement element)
+        protected PlivoElement Add(PlivoElement element)
         {
-            int posn = Nestables.FindIndex(n => n == element.GetType().Name);
-            if (posn >= 0)
-            {
                 Element.Add(element.Element);
                 return element;
-            }
-            else
-                throw new PlivoException(String.Format("Element {0} cannot be nested within {1}", element.GetType().Name, this.GetType().Name));
         }
 
         public override string ToString()
@@ -70,30 +58,71 @@ namespace Plivo.XML
 
     public class Response : PlivoElement
     {
-        public Response()
-            : base()
+        public Response() : base()
         {
-            Nestables = new list()
-            {   "Speak", "Play", "GetDigits", "Record", "Dial", "Message", "Redirect",
-                "Wait", "Hangup", "PreAnswer", "Conference", "DTMF"
-            };
-            ValidAttributes = new list() { "" };
+        }
+        public Speak AddSpeak(string text)
+        {
+            return (Speak)Add(new Speak(text));
+        }
+        public Play AddPlay(string url)
+        {
+            return (Play)Add(new Play(url));
+        }
+        public GetDigits AddGetDigits()
+        {
+            return (GetDigits) Add( new GetDigits());
+        }
+        public Record AddRecord()
+        {
+            return (Record)Add( new Record());
+        }
+        public Dial AddDial()
+        {
+            return (Dial)Add( new Dial());
+        }
+        public Message AddMessage(string text)
+        {
+            return (Message)Add( new Message(text));
+        }
+        public Redirect AddRedirect(string body)
+        {
+            return (Redirect)Add(new Redirect(body));
+        }
+        public Wait AddWait()
+        {
+            return (Wait)Add(new Wait());
+        }
+        public Hangup AddHangup()
+        {
+            return (Hangup)Add(new Hangup());
+        }
+        public PreAnswer AddPreAnswer()
+        {
+            return (PreAnswer)Add(new PreAnswer());
+        }
+        public Conference AddConference(string body)
+        {
+            return (Conference)Add(new Conference(body));
+        }
+        public DTMF AddDTMF(string body)
+        {
+            return (DTMF)Add(new DTMF(body));
         }
     }
 
     public class Dial : PlivoElement
     {
-        public Dial()
-            : base()
+        public Dial() : base()
         {
-            Nestables = new list() 
-            {   "Number", "User" 
-            };
-            ValidAttributes = new list() 
-            {   "action", "method", "hangupOnStar", "timeLimit", "timeout", "callerId",
-                "callerName", "confirmSound", "confirmKey", "dialMusic", "callbackUrl", 
-                "callbackMethod", "redirect", "digitsMatch", "sipHeaders" 
-            };
+        }
+        public Number AddNumber(string body)
+        {
+            return (Number)Add(new Number(body));
+        }
+        public User AddUser(string body)
+        {
+            return (User)Add(new User(body));
         }
         public void SetAction(string action)
         {
@@ -139,6 +168,10 @@ namespace Plivo.XML
         {
             this.Set("callbackUrl", callbackUrl);
         }
+        public void SetCallbackMethod(string callbackMethod)
+        {
+            this.Set("callbackMethod", callbackMethod);
+        }
 		public void SetRedirect(bool redirect)
         {
             this.Set("redirect", redirect);
@@ -155,13 +188,8 @@ namespace Plivo.XML
 
     public class Number : PlivoElement
     {
-        public Number(string body)
-            : base(body)
+        public Number(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "sendDigits", "sendOnPreAnswer", "sendDigitsMode"
-            };
         }
 		public void SetSendDigits(string sendDigits)
         {
@@ -179,21 +207,16 @@ namespace Plivo.XML
 
     public class User : PlivoElement
     {
-        public User(string body)
-            : base(body)
+        public User(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "sendDigits","sendOnPreAnswer", "sipHeaders"
-            };
         }
 		public void SetSendDigits(string sendDigits)
         {
             this.Set("sendDigits", sendDigits);
         }
-		public void SetSendOnPreAnswer(bool sendOnPreAnswer)
+		public void SetSendOnPreanswer(bool sendOnPreanswer)
         {
-            this.Set("sendOnPreAnswer", sendOnPreAnswer);
+            this.Set("sendOnPreanswer", sendOnPreanswer);
         }
 		public void SetSipHeaders(string sipHeaders)
         {
@@ -203,21 +226,8 @@ namespace Plivo.XML
 
     public class Conference : PlivoElement
     {
-        public Conference(string body)
-            : base(body)
+        public Conference(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter", 
-                "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit", 
-                "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
-                "floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
-                "transcriptionMethod"
-            };
-        }
-		public void SetSendDigits(string sendDigits)
-        {
-            this.Set("sendDigits", sendDigits);
         }
 		public void SetMuted(bool muted)
         {
@@ -251,49 +261,49 @@ namespace Plivo.XML
         {
             this.Set("maxMembers", maxMembers);
         }
-		public void SetTimeLimit(int timeLimit)
+        public void SetRecord(bool record)
+        {
+            this.Set("record", record);
+        }
+        public void SetRecordFileFormat(string recordFileFormat)
+        {
+            this.Set("recordFileFormat", recordFileFormat);
+        }
+        public void SetTimeLimit(int timeLimit)
         {
             this.Set("timeLimit", timeLimit);
         }
-		public void SetHangupOnStar(bool hangupOnStar)
+        public void SetHangupOnStar(bool hangupOnStar)
         {
             this.Set("hangupOnStar", hangupOnStar);
         }
-		public void SetAction(string action)
+        public void SetAction(string action)
         {
             this.Set("action", action);
         }
-		public void SetMethod(string method)
+        public void SetMethod(string method)
         {
             this.Set("method", method);
         }
-		public void SetCallbackUrl(string callbackUrl)
+        public void SetCallbackUrl(string callbackUrl)
         {
             this.Set("callbackUrl", callbackUrl);
         }
-		public void SetCallbackMethod(string callbackMethod)
+        public void SetCallbackMethod(string callbackMethod)
         {
             this.Set("callbackMethod", callbackMethod);
         }
-		public void SetDigitsMatch(string digitsMatch)
+        public void SetDigitsMatch(string digitsMatch)
         {
             this.Set("digitsMatch", digitsMatch);
         }
-		public void SetFloorEvent(bool floorEvent)
+        public void SetFloorEvent(bool floorEvent)
         {
             this.Set("floorEvent", floorEvent);
         }
 		public void SetRedirect(bool redirect)
         {
             this.Set("redirect", redirect);
-        }
-		public void SetRecord(bool record)
-        {
-            this.Set("record", record);
-        }
-		public void SetRecordFileFormat(string recordFileFormat)
-        {
-            this.Set("recordFileFormat", recordFileFormat);
         }
 		public void SetRecordWhenAlone(string recordWhenAlone)
         {
@@ -315,72 +325,71 @@ namespace Plivo.XML
 
     public class GetDigits : PlivoElement
     {
-        public GetDigits()
-            : base()
+        public GetDigits() : base()
         {
-            Nestables = new list()
-            {   "Speak", "Play", "Wait"
-            };
-            ValidAttributes = new list()
-            {   "action", "method", "timeout", "digitTimeout","finishOnKey", "numDigits", 
-                "retries", "invalidDigitsSound", "validDigits", "playBeep", "redirect"
-            };
         }
-		public void SetAction(string action)
+        public Speak AddSpeak(string body)
+        {
+            return (Speak)Add(new Speak(body));
+        }
+        public Play AddPlay(string body)
+        {
+            return (Play)Add(new Play(body));
+        }
+        public Wait AddWait()
+        {
+            return (Wait)Add(new Wait());
+        }
+        public void SetAction(string action)
         {
             this.Set("action", action);
         }
-		public void SetMethod(string method)
+        public void SetMethod(string method)
         {
             this.Set("method", method);
         }
-		public void SetTimeout(int timeout)
+        public void SetTimeout(int timeout)
         {
             this.Set("timeout", timeout);
         }
-		public void SetDigitTimeout(int digitTimeout)
+        public void SetDigitTimeout(int digitTimeout)
         {
             this.Set("digitTimeout", digitTimeout);
         }
-		public void SetFinishOnKey(string finishOnKey)
+        public void SetFinishOnKey(string finishOnKey)
         {
             this.Set("finishOnKey", finishOnKey);
         }
-		public void SetNumDigits(int numDigits)
+        public void SetNumDigits(int numDigits)
         {
             this.Set("numDigits", numDigits);
         }
-		public void SetRetries(int retries)
+        public void SetRetries(int retries)
         {
             this.Set("retries", retries);
         }
-		public void SetInvalidDigitsSound(string invalidDigitsSound)
+        public void SetRedirect(bool redirect)
         {
-            this.Set("invalidDigitsSound", invalidDigitsSound);
+            this.Set("redirect", redirect);
         }
-		public void SetValidDigits(string validDigits)
-        {
-            this.Set("validDigits", validDigits);
-        }
-		public void SetPlayBeep(bool playBeep)
+        public void SetPlayBeep(bool playBeep)
         {
             this.Set("playBeep", playBeep);
         }
-		public void SetRedirect(bool redirect)
+        public void SetValidDigits(string validDigits)
         {
-            this.Set("redirect", redirect);
+            this.Set("validDigits", validDigits);
+        }
+        public void SetInvalidDigitsSound(string invalidDigitsSound)
+        {
+            this.Set("invalidDigitsSound", invalidDigitsSound);
         }
     }
 
     public class Speak : PlivoElement
     {
-        public Speak(string body)
-            : base(body)
+        public Speak(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "loop", "language", "voice" 
-            };
         }
 		public void SetLoop(int loop)
         {
@@ -398,13 +407,8 @@ namespace Plivo.XML
 
     public class Play : PlivoElement
     {
-        public Play(string body)
-            : base(body)
+        public Play(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "loop"
-            };
         }
 		public void SetLoop(int loop)
         {
@@ -414,13 +418,8 @@ namespace Plivo.XML
 
     public class Wait : PlivoElement
     {
-        public Wait()
-            : base()
+        public Wait() : base()
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "length", "silence", "minSilence"
-            };
         }
 		public void SetLength(int length)
         {
@@ -438,13 +437,8 @@ namespace Plivo.XML
 
     public class Redirect : PlivoElement
     {
-        public Redirect(string body)
-            : base(body)
+        public Redirect(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "method"
-            };
         }
 		public void SetMethod(string method)
         {
@@ -454,13 +448,8 @@ namespace Plivo.XML
 
     public class Hangup : PlivoElement
     {
-        public Hangup()
-            : base()
+        public Hangup() : base()
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "schedule", "reason"
-            };
         }
 		public void SetSchedule(int schedule)
         {
@@ -474,16 +463,8 @@ namespace Plivo.XML
 
     public class Record : PlivoElement
     {
-        public Record()
-            : base()
+        public Record() : base()
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "action", "method", "timeout", "finishOnKey", "maxLength", "playBeep",
-                "recordSession", "startOnDialAnswer", "redirect", "fileFormat",
-                "callbackUrl", "callbackMethod", "transcriptionType", "transcriptionUrl",
-                "transcriptionMethod"
-            };
         }
 		public void SetAction(string action)
         {
@@ -493,21 +474,29 @@ namespace Plivo.XML
         {
             this.Set("method", method);
         }
+        public void SetFileFormat(string fileFormat)
+        {
+            this.Set("fileFormat", fileFormat);
+        }
+        public void SetRedirect(bool redirect)
+        {
+            this.Set("redirect", redirect);
+        }
 		public void SetTimeout(int timeout)
         {
             this.Set("timeout", timeout);
         }
-		public void SetFinishOnKey(string finishOnKey)
-        {
-            this.Set("finishOnKey", finishOnKey);
-        }
-		public void SetMaxLength(int maxLength)
+        public void SetMaxLength(int maxLength)
         {
             this.Set("maxLength", maxLength);
         }
-		public void SetPlayBeep(bool playBeep)
+        public void SetPlayBeep(bool playBeep)
         {
             this.Set("playBeep", playBeep);
+        }
+		public void SetFinishOnKey(string finishOnKey)
+        {
+            this.Set("finishOnKey", finishOnKey);
         }
 		public void SetRecordSession(bool recordSession)
         {
@@ -517,13 +506,17 @@ namespace Plivo.XML
         {
             this.Set("startOnDialAnswer", startOnDialAnswer);
         }
-		public void SetRedirect(bool redirect)
+        public void SetTranscriptionType(string transcriptionType)
         {
-            this.Set("redirect", redirect);
+            this.Set("transcriptionType", transcriptionType);
         }
-		public void SetFileFormat(string fileFormat)
+        public void SetTranscriptionUrl(string transcriptionUrl)
         {
-            this.Set("fileFormat", fileFormat);
+            this.Set("transcriptionUrl", transcriptionUrl);
+        }
+        public void SetTranscriptionMethod(string transcriptionMethod)
+        {
+            this.Set("transcriptionMethod", transcriptionMethod);
         }
 		public void SetCallbackUrl(string callbackUrl)
         {
@@ -533,41 +526,47 @@ namespace Plivo.XML
         {
             this.Set("callbackMethod", callbackMethod);
         }
-		public void SetTranscriptionType(string transcriptionType)
-        {
-            this.Set("transcriptionType", transcriptionType);
-        }
-		public void SetTranscriptionUrl(string transcriptionUrl)
-        {
-            this.Set("transcriptionUrl", transcriptionUrl);
-        }
-		public void SetTranscriptionMethod(string transcriptionMethod)
-        {
-            this.Set("transcriptionMethod", transcriptionMethod);
-        }
     }
 
     public class PreAnswer : PlivoElement
     {
-        public PreAnswer()
-            : base()
+        public PreAnswer()  : base()
         {
-            Nestables = new list()
-            {   "Play", "Speak", "GetDigits", "Wait", "Redirect", "Message", "DTMF"
-            };
-            ValidAttributes = new list() { "" };
+        }
+        public Play AddPlay(string body)
+        {
+            return (Play)Add(new Play(body));
+        }
+        public Speak AddSpeak(string body)
+        {
+            return (Speak)Add(new Speak(body));
+        }
+        public GetDigits AddGetDigits()
+        {
+            return (GetDigits)Add(new GetDigits());
+        }
+        public Wait AddWait()
+        {
+            return (Wait)Add(new Wait());
+        }
+        public Redirect AddRedirect(string body)
+        {
+            return (Redirect)Add(new Redirect(body));
+        }
+        public Message AddMessage(string body)
+        {
+            return (Message)Add(new Message(body));
+        }
+        public DTMF AddDTMF(string body)
+        {
+            return (DTMF)Add(new DTMF(body));
         }
     }
 
     public class Message : PlivoElement
     {
-        public Message(string body)
-            : base(body)
+        public Message(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list()
-            {   "src", "dst", "type", "callbackUrl", "callbackMethod"
-            };
         }
 		public void SetSource(string src)
         {
@@ -593,11 +592,8 @@ namespace Plivo.XML
 
     public class DTMF : PlivoElement
     {
-        public DTMF(string body)
-            : base(body)
+        public DTMF(string body) : base(body)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list() { "" };
         }
     }
 }

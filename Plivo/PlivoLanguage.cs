@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 namespace Plivo.Language
 {
-    public class Langauge
+    public class Language
     {
         public const string Arabic = "arabic";
         public const string Czech = "cs-CZ";
@@ -20,13 +20,13 @@ namespace Plivo.Language
         public const string Finnish = "fi-FI";
         public const string French_Canadian = "fr-CA";
         public const string French = "fr-FR";
-        public const string Hungarian = "hn-HU";
+        public const string Hungarian = "hu-HU";
         public const string Italian = "it-IT";
         public const string Japanese = "ja-JP";
         public const string Dutch = "nl-NL";
         public const string Polish = "pl-PL";
-        public const string Portugese_Brazilian = "pt-BR";
-        public const string Portugese = "pt-PT";
+        public const string Portuguese_Brazilian = "pt-BR";
+        public const string Portuguese  = "pt-PT";
         public const string Russian = "ru-RU";
         public const string Swedish = "sv-SE";
         public const string Chinese = "zh-CN";
