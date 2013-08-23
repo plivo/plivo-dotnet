@@ -45,9 +45,6 @@ namespace Plivo.API
             switch (http_method.ToUpper())
             {
                 case "GET": request.Method = Method.GET;
-//                    request.Parameters.Clear();
-  //                  foreach (KeyValuePair<string, string> kvp in data)
-    //                    request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value), ParameterType.GetOrPost);
                     break;
                 case "POST": request.Method = Method.POST;
                     request.Parameters.Clear();
@@ -59,10 +56,6 @@ namespace Plivo.API
                     break;
             };
 
-            //////////////////////////
-            Console.WriteLine(client.BuildUri(request));
-            ////////////////////////
-            
             client.AddHandler("application/json", new JsonDeserializer());
             IRestResponse<T> response = client.Execute<T>(request);
             return response;
