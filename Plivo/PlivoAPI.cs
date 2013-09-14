@@ -37,11 +37,10 @@ namespace Plivo.API
             where T : new()
         {
             var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
-
             // add the parameters to the request
             foreach (KeyValuePair<string, string> kvp in data)
-				request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value));
-
+                request.AddParameter(kvp.Key, kvp.Value);
+                        
             //set the HTTP method for this request
             switch (http_method.ToUpper())
             {
@@ -138,7 +137,7 @@ namespace Plivo.API
 
         public IRestResponse<ApplicationList> get_applications(dict parameters)
         {
-            return _request<ApplicationList>("GET", "/Application/", parameters);
+            return _request<ApplicationList>("GET", "/Application//", parameters);
         }
 
         public IRestResponse<Application> get_application(dict parameters)
@@ -166,6 +165,10 @@ namespace Plivo.API
 
 
         // Numbers //
+        public IRestResponse<GenericResponse> add_carrier_numbers(dict parameters)
+        {
+            return _request<GenericResponse>("POST","/Number/",parameters);
+        }
         public IRestResponse<NumberList> get_numbers()
         {
             return _request<NumberList>("GET", "/Number/", new dict());
@@ -174,12 +177,12 @@ namespace Plivo.API
         [Obsolete("Use search_number_group() instead")]
         public IRestResponse<NumberList> search_numbers(dict parameters)
         {
-            return _request<NumberList>("GET", "/AvailableNumber/", parameters);
+            return _request<NumberList>("GET", "/AvailableNumber//", parameters);
         }
 
         public IRestResponse<NumberList> search_number_group(dict parameters)
         {
-            return _request<NumberList>("GET", "/AvailableNumberGroup/", parameters);
+            return _request<NumberList>("GET", "/AvailableNumberGroup//", parameters);
         }
 
         public IRestResponse<Number> get_number(dict parameters)
@@ -229,7 +232,7 @@ namespace Plivo.API
 
         public IRestResponse<CDRList> get_cdrs(dict parameters)
         {
-            return _request<CDRList>("GET", "/Call/", parameters);
+            return _request<CDRList>("GET", "/Call//", parameters);
         }
 
         public IRestResponse<CDR> get_cdr(dict parameters)
@@ -242,7 +245,7 @@ namespace Plivo.API
         {
             dict parameters = new dict();
             parameters.Add("status", "live");
-            return _request<LiveCallList>("GET", "/Call/", parameters);
+            return _request<LiveCallList>("GET", "/Call//", parameters);
         }
 
         public IRestResponse<LiveCall> get_live_call(dict parameters)
@@ -269,6 +272,12 @@ namespace Plivo.API
             parameters.Add("to", destNumbers.Substring(0, destNumbers.Length - 1));
             parameters.Add("sip_headers", headerSIP.Substring(0, headerSIP.Length - 1));
             return _request<Call>("POST", "/Call/", parameters);
+        }
+
+        public IRestResponse<GenericResponse> hangup_request(dict parameters)
+        {
+            string request_uuid = get_key_value(ref parameters, "request_uuid");
+            return _request<GenericResponse>("DELETE", String.Format("/Request/{0}/", request_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> hangup_all_calls()
@@ -432,7 +441,7 @@ namespace Plivo.API
 
         public IRestResponse<EndpointList> get_endpoints(dict parameters)
         {
-            return _request<EndpointList>("GET", "/Endpoint/", parameters);
+            return _request<EndpointList>("GET", "/Endpoint//", parameters);
         }
 
         public IRestResponse<Endpoint> create_endpoint(dict parameters)
@@ -479,14 +488,14 @@ namespace Plivo.API
 
         public IRestResponse<MessageList> get_messages(dict parameters)
         {
-            return _request<MessageList>("GET", "/Message/", parameters);
+            return _request<MessageList>("GET", "/Message//", parameters);
         }
 
 
         // Inbound Carriers
         public IRestResponse<IncomingCarrierList> get_incoming_carriers(dict parameters)
         {
-            return _request<IncomingCarrierList>("GET", "/IncomingCarrier/", parameters);
+            return _request<IncomingCarrierList>("GET", "/IncomingCarrier//", parameters);
         }
 
         public IRestResponse<IncomingCarrier> get_incoming_carrier(dict parameters)
@@ -514,7 +523,7 @@ namespace Plivo.API
 
         public IRestResponse<PlivoPricing> pricing(dict parameters)
         {
-            return _request<PlivoPricing>("GET", "/Pricing/", parameters);
+            return _request<PlivoPricing>("GET", "/Pricing//", parameters);
         }
 
         // Outgoing Carriers
