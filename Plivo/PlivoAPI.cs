@@ -165,6 +165,10 @@ namespace Plivo.API
 
 
         // Numbers //
+        public IRestResponse<GenericResponse> add_carrier_numbers(dict parameters)
+        {
+            return _request<GenericResponse>("POST","/Number/",parameters);
+        }
         public IRestResponse<NumberList> get_numbers()
         {
             return _request<NumberList>("GET", "/Number/", new dict());
@@ -268,6 +272,12 @@ namespace Plivo.API
             parameters.Add("to", destNumbers.Substring(0, destNumbers.Length - 1));
             parameters.Add("sip_headers", headerSIP.Substring(0, headerSIP.Length - 1));
             return _request<Call>("POST", "/Call/", parameters);
+        }
+
+        public IRestResponse<GenericResponse> hangup_request(dict parameters)
+        {
+            string request_uuid = get_key_value(ref parameters, "request_uuid");
+            return _request<GenericResponse>("DELETE", String.Format("/Request/{0}/", request_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> hangup_all_calls()
