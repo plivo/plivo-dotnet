@@ -237,7 +237,7 @@ namespace Plivo.XML
             {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter", 
                 "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit", 
                 "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
-                "floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
+                "relayDTMF","floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
                 "transcriptionMethod"
             };
             addAttributes();
@@ -372,7 +372,8 @@ namespace Plivo.XML
             : base(body)
         {
             Nestables = new list() { "" };
-            ValidAttributes = new list() { "" };
+            ValidAttributes = new list() { "async" };
+            addAttributes();
         }
     }
 }
