@@ -293,7 +293,7 @@ namespace Plivo.XML
         {
             Nestables = new list() { "" };
             ValidAttributes = new list()
-            {   "length", "silence", "minSilence"
+            {   "length", "silence"
             };
             addAttributes();
         }
