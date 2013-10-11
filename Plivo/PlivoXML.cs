@@ -155,9 +155,9 @@ namespace Plivo.XML
             return Add(new Message(body, parameters));
         }
 
-        public PlivoElement AddDTMF(string body)
+        public PlivoElement AddDTMF(string body, dict parameters)
         {
-            return Add(new DTMF(body));
+            return Add(new DTMF(body, parameters));
         }
 
         public override string ToString()
@@ -237,7 +237,7 @@ namespace Plivo.XML
             {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter", 
                 "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit", 
                 "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
-                "floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
+                "relayDTMF","floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
                 "transcriptionMethod"
             };
             addAttributes();
@@ -293,7 +293,7 @@ namespace Plivo.XML
         {
             Nestables = new list() { "" };
             ValidAttributes = new list()
-            {   "length", "silence"
+            {   "length", "silence","minSilence"
             };
             addAttributes();
         }
@@ -368,11 +368,12 @@ namespace Plivo.XML
 
     public class DTMF : PlivoElement
     {
-        public DTMF(string body)
-            : base(body)
+        public DTMF(string body, dict attributes)
+            : base(body,attributes)
         {
             Nestables = new list() { "" };
-            ValidAttributes = new list() { "" };
+            ValidAttributes = new list() { "async" };
+            addAttributes();
         }
     }
 }
