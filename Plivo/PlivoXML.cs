@@ -155,9 +155,9 @@ namespace Plivo.XML
             return Add(new Message(body, parameters));
         }
 
-        public PlivoElement AddDTMF(string body)
+        public PlivoElement AddDTMF(string body, dict parameters)
         {
-            return Add(new DTMF(body));
+            return Add(new DTMF(body, parameters));
         }
 
         public override string ToString()
@@ -368,8 +368,8 @@ namespace Plivo.XML
 
     public class DTMF : PlivoElement
     {
-        public DTMF(string body)
-            : base(body)
+        public DTMF(string body, dict attributes)
+            : base(body, attributes)
         {
             Nestables = new list() { "" };
             ValidAttributes = new list() { "async" };
