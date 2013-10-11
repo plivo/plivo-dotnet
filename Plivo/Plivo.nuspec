@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
-	* 1.2.9 Added DTMF async and Conference relayDTMF
+    * 1.2.9 Added DTMF async and Conference relayDTMF, and added minSilence attribute to Wait
     * 1.2.8 Fixed issue with returning of nested XML object.
     * 1.2.7 Added 'recordWhenAlone' attribute in Conference XML.
     * 1.2.6 Fixed available number group for renting numbers.
