@@ -182,6 +182,7 @@ namespace Plivo.API
         public string request_uuid { get; set; }
         public string api_id { get; set; }
         public string error { get; set; }
+        public string invalid_numbers { get; set; }
     }
 
     public class LiveCall

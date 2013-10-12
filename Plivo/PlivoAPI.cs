@@ -318,6 +318,12 @@ namespace Plivo.API
             return _request<GenericResponse>("POST", String.Format("/Call/{0}/Speak/", call_uuid), parameters);
         }
 
+        public IRestResponse<GenericResponse> stop_speak(dict parameters)
+        {
+            string call_uuid = get_key_value(ref parameters, "call_uuid");
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Speak/", call_uuid), parameters);
+        }
+
         public IRestResponse<GenericResponse> send_digits(dict parameters)
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
