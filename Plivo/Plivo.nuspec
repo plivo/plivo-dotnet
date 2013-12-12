@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
-    * 1.2.9 Added minSilence attribute in Wait, async attribute in DTMF, relayDTMF attribute in Conference, stop_speak() method and invalid_numbers in Call Response
+    * 1.2.9 Added minSilence attribute in Wait, async attribute in DTMF, relayDTMF attribute in Conference, stop_speak() method and invalid_numbers in Call Response and added get_account, get_recordings, get_recording and get_recording_by_call_uuid methods
     * 1.2.8 Fixed issue with returning of nested XML object.
     * 1.2.7 Added 'recordWhenAlone' attribute in Conference XML.
     * 1.2.6 Fixed available number group for renting numbers.

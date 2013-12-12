@@ -21,23 +21,55 @@ namespace Plivo.API
         public string api_id { get; set; }
     }
 
+    //Recording Models
+
+    public class RecordingMeta
+    {
+        public object previous { get; set; }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
+        public string next { get; set; }
+    }
+    public class RecordingList
+    {
+        public RecordingMeta meta { get; set; }
+        public string error { get; set; }
+        public string api_id { get; set; }
+        public List<Recording> objects { get; set; }
+    }
+    public class Recording
+    {
+        public string add_time { get; set; }
+        public string call_uuid { get; set; }
+        public string conference_name { get; set; }
+        public string recording_duration_ms { get; set; }
+        public string recording_end_ms { get; set; }
+        public string recording_format { get; set; }
+        public string recording_id { get; set; }
+        public string recording_start_ms { get; set; }
+        public string recording_type { get; set; }
+        public string recording_url { get; set; }
+        public string resource_uri { get; set; }
+        public string error { get; set; }
+        public string api_id { get; set; }
+    }
+
     // Account Models
     public class Account
     {
+        public string account_type { get; set; }
+        public string address { get; set; }
+        public string api_id { get; set; }
+        public string auth_id { get; set; }
+        public string auto_recharge { get; set; }
+        public string billing_mode { get; set; }
+        public string cash_credits { get; set; }
         public string city { get; set; }
         public string name { get; set; }
-        public string cash_credits { get; set; }
-        public string created { get; set; }
-        public string enabled { get; set; }
-        public string modified { get; set; }
-        public string error { get; set; }
-        public string api_id { get; set; }
-        public string postpaid { get; set; }
-        public string state { get; set; }
-        public string address { get; set; }
-        public string timezone { get; set; }
-        public string auth_id { get; set; }
         public string resource_uri { get; set; }
+        public string state { get; set; }
+        public string timezone { get; set; }
     }
 
     public class ResourceListMeta
