@@ -594,5 +594,11 @@ namespace Plivo.API
             string callUUID = get_key_value(ref parameters, "call_uuid");
             return _request<RecordingList>("GET", "/Recording/?call_uuid=" + callUUID, new dict());
         }
+
+        public IRestResponse<GenericResponse> delete_recording(dict parameters)
+        {
+            string recordingId = get_key_value(ref parameters, "recording_id");
+            return _request<GenericResponse>("DELETE", String.Format("/Recording/{0}/", recordingId), parameters);
+        }
     }
 }
