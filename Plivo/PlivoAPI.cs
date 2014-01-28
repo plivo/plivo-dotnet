@@ -56,7 +56,6 @@ namespace Plivo.API
                 default: request.Method = Method.GET;
                     break;
             };
-
             client.AddHandler("application/json", new JsonDeserializer());
             IRestResponse<T> response = client.Execute<T>(request);
             return response;
@@ -80,7 +79,7 @@ namespace Plivo.API
         // Accounts //
         public IRestResponse<Account> get_account()
         {
-            return null;
+            return _request<Account>("GET", "/ ", new dict());
             // had to add an additional space after / as RestSharp consumes it.
         }
 
@@ -316,6 +315,12 @@ namespace Plivo.API
         {
             string call_uuid = get_key_value(ref parameters, "call_uuid");
             return _request<GenericResponse>("POST", String.Format("/Call/{0}/Speak/", call_uuid), parameters);
+        }
+
+        public IRestResponse<GenericResponse> stop_speak(dict parameters)
+        {
+            string call_uuid = get_key_value(ref parameters, "call_uuid");
+            return _request<GenericResponse>("DELETE", String.Format("/Call/{0}/Speak/", call_uuid), parameters);
         }
 
         public IRestResponse<GenericResponse> send_digits(dict parameters)
@@ -573,6 +578,21 @@ namespace Plivo.API
         {
             string carrierId = get_key_value(ref parameters, "routing_id");
             return _request<GenericResponse>("DELETE", String.Format("/OutgoingCarrierRouting/{0}/", carrierId), parameters);
+        }
+
+        public IRestResponse<RecordingList> get_recordings()
+        {
+            return _request<RecordingList>("GET", "/Recording/", new dict());
+        }
+        public IRestResponse<Recording> get_recording(dict parameters)
+        {
+            string recordingId = get_key_value(ref parameters, "recording_id");
+            return _request<Recording>("GET", String.Format("/Recording/{0}/", recordingId), parameters);
+        }
+        public IRestResponse<RecordingList> get_recording_by_call_uuid(dict parameters)
+        {
+            string callUUID = get_key_value(ref parameters, "call_uuid");
+            return _request<RecordingList>("GET", "/Recording/?call_uuid=" + callUUID, new dict());
         }
     }
 }
