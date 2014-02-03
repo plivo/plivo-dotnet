@@ -189,13 +189,13 @@ namespace Plivo.XML
         public Dial(dict parameters)
             : base(parameters)
         {
-            Nestables = new list() 
-            {   "Number", "User" 
+            Nestables = new list()
+            {   "Number", "User"
             };
-            ValidAttributes = new list() 
+            ValidAttributes = new list()
             {   "action", "method", "hangupOnStar", "timeLimit", "timeout", "callerId",
-                "callerName", "confirmSound", "confirmKey", "dialMusic", "callbackUrl", 
-                "callbackMethod", "redirect", "digitsMatch", "sipHeaders" 
+                "callerName", "confirmSound", "confirmKey", "dialMusic", "callbackUrl",
+                "callbackMethod", "redirect", "digitsMatch", "sipHeaders"
             };
             addAttributes();
         }
@@ -234,8 +234,8 @@ namespace Plivo.XML
         {
             Nestables = new list() { "" };
             ValidAttributes = new list()
-            {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter", 
-                "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit", 
+            {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter",
+                "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit",
                 "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
                 "floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
                 "transcriptionMethod","relayDTMF"
@@ -253,8 +253,8 @@ namespace Plivo.XML
             {   "Speak", "Play", "Wait"
             };
             ValidAttributes = new list()
-            {   "action", "method", "timeout", "digitTimeout","finishOnKey", "numDigits", 
-                "retries", "invalidDigitsSound", "validDigits", "playBeep", "redirect"
+            {   "action", "method", "timeout", "digitTimeout","finishOnKey", "numDigits",
+                "retries", "invalidDigitsSound", "validDigits", "playBeep", "redirect", "log"
             };
             addAttributes();
         }
@@ -267,7 +267,7 @@ namespace Plivo.XML
         {
             Nestables = new list() { "" };
             ValidAttributes = new list()
-            {   "loop", "language", "voice" 
+            {   "loop", "language", "voice"
             };
             addAttributes();
         }
