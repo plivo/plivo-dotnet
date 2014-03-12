@@ -100,6 +100,8 @@ namespace Plivo.API
         public string resource_uri { get; set; }
         public string error { get; set; }
         public string api_id { get; set; }
+        public string auth_token { get; set; }
+        public string old_auth_token { get; set; }
     }
 
     public class SubAccountList
