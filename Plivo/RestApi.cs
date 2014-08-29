@@ -53,9 +53,30 @@ namespace Plivo
             return response;
         }
 
-        private void RequestAsync<T>(string httpMethod,string resource,Dictionary<string,string> data) where T: new()
+        private void RequestAsync<T>(string httpMethod,string resource,Dictionary<string,string> data,Action<IRestResponse> callback) where T: new()
         {
-            
+            var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
+
+            // add the parameters to the request
+            foreach (KeyValuePair<string, string> kvp in data)
+                request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value));
+
+            //set the HTTP method for this request
+            switch (httpMethod.ToUpper())
+            {
+                case "GET": request.Method = Method.GET;
+                    break;
+                case "POST": request.Method = Method.POST;
+                    request.Parameters.Clear();
+                    request.AddParameter("application/json", request.JsonSerializer.Serialize(data), ParameterType.RequestBody);
+                    break;
+                case "DELETE": request.Method = Method.DELETE;
+                    break;
+                default: request.Method = Method.GET;
+                    break;
+            };
+            client.AddHandler("application/json", new JsonDeserializer());
+            client.ExecuteAsync<T>(request,callback);
         }
 
         private string GetKeyValue(ref Dictionary<string, string> dict, string key)
