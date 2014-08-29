@@ -237,7 +237,7 @@ namespace Plivo.XML
             {   "sendDigits", "muted", "enterSound", "exitSound", "startConferenceOnEnter",
                 "endConferenceOnExit", "stayAlone", "waitSound", "maxMembers", "timeLimit",
                 "hangupOnStar", "action", "method", "callbackUrl", "callbackMethod", "digitsMatch",
-                "floorEvent", "redirect", "record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
+                "floorEvent", "redirect", "Record", "recordFileFormat","recordWhenAlone", "transcriptionType", "transcriptionUrl",
                 "transcriptionMethod","relayDTMF"
             };
             addAttributes();

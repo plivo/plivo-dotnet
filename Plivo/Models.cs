@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace Plivo.API
+namespace Plivo
 {
     // Generic Models
     public class GenericResponse
@@ -181,11 +179,11 @@ namespace Plivo.API
         public string rental_rate { get; set; }
         public string setup_rate { get; set; }
         public int stock { get; set; }
-        [ObsoleteAttribute]
+        [Obsolete]
         public string country { get; set; }
-        [ObsoleteAttribute]
+        [Obsolete]
         public int lata { get; set; }
-        [ObsoleteAttribute("Use the attribute rental_rate instead")]
+        [Obsolete("Use the attribute rental_rate instead")]
         public string monthly_rental_rate { get; set; }
     }
 
@@ -515,36 +513,8 @@ namespace Plivo.API
         public List<RatesPrefixes> rates { get; set; }
     }
 
-    public class VoiceRates
-    {
-        public InboundVoicePricing inbound { get; set; }
-        public OutboundVoicePricing outbound { get; set; }
-    }
-
-    public class InboundSmsPricing
-    {
-        public string rate { get; set; }
-    }
-
     public class OutboundSmsPricing
     {
         public string rate { get; set; }
-    }
-
-    public class SmsRates
-    {
-        public InboundSmsPricing inbound { get; set; }
-        public OutboundSmsPricing outbound { get; set; }
-    }
-
-    public class PlivoPricing
-    {
-        public string country_code { get; set; }
-        public string country_iso { get; set; }
-        public string country { get; set; }
-        public PhoneNumbers phone_numbers { get; set; }
-        public VoiceRates voice { get; set; }
-        public SmsRates message { get; set; }
-        public string api_id { get; set; }
     }
 }

@@ -44,11 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InboundSmsPricing.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="PlivoAPI.cs" />
+    <Compile Include="PlivoPricing.cs" />
     <Compile Include="PlivoUtil.cs" />
     <Compile Include="PlivoXML.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestApi.cs" />
+    <Compile Include="SmsRates.cs" />
+    <Compile Include="VoiceRates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
