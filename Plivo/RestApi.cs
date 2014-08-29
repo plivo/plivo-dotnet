@@ -26,8 +26,7 @@ namespace Plivo
             client.BaseUrl = String.Format("{0}/{1}/Account/{2}", PLIVO_URL, PlivoVersion, AuthID);
         }
 
-        private IRestResponse<T> Request<T>(string http_method, string resource, Dictionary<string, string> data)
-            where T : new()
+        private IRestResponse<T> Request<T>(string httpMethod, string resource, Dictionary<string, string> data) where T : new()
         {
             var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
 
@@ -36,7 +35,7 @@ namespace Plivo
                 request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value));
 
             //set the HTTP method for this request
-            switch (http_method.ToUpper())
+            switch (httpMethod.ToUpper())
             {
                 case "GET": request.Method = Method.GET;
                     break;
@@ -52,6 +51,11 @@ namespace Plivo
             client.AddHandler("application/json", new JsonDeserializer());
             IRestResponse<T> response = client.Execute<T>(request);
             return response;
+        }
+
+        private void RequestAsync<T>(string httpMethod,string resource,Dictionary<string,string> data) where T: new()
+        {
+            
         }
 
         private string GetKeyValue(ref Dictionary<string, string> dict, string key)

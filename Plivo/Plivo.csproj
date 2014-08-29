@@ -44,6 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensibility\IPlivoClient.cs" />
+    <Compile Include="Extensibility\IPlivoClientFactory.cs" />
+    <Compile Include="Extensibility\PlivoClient.cs" />
+    <Compile Include="Extensibility\PlivoRESTClient.cs" />
+    <Compile Include="Extensibility\PlivoRESTClientFactory.cs" />
     <Compile Include="XML\Conference.cs" />
     <Compile Include="XML\Dial.cs" />
     <Compile Include="XML\DTMF.cs" />
@@ -97,8 +102,7 @@
     <Compile Include="Exceptions\PlivoException.cs" />
     <Compile Include="PlivoElement.cs" />
     <Compile Include="Models\PlivoPricing.cs" />
-    <Compile Include="HtmlEntity.cs" />
-    <Compile Include="PlivoXML.cs" />
+    <Compile Include="Utility\HtmlEntity.cs" />
     <Compile Include="XML\PreAnswer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\RatesPrefixes.cs" />
@@ -110,7 +114,7 @@
     <Compile Include="XML\Record.cs" />
     <Compile Include="XML\Redirect.cs" />
     <Compile Include="XML\Response.cs" />
-    <Compile Include="XML\RestApi.cs" />
+    <Compile Include="RestApi.cs" />
     <Compile Include="Models\SipInboundPricing.cs" />
     <Compile Include="Models\SipOutboundPricing.cs" />
     <Compile Include="Models\SmsRates.cs" />
@@ -124,7 +128,7 @@
     <Compile Include="XML\Speak.cs" />
     <Compile Include="XML\User.cs" />
     <Compile Include="XML\Wait.cs" />
-    <Compile Include="XPlivoSignature.cs" />
+    <Compile Include="Utility\XPlivoSignature.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
