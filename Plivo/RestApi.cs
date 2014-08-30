@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Plivo.Exceptions;
+using Plivo.Models;
 using RestSharp;
 using RestSharp.Deserializers;
 
@@ -227,14 +228,14 @@ namespace Plivo
 
 
         // Calls //
-        public IRestResponse<CDRList> GetCdrs()
+        public IRestResponse<CdrList> GetCdrs()
         {
-            return Request<CDRList>("GET", "/Call/", new Dictionary<string, string>());
+            return Request<CdrList>("GET", "/Call/", new Dictionary<string, string>());
         }
 
-        public IRestResponse<CDRList> GetCdrs(Dictionary<string, string> parameters)
+        public IRestResponse<CdrList> GetCdrs(Dictionary<string, string> parameters)
         {
-            return Request<CDRList>("GET", "/Call/", parameters);
+            return Request<CdrList>("GET", "/Call/", parameters);
         }
 
         public IRestResponse<CDR> GetCdr(Dictionary<string, string> parameters)
