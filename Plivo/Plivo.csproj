@@ -44,11 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensibility\PlivoRESTResponse.cs" />
     <Compile Include="Extensibility\IPlivoClient.cs" />
     <Compile Include="Extensibility\IPlivoClientFactory.cs" />
+    <Compile Include="Extensibility\IPlivoResponse.cs" />
     <Compile Include="Extensibility\PlivoClient.cs" />
     <Compile Include="Extensibility\PlivoRESTClient.cs" />
     <Compile Include="Extensibility\PlivoRESTClientFactory.cs" />
+    <Compile Include="Samples\Sample.cs" />
     <Compile Include="XML\Conference.cs" />
     <Compile Include="XML\Dial.cs" />
     <Compile Include="XML\DTMF.cs" />
