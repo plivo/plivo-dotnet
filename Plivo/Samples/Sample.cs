@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Plivo.Extensibility;
+using Plivo.Objects;
 
 namespace Plivo.Samples
 {

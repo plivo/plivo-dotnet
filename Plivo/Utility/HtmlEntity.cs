@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Plivo
+namespace Plivo.Utility
 {
    public class HtmlEntity {
         public static string Convert(string inputText) {

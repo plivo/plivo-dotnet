@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Plivo.Models;
+using Plivo.Objects;
 using RestSharp;
 
 namespace Plivo.Extensibility

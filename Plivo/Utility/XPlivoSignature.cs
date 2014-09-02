@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Plivo
+namespace Plivo.Utility
 {
     public class XPlivoSignature
     {

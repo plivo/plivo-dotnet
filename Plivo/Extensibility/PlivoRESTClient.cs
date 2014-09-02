@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Plivo.Exceptions;
-using Plivo.Models;
+using Plivo.Objects;
+using Plivo.Utility;
 using RestSharp;
 using RestSharp.Deserializers;
 
