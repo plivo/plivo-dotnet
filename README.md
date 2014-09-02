@@ -66,36 +66,39 @@ namespace SampleApplication
     {
         static void Main(string[] args)
         {
-            string auth_id = "XXX";  // obtained from Plivo account dashboard
-            string auth_token = "YYY";  // obtained from Plivo account dashboard
+            string authId = "XXX";  // obtained from Plivo account dashboard
+            string authToken = "YYY"; // obtained from Plivo account dashboard
+            string version = "vX";  //obtained from Plivo account dashboard
 
-            // Creating the Plivo Client
-            RestAPI plivo = new RestAPI(auth_id, auth_token);
+            //// Creating the Plivo Client
+            IPlivoClientFactory restClientFactory = new PlivoRESTClientFactory();
+            IPlivoClient client = restClientFactory.CreateClient(authId, authToken, version);
 
             // Making a Call
-            string from_number = "XXXXXXXXXXX";
-            string to_number = "YYYYYYYYYYY";
+            string fromNumber = "XXXXXXXXXXX";
+            string toNumber = "YYYYYYYYYYY";
 
-            IRestResponse<Call> response = plivo.make_call(new Dictionary<string, string>() {
-                { "from", from_number },
-                { "to", to_number }, 
-                { "answer_url", "http://some.domain.com/answer/" }, 
-                { "answer_method", "GET" }
-            });
+            IPlivoResponse<Call> response = client.MakeCall(new Dictionary<string, string>()
+                {
+                    { "from", fromNumber },
+                    { "to", toNumber }, 
+                    { "answer_url", "http://some.domain.com/answer/" }, 
+                    { "answer_method", "GET" }
+                });
 
             // The "Outbound call" API response has four properties -
             // message, request_uuid, error, and api_id.
             // error - contains the error response sent back from the server.
-            if (resp.Data != null)
+            if (response.Data != null)
             {
-                PropertyInfo[] properties = resp.Data.GetType().GetProperties();
+                PropertyInfo[] properties = response.Data.GetType().GetProperties();
                 foreach (PropertyInfo property in properties)
-                    Console.WriteLine("{0}: {1}", property.Name, property.GetValue(resp.Data, null);
+                    Console.WriteLine("{0}: {1}", property.Name, property.GetValue(response.Data, null));
             }
             else
             {
                 // ErrorMessage - contains error related to network failure.
-                Console.WriteLine(resp.ErrorMessage);
+                Console.WriteLine(response.ErrorMessage);
             }
             Console.Read();
         }
