@@ -209,6 +209,57 @@ namespace Plivo.API
         public string status { get; set; }
     }
 
+    public class PhoneNumberStatus
+    {
+        public string number { get; set; }
+        public string status { get; set; }
+    }
+
+    public class PhoneNumberResponse
+    {
+        public List<PhoneNumberStatus> numbers { get; set; }
+        public string status { get; set; }
+        public string error { get; set; }
+    }
+
+    public class PhoneNumberMeta
+    {
+        public string previous { get; set; }
+        public int total_count { get; set; }
+        public int offset { get; set; }
+        public int limit { get; set; }
+        public string next { get; set; }
+    }
+
+    public class PhoneNumber
+    {
+        public string country { get; set; }
+        public int lata { get; set; }
+        public string monthly_rental_rate { get; set; }
+        public string number { get; set; }
+        public string type { get; set; }
+        public string prefix { get; set; }
+        public string rate_center { get; set; }
+        public string region { get; set; }
+        public string resource_uri { get; set; }
+        public string restriction_text { get; set; }
+        public string restriction { get; set; }
+        public string setup_rate { get; set; }
+        public bool sms_enabled { get; set; }
+        public string sms_rate { get; set; }
+        public bool voice_enabled { get; set; }
+        public string voice_rate { get; set; }
+    }
+
+
+    public class PhoneNumberList
+    {
+        public PhoneNumberMeta meta { get; set; }
+        public string api_id { get; set; }
+        public string error { get; set; }
+        public List<PhoneNumber> objects { get; set; }
+    }
+
     // Call Models
     public class Call
     {
@@ -372,7 +423,7 @@ namespace Plivo.API
         public string api_id { get; set; }
         public List<Message> objects { get; set; }
     }
-    
+
     // Incoming Carrier Models
     public class IncomingCarrierMeta
     {
@@ -382,7 +433,7 @@ namespace Plivo.API
         public string limit { get; set; }
         public string next { get; set; }
     }
-    
+
     public class IncomingCarrier
     {
         public string carrier_id { get; set; }
@@ -392,7 +443,7 @@ namespace Plivo.API
         public string sms { get; set; }
         public string voice { get; set; }
     }
-    
+
     public class IncomingCarrierList
     {
         public IncomingCarrierMeta meta { get; set; }

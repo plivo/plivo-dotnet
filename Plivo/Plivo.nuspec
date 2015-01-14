@@ -2,19 +2,20 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.3.2</version>
+    <version>1.3.5</version>
     <title>Plivo</title>
-    <authors>Mustaqeem</authors>
+    <authors>Plivo</authors>
     <owners>Plivo Inc</owners>
     <licenseUrl>https://github.com/plivo/plivo-dotnet/blob/master/LICENSE</licenseUrl>
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.3.5 PhoneNumber API
     * 1.3.2 Added old_auth_token and auth_token fields to SubAccount response
     * 1.3.1 Added log attribute in GetDigits to handle sensitive DTMF info
     * 1.3.0 Added Delete Recording API
-    * 1.2.9 Added minSilence attribute in Wait, async attribute in DTMF, relayDTMF attribute in Conference, stop_speak() method and invalid_numbers in Call Response and added get_account, get_recordings, get_recording and get_recording_by_call_uuid methods
+    * 1.2.9 Added minSilence attribute in Wait, async attribute in DTMF, NuGet Update -selfrelayDTMF attribute in Conference, stop_speak() method and invalid_numbers in Call Response and added get_account, get_recordings, get_recording and get_recording_by_call_uuid methods
     * 1.2.8 Fixed issue with returning of nested XML object.
     * 1.2.7 Added 'recordWhenAlone' attribute in Conference XML.
     * 1.2.6 Fixed available number group for renting numbers.
@@ -37,7 +38,7 @@
     * 1.0.1 Minor fix for Number API calls.
     * 1.0   Supports making Plivo APIs calls and generation of Plivo XML.
     </releaseNotes>
-    <copyright>Plivo Inc, Copyright 2012</copyright>
+    <copyright>Plivo Inc, Copyright 2015</copyright>
     <tags>Plivo REST voice SMS telephony API XML</tags>
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="net40" />

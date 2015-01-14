@@ -28,6 +28,7 @@ namespace Plivo.API
             AuthToken = auth_token;
             // Initialize the client
             client = new RestClient();
+
             client.Authenticator = new HttpBasicAuthenticator(AuthID, AuthToken);
             client.UserAgent = "PlivoCsharp";
             client.BaseUrl = String.Format("{0}/{1}/Account/{2}", PlivoUrl, PlivoVersion, AuthID);
@@ -40,7 +41,10 @@ namespace Plivo.API
 
             // add the parameters to the request
             foreach (KeyValuePair<string, string> kvp in data)
-				request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value));
+            {
+                request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value), ParameterType.QueryString);
+                Console.Write("{0} - {1}", kvp.Key, kvp.Value);
+            }
 
             //set the HTTP method for this request
             switch (http_method.ToUpper())
@@ -143,7 +147,9 @@ namespace Plivo.API
         public IRestResponse<Application> get_application(dict parameters)
         {
             string app_id = get_key_value(ref parameters, "app_id");
+            Console.WriteLine("application");
             return _request<Application>("GET", String.Format("/Application/{0}/", app_id), parameters);
+
         }
 
         public IRestResponse<GenericResponse> create_application(dict parameters)
@@ -170,12 +176,24 @@ namespace Plivo.API
             return _request<NumberList>("GET", "/Number/", new dict());
         }
 
-        [Obsolete("Use search_number_group() instead")]
+        public IRestResponse<PhoneNumberList> search_phone_numbers(dict parameters)
+        {
+            return _request<PhoneNumberList>("GET", "/PhoneNumber/", parameters);
+        }
+
+        public IRestResponse<PhoneNumberResponse> buy_phone_number(dict parameters)
+        {
+            string number = get_key_value(ref parameters, "number");
+            return _request<PhoneNumberResponse>("POST", String.Format("/PhoneNumber/{0}/", number), parameters);
+        }
+
+        [Obsolete("Use search_phone_numbers() instead")]
         public IRestResponse<NumberList> search_numbers(dict parameters)
         {
             return _request<NumberList>("GET", "/AvailableNumber/", parameters);
         }
 
+        [Obsolete("Use search_phone_numbers() instead")]
         public IRestResponse<NumberList> search_number_group(dict parameters)
         {
             return _request<NumberList>("GET", "/AvailableNumberGroup/", parameters);
@@ -187,13 +205,14 @@ namespace Plivo.API
             return _request<Number>("GET", String.Format("/Number/{0}/", number), parameters);
         }
 
-        [Obsolete("Use rent_from_number_group() instead")]
+        [Obsolete("Use buy_phone_number() instead")]
         public IRestResponse<GenericResponse> rent_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
             return _request<GenericResponse>("POST", String.Format("/AvailableNumber/{0}/", number), parameters);
         }
 
+        [Obsolete("Use buy_phone_number() instead")]
         public IRestResponse<NumberResponse> rent_from_number_group(dict parameters)
         {
             string group_id = get_key_value(ref parameters, "group_id");

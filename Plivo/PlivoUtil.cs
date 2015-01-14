@@ -23,14 +23,16 @@ namespace Plivo.Util
             byte[] hashValue = myhmacsha1.ComputeHash(stream);
             string generatedSignature = Convert.ToBase64String(hashValue);
 
-            if (xPlivoSignature.Equals(generatedSignature)) 
+            if (xPlivoSignature.Equals(generatedSignature))
                 isMatch = true;
             return isMatch;
         }
     }
 
-    class HtmlEntity {
-        public static string Convert(string inputText) {
+    class HtmlEntity
+    {
+        public static string Convert(string inputText)
+        {
             StringBuilder builder = new StringBuilder();
             foreach (char c in inputText)
             {
