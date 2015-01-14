@@ -55,6 +55,7 @@ If you already have RestSharp installed, its best to uninstall it before install
 PM> Uninstall-Package RestSharp -Force
 PM> Install-Package RestSharp -Version 104.4.0
 PM> Install-Package Plivo
+```
 
 ### Examples
 
