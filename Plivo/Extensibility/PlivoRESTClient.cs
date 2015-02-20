@@ -17,10 +17,9 @@ namespace Plivo.Extensibility
             base(authId, authToken, version)
         {
             // Initialize the client
-            client = new RestClient();
+            client = new RestClient(string.Format("{0}/{1}/Account/{2}", PLIVO_URL, version, AuthID));
             client.Authenticator = new HttpBasicAuthenticator(AuthID, AuthToken);
             client.UserAgent = "PlivoCsharp";
-            client.BaseUrl = String.Format("{0}/{1}/Account/{2}", PLIVO_URL, version, AuthID);
         }
 
 
