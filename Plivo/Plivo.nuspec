@@ -46,4 +46,9 @@
   <files>
     <file src="bin\Release\*.dll" target="lib\net40" />
   </files>
+  <dependencies>
+      <group targetFramework="net40">
+        <dependency id="RestSharp" version="104.4.0" />
+      </group>
+    </dependencies>
 </package>
