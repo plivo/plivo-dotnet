@@ -44,7 +44,7 @@
     </frameworkAssemblies>
   </metadata>
   <files>
-    <file src="bin\Release\*.dll" target="lib\net40" />
+    <file src="bin\Release\Plivo.dll" target="lib\net40" />
   </files>
   <dependencies>
       <group targetFramework="net40">
