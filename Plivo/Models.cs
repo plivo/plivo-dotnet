@@ -415,6 +415,8 @@ namespace Plivo.API
         public string message_time { get; set; }
         public string resource_uri { get; set; }
         public string message_type { get; set; }
+        public string total_rate { get; set; }
+        public string units { get; set; }
     }
 
     public class MessageList
