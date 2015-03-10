@@ -27,11 +27,12 @@ namespace Plivo.API
             AuthID = auth_id;
             AuthToken = auth_token;
             // Initialize the client
-            client = new RestClient();
-
-            client.Authenticator = new HttpBasicAuthenticator(AuthID, AuthToken);
-            client.UserAgent = "PlivoCsharp";
-            client.BaseUrl = String.Format("{0}/{1}/Account/{2}", PlivoUrl, PlivoVersion, AuthID);
+            client = new RestClient
+	    {
+            	Authenticator = new HttpBasicAuthenticator(AuthID, AuthToken),
+            	UserAgent = "PlivoCsharp",
+            	BaseUrl = new Uri(string.Format("{0}/{1}/Account/{2}", PlivoUrl, PlivoVersion, AuthID))
+	    };
         }
 
         private IRestResponse<T> _request<T>(string http_method, string resource, dict data)
@@ -40,7 +41,7 @@ namespace Plivo.API
             var request = new RestRequest() { Resource = resource, RequestFormat = DataFormat.Json };
 
             // add the parameters to the request
-            foreach (KeyValuePair<string, string> kvp in data)
+            foreach (var kvp in data)
             {
                 request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value), ParameterType.QueryString);
                 Console.Write("{0} - {1}", kvp.Key, kvp.Value);
