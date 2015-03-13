@@ -94,16 +94,16 @@ namespace SampleApplication
             // The "Outbound call" API response has four properties -
             // message, request_uuid, error, and api_id.
             // error - contains the error response sent back from the server.
-            if (resp.Data != null)
+            if (response.Data != null)
             {
-                PropertyInfo[] properties = resp.Data.GetType().GetProperties();
+                PropertyInfo[] properties = response.Data.GetType().GetProperties();
                 foreach (PropertyInfo property in properties)
-                    Console.WriteLine("{0}: {1}", property.Name, property.GetValue(resp.Data, null);
+                    Console.WriteLine("{0}: {1}", property.Name, property.GetValue(response.Data, null));
             }
             else
             {
                 // ErrorMessage - contains error related to network failure.
-                Console.WriteLine(resp.ErrorMessage);
+                Console.WriteLine(response.ErrorMessage);
             }
             Console.Read();
         }
