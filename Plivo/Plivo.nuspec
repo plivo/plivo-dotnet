@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>1.3.7</version>
+    <version>1.3.8</version>
     <title>Plivo</title>
     <authors>Plivo</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    * 1.3.8 Update and separate bundling of RestSharp client and add RestSharpSigned as nuget package dependency. Signed version enables it to work with modern as well as older projects that still require strongname binaries.
     * 1.3.7 Make Verify Signature function public
     * 1.3.5 PhoneNumber API
     * 1.3.2 Added old_auth_token and auth_token fields to SubAccount response
@@ -44,8 +45,11 @@
     <frameworkAssemblies>
       <frameworkAssembly assemblyName="System" targetFramework="net40" />
     </frameworkAssemblies>
+    <dependencies>
+      <dependency id="RestSharpSigned" version="105.0.1" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="bin\Release\*.dll" target="lib\net40" />
+    <file src="bin\Release\Plivo.dll" target="lib\net40" />
   </files>
 </package>
