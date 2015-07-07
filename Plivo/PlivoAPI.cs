@@ -31,7 +31,7 @@ namespace Plivo.API
 
             client.Authenticator = new HttpBasicAuthenticator(AuthID, AuthToken);
             client.UserAgent = "PlivoCsharp";
-            client.BaseUrl = String.Format("{0}/{1}/Account/{2}", PlivoUrl, PlivoVersion, AuthID);
+            client.BaseUrl = new Uri(String.Format("{0}/{1}/Account/{2}", PlivoUrl, PlivoVersion, AuthID));
         }
 
         private IRestResponse<T> _request<T>(string http_method, string resource, dict data)

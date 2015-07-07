@@ -8,3 +8,4 @@ packages.config
 
 #NuGet
 packages/
+*.nupkg
