@@ -225,6 +225,12 @@ namespace Plivo.API
             return _request<GenericResponse>("DELETE", String.Format("/Number/{0}/", number), parameters);
         }
 
+        public IRestResponse<GenericResponse> modify_number(dict parameters)
+        {
+            string number = get_key_value(ref parameters, "number");
+            return _request<GenericResponse>("POST", String.Format("/Number/{0}/", number), parameters);
+        }
+
         public IRestResponse<GenericResponse> link_application_number(dict parameters)
         {
             string number = get_key_value(ref parameters, "number");
