@@ -89,6 +89,14 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
+	public class SubAccountResponse
+	{
+		public string api_id { get; set; }
+		public string auth_id { get; set; }
+		public string auth_token { get; set; }
+		public string message { get; set; }
+	}
+
     public class SubAccount
     {
         public string account { get; set; }
