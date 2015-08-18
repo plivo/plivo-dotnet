@@ -104,9 +104,9 @@ namespace Plivo.API
             return _request<SubAccount>("GET", String.Format("/Subaccount/{0}/", subauth_id), parameters);
         }
 
-        public IRestResponse<GenericResponse> create_subaccount(dict parameters)
+		public IRestResponse<SubAccountResponse> create_subaccount(dict parameters)
         {
-            return _request<GenericResponse>("POST", "/Subaccount/", parameters);
+			return _request<SubAccountResponse>("POST", "/Subaccount/", parameters);
         }
 
         public IRestResponse<GenericResponse> modify_subaccount(dict parameters)
