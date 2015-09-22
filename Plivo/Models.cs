@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Plivo.API
 {
+    // JSON Response
+    public class PlivoResponse
+    {
+        public override string ToString()
+        {
+            string s = JsonConvert.SerializeObject(this, Formatting.Indented);
+            return s;
+        }
+    }
     // Generic Models
-    public class GenericResponse
+    public class GenericResponse : PlivoResponse
     {
         public string message { get; set; }
         public string error { get; set; }
         public string api_id { get; set; }
     }
 
-    public class Record
+    public class Record : PlivoResponse
     {
         public string url { get; set; }
         public string message { get; set; }
@@ -23,7 +33,7 @@ namespace Plivo.API
 
     //Recording Models
 
-    public class RecordingMeta
+    public class RecordingMeta : PlivoResponse
     {
         public object previous { get; set; }
         public int total_count { get; set; }
@@ -31,14 +41,14 @@ namespace Plivo.API
         public int limit { get; set; }
         public string next { get; set; }
     }
-    public class RecordingList
+    public class RecordingList : PlivoResponse
     {
         public RecordingMeta meta { get; set; }
         public string error { get; set; }
         public string api_id { get; set; }
         public List<Recording> objects { get; set; }
     }
-    public class Recording
+    public class Recording : PlivoResponse
     {
         public string add_time { get; set; }
         public string call_uuid { get; set; }
@@ -56,7 +66,7 @@ namespace Plivo.API
     }
 
     // Account Models
-    public class Account
+    public class Account : PlivoResponse
     {
         public string account_type { get; set; }
         public string address { get; set; }
@@ -72,7 +82,7 @@ namespace Plivo.API
         public string timezone { get; set; }
     }
 
-    public class ResourceListMeta
+    public class ResourceListMeta : PlivoResponse
     {
         public object previous { get; set; }
         public int total_count { get; set; }
@@ -80,7 +90,7 @@ namespace Plivo.API
         public int limit { get; set; }
         public string next { get; set; }
     }
-    public class SubAccountMeta
+    public class SubAccountMeta : PlivoResponse
     {
         public object previous { get; set; }
         public int total_count { get; set; }
@@ -89,7 +99,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-	public class SubAccountResponse
+    public class SubAccountResponse : PlivoResponse
 	{
 		public string api_id { get; set; }
 		public string auth_id { get; set; }
@@ -97,7 +107,7 @@ namespace Plivo.API
 		public string message { get; set; }
 	}
 
-    public class SubAccount
+    public class SubAccount : PlivoResponse
     {
         public string account { get; set; }
         public string name { get; set; }
@@ -112,7 +122,7 @@ namespace Plivo.API
         public string old_auth_token { get; set; }
     }
 
-    public class SubAccountList
+    public class SubAccountList : PlivoResponse
     {
         public SubAccountMeta meta { get; set; }
         public string error { get; set; }
@@ -121,7 +131,7 @@ namespace Plivo.API
     }
 
     // Application Models
-    public class ApplicationMeta
+    public class ApplicationMeta : PlivoResponse
     {
         public string previous { get; set; }
         public int total_count { get; set; }
@@ -130,7 +140,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class Application
+    public class Application : PlivoResponse
     {
         public string fallback_method { get; set; }
         public bool default_app { get; set; }
@@ -151,7 +161,7 @@ namespace Plivo.API
         public string answer_method { get; set; }
     }
 
-    public class ApplicationList
+    public class ApplicationList : PlivoResponse
     {
         public ApplicationMeta meta { get; set; }
         public string error { get; set; }
@@ -160,7 +170,7 @@ namespace Plivo.API
     }
 
     // Number Models
-    public class NumberMeta
+    public class NumberMeta : PlivoResponse
     {
         public string previous { get; set; }
         public int total_count { get; set; }
@@ -169,7 +179,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class Number
+    public class Number : PlivoResponse
     {
         public string region { get; set; }
         public bool voice_enabled { get; set; }
@@ -197,7 +207,7 @@ namespace Plivo.API
         public string monthly_rental_rate { get; set; }
     }
 
-    public class NumberList
+    public class NumberList : PlivoResponse
     {
         public NumberMeta meta { get; set; }
         public string api_id { get; set; }
@@ -205,32 +215,32 @@ namespace Plivo.API
         public List<Number> objects { get; set; }
     }
 
-    public class NumberStatus
+    public class NumberStatus : PlivoResponse
     {
         public string number { get; set; }
         public string status { get; set; }
     }
 
-    public class NumberResponse
+    public class NumberResponse : PlivoResponse
     {
         public List<NumberStatus> numbers { get; set; }
         public string status { get; set; }
     }
 
-    public class PhoneNumberStatus
+    public class PhoneNumberStatus : PlivoResponse
     {
         public string number { get; set; }
         public string status { get; set; }
     }
 
-    public class PhoneNumberResponse
+    public class PhoneNumberResponse : PlivoResponse
     {
         public List<PhoneNumberStatus> numbers { get; set; }
         public string status { get; set; }
         public string error { get; set; }
     }
 
-    public class PhoneNumberMeta
+    public class PhoneNumberMeta : PlivoResponse
     {
         public string previous { get; set; }
         public int total_count { get; set; }
@@ -239,7 +249,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class PhoneNumber
+    public class PhoneNumber : PlivoResponse
     {
         public string country { get; set; }
         public int lata { get; set; }
@@ -260,7 +270,7 @@ namespace Plivo.API
     }
 
 
-    public class PhoneNumberList
+    public class PhoneNumberList : PlivoResponse
     {
         public PhoneNumberMeta meta { get; set; }
         public string api_id { get; set; }
@@ -269,7 +279,7 @@ namespace Plivo.API
     }
 
     // Call Models
-    public class Call
+    public class Call : PlivoResponse
     {
         public string message { get; set; }
         public string request_uuid { get; set; }
@@ -278,7 +288,7 @@ namespace Plivo.API
         public string invalid_numbers { get; set; }
     }
 
-    public class LiveCall
+    public class LiveCall : PlivoResponse
     {
         public string direction { get; set; }
         public string from { get; set; }
@@ -291,14 +301,14 @@ namespace Plivo.API
         public string error { get; set; }
     }
 
-    public class LiveCallList
+    public class LiveCallList : PlivoResponse
     {
         public string api_id { get; set; }
         public List<string> calls { get; set; }
         public string error { get; set; }
     }
 
-    public class CDRMeta
+    public class CDRMeta : PlivoResponse
     {
         public string previous { get; set; }
         public int total_count { get; set; }
@@ -307,9 +317,11 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class CDR
+    public class CDR : PlivoResponse
     {
         public int bill_duration { get; set; }
+        public int call_duration { get; set; }
+        public int billed_duration { get; set; }
         public string total_amount { get; set; }
         public string parent_call_uuid { get; set; }
         public string call_direction { get; set; }
@@ -317,13 +329,14 @@ namespace Plivo.API
         public string total_rate { get; set; }
         public string from_number { get; set; }
         public string end_time { get; set; }
+        public string start_time { get; set; }
         public string call_uuid { get; set; }
         public string resource_uri { get; set; }
         public string error { get; set; }
         public string api_id { get; set; }
     }
 
-    public class CDRList
+    public class CDRList : PlivoResponse
     {
         public CDRMeta meta { get; set; }
         public string error { get; set; }
@@ -332,14 +345,14 @@ namespace Plivo.API
     }
 
     // Conference Models
-    public class LiveConferenceList
+    public class LiveConferenceList : PlivoResponse
     {
         public string error { get; set; }
         public string api_id { get; set; }
         public List<string> conferences { get; set; }
     }
 
-    public class ConferenceMember
+    public class ConferenceMember : PlivoResponse
     {
         public string call_uuid { get; set; }
         public string caller_name { get; set; }
@@ -352,7 +365,7 @@ namespace Plivo.API
         public string to { get; set; }
     }
 
-    public class Conference
+    public class Conference : PlivoResponse
     {
         public string error { get; set; }
         public string api_id { get; set; }
@@ -363,7 +376,7 @@ namespace Plivo.API
     }
 
     // Endpoint Models
-    public class EndpointMeta
+    public class EndpointMeta : PlivoResponse
     {
         public string previous { get; set; }
         public int total_count { get; set; }
@@ -372,7 +385,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class Endpoint
+    public class Endpoint : PlivoResponse
     {
         public string username { get; set; }
         public string sip_uri { get; set; }
@@ -384,7 +397,7 @@ namespace Plivo.API
         public string error { get; set; }
     }
 
-    public class EndpointList
+    public class EndpointList : PlivoResponse
     {
         public EndpointMeta meta { get; set; }
         public string error { get; set; }
@@ -393,7 +406,7 @@ namespace Plivo.API
     }
 
     // Message Models
-    public class MessageResponse
+    public class MessageResponse : PlivoResponse
     {
         public string message { get; set; }
         public List<string> message_uuid { get; set; }
@@ -401,7 +414,7 @@ namespace Plivo.API
         public string api_id { get; set; }
     }
 
-    public class MessageMeta
+    public class MessageMeta : PlivoResponse
     {
         public string previous { get; set; }
         public int total_count { get; set; }
@@ -410,7 +423,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class Message
+    public class Message : PlivoResponse
     {
         public string cloud_rate { get; set; }
         public string carrier_rate { get; set; }
@@ -427,7 +440,7 @@ namespace Plivo.API
         public int units { get; set; }
     }
 
-    public class MessageList
+    public class MessageList : PlivoResponse
     {
         public MessageMeta meta { get; set; }
         public string api_id { get; set; }
@@ -435,7 +448,7 @@ namespace Plivo.API
     }
 
     // Incoming Carrier Models
-    public class IncomingCarrierMeta
+    public class IncomingCarrierMeta : PlivoResponse
     {
         public string previous { get; set; }
         public string total_count { get; set; }
@@ -444,7 +457,7 @@ namespace Plivo.API
         public string next { get; set; }
     }
 
-    public class IncomingCarrier
+    public class IncomingCarrier : PlivoResponse
     {
         public string carrier_id { get; set; }
         public string ip_set { get; set; }
@@ -454,7 +467,7 @@ namespace Plivo.API
         public string voice { get; set; }
     }
 
-    public class IncomingCarrierList
+    public class IncomingCarrierList : PlivoResponse
     {
         public IncomingCarrierMeta meta { get; set; }
         public string api_id { get; set; }
@@ -462,7 +475,7 @@ namespace Plivo.API
         public List<IncomingCarrier> objects { get; set; }
     }
 
-    public class OutgoingCarrierMeta
+    public class OutgoingCarrierMeta : PlivoResponse
     {
         public string previous { get; set; }
         public string total_count { get; set; }
@@ -470,7 +483,7 @@ namespace Plivo.API
         public string limit { get; set; }
         public string next { get; set; }
     }
-    public class OutgoingCarrier
+    public class OutgoingCarrier : PlivoResponse
     {
         public string carrier_id { get; set; }
         public string ips { get; set; }
@@ -483,7 +496,7 @@ namespace Plivo.API
         public string resource_uri { get; set; }
     }
 
-    public class OutgoingCarrierList
+    public class OutgoingCarrierList : PlivoResponse
     {
         public OutgoingCarrierMeta meta { get; set; }
         public string api_id { get; set; }
@@ -491,7 +504,7 @@ namespace Plivo.API
         public List<OutgoingCarrier> objects { get; set; }
     }
 
-    public class OutgoingCarrierRouting
+    public class OutgoingCarrierRouting : PlivoResponse
     {
         public string routing_id { get; set; }
         public string digits { get; set; }
@@ -500,7 +513,7 @@ namespace Plivo.API
         public string resource_uri { get; set; }
     }
 
-    public class OutgoingCarrierRoutingList
+    public class OutgoingCarrierRoutingList : PlivoResponse
     {
         public ResourceListMeta meta { get; set; }
         public string api_id { get; set; }
@@ -509,66 +522,66 @@ namespace Plivo.API
     }
 
     // Pricing
-    public class LocalNumberRental
+    public class LocalNumberRental : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class TollfreeNumberRental
+    public class TollfreeNumberRental : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class PhoneNumbers
+    public class PhoneNumbers : PlivoResponse
     {
         public LocalNumberRental local { get; set; }
         public TollfreeNumberRental tollfree { get; set; }
     }
 
-    public class SipInboundPricing
+    public class SipInboundPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class LocalInboundPricing
+    public class LocalInboundPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class TollfreeInboundPricing
+    public class TollfreeInboundPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class InboundVoicePricing
+    public class InboundVoicePricing : PlivoResponse
     {
         public SipInboundPricing ip { get; set; }
         public LocalInboundPricing local { get; set; }
         public TollfreeInboundPricing tollfree { get; set; }
     }
 
-    public class SipOutboundPricing
+    public class SipOutboundPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class LocalOutboundPricing
+    public class LocalOutboundPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class TollfreeOutboundPricing
+    public class TollfreeOutboundPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class RatesPrefixes
+    public class RatesPrefixes : PlivoResponse
     {
         public string rate { get; set; }
         public List<string> prefix { get; set; }
     }
 
-    public class OutboundVoicePricing
+    public class OutboundVoicePricing : PlivoResponse
     {
         public SipOutboundPricing ip { get; set; }
         public LocalOutboundPricing local { get; set; }
@@ -576,29 +589,29 @@ namespace Plivo.API
         public List<RatesPrefixes> rates { get; set; }
     }
 
-    public class VoiceRates
+    public class VoiceRates : PlivoResponse
     {
         public InboundVoicePricing inbound { get; set; }
         public OutboundVoicePricing outbound { get; set; }
     }
 
-    public class InboundSmsPricing
+    public class InboundSmsPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class OutboundSmsPricing
+    public class OutboundSmsPricing : PlivoResponse
     {
         public string rate { get; set; }
     }
 
-    public class SmsRates
+    public class SmsRates : PlivoResponse
     {
         public InboundSmsPricing inbound { get; set; }
         public OutboundSmsPricing outbound { get; set; }
     }
 
-    public class PlivoPricing
+    public class PlivoPricing:PlivoResponse
     {
         public string country_code { get; set; }
         public string country_iso { get; set; }

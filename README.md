@@ -32,7 +32,7 @@ To use this library from source follow the instructions below,
 + Go to `Tools -> Library Package Manager -> Packager Manager Console`.
 + Enter the following command in the console to [install RestSharp](https://www.nuget.org/packages/RestSharp) (Simple REST and HTTP API Client that Plivo uses),  
 ```
-PM> Install-Package RestSharp -Version 105.0.1
+PM> Install-Package RestSharpSigned -Version 105.1.0
 ```
 + Once the RestSharp package is successfully installed, close the console. Right Click on the solution (in this case Plivo) in the _Solution Explorer_ and click _Clean_ and then _Build_.
 + Next, to start using it in your project, Right Click on your Project Name in the _Solution Explorer_ and click _Add Reference_. In the dialog box which appears, go to the _Browse_ tab and Navigate to `plivo-dotnet\Plivo\bin\Debug` and select the `Plivo.dll` and click OK.

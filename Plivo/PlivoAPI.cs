@@ -43,7 +43,6 @@ namespace Plivo.API
             foreach (KeyValuePair<string, string> kvp in data)
             {
                 request.AddParameter(kvp.Key, HtmlEntity.Convert(kvp.Value), ParameterType.QueryString);
-                Console.Write("{0} - {1}", kvp.Key, kvp.Value);
             }
 
             //set the HTTP method for this request
@@ -152,9 +151,9 @@ namespace Plivo.API
 
         }
 
-        public IRestResponse<GenericResponse> create_application(dict parameters)
+        public IRestResponse<Application> create_application(dict parameters)
         {
-            return _request<GenericResponse>("POST", "/Application/", parameters);
+            return _request<Application>("POST", "/Application/", parameters);
         }
 
         public IRestResponse<GenericResponse> modify_application(dict parameters)
@@ -174,6 +173,11 @@ namespace Plivo.API
         public IRestResponse<NumberList> get_numbers()
         {
             return _request<NumberList>("GET", "/Number/", new dict());
+        }
+
+        public IRestResponse<NumberList> get_numbers(dict parameters)
+        {
+            return _request<NumberList>("GET", "/Number/", parameters);
         }
 
         public IRestResponse<PhoneNumberList> search_phone_numbers(dict parameters)
@@ -406,6 +410,13 @@ namespace Plivo.API
             return _request<GenericResponse>("POST", String.Format("/Conference/{0}/Member/{1}/Speak/", conference_name, member_id), parameters);
         }
 
+        public IRestResponse<GenericResponse> stop_speak_member(dict parameters)
+        {
+            string conference_name = get_key_value(ref parameters, "conference_name");
+            string member_id = get_key_value(ref parameters, "member_id");
+            return _request<GenericResponse>("DELETE", String.Format("/Conference/{0}/Member/{1}/Speak/", conference_name, member_id), parameters);
+        }
+
         public IRestResponse<GenericResponse> deaf_member(dict parameters)
         {
             string conference_name = get_key_value(ref parameters, "conference_name");
@@ -624,6 +635,13 @@ namespace Plivo.API
         {
             string recordingId = get_key_value(ref parameters, "recording_id");
             return _request<GenericResponse>("DELETE", String.Format("/Recording/{0}/", recordingId), parameters);
+        }
+
+        // Request
+        public IRestResponse<GenericResponse> hangup_request(dict parameters)
+        {
+            string requestUUID = get_key_value(ref parameters, "request_uuid");
+            return _request<GenericResponse>("DELETE", String.Format("/Request/{0}/", requestUUID), parameters);
         }
     }
 }
