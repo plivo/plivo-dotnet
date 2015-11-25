@@ -30,11 +30,12 @@ To use this library from source follow the instructions below,
 + Open the solution file in Visual Studio.
 + Install [NuGet Package Manager](http://docs.nuget.org/docs/start-here/installing-nuget).
 + Go to `Tools -> Library Package Manager -> Packager Manager Console`.
-+ Enter the following command in the console to [install RestSharp](https://www.nuget.org/packages/RestSharp) (Simple REST and HTTP API Client that Plivo uses),  
++ Enter the following commands in the console to install [RestSharp](https://www.nuget.org/packages/RestSharp) (a Simple REST and HTTP API Client) and [Json.NET](https://www.nuget.org/packages/newtonsoft.json/) (a popular high-performance JSON framework for .NET),  
 ```
 PM> Install-Package RestSharpSigned -Version 105.1.0
+PM> Install-Package Newtonsoft.Json -Version 7.0.1
 ```
-+ Once the RestSharp package is successfully installed, close the console. Right Click on the solution (in this case Plivo) in the _Solution Explorer_ and click _Clean_ and then _Build_.
++ Once the RestSharp and Json.NET packages are successfully installed, close the console. Right Click on the solution (in this case Plivo) in the _Solution Explorer_ and click _Clean_ and then _Build_.
 + Next, to start using it in your project, Right Click on your Project Name in the _Solution Explorer_ and click _Add Reference_. In the dialog box which appears, go to the _Browse_ tab and Navigate to `plivo-dotnet\Plivo\bin\Debug` and select the `Plivo.dll` and click OK.
 + Now, you can use Plivo in your code! 
 
@@ -42,16 +43,17 @@ PM> Install-Package RestSharpSigned -Version 105.1.0
 
 + Install [NuGet Package Manager](http://docs.nuget.org/docs/start-here/installing-nuget).
 + Go to `Tools -> Library Package Manager -> Packager Manager Console`.
-+ RestSharp is automatically installed as a dependency.
++ RestSharp and Json.NET are automatically installed as a dependency.
 
 ```
 PM> Install-Package Plivo
 ```
 
-If you already have RestSharp installed, its best to uninstall it before installing the specific version.
+If you already have RestSharp or Json.NET installed, its best to uninstall it before installing the specific version.
 
 ```
 PM> Uninstall-Package RestSharp -Force
+PM> Uninstall-Package Newtonsoft.Json -Force
 PM> Install-Package Plivo
 ```
 
