@@ -59,7 +59,6 @@ namespace Plivo.API
                 default: request.Method = Method.GET;
                     break;
             };
-            client.AddHandler("application/json", new JsonDeserializer());
             IRestResponse<T> response = client.Execute<T>(request);
             return response;
         }
