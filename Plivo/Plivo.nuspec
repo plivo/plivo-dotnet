@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>3.0.0</version>
+    <version>3.0.1</version>
     <title>Plivo</title>
     <authors>Plivo</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+	* 3.0.1 Added beep attribute to Wait XML.
 	* 3.0.0 Updated RestSharpSigned
     * 2.0.2 Added Request API function, stop_speak_member function in Conference API and abstracted all API responses to a parent class PlivoResponse.
     * 2.0.1 Added modify_number function.
