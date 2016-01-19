@@ -329,7 +329,8 @@ namespace Plivo.API
         public string total_rate { get; set; }
         public string from_number { get; set; }
         public string end_time { get; set; }
-        public string start_time { get; set; }
+        public string answer_time { get; set; }
+        public string initiation_time { get; set; }
         public string call_uuid { get; set; }
         public string resource_uri { get; set; }
         public string error { get; set; }
