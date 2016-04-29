@@ -13,7 +13,7 @@ namespace Plivo.Util
         public static bool Verify(string uri, dict plivoHttpParams, string xPlivoSignature, string authToken)
         {
             var isMatch = false;
-            foreach (KeyValuePair<string, string> kvp in plivoHttpParams.OrderBy(key => key.Key))
+            foreach (KeyValuePair<string, string> kvp in plivoHttpParams.OrderBy(key => key.Key, StringComparer.Ordinal))
                 uri += kvp.Key + kvp.Value;
 
             var enc = Encoding.ASCII;
