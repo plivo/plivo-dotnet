@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>3.0.2</version>
+    <version>3.0.3</version>
     <title>Plivo</title>
     <authors>Plivo</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+	* 3.0.3 Fixed sorting in Verify function
 	* 3.0.2 Added answer_time and initiation_time to CDR model.
 	* 3.0.1 Added beep attribute to Wait XML.
 	* 3.0.0 Updated RestSharpSigned
