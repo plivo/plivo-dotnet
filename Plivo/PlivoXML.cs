@@ -195,7 +195,7 @@ namespace Plivo.XML
             ValidAttributes = new list()
             {   "action", "method", "hangupOnStar", "timeLimit", "timeout", "callerId",
                 "callerName", "confirmSound", "confirmKey", "dialMusic", "callbackUrl",
-                "callbackMethod", "redirect", "digitsMatch", "sipHeaders"
+                "callbackMethod", "redirect", "digitsMatch", "digitsMatchBLeg", "sipHeaders"
             };
             addAttributes();
         }
