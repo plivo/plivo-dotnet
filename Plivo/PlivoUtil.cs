@@ -24,16 +24,14 @@ namespace Plivo.Util
             var qs = new Uri(uri).Query;
             var qsDict = System.Web.HttpUtility.ParseQueryString(qs);
             
-            var dict = qsDict.AllKeys.ToDictionary(item => item, item => qsDict[item]);
+            var getParams = qsDict.AllKeys.ToDictionary(item => item, item => qsDict[item]);
             
             // use original url 
-            foreach (KeyValuePair<string, string> kvp in dict.OrderBy(key => key.Key, StringComparer.Ordinal))
+            foreach (KeyValuePair<string, string> kvp in getParams.OrderBy(key => key.Key, StringComparer.Ordinal))
                 originalUri += kvp.Key + kvp.Value;
 
-            var myhmacsha1 = new HMACSHA1(Encoding.UTF8.GetBytes(authToken));
-            var byteArray = Encoding.UTF8.GetBytes(originalUri);
-            var stream = new MemoryStream(byteArray);
-            var hashValue = myhmacsha1.ComputeHash(stream);
+            var sha1 = new HMACSHA1(Encoding.UTF8.GetBytes(authToken));
+            var hashValue = sha1.ComputeHash(Encoding.UTF8.GetBytes(originalUri));
             var generatedSignature = Convert.ToBase64String(hashValue);
 
             return xPlivoSignature.Equals(generatedSignature);
