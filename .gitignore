@@ -9,3 +9,6 @@ packages.config
 #NuGet
 packages/
 *.nupkg
+
+#idea
+.idea
