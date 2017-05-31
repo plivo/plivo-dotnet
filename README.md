@@ -32,7 +32,7 @@ To use this library from source follow the instructions below,
 + Go to `Tools -> Library Package Manager -> Packager Manager Console`.
 + Enter the following commands in the console to install [RestSharp](https://www.nuget.org/packages/RestSharp) (a Simple REST and HTTP API Client) and [Json.NET](https://www.nuget.org/packages/newtonsoft.json/) (a popular high-performance JSON framework for .NET),  
 ```
-PM> Install-Package RestSharpSigned -Version 105.1.0
+PM> Install-Package RestSharpSigned -Version 105.2.3
 PM> Install-Package Newtonsoft.Json -Version 7.0.1
 ```
 + Once the RestSharp and Json.NET packages are successfully installed, close the console. Right Click on the solution (in this case Plivo) in the _Solution Explorer_ and click _Clean_ and then _Build_.
