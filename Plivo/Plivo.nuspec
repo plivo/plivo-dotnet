@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>3.0.6</version>
+    <version>3.0.7</version>
     <title>Plivo</title>
     <authors>Plivo</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+    	* 3.0.7 Re-release
     	* 3.0.6 Added addition verify signature function
     	* 3.0.5 Added support for RestSharp 105.2.3
 	* 3.0.4 Added digitsMatchBLeg parameter to Dial XML.
