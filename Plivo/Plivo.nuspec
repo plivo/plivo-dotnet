@@ -55,7 +55,7 @@
       <frameworkAssembly assemblyName="System" targetFramework="net40" />
     </frameworkAssemblies>
     <dependencies>
-      <dependency id="RestSharpSigned" version="105.1.0" />
+      <dependency id="RestSharpSigned" version="105.2.3" />
     </dependencies>
   </metadata>
   <files>
