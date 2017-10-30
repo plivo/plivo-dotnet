@@ -1,0 +1,31 @@
+language: csharp
+solution: Plivo.sln
+
+matrix:
+  include:
+    - dotnet: 1.0.1
+      mono: none
+      dist: trusty
+      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
+    - mono: latest
+      dotnet: 1.0.1
+      dist: trusty
+
+install:
+  - 'if [  ${DOTNETCORE} = 1 ]; then
+        dotnet restore;
+        dotnet build --framework netstandard1.1 src/Plivo/Plivo.csproj;
+        dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    else
+        dotnet restore;
+        nuget restore Plivo.sln;
+        nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner;
+    fi'
+
+script:
+  - 'if [  ${DOTNETCORE} = 1 ]; then
+        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    else
+        msbuild /p:Configuration=Release Plivo.sln;
+        mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
+    fi'
