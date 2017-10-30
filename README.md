@@ -1,6 +1,8 @@
 Plivo C#.NET Helper Library
 ===========================
 
+**Important:** A new version of the .NET SDK `4.0.0-beta1` is released as a public Beta and is now available on NuGet. Visit the [4.0 release branch](https://github.com/plivo/plivo-dotnet/tree/4.0) to know more.
+
 ## About
 
 __Plivo C#.NET Helper Library__ simplifies the process of making [Plivo API](http://plivo.com/docs/api/) calls and generating [Plivo XML](http://plivo.com/docs/xml/).
@@ -24,7 +26,7 @@ This helper library can be installed / used in two ways,
 
 #### From Source
 
-To use this library from source follow the instructions below, 
+To use this library from source follow the instructions below,
 
 + Get the source from Github using `git clone` or using the [download link](https://github.com/plivo/plivo-dotnet/archive/master.zip).
 + Open the solution file in Visual Studio.
@@ -37,7 +39,7 @@ PM> Install-Package Newtonsoft.Json -Version 7.0.1
 ```
 + Once the RestSharp and Json.NET packages are successfully installed, close the console. Right Click on the solution (in this case Plivo) in the _Solution Explorer_ and click _Clean_ and then _Build_.
 + Next, to start using it in your project, Right Click on your Project Name in the _Solution Explorer_ and click _Add Reference_. In the dialog box which appears, go to the _Browse_ tab and Navigate to `plivo-dotnet\Plivo\bin\Debug` and select the `Plivo.dll` and click OK.
-+ Now, you can use Plivo in your code! 
++ Now, you can use Plivo in your code!
 
 #### From NuGet Package Manager
 
@@ -86,8 +88,8 @@ namespace SampleApplication
 
             IRestResponse<Call> response = plivo.make_call(new Dictionary<string, string>() {
                 { "from", from_number },
-                { "to", to_number }, 
-                { "answer_url", "http://some.domain.com/answer/" }, 
+                { "to", to_number },
+                { "answer_url", "http://some.domain.com/answer/" },
                 { "answer_method", "GET" }
             });
 
@@ -126,14 +128,14 @@ namespace SampleApplication
         {
             Response response = new Response();
             // add 'Speak' element to 'Response'
-            response.AddSpeak("Go green, go Plivo", 
+            response.AddSpeak("Go green, go Plivo",
                 new Dictionary<string, string>() {
                     { "loop", "3" },
                     { "language", "en-US");
             });
 
             // or you can add as below
-            // Speak speak = new Speak("Go green, go Plivo", 
+            // Speak speak = new Speak("Go green, go Plivo",
             //    new Dictionary<string, string>() {
             //         { "loop", "3" },
             //         { "language", "en-US");
@@ -154,21 +156,21 @@ The MIT License (MIT)
 Copyright (c) 2013 Plivo Inc
 
 Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the "Software"), 
-to deal in the Software without restriction, including without limitation the 
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or 
-sell copies of the Software, and to permit persons to whom the Software is 
+a copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation the
+rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in 
+The above copyright notice and this permission notice shall be included in
 all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, 
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF 
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY 
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ```
