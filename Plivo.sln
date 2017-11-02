@@ -28,6 +28,6 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		description = A .NET SDK to make voice calls & send SMS using Plivo and to generate Plivo XML
-		version = 4.0.0-beta1
+		version = 4.0.0-beta2
 	EndGlobalSection
 EndGlobal

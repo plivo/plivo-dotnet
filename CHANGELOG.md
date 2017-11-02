@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.0.0-beta2](https://github.com/plivo/plivo-dotnet/tree/v4.0.0-beta2) (2017-11-02)
+- Fix #41 - Pricing API interface from v4.0.0-beta1
+
 ## [v4.0.0-beta1](https://github.com/plivo/plivo-dotnet/tree/v4.0.0-beta1) (2017-10-30)
 - The new SDK works with both .NET Framework (4.5+) and .NET Core (1.0+)
 - The API interfaces are consistent and guessable
