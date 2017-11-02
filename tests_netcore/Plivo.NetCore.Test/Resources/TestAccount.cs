@@ -19,7 +19,7 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX//",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/",
                     "");
             
             var response = 

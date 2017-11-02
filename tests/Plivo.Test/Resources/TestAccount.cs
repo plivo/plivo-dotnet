@@ -19,7 +19,7 @@ namespace Plivo.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX//",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/",
                     "");
             
             var response = 

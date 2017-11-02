@@ -1,6 +1,7 @@
 using Xunit;
 using Plivo.Http;
 using Plivo.Resource.Pricing;
+using System.Collections.Generic;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -10,12 +11,15 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestPricingGet()
         {
-            var id = "abcabcabc";
+            var data = new Dictionary<string, object>()
+            {
+                {"country_iso", "US"},
+            };
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Pricing/" + id + "/",
-                    "");
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Pricing/",
+                    "", data);
             
             var response = 
                 System.IO.File.ReadAllText(
@@ -28,7 +32,7 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(
                 Util.Compare(
                     response,
-                    Api.Pricing.Get(id)));
+                    Api.Pricing.Get("US")));
             
             AssertRequest(request);
         }
