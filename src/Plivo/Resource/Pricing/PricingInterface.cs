@@ -24,7 +24,9 @@ namespace Plivo.Resource.Pricing
         /// <param name="countryIso">Country iso.</param>
         public Pricing Get(string countryIso)
         {
-            return GetResource<Pricing>(countryIso);
+            return GetResource<Pricing>("", new Dictionary<string, object>() {
+                { "country_iso", countryiso }
+            });
         }
     }
 }
