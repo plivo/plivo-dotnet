@@ -42,8 +42,12 @@ namespace Plivo.Resource
         public T GetResource<T>(string id, Dictionary<string, object> data = null)
         where T : new()
         {
+            string to_append = id;
+            if (id != "") {
+                to_append = to_append + "/";
+            }
             return Client.Fetch<T>(
-                Uri + id + "/", data).Object;
+                Uri + to_append, data).Object;
         }
 
         /// <summary>
