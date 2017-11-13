@@ -426,8 +426,7 @@ namespace Plivo.API
 
     public class Message : PlivoResponse
     {
-        public string cloud_rate { get; set; }
-        public string carrier_rate { get; set; }
+        public string error_code { get; set; }
         public string message_direction { get; set; }
         public string to_number { get; set; }
         public string message_state { get; set; }
