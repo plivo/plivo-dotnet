@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Plivo.Client;
 using Plivo.Http;
+using Plivo.Utilities;
 
 namespace Plivo.Test
 {
@@ -61,7 +62,7 @@ namespace Plivo.Test
     {
         protected override string ResolvePropertyName(string propertyName)
         {
-            return Util.PascalCaseToSnakeCase(propertyName);
+            return StringUtilities.PascalCaseToSnakeCase(propertyName);
         }
     }
 }

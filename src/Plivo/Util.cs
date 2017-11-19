@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Plivo.Utilities;
 
 namespace Plivo
 {
@@ -91,47 +92,47 @@ namespace Plivo
             {
                 if (sourcePair.Value.Type == JTokenType.Object)
                 {
-                    if (target.GetValue(SnakeCaseToPascalCase(sourcePair.Key)) == null)
+                    if (target.GetValue(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)) == null)
                     {
-                        returnString.Append("Key " + SnakeCaseToPascalCase(sourcePair.Key)
+                        returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)
                                             + " not found" + ", ");
                     }
                     else
                     {
                         returnString.Append(CompareObjects(sourcePair.Value.ToObject<JObject>(),
-                            target.GetValue(SnakeCaseToPascalCase(sourcePair.Key)).ToObject<JObject>()));
+                            target.GetValue(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)).ToObject<JObject>()));
                     }
                 }
                 else if (sourcePair.Value.Type == JTokenType.Array)
                 {
-                    if (target.GetValue(SnakeCaseToPascalCase(sourcePair.Key)) == null)
+                    if (target.GetValue(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)) == null)
                     {
-                        returnString.Append("Key " + SnakeCaseToPascalCase(sourcePair.Key)
+                        returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)
                                             + " not found" + ", ");
                     }
                     else
                     {
                         returnString.Append(CompareArrays(sourcePair.Value.ToObject<JArray>(),
-                            target.GetValue(SnakeCaseToPascalCase(sourcePair.Key)).ToObject<JArray>(), 
-                            SnakeCaseToPascalCase(sourcePair.Key)));
+                            target.GetValue(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)).ToObject<JArray>(), 
+                            StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)));
                     }
                 }
                 else
                 {
                     JToken expected = sourcePair.Value;
-                    var actual = target.SelectToken(SnakeCaseToPascalCase(sourcePair.Key));
+                    var actual = target.SelectToken(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
                     if (actual == null)
                     {
-                        returnString.Append("Key " + SnakeCaseToPascalCase(sourcePair.Key)
+                        returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)
                                             + " not found" + ", ");
                     }
                     else
                     {
                         if (!JToken.DeepEquals(expected, actual))
                         {
-                            returnString.Append("Key " + SnakeCaseToPascalCase(sourcePair.Key) + ": "
+                            returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key) + ": "
                                                 + sourcePair.Value + " !=  "
-                                                + target.Property(SnakeCaseToPascalCase(sourcePair.Key)).Value
+                                                + target.Property(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)).Value
                                                 + ", ");
                         }
                     }
@@ -262,47 +263,9 @@ namespace Plivo
             var actProps = actJson.Properties().ToList();
 
             // find missing properties
-            var missingProps = xptProps.Where(expected => actProps.All(actual => CamelCaseToSnakeCase(actual.Name) != expected.Name));
+            var missingProps = xptProps.Where(expected => actProps.All(actual => StringUtilities.CamelCaseToSnakeCase(actual.Name) != expected.Name));
 
             return missingProps;
-        }
-
-        /// <summary>
-        /// Convert pascal case to snake case.
-        /// </summary>
-        /// <returns>The case to snake case.</returns>
-        /// <param name="name">Name.</param>
-        public static string PascalCaseToSnakeCase(string name)
-        {
-            return string.Concat(
-                (char.ToLowerInvariant(name[0]) + name.Substring(1)).ToCharArray().Select(
-                    (x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString().ToLower() : x.ToString()));
-        }
-
-        /// <summary>
-        /// Converts camel case to snake case.
-        /// </summary>
-        /// <returns>The case to snake case.</returns>
-        /// <param name="name">Name.</param>
-        public static string CamelCaseToSnakeCase(string name)
-        {
-            return string.Concat(
-                name.ToCharArray().Select(
-                    (x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString().ToLower() : x.ToString()));
-        }
-
-        /// <summary>
-        /// Converts snake case to pascal case.
-        /// </summary>
-        /// <returns>The case to pascal case.</returns>
-        /// <param name="name">Name.</param>
-        public static string SnakeCaseToPascalCase(string name)
-        {
-            return name.Split(
-                new [] {"_"},
-                StringSplitOptions.None
-            ).Select(
-                s => s == "" ? "_" :char.ToUpperInvariant(s[0]) + s.Substring(1, s.Length - 1)).Aggregate(string.Empty, (s1, s2) => s1 + s2);
         }
     }
 }

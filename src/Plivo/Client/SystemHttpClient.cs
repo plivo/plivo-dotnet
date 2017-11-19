@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Plivo.Authentication;
 using Plivo.Http;
+using Plivo.Utilities;
 
 namespace Plivo.Client
 {
@@ -30,7 +31,7 @@ namespace Plivo.Client
         {
             protected override string ResolvePropertyName(string propertyName)
             {
-                return Util.PascalCaseToSnakeCase(propertyName);
+                return StringUtilities.PascalCaseToSnakeCase(propertyName);
             }
         }
 
