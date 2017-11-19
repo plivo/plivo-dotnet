@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Recording;
+using Plivo.Utilities;
 
 namespace Plivo.Test.Resources
 {
@@ -32,7 +33,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Recording.List(limit:10)));
             
@@ -58,7 +59,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Recording.Get(id)));
             

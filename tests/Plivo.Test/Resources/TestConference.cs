@@ -4,6 +4,7 @@ using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Call;
 using Plivo.Resource.Conference;
+using Plivo.Utilities;
 
 namespace Plivo.Test.Resources
 {
@@ -26,7 +27,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceListResponse>(200, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.List()
                 )
@@ -52,7 +53,7 @@ namespace Plivo.Test.Resources
             Setup<Conference>(200, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.Get(name)
                 )
@@ -78,7 +79,7 @@ namespace Plivo.Test.Resources
             Setup<Conference>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.Delete(name)
                 )
@@ -104,7 +105,7 @@ namespace Plivo.Test.Resources
             Setup<Conference>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.DeleteAll()
                 )
@@ -131,7 +132,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.HangupMember(name, memberId)
                 )
@@ -158,7 +159,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.KickMember(name, memberId)
                 )
@@ -185,7 +186,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.MuteMember(name, new List<string>(){"11"})
                 )
@@ -238,7 +239,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.PlayMember(name, new List<string>(){"11"}, "http://url.url")
                 )
@@ -266,7 +267,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.StopPlayMember(name, new List<string>(){"11"})
                 )
@@ -300,7 +301,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.SpeakMember(name, new List<string>(){"11"}, "speak this")
                 )
@@ -328,7 +329,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.StopSpeakMember(name, new List<string>(){"11"})
                 )
@@ -356,7 +357,7 @@ namespace Plivo.Test.Resources
             Setup<ConferenceMemberActionResponse>(204, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.DeafMember(name, new List<string>(){"11"})
                 )
@@ -411,7 +412,7 @@ namespace Plivo.Test.Resources
             Setup<RecordCreateResponse<Conference>>(202, response);
             
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Conference.StartRecording(name, fileFormat:"mp3")
                 )

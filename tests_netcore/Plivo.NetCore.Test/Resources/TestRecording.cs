@@ -3,6 +3,7 @@ using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Recording;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -32,7 +33,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Recording.List(limit:10)));
             
@@ -58,7 +59,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Recording.Get(id)));
             
