@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>3.0.8</version>
+    <version>3.0.9</version>
     <title>Plivo</title>
     <authors>Plivo</authors>
     <owners>Plivo Inc</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Plivo REST API and XML helper library</description>
     <releaseNotes>
+      * 3.0.9 Re-releasing 3.0.8 with a new build to avoid signature validation errors
       * 3.0.8 Add error code to Message response
       * 3.0.7 Re-release
       * 3.0.6 Added addition verify signature function
