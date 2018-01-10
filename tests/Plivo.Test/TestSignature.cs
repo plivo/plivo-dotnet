@@ -14,7 +14,7 @@ namespace Plivo.Test
             string signature = "ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=";
             string authToken = "my_auth_token";
 
-            Assert.Equals(Utilities.XPlivoSignatureV2.VerifySignature(url, nonce, signature, authToken), true);
+            Assert.True(Utilities.XPlivoSignatureV2.VerifySignature(url, nonce, signature, authToken));
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace Plivo.Test
             string signature = "ehV3IKhLysWBxC1sy8INm0qGoQYdYsHwuoKjsX7FsXc=";
             string authToken = "my_auth_tokens";
 
-            Assert.Equals(Utilities.XPlivoSignatureV2.VerifySignature(url, nonce, signature, authToken), false);
+            Assert.False(Utilities.XPlivoSignatureV2.VerifySignature(url, nonce, signature, authToken));
         }
     }
 }
