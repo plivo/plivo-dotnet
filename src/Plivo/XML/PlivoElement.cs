@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using Plivo.Exception;
+using Plivo.Utilities;
 using dict = System.Collections.Generic.Dictionary<string, string>;
 using list = System.Collections.Generic.List<string>;
 
@@ -15,7 +16,7 @@ namespace Plivo.XML
 
         public PlivoElement(string body, dict attributes)
         {
-            Element = new XElement(GetType().Name, Util.HtmlEntity.Convert(body));
+            Element = new XElement(GetType().Name, HtmlEntity.Convert(body));
             Attributes = attributes;
         }
 
@@ -27,7 +28,7 @@ namespace Plivo.XML
 
         public PlivoElement(string body)
         {
-            Element = new XElement(GetType().Name, Util.HtmlEntity.Convert(body));
+            Element = new XElement(GetType().Name, HtmlEntity.Convert(body));
         }
 
         public PlivoElement()

@@ -4,6 +4,7 @@ using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Call;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -35,7 +36,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<CallCreateResponse>(201, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.Create(
                         "+919999999999", 
@@ -95,7 +96,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<ListResponse<Call>>(200, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.List(endTime_Gt : DateTime.Parse("2017-06-07"))
                 )
@@ -123,7 +124,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<Call>(200, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.Get(id)
                 )
@@ -152,7 +153,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<LiveCallListResponse>(200, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.ListLive()
                 )
@@ -184,7 +185,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<LiveCall>(200, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.GetLive(id)
                 )
@@ -218,7 +219,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<UpdateResponse<Call>>(202, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.Transfer(id, "aleg", "http://asdsa.asdsa")
                 )
@@ -254,7 +255,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<UpdateResponse<Call>>(202, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.StartRecording(id, 120, "wav", callbackMethod: "http://a.a", callbackUrl: "http://s.s")
                 )
@@ -288,7 +289,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<UpdateResponse<Call>>(202, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.StartSpeaking(id, "120", voice: "WOMAN")
                 )
@@ -321,7 +322,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<UpdateResponse<Call>>(202, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response, 
                     Api.Call.StartPlaying(id, new List<string>(){"http://wewewe.ewewew","http:/second.url"})
                 )
@@ -398,7 +399,7 @@ namespace Plivo.NetCore.Test.Resources
             Setup<DeleteResponse<Call>>(204, response);
             
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Call.StopSpeaking(id)));
             

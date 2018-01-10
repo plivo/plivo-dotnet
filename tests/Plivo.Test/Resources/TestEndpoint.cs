@@ -3,6 +3,7 @@ using NUnit.Framework;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Endpoint;
+using Plivo.Utilities;
 
 namespace Plivo.Test.Resources
 {
@@ -35,7 +36,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Create("user", "pass", "alias")));
             AssertRequest(request);
@@ -64,7 +65,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.List(limit:10)));
             
@@ -90,7 +91,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Get(id)));
             
@@ -122,7 +123,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Update(id, alias: "alalaalalala")));
             AssertRequest(request);

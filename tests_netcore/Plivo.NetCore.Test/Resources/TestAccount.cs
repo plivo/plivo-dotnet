@@ -7,6 +7,7 @@ using Plivo.Authentication;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Account;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -30,7 +31,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            Assert.Empty(Util.Compare(response, Api.Account.Get()));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Account.Get()));
             AssertRequest(request);
         }
         
@@ -57,7 +58,7 @@ namespace Plivo.NetCore.Test.Resources
                 202,
                 response
             );
-            Assert.Empty(Util.Compare(response, Api.Account.Update("name name name", "delhi")));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Account.Update("name name name", "delhi")));
             
             CompareRequests(request, ((TestClient)Api.Client._client).Request);
             

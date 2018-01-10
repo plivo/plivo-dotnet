@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Plivo.Http;
 using Plivo.Resource.Pricing;
+using Plivo.Utilities;
 
 namespace Plivo.Test.Resources
 {
@@ -30,7 +31,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Pricing.Get("US")));
             

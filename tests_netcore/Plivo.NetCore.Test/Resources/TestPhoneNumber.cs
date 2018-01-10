@@ -3,6 +3,7 @@ using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.PhoneNumber;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -33,7 +34,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.PhoneNumber.List("IN", limit:12)));
             
@@ -64,7 +65,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.PhoneNumber.Buy(id, "123")));
             

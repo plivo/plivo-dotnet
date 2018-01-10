@@ -3,6 +3,7 @@ using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.RentedNumber;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -32,7 +33,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Number.List(limit:10)));
             
@@ -58,7 +59,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Number.Get(id)));
             
@@ -91,7 +92,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Number.AddNumber(new List<string>(){"+919999999999","+919898989898"}, "carry me", "somewhere here")));
             
@@ -123,7 +124,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Number.Update(id, alias: "alalaalalala")));
             AssertRequest(request);

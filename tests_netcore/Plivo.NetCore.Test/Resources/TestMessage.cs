@@ -3,6 +3,7 @@ using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Message;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -35,7 +36,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Message.Create("+919999999999", new List<string>(){"+919898989898", "+919090909090"}, "textext")));
             AssertRequest(request);
@@ -64,7 +65,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Message.List(limit:10)));
             
@@ -90,7 +91,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Message.Get(id)));
             

@@ -4,6 +4,7 @@ using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Account;
 using Plivo.Resource.Subaccount;
+using Plivo.Utilities;
 
 namespace Plivo.Test.Resources
 {
@@ -35,7 +36,7 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(
-                Util.Compare(
+                ComparisonUtilities.Compare(
                     response,
                     Api.Subaccount.Create("naam", true)));
             AssertRequest(request);
@@ -59,7 +60,7 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
-            Assert.IsEmpty(Util.Compare(response, Api.Subaccount.Get(id)));
+            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Subaccount.Get(id)));
             AssertRequest(request);
         }
         
@@ -80,7 +81,7 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
-            Assert.IsEmpty(Util.Compare(response, Api.Subaccount.List()));
+            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Subaccount.List()));
             AssertRequest(request);
         }
         
@@ -108,7 +109,7 @@ namespace Plivo.Test.Resources
                 202,
                 response
             );
-            Assert.IsEmpty(Util.Compare(response, Api.Subaccount.Update(id, "naam", true)));
+            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Subaccount.Update(id, "naam", true)));
             
             CompareRequests(request, ((TestClient)Api.Client._client).Request);
             

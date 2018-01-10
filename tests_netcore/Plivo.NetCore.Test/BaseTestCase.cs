@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
 using Plivo.Http;
+using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test
 {
@@ -43,12 +44,12 @@ namespace Plivo.NetCore.Test
             Console.WriteLine(JsonConvert.SerializeObject(a.Data));
             Console.WriteLine(JsonConvert.SerializeObject(b.Data));
             Assert.Empty(
-                Util.CompareRawObjects(
+                ComparisonUtilities.CompareRawObjects(
                     JObject.Parse(JsonConvert.SerializeObject(a.Data)),
                     JObject.Parse(JsonConvert.SerializeObject(b.Data))).ToString()
             );
             Assert.Empty(
-                Util.CompareRawObjects(
+                ComparisonUtilities.CompareRawObjects(
                     JObject.Parse(JsonConvert.SerializeObject(b.Data)),
                     JObject.Parse(JsonConvert.SerializeObject(a.Data))).ToString()
             );
