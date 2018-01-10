@@ -38,11 +38,12 @@ namespace Plivo.NetCore.Test
             Assert.Equal(a.Method, b.Method);
             Assert.Equal(a.Uri, b.Uri);
 
-            Console.WriteLine(string.Join(",", a.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
-            Console.WriteLine(string.Join(",", b.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
+            // Console.WriteLine(string.Join(",", a.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
+            // Console.WriteLine(string.Join(",", b.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
+            //
+            // Console.WriteLine(JsonConvert.SerializeObject(a.Data));
+            // Console.WriteLine(JsonConvert.SerializeObject(b.Data));
 
-            Console.WriteLine(JsonConvert.SerializeObject(a.Data));
-            Console.WriteLine(JsonConvert.SerializeObject(b.Data));
             Assert.Empty(
                 ComparisonUtilities.CompareRawObjects(
                     JObject.Parse(JsonConvert.SerializeObject(a.Data)),

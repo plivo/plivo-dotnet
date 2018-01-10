@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFramework>netstandard1.3</TargetFramework>
     <ReleaseVersion>4.0.0-beta2</ReleaseVersion>
     <Authors>Plivo SDKs Team</Authors>
     <Owners>Plivo Inc.</Owners>

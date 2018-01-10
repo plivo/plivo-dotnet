@@ -40,11 +40,11 @@ namespace Plivo.Test
             Assert.AreEqual(a.Method, b.Method);
             Assert.AreEqual(a.Uri, b.Uri);
 
-            Console.WriteLine(string.Join(",", a.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
-            Console.WriteLine(string.Join(",", b.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
-
-            Console.WriteLine(JsonConvert.SerializeObject(a.Data));
-            Console.WriteLine(JsonConvert.SerializeObject(b.Data));
+            // Console.WriteLine(string.Join(",", a.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
+            // Console.WriteLine(string.Join(",", b.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
+            //
+            // Console.WriteLine(JsonConvert.SerializeObject(a.Data));
+            // Console.WriteLine(JsonConvert.SerializeObject(b.Data));
             Assert.IsEmpty(
 				ComparisonUtilities.CompareRawObjects(
                     JObject.Parse(JsonConvert.SerializeObject(a.Data)),

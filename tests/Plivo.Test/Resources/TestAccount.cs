@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
 using NUnit.Framework;
-using Plivo.Authentication;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Account;

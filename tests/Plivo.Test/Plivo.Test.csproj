@@ -7,7 +7,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Plivo.Test</RootNamespace>
     <AssemblyName>Plivo.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <ReleaseVersion>4.0.0-beta2</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,6 +52,7 @@
     <Compile Include="Resources\TestSubaccount.cs" />
     <Compile Include="TestClient.cs" />
     <Compile Include="XML\TestXML.cs" />
+    <Compile Include="TestSignature.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mocks\accountGetResponse.json" />
