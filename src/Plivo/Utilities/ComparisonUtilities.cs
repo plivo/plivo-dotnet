@@ -155,7 +155,7 @@ namespace Plivo.Utilities
 		/// <param name="target">The actual results</param>
 		/// <param name="arrayName">The name of the array to use in the text diff</param>
 		/// <returns>string string</returns>
-		private static StringBuilder CompareArrays(JArray source, JArray target, string arrayName = "")
+		public static StringBuilder CompareArrays(JArray source, JArray target, string arrayName = "")
 		{
 			var returnString = new StringBuilder();
 			for (var index = 0; index < source.Count; index++)
