@@ -3,13 +3,11 @@ solution: Plivo.sln
 
 matrix:
   include:
-    - dotnet: 1.0.1
+    - dotnet: 1.1.5
       mono: none
-      dist: trusty
       env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
     - mono: latest
-      dotnet: 1.0.1
-      dist: trusty
+      dotnet: 1.1.5
 
 install:
   - 'if [  ${DOTNETCORE} = 1 ]; then
