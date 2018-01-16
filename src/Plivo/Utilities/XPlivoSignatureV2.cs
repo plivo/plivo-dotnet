@@ -20,12 +20,12 @@ namespace Plivo.Utilities
 
             string pathToAppend = "";
 
-            if (absolutePath[absolutePath.Length - 1] == '/') {
-                if (uri[uri.Length - 1] == '/') {
-                    pathToAppend = absolutePath;
-                } else {
-                    pathToAppend = absolutePath.Remove(absolutePath.Length - 1);
-                }
+            int pathExists = uri.IndexOf(absolutePath);
+
+            if (pathExists > -1) {
+                pathToAppend = absolutePath;
+            } else {
+                pathToAppend = absolutePath.Remove(absolutePath.Length - 1);
             }
 
             string baseUrl = url.Scheme + "://" + url.Host + pathToAppend;
