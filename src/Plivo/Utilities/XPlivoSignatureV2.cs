@@ -20,7 +20,7 @@ namespace Plivo.Utilities
 
             string pathToAppend = "";
 
-            int pathExists = uri.IndexOf(absolutePath);
+            int pathExists = uri.Replace(url.Scheme + "://" + url.Host, "").IndexOf(absolutePath, StringComparison.CurrentCulture);
 
             if (pathExists > -1) {
                 pathToAppend = absolutePath;
