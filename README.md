@@ -1,10 +1,10 @@
 # plivo-dotnet
 
-[![Build Status](https://travis-ci.org/plivo/plivo-dotnet.svg?branch=4.0)](https://travis-ci.org/plivo/plivo-dotnet)
+[![Build Status](https://travis-ci.org/plivo/plivo-dotnet.svg?branch=master)](https://travis-ci.org/plivo/plivo-dotnet)
 
 The Plivo .NET SDK makes it simpler to integrate communications into your .NET applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
-**Supported .NET versions:** This SDK was written targeting at .NET Standard 1.1, and thus works with .NET Framework 4.5+ and .NET Core 1.0+. [Check here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) to know about all the other supported platforms.
+**Supported .NET versions:** This SDK was written targeting at .NET Standard 1.3, and thus works with .NET Framework 4.6+ and .NET Core 1.0+. [Check here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) to know about all the other supported platforms.
 
 ## Installation
 You can install this SDK either by referencing the .dll file or using NuGet.
@@ -12,13 +12,13 @@ You can install this SDK either by referencing the .dll file or using NuGet.
 Use the following line to install the latest SDK using the NuGet CLI.
 
 ```
-PM> Install-Package Plivo -Version 4.0.0-beta2
+PM> Install-Package Plivo -Version 4.0.0
 ```
 
 You can also use the .NET CLI to install this package as follows
 
 ```
-> dotnet add package Plivo --version 4.0.0-beta2
+> dotnet add package Plivo --version 4.0.0
 ```
 
 ## Getting started
@@ -109,4 +109,4 @@ This generates the following XML:
 Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/net/introduction/overview) for more examples.
 
 ## Reporting issues
-Report any feedback or problems with this beta version by [opening an issue on Github](https://github.com/plivo/plivo-dotnet/issues).
+Report any feedback or problems with this version by [opening an issue on Github](https://github.com/plivo/plivo-dotnet/issues).

@@ -2,15 +2,16 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>4.0.0-beta2</version>
+    <version>4.0.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
-    <licenseUrl>https://github.com/plivo/plivo-dotnet/blob/4.0/LICENSE.txt</licenseUrl>
+    <licenseUrl>https://github.com/plivo/plivo-dotnet/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <releaseNotes>
+      * 4.0.0 Supports v2 signature validation. Targets .NET Standard 1.3
       * 4.0.0-beta2 Fix Pricing API interface
       * 4.0.0-beta1 Support .NET Core 1.0+ and .NET Framework 4.5+
       * 3.0.7 Re-release
@@ -50,7 +51,7 @@
       * 1.0.1 Minor fix for Number API calls.
       * 1.0   Supports making Plivo APIs calls and generation of Plivo XML.
     </releaseNotes>
-    <copyright>Copyright (c) 2017 Plivo, Inc.</copyright>
+    <copyright>Copyright (c) 2018 Plivo, Inc.</copyright>
     <tags>Plivo REST voice SMS telephony API XML</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="[10,)"/>
@@ -58,6 +59,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="bin/Release/netstandard1.1/Plivo.dll" target="lib/netstandard1.1" />
+    <file src="bin/Release/netstandard1.3/Plivo.dll" target="lib/netstandard1.3" />
   </files>
 </package>

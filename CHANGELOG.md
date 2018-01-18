@@ -1,5 +1,10 @@
 # Change Log
 
+## [v4.0.0](https://github.com/plivo/plivo-dotnet/tree/v4.0.0) (2018-01-18)
+- Supports v2 signature validation
+- Targets .NET Standard 1.3
+- All utils are moved to a neater namespace
+
 ## [v4.0.0-beta2](https://github.com/plivo/plivo-dotnet/tree/v4.0.0-beta2) (2017-11-02)
 - Fix #41 - Pricing API interface from v4.0.0-beta1
 
