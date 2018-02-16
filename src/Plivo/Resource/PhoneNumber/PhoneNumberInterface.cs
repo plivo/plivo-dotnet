@@ -46,7 +46,11 @@ namespace Plivo.Resource.PhoneNumber
                     rateCenter, limit, offset
                 });
             var resources = ListResources<ListResponse<PhoneNumber>>(data);
-            resources.Objects.Select(obj => obj.Interface = this);
+
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
             return resources;
         }
 

@@ -86,8 +86,12 @@ namespace Plivo.Resource.Application
             var mandatory_params = new List<string> { "" };
             var data = CreateData(
                 mandatory_params, new {subaccount, limit, offset});
+
             var resources = ListResources<ListResponse<Application>>(data);
-            resources.Objects.Select(obj => obj.Interface = this);
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
             return resources;
         }
 

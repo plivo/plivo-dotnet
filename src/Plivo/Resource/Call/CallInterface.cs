@@ -135,8 +135,10 @@ namespace Plivo.Resource.Call
                     _endTime_Gte, _endTime_Lt, _endTime_Lte, limit, offset
                 });
             var resources = ListResources<ListResponse<Call>>(data);
-            resources.Objects.Select(obj => obj.Interface = this);
-            
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
             return resources;
         }
 
