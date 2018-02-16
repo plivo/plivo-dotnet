@@ -57,7 +57,10 @@ namespace Plivo.Resource.RentedNumber
                     offset
                 });
             var resources = ListResources<ListResponse<RentedNumber>>(data);
-            resources.Objects.Select(obj => obj.Interface = this);
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
             return resources;
         }
 

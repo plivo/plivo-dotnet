@@ -27,7 +27,9 @@ namespace Plivo.Resource.Conference
         /// <param name="conferenceName">Name.</param>
         public Conference Get(string conferenceName)
         {
-            return GetResource<Conference>(conferenceName);
+            var conference = GetResource<Conference>(conferenceName);
+            conference.Interface = this;
+            return conference;
         }
 
         /// <summary>

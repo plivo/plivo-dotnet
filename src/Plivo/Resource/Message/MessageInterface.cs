@@ -70,7 +70,11 @@ namespace Plivo.Resource.Message
             var mandatory_params = new List<string> { "" };var data = CreateData(
                 mandatory_params,new {subaccount, limit, offset});
             var resources = ListResources<ListResponse<Message>>(data);
-            resources.Objects.Select(obj => obj.Interface = this);
+
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
             return resources;
         }
     }

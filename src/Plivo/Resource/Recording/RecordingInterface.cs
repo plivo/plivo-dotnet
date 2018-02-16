@@ -68,7 +68,10 @@ namespace Plivo.Resource.Recording
                     _addTime_Lt, _addTime_Lte, limit, offset
                 });
             var resources = ListResources<ListResponse<Recording>>(data);
-            resources.Objects.Select(obj => obj.Interface = this);
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
             return resources;
         }
 

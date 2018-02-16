@@ -36,7 +36,9 @@ namespace Plivo.Resource.Subaccount
         /// <param name="id">Identifier.</param>
         public Subaccount Get(string id)
         {
-            return GetResource<Subaccount>(id);
+            var subaccount = GetResource<Subaccount>(id);
+            subaccount.Interface = this;
+            return subaccount;
         }
 
         /// <summary>
@@ -49,7 +51,12 @@ namespace Plivo.Resource.Subaccount
         {
             var mandatory_params = new List<string> {};
             var data = CreateData(mandatory_params,new {limit, offset});
-            return ListResources<ListResponse<Subaccount>>(data);
+            var resources = ListResources<ListResponse<Subaccount>>(data);
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
+            return resources;
         }
 
         /// <summary>
