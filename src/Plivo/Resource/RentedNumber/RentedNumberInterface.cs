@@ -49,11 +49,17 @@ namespace Plivo.Resource.RentedNumber
             string subaccount = null, string alias = null,
             string services = null, uint? limit = null, uint? offset = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    type, numberStartswith, subaccount, alias, services, limit,
+                    type,
+                    numberStartswith,
+                    subaccount,
+                    alias,
+                    services,
+                    limit,
                     offset
                 });
             var resources = ListResources<ListResponse<RentedNumber>>(data);
@@ -80,11 +86,17 @@ namespace Plivo.Resource.RentedNumber
             string subaccount = null)
         {
             string _numbers = string.Join(",", numbers);
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    _numbers, carrier, region, numberType, appId, subaccount
+                    _numbers,
+                    carrier,
+                    region,
+                    numberType,
+                    appId,
+                    subaccount
                 });
             return Client.Update<UpdateResponse<RentedNumber>>(Uri, data).Object;
         }
@@ -97,20 +109,25 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="alias">Alias.</param>
+        /// <param name="verificationInfo">Verification Information.</param>
         public UpdateResponse<RentedNumber> Update(
             string number, string appId = null, string subaccount = null,
-            string alias = null)
+            string alias = null, Dictionary<string, string> verificationInfo = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    appId, subaccount, alias
+                    appId,
+                    subaccount,
+                    alias,
+                    verificationInfo
                 });
             if (appId == "null") data["app_id"] = null;
-            return 
+            return
                 Client.Update<UpdateResponse<RentedNumber>>(
-                    Uri + number + "/", 
+                    Uri + number + "/",
                     data
                 ).Object;
         }

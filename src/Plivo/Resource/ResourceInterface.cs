@@ -40,12 +40,14 @@ namespace Plivo.Resource
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         public T GetResource<T>(string id, Dictionary<string, object> data = null)
-        where T : new()
+            where T : new()
         {
             string to_append = id;
-            if (id != "") {
+            if (id != "")
+            {
                 to_append = to_append + "/";
             }
+
             return Client.Fetch<T>(
                 Uri + to_append, data).Object;
         }
@@ -57,7 +59,7 @@ namespace Plivo.Resource
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         public T ListResources<T>(Dictionary<string, object> data = null)
-        where T : new()
+            where T : new()
         {
             return Client.Fetch<T>(Uri, data).Object;
         }
@@ -70,7 +72,7 @@ namespace Plivo.Resource
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
         public T DeleteResource<T>(string id, Dictionary<string, object> data = null)
-        where T : new()
+            where T : new()
         {
             return Client.Delete<T>(Uri + id + "/", data).Object;
         }
@@ -99,16 +101,17 @@ namespace Plivo.Resource
                         throw new PlivoValidationException("limit:" + pi.GetValue(data) + " is out of range [0,20]");
                     }
                 }
-                
+
                 if (pi.GetValue(data) == null) continue;
-                
+
                 var name_char_array = pi.Name.ToCharArray();
-                if (name_char_array.ElementAt(0) == '_') {
+                if (name_char_array.ElementAt(0) == '_')
+                {
                     name_char_array = string.Concat(name_char_array).Substring(1).ToCharArray();
                 }
 
                 var value = pi.GetValue(data);
-                
+
                 if (name_char_array.All(char.IsUpper))
                 {
                     dict.Add(string.Concat(name_char_array), value);
@@ -122,9 +125,10 @@ namespace Plivo.Resource
                         value);
                 }
             }
+
             return dict;
         }
-        
+
         /// <summary>
         /// Returns the list of names of parameters which are mandatory.
         /// </summary>

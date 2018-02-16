@@ -11,7 +11,6 @@ using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    
     public class TestAccount : BaseTestCase
     {
         [Fact]
@@ -22,11 +21,11 @@ namespace Plivo.NetCore.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
-                SOURCE_DIR + @"../Mocks/accountGetResponse.json"
-            );
+                    SOURCE_DIR + @"../Mocks/accountGetResponse.json"
+                );
             Setup<Account>(
                 200,
                 response
@@ -34,7 +33,7 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(ComparisonUtilities.Compare(response, Api.Account.Get()));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestAccountModifyResponse()
         {
@@ -44,13 +43,13 @@ namespace Plivo.NetCore.Test.Resources
                 {"name", "name name name"},
             };
             var request =
-                    new PlivoRequest(
-                        "POST",
-                        "Account/MAXXXXXXXXXXXXXXXXXX/",
-                        "",
-                        data);
-            
-            var response = 
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/",
+                    "",
+                    data);
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/accountModifyResponse.json"
                 );
@@ -59,9 +58,8 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(ComparisonUtilities.Compare(response, Api.Account.Update("name name name", "delhi")));
-            
-            CompareRequests(request, ((TestClient)Api.Client._client).Request);
-            
+
+            CompareRequests(request, ((TestClient) Api.Client._client).Request);
         }
     }
 }

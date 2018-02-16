@@ -19,15 +19,15 @@ namespace Plivo.Test.Resources
                 {"dst", "+919898989898<+919090909090"},
                 {"text", "textext"}
             };
-            
+
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Message/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/messageSendResponse.json"
                 );
@@ -38,10 +38,11 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Message.Create("+919999999999", new List<string>(){"+919898989898", "+919090909090"}, "textext")));
+                    Api.Message.Create("+919999999999", new List<string>() {"+919898989898", "+919090909090"},
+                        "textext")));
             AssertRequest(request);
         }
-        
+
         [Test]
         public void TestMessageList()
         {
@@ -55,8 +56,8 @@ namespace Plivo.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/Message/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/messageListResponse.json"
                 );
@@ -67,11 +68,11 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Message.List(limit:10)));
-            
+                    Api.Message.List(limit: 10)));
+
             AssertRequest(request);
         }
-        
+
         [Test]
         public void TestMessageGet()
         {
@@ -81,8 +82,8 @@ namespace Plivo.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Message/" + id + "/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/messageGetResponse.json"
                 );
@@ -94,7 +95,7 @@ namespace Plivo.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Message.Get(id)));
-            
+
             AssertRequest(request);
         }
     }

@@ -9,9 +9,16 @@ namespace Plivo.XML
             : base()
         {
             Nestables = new list()
-            {   "Play", "Speak", "GetDigits", "Wait", "Redirect", "Message", "DTMF"
+            {
+                "Play",
+                "Speak",
+                "GetDigits",
+                "Wait",
+                "Redirect",
+                "Message",
+                "DTMF"
             };
-            ValidAttributes = new list() { "" };
+            ValidAttributes = new list() {""};
         }
     }
 }

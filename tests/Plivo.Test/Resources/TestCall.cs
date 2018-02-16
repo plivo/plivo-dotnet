@@ -67,7 +67,7 @@ namespace Plivo.Test.Resources
             var request =
                 new PlivoRequest(
                     "DELETE",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/"+id+"/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/" + id + "/",
                     "",
                     data);
 
@@ -101,7 +101,7 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Call.List(endTime_Gt : DateTime.Parse("2017-06-07"))
+                    Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07"))
                 )
             );
 
@@ -327,7 +327,7 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Call.StartPlaying(id, new List<string>(){"http://wewewe.ewewew","http:/second.url"})
+                    Api.Call.StartPlaying(id, new List<string>() {"http://wewewe.ewewew", "http:/second.url"})
                 )
             );
 
@@ -410,6 +410,5 @@ namespace Plivo.Test.Resources
 
             AssertRequest(request);
         }
-
     }
 }

@@ -8,11 +8,23 @@ namespace Plivo.XML
         public Record(dict attributes)
             : base(attributes)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "action", "method", "timeout", "finishOnKey", "maxLength", "playBeep",
-                "recordSession", "startOnDialAnswer", "redirect", "fileFormat",
-                "callbackUrl", "callbackMethod", "transcriptionType", "transcriptionUrl",
+            {
+                "action",
+                "method",
+                "timeout",
+                "finishOnKey",
+                "maxLength",
+                "playBeep",
+                "recordSession",
+                "startOnDialAnswer",
+                "redirect",
+                "fileFormat",
+                "callbackUrl",
+                "callbackMethod",
+                "transcriptionType",
+                "transcriptionUrl",
                 "transcriptionMethod"
             };
             addAttributes();

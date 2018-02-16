@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Plivo.Resource.RentedNumber
 {
     public class RentedNumber : Resource
@@ -17,7 +19,11 @@ namespace Plivo.Resource.RentedNumber
         public object SubAccount { get; set; }
         public bool VoiceEnabled { get; set; }
         public string VoiceRate { get; set; }
-        
+        public List<Prerequisite> Prerequisites { get; set; }
+        public List<VerificationInfo> VerificationInfo { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+
         /// <summary>
         /// Update RentedNumber with the specified appId, subAccount and alias.
         /// </summary>
@@ -28,21 +34,21 @@ namespace Plivo.Resource.RentedNumber
         public UpdateResponse<RentedNumber> Update(
             string appId = null, string subAccount = null, string alias = null)
         {
-            var updateResponse = 
+            var updateResponse =
                 ((RentedNumberInterface) Interface)
-                    .Update(Id, appId, subAccount, alias);
+                .Update(Id, appId, subAccount, alias);
 
             if (appId != null)
-                Application = 
-                    "/v1/Account/"+
-                    ((RentedNumberInterface) Interface).Client.GetAuthId()+
-                    "/Application/"+
-                    appId+
+                Application =
+                    "/v1/Account/" +
+                    ((RentedNumberInterface) Interface).Client.GetAuthId() +
+                    "/Application/" +
+                    appId +
                     "/";
             if (appId == "null") Application = null;
             if (subAccount != null) SubAccount = subAccount;
             if (alias != null) Alias = alias;
-            
+
             return updateResponse;
         }
 
@@ -52,8 +58,8 @@ namespace Plivo.Resource.RentedNumber
         /// <returns>The delete.</returns>
         public void Delete()
         {
-             ((RentedNumberInterface) Interface)
-                 .Delete(Id);
+            ((RentedNumberInterface) Interface)
+                .Delete(Id);
         }
     }
 }

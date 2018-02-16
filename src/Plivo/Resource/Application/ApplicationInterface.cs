@@ -44,19 +44,28 @@ namespace Plivo.Resource.Application
             string appName, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
-            string messageUrl = null, string messageMethod = null, 
-            string defaultNumberApp = null, string defaultEndpointApp = null, 
+            string messageUrl = null, string messageMethod = null,
+            string defaultNumberApp = null, string defaultEndpointApp = null,
             string subaccount = null)
         {
-            var mandatory_params = new List<string> { "appName" }
-            ;var data = CreateData(
-                mandatory_params,
-                new 
+            var mandatoryParams = new List<string> {"appName"}
+                ;
+            var data = CreateData(
+                mandatoryParams,
+                new
                 {
-                    appName, answerUrl, answerMethod, hangupUrl,
-                    hangupMethod, fallbackAnswerUrl, fallbackMethod,
-                    messageUrl, messageMethod, defaultNumberApp, 
-                    defaultEndpointApp, subaccount
+                    appName,
+                    answerUrl,
+                    answerMethod,
+                    hangupUrl,
+                    hangupMethod,
+                    fallbackAnswerUrl,
+                    fallbackMethod,
+                    messageUrl,
+                    messageMethod,
+                    defaultNumberApp,
+                    defaultEndpointApp,
+                    subaccount
                 });
             return Client.Update<ApplicationCreateResponse>(Uri, data).Object;
         }
@@ -83,9 +92,9 @@ namespace Plivo.Resource.Application
         public ListResponse<Application> List(
             string subaccount = null, uint? limit = null, uint? offset = null)
         {
-            var mandatory_params = new List<string> { "" };
+            var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatory_params, new {subaccount, limit, offset});
+                mandatoryParams, new {subaccount, limit, offset});
 
             var resources = ListResources<ListResponse<Application>>(data);
             resources.Objects.ForEach(
@@ -126,17 +135,25 @@ namespace Plivo.Resource.Application
             string appId, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
-            string messageUrl = null, string messageMethod = null, 
-            bool? defaultNumberApp = null, bool? defaultEndpointApp = null, 
+            string messageUrl = null, string messageMethod = null,
+            bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
             string subaccount = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    answerUrl, answerMethod, hangupUrl, hangupMethod,
-                    fallbackAnswerUrl, fallbackMethod, messageUrl,
-                    messageMethod, defaultNumberApp, defaultEndpointApp,
+                    answerUrl,
+                    answerMethod,
+                    hangupUrl,
+                    hangupMethod,
+                    fallbackAnswerUrl,
+                    fallbackMethod,
+                    messageUrl,
+                    messageMethod,
+                    defaultNumberApp,
+                    defaultEndpointApp,
                     subaccount
                 });
             return Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).Object;

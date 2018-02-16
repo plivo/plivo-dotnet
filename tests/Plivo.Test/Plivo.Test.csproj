@@ -53,6 +53,8 @@
     <Compile Include="TestClient.cs" />
     <Compile Include="XML\TestXML.cs" />
     <Compile Include="TestSignature.cs" />
+    <Compile Include="Resources\TestAddress.cs" />
+    <Compile Include="Resources\TestIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mocks\accountGetResponse.json" />

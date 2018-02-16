@@ -37,7 +37,7 @@ namespace Plivo.Resource.Application
         /// <returns>The delete.</returns>
         public DeleteResponse<Application> Delete()
         {
-            return ((ApplicationInterface)Interface).Delete(AppId);
+            return ((ApplicationInterface) Interface).Delete(AppId);
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace Plivo.Resource.Application
             string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
-            string messageUrl = null, string messageMethod = null, 
-            bool? defaultNumberApp = null, bool? defaultEndpointApp = null, 
+            string messageUrl = null, string messageMethod = null,
+            bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
             string subaccount = null)
         {
             var updateResponse = ((ApplicationInterface) Interface).Update(
@@ -80,7 +80,7 @@ namespace Plivo.Resource.Application
             if (defaultNumberApp != null) DefaultApp = defaultNumberApp;
             if (defaultEndpointApp != null) DefaultEndpointApp = defaultEndpointApp;
             if (subaccount != null) SubAccount = subaccount;
-            
+
             return updateResponse;
         }
 

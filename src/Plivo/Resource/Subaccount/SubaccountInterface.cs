@@ -24,8 +24,8 @@ namespace Plivo.Resource.Subaccount
         /// <param name="enabled">Enabled.</param>
         public SubaccountCreateResponse Create(string name, bool? enabled = null)
         {
-            var mandatory_params = new List<string> {"name"};
-            var data = CreateData(mandatory_params,new {name, enabled});
+            var mandatoryParams = new List<string> {"name"};
+            var data = CreateData(mandatoryParams, new {name, enabled});
             return Client.Update<SubaccountCreateResponse>(Uri, data).Object;
         }
 
@@ -49,8 +49,8 @@ namespace Plivo.Resource.Subaccount
         /// <param name="offset">Offset.</param>
         public ListResponse<Subaccount> List(uint? limit = null, uint? offset = null)
         {
-            var mandatory_params = new List<string> {};
-            var data = CreateData(mandatory_params,new {limit, offset});
+            var mandatoryParams = new List<string> { };
+            var data = CreateData(mandatoryParams, new {limit, offset});
             var resources = ListResources<ListResponse<Subaccount>>(data);
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
@@ -78,11 +78,10 @@ namespace Plivo.Resource.Subaccount
         /// <param name="enabled">Enabled.</param>
         public UpdateResponse<Subaccount> Update(string id, string name, bool? enabled = null)
         {
-            var mandatory_params = new List<string> { "id", "name" };
+            var mandatoryParams = new List<string> {"id", "name"};
             var data = CreateData(
-                mandatory_params,new {name, enabled});
+                mandatoryParams, new {name, enabled});
             return Client.Update<UpdateResponse<Subaccount>>(Uri + id + "/", data).Object;
         }
-        
     }
 }

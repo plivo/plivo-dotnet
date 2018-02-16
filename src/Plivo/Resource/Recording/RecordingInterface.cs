@@ -59,13 +59,21 @@ namespace Plivo.Resource.Recording
             var _addTime_Gte = addTime_Gte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _addTime_Lt = addTime_Lt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _addTime_Lte = addTime_Lte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    subaccount, callUuid, _addTime, _addTime_Gt, _addTime_Gte,
-                    _addTime_Lt, _addTime_Lte, limit, offset
+                    subaccount,
+                    callUuid,
+                    _addTime,
+                    _addTime_Gt,
+                    _addTime_Gte,
+                    _addTime_Lt,
+                    _addTime_Lte,
+                    limit,
+                    offset
                 });
             var resources = ListResources<ListResponse<Recording>>(data);
             resources.Objects.ForEach(

@@ -12,6 +12,9 @@ using Plivo.Resource.PhoneNumber;
 using Plivo.Resource.Pricing;
 using Plivo.Resource.Recording;
 using Plivo.Resource.Subaccount;
+using Plivo.Resource.Address;
+using Plivo.Resource.Identity;
+
 
 namespace Plivo
 {
@@ -43,7 +46,9 @@ namespace Plivo
         private readonly Lazy<RecordingInterface> _recording;
         private readonly Lazy<RentedNumberInterface> _number;
         private readonly Lazy<PhoneNumberInterface> _phoneNumber;
-       
+        private readonly Lazy<AddressInterface> _address;
+        private readonly Lazy<IdentityInterface> _identity;
+
         /// <summary>
         /// Gets the account.
         /// </summary>
@@ -111,6 +116,18 @@ namespace Plivo
         public PhoneNumberInterface PhoneNumber => _phoneNumber.Value;
 
         /// <summary>
+        /// Gets the address.
+        /// </summary>
+        /// <value>The address.</value>
+        public AddressInterface Address => _address.Value;
+
+        /// <summary>
+        /// Gets the identity.
+        /// </summary>
+        /// <value>The identity.</value>
+        public IdentityInterface Identity => _identity.Value;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
         /// <param name="authId">Auth identifier.</param>
@@ -126,7 +143,7 @@ namespace Plivo
             string proxyPort = null,
             string proxyUsername = null,
             string proxyPassword = null
-            )
+        )
         {
             BasicAuth = new BasicAuth(authId, authToken);
             Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword);
@@ -141,6 +158,8 @@ namespace Plivo
             _recording = new Lazy<RecordingInterface>(() => new RecordingInterface(Client));
             _number = new Lazy<RentedNumberInterface>(() => new RentedNumberInterface(Client));
             _phoneNumber = new Lazy<PhoneNumberInterface>(() => new PhoneNumberInterface(Client));
+            _address = new Lazy<AddressInterface>(() => new AddressInterface(Client));
+            _identity = new Lazy<IdentityInterface>(() => new IdentityInterface(Client));
         }
     }
 }

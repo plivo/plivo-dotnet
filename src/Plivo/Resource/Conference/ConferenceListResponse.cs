@@ -12,6 +12,7 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <value>The API identifier.</value>
         public string ApiId { get; set; }
+
         /// <summary>
         /// Gets or sets the conferences.
         /// </summary>

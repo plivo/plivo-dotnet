@@ -12,7 +12,7 @@ namespace Plivo.Resource.Conference
         public string ConferenceRunTime { get; set; }
         public string ConferenceMemberCount { get; set; }
         public List<Member> Members { get; set; }
-        
+
         /// <summary>
         /// Delete Conference.
         /// </summary>
@@ -146,7 +146,7 @@ namespace Plivo.Resource.Conference
             return ((ConferenceInterface) Interface)
                 .UnDeafMember(Id, memberId);
         }
-        
+
         /// <summary>
         /// Starts the recording.
         /// </summary>
@@ -160,15 +160,15 @@ namespace Plivo.Resource.Conference
         public RecordCreateResponse<Conference> StartRecording(
             string fileFormat = null,
             string transcriptionType = null, string transcriptionUrl = null,
-            string transcriptionMethod = null ,string callbackUrl = null,
+            string transcriptionMethod = null, string callbackUrl = null,
             string callbackMethod = null)
         {
             return ((ConferenceInterface) Interface)
                 .StartRecording(
-                    fileFormat, 
-                    transcriptionType, 
-                    transcriptionUrl, 
-                    transcriptionMethod, 
+                    fileFormat,
+                    transcriptionType,
+                    transcriptionUrl,
+                    transcriptionMethod,
                     callbackUrl,
                     callbackMethod);
         }
@@ -178,9 +178,10 @@ namespace Plivo.Resource.Conference
         /// </summary>
         public void StopRecording()
         {
-            ((ConferenceInterface)Interface).StopRecording(Id);
+            ((ConferenceInterface) Interface).StopRecording(Id);
         }
     }
+
     /// <summary>
     /// Member.
     /// </summary>

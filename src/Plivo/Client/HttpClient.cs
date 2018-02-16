@@ -15,6 +15,7 @@ namespace Plivo.Client
         /// </summary>
         /// <value>The client.</value>
         public IHttpClient _client { get; set; }
+
         /// <summary>
         /// The basic auth containing auth id and auth token
         /// </summary>
@@ -29,7 +30,7 @@ namespace Plivo.Client
         /// <param name="proxyUsername">Proxy Username.</param>
         /// <param name="proxyPassword">Proxy Password.</param>
         public HttpClient(BasicAuth basicAuth,
-            string proxyAddress = null, string proxyPort = null, 
+            string proxyAddress = null, string proxyPort = null,
             string proxyUsername = null, string proxyPassword = null)
         {
             _client = new SystemHttpClient(basicAuth,
@@ -53,7 +54,7 @@ namespace Plivo.Client
         public PlivoResponse<T> Fetch<T>(string uri, Dictionary<string, object> data = null)
             where T : new()
         {
-            return _client.SendRequest<T>("GET", uri, data?? new Dictionary<string, object>());
+            return _client.SendRequest<T>("GET", uri, data ?? new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -63,10 +64,11 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> Update<T>(string uri, Dictionary<string, object> data = null, Dictionary<string, string> filesToUpload = null)
+        public PlivoResponse<T> Update<T>(string uri, Dictionary<string, object> data = null,
+            Dictionary<string, string> filesToUpload = null)
             where T : new()
         {
-            return _client.SendRequest<T>("POST", uri, data?? new Dictionary<string, object>(), filesToUpload);
+            return _client.SendRequest<T>("POST", uri, data ?? new Dictionary<string, object>(), filesToUpload);
         }
 
         /// <summary>
@@ -79,7 +81,7 @@ namespace Plivo.Client
         public PlivoResponse<T> Delete<T>(string uri, Dictionary<string, object> data = null)
             where T : new()
         {
-            return _client.SendRequest<T>("DELETE", uri, data?? new Dictionary<string, object>());
+            return _client.SendRequest<T>("DELETE", uri, data ?? new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -96,7 +98,7 @@ namespace Plivo.Client
         /// </summary>
         public void SetTimeout(int timeout)
         {
-            ((SystemHttpClient)_client)._client.Timeout = TimeSpan.FromSeconds(timeout);
+            ((SystemHttpClient) _client)._client.Timeout = TimeSpan.FromSeconds(timeout);
         }
     }
 }

@@ -23,8 +23,8 @@ namespace Plivo.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/recordingListResponse.json"
                 );
@@ -35,11 +35,11 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Recording.List(limit:10)));
-            
+                    Api.Recording.List(limit: 10)));
+
             AssertRequest(request);
         }
-        
+
         [Test]
         public void TestRecordingGet()
         {
@@ -49,8 +49,8 @@ namespace Plivo.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/" + id + "/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/recordingGetResponse.json"
                 );
@@ -62,10 +62,10 @@ namespace Plivo.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Recording.Get(id)));
-            
+
             AssertRequest(request);
         }
-        
+
         [Test]
         public void TestRecordingDelete()
         {
@@ -75,7 +75,7 @@ namespace Plivo.Test.Resources
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/" + id + "/",
                     "");
-            
+
             var response = "";
             Setup<UpdateResponse<Recording>>(
                 204,

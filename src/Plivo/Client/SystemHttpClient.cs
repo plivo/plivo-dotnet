@@ -55,7 +55,7 @@ namespace Plivo.Client
             _client = new System.Net.Http.HttpClient(httpClientHandler);
             var authHeader =
                 new AuthenticationHeaderValue("Basic",
-                                              Convert.ToBase64String(Encoding.UTF8.GetBytes(
+                    Convert.ToBase64String(Encoding.UTF8.GetBytes(
                             $"{basicAuth.AuthId}:{basicAuth.AuthToken}"
                         )
                     )
@@ -80,7 +80,8 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data, Dictionary<string, string> filesToUpload = null)
+        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+            Dictionary<string, string> filesToUpload = null)
             where T : new()
         {
             HttpResponseMessage response = null;
@@ -105,7 +106,7 @@ namespace Plivo.Client
                             "application/json"
                         );
                     }
-                    else 
+                    else
                     {
                         MultipartFormDataContent multipartContent = new MultipartFormDataContent();
 
@@ -139,7 +140,7 @@ namespace Plivo.Client
 
                         foreach (var key in data.Keys)
                         {
-                            HttpContent stringContent = new StringContent((string)data[key].ToString());
+                            HttpContent stringContent = new StringContent((string) data[key].ToString());
                             multipartContent.Add(stringContent, key);
                         }
 
@@ -165,12 +166,12 @@ namespace Plivo.Client
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse =
                 new PlivoResponse<T>(
-                    (uint)response.StatusCode.GetHashCode(),
+                    (uint) response.StatusCode.GetHashCode(),
                     response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),
                     responseContent,
-                    responseContent != string.Empty ?
-                        JsonConvert.DeserializeObject<T>(responseContent, _jsonSettings):
-                        new T(),
+                    responseContent != string.Empty
+                        ? JsonConvert.DeserializeObject<T>(responseContent, _jsonSettings)
+                        : new T(),
                     new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
 
             return plivoResponse;
@@ -186,7 +187,8 @@ namespace Plivo.Client
             var separator = "";
             foreach (var kvp in parameters.Where(kvp => kvp.Value != null))
             {
-                builder.AppendFormat("{0}{1}={2}", separator, WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value.ToString()));
+                builder.AppendFormat("{0}{1}={2}", separator, WebUtility.UrlEncode(kvp.Key),
+                    WebUtility.UrlEncode(kvp.Value.ToString()));
 
                 separator = "&";
             }

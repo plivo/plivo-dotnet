@@ -8,8 +8,8 @@ namespace Plivo.XML
         public DTMF(string body, dict attributes)
             : base(body, attributes)
         {
-            Nestables = new list() { "" };
-            ValidAttributes = new list() { "async" };
+            Nestables = new list() {""};
+            ValidAttributes = new list() {"async"};
             addAttributes();
         }
     }

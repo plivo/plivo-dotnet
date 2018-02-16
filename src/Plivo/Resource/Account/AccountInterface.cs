@@ -40,9 +40,9 @@ namespace Plivo.Resource.Account
         /// <param name="address">Address.</param>
         public UpdateResponse<Account> Update(string name = null, string city = null, string address = null)
         {
-            var mandatory_params = new List<string> {"name"};
+            var mandatoryParams = new List<string> {"name"};
             var data = CreateData(
-                 mandatory_params, new { name, city, address });
+                mandatoryParams, new {name, city, address});
             return Client.Update<UpdateResponse<Account>>(Uri, data).Object;
         }
     }

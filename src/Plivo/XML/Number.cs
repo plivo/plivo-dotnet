@@ -8,9 +8,12 @@ namespace Plivo.XML
         public Number(string body, dict parameters)
             : base(body, parameters)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "sendDigits", "sendOnPreAnswer", "sendDigitsMode"
+            {
+                "sendDigits",
+                "sendOnPreAnswer",
+                "sendDigitsMode"
             };
             addAttributes();
         }

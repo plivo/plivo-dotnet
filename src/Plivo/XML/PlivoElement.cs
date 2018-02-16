@@ -55,21 +55,29 @@ namespace Plivo.XML
             string val = "";
             switch (value.ToLower())
             {
-                case "true": val = value.ToLower();
+                case "true":
+                    val = value.ToLower();
                     break;
-                case "false": val = value.ToLower();
+                case "false":
+                    val = value.ToLower();
                     break;
-                case "get": val = value.ToUpper();
+                case "get":
+                    val = value.ToUpper();
                     break;
-                case "post": val = value.ToUpper();
+                case "post":
+                    val = value.ToUpper();
                     break;
-                case "man": val = value.ToUpper();
+                case "man":
+                    val = value.ToUpper();
                     break;
-                case "woman": val = value.ToUpper();
+                case "woman":
+                    val = value.ToUpper();
                     break;
-                default: val = value;
+                default:
+                    val = value;
                     break;
             }
+
             return val;
         }
 
@@ -166,5 +174,4 @@ namespace Plivo.XML
             return new XDocument(new XDeclaration("1.0", "utf-8", "yes"), Element);
         }
     }
-
 }

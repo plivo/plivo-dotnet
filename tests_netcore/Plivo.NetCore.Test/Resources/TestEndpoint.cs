@@ -7,7 +7,6 @@ using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    
     public class TestEndpoint : BaseTestCase
     {
         [Fact]
@@ -19,15 +18,15 @@ namespace Plivo.NetCore.Test.Resources
                 {"password", "pass"},
                 {"alias", "alias"}
             };
-            
+
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/endpointCreateResponse.json"
                 );
@@ -41,7 +40,7 @@ namespace Plivo.NetCore.Test.Resources
                     Api.Endpoint.Create("user", "pass", "alias")));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestEndpointList()
         {
@@ -55,8 +54,8 @@ namespace Plivo.NetCore.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/endpointListResponse.json"
                 );
@@ -67,11 +66,11 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Endpoint.List(limit:10)));
-            
+                    Api.Endpoint.List(limit: 10)));
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestEndpointGet()
         {
@@ -81,8 +80,8 @@ namespace Plivo.NetCore.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/endpointGetResponse.json"
                 );
@@ -94,10 +93,10 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Get(id)));
-            
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestEndpointUpdate()
         {
@@ -106,15 +105,15 @@ namespace Plivo.NetCore.Test.Resources
             {
                 {"alias", "alalaalalala"}
             };
-            
+
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/endpointUpdateResponse.json"
                 );
@@ -128,7 +127,7 @@ namespace Plivo.NetCore.Test.Resources
                     Api.Endpoint.Update(id, alias: "alalaalalala")));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestEndpointDelete()
         {
@@ -138,7 +137,7 @@ namespace Plivo.NetCore.Test.Resources
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
                     "");
-            
+
             var response = "";
             Setup<UpdateResponse<Endpoint>>(
                 204,

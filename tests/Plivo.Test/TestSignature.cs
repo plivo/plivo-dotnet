@@ -2,7 +2,7 @@
 using NUnit.Framework;
 
 namespace Plivo.Test
-{   
+{
     [TestFixture]
     public class TestSignature
     {

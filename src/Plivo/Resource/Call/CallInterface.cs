@@ -66,17 +66,34 @@ namespace Plivo.Resource.Call
             bool? errorIfrentNotFound = null)
         {
             string _to = string.Join("<", to);
-            var mandatory_params = new List<string> {"from", "to", "answerUrl", "answerMethod"};
+            var mandatoryParams = new List<string> {"from", "to", "answerUrl", "answerMethod"};
             var data = CreateData(
-                mandatory_params,
-                new 
+                mandatoryParams,
+                new
                 {
-                    from, _to, answerUrl, answerMethod, ringUrl, ringMethod,
-                    hangupUrl, hangupMethod, fallbackUrl, fallbackMethod,
-                    callerName, sendDigits, sendOnPreanswer, timeLimit,
-                    hangupOnRing, machineDetection, machineDetectionTime,
-                    machineDetectionUrl, machineDetectionMethod, sipHeaders,
-                    ringTimeout, parentCallUuid, errorIfrentNotFound
+                    from,
+                    _to,
+                    answerUrl,
+                    answerMethod,
+                    ringUrl,
+                    ringMethod,
+                    hangupUrl,
+                    hangupMethod,
+                    fallbackUrl,
+                    fallbackMethod,
+                    callerName,
+                    sendDigits,
+                    sendOnPreanswer,
+                    timeLimit,
+                    hangupOnRing,
+                    machineDetection,
+                    machineDetectionTime,
+                    machineDetectionUrl,
+                    machineDetectionMethod,
+                    sipHeaders,
+                    ringTimeout,
+                    parentCallUuid,
+                    errorIfrentNotFound
                 });
             return Client.Update<CallCreateResponse>(Uri, data).Object;
         }
@@ -106,11 +123,11 @@ namespace Plivo.Resource.Call
         public ListResponse<Call> List(
             string subaccount = null, string callDirection = null,
             string fromNumber = null, string toNumber = null,
-            DateTime? billDuration = null, DateTime? billDuration_Gt = null, 
+            DateTime? billDuration = null, DateTime? billDuration_Gt = null,
             DateTime? billDuration_Gte = null, DateTime? billDuration_Lt = null,
-            DateTime? billDuration_Lte = null, DateTime? endTime = null, 
+            DateTime? billDuration_Lte = null, DateTime? endTime = null,
             DateTime? endTime_Gt = null, DateTime? endTime_Gte = null,
-            DateTime? endTime_Lt = null, DateTime? endTime_Lte = null, 
+            DateTime? endTime_Lt = null, DateTime? endTime_Lte = null,
             uint? limit = null, uint? offset = null)
         {
             var _billDuration = billDuration?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
@@ -118,21 +135,34 @@ namespace Plivo.Resource.Call
             var _billDuration_Gte = billDuration_Gte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _billDuration_Lt = billDuration_Lt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _billDuration_Lte = billDuration_Lte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            
+
             var _endTime = endTime?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _endTime_Gt = endTime_Gt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _endTime_Gte = endTime_Gte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _endTime_Lt = endTime_Lt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
             var _endTime_Lte = endTime_Lte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    subaccount, callDirection, fromNumber, toNumber,
-                    _billDuration, _billDuration_Gt, _billDuration_Gte,
-                    _billDuration_Lt, _billDuration_Lte, _endTime, _endTime_Gt,
-                    _endTime_Gte, _endTime_Lt, _endTime_Lte, limit, offset
+                    subaccount,
+                    callDirection,
+                    fromNumber,
+                    toNumber,
+                    _billDuration,
+                    _billDuration_Gt,
+                    _billDuration_Gte,
+                    _billDuration_Lt,
+                    _billDuration_Lte,
+                    _endTime,
+                    _endTime_Gt,
+                    _endTime_Gte,
+                    _endTime_Lt,
+                    _endTime_Lte,
+                    limit,
+                    offset
                 });
             var resources = ListResources<ListResponse<Call>>(data);
             resources.Objects.ForEach(
@@ -203,11 +233,16 @@ namespace Plivo.Resource.Call
             string alegMethod = null, string blegUrl = null,
             string blegMethod = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    legs, alegUrl, alegMethod, blegUrl, blegMethod
+                    legs,
+                    alegUrl,
+                    alegMethod,
+                    blegUrl,
+                    blegMethod
                 });
             return
                 Client.Update<UpdateResponse<Call>>(
@@ -229,11 +264,16 @@ namespace Plivo.Resource.Call
             string legs = null, bool? loop = null, bool? mix = null)
         {
             var _urls = string.Join(",", urls);
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    _urls, length, legs, loop, mix
+                    _urls,
+                    length,
+                    legs,
+                    loop,
+                    mix
                 });
             return Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Play/", data).Object;
         }
@@ -266,12 +306,17 @@ namespace Plivo.Resource.Call
             string transactionMethod = null, string callbackUrl = null,
             string callbackMethod = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    timeLimit, fileFormat, transactionType,
-                    transactionUrl, transactionMethod, callbackUrl,
+                    timeLimit,
+                    fileFormat,
+                    transactionType,
+                    transactionUrl,
+                    transactionMethod,
+                    callbackUrl,
                     callbackMethod
                 });
             return Client.Update<RecordCreateResponse<Call>>(Uri + callUuid + "/Record/", data).Object;
@@ -285,8 +330,9 @@ namespace Plivo.Resource.Call
         /// <param name="URL">URL.</param>
         public DeleteResponse<Call> StopRecording(string callUuid, string URL = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,new {URL});
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams, new {URL});
             return Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Record/", data).Object;
         }
 
@@ -306,11 +352,17 @@ namespace Plivo.Resource.Call
             string language = null, string legs = null, bool? loop = null,
             bool? mix = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    text, voice, language, legs, loop, mix
+                    text,
+                    voice,
+                    language,
+                    legs,
+                    loop,
+                    mix
                 });
             return Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Speak/", data).Object;
         }
@@ -335,11 +387,13 @@ namespace Plivo.Resource.Call
         public UpdateResponse<Call> SendDigits(
             string callUuid, string digits, string leg = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    digits, leg
+                    digits,
+                    leg
                 });
             return Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/DTMF/", data).Object;
         }

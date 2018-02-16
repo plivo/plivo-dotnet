@@ -13,7 +13,7 @@ namespace Plivo.Resource
         /// </summary>
         /// <value>The resource identifier.</value>
         public string Id;
-        
+
         /// <summary>
         /// Gets or sets the API identifier.
         /// </summary>

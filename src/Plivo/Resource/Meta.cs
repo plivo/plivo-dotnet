@@ -12,21 +12,25 @@ namespace Plivo.Resource
         /// </summary>
         /// <value>The limit.</value>
         public uint Limit { get; set; }
+
         /// <summary>
         /// Gets or sets the next.
         /// </summary>
         /// <value>The next.</value>
         public string Next { get; set; }
+
         /// <summary>
         /// Gets or sets the offset.
         /// </summary>
         /// <value>The offset.</value>
         public uint Offset { get; set; }
+
         /// <summary>
         /// Gets or sets the previous.
         /// </summary>
         /// <value>The previous.</value>
         public string Previous { get; set; }
+
         /// <summary>
         /// Gets or sets the total count.
         /// </summary>

@@ -18,11 +18,11 @@ namespace Plivo.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
-                SOURCE_DIR + @"Mocks/accountGetResponse.json"
-            );
+                    SOURCE_DIR + @"Mocks/accountGetResponse.json"
+                );
             Setup<Account>(
                 200,
                 response
@@ -30,7 +30,7 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Account.Get()));
             AssertRequest(request);
         }
-        
+
         [Test]
         public void TestAccountModifyResponse()
         {
@@ -40,13 +40,13 @@ namespace Plivo.Test.Resources
                 {"name", "name name name"},
             };
             var request =
-                    new PlivoRequest(
-                        "POST",
-                        "Account/MAXXXXXXXXXXXXXXXXXX/",
-                        "",
-                        data);
-            
-            var response = 
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/",
+                    "",
+                    data);
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/accountModifyResponse.json"
                 );
@@ -55,9 +55,8 @@ namespace Plivo.Test.Resources
                 response
             );
             Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Account.Update("name name name", "delhi")));
-            
-            CompareRequests(request, ((TestClient)Api.Client._client).Request);
-            
+
+            CompareRequests(request, ((TestClient) Api.Client._client).Request);
         }
     }
 }

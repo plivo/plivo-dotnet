@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Plivo.Resource.PhoneNumber
 {
     public class PhoneNumber : Resource
@@ -19,7 +21,9 @@ namespace Plivo.Resource.PhoneNumber
         public string SmsRate { get; set; }
         public bool VoiceEnabled { get; set; }
         public string VoiceRate { get; set; }
-        
+        public List<Prerequisite> Prerequisites { get; set; }
+        public string City { get; set; }
+
         /// <summary>
         /// Buy PhoneNumber and associate it with
         /// application whose Id id appId.

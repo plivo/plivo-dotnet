@@ -22,8 +22,10 @@ namespace Plivo
             /// <param name="xPlivoSignature"></param>
             /// <param name="authToken"></param>
             /// <returns></returns>
-            [System.Obsolete("Util.XPlivoSignature.Verify is deprecated. Use Utilities.XPlivoSignature.Verify instead.")]
-            public static bool Verify(string uri, Dictionary<string, object> plivoHttpParams, string xPlivoSignature, string authToken)
+            [System.Obsolete(
+                "Util.XPlivoSignature.Verify is deprecated. Use Utilities.XPlivoSignature.Verify instead.")]
+            public static bool Verify(string uri, Dictionary<string, object> plivoHttpParams, string xPlivoSignature,
+                string authToken)
             {
                 return Utilities.XPlivoSignature.Verify(uri, plivoHttpParams, xPlivoSignature, authToken);
             }
@@ -64,7 +66,8 @@ namespace Plivo
         /// <returns>The objects.</returns>
         /// <param name="source">Source.</param>
         /// <param name="target">Target.</param>
-        [System.Obsolete("Util.CompareObjects is deprecated. Use Utilities.ComparisonUtilities.CompareObjects instead.")]
+        [System.Obsolete(
+            "Util.CompareObjects is deprecated. Use Utilities.ComparisonUtilities.CompareObjects instead.")]
         public static StringBuilder CompareObjects(JObject source, JObject target)
         {
             return Utilities.ComparisonUtilities.CompareObjects(source, target);
@@ -76,7 +79,8 @@ namespace Plivo
         /// <returns>The raw objects.</returns>
         /// <param name="source">Source.</param>
         /// <param name="target">Target.</param>
-        [System.Obsolete("Util.CompareRawObjects is deprecated. Use Utilities.ComparisonUtilities.CompareRawObjects instead.")]
+        [System.Obsolete(
+            "Util.CompareRawObjects is deprecated. Use Utilities.ComparisonUtilities.CompareRawObjects instead.")]
         public static StringBuilder CompareRawObjects(JObject source, JObject target)
         {
             return Utilities.ComparisonUtilities.CompareRawObjects(source, target);
@@ -112,7 +116,8 @@ namespace Plivo
         /// </summary>
         /// <returns>The case to snake case.</returns>
         /// <param name="name">Name.</param>
-        [System.Obsolete("Util.PascalCaseToSnakeCase is deprecated. Use Utilities.StringUtilities.PascalCaseToSnakeCase instead.")]
+        [System.Obsolete(
+            "Util.PascalCaseToSnakeCase is deprecated. Use Utilities.StringUtilities.PascalCaseToSnakeCase instead.")]
         public static string PascalCaseToSnakeCase(string name)
         {
             return Utilities.StringUtilities.PascalCaseToSnakeCase(name);
@@ -123,7 +128,8 @@ namespace Plivo
         /// </summary>
         /// <returns>The case to snake case.</returns>
         /// <param name="name">Name.</param>
-        [System.Obsolete("Util.CamelCaseToSnakeCase is deprecated. Use Utilities.StringUtilities.CamelCaseToSnakeCase instead.")]
+        [System.Obsolete(
+            "Util.CamelCaseToSnakeCase is deprecated. Use Utilities.StringUtilities.CamelCaseToSnakeCase instead.")]
         public static string CamelCaseToSnakeCase(string name)
         {
             return Utilities.StringUtilities.CamelCaseToSnakeCase(name);
@@ -134,7 +140,8 @@ namespace Plivo
         /// </summary>
         /// <returns>The case to pascal case.</returns>
         /// <param name="name">Name.</param>
-        [System.Obsolete("Util.SnakeCaseToPascalCase is deprecated. Use Utilities.StringUtilities.SnakeCaseToPascalCase instead.")]
+        [System.Obsolete(
+            "Util.SnakeCaseToPascalCase is deprecated. Use Utilities.StringUtilities.SnakeCaseToPascalCase instead.")]
         public static string SnakeCaseToPascalCase(string name)
         {
             return Utilities.StringUtilities.SnakeCaseToPascalCase(name);

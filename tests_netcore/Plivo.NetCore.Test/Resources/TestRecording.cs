@@ -7,7 +7,6 @@ using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    
     public class TestRecording : BaseTestCase
     {
         [Fact]
@@ -23,8 +22,8 @@ namespace Plivo.NetCore.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/recordingListResponse.json"
                 );
@@ -35,11 +34,11 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Recording.List(limit:10)));
-            
+                    Api.Recording.List(limit: 10)));
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestRecordingGet()
         {
@@ -49,8 +48,8 @@ namespace Plivo.NetCore.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/" + id + "/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/recordingGetResponse.json"
                 );
@@ -62,10 +61,10 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Recording.Get(id)));
-            
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestRecordingDelete()
         {
@@ -75,7 +74,7 @@ namespace Plivo.NetCore.Test.Resources
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/" + id + "/",
                     "");
-            
+
             var response = "";
             Setup<UpdateResponse<Recording>>(
                 204,

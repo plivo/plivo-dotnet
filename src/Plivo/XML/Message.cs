@@ -8,9 +8,14 @@ namespace Plivo.XML
         public Message(string body, dict attributes)
             : base(body, attributes)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "src", "dst", "type", "callbackUrl", "callbackMethod"
+            {
+                "src",
+                "dst",
+                "type",
+                "callbackUrl",
+                "callbackMethod"
             };
             addAttributes();
         }

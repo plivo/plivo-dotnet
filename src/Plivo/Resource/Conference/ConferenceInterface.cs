@@ -69,7 +69,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse HangupMember(
             string conferenceName, string memberId)
         {
-            return 
+            return
                 Client.Delete<ConferenceMemberActionResponse>(
                     Uri + conferenceName + "/Member/" + memberId + "/").Object;
         }
@@ -122,14 +122,14 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse PlayMember(
             string conferenceName, List<string> memberId, string url)
         {
-            return 
+            return
                 Client.Update<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Play/",
-                    new Dictionary<string, object>(){{"url", url}}
+                    new Dictionary<string, object>() {{"url", url}}
                 ).Object;
         }
 
@@ -142,7 +142,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse StopPlayMember(
             string conferenceName, List<string> memberId)
         {
-            return 
+            return
                 Client.Delete<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
@@ -165,13 +165,16 @@ namespace Plivo.Resource.Conference
             string conferenceName, List<string> memberId, string text,
             string voice = null, string language = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    text, voice, language
+                    text,
+                    voice,
+                    language
                 });
-            return 
+            return
                 Client.Update<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
@@ -191,7 +194,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse StopSpeakMember(
             string conferenceName, List<string> memberId)
         {
-            return 
+            return
                 Client.Delete<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
@@ -210,7 +213,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse DeafMember(
             string conferenceName, List<string> memberId)
         {
-            return 
+            return
                 Client.Update<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
@@ -229,7 +232,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse UnDeafMember(
             string conferenceName, List<string> memberId)
         {
-            return 
+            return
                 Client.Delete<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
@@ -253,15 +256,20 @@ namespace Plivo.Resource.Conference
         public RecordCreateResponse<Conference> StartRecording(
             string conferenceName, string fileFormat = null,
             string transcriptionType = null, string transcriptionUrl = null,
-            string transcriptionMethod = null ,string callbackUrl = null,
+            string transcriptionMethod = null, string callbackUrl = null,
             string callbackMethod = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,new
-            {
-                fileFormat, transcriptionType, transcriptionUrl,
-                transcriptionMethod, callbackUrl, callbackMethod
-            });
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams, new
+                {
+                    fileFormat,
+                    transcriptionType,
+                    transcriptionUrl,
+                    transcriptionMethod,
+                    callbackUrl,
+                    callbackMethod
+                });
 
             return
                 Client.Update<RecordCreateResponse<Conference>>(
@@ -277,9 +285,9 @@ namespace Plivo.Resource.Conference
         public void StopRecording(
             string conferenceName)
         {
-                Client.Delete<object>(
-                    Uri + conferenceName + "/Record/"
-                );
+            Client.Delete<object>(
+                Uri + conferenceName + "/Record/"
+            );
         }
     }
 }

@@ -8,9 +8,13 @@ namespace Plivo.XML
         public Wait(dict attributes)
             : base(attributes)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "length", "silence","minSilence","beep"
+            {
+                "length",
+                "silence",
+                "minSilence",
+                "beep"
             };
             addAttributes();
         }

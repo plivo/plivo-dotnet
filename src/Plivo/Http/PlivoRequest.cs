@@ -40,7 +40,8 @@ namespace Plivo.Http
         /// <param name="uri">URI.</param>
         /// <param name="headers">Headers.</param>
         /// <param name="data">Data.</param>
-        public PlivoRequest(string method, string uri, string headers, Dictionary<string, object> data = null, Dictionary<string, string> filesToUpload = null)
+        public PlivoRequest(string method, string uri, string headers, Dictionary<string, object> data = null,
+            Dictionary<string, string> filesToUpload = null)
         {
             Method = method ?? throw new ArgumentNullException(nameof(method));
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));

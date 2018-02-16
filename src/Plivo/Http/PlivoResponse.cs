@@ -59,7 +59,7 @@ namespace Plivo.Http
             Content = content;
             Object = obj;
             PlivoRequest = request;
-            
+
             HandleResponse();
         }
 
@@ -106,6 +106,6 @@ namespace Plivo.Http
         private string GetErrorMessage()
         {
             return Content;
-        }   
+        }
     }
 }

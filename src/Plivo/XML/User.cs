@@ -8,9 +8,12 @@ namespace Plivo.XML
         public User(string body, dict parameters)
             : base(body, parameters)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "sendDigits","sendOnPreAnswer", "sipHeaders"
+            {
+                "sendDigits",
+                "sendOnPreAnswer",
+                "sipHeaders"
             };
             addAttributes();
         }
