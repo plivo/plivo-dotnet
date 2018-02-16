@@ -8,9 +8,10 @@ namespace Plivo.XML
         public Play(string body, dict attributes)
             : base(body, attributes)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "loop"
+            {
+                "loop"
             };
             addAttributes();
         }

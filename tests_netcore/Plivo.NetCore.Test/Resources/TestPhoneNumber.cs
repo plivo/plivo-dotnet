@@ -7,7 +7,6 @@ using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    
     public class TestPhoneNumber : BaseTestCase
     {
         [Fact]
@@ -24,8 +23,8 @@ namespace Plivo.NetCore.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/phoneNumberListResponse.json"
                 );
@@ -36,11 +35,11 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.PhoneNumber.List("IN", limit:12)));
-            
+                    Api.PhoneNumber.List("IN", limit: 12)));
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestPhoneNumberBuy()
         {
@@ -55,8 +54,8 @@ namespace Plivo.NetCore.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/" + id + "/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/phoneNumberCreateResponse.json"
                 );
@@ -68,7 +67,7 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.PhoneNumber.Buy(id, "123")));
-            
+
             AssertRequest(request);
         }
     }

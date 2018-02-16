@@ -5,7 +5,6 @@ using Plivo.XML;
 
 namespace Plivo.NetCore.Test.XML
 {
-
     public class TestXml
     {
         [Fact]
@@ -21,7 +20,8 @@ namespace Plivo.NetCore.Test.XML
                 });
 
             Plivo.XML.Dial dial = new Plivo.XML.Dial(new
-                Dictionary<string, string>() {
+                Dictionary<string, string>()
+                {
                     {"confirmSound", "http://foo.com/sound/"},
                     {"confirmKey", "3"}
                 });
@@ -38,7 +38,8 @@ namespace Plivo.NetCore.Test.XML
             resp.Add(dial);
 
             Plivo.XML.Dial dial1 = new Plivo.XML.Dial(new
-                Dictionary<string, string>() {
+                Dictionary<string, string>()
+                {
                     {"timeout", "20"},
                     {"action", "http://foo.com/dial_action/"}
                 });
@@ -62,7 +63,7 @@ namespace Plivo.NetCore.Test.XML
                     new Dictionary<string, string>()
                     {
                         {"action", "http://www.foo.com/gather_pin/"},
-                        { "method", "POST" }
+                        {"method", "POST"}
                     });
             resp.Add(get_digits);
 
@@ -74,7 +75,7 @@ namespace Plivo.NetCore.Test.XML
             resp.AddHangup(new Dictionary<string, string>()
             {
                 {"schedule", "60"},
-                {"reason", "rejected" }
+                {"reason", "rejected"}
             });
             resp.AddSpeak("Call will hangup after a min.",
                 new Dictionary<string, string>()
@@ -86,7 +87,7 @@ namespace Plivo.NetCore.Test.XML
                 new Dictionary<string, string>()
                 {
                     {"src", "12023222222"},
-                    {"dst", "15671234567" } ,
+                    {"dst", "15671234567"},
                     {"type", "sms"},
                     {"callbackUrl", "http://foo.com/sms_status/"},
                     {"callbackMethod", "POST"}
@@ -103,7 +104,8 @@ namespace Plivo.NetCore.Test.XML
             resp.AddSpeak("Thanks for dropping by.",
                 new Dictionary<string, string>() { });
 
-            resp.AddRecord(new Dictionary<string, string>() {
+            resp.AddRecord(new Dictionary<string, string>()
+            {
                 {"action", "http://foo.com/get_recording/"},
                 {"startOnDialAnswer", "true"},
                 {"redirect", "false"}
@@ -119,7 +121,8 @@ namespace Plivo.NetCore.Test.XML
 
             resp.AddSpeak("Leave message after the beep.",
                 new Dictionary<string, string>() { });
-            resp.AddRecord(new Dictionary<string, string>() {
+            resp.AddRecord(new Dictionary<string, string>()
+            {
                 {"action", "http://foo.com/get_recording/"},
                 {"maxLength", "30"},
                 {"finishOnKey", "*"}
@@ -149,7 +152,8 @@ namespace Plivo.NetCore.Test.XML
 
             resp.AddWait(new Dictionary<string, string>()
             {
-                {"length", "120"}, {"beep", "true"}
+                {"length", "120"},
+                {"beep", "true"}
             });
             resp.AddPlay("https://s3.amazonaws.com/abc.mp3",
                 new Dictionary<string, string>() { });

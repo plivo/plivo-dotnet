@@ -25,12 +25,12 @@ namespace Plivo.NetCore.Test
         public void Setup<T>(uint statusCode, string response)
             where T : new()
         {
-            ((TestClient)Api.Client._client).Setup(response, statusCode);
+            ((TestClient) Api.Client._client).Setup(response, statusCode);
         }
 
         public void AssertRequest(PlivoRequest request)
         {
-            CompareRequests(request, ((TestClient)Api.Client._client).Request);
+            CompareRequests(request, ((TestClient) Api.Client._client).Request);
         }
 
         public void CompareRequests(PlivoRequest a, PlivoRequest b)

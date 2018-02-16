@@ -8,9 +8,12 @@ namespace Plivo.XML
         public Speak(string body, dict attributes)
             : base(body, attributes)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "loop", "language", "voice"
+            {
+                "loop",
+                "language",
+                "voice"
             };
             addAttributes();
         }

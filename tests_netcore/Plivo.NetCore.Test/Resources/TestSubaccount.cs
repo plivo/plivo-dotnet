@@ -8,7 +8,6 @@ using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    
     public class TestSubaccount : BaseTestCase
     {
         [Fact]
@@ -19,15 +18,15 @@ namespace Plivo.NetCore.Test.Resources
                 {"name", "naam"},
                 {"enabled", true}
             };
-            
+
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Subaccount/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/subaccountCreateResponse.json"
                 );
@@ -41,7 +40,7 @@ namespace Plivo.NetCore.Test.Resources
                     Api.Subaccount.Create("naam", true)));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestAccountGet()
         {
@@ -51,8 +50,8 @@ namespace Plivo.NetCore.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Subaccount/" + id + "/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/subaccountGetResponse.json"
                 );
@@ -63,7 +62,7 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(ComparisonUtilities.Compare(response, Api.Subaccount.Get(id)));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestAccountList()
         {
@@ -72,8 +71,8 @@ namespace Plivo.NetCore.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Subaccount/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/subaccountListResponse.json"
                 );
@@ -84,7 +83,7 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(ComparisonUtilities.Compare(response, Api.Subaccount.List()));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestAccountModifyResponse()
         {
@@ -100,8 +99,8 @@ namespace Plivo.NetCore.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/Subaccount/" + id + "/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/subaccountModifyResponse.json"
                 );
@@ -110,11 +109,10 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Empty(ComparisonUtilities.Compare(response, Api.Subaccount.Update(id, "naam", true)));
-            
-            CompareRequests(request, ((TestClient)Api.Client._client).Request);
-            
+
+            CompareRequests(request, ((TestClient) Api.Client._client).Request);
         }
-        
+
         [Fact]
         public void TestSubaccountDelete()
         {
@@ -124,7 +122,7 @@ namespace Plivo.NetCore.Test.Resources
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Subaccount/" + id + "/",
                     "");
-            
+
             var response = "";
             Setup<UpdateResponse<Subaccount>>(
                 204,

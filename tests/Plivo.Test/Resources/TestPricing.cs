@@ -21,8 +21,8 @@ namespace Plivo.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Pricing/",
                     "", data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/pricingGetResponse.json"
                 );
@@ -34,7 +34,7 @@ namespace Plivo.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Pricing.Get("US")));
-            
+
             AssertRequest(request);
         }
     }

@@ -12,18 +12,26 @@ namespace Plivo.Http
         /// The URI.
         /// </summary>
         public string Uri;
+
         /// <summary>
         /// The method.
         /// </summary>
         public string Method;
+
         /// <summary>
         /// The headers.
         /// </summary>
         public string Headers;
+
         /// <summary>
         /// The data.
         /// </summary>
         public Dictionary<string, object> Data;
+
+        /// <summary>
+        /// The files to upload
+        /// </summary>
+        public Dictionary<string, string> FilesToUpload;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.Http.PlivoRequest"/> class.
@@ -32,12 +40,14 @@ namespace Plivo.Http
         /// <param name="uri">URI.</param>
         /// <param name="headers">Headers.</param>
         /// <param name="data">Data.</param>
-        public PlivoRequest(string method, string uri, string headers, Dictionary<string, object> data = null)
+        public PlivoRequest(string method, string uri, string headers, Dictionary<string, object> data = null,
+            Dictionary<string, string> filesToUpload = null)
         {
             Method = method ?? throw new ArgumentNullException(nameof(method));
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));
             Headers = headers ?? throw new ArgumentNullException(nameof(headers));
             Data = data ?? new Dictionary<string, object>();
+            FilesToUpload = filesToUpload ?? new Dictionary<string, string>();
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -54,7 +55,7 @@ namespace Plivo.Client
             _client = new System.Net.Http.HttpClient(httpClientHandler);
             var authHeader =
                 new AuthenticationHeaderValue("Basic",
-                                              Convert.ToBase64String(Encoding.UTF8.GetBytes(
+                    Convert.ToBase64String(Encoding.UTF8.GetBytes(
                             $"{basicAuth.AuthId}:{basicAuth.AuthToken}"
                         )
                     )
@@ -79,7 +80,8 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data)
+        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+            Dictionary<string, string> filesToUpload = null)
             where T : new()
         {
             HttpResponseMessage response = null;
@@ -91,19 +93,67 @@ namespace Plivo.Client
                     request = new HttpRequestMessage(HttpMethod.Get, uri + AsQueryString(data));
                     request.Headers.Add("Accept", "application/json");
                     break;
+
                 case "POST":
                     request = new HttpRequestMessage(HttpMethod.Post, uri);
-                    request.Headers.Add("Accept", "application/json");
-                    request.Content = new StringContent(
-                        JsonConvert.SerializeObject(data),
-                        Encoding.UTF8,
-                        "application/json"
-                    );
+
+                    if (filesToUpload == null)
+                    {
+                        request.Headers.Add("Accept", "application/json");
+                        request.Content = new StringContent(
+                            JsonConvert.SerializeObject(data),
+                            Encoding.UTF8,
+                            "application/json"
+                        );
+                    }
+                    else
+                    {
+                        MultipartFormDataContent multipartContent = new MultipartFormDataContent();
+
+                        foreach (var key in filesToUpload.Keys)
+                        {
+                            FileInfo fileInfo = new FileInfo(filesToUpload[key]);
+                            string fileName = fileInfo.Name;
+                            HttpContent fileContents = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
+
+                            string fileHeader = null;
+
+                            switch (fileName.Split('.')[1].ToLower())
+                            {
+                                case "jpg":
+                                    fileHeader = "image/jpeg";
+                                    break;
+                                case "png":
+                                    fileHeader = "image/png";
+                                    break;
+                                case "jpeg":
+                                    fileHeader = "image/jpeg";
+                                    break;
+                                case "pdf":
+                                    fileHeader = "application/pdf";
+                                    break;
+                            }
+
+                            fileContents.Headers.Add("Content-Type", fileHeader);
+                            multipartContent.Add(fileContents, "file", fileName);
+                        }
+
+                        foreach (var key in data.Keys)
+                        {
+                            HttpContent stringContent = new StringContent((string) data[key].ToString());
+                            multipartContent.Add(stringContent, key);
+                        }
+
+                        request.Content = multipartContent;
+                    }
+
                     break;
+
                 case "DELETE":
                     request = new HttpRequestMessage(HttpMethod.Delete, uri + AsQueryString(data));
                     request.Headers.Add("Accept", "application/json");
                     break;
+
                 default:
                     throw new NotSupportedException(
                         method + " not supported");
@@ -116,13 +166,13 @@ namespace Plivo.Client
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse =
                 new PlivoResponse<T>(
-                    (uint)response.StatusCode.GetHashCode(),
+                    (uint) response.StatusCode.GetHashCode(),
                     response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),
                     responseContent,
-                    responseContent != string.Empty ?
-                        JsonConvert.DeserializeObject<T>(responseContent, _jsonSettings):
-                        new T(),
-                    new PlivoRequest(method, uri, request.Headers.ToString(), data));
+                    responseContent != string.Empty
+                        ? JsonConvert.DeserializeObject<T>(responseContent, _jsonSettings)
+                        : new T(),
+                    new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
 
             return plivoResponse;
         }
@@ -137,7 +187,8 @@ namespace Plivo.Client
             var separator = "";
             foreach (var kvp in parameters.Where(kvp => kvp.Value != null))
             {
-                builder.AppendFormat("{0}{1}={2}", separator, WebUtility.UrlEncode(kvp.Key), WebUtility.UrlEncode(kvp.Value.ToString()));
+                builder.AppendFormat("{0}{1}={2}", separator, WebUtility.UrlEncode(kvp.Key),
+                    WebUtility.UrlEncode(kvp.Value.ToString()));
 
                 separator = "&";
             }

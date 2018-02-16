@@ -7,7 +7,7 @@ namespace Plivo.Resource.PhoneNumber
         public List<Phone> Numbers { get; set; }
         public string Status { get; set; }
     }
-    
+
     public class Phone
     {
         public string Number { get; set; }

@@ -20,11 +20,15 @@ namespace Plivo.Utilities
 
             string pathToAppend = "";
 
-            int pathExists = uri.Replace(url.Scheme + "://" + url.Host, "").IndexOf(absolutePath, StringComparison.CurrentCulture);
+            int pathExists = uri.Replace(url.Scheme + "://" + url.Host, "")
+                .IndexOf(absolutePath, StringComparison.CurrentCulture);
 
-            if (pathExists > -1) {
+            if (pathExists > -1)
+            {
                 pathToAppend = absolutePath;
-            } else {
+            }
+            else
+            {
                 pathToAppend = absolutePath.Remove(absolutePath.Length - 1);
             }
 
@@ -49,10 +53,12 @@ namespace Plivo.Utilities
         {
             string computedSignature = ComputeSignature(uri, nonce, authToken);
 
-            if (computedSignature == xPlivoSignature) {
+            if (computedSignature == xPlivoSignature)
+            {
                 return true;
             }
+
             return false;
-        }   
+        }
     }
 }

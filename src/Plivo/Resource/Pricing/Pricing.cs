@@ -12,7 +12,7 @@ namespace Plivo.Resource.Pricing
         public PhoneNumbers PhoneNumbers { get; set; }
         public Voice Voice { get; set; }
     }
-    
+
     public class Inbound
     {
         public string Rate { get; set; }

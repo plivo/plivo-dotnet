@@ -33,14 +33,21 @@ namespace Plivo.Resource.Message
         /// <param name="log">Log.</param>
         public MessageCreateResponse Create(
             string src, List<string> dst, string text, string type = null,
-            string url = null, string method = null, bool? log =null)
+            string url = null, string method = null, bool? log = null)
         {
             string _dst = string.Join("<", dst);
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
-                new 
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
                 {
-                    src, _dst, text, type, url, method, log
+                    src,
+                    _dst,
+                    text,
+                    type,
+                    url,
+                    method,
+                    log
                 });
             return Client.Update<MessageCreateResponse>(Uri, data).Object;
         }
@@ -67,8 +74,9 @@ namespace Plivo.Resource.Message
         public ListResponse<Message> List(
             string subaccount = null, uint? limit = null, uint? offset = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,new {subaccount, limit, offset});
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams, new {subaccount, limit, offset});
             var resources = ListResources<ListResponse<Message>>(data);
 
             resources.Objects.ForEach(

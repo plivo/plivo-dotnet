@@ -8,9 +8,11 @@ namespace Plivo.XML
         public Hangup(dict attributes)
             : base(attributes)
         {
-            Nestables = new list() { "" };
+            Nestables = new list() {""};
             ValidAttributes = new list()
-            {   "schedule", "reason"
+            {
+                "schedule",
+                "reason"
             };
             addAttributes();
         }

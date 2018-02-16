@@ -14,14 +14,14 @@ namespace Plivo.Resource.Recording
         public string RecordingType { get; set; }
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
-        
+
         /// <summary>
         /// Delete this recording
         /// </summary>
         /// <returns></returns>
         public DeleteResponse<Recording> Delete()
         {
-            return ((RecordingInterface)Interface).Delete(Id);
+            return ((RecordingInterface) Interface).Delete(Id);
         }
     }
 }

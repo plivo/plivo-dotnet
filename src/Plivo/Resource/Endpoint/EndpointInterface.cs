@@ -9,7 +9,7 @@ namespace Plivo.Resource.Endpoint
     /// <summary>
     /// Endpoint interface.
     /// </summary>
-    public class EndpointInterface :ResourceInterface
+    public class EndpointInterface : ResourceInterface
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.Resource.Endpoint.EndpointInterface"/> class.
@@ -31,11 +31,15 @@ namespace Plivo.Resource.Endpoint
         public EndpointCreateResponse Create(
             string username, string password, string alias, string appId = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
-                new 
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
                 {
-                    username, password, alias, appId
+                    username,
+                    password,
+                    alias,
+                    appId
                 });
             return Client.Update<EndpointCreateResponse>(Uri, data).Object;
         }
@@ -62,8 +66,9 @@ namespace Plivo.Resource.Endpoint
         public ListResponse<Endpoint> List(
             string subaccount = null, uint? limit = null, uint? offset = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,new {subaccount, limit, offset});
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams, new {subaccount, limit, offset});
             var resources = ListResources<ListResponse<Endpoint>>(data);
 
             resources.Objects.ForEach(
@@ -95,11 +100,14 @@ namespace Plivo.Resource.Endpoint
             string endpointId, string password = null, string alias = null,
             string appId = null)
         {
-            var mandatory_params = new List<string> { "" };var data = CreateData(
-                mandatory_params,
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
                 new
                 {
-                    password, alias, appId
+                    password,
+                    alias,
+                    appId
                 });
             return Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data).Object;
         }

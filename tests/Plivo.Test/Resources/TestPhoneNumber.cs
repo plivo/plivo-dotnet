@@ -24,8 +24,8 @@ namespace Plivo.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/phoneNumberListResponse.json"
                 );
@@ -36,11 +36,11 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.PhoneNumber.List("IN", limit:12)));
-            
+                    Api.PhoneNumber.List("IN", limit: 12)));
+
             AssertRequest(request);
         }
-        
+
         [Test]
         public void TestPhoneNumberBuy()
         {
@@ -55,8 +55,8 @@ namespace Plivo.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/" + id + "/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"Mocks/phoneNumberCreateResponse.json"
                 );
@@ -68,7 +68,7 @@ namespace Plivo.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.PhoneNumber.Buy(id, "123")));
-            
+
             AssertRequest(request);
         }
     }

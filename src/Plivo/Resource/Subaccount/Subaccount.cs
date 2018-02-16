@@ -23,7 +23,7 @@ namespace Plivo.Resource.Subaccount
         /// <returns>The delete.</returns>
         public DeleteResponse<Subaccount> Delete()
         {
-            return 
+            return
                 ((SubaccountInterface) Interface)
                 .Delete(Id);
         }
@@ -44,7 +44,7 @@ namespace Plivo.Resource.Subaccount
 
             return updateResponse;
         }
-        
+
         public override string ToString()
         {
             return

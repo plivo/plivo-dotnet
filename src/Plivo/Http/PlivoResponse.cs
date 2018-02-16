@@ -16,10 +16,12 @@ namespace Plivo.Http
         /// The status code.
         /// </summary>
         public uint StatusCode;
+
         /// <summary>
         /// The headers.
         /// </summary>
         public List<string> Headers;
+
         /// <summary>
         /// The content.
         /// </summary>
@@ -57,7 +59,7 @@ namespace Plivo.Http
             Content = content;
             Object = obj;
             PlivoRequest = request;
-            
+
             HandleResponse();
         }
 
@@ -105,6 +107,5 @@ namespace Plivo.Http
         {
             return Content;
         }
-        
     }
 }

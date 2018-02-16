@@ -20,4 +20,8 @@
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resource\Address\" />
+    <Folder Include="Resource\Identity\" />
+  </ItemGroup>
 </Project>

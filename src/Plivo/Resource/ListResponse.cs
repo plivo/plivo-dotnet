@@ -16,6 +16,7 @@ namespace Plivo.Resource
         /// </summary>
         /// <value>The meta.</value>
         public Meta Meta { get; set; }
+
         /// <summary>
         /// Gets or sets the objects.
         /// </summary>

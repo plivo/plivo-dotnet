@@ -9,11 +9,25 @@ namespace Plivo.XML
             : base(body, parameters)
         {
             Nestables = new list()
-            {   "Speak", "Play", "Wait"
+            {
+                "Speak",
+                "Play",
+                "Wait"
             };
             ValidAttributes = new list()
-            {   "action", "method", "timeout", "digitTimeout","finishOnKey", "numDigits",
-                "retries", "invalidDigitsSound", "validDigits", "playBeep", "redirect", "log"
+            {
+                "action",
+                "method",
+                "timeout",
+                "digitTimeout",
+                "finishOnKey",
+                "numDigits",
+                "retries",
+                "invalidDigitsSound",
+                "validDigits",
+                "playBeep",
+                "redirect",
+                "log"
             };
             addAttributes();
         }

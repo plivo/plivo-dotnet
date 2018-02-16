@@ -7,7 +7,6 @@ using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    
     public class TestNumber : BaseTestCase
     {
         [Fact]
@@ -23,8 +22,8 @@ namespace Plivo.NetCore.Test.Resources
                     "Account/MAXXXXXXXXXXXXXXXXXX/Number/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/numberListResponse.json"
                 );
@@ -35,11 +34,11 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Number.List(limit:10)));
-            
+                    Api.Number.List(limit: 10)));
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestRentedNumberGet()
         {
@@ -49,8 +48,8 @@ namespace Plivo.NetCore.Test.Resources
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Number/" + id + "/",
                     "");
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/numberGetResponse.json"
                 );
@@ -62,28 +61,28 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Number.Get(id)));
-            
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestRentedNumberAdd()
-        {   
+        {
             var data = new Dictionary<string, object>()
             {
                 {"numbers", "+919999999999,+919898989898"},
                 {"carrier", "carry me"},
                 {"region", "somewhere here"}
             };
-            
+
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Number/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/numberCreateResponse.json"
                 );
@@ -94,11 +93,12 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Number.AddNumber(new List<string>(){"+919999999999","+919898989898"}, "carry me", "somewhere here")));
-            
+                    Api.Number.AddNumber(new List<string>() {"+919999999999", "+919898989898"}, "carry me",
+                        "somewhere here")));
+
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestNumberUpdate()
         {
@@ -107,15 +107,15 @@ namespace Plivo.NetCore.Test.Resources
             {
                 {"alias", "alalaalalala"}
             };
-            
+
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Number/" + id + "/",
                     "",
                     data);
-            
-            var response = 
+
+            var response =
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/endpointUpdateResponse.json"
                 );
@@ -129,7 +129,7 @@ namespace Plivo.NetCore.Test.Resources
                     Api.Number.Update(id, alias: "alalaalalala")));
             AssertRequest(request);
         }
-        
+
         [Fact]
         public void TestNumberDelete()
         {
@@ -139,7 +139,7 @@ namespace Plivo.NetCore.Test.Resources
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Number/" + id + "/",
                     "");
-            
+
             var response = "";
             Setup<UpdateResponse<RentedNumber>>(
                 204,

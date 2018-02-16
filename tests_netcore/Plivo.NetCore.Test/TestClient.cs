@@ -14,7 +14,8 @@ namespace Plivo.NetCore.Test
         public string Response;
         public PlivoRequest Request;
 
-        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data) where T : new()
+        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+            Dictionary<string, string> filesToUpload = null) where T : new()
         {
             switch (method)
             {
@@ -56,6 +57,7 @@ namespace Plivo.NetCore.Test
             StatusCode = statusCode;
         }
     }
+
     public class PascalCasePropertyNamesContractResolver : DefaultContractResolver
     {
         protected override string ResolvePropertyName(string propertyName)

@@ -11,21 +11,21 @@ namespace Plivo.Resource.Call
     public class Call : Resource
     {
         public new string Id => CallUuid;
-        public string AnswerTime {get; set; }
-        public uint? BillDuration {get; set; }
-        public uint? BilledDuration {get; set; }
-        public string CallDirection {get; set; }
-        public uint? CallDuration {get; set; }
+        public string AnswerTime { get; set; }
+        public uint? BillDuration { get; set; }
+        public uint? BilledDuration { get; set; }
+        public string CallDirection { get; set; }
+        public uint? CallDuration { get; set; }
         public string CallStatus { get; set; }
-        public string CallUuid {get; set; }
-        public string EndTime {get; set; }
-        public string FromNumber {get; set; }
-        public string InitiationTime {get; set; }
-        public string ParentCallUuid {get; set; }
-        public string ResourceUri {get; set; }
-        public string ToNumber {get; set; }
-        public string TotalAmount {get; set; }
-        public string TotalRate {get; set; }
+        public string CallUuid { get; set; }
+        public string EndTime { get; set; }
+        public string FromNumber { get; set; }
+        public string InitiationTime { get; set; }
+        public string ParentCallUuid { get; set; }
+        public string ResourceUri { get; set; }
+        public string ToNumber { get; set; }
+        public string TotalAmount { get; set; }
+        public string TotalRate { get; set; }
 
 //        public Call(string answerTime, string apiId, uint? billDuration, uint? billedDuration, string callDirection,
 //            uint? callDuration, string callUuid, string endTime, string fromNumber, string initiationTime,
@@ -90,7 +90,7 @@ namespace Plivo.Resource.Call
             string legs = null, bool? loop = null, bool? mix = null)
         {
             return ((CallInterface) Interface)
-            .StartPlaying(Id, urls, length, legs, loop, mix);
+                .StartPlaying(Id, urls, length, legs, loop, mix);
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .CancelCall(Id);
         }
-        
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.
         /// </summary>
