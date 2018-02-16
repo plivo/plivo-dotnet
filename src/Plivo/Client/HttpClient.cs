@@ -63,10 +63,10 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> Update<T>(string uri, Dictionary<string, object> data = null)
+        public PlivoResponse<T> Update<T>(string uri, Dictionary<string, object> data = null, Dictionary<string, string> filesToUpload = null)
             where T : new()
         {
-            return _client.SendRequest<T>("POST", uri, data?? new Dictionary<string, object>());
+            return _client.SendRequest<T>("POST", uri, data?? new Dictionary<string, object>(), filesToUpload);
         }
 
         /// <summary>
