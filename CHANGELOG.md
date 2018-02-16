@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.1.0](https://github.com/plivo/plivo-dotnet/tree/v4.1.0) (2018-02-16)
+- Added Address and Identity resources.
+- Fixes #50 (NullReferenceException)
+
 ## [v4.0.0](https://github.com/plivo/plivo-dotnet/tree/v4.0.0) (2018-01-18)
 - Supports v2 signature validation
 - Targets .NET Standard 1.3
