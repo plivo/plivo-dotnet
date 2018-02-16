@@ -271,8 +271,6 @@ namespace Plivo.Resource.Identity
                     callbackUrl
             );
 
-            Console.WriteLine(updateResponse);
-
             if (salutation != null) Salutation = salutation;
             if (firstName != null) FirstName = firstName;
             if (lastName != null) LastName = lastName;
