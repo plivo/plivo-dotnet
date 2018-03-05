@@ -26,6 +26,7 @@ namespace Plivo.Resource.Application
         public string ResourceUri { get; set; }
         public string SipUri { get; set; }
         public object SubAccount { get; set; }
+        public bool? LogIncomingMessage { get; set; }
 
         public Application()
         {
@@ -56,18 +57,19 @@ namespace Plivo.Resource.Application
         /// <param name="defaultNumberApp">Default number app.</param>
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
+        /// <param name="logIncomingMessage">Log Incoming message .</param>
         public UpdateResponse<Application> Update(
             string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
-            string subaccount = null)
+            string subaccount = null, bool? logIncomingMessage = null)
         {
             var updateResponse = ((ApplicationInterface) Interface).Update(
                 AppId, answerUrl, answerMethod, hangupUrl, hangupMethod,
                 fallbackAnswerUrl, fallbackMethod, messageUrl, messageMethod,
-                defaultNumberApp, defaultEndpointApp, subaccount);
+                defaultNumberApp, defaultEndpointApp, subaccount, logIncomingMessage);
 
             if (answerUrl != null) AnswerUrl = answerUrl;
             if (answerMethod != null) AnswerMethod = answerMethod;
@@ -80,6 +82,7 @@ namespace Plivo.Resource.Application
             if (defaultNumberApp != null) DefaultApp = defaultNumberApp;
             if (defaultEndpointApp != null) DefaultEndpointApp = defaultEndpointApp;
             if (subaccount != null) SubAccount = subaccount;
+            if (logIncomingMessage != null) LogIncomingMessage = logIncomingMessage;
 
             return updateResponse;
         }
@@ -106,7 +109,8 @@ namespace Plivo.Resource.Application
                    "PublicUri: " + PublicUri + "\n" +
                    "ResourceUri: " + ResourceUri + "\n" +
                    "SipUri: " + SipUri + "\n" +
-                   "SubAccount: " + SubAccount + "\n";
+                   "SubAccount: " + SubAccount + "\n" +
+                   "LogIncomingMessage: " + LogIncomingMessage + "\n";
         }
     }
 }
