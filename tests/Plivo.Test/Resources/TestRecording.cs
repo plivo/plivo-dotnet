@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Recording;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestRecording : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestRecordingList()
         {
             var data = new Dictionary<string, object>()
@@ -26,13 +25,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/recordingListResponse.json"
+                    SOURCE_DIR + @"../Mocks/recordingListResponse.json"
                 );
             Setup<ListResponse<Recording>>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Recording.List(limit: 10)));
@@ -40,7 +39,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestRecordingGet()
         {
             var id = "abcabcabc";
@@ -52,13 +51,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/recordingGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/recordingGetResponse.json"
                 );
             Setup<Recording>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Recording.Get(id)));
@@ -66,7 +65,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestRecordingDelete()
         {
             var id = "abcabcabc";

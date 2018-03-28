@@ -1,17 +1,16 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Call;
 using Plivo.Resource.Conference;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestConference : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestConferenceList()
         {
             var request =
@@ -22,11 +21,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceListResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceListResponse.json"
                 );
             Setup<ConferenceListResponse>(200, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.List()
@@ -36,7 +35,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceGet()
         {
             var name = "my conference";
@@ -48,11 +47,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceGetResponse.json"
                 );
             Setup<Conference>(200, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.Get(name)
@@ -62,7 +61,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceDelete()
         {
             var name = "my conference";
@@ -74,11 +73,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceDeleteResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceDeleteResponse.json"
                 );
             Setup<Conference>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.Delete(name)
@@ -88,7 +87,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceDeleteAll()
         {
             // var name = "my conference";
@@ -100,11 +99,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceDeleteAllResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceDeleteAllResponse.json"
                 );
             Setup<Conference>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.DeleteAll()
@@ -114,7 +113,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberDelete()
         {
             var name = "my conference";
@@ -127,11 +126,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberDeleteResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberDeleteResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.HangupMember(name, memberId)
@@ -141,7 +140,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberKick()
         {
             var name = "my conference";
@@ -154,11 +153,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberKickCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberKickCreateResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.KickMember(name, memberId)
@@ -168,7 +167,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberMute()
         {
             var name = "my conference";
@@ -181,11 +180,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberMuteCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberMuteCreateResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.MuteMember(name, new List<string>() {"11"})
@@ -195,7 +194,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberUnMute()
         {
             var name = "my conference";
@@ -214,7 +213,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberPlay()
         {
             var name = "my conference";
@@ -234,11 +233,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberPlayCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberPlayCreateResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.PlayMember(name, new List<string>() {"11"}, "http://url.url")
@@ -248,7 +247,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberStopPlaying()
         {
             var name = "my conference";
@@ -262,11 +261,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberPlayDeleteResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberPlayDeleteResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.StopPlayMember(name, new List<string>() {"11"})
@@ -276,7 +275,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberSpeak()
         {
             var name = "my conference";
@@ -296,11 +295,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberSpeakCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberSpeakCreateResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.SpeakMember(name, new List<string>() {"11"}, "speak this")
@@ -310,7 +309,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberStopSpeaking()
         {
             var name = "my conference";
@@ -324,11 +323,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberSpeakCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberSpeakCreateResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.StopSpeakMember(name, new List<string>() {"11"})
@@ -338,7 +337,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberDeaf()
         {
             var name = "my conference";
@@ -352,11 +351,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceMemberDeafCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceMemberDeafCreateResponse.json"
                 );
             Setup<ConferenceMemberActionResponse>(204, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.DeafMember(name, new List<string>() {"11"})
@@ -366,7 +365,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceMemberUnDeaf()
         {
             var name = "my conference";
@@ -387,7 +386,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceRecord()
         {
             var name = "my conference";
@@ -407,11 +406,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/conferenceRecordCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/conferenceRecordCreateResponse.json"
                 );
             Setup<RecordCreateResponse<Conference>>(202, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Conference.StartRecording(name, fileFormat: "mp3")
@@ -421,7 +420,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestConferenceStopRecording()
         {
             var name = "my conference";

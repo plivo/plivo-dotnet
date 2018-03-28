@@ -1,11 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plivo", "src\Plivo\Plivo.csproj", "{EF3352B6-54D2-4731-95B5-D07D01982713}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.27520.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plivo", "src\Plivo\Plivo.csproj", "{EF3352B6-54D2-4731-95B5-D07D01982713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plivo.Test", "tests\Plivo.Test\Plivo.Test.csproj", "{EDFC32D7-13A7-47F2-9E3D-8250D60B6408}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plivo.NetCore.Test", "tests_netcore\Plivo.NetCore.Test\Plivo.NetCore.Test.csproj", "{72465D60-EA64-47A8-8F6E-E44E2C99BD60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plivo.Test", "tests\Plivo.Test\Plivo.Test.csproj", "{B8A52586-250B-4301-B9E2-7631B4DEE45E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,14 +16,16 @@ Global
 		{EF3352B6-54D2-4731-95B5-D07D01982713}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF3352B6-54D2-4731-95B5-D07D01982713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF3352B6-54D2-4731-95B5-D07D01982713}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EDFC32D7-13A7-47F2-9E3D-8250D60B6408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EDFC32D7-13A7-47F2-9E3D-8250D60B6408}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EDFC32D7-13A7-47F2-9E3D-8250D60B6408}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EDFC32D7-13A7-47F2-9E3D-8250D60B6408}.Release|Any CPU.Build.0 = Release|Any CPU
-		{72465D60-EA64-47A8-8F6E-E44E2C99BD60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{72465D60-EA64-47A8-8F6E-E44E2C99BD60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{72465D60-EA64-47A8-8F6E-E44E2C99BD60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{72465D60-EA64-47A8-8F6E-E44E2C99BD60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8A52586-250B-4301-B9E2-7631B4DEE45E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8A52586-250B-4301-B9E2-7631B4DEE45E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8A52586-250B-4301-B9E2-7631B4DEE45E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8A52586-250B-4301-B9E2-7631B4DEE45E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9357C9EF-88DD-4221-9801-0B6BA94E2569}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		description = A .NET SDK to make voice calls & send SMS using Plivo and to generate Plivo XML

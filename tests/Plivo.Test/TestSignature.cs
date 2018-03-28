@@ -1,12 +1,10 @@
-﻿using System;
-using NUnit.Framework;
+﻿using Xunit;
 
-namespace Plivo.Test
+namespace Plivo.NetCore.Test
 {
-    [TestFixture]
     public class TestSignature
     {
-        [Test]
+        [Fact]
         public void TestSignatureV2Pass()
         {
             string url = "https://answer.url";
@@ -17,7 +15,7 @@ namespace Plivo.Test
             Assert.True(Utilities.XPlivoSignatureV2.VerifySignature(url, nonce, signature, authToken));
         }
 
-        [Test]
+        [Fact]
         public void TestSignatureV2Fail()
         {
             string url = "https://answer.url";

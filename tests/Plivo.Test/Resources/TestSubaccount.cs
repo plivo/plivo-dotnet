@@ -1,17 +1,16 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Account;
 using Plivo.Resource.Subaccount;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestSubaccount : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestSubaccountCreate()
         {
             var data = new Dictionary<string, object>()
@@ -29,20 +28,20 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/subaccountCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/subaccountCreateResponse.json"
                 );
             Setup<SubaccountCreateResponse>(
                 201,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Subaccount.Create("naam", true)));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAccountGet()
         {
             var id = "abcabcabc";
@@ -54,17 +53,17 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/subaccountGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/subaccountGetResponse.json"
                 );
             Setup<Account>(
                 200,
                 response
             );
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Subaccount.Get(id)));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Subaccount.Get(id)));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAccountList()
         {
             var request =
@@ -75,17 +74,17 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/subaccountListResponse.json"
+                    SOURCE_DIR + @"../Mocks/subaccountListResponse.json"
                 );
             Setup<Account>(
                 200,
                 response
             );
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Subaccount.List()));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Subaccount.List()));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAccountModifyResponse()
         {
             var id = "abcabcabc";
@@ -103,18 +102,18 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/subaccountModifyResponse.json"
+                    SOURCE_DIR + @"../Mocks/subaccountModifyResponse.json"
                 );
             Setup<UpdateResponse<Account>>(
                 202,
                 response
             );
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Subaccount.Update(id, "naam", true)));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Subaccount.Update(id, "naam", true)));
 
             CompareRequests(request, ((TestClient) Api.Client._client).Request);
         }
 
-        [Test]
+        [Fact]
         public void TestSubaccountDelete()
         {
             var id = "abcabcabc";
@@ -129,7 +128,7 @@ namespace Plivo.Test.Resources
                 204,
                 response
             );
-            Assert.IsNull(Api.Subaccount.Delete(id));
+            Assert.Null(Api.Subaccount.Delete(id));
             AssertRequest(request);
         }
     }

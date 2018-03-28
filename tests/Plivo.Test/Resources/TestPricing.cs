@@ -1,15 +1,14 @@
-using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource.Pricing;
+using System.Collections.Generic;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestPricing : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestPricingGet()
         {
             var data = new Dictionary<string, object>()
@@ -24,13 +23,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/pricingGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/pricingGetResponse.json"
                 );
             Setup<Pricing>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Pricing.Get("US")));

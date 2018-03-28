@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Message;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestMessage : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestMessageCreate()
         {
             var data = new Dictionary<string, object>()
@@ -29,13 +28,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/messageSendResponse.json"
+                    SOURCE_DIR + @"../Mocks/messageSendResponse.json"
                 );
             Setup<MessageCreateResponse>(
                 201,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Message.Create("+919999999999", new List<string>() {"+919898989898", "+919090909090"},
@@ -43,7 +42,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestMessageList()
         {
             var data = new Dictionary<string, object>()
@@ -59,13 +58,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/messageListResponse.json"
+                    SOURCE_DIR + @"../Mocks/messageListResponse.json"
                 );
             Setup<ListResponse<Message>>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Message.List(limit: 10)));
@@ -73,7 +72,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestMessageGet()
         {
             var id = "abcabcabc";
@@ -85,13 +84,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/messageGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/messageGetResponse.json"
                 );
             Setup<Message>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Message.Get(id)));

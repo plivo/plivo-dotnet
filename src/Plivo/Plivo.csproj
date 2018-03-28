@@ -9,19 +9,24 @@
     <Title>Plivo</Title>
     <Description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Description>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
+
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
+    <!--<PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />-->
   </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Resource\Address\" />
     <Folder Include="Resource\Identity\" />
   </ItemGroup>
+
 </Project>
