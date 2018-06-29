@@ -71,12 +71,13 @@ namespace Plivo.Resource.Message
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="message_state">MessageState.</param>
         public ListResponse<Message> List(
-            string subaccount = null, uint? limit = null, uint? offset = null)
+            string subaccount = null, uint? limit = null, uint? offset = null, string message_state = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatoryParams, new {subaccount, limit, offset});
+                mandatoryParams, new {subaccount, limit, offset, message_state});
             var resources = ListResources<ListResponse<Message>>(data);
 
             resources.Objects.ForEach(
