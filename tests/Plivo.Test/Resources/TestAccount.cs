@@ -1,16 +1,19 @@
+using System;
 using System.Collections.Generic;
-using NUnit.Framework;
+using System.Linq;
+using Newtonsoft.Json;
+using Xunit;
+using Plivo.Authentication;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Account;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestAccount : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestAccountDetails()
         {
             var request =
@@ -21,17 +24,17 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/accountGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/accountGetResponse.json"
                 );
             Setup<Account>(
                 200,
                 response
             );
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Account.Get()));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Account.Get()));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAccountModifyResponse()
         {
             var data = new Dictionary<string, object>()
@@ -48,13 +51,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/accountModifyResponse.json"
+                    SOURCE_DIR + @"../Mocks/accountModifyResponse.json"
                 );
             Setup<UpdateResponse<Account>>(
                 202,
                 response
             );
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Account.Update("name name name", "delhi")));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Account.Update("name name name", "delhi")));
 
             CompareRequests(request, ((TestClient) Api.Client._client).Request);
         }

@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.RentedNumber;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestNumber : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestRentedNumberList()
         {
             var data = new Dictionary<string, object>()
@@ -26,13 +25,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/numberListResponse.json"
+                    SOURCE_DIR + @"../Mocks/numberListResponse.json"
                 );
             Setup<ListResponse<RentedNumber>>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Number.List(limit: 10)));
@@ -40,7 +39,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestRentedNumberGet()
         {
             var id = "abcabcabc";
@@ -52,13 +51,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/numberGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/numberGetResponse.json"
                 );
             Setup<RentedNumber>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Number.Get(id)));
@@ -66,7 +65,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestRentedNumberAdd()
         {
             var data = new Dictionary<string, object>()
@@ -85,13 +84,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/numberCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/numberCreateResponse.json"
                 );
             Setup<UpdateResponse<RentedNumber>>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Number.AddNumber(new List<string>() {"+919999999999", "+919898989898"}, "carry me",
@@ -100,7 +99,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestNumberUpdate()
         {
             var id = "abcabcabc";
@@ -118,20 +117,20 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/endpointUpdateResponse.json"
+                    SOURCE_DIR + @"../Mocks/endpointUpdateResponse.json"
                 );
             Setup<UpdateResponse<RentedNumber>>(
                 202,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Number.Update(id, alias: "alalaalalala")));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestNumberDelete()
         {
             var id = "abcabcabc";

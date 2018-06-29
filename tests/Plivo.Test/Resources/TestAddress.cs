@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Address;
 using Plivo.Utilities;
 using System;
-using Plivo.Test;
+using Xunit.Sdk;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestAddress : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestAddressCreate()
         {
             var data = new Dictionary<string, object>()
@@ -47,7 +46,7 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/addressCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/addressCreateResponse.json"
                 );
 
             Setup<AddressCreateResponse>(
@@ -55,15 +54,15 @@ namespace Plivo.Test.Resources
                 response
             );
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Address.Create("US", "MR", "Bruce", "Wayne", "124", "Gotham City", "New York", "New York",
-                                       "50607", "others", fileToUpload: fileToUpload)));
+                        "50607", "others", fileToUpload: fileToUpload)));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAddressGet()
         {
             var id = "20220771838737";
@@ -74,18 +73,18 @@ namespace Plivo.Test.Resources
                     "");
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/addressGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/addressGetResponse.json"
                 );
             Setup<Address>(
                 200,
                 response
             );
 
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Address.Get(id)));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Address.Get(id)));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAddressList()
         {
             var request =
@@ -96,18 +95,18 @@ namespace Plivo.Test.Resources
                 );
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/addressListResponse.json"
+                    SOURCE_DIR + @"../Mocks/addressListResponse.json"
                 );
             Setup<Address>(
                 200,
                 response
             );
 
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Address.List()));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Address.List()));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestAddressDelete()
         {
             var id = "20220771838737";
@@ -124,8 +123,7 @@ namespace Plivo.Test.Resources
                 response
             );
 
-            Assert.IsNull(Api.Address.Delete(id));
-
+            Assert.Null(Api.Address.Delete(id));
             AssertRequest(request);
         }
     }

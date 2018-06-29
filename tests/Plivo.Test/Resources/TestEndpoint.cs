@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Endpoint;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestEndpoint : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestEndpointCreate()
         {
             var data = new Dictionary<string, object>()
@@ -29,20 +28,20 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/endpointCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/endpointCreateResponse.json"
                 );
             Setup<EndpointCreateResponse>(
                 201,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Create("user", "pass", "alias")));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestEndpointList()
         {
             var data = new Dictionary<string, object>()
@@ -58,13 +57,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/endpointListResponse.json"
+                    SOURCE_DIR + @"../Mocks/endpointListResponse.json"
                 );
             Setup<ListResponse<Endpoint>>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.List(limit: 10)));
@@ -72,7 +71,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestEndpointGet()
         {
             var id = "abcabcabc";
@@ -84,13 +83,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/endpointGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/endpointGetResponse.json"
                 );
             Setup<Endpoint>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Get(id)));
@@ -98,7 +97,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestEndpointUpdate()
         {
             var id = "abcabcabc";
@@ -116,20 +115,20 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/endpointUpdateResponse.json"
+                    SOURCE_DIR + @"../Mocks/endpointUpdateResponse.json"
                 );
             Setup<UpdateResponse<Endpoint>>(
                 202,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Endpoint.Update(id, alias: "alalaalalala")));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestEndpointDelete()
         {
             var id = "abcabcabc";
@@ -144,7 +143,7 @@ namespace Plivo.Test.Resources
                 204,
                 response
             );
-            Assert.IsNull(Api.Endpoint.Delete(id));
+            Assert.Null(Api.Endpoint.Delete(id));
             AssertRequest(request);
         }
     }

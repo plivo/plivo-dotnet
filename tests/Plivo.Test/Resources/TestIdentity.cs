@@ -1,17 +1,16 @@
 ﻿using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Identity;
 using Plivo.Utilities;
 using System;
-using Plivo.Test;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
     public class TestIdentity : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestIdentityCreate()
         {
             var data = new Dictionary<string, object>()
@@ -52,7 +51,7 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/identityCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/identityCreateResponse.json"
                 );
 
             Setup<IdentityCreateResponse>(
@@ -60,7 +59,7 @@ namespace Plivo.Test.Resources
                 response
             );
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Identity.Create(
@@ -72,7 +71,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestIdentityGet()
         {
             var id = "24856289978366";
@@ -84,18 +83,18 @@ namespace Plivo.Test.Resources
                 );
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/identityGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/identityGetResponse.json"
                 );
             Setup<Identity>(
                 200,
                 response
             );
 
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Identity.Get(id)));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Identity.Get(id)));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestIdentityList()
         {
             var request =
@@ -106,18 +105,18 @@ namespace Plivo.Test.Resources
                 );
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/identityListResponse.json"
+                    SOURCE_DIR + @"../Mocks/identityListResponse.json"
                 );
             Setup<Identity>(
                 200,
                 response
             );
 
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.Identity.List()));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Identity.List()));
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestIdentityDelete()
         {
             var id = "24856289978366";
@@ -134,7 +133,7 @@ namespace Plivo.Test.Resources
                 response
             );
 
-            Assert.IsNull(Api.Identity.Delete(id));
+            Assert.Null(Api.Identity.Delete(id));
             AssertRequest(request);
         }
     }

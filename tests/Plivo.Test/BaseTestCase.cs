@@ -1,21 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Utilities;
 
-namespace Plivo.Test
+namespace Plivo.NetCore.Test
 {
     public class BaseTestCase
     {
         public PlivoApi Api;
         public TestClient TestClient;
 
-        public string SOURCE_DIR = AppDomain.CurrentDomain.SetupInformation.ApplicationBase + @"/../../";
+        public string SOURCE_DIR = AppContext.BaseDirectory + @"/../../";
 
         public BaseTestCase()
         {
@@ -37,20 +35,21 @@ namespace Plivo.Test
 
         public void CompareRequests(PlivoRequest a, PlivoRequest b)
         {
-            Assert.AreEqual(a.Method, b.Method);
-            Assert.AreEqual(a.Uri, b.Uri);
+            Assert.Equal(a.Method, b.Method);
+            Assert.Equal(a.Uri, b.Uri);
 
             // Console.WriteLine(string.Join(",", a.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
             // Console.WriteLine(string.Join(",", b.Data.Select(kvp => kvp.Key + ":" + kvp.Value).ToList()));
             //
             // Console.WriteLine(JsonConvert.SerializeObject(a.Data));
             // Console.WriteLine(JsonConvert.SerializeObject(b.Data));
-            Assert.IsEmpty(
+
+            Assert.Empty(
                 ComparisonUtilities.CompareRawObjects(
                     JObject.Parse(JsonConvert.SerializeObject(a.Data)),
                     JObject.Parse(JsonConvert.SerializeObject(b.Data))).ToString()
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.CompareRawObjects(
                     JObject.Parse(JsonConvert.SerializeObject(b.Data)),
                     JObject.Parse(JsonConvert.SerializeObject(a.Data))).ToString()

@@ -1,16 +1,15 @@
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.PhoneNumber;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestPhoneNumber : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestPhoneNumberList()
         {
             var data = new Dictionary<string, object>()
@@ -27,13 +26,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/phoneNumberListResponse.json"
+                    SOURCE_DIR + @"../Mocks/phoneNumberListResponse.json"
                 );
             Setup<ListResponse<PhoneNumber>>(
                 200,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.PhoneNumber.List("IN", limit: 12)));
@@ -41,7 +40,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestPhoneNumberBuy()
         {
             var id = "abcabcabc";
@@ -58,13 +57,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/phoneNumberCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/phoneNumberCreateResponse.json"
                 );
             Setup<PhoneNumberBuyResponse>(
                 201,
                 response
             );
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.PhoneNumber.Buy(id, "123")));

@@ -1,38 +1,37 @@
-using NUnit.Framework;
+using Xunit;
 using Plivo.Exception;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestExceptions : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestThrowsPlivoValidationException()
         {
             var ex =
                 Assert.Throws<PlivoValidationException>(
                     () => Api.Application.Create(
                         ""));
-            Assert.That(ex.Message, Is.EqualTo("appName is mandatory, can not be null or empty"));
+            Assert.Equal("appName is mandatory, can not be null or empty", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void TestThrowsPlivoException()
         {
             var ex =
                 Assert.Throws<PlivoValidationException>(
                     () => Api.Application.Create(
                         "", "http://www.com", null));
-            Assert.That(ex.Message, Is.EqualTo("appName is mandatory, can not be null or empty"));
+            Assert.Equal("appName is mandatory, can not be null or empty", ex.Message);
         }
 
-        [Test]
+        [Fact]
         public void TestLimitException()
         {
             var ex =
                 Assert.Throws<PlivoValidationException>(
                     () => Api.Call.List(limit: 112));
-            Assert.That(ex.Message, Is.EqualTo("limit:112 is out of range [0,20]"));
+            Assert.Equal("limit:112 is out of range [0,20]", ex.Message);
         }
     }
 }

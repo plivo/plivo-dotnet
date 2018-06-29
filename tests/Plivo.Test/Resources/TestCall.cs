@@ -1,20 +1,16 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
-using NUnit.Framework;
-using Plivo.Client;
+using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Call;
 using Plivo.Utilities;
 
-namespace Plivo.Test.Resources
+namespace Plivo.NetCore.Test.Resources
 {
-    [TestFixture]
     public class TestCall : BaseTestCase
     {
-        [Test]
+        [Fact]
         public void TestCallCreate()
         {
             var data = new Dictionary<string, object>()
@@ -34,11 +30,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/callCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/callCreateResponse.json"
                 );
             Setup<CallCreateResponse>(201, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.Create(
@@ -57,7 +53,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallDelete()
         {
             var id = "abcabcabc";
@@ -74,12 +70,12 @@ namespace Plivo.Test.Resources
             var response = "";
             Setup<DeleteResponse<Call>>(204, response);
 
-            Assert.IsNull(Api.Call.Delete("abcabcabc"));
+            Assert.Null(Api.Call.Delete("abcabcabc"));
 
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallList()
         {
             var request =
@@ -94,11 +90,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/callListResponse.json"
+                    SOURCE_DIR + @"../Mocks/callListResponse.json"
                 );
             Setup<ListResponse<Call>>(200, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07"))
@@ -108,7 +104,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallGet()
         {
             var id = "abcabcabc";
@@ -120,13 +116,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/callGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/callGetResponse.json"
                 );
-            Assert.IsNotEmpty(response);
+            Assert.NotEmpty(response);
 
             Setup<Call>(200, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.Get(id)
@@ -136,7 +132,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestLiveCallList()
         {
             var request =
@@ -151,11 +147,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/liveCallListGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/liveCallListGetResponse.json"
                 );
             Setup<LiveCallListResponse>(200, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.ListLive()
@@ -165,7 +161,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestLiveCallGet()
         {
             var id = "abcabcabc";
@@ -181,13 +177,13 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/liveCallGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/liveCallGetResponse.json"
                 );
-            Assert.IsNotEmpty(response);
+            Assert.NotEmpty(response);
 
             Setup<LiveCall>(200, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.GetLive(id)
@@ -197,7 +193,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallTranfer()
         {
             var id = "abcabcabc";
@@ -217,11 +213,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/callUpdateResponse.json"
+                    SOURCE_DIR + @"../Mocks/callUpdateResponse.json"
                 );
             Setup<UpdateResponse<Call>>(202, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.Transfer(id, "aleg", "http://asdsa.asdsa")
@@ -231,7 +227,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallRecord()
         {
             var id = "abcabcabc";
@@ -253,11 +249,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/liveCallRecordCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/liveCallRecordCreateResponse.json"
                 );
             Setup<UpdateResponse<Call>>(202, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.StartRecording(id, 120, "wav", callbackMethod: "http://a.a", callbackUrl: "http://s.s")
@@ -267,7 +263,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallSpeak()
         {
             var id = "abcabcabc";
@@ -287,11 +283,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/liveCallSpeakCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/liveCallSpeakCreateResponse.json"
                 );
             Setup<UpdateResponse<Call>>(202, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.StartSpeaking(id, "120", voice: "WOMAN")
@@ -301,7 +297,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallPlay()
         {
             var id = "abcabcabc";
@@ -320,11 +316,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/liveCallPlayCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/liveCallPlayCreateResponse.json"
                 );
             Setup<UpdateResponse<Call>>(202, response);
 
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.StartPlaying(id, new List<string>() {"http://wewewe.ewewew", "http:/second.url"})
@@ -334,7 +330,7 @@ namespace Plivo.Test.Resources
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallStopRecording()
         {
             var id = "abcabcabc";
@@ -354,12 +350,12 @@ namespace Plivo.Test.Resources
             var response = "";
             Setup<DeleteResponse<Call>>(204, response);
 
-            Assert.IsNull(Api.Call.StopRecording(id, "http://wewewe.ewewew"));
+            Assert.Null(Api.Call.StopRecording(id, "http://wewewe.ewewew"));
 
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallStopPlaying()
         {
             var id = "abcabcabc";
@@ -376,12 +372,12 @@ namespace Plivo.Test.Resources
             var response = "";
             Setup<DeleteResponse<Call>>(204, response);
 
-            Assert.IsNull(Api.Call.StopPlaying(id));
+            Assert.Null(Api.Call.StopPlaying(id));
 
             AssertRequest(request);
         }
 
-        [Test]
+        [Fact]
         public void TestCallStopSpeaking()
         {
             var id = "abcabcabc";
@@ -397,13 +393,11 @@ namespace Plivo.Test.Resources
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/liveCallSpeakDeleteResponse.json"
+                    SOURCE_DIR + @"../Mocks/liveCallSpeakDeleteResponse.json"
                 );
             Setup<DeleteResponse<Call>>(204, response);
 
-            // Console.WriteLine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));
-
-            Assert.IsEmpty(
+            Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.StopSpeaking(id)));

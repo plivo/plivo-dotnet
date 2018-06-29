@@ -1,14 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Cache;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Plivo.Client;
 using Plivo.Http;
 using Plivo.Utilities;
 
-namespace Plivo.Test
+namespace Plivo.NetCore.Test
 {
     public class TestClient : IHttpClient
     {
