@@ -98,6 +98,9 @@ namespace Plivo.Test.Resources
                 );
             Setup<ListResponse<Call>>(200, response);
 
+            Console.Write("Response is " + response);
+            Console.WriteLine("API Resp is " + Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07")));
+
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
