@@ -89,7 +89,7 @@ namespace Plivo.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"end_time__gt", "2017-06-07 00:00[:00[.000000]]"}
+                        {"end_time__gt", "2017-06-07 00:00:00.000000"}
                     });
 
             var response =
