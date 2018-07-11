@@ -98,23 +98,14 @@ namespace Plivo.Test.Resources
                 );
             Setup<ListResponse<Call>>(200, response);
 
-            Console.Write("Response is " + response);
-            Console.WriteLine("API Resp is " + Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07")));
+                
 
-            try
-            {
-                Assert.IsEmpty(
+            Assert.IsEmpty(
                     ComparisonUtilities.Compare(
                         response,
                         Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07"))
                     )
                 );
-            }
-            catch(System.Exception e)
-            {
-                throw new System.Exception(e.ToString());
-            }
-
 
             AssertRequest(request);
         }
