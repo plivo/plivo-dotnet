@@ -130,17 +130,17 @@ namespace Plivo.Resource.Call
             DateTime? endTime_Lt = null, DateTime? endTime_Lte = null,
             uint? limit = null, uint? offset = null)
         {
-            var _billDuration = billDuration?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _billDuration_Gt = billDuration_Gt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _billDuration_Gte = billDuration_Gte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _billDuration_Lt = billDuration_Lt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _billDuration_Lte = billDuration_Lte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
+            var _billDuration = billDuration?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _billDuration_Gt = billDuration_Gt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _billDuration_Gte = billDuration_Gte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _billDuration_Lt = billDuration_Lt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _billDuration_Lte = billDuration_Lte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
 
-            var _endTime = endTime?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _endTime_Gt = endTime_Gt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _endTime_Gte = endTime_Gte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _endTime_Lt = endTime_Lt?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
-            var _endTime_Lte = endTime_Lte?.ToString("yyyy-MM-dd HH':'mm'[:'ss'[.'ffffff']]'") ?? null;
+            var _endTime = endTime?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _endTime_Gt = endTime_Gt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _endTime_Gte = endTime_Gte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _endTime_Lt = endTime_Lt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
+            var _endTime_Lte = endTime_Lte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
 
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
