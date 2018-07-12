@@ -89,7 +89,7 @@ namespace Plivo.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"end_time__gt", "2017-06-07 00:00[:00[.000000]]"}
+                        {"end_time__gt", "2017-06-07 00:00:00.000000"}
                     });
 
             var response =
@@ -98,12 +98,14 @@ namespace Plivo.Test.Resources
                 );
             Setup<ListResponse<Call>>(200, response);
 
+                
+
             Assert.IsEmpty(
-                ComparisonUtilities.Compare(
-                    response,
-                    Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07"))
-                )
-            );
+                    ComparisonUtilities.Compare(
+                        response,
+                        Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07"))
+                    )
+                );
 
             AssertRequest(request);
         }

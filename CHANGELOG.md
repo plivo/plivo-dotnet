@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.1.1](https://github.com/plivo/plivo-dotnet/tree/v4.1.1) (2018-06-29)
+- Added state parameter to message list api.
+- Fixed deletion of rented number.
+
 ## [v4.1.0](https://github.com/plivo/plivo-dotnet/tree/v4.1.0) (2018-02-16)
 - Added Address and Identity resources.
 - Fixes #50 (NullReferenceException)

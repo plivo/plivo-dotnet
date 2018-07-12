@@ -137,9 +137,9 @@ namespace Plivo.Resource.RentedNumber
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="number">Number.</param>
-        public void Delete(string number)
+        public DeleteResponse<RentedNumber> Delete(string number)
         {
-            DeleteResource<object>(number);
+            return DeleteResource<DeleteResponse<RentedNumber>>(number);
         }
     }
 }
