@@ -164,8 +164,9 @@ namespace Plivo.Client
             var responseContent = response.Content.ReadAsStringAsync().Result;
 
             // create Plivo response object along with the deserialized object
-            PlivoResponse<T> plivoResponse =
-                new PlivoResponse<T>(
+            PlivoResponse<T> plivoResponse;
+            try {
+                plivoResponse = new PlivoResponse<T>(
                     (uint) response.StatusCode.GetHashCode(),
                     response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),
                     responseContent,
@@ -173,6 +174,19 @@ namespace Plivo.Client
                         ? JsonConvert.DeserializeObject<T>(responseContent, _jsonSettings)
                         : new T(),
                     new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
+            }
+            catch(Newtonsoft.Json.JsonReaderException e){
+                plivoResponse = new PlivoResponse<T>(
+                    (uint) response.StatusCode.GetHashCode(),
+                    response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),
+                    responseContent,
+                    responseContent != string.Empty
+                        ? JsonConvert.DeserializeObject<T>(responseContent)
+                        : new T(),
+                    new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
+            }
+            
+                
 
             return plivoResponse;
         }

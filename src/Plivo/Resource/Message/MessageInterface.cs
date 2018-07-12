@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -72,12 +73,47 @@ namespace Plivo.Resource.Message
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
         /// <param name="message_state">MessageState.</param>
+        /// <param name="message_direction">MessageDirection.</param>
+        /// <param name="message_time__gt">MessageTimeGT.</param>
+        /// <param name="message_time__gte">MessageTimeGTE.</param>
+        /// <param name="message_time__lt">MessageTimeLT.</param>
+        /// <param name="message_time__lte">MessageTimeLTE.</param>
+        /// <param name="message_time">MessageTime.</param>
+        /// <param name="error_code">ErrorCode.</param>
         public ListResponse<Message> List(
-            string subaccount = null, uint? limit = null, uint? offset = null, string message_state = null)
+            string subaccount = null, 
+            uint? limit = null, 
+            uint? offset = null, 
+            string message_state = null,
+            string message_direction = null,
+            DateTime? message_time__gt = null,
+            DateTime? message_time__gte = null,
+            DateTime? message_time__lt = null,
+            DateTime? message_time__lte = null,
+            DateTime? message_time = null,
+            uint? error_code = null
+            )
         {
+            var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time__gte = message_time__gte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time__lt = message_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time__lte = message_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time = message_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatoryParams, new {subaccount, limit, offset, message_state});
+                mandatoryParams, new {
+                    subaccount, 
+                    limit, 
+                    offset, 
+                    message_state, 
+                    message_direction, 
+                    _message_time__gt, 
+                    _message_time__gte, 
+                    _message_time__lt, 
+                    _message_time__lte, 
+                    _message_time, 
+                    error_code
+                });
             var resources = ListResources<ListResponse<Message>>(data);
 
             resources.Objects.ForEach(
