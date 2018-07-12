@@ -175,7 +175,7 @@ namespace Plivo.Client
                         : new T(),
                     new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
             }
-            catch(Newtonsoft.Json.JsonReaderException e){
+            catch(Newtonsoft.Json.JsonReaderException){
                 plivoResponse = new PlivoResponse<T>(
                     (uint) response.StatusCode.GetHashCode(),
                     response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),

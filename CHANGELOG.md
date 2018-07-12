@@ -1,8 +1,10 @@
 # Change Log
 
-## [v4.1.1](https://github.com/plivo/plivo-dotnet/tree/v4.1.1) (2018-06-29)
+## [v4.1.1](https://github.com/plivo/plivo-dotnet/tree/v4.1.1) (2018-07-12)
 - Added state parameter to message list api.
 - Fixed deletion of rented number.
+- Conference member mute response fix.
+- Removed the optional [ & ] while formatting the date.
 
 ## [v4.1.0](https://github.com/plivo/plivo-dotnet/tree/v4.1.0) (2018-02-16)
 - Added Address and Identity resources.
