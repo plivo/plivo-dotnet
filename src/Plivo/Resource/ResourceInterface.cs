@@ -5,6 +5,7 @@ using System.Reflection;
 using Plivo.Client;
 using Plivo.Exception;
 using System.Diagnostics;
+using System.Text;
 
 namespace Plivo.Resource
 {
@@ -137,6 +138,19 @@ namespace Plivo.Resource
         public static List<string> GetMethodParameterProperties(ParameterInfo[] parameterInfos)
         {
             return (from pi in parameterInfos where !pi.IsOptional select pi.Name).ToList();
+        }
+
+        public void Mandatory(params Tuple<string,string>[] parameters)
+        {
+            var er = new StringBuilder();
+            foreach (var parameter in parameters)
+            {
+                if (string.IsNullOrEmpty(parameter.Item2))
+                {
+                    er.AppendFormat("{0} is mandatory, can not be null or empty", parameter.Item1);
+                }
+            }
+            throw new PlivoValidationException(er.ToString());
         }
     }
 }
