@@ -140,7 +140,7 @@ namespace Plivo.Resource
             return (from pi in parameterInfos where !pi.IsOptional select pi.Name).ToList();
         }
 
-        public void Mandatory(params Tuple<string,string>[] parameters)
+        protected void Mandatory(params Tuple<string,string>[] parameters)
         {
             var er = new StringBuilder();
             foreach (var parameter in parameters)

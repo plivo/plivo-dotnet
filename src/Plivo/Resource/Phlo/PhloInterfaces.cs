@@ -6,20 +6,20 @@ using Plivo.Client;
 namespace Plivo.Resource.Phlo
 {
     /// <summary>
-    /// 
+    ///(PHLO) Plivo High Level Objects interface 
     /// </summary>
     public class PhloInterface : ResourceInterface
     {
         /// <summary>
-        /// 
+        /// PHLO Id
         /// </summary>
         private readonly string _phloUuid;
 
         /// <summary>
-        /// 
+        /// PHLO 
         /// </summary>
-        /// <param name="client"></param>
-        /// <param name="phloUuid"></param>
+        /// <param name="HTTP client"></param>
+        /// <param name="PHLO Id"></param>
         internal PhloInterface(HttpClient client, string phloUuid) : base(client)
         {
             Mandatory(Tuple.Create("phloUuid", phloUuid));
@@ -28,38 +28,72 @@ namespace Plivo.Resource.Phlo
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call Declaration
         /// </summary>
-        /// <param name="nodeUuid"></param>
-        /// <returns></returns>
+        /// <param name="Node Id"></param>
+        /// <returns>Multi Party Call Interface</returns>
         public MultiPartyCallInterface MultiPartyCall(string nodeUuid)
         {
             Mandatory(Tuple.Create("nodeUuid", nodeUuid));
             return new MultiPartyCallInterface(Client, _phloUuid, nodeUuid);
         }
+
+        /// <summary>
+        /// Delete functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T DeleteResource<T>(string id, Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Delete functionality is not supported by PHLO api yet.");
+        }
+        /// <summary>
+        /// Get list functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T ListResources<T>(Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Get list functionality is not supported by PHLO api yet.");
+        }
+
+        /// <summary>
+        /// Get functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T GetResource<T>(string id, Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Get functionality is not supported by PHLO api yet");
+        }
     }
 
     /// <summary>
-    /// 
+    /// Multi Party Call Interface
     /// </summary>
     public class MultiPartyCallInterface : ResourceInterface
     {
         /// <summary>
-        /// 
+        /// string PHLO Id
         /// </summary>
         private readonly string _phloUuid;
 
         /// <summary>
-        /// 
+        /// string Node Id
         /// </summary>
         private readonly string _nodeUuid;
 
         /// <summary>
-        /// 
+        /// Multi Party Call Interface 
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="phloUuid"></param>
-        /// <param name="nodeUuid"></param>
+        /// <param name="PHLO Id"></param>
+        /// <param name="Node Id"></param>
         internal MultiPartyCallInterface(HttpClient client, string phloUuid, string nodeUuid) : base(client)
         {
             Mandatory(Tuple.Create("phloUuid", phloUuid),Tuple.Create("nodeUuid", nodeUuid));
@@ -71,49 +105,50 @@ namespace Plivo.Resource.Phlo
         }
 
         /// <summary>
-        /// 
+        /// Create Multi Party Call
         /// </summary>
-        /// <param name="triggeSource"></param>
-        /// <param name="to"></param>
-        /// <param name="role"></param>
-        /// <returns></returns>
-        public UpdateResponse<MultiPartyCallResponse> Call(string triggeSource, string to, string role)
+        /// <param name="Source"></param>
+        /// <param name="Number being called"></param>
+        /// <param name="role ="agent""></param>
+        /// <returns>call </returns>
+        public UpdateResponse<MultiPartyCallResponse> Call(string triggerSource, string to, string role)
         {
-             return Update("Call", triggeSource, to, role);
+             return Update("Call", triggerSource, to, role);
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call Warm Transfer
         /// </summary>
-        /// <param name="triggeSource"></param>
-        /// <param name="to"></param>
-        /// <param name="role"></param>
-        /// <returns></returns>
+        /// <param name="Source"></param>
+        /// <param name="Number being called"></param>
+        /// <param name="role ="agent""></param>
+        /// <returns>Warm Transfer</returns>
         public UpdateResponse<MultiPartyCallResponse> WarmTransfer(string triggeSource, string to, string role)
         {
             return Update("warmtransfer", triggeSource, to, role);
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call Cold Transfer
         /// </summary>
-        /// <param name="triggeSource"></param>
-        /// <param name="to"></param>
-        /// <param name="role"></param>
-        /// <returns></returns>
+        /// <param name="Source"></param>
+        /// <param name="Number being called"></param>
+        /// <param name="role ="agent""></param>
+        /// <returns>Cold Transfer</returns>
         public UpdateResponse<MultiPartyCallResponse> ColdTransfer(string triggeSource, string to, string role)
         {
            return Update("coldtransfer", triggeSource, to, role);
         }
 
         /// <summary>
-        /// 
+        ///  Multi Party Call Update can trigger any particular "action" supported 
+        ///  by API implementation (for all current/future action type    
         /// </summary>
-        /// <param name="action"></param>
-        /// <param name="triggeSource"></param>
-        /// <param name="to"></param>
+        /// <param name=string="action"></param>
+        /// <param name="Source"></param>
+        /// <param name="Number being called"></param>
         /// <param name="role"></param>
-        /// <returns></returns>
+        /// <returns>Update</returns>
         public UpdateResponse<MultiPartyCallResponse> Update(string action, string triggeSource, string to, string role)
         {
             var mandatoryParams = new List<string> { "action", "triggeSource", "to", "role" };
@@ -122,42 +157,76 @@ namespace Plivo.Resource.Phlo
         }
 
         /// <summary>
-        /// 
+        /// Member Interface
         /// </summary>
-        /// <param name="memberId"></param>
-        /// <returns></returns>
+        /// <param name="memberId">Member Id</param>
+        /// <returns>Member</returns>
         public MemberInterface Member(string memberId)
         {
             return new MemberInterface(Client, _phloUuid, _nodeUuid, memberId);
         }
+
+        /// <summary>
+        /// Delete functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T DeleteResource<T>(string id, Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Delete functionality is not supported by PHLO api yet.");
+        }
+        /// <summary>
+        /// Get list functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T ListResources<T>(Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Get list functionality is not supported by PHLO api yet.");
+        }
+
+        /// <summary>
+        /// Get functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T GetResource<T>(string id, Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Get functionality is not supported by PHLO api yet");
+        }
     }
-    
+
     /// <summary>
-    /// 
+    /// MemberInterface
     /// </summary>
     public class MemberInterface : ResourceInterface
     {
         /// <summary>
-        /// 
+        /// string PHLO Id
         /// </summary>
         private readonly string _phloUuid;
 
         /// <summary>
-        /// 
+        /// string Node Id
         /// </summary>
         private readonly string _nodeUuid;
 
         /// <summary>
-        /// 
+        /// string Member Id
         /// </summary>
         private readonly string _memberId;
 
         /// <summary>
-        /// 
+        /// Member Interface constuctor
         /// </summary>
         /// <param name="client"></param>
-        /// <param name="phloUuid"></param>
-        /// <param name="nodeUuid"></param>
+        /// <param name="PHLO Id"></param>
+        /// <param name="Node Id"></param>
         /// <param name="memberId"></param>
         internal MemberInterface(HttpClient client, string phloUuid, string nodeUuid, string memberId) : base(client)
         {
@@ -171,69 +240,104 @@ namespace Plivo.Resource.Phlo
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call AbortTransfer
         /// </summary>
-        /// <returns></returns>
+        /// <returns>AbortTransfer</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> AbortTransfer()
         {
             return Update("aborttransfer");
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call ResumeCall
         /// </summary>
-        /// <returns></returns>
+        /// <returns>ResumeCall</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> ResumeCall()
         {
             return Update("resumecall");
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call VoiceMailDrop
         /// </summary>
-        /// <returns></returns>
+        /// <returns>VoiceMailDrop</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> VoiceMailDrop()
         {
             return Update("voicemaildrop");
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call Hangup
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Hangup</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> Hangup()
         {
             return Update("hangup");
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call Hold
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Hold</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> Hold()
         {
             return Update("hold");
         }
 
         /// <summary>
-        /// 
+        /// Multi Party Call Unhold
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Unhold</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> Unhold()
         {
             return Update("unhold");
         }
 
         /// <summary>
-        /// 
+        /// ///  Multi Party Call Update can trigger any particular "action" supported 
+        ///  by API implementation (for all current/future action type    
         /// </summary>
         /// <param name="action"></param>
-        /// <returns></returns>
+        /// <returns>Update</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> Update(string action)
         {
             var mandatoryParams = new List<string> { "action" };
             var data = CreateData(mandatoryParams, new { action });
             return Client.Update<UpdateResponse<MultiPartyCallMemberResponse>>(Uri, data).Object;
+        }
+
+        /// <summary>
+        /// Delete functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T DeleteResource<T>(string id, Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Delete functionality is not supported by PHLO api yet.");
+        }
+        /// <summary>
+        /// Get list functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T ListResources<T>(Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Get list functionality is not supported by PHLO api yet.");
+        }
+
+        /// <summary>
+        /// Get functionality is not supported by PHLO api yet.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public new T GetResource<T>(string id, Dictionary<string, object> data = null) where T : new()
+        {
+            throw new NotImplementedException("Get functionality is not supported by PHLO api yet");
         }
     }
 }
