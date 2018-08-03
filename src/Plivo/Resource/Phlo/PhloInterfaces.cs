@@ -101,7 +101,7 @@ namespace Plivo.Resource.Phlo
             _phloUuid = phloUuid;
             _nodeUuid = nodeUuid;
 
-            Uri = string.Format("phlo/{0}/multipartycall/{1}", phloUuid, nodeUuid);
+            Uri = string.Format("phlo/{0}/multi_party_call/{1}", phloUuid, nodeUuid);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>call </returns>
         public UpdateResponse<MultiPartyCallResponse> Call(string triggerSource, string to, string role)
         {
-             return Update("Call", triggerSource, to, role);
+             return Update("call", triggerSource, to, role);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>Update</returns>
         public UpdateResponse<MultiPartyCallResponse> Update(string action, string triggeSource, string to, string role)
         {
-            var mandatoryParams = new List<string> { "action", "triggeSource", "to", "role" };
+            var mandatoryParams = new List<string> { "action", "trigge_source", "to", "role" };
             var data = CreateData(mandatoryParams, new { action, triggeSource, to, role });
             return Client.Update<UpdateResponse<MultiPartyCallResponse>>(Uri, data).Object;
         }
@@ -236,7 +236,7 @@ namespace Plivo.Resource.Phlo
             _nodeUuid = nodeUuid;
             _memberId = memberId;
 
-            Uri = string.Format("phlo/{0}/multipartycall/{1}/memeber/{2}", phloUuid, nodeUuid, memberId);
+            Uri = string.Format("phlo/{0}/multi_party_call/{1}/memeber/{2}", phloUuid, nodeUuid, memberId);
         }
 
         /// <summary>
