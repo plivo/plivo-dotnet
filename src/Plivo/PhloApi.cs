@@ -47,8 +47,9 @@ namespace Plivo
             string proxyPassword = null
         )
         {
-            BasicAuth = new BasicAuth(authId, authToken);
-            Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword);
+            var baseStagingUri = "https://phlo-console-staging.plivo.com"; // staging URL, just removing this will start sending request on production URL.
+            BasicAuth = new BasicAuth(authId, authToken);            
+            Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword, baseStagingUri);
         }
 
         public PhloInterface Phlo(string phloUiid)
