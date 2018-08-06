@@ -39,7 +39,5 @@ Thumbs.db
 
 # dotCover
 *.dotCover
-/.vs/Plivo/v15/Server/sqlite3/storage.ide-wal
-/.vs/Plivo/v15/Server/sqlite3/storage.ide-shm
-/.vs/Plivo/v15/Server/sqlite3/storage.ide
-/.vs/Plivo/v15/Server/sqlite3/db.lock
+# Visual Studio 2015 cache/options directory
+.vs/
