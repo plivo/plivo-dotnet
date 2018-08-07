@@ -47,7 +47,7 @@ namespace Plivo
             string proxyPassword = null
         )
         {
-            var baseStagingUri = "https://phlo-runner-service-staging.ovilp.io/v1/"; // test URL, just removing this will start sending request on production URL.
+            var baseStagingUri = "https://phlo-runner-service-staging.ovilp.io/v1"; // test URL, just removing this will start sending request on production URL.
             BasicAuth = new BasicAuth(authId, authToken);            
             Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword, baseStagingUri);
         }
