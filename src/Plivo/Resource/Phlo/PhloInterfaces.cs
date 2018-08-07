@@ -125,7 +125,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>Warm Transfer</returns>
         public UpdateResponse<MultiPartyCallResponse> WarmTransfer(string triggeSource, string to, string role)
         {
-            return Update("warmtransfer", triggeSource, to, role);
+            return Update("warm_transfer", triggeSource, to, role);
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>Cold Transfer</returns>
         public UpdateResponse<MultiPartyCallResponse> ColdTransfer(string triggeSource, string to, string role)
         {
-           return Update("coldtransfer", triggeSource, to, role);
+           return Update("cold_transfer", triggeSource, to, role);
         }
 
         /// <summary>
@@ -149,10 +149,10 @@ namespace Plivo.Resource.Phlo
         /// <param name="Number being called"></param>
         /// <param name="role"></param>
         /// <returns>Update</returns>
-        public UpdateResponse<MultiPartyCallResponse> Update(string action, string triggeSource, string to, string role)
+        public UpdateResponse<MultiPartyCallResponse> Update(string action, string triggerSource, string to, string role)
         {
-            var mandatoryParams = new List<string> { "action", "trigge_source", "to", "role" };
-            var data = CreateData(mandatoryParams, new { action, triggeSource, to, role });
+            var mandatoryParams = new List<string> { "action", "trigger_source", "to", "role" };
+            var data = CreateData(mandatoryParams, new { action, triggerSource, to, role });
             return Client.Update<UpdateResponse<MultiPartyCallResponse>>(Uri, data).Object;
         }
 
@@ -236,7 +236,7 @@ namespace Plivo.Resource.Phlo
             _nodeUuid = nodeUuid;
             _memberId = memberId;
 
-            Uri = string.Format("phlo/{0}/multi_party_call/{1}/memeber/{2}", phloUuid, nodeUuid, memberId);
+            Uri = string.Format("phlo/{0}/multi_party_call/{1}/members/{2}", phloUuid, nodeUuid, memberId);
         }
 
         /// <summary>
@@ -245,7 +245,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>AbortTransfer</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> AbortTransfer()
         {
-            return Update("aborttransfer");
+            return Update("abort_transfer");
         }
 
         /// <summary>
@@ -254,7 +254,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>ResumeCall</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> ResumeCall()
         {
-            return Update("resumecall");
+            return Update("resume_call");
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>VoiceMailDrop</returns>
         public UpdateResponse<MultiPartyCallMemberResponse> VoiceMailDrop()
         {
-            return Update("voicemaildrop");
+            return Update("voicemail_drop");
         }
 
         /// <summary>

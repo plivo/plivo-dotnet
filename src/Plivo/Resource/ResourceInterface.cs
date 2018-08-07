@@ -150,7 +150,10 @@ namespace Plivo.Resource
                     er.AppendFormat("{0} is mandatory, can not be null or empty", parameter.Item1);
                 }
             }
-            throw new PlivoValidationException(er.ToString());
+            if (!string.IsNullOrEmpty(er.ToString()))
+            {
+                throw new PlivoValidationException(er.ToString());
+            }
         }
     }
 }
