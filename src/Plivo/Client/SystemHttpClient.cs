@@ -45,7 +45,8 @@ namespace Plivo.Client
         /// </summary>
         /// <param name="basicAuth">Basic auth.</param>
         /// <param name="proxyServerSettings">Proxy settings.</param>
-        public SystemHttpClient(BasicAuth basicAuth, Dictionary<string, string> proxyServerSettings)
+        /// <param name="proxyServerSettings">Proxy settings.</param>/// <param name="proxyServerSettings">BaseUri  ability to switch in between environments prod/staging/test. Do not pass this untill required.</param>
+        public SystemHttpClient(BasicAuth basicAuth, Dictionary<string, string> proxyServerSettings, string baseUri = null)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
@@ -61,9 +62,10 @@ namespace Plivo.Client
                     )
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
-            _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" +
-                                                            Version.SdkVersion);
-            _client.BaseAddress = new Uri("https://api.plivo.com/" + Version.ApiVersion + "/");
+            _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + Version.SdkVersion);
+
+            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
+            _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _jsonSettings = new JsonSerializerSettings
             {

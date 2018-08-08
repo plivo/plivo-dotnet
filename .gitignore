@@ -39,3 +39,4 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+/.vs/Plivo/v15/Server/sqlite3
