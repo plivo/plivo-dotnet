@@ -4,19 +4,28 @@ using System.Text;
 
 namespace Plivo.Resource.Phlo
 {
-    class Phlo : Resource
+    public class Phlo : Resource
     {
-        public new string Id => PhloUuid;
-        public string PhloUuid { get; set; }
+        public Phlo() { }
+        public new string Id => PhloId;
+        public string Phlo_id { get; set; }
+        public string Name { get; set; }
+        public DateTime? CreatedOn { get; set; }
+
     }
 
-    class MultiPartyCall : Resource
+    public class MultiPartyCall : Resource
     {
-
+        public MultiPartyCall() { }
+        public string Name { get; set; }
+        public new string Id => NodeId;
+        public string NodeId { get; set; }
+        public string PhloUuid { get; set; }
+        public DateTime? CreatedOn { get; set; }
     }
     class PhloMember : Resource
     {
-
+        public PhloMember() { }
     }
 
     public class MultiPartyCallResponse : BaseResponse
