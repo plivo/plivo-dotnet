@@ -8,7 +8,7 @@ namespace Plivo.Resource.Phlo
     {
         public Phlo() { }
         public new string Id => PhloId;
-        public string Phlo_id { get; set; }
+        public string PhloId { get; set; }
         public string Name { get; set; }
         public DateTime? CreatedOn { get; set; }
 
