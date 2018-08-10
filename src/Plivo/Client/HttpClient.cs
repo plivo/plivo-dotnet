@@ -32,7 +32,7 @@ namespace Plivo.Client
         /// <param name="proxyServerSettings">BaseUri  ability to switch in between environments prod/staging/test. Do not pass this untill required.</param>
         public HttpClient(BasicAuth basicAuth,
            string proxyAddress = null, string proxyPort = null,
-           string proxyUsername = null, string proxyPassword = null, string baseUri = null)
+           string proxyUsername = null, string proxyPassword = null, PlivoApiModules apiModule = PlivoApiModules.Api)
         {
             _client = new SystemHttpClient(basicAuth,
                 new Dictionary<string, string>
@@ -42,7 +42,7 @@ namespace Plivo.Client
                     {"Address", proxyUsername},
                     {"Port", proxyPort}
                 },
-                baseUri);
+                apiModule);
             _basicAuth = basicAuth;
         }
 

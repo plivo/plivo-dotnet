@@ -44,12 +44,11 @@ namespace Plivo
             string proxyAddress = null,
             string proxyPort = null,
             string proxyUsername = null,
-            string proxyPassword = null,
-            string baseUrl = null
+            string proxyPassword = null
         )
         {
-            BasicAuth = new BasicAuth(authId, authToken);            
-            Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword, baseUrl);
+            BasicAuth = new BasicAuth(authId, authToken);
+            Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword, PlivoApiModules.Phlo);
         }
 
         public PhloInterface Phlo(string phloUiid)

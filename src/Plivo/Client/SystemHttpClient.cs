@@ -46,7 +46,7 @@ namespace Plivo.Client
         /// <param name="basicAuth">Basic auth.</param>
         /// <param name="proxyServerSettings">Proxy settings.</param>
         /// <param name="proxyServerSettings">Proxy settings.</param>/// <param name="proxyServerSettings">BaseUri  ability to switch in between environments prod/staging/test. Do not pass this untill required.</param>
-        public SystemHttpClient(BasicAuth basicAuth, Dictionary<string, string> proxyServerSettings, string baseUri = null)
+        public SystemHttpClient(BasicAuth basicAuth, Dictionary<string, string> proxyServerSettings, PlivoApiModules apiModule = PlivoApiModules.Api)
         {
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
@@ -63,8 +63,8 @@ namespace Plivo.Client
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
             _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + Version.SdkVersion);
-
-            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
+            
+            var baseServerUri = GetBaseUrl(apiModule);
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _jsonSettings = new JsonSerializerSettings
@@ -211,5 +211,23 @@ namespace Plivo.Client
 
             return builder.ToString();
         }
+
+
+        /// <summary>
+        /// Here we can manage muliple urls for different modules and different services (micro services)
+        /// </summary>
+        /// <param name="apiModule"></param>
+        /// <returns></returns>
+        private string GetBaseUrl(PlivoApiModules apiModule)
+        {
+            return apiModule == PlivoApiModules.Phlo ? "https://phlorunner.plivo.com/" + Version.ApiVersion :
+                 "https://api.plivo.com/" + Version.ApiVersion;
+        }
+    }
+
+    public enum PlivoApiModules
+    {
+        Api = 0,
+        Phlo = 1
     }
 }
