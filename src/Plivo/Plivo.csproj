@@ -8,6 +8,8 @@
     <Summary>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Summary>
     <Title>Plivo</Title>
     <Description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Description>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>sn-keys\plivo-strongname-dotnet-key.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <NoStdLib>false</NoStdLib>
