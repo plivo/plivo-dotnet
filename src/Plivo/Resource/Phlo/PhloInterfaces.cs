@@ -13,29 +13,29 @@ namespace Plivo.Resource.Phlo
         /// <summary>
         /// PHLO Id
         /// </summary>
-        private readonly string _phloUuid;
+        private readonly string _phloId;
 
         /// <summary>
         /// PHLO 
         /// </summary>
         /// <param name="HTTP client"></param>
         /// <param name="PHLO Id"></param>
-        internal PhloInterface(HttpClient client, string phloUuid) : base(client)
+        internal PhloInterface(HttpClient client, string phloId) : base(client)
         {
-            Mandatory(Tuple.Create("phloUuid", phloUuid));
-            _phloUuid = phloUuid;
-            Uri = string.Format("phlo/{0}", phloUuid);
+            Mandatory(Tuple.Create("phloId", phloId));
+            _phloId = phloId;
+            Uri = string.Format("phlo/{0}", phloId);
         }
 
         /// <summary>
         /// Multi Party Call Declaration
         /// </summary>
         /// <param name="Node Id"></param>
-        /// <returns>Multi Party Call Interface</returns>
-        public NodeInterface Node(string nodeUuid)
+        /// <returns>Node like : Multi Party Call Interface</returns>
+        public NodeInterface Node(string nodeId)
         {
-            Mandatory(Tuple.Create("nodeUuid", nodeUuid));
-            return new NodeInterface(Client, _phloUuid, nodeUuid);
+            Mandatory(Tuple.Create("nodeId", nodeId));
+            return new NodeInterface(Client, _phloId, nodeId);
         }
 
         /// <summary>
@@ -81,12 +81,12 @@ namespace Plivo.Resource.Phlo
         /// <summary>
         /// string PHLO Id
         /// </summary>
-        private readonly string _phloUuid;
+        private readonly string _phloId;
 
         /// <summary>
         /// string Node Id
         /// </summary>
-        private readonly string _nodeUuid;
+        private readonly string _nodeId;
 
         /// <summary>
         /// Multi Party Call Interface 
@@ -94,14 +94,14 @@ namespace Plivo.Resource.Phlo
         /// <param name="client"></param>
         /// <param name="PHLO Id"></param>
         /// <param name="Node Id"></param>
-        internal NodeInterface(HttpClient client, string phloUuid, string nodeUuid) : base(client)
+        internal NodeInterface(HttpClient client, string phloId, string nodeId) : base(client)
         {
-            Mandatory(Tuple.Create("phloUuid", phloUuid),Tuple.Create("nodeUuid", nodeUuid));
+            Mandatory(Tuple.Create("phloId", phloId),Tuple.Create("nodeId", nodeId));
 
-            _phloUuid = phloUuid;
-            _nodeUuid = nodeUuid;
+            _phloId = phloId;
+            _nodeId = nodeId;
 
-            Uri = string.Format("phlo/{0}/multi_party_call/{1}", phloUuid, nodeUuid);
+            Uri = string.Format("phlo/{0}/multi_party_call/{1}", phloId, nodeId);
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Plivo.Resource.Phlo
         /// <returns>Member</returns>
         public MemberInterface Member(string memberId)
         {
-            return new MemberInterface(Client, _phloUuid, _nodeUuid, memberId);
+            return new MemberInterface(Client, _phloId, _nodeId, memberId);
         }
 
         /// <summary>
@@ -209,12 +209,12 @@ namespace Plivo.Resource.Phlo
         /// <summary>
         /// string PHLO Id
         /// </summary>
-        private readonly string _phloUuid;
+        private readonly string _phloId;
 
         /// <summary>
         /// string Node Id
         /// </summary>
-        private readonly string _nodeUuid;
+        private readonly string _nodeId;
 
         /// <summary>
         /// string Member Id
@@ -228,15 +228,15 @@ namespace Plivo.Resource.Phlo
         /// <param name="PHLO Id"></param>
         /// <param name="Node Id"></param>
         /// <param name="memberId"></param>
-        internal MemberInterface(HttpClient client, string phloId, string nodeUuid, string memberId) : base(client)
+        internal MemberInterface(HttpClient client, string phloId, string nodeId, string memberId) : base(client)
         {
-            Mandatory(Tuple.Create("phloUuid", phloId), Tuple.Create("nodeUuid", nodeUuid), Tuple.Create("memberId", memberId));
+            Mandatory(Tuple.Create("phloId", phloId), Tuple.Create("nodeId", nodeId), Tuple.Create("memberId", memberId));
 
-            _phloUuid = phloId;
-            _nodeUuid = nodeUuid;
+            _phloId = phloId;
+            _nodeId = nodeId;
             _memberId = memberId;
 
-            Uri = string.Format("phlo/{0}/multi_party_call/{1}/members/{2}", phloId, nodeUuid, memberId);
+            Uri = string.Format("phlo/{0}/multi_party_call/{1}/members/{2}", phloId, nodeId, memberId);
         }
 
         /// <summary>
