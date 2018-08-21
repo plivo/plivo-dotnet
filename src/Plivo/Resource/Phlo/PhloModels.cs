@@ -6,8 +6,8 @@ namespace Plivo.Resource.Phlo
 {
     class Phlo : Resource
     {
-        public new string Id => PhloUuid;
-        public string PhloUuid { get; set; }
+        public new string Id => PhloId;
+        public string PhloId { get; set; }
     }
 
     class MultiPartyCall : Resource
