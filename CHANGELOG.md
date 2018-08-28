@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.1.2](https://github.com/plivo/plivo-dotnet/tree/v4.1.2) (2018-08-28)
+- Added log_incoming_messages parameter to Create Application api. 
+
 ## [v4.1.1](https://github.com/plivo/plivo-dotnet/tree/v4.1.1) (2018-07-12)
 - Added state parameter to message list api.
 - Fixed deletion of rented number.
