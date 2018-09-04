@@ -209,6 +209,30 @@ namespace Plivo.Resource.Call
         }
 
         /// <summary>
+        /// Gets the Queued call.
+        /// </summary>
+        /// <returns>Queued call details.</returns>
+        /// <param name="callUuid">Call UUID.</param>
+        public QueuedCall GetQueued(string callUuid)
+        {
+            var queuedCall = GetResource<QueuedCall>(
+                callUuid, new Dictionary<string, object>() {{"status", "queued"}});
+            queuedCall.Interface = this;
+            return queuedCall;
+        }
+
+        /// <summary>
+        /// Lists the queued calls.
+        /// </summary>
+        /// <returns>queued calls list</returns>
+        public QueuedCallListResponse ListQueued()
+        {
+            return
+                ListResources<QueuedCallListResponse>(
+                    new Dictionary<string, object>() {{"status", "queued"}});
+        }
+
+        /// <summary>
         /// Delete Call with the specified callUuid.
         /// </summary>
         /// <returns>The delete.</returns>
