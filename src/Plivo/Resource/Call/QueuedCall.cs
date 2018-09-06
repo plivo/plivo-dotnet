@@ -23,7 +23,7 @@ namespace Plivo.Resource.Call
                    "To: " + To + "\n" +
                    "CallerName: " + CallerName + "\n" +
                    "CallUuid: " + CallUuid + "\n" +
-                   "ApiId: " + APIId + "\n" +
+                   "ApiId: " + ApiId + "\n" +
                    "RequestUuid: " + RequestUuid + "\n";
         }
     }
