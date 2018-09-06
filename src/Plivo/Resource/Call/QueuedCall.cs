@@ -11,7 +11,6 @@ namespace Plivo.Resource.Call
         public string To { get; set; }
         public string CallerName { get; set; }
         public string CallUuid { get; set; }
-        public string ApiId { get; set; }
         public string RequestUuid { get; set; }
 
         public override string ToString()
