@@ -12,9 +12,9 @@ namespace Plivo.Resource.Call
         public string CallerName { get; set; }
         public string CallUuid { get; set; }
         public string APIId { get; set; }
-    }
+        public string RequestUuid { get; set; }
 
-    public override string ToString()
+        public override string ToString()
         {
             return base.ToString() +
                    "Direction: " + Direction + "\n" +
@@ -23,6 +23,9 @@ namespace Plivo.Resource.Call
                    "To: " + To + "\n" +
                    "CallerName: " + CallerName + "\n" +
                    "CallUuid: " + CallUuid + "\n" +
-                   "ApiId: " + APIId + "\n";
+                   "ApiId: " + APIId + "\n" +
+                   "RequestUuid: " + RequestUuid + "\n";
         }
+    }
+
 }
