@@ -32,9 +32,10 @@ namespace Plivo.Resource.Message
         /// <param name="url">URL.</param>
         /// <param name="method">Method.</param>
         /// <param name="log">Log.</param>
+        /// <param name="trackable">trackable.</param>
         public MessageCreateResponse Create(
             string src, List<string> dst, string text, string type = null,
-            string url = null, string method = null, bool? log = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null)
         {
             string _dst = string.Join("<", dst);
             var mandatoryParams = new List<string> {""};
@@ -48,7 +49,8 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    log
+                    log,
+                    trackable
                 });
             return Client.Update<MessageCreateResponse>(Uri, data).Object;
         }
