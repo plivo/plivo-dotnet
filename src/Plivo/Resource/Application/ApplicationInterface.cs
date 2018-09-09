@@ -25,7 +25,7 @@ namespace Plivo.Resource.Application
 
         /// <summary>
         /// Create Application with the specified appName, answerUrl, answerMethod, hangupUrl, hangupMethod, fallbackAnswerUrl,
-        /// fallbackMethod, messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp and subaccount.
+        /// fallbackMethod, messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp subaccount and logIncomingMessages.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="appName">App name.</param>
@@ -40,13 +40,14 @@ namespace Plivo.Resource.Application
         /// <param name="defaultNumberApp">Default number app.</param>
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
+        /// <param name="logIncomingMessages">Log incoming messages.</param>
         public ApplicationCreateResponse Create(
             string appName, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             string defaultNumberApp = null, string defaultEndpointApp = null,
-            string subaccount = null)
+            string subaccount = null, bool? logIncomingMessages = null)
         {
             var mandatoryParams = new List<string> {"appName"}
                 ;
@@ -65,7 +66,8 @@ namespace Plivo.Resource.Application
                     messageMethod,
                     defaultNumberApp,
                     defaultEndpointApp,
-                    subaccount
+                    subaccount,
+                    logIncomingMessages
                 });
             return Client.Update<ApplicationCreateResponse>(Uri, data).Object;
         }
@@ -131,13 +133,14 @@ namespace Plivo.Resource.Application
         /// <param name="defaultNumberApp">Default number app.</param>
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
+        /// <param name="logIncomingMessages">Log incoming messages.</param>
         public UpdateResponse<Application> Update(
             string appId, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
-            string subaccount = null)
+            string subaccount = null, bool? logIncomingMessages = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -154,7 +157,8 @@ namespace Plivo.Resource.Application
                     messageMethod,
                     defaultNumberApp,
                     defaultEndpointApp,
-                    subaccount
+                    subaccount,
+                    logIncomingMessages
                 });
             return Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).Object;
         }
