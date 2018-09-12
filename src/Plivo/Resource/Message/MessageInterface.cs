@@ -39,9 +39,10 @@ namespace Plivo.Resource.Message
             string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpackUUID = null)
         {
             string _dst = string.Join("<", dst);
+            var data = null;
             var mandatoryParams = new List<string> {""};
             if (src != null && powerpackUUID == null){
-                var data = CreateData(
+                data = CreateData(
                 mandatoryParams,
                 new
                 {
@@ -54,8 +55,8 @@ namespace Plivo.Resource.Message
                     log,
                     trackable
                 });
-            } else if (powerpackUUID ! =null && src == null){
-                var data = CreateData(
+            } else if (powerpackUUID ! = null && src == null){
+                data = CreateData(
                 mandatoryParams,
                 new
                 {
