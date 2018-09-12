@@ -35,11 +35,12 @@ namespace Plivo.Resource.Message
         /// <param name="trackable">trackable.</param>
         /// <param name="powerpackUUID">powerpackUUID</param>
         public MessageCreateResponse Create(
-            string src = null, string List<string> dst, string text, string type = null,
+            List<string> dst, string text, string type = null,string src = null,
             string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpackUUID = null)
         {
+          
             string _dst = string.Join("<", dst);
-            var data = null;
+            var data = (dynamic)null; 
             var mandatoryParams = new List<string> {""};
             if (src != null && powerpackUUID == null){
                 data = CreateData(
@@ -55,7 +56,7 @@ namespace Plivo.Resource.Message
                     log,
                     trackable
                 });
-            } else if (powerpackUUID ! = null && src == null){
+            } else if (powerpackUUID != null && src == null){
                 data = CreateData(
                 mandatoryParams,
                 new
@@ -69,6 +70,8 @@ namespace Plivo.Resource.Message
                     log,
                     trackable
                 });
+            
+
             } else if ( src != null && powerpackUUID != null){
                 return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
             } else if (src == null && powerpackUUID == null){
@@ -85,9 +88,9 @@ namespace Plivo.Resource.Message
         private MessageCreateResponse getResponseValidation(string errorMessageText){
 
                 MessageCreateResponse notValidResponse = new MessageCreateResponse();
-                notValidResponse.api_id = null;
-                notValidResponse.message = errorMessageText;
-                notValidResponse.message_uuid = null;
+                notValidResponse.ApiId = null;
+                notValidResponse.Message = errorMessageText;
+                notValidResponse.MessageUuid = null;
                 return notValidResponse;
         }
 
