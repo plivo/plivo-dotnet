@@ -33,13 +33,15 @@ namespace Plivo.Resource.Message
         /// <param name="method">Method.</param>
         /// <param name="log">Log.</param>
         /// <param name="trackable">trackable.</param>
+        /// <param name="powerpackUUID">powerpackUUID</param>
         public MessageCreateResponse Create(
-            string src, List<string> dst, string text, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null)
+            string src = null, string List<string> dst, string text, string type = null,
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpackUUID = null)
         {
             string _dst = string.Join("<", dst);
             var mandatoryParams = new List<string> {""};
-            var data = CreateData(
+            if (src != null && powerpackUUID == null){
+                var data = CreateData(
                 mandatoryParams,
                 new
                 {
@@ -52,7 +54,40 @@ namespace Plivo.Resource.Message
                     log,
                     trackable
                 });
+            } else if (powerpackUUID ! =null && src == null){
+                var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    powerpackUUID,
+                    _dst,
+                    text,
+                    type,
+                    url,
+                    method,
+                    log,
+                    trackable
+                });
+            } else if ( src != null && powerpackUUID != null){
+                return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
+            } else if (src == null && powerpackUUID == null){
+                return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
+            }
             return Client.Update<MessageCreateResponse>(Uri, data).Object;
+        }
+
+          /// <summary>
+        /// validation for src and powerpack id and return the repsonse.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="errormessagetext">errormessagetext</param>
+        private MessageCreateResponse getResponseValidation(string errorMessageText){
+
+                MessageCreateResponse notValidResponse = new MessageCreateResponse();
+                notValidResponse.api_id = null;
+                notValidResponse.message = errorMessageText;
+                notValidResponse.message_uuid = null;
+                return notValidResponse;
         }
 
         /// <summary>
