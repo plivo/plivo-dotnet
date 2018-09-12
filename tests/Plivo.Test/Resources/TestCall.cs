@@ -200,6 +200,67 @@ namespace Plivo.Test.Resources
         }
 
         [Test]
+        public void TestQueuedCallList()
+        {
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/",
+                    "",
+                    new Dictionary<string, object>()
+                    {
+                        {"status", "queued"}
+                    });
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"Mocks/liveCallListGetResponse.json"
+                );
+            Setup<QueuedCallListResponse>(200, response);
+
+            Assert.IsEmpty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Call.ListQueued()
+                )
+            );
+
+            AssertRequest(request);
+        }
+
+        [Test]
+        public void TestQueuedCallGet()
+        {
+            var id = "abcabcabc";
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/" + id + "/",
+                    "",
+                    new Dictionary<string, object>()
+                    {
+                        {"status", "queued"}
+                    });
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"Mocks/queuedCallGetResponse.json"
+                );
+            Assert.IsNotEmpty(response);
+
+            Setup<QueuedCall>(200, response);
+
+            Assert.IsEmpty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Call.GetQueued(id)
+                )
+            );
+
+            AssertRequest(request);
+        }
+
+        [Test]
         public void TestCallTranfer()
         {
             var id = "abcabcabc";

@@ -162,6 +162,35 @@ namespace Plivo.NetCore.Test.Resources
         }
 
         [Fact]
+        public void TestQueuedCallList()
+        {
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/",
+                    "",
+                    new Dictionary<string, object>()
+                    {
+                        {"status", "queued"}
+                    });
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/liveCallListGetResponse.json"
+                );
+            Setup<QueuedCallListResponse>(200, response);
+
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Call.ListQueued()
+                )
+            );
+
+            AssertRequest(request);
+        }
+
+        [Fact]
         public void TestLiveCallGet()
         {
             var id = "abcabcabc";
@@ -187,6 +216,38 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Call.GetLive(id)
+                )
+            );
+
+            AssertRequest(request);
+        }
+
+        [Fact]
+        public void TestQueuedCallGet()
+        {
+            var id = "abcabcabc";
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/" + id + "/",
+                    "",
+                    new Dictionary<string, object>()
+                    {
+                        {"status", "queued"}
+                    });
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/queuedCallGetResponse.json"
+                );
+            Assert.NotEmpty(response);
+
+            Setup<QueuedCall>(200, response);
+
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Call.GetQueued(id)
                 )
             );
 

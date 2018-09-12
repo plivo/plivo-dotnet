@@ -86,6 +86,7 @@
     <Content Include="Mocks\endpointUpdateResponse.json" />
     <Content Include="Mocks\liveCallDtmfCreateResponse.json" />
     <Content Include="Mocks\liveCallGetResponse.json" />
+    <Content Include="Mocks\queuedCallGetResponse.json" />
     <Content Include="Mocks\liveCallListGetResponse.json" />
     <Content Include="Mocks\liveCallPlayCreateResponse.json" />
     <Content Include="Mocks\liveCallRecordCreateResponse.json" />
