@@ -25,7 +25,7 @@ namespace Plivo.Resource.Application
 
         /// <summary>
         /// Create Application with the specified appName, answerUrl, answerMethod, hangupUrl, hangupMethod, fallbackAnswerUrl,
-        /// fallbackMethod, messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp subaccount and logIncomingMessages.
+        /// fallbackMethod, messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp, subaccount and logIncomingMessages.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="appName">App name.</param>
@@ -41,6 +41,7 @@ namespace Plivo.Resource.Application
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
+
         public ApplicationCreateResponse Create(
             string appName, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
