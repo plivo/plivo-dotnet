@@ -1,7 +1,11 @@
 # Change Log
 
+## [v4.1.3](https://github.com/plivo/plivo-dotnet/tree/v4.1.3) (2018-09-17)
+- Added parent_call_uuid parameter added to filter calls.
+- Queued status added for filtering calls in queued status.
+
 ## [v4.1.2](https://github.com/plivo/plivo-dotnet/tree/v4.1.2) (2018-08-28)
-- Added log_incoming_messages parameter to Create Application api. 
+- Added log_incoming_messages parameter to Create and Update Application api.
 
 ## [v4.1.1](https://github.com/plivo/plivo-dotnet/tree/v4.1.1) (2018-07-12)
 - Added state parameter to message list api.
