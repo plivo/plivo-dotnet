@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>4.1.2</version>
+    <version>4.1.3</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -11,7 +11,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <releaseNotes>
-      * 4.1.2 Added log_incoming_messages parameter to Create Application api.
+      * 4.1.3 Added parent_call_uuid parameter added to filter calls.
+      * 4.1.3 Queued status added for filtering calls in queued status.
+      * 4.1.2 Added log_incoming_messages parameter to Create and Update Application api.
       * 4.1.0 Added Address and Identity resources. Fixes unhandled NullReferenceException.
       * 4.0.0 Supports v2 signature validation. Targets .NET Standard 1.3
       * 4.0.0-beta2 Fix Pricing API interface
