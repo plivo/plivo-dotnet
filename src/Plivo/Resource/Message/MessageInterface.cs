@@ -90,7 +90,7 @@ namespace Plivo.Resource.Message
                 MessageCreateResponse notValidResponse = new MessageCreateResponse();
                 notValidResponse.ApiId = null;
                 notValidResponse.Message = errorMessageText;
-                notValidResponse.MessageUuid = null;
+                notValidResponse.MessageUuid = new List<string>();
                 return notValidResponse;
         }
 
