@@ -36,13 +36,13 @@ namespace Plivo.Resource.Message
         /// <param name="powerpackUUID">powerpackUUID</param>
         public MessageCreateResponse Create(
             List<string> dst, string text, string type = null,string src = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpackUUID = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
         {
           
             string _dst = string.Join("<", dst);
             var data = (dynamic)null; 
             var mandatoryParams = new List<string> {""};
-            if (src != null && powerpackUUID == null){
+            if (src != null && powerpack_uuid == null){
                 data = CreateData(
                 mandatoryParams,
                 new
@@ -56,12 +56,12 @@ namespace Plivo.Resource.Message
                     log,
                     trackable
                 });
-            } else if (powerpackUUID != null && src == null){
+            } else if (powerpack_uuid != null && src == null){
                 data = CreateData(
                 mandatoryParams,
                 new
                 {
-                    powerpackUUID,
+                    powerpack_uuid,
                     _dst,
                     text,
                     type,
@@ -72,9 +72,9 @@ namespace Plivo.Resource.Message
                 });
             
 
-            } else if ( src != null && powerpackUUID != null){
+            } else if ( src != null && powerpack_uuid != null){
                 return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
-            } else if (src == null && powerpackUUID == null){
+            } else if (src == null && powerpack_uuid == null){
                 return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
             }
             return Client.Update<MessageCreateResponse>(Uri, data).Object;
