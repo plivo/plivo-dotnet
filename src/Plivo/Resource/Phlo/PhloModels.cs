@@ -4,21 +4,24 @@ using System.Text;
 
 namespace Plivo.Resource.Phlo
 {
-    class Phlo : Resource
+    public class PhloRunCallResponse : BaseResponse
     {
-        public new string Id => PhloId;
+        /// <summary>
+        /// PHLO Run ID
+        /// </summary>
+        public string PhloRunId { get; set; }
+
+        /// <summary>
+        /// PHLO ID
+        /// </summary>
         public string PhloId { get; set; }
-    }
 
-    class MultiPartyCall : Resource
-    {
-
-    }
-    class PhloMember : Resource
-    {
+        /// <summary>
+        /// Error detail
+        /// </summary>
+        public string Error { get; set; }
 
     }
-
     public class MultiPartyCallResponse : BaseResponse
     {
     }

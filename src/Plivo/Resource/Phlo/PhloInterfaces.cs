@@ -16,15 +16,36 @@ namespace Plivo.Resource.Phlo
         private readonly string _phloId;
 
         /// <summary>
+        /// Authentication ID
+        /// </summary>
+        private readonly string _authId;
+
+        /// <summary>
+        /// Authentication Token
+        /// </summary>
+        private readonly string _authToken;
+
+        /// <summary>
+        /// Authentication Token
+        /// </summary>
+        private readonly string _accountId;
+
+
+        /// <summary>
         /// PHLO 
         /// </summary>
         /// <param name="HTTP client"></param>
         /// <param name="PHLO Id"></param>
-        internal PhloInterface(HttpClient client, string phloId) : base(client)
+        internal PhloInterface(HttpClient client, string phloId, string authId, string authToken) : base(client)
         {
-            Mandatory(Tuple.Create("phloId", phloId));
+            Mandatory(Tuple.Create("phloId", phloId), Tuple.Create("authId", authId), Tuple.Create("authToken", authToken));
+
             _phloId = phloId;
-            Uri = string.Format("phlo/{0}", phloId);
+            _authId = authId;
+            _authToken = authToken;
+            _accountId = GetAccountID();
+
+            Uri = string.Format("account/{0}/phlo/{1}", _accountId, _phloId);
         }
 
         /// <summary>
@@ -36,6 +57,27 @@ namespace Plivo.Resource.Phlo
         {
             Mandatory(Tuple.Create("nodeId", nodeId));
             return new NodeInterface(Client, _phloId, nodeId);
+        }
+        
+        /// <summary>
+        /// To trigger or run a PHLO
+        /// </summary>
+        public UpdateResponse<PhloRunCallResponse> Run()
+        {
+            
+            var data = new Dictionary<string, object>();
+            return Client.Update<UpdateResponse<PhloRunCallResponse>>(Uri, data).Object;
+        }
+
+        /// <summary>
+        ///  Get AccountID
+        /// </summary>
+        /// <returns></returns>
+        public string GetAccountID()
+        {
+            var api = new PlivoApi(_authId, _authToken);
+            var accountId = api.Account.Get().Id;
+            return accountId;
         }
 
         /// <summary>
@@ -339,5 +381,10 @@ namespace Plivo.Resource.Phlo
         {
             throw new NotImplementedException("Get functionality is not supported by PHLO api yet");
         }
+    }
+
+    public interface IPhloInterface
+    {
+        void Run();
     }
 }

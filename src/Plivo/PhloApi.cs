@@ -28,6 +28,16 @@ namespace Plivo
         // resource interfaces
         private Lazy<PhloInterface> _phlo;
 
+        /// <summary>
+        /// Authentication ID
+        /// </summary>
+        private string _authId;
+
+        /// <summary>
+        /// Authentication Token
+        /// </summary>
+        private string _authToken;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PhloApi"/> class.
@@ -47,8 +57,10 @@ namespace Plivo
             string proxyPassword = null
         )
         {
-            BasicAuth = new BasicAuth(authId, authToken);            
+            BasicAuth = new BasicAuth(authId, authToken);
             Client = new HttpClient(BasicAuth, proxyAddress, proxyPort, proxyUsername, proxyPassword);
+            _authId = authId;
+            _authToken = authToken;
         }
 
         public PhloInterface Phlo(string phloUiid)
@@ -57,7 +69,7 @@ namespace Plivo
             {
                 throw new PlivoValidationException("phloUiid is mandatory, can not be null or empty");
             }
-            _phlo = new Lazy<PhloInterface>(() => new PhloInterface(Client, phloUiid));
+            _phlo = new Lazy<PhloInterface>(() => new PhloInterface(Client, phloUiid, _authId, _authToken));
             return _phlo.Value;
         }
     }
