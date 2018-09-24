@@ -101,13 +101,15 @@ namespace Plivo.Resource.Call
         /// <summary>
         /// List Call with the specified subaccount, callDirection, fromNumber, toNumber, billDuration, billDuration_Gt,
         /// billDuration_Gte, billDuration_Lt, billDuration_Lte, endTime, endTime_Gt, endTime_Gte, endTime_Lt,
-        /// endTime_Lte, parentCallUuid, limit and offset.
+        /// endTime_Lte, parentCallUuid, plivoHangupSource, plivoHangupCauseCode, limit and offset.
         /// </summary>
         /// <returns>The list.</returns>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="callDirection">Call direction.</param>
         /// <param name="fromNumber">From number.</param>
         /// <param name="parentCallUuid">Parent call UUID.</param>
+        /// <param name="plivoHangupSource">Plivo Hangup Source.</param>
+        /// <param name="plivoHangupCauseCode">Plivo Hangup Cause Code.</param>
         /// <param name="toNumber">To number.</param>
         /// <param name="billDuration">Bill duration.</param>
         /// <param name="billDuration_Gt">Bill duration gt.</param>
@@ -124,6 +126,7 @@ namespace Plivo.Resource.Call
         public ListResponse<Call> List(
             string subaccount = null, string callDirection = null,
             string fromNumber = null, string toNumber = null, string parentCallUuid = null,
+            string plivoHangupSource = null, uint? plivoHangupCauseCode = null,
             DateTime? billDuration = null, DateTime? billDuration_Gt = null,
             DateTime? billDuration_Gte = null, DateTime? billDuration_Lt = null,
             DateTime? billDuration_Lte = null, DateTime? endTime = null,
@@ -153,6 +156,8 @@ namespace Plivo.Resource.Call
                     fromNumber,
                     toNumber,
                     parentCallUuid,
+                    plivoHangupSource,
+                    plivoHangupCauseCode,
                     _billDuration,
                     _billDuration_Gt,
                     _billDuration_Gte,

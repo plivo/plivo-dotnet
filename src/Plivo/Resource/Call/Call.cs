@@ -22,6 +22,9 @@ namespace Plivo.Resource.Call
         public string FromNumber { get; set; }
         public string InitiationTime { get; set; }
         public string ParentCallUuid { get; set; }
+        public uint? PlivoHangupCauseCode { get; set; }
+        public string PlivoHangupCauseName { get; set; }
+        public string PlivoHangupSource { get; set; }
         public string ResourceUri { get; set; }
         public string ToNumber { get; set; }
         public string TotalAmount { get; set; }
@@ -42,6 +45,9 @@ namespace Plivo.Resource.Call
 //            FromNumber = fromNumber ?? throw new ArgumentNullException(nameof(fromNumber));
 //            InitiationTime = initiationTime ?? throw new ArgumentNullException(nameof(initiationTime));
 //            ParentCallUuid = parentCallUuid ?? throw new ArgumentNullException(nameof(parentCallUuid));
+//            PlivoHangupCauseCode = plivoHangupCauseCode ?? throw new ArgumentNullException(nameof(plivoHangupCauseCode));
+//            PlivoHangupCauseName = PlivoHangupCauseName ?? throw new ArgumentNullException(nameof(PlivoHangupCauseName));
+//            PlivoHangupSource = PlivoHangupSource ?? throw new ArgumentNullException(nameof(PlivoHangupSource));
 //            ResourceUri = resourceUri ?? throw new ArgumentNullException(nameof(resourceUri));
 //            ToNumber = toNumber ?? throw new ArgumentNullException(nameof(toNumber));
 //            TotalAmount = totalAmount ?? throw new ArgumentNullException(nameof(totalAmount));
@@ -207,6 +213,9 @@ namespace Plivo.Resource.Call
                    "FromNumber: " + FromNumber + "\n" +
                    "InitiationTime: " + InitiationTime + "\n" +
                    "ParentCallUuid: " + ParentCallUuid + "\n" +
+                   "PlivoHangupCauseCode: " + PlivoHangupCauseCode + "\n" +
+                   "PlivoHangupCauseName: " + PlivoHangupCauseName + "\n" +
+                   "PlivoHangupSource: " + PlivoHangupSource + "\n" +
                    "ResourceUri: " + ResourceUri + "\n" +
                    "ToNumber: " + ToNumber + "\n" +
                    "TotalAmount: " + TotalAmount + "\n" +
