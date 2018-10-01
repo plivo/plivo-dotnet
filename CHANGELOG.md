@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.1.4](https://github.com/plivo/plivo-dotnet/tree/v4.1.4) (2018-10-01)
+- Add Trackable parameter in messages.
+
 ## [v4.1.3](https://github.com/plivo/plivo-dotnet/tree/v4.1.3) (2018-09-17)
 - Added parent_call_uuid parameter added to filter calls.
 - Queued status added for filtering calls in queued status.
