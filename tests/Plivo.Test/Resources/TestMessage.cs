@@ -38,8 +38,8 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Message.Create("+919999999999", new List<string>() {"+919898989898", "+919090909090"},
-                        "textext")));
+                    Api.Message.Create( new List<string>() {"+919898989898", "+919090909090"},
+                        "textext", "+919999999999")));
             AssertRequest(request);
         }
 
