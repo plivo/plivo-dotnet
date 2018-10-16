@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.1.5](https://github.com/plivo/plivo-dotnet/tree/v4.1.5) (2018-10-16)
+- Add support for SSML tags.
+
 ## [v4.1.4](https://github.com/plivo/plivo-dotnet/tree/v4.1.4) (2018-10-01)
 - Add Trackable parameter in messages.
 
