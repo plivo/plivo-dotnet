@@ -190,11 +190,25 @@ namespace Plivo.Resource.Call
         /// Lists the live.
         /// </summary>
         /// <returns>The live.</returns>
-        public LiveCallListResponse ListLive()
+        /// <param name="callDirection">Call direction.</param>
+        /// <param name="fromNumber">From number.</param>
+        /// <param name="toNumber">To number.</param>
+        public LiveCallListResponse ListLive(string callDirection = null,
+            string fromNumber = null, string toNumber = null)
         {
-            return
-                ListResources<LiveCallListResponse>(
-                    new Dictionary<string, object>() {{"status", "live"}});
+            var status = "live";
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    status,
+                    callDirection,
+                    fromNumber,
+                    toNumber
+                });
+            
+            return ListResources<LiveCallListResponse>(data);
         }
 
         /// <summary>
