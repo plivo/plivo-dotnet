@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <ReleaseVersion>4.1.4</ReleaseVersion>
+    <ReleaseVersion>4.1.5</ReleaseVersion>
     <Authors>Plivo SDKs Team</Authors>
     <Owners>Plivo Inc.</Owners>
     <Summary>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Summary>
