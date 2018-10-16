@@ -3,10 +3,10 @@ using list = System.Collections.Generic.List<string>;
 
 namespace Plivo.XML
 {
-    public class Speak : PlivoElement
+    public class Prosody : PlivoElement
     {
-        public Speak(string body, dict attributes)
-            : base(body, attributes)
+        public Prosody(string body, dict parameters)
+            : base(body, parameters)
         {
             Nestables = new list()
             {
@@ -23,9 +23,9 @@ namespace Plivo.XML
             };
             ValidAttributes = new list()
             {
-                "loop",
-                "language",
-                "voice"
+                "volume",
+                "rate",
+                "pitch"
             };
             addAttributes();
         }
