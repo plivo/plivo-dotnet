@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
+using System.Linq;
 using Plivo.Exception;
 using Plivo.Utilities;
 using dict = System.Collections.Generic.Dictionary<string, string>;
@@ -97,6 +98,85 @@ namespace Plivo.XML
         public PlivoElement AddSpeak(string body, dict parameters)
         {
             return Add(new Speak(body, parameters));
+        }
+
+        public PlivoElement AddBreak(dict parameters)
+        {
+            PlivoElement elem = new Break(parameters);
+            elem.Element.Name = "break";
+            return Add(elem);
+
+        }
+
+        public PlivoElement AddEmphasis(string body, dict parameters)
+        {
+            PlivoElement elem = new Emphasis(body, parameters);
+            elem.Element.Name = "emphasis";
+            return Add(elem);
+        }
+
+        public PlivoElement AddLang(string body, dict parameters)
+        {
+            PlivoElement elem = new Lang(body, parameters);
+            elem.Element.Name = "lang";
+
+            var oldAttribute = elem.Element.Attribute("xmllang");
+            var attributeList = elem.Element.Attributes().ToList();
+            XAttribute newAttribute = new XAttribute(XNamespace.Xml + "lang", oldAttribute.Value);
+            attributeList.Add(newAttribute);
+            attributeList.Remove(oldAttribute);
+            elem.Element.ReplaceAttributes(attributeList);
+
+            return Add(elem);
+        }
+
+        public PlivoElement AddP(string body)
+        {
+            PlivoElement elem = new P(body);
+            elem.Element.Name = "p";
+            return Add(elem);
+        }
+
+        public PlivoElement AddPhoneme(string body, dict parameters)
+        {
+            PlivoElement elem = new Phoneme(body, parameters);
+            elem.Element.Name = "phoneme";
+            return Add(elem);
+        }
+
+        public PlivoElement AddProsody(string body, dict parameters)
+        {
+            PlivoElement elem = new Prosody(body, parameters);
+            elem.Element.Name = "prosody";
+            return Add(elem);
+        }
+
+        public PlivoElement AddS(string body)
+        {
+            PlivoElement elem = new S(body);
+            elem.Element.Name = "s";
+            return Add(elem);
+        }
+
+        public PlivoElement AddSayAs(string body, dict parameters)
+        {
+            PlivoElement elem = new SayAs(body, parameters);
+            elem.Element.Name = "say-as";
+            return Add(elem);
+        }
+
+        public PlivoElement AddSub(string body, dict parameters)
+        {
+            PlivoElement elem = new Sub(body, parameters);
+            elem.Element.Name = "sub";
+            return Add(elem);
+        }
+
+        public PlivoElement AddW(string body, dict parameters)
+        {
+            PlivoElement elem = new W(body, parameters);
+            elem.Element.Name = "w";
+            return Add(elem);
         }
 
         public PlivoElement AddPlay(string body, dict parameters)

@@ -3,29 +3,22 @@ using list = System.Collections.Generic.List<string>;
 
 namespace Plivo.XML
 {
-    public class Speak : PlivoElement
+    public class W : PlivoElement
     {
-        public Speak(string body, dict attributes)
-            : base(body, attributes)
+        public W(string body, dict parameters)
+            : base(body, parameters)
         {
-            Nestables = new list()
-            {
+            Nestables = new list() {
                 "Break",
                 "Emphasis",
-                "Lang",
-                "P",
                 "Phoneme",
                 "Prosody",
-                "S",
                 "SayAs",
-                "Sub",
-                "W"
+                "Sub"
             };
             ValidAttributes = new list()
             {
-                "loop",
-                "language",
-                "voice"
+                "role",
             };
             addAttributes();
         }

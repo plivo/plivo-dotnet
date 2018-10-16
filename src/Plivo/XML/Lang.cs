@@ -1,12 +1,13 @@
 using dict = System.Collections.Generic.Dictionary<string, string>;
 using list = System.Collections.Generic.List<string>;
+using System.Xml.Linq;
 
 namespace Plivo.XML
 {
-    public class Speak : PlivoElement
+    public class Lang : PlivoElement
     {
-        public Speak(string body, dict attributes)
-            : base(body, attributes)
+        public Lang(string body, dict parameters)
+            : base(body, parameters)
         {
             Nestables = new list()
             {
@@ -23,9 +24,7 @@ namespace Plivo.XML
             };
             ValidAttributes = new list()
             {
-                "loop",
-                "language",
-                "voice"
+                "xmllang"
             };
             addAttributes();
         }
