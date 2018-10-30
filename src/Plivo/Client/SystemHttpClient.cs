@@ -150,8 +150,13 @@ namespace Plivo.Client
                     break;
 
                 case "DELETE":
-                    request = new HttpRequestMessage(HttpMethod.Delete, uri + AsQueryString(data));
+                    request = new HttpRequestMessage(HttpMethod.Delete, uri);
                     request.Headers.Add("Accept", "application/json");
+                    request.Content = new StringContent(
+                        JsonConvert.SerializeObject(data),
+                        Encoding.UTF8,
+                        "application/json"
+                    );
                     break;
 
                 default:

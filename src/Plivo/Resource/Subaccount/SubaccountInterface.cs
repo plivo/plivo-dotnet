@@ -64,9 +64,15 @@ namespace Plivo.Resource.Subaccount
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="id">Identifier.</param>
-        public DeleteResponse<Subaccount> Delete(string id)
+        /// <param name="cascade">Cascade.</param>
+        public DeleteResponse<Subaccount> Delete(string id, bool? cascade = null)
         {
-            return DeleteResource<DeleteResponse<Subaccount>>(id);
+            var data = new Dictionary<string, object> {};
+            if (cascade != null)
+            {
+                data = CreateData(new List<string> {}, new {cascade});
+            }
+            return DeleteResource<DeleteResponse<Subaccount>>(id, data);
         }
 
         /// <summary>
