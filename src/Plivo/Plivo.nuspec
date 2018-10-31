@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <releaseNotes>
+      * 4.1.6 Add live calls filtering by to, from numbers and call direction.
       * 4.1.5 Add support for SSML tags.
       * 4.1.4 Add Trackable parameter in messages.
       * 4.1.3 Added parent_call_uuid parameter added to filter calls.

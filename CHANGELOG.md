@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.1.6](https://github.com/plivo/plivo-dotnet/tree/v4.1.6) (2018-10-31)
+- Add live calls filtering by to, from numbers and call direction.
+
 ## [v4.1.5](https://github.com/plivo/plivo-dotnet/tree/v4.1.5) (2018-10-16)
 - Add support for SSML tags.
 
