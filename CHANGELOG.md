@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.1.7](https://github.com/plivo/plivo-dotnet/tree/v4.1.7) (2018-11-21)
+- Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
+- Add sub-account cascade delete support.
+
 ## [v4.1.6](https://github.com/plivo/plivo-dotnet/tree/v4.1.6) (2018-10-31)
 - Add live calls filtering by to, from numbers and call direction.
 
