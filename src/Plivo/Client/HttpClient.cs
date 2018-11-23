@@ -36,9 +36,9 @@ namespace Plivo.Client
             _client = new SystemHttpClient(basicAuth,
                 new Dictionary<string, string>
                 {
-                    {"Username", proxyAddress},
+                    {"Address", proxyAddress},
                     {"Password", proxyPassword},
-                    {"Address", proxyUsername},
+                    {"Username", proxyUsername},
                     {"Port", proxyPort}
                 });
             _basicAuth = basicAuth;
