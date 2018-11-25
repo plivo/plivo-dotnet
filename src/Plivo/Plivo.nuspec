@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Plivo</id>
-    <version>4.1.7</version>
+    <version>4.2.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -11,6 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <releaseNotes>
+      * 4.2.0 Updated to .NET Standard 2.0 to add support for System.Net.WebProxy
       * 4.1.7 Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
       * 4.1.7 Add sub-account cascade delete support. 
       * 4.1.6 Add live calls filtering by to, from numbers and call direction.
