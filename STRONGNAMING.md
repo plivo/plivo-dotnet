@@ -44,6 +44,7 @@ https://docs.microsoft.com/en-us/dotnet/framework/app-domains/create-and-use-str
 ### Plivo SDK Strong Naming
 
 Download the (source control) version of the Plivo-dotnet SDK that you want to strong name.
+
 https://github.com/plivo/plivo-dotnet/releases
 
 Open the code in Visual Studio 2017.  
