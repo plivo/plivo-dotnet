@@ -1,6 +1,6 @@
 # .NET Assembly Strong Naming
 
-####The Plivo.dotnet SDK IS NOT STRONG NAMED!
+#### The Plivo.dotnet SDK IS NOT STRONG NAMED!
 
 For the most part, the majority of applications and libraries do not need strong-names. 
 
