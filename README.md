@@ -4,7 +4,7 @@
 
 The Plivo .NET SDK makes it simpler to integrate communications into your .NET applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
-**Supported .NET versions:** This SDK was written targeting at .NET Standard 1.3, and thus works with .NET Framework 4.6+ and .NET Core 1.0+. [Check here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) to know about all the other supported platforms.
+**Supported .NET versions:** This SDK was written targeting at .NET Standard 2.0, and thus works with .NET Framework 4.6.1+ and .NET Core 2.0+. [Check here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) to know about all the other supported platforms.
 
 ## Installation
 You can install this SDK either by referencing the .dll file or using NuGet.
@@ -12,13 +12,13 @@ You can install this SDK either by referencing the .dll file or using NuGet.
 Use the following line to install the latest SDK using the NuGet CLI.
 
 ```
-PM> Install-Package Plivo -Version 4.1.1
+PM> Install-Package Plivo -Version 4.2.0
 ```
 
 You can also use the .NET CLI to install this package as follows
 
 ```
-> dotnet add package Plivo --version 4.1.1
+> dotnet add package Plivo --version 4.2.0
 ```
 
 ## Getting started
