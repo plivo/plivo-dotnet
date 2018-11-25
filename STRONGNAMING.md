@@ -58,6 +58,8 @@ Uncheck the Delay sign Only checkbox!
 
 #### Click Save and then Choose Build -> Build Solution.  The Pivo.dll assembly is now Strong-named.  
 
+You can verify this from the Visual Studio 2017 COmmand prompt.  Navigate to the project's output directory:
+
 	C:\Users\Test\Documents\plivo-dotnet\src\Plivo\bin\Debug\netstandard2.0>sn -v Plivo.dll
 
 	Microsoft (R) .NET Framework Strong Name Utility  Version 4.0.30319.0
@@ -66,6 +68,8 @@ Uncheck the Delay sign Only checkbox!
 	Assembly 'Plivo.dll' is valid
 
 #### Installing the Plivo SDK in the Global Assembly Cache 
+
+To install the Assembly in the GAC:
 
 	C:\Users\Test\Documents\plivo-dotnet\src\Plivo\bin\Debug\netstandard2.0>gacutil -i Plivo.dll
 	Microsoft (R) .NET Global Assembly Cache Utility.  Version 4.0.30319.0
