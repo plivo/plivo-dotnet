@@ -1,4 +1,6 @@
-# The Plivo-dotnet SDK assemblies are NOT Strong Named.
+# .NET Assembly Strong Naming
+
+####The Plivo.dotnet SDK IS NOT STRONG NAMED!
 
 For the most part, the majority of applications and libraries do not need strong-names. 
 
@@ -12,8 +14,7 @@ https://docs.microsoft.com/en-us/dotnet/framework/app-domains/strong-named-assem
 ## Running multiple versions of the Plivo SDK
 
 If you need to run multiple versions of the Plivo SDK you will need to Strong Name the Plivo SDK Assemblies.
-This is a very rare edge case!  You should only need to reference multiple versions of the Plivo SDK if you are trying to upgrade to a new version and
-have not yet completed the upgrade, so you need to span multiplt versions for awhile.  This scenario is not recommended!  You should upgrade and only use one version of the SDK at a time.
+This is a very rare edge case!  You should only need to reference multiple versions of the Plivo SDK if you are trying to upgrade to a new version and have not yet completed the upgrade, so you need to span multiplt versions for awhile.  This scenario is not recommended!  You should upgrade and only use one version of the SDK at a time.
 
 When you reference a strong-named assembly, you can expect certain benefits, such as versioning and naming protection. 
 Strong-named assemblies can be installed in the Global Assembly Cache, which is required to enable some scenarios.
