@@ -48,43 +48,39 @@ namespace Plivo.Client
         public SystemHttpClient(BasicAuth basicAuth, Dictionary<string, string> proxyServerSettings)
         {
             IWebProxy proxy = null;
+            bool useDefaultCreds = false;
+
+#if NETSTANDARD2_0
             var networkCreds = new NetworkCredential();
             networkCreds.UserName = proxyServerSettings["Username"];
             networkCreds.Password = proxyServerSettings["Password"];
-            var useDefaultCreds = networkCreds.UserName.Length > 0 && networkCreds.UserName.Length > 0;
+            useDefaultCreds = networkCreds.UserName.Length == 0 && networkCreds.UserName.Length == 0;
 
             try
             {
-                if (useDefaultCreds)
+                proxy = new WebProxy()
                 {
-                    proxy = new WebProxy()
-                    {
-                        Address = new Uri($"{ proxyServerSettings["Address"] }:{ proxyServerSettings["Port"] }"),
-                        UseDefaultCredentials = useDefaultCreds,
-                        Credentials = networkCreds
-                    };
-                }
-                else
-                {
-                    proxy = new WebProxy()
-                    {
-                        Address = new Uri($"{ proxyServerSettings["Address"] }:{ proxyServerSettings["Port"] }"),
-                        UseDefaultCredentials = useDefaultCreds
+                    Address = new Uri($"{ proxyServerSettings["Address"] }:{ proxyServerSettings["Port"] }"),
+                    UseDefaultCredentials = useDefaultCreds,
+                    Credentials = networkCreds
                 };
-                }
-                
             }
             catch
             {
                 proxy = null;
             }
-         
+#elif NETSTANDARD1_3
+            proxy = null;
+#endif
+
+
+
 
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
                 PreAuthenticate = true,
                 UseDefaultCredentials = false,
-                UseProxy = proxy != null, 
+                UseProxy = proxy != null,
                 Proxy = proxy
             };
             _client = new System.Net.Http.HttpClient(httpClientHandler);
@@ -175,7 +171,7 @@ namespace Plivo.Client
 
                         foreach (var key in data.Keys)
                         {
-                            HttpContent stringContent = new StringContent((string) data[key].ToString());
+                            HttpContent stringContent = new StringContent((string)data[key].ToString());
                             multipartContent.Add(stringContent, key);
                         }
 
@@ -205,9 +201,10 @@ namespace Plivo.Client
 
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse;
-            try {
+            try
+            {
                 plivoResponse = new PlivoResponse<T>(
-                    (uint) response.StatusCode.GetHashCode(),
+                    (uint)response.StatusCode.GetHashCode(),
                     response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),
                     responseContent,
                     responseContent != string.Empty
@@ -215,9 +212,10 @@ namespace Plivo.Client
                         : new T(),
                     new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
             }
-            catch(Newtonsoft.Json.JsonReaderException){
+            catch (Newtonsoft.Json.JsonReaderException)
+            {
                 plivoResponse = new PlivoResponse<T>(
-                    (uint) response.StatusCode.GetHashCode(),
+                    (uint)response.StatusCode.GetHashCode(),
                     response.Headers.Select(item => item.Key + "=" + item.Value).ToList(),
                     responseContent,
                     responseContent != string.Empty
@@ -225,8 +223,8 @@ namespace Plivo.Client
                         : new T(),
                     new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
             }
-            
-                
+
+
 
             return plivoResponse;
         }
