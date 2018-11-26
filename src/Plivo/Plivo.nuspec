@@ -66,6 +66,7 @@
     <dependencies>
       <dependency id="Newtonsoft.Json" version="[10,)"/>
       <dependency id="System.Text.Encoding.Extensions" version="4.3.0" />
+      <dependency id="System.Net.Http" version="4.3.4"/>
     </dependencies>
   </metadata>
   <files>
