@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/plivo/plivo-dotnet.svg?branch=master)](https://travis-ci.org/plivo/plivo-dotnet)
 
+[![Build Status](https://dev.azure.com/sdks0422/DotNet%20SDK/_apis/build/status/solidclouddev%20plivo-dotnet%20Fork)](https://dev.azure.com/sdks0422/DotNet%20SDK/_build/latest?definitionId=2)
+
 The Plivo .NET SDK makes it simpler to integrate communications into your .NET applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
 
 **Supported .NET versions:** This SDK was written targeting at .NET Standard 2.0, and thus works with .NET Framework 4.6.1+ and .NET Core 2.0+. [Check here](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) to know about all the other supported platforms.
