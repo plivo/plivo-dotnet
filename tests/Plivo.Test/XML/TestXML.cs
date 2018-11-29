@@ -50,7 +50,7 @@ namespace Plivo.Test.XML
 
             Plivo.XML.Dial dial2 = new Plivo.XML.Dial(new
                 Dictionary<string, string>()
-                { });
+            { });
             dial2.AddNumber("15671234567",
                 new Dictionary<string, string>() { });
             resp.Add(dial1);
@@ -114,7 +114,7 @@ namespace Plivo.Test.XML
 
             Plivo.XML.Dial dial3 = new Plivo.XML.Dial(new
                 Dictionary<string, string>()
-                { });
+            { });
 
             dial3.AddNumber("15551234567",
                 new Dictionary<string, string>() { });
@@ -176,10 +176,7 @@ namespace Plivo.Test.XML
                 new Dictionary<string, string>() { });
 
             var output = resp.ToString();
-            // Console.WriteLine(output);
-            //Assert.AreEqual(
-            //    "<Response>\n  <Conference callbackUrl=\"http://foo.com/confevents/\" callbackMethod=\"POST\" digitsMatch=\"#0,99,000\">My room</Conference>\n  <Dial confirmSound=\"http://foo.com/sound/\" confirmKey=\"3\">\n    <Number sendDigits=\"wwww2410\">18217654321</Number>\n    <User sendDigits=\"wwww2410\">sip:john1234@phone.plivo.com</User>\n  </Dial>\n  <Dial timeout=\"20\" action=\"http://foo.com/dial_action/\">\n    <Number>18217654321</Number>\n  </Dial>\n  <Dial>\n    <Number>15671234567</Number>\n  </Dial>\n  <DTMF>12345</DTMF>\n  <GetDigits action=\"http://www.foo.com/gather_pin/\" method=\"POST\">\n    <Speak>Enter PIN number.</Speak>\n  </GetDigits>\n  <Speak>Input not recieved.</Speak>\n  <Hangup schedule=\"60\" reason=\"rejected\" />\n  <Speak loop=\"0\">Call will hangup after a min.</Speak>\n  <Message src=\"12023222222\" dst=\"15671234567\" type=\"sms\" callbackUrl=\"http://foo.com/sms_status/\" callbackMethod=\"POST\">Hi, message from Plivo.</Message>\n  <Play>https://amazonaws.com/Trumpet.mp3</Play>\n  <PreAnswer>\n    <Speak>This call will cost $2 a min.</Speak>\n  </PreAnswer>\n  <Speak>Thanks for dropping by.</Speak>\n  <Record action=\"http://foo.com/get_recording/\" startOnDialAnswer=\"true\" redirect=\"false\" />\n  <Dial>\n    <Number>15551234567</Number>\n  </Dial>\n  <Speak>Leave message after the beep.</Speak>\n  <Record action=\"http://foo.com/get_recording/\" maxLength=\"30\" finishOnKey=\"*\" />\n  <Speak>Recording not received.</Speak>\n  <Speak>Your call is being transferred.</Speak>\n  <Redirect>http://foo.com/redirect/</Redirect>\n  <Speak loop=\"3\">Go green, go plivo.</Speak>\n  <Speak>I will wait 7 seconds starting now!</Speak>\n  <Wait length=\"7\" />\n  <Speak>I just waited 7 seconds.</Speak>\n  <Wait length=\"120\" beep=\"true\" />\n  <Play>https://s3.amazonaws.com/abc.mp3</Play>\n  <Wait length=\"10\" />\n  <Speak>Hello</Speak>\n  <Wait length=\"10\" silence=\"true\" minSilence=\"3000\" />\n  <Speak>Hello, welcome to the Jungle.</Speak>\n</Response>",
-            //    output);
+            Console.WriteLine(output);
         }
     }
 }
