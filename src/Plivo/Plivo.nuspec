@@ -72,5 +72,6 @@
   </metadata>
   <files>
     <file src="bin/Release/netstandard2.0/Plivo.dll" target="lib/netstandard2.0" />
+   <file src="bin/Release/netstandard1.3/Plivo.dll" target="lib/netstandard1.3" />
   </files>
 </package>
