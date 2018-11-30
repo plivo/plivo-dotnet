@@ -47,11 +47,53 @@ namespace Plivo.Client
         /// <param name="proxyServerSettings">Proxy settings.</param>
         public SystemHttpClient(BasicAuth basicAuth, Dictionary<string, string> proxyServerSettings)
         {
+#if NETSTANDARD2_0
+            IWebProxy proxy = null;
+            var networkCreds = new NetworkCredential();
+            networkCreds.UserName = proxyServerSettings["Username"];
+            networkCreds.Password = proxyServerSettings["Password"];
+            var useDefaultCreds = networkCreds.UserName.Length > 0 && networkCreds.UserName.Length > 0;
+
+            try
+            {
+                if (useDefaultCreds)
+                {
+                    proxy = new WebProxy()
+                    {
+                        Address = new Uri($"{ proxyServerSettings["Address"] }:{ proxyServerSettings["Port"] }"),
+                        UseDefaultCredentials = useDefaultCreds,
+                        Credentials = networkCreds
+                    };
+                }
+                else
+                {
+                    proxy = new WebProxy()
+                    {
+                        Address = new Uri($"{ proxyServerSettings["Address"] }:{ proxyServerSettings["Port"] }"),
+                        UseDefaultCredentials = useDefaultCreds
+                };
+                }
+                
+            }
+            catch
+            {
+                proxy = null;
+            }
+
+            HttpClientHandler httpClientHandler = new HttpClientHandler()
+            {
+                PreAuthenticate = true,
+                UseDefaultCredentials = false,
+                UseProxy = proxy != null, 
+                Proxy = proxy
+            };
+#else
             HttpClientHandler httpClientHandler = new HttpClientHandler()
             {
                 PreAuthenticate = true,
                 UseDefaultCredentials = false
             };
+#endif
             _client = new System.Net.Http.HttpClient(httpClientHandler);
             var authHeader =
                 new AuthenticationHeaderValue("Basic",
@@ -61,8 +103,7 @@ namespace Plivo.Client
                     )
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
-            _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" +
-                                                            Version.SdkVersion);
+            _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             _client.BaseAddress = new Uri("https://api.plivo.com/" + Version.ApiVersion + "/");
 
             _jsonSettings = new JsonSerializerSettings
