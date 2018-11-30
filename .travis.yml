@@ -12,7 +12,7 @@ matrix:
 install:
   - 'if [  ${DOTNETCORE} = 2 ]; then
         dotnet restore;
-        dotnet build --framework netstandard1.1 src/Plivo/Plivo.csproj;
+        dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         dotnet restore;
