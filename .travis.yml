@@ -12,8 +12,8 @@ matrix:
 install:
   - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet restore;
-        dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
-        dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
+        dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         dotnet restore;
         nuget restore Plivo.sln;
