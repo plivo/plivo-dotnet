@@ -5,12 +5,12 @@ matrix:
   include:
     - dotnet: 1.1.5
       mono: none
-      env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
+      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
     - mono: latest
       dotnet: 1.1.5
 
 install:
-  - 'if [  ${DOTNETCORE} = 2 ]; then
+  - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet restore;
         dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
@@ -21,7 +21,7 @@ install:
     fi'
 
 script:
-  - 'if [  ${DOTNETCORE} = 2 ]; then
+  - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         msbuild /p:Configuration=Release Plivo.sln;
