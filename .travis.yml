@@ -3,17 +3,17 @@ solution: Plivo.sln
 
 matrix:
   include:
-    - dotnet: 1.1.5
+    - dotnet: 2.0.0
       mono: none
-      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
+      env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
     - mono: latest
-      dotnet: 1.1.5
+      dotnet: 2.0.0
 
 install:
-  - 'if [  ${DOTNETCORE} = 1 ]; then
+  - 'if [  ${DOTNETCORE} = 2 ]; then
         dotnet restore;
-        dotnet build --framework netstandard1.1 src/Plivo/Plivo.csproj;
-        dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
+        dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         dotnet restore;
         nuget restore Plivo.sln;
@@ -21,7 +21,7 @@ install:
     fi'
 
 script:
-  - 'if [  ${DOTNETCORE} = 1 ]; then
+  - 'if [  ${DOTNETCORE} = 2 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         msbuild /p:Configuration=Release Plivo.sln;
