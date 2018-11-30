@@ -17,7 +17,6 @@ install:
     else
         dotnet restore;
         nuget restore Plivo.sln;
-        dotnet add package NUnit.Runners --version 3.9.0
         nuget install NUnit.Runners -Version 3.11.2 -OutputDirectory testrunner;
     fi'
 
