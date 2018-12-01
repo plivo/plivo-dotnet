@@ -1,7 +1,8 @@
 # plivo-dotnet
-CI Build
+CI Build - 
 [![Build status](https://dev.azure.com/sdks0422/DotNet%20SDK/_apis/build/status/DotNet%20SDK-%20DotNetCore-%20CI)](https://dev.azure.com/sdks0422/DotNet%20SDK/_build/latest?definitionId=6)
-Release Build
+
+Release Build - 
 [![Build status](https://dev.azure.com/sdks0422/DotNet%20SDK/_apis/build/status/DotNet%20SDK-%20DotNetCore-Release)](https://dev.azure.com/sdks0422/DotNet%20SDK/_build/latest?definitionId=5)
 
 The Plivo .NET SDK makes it simpler to integrate communications into your .NET applications using the Plivo REST API. Using the SDK, you will be able to make voice calls, send SMS and generate Plivo XML to control your call flows.
