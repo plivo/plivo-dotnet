@@ -17,7 +17,7 @@ install:
     else
         dotnet restore;
         nuget restore Plivo.sln;
-        nuget install NUnit.Runners -Version 3.11.2 -OutputDirectory testrunner;
+        nuget install NUnit.Runners -Version 3.9.0 -OutputDirectory testrunner;
     fi'
 
 script:
@@ -25,5 +25,5 @@ script:
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         msbuild /p:Configuration=Release Plivo.sln;
-        mono ./testrunner/NUnit.Runners.3.11.2/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
+        mono ./testrunner/NUnit.Runners.3.9.0/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
     fi'
