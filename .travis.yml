@@ -7,7 +7,8 @@ matrix:
       mono: none
       env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
     - mono: latest
-      dotnet: 2.0.0
+      dotnet: 1.3.0
+      env: DOTNETCORE=1.3
 
 install:
   - 'if [  ${DOTNETCORE} = 2 ]; then
@@ -21,9 +22,9 @@ install:
     fi'
 
 script:
-  - 'if [  ${DOTNETCORE} = 2 ]; then
+  - 'if [  ${DOTNETCORE} = 1.3 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         msbuild /p:Configuration=Release Plivo.sln;
-        mono ./testrunner/NUnit.Runners.3.9.0/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
+        mono ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
     fi'
