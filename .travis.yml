@@ -16,7 +16,7 @@ install:
         dotnet restore;
         dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-    elseif [  ${DOTNETCORE} = 1 ]; then
+    else if [  ${DOTNETCORE} = 1 ]; then
         dotnet restore;
         dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
@@ -24,9 +24,17 @@ install:
         nuget restore Plivo.sln;
         nuget install NUnit.Runners -Version 3.9.0 -OutputDirectory testrunner;
     else 
-        
+        dotnet restore;
+        nuget restore Plivo.sln;
+        nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner;
     fi'
 
 script:
-  - dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-    
+  - 'if [  ${DOTNETCORE} = 2 ]; then
+        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    else if [  ${DOTNETCORE} = 1 ]; then
+        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    else
+        msbuild /p:Configuration=Release Plivo.sln;
+        mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
+    fi' 
