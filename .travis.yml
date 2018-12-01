@@ -22,7 +22,7 @@ install:
     fi'
 
 script:
-  - 'if [  ${DOTNETCORE} = 1.3 ]; then
+  - 'if [  ${DOTNETCORE} = 2 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         msbuild /p:Configuration=Release Plivo.sln;
