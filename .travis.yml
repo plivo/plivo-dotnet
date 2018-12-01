@@ -26,5 +26,5 @@ script:
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         msbuild /p:Configuration=Release Plivo.sln;
-        dotnet test ./testrunner/NUnit.ConsoleRunner.3.9.0/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
+        dotnet test ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
     fi'
