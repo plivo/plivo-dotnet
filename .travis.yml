@@ -6,25 +6,27 @@ matrix:
     - dotnet: 2.0.0
       mono: none
       env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
+    - dotnet: 1.1.5 
+      mono: none
+      env: DOTNETCORE=1
     - mono: latest
-      dotnet: 1.3.0
-      env: DOTNETCORE=1.3
 
 install:
   - 'if [  ${DOTNETCORE} = 2 ]; then
         dotnet restore;
         dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-    else
+    elseif [  ${DOTNETCORE} = 1 ]; then
         dotnet restore;
+        dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
+        dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+
         nuget restore Plivo.sln;
         nuget install NUnit.Runners -Version 3.9.0 -OutputDirectory testrunner;
+    else 
+        
     fi'
 
 script:
-  - 'if [  ${DOTNETCORE} = 2 ]; then
-        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-    else
-        msbuild /p:Configuration=Release Plivo.sln;
-        dotnet test ./packages/NUnit.ConsoleRunner.3.9.0/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
-    fi'
+  - dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    
