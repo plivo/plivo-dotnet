@@ -12,11 +12,13 @@ matrix:
 
 install:
   - 'if [  ${DOTNETCORE} = 2 ]; then
+        dotnet tool install --tool-path . nbgv
         dotnet restore;
         dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
   - 'if [  ${DOTNETCORE} = 1 ]; then
+        dotnet tool install --tool-path . nbgv
         dotnet restore;
         dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
