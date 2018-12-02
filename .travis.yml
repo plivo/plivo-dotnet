@@ -23,6 +23,7 @@ install:
     fi'
 
 script:
+  - git fetch --unshallow
   - 'if [  ${DOTNETCORE} = 2 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
