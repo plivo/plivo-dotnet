@@ -3,7 +3,7 @@ solution: Plivo.sln
 
 matrix:
   include:
-    - dotnet: 2.1.3
+    - dotnet: 2.1.300
       mono: none
       env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
     - dotnet: 1.3.0
