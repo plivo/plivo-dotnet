@@ -9,8 +9,6 @@ matrix:
     - dotnet: 1.1.5 
       mono: none
       env: DOTNETCORE=1
-    - mono: latest
-      env: DOTNETCORE=0
 
 install:
   - 'if [  ${DOTNETCORE} = 2 ]; then
@@ -23,11 +21,6 @@ install:
         dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
-  - 'if [  ${DOTNETCORE} = 0 ]; then
-        dotnet restore;
-        nuget restore Plivo.sln;
-        nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner;
-    fi'
 
 script:
   - 'if [  ${DOTNETCORE} = 2 ]; then
@@ -36,7 +29,3 @@ script:
   - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
-  - 'if [  ${DOTNETCORE} = 0 ]; then
-        msbuild /p:Configuration=Release Plivo.sln;
-        mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
-    fi' 
