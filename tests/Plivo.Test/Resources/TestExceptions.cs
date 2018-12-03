@@ -12,7 +12,7 @@ namespace Plivo.Test.Resources
             var ex =
                 Assert.Throws<PlivoValidationException>(
                     () => Api.Application.Create(
-                        ""));
+                        appName: ""));
             Assert.That(ex.Message, Is.EqualTo("appName is mandatory, can not be null or empty"));
         }
 
@@ -22,7 +22,7 @@ namespace Plivo.Test.Resources
             var ex =
                 Assert.Throws<PlivoValidationException>(
                     () => Api.Application.Create(
-                        "", "http://www.com", null));
+                        appName: "", answerUrl: "http://www.com", answerMethod: null));
             Assert.That(ex.Message, Is.EqualTo("appName is mandatory, can not be null or empty"));
         }
 
@@ -31,7 +31,7 @@ namespace Plivo.Test.Resources
         {
             var ex =
                 Assert.Throws<PlivoValidationException>(
-                    () => Api.Call.List(limit: 112));
+                    code: () => Api.Call.List(limit: 112));
             Assert.That(ex.Message, Is.EqualTo("limit:112 is out of range [0,20]"));
         }
     }

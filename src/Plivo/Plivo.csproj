@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <ReleaseVersion>4.1.7</ReleaseVersion>
-    <Authors>Plivo SDKs Team</Authors>
-    <Owners>Plivo Inc.</Owners>
-    <Summary>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Summary>
-    <Title>Plivo</Title>
-    <Description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Description>
+    <TargetFrameworks>netstandard2.0;netstandard1.3</TargetFrameworks>
+    <NuspecFile>Plivo.nuspec</NuspecFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
+    <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.3'">
+    <DefineConstants>NETSTANDARD1_3</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <NoStdLib>false</NoStdLib>
@@ -18,7 +19,6 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resource\Address\" />

@@ -1,19 +1,21 @@
-<?xml version="1.0"?>
-<package >
-  <metadata>
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+    <summary>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</summary>
+    <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.2.0</version>
+    <version>4.2.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
     <licenseUrl>https://github.com/plivo/plivo-dotnet/blob/master/LICENSE.txt</licenseUrl>
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <releaseNotes>
-      * 4.2.0 Updated to .NET Standard 2.0 to add support for System.Net.WebProxy
+      * 4.2.1 Removed .Net Framework 4.6.1 based unit test project.
+      * 4.2.0 Changed base reference to .NET Standard 2.0 to support System.Web.Proxy.  Added Strong Naming instructions
       * 4.1.7 Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
-      * 4.1.7 Add sub-account cascade delete support. 
+      * 4.1.7 Add sub-account cascade delete support.
       * 4.1.6 Add live calls filtering by to, from numbers and call direction.
       * 4.1.5 Add support for SSML tags.
       * 4.1.4 Add Trackable parameter in messages.
@@ -72,6 +74,6 @@
   </metadata>
   <files>
     <file src="bin/Release/netstandard2.0/Plivo.dll" target="lib/netstandard2.0" />
-   <file src="bin/Release/netstandard1.3/Plivo.dll" target="lib/netstandard1.3" />
+    <file src="bin/Release/netstandard1.3/Plivo.dll" target="lib/netstandard1.3" />
   </files>
 </package>

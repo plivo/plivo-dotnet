@@ -3,27 +3,31 @@ solution: Plivo.sln
 
 matrix:
   include:
-    - dotnet: 1.1.5
+    - dotnet: 2.1.300
       mono: none
-      env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
-    - mono: latest
-      dotnet: 1.1.5
+      env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
+    - dotnet: 1.3.0
+      mono: none
+      env: DOTNETCORE=1
 
 install:
+  - 'if [  ${DOTNETCORE} = 2 ]; then
+        dotnet tool install --tool-path . nbgv
+        dotnet restore;
+        dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
+        dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    fi'
   - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet restore;
-        dotnet build --framework netstandard1.1 src/Plivo/Plivo.csproj;
+        dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-    else
-        dotnet restore;
-        nuget restore Plivo.sln;
-        nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner;
     fi'
 
 script:
+  - git fetch --unshallow
+  - 'if [  ${DOTNETCORE} = 2 ]; then
+        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+    fi'
   - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-    else
-        msbuild /p:Configuration=Release Plivo.sln;
-        mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./tests/Plivo.Test/bin/Release/Plivo.Test.dll;
     fi'
