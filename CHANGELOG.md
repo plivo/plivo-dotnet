@@ -1,5 +1,9 @@
 # Change Log
 
+## [v4.2.0](https://github.com/plivo/plivo-dotnet/tree/v4.2.0) (2018-12-04)
+- Changed base reference to .NET Standard 2.0 to support System.Web.Proxy.
+- Add Strong Naming instructions.
+
 ## [v4.1.7](https://github.com/plivo/plivo-dotnet/tree/v4.1.7) (2018-11-21)
 - Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
 - Add sub-account cascade delete support.
