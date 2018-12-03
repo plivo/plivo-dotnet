@@ -3,17 +3,25 @@ solution: Plivo.sln
 
 matrix:
   include:
-    - dotnet: 2.1.4
+    - dotnet: 1.1.5
       mono: none
       env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
     - mono: latest
       dotnet: 2.1.4
 
+addons:
+  apt:
+    sources:
+    - sourceline: 'deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-trusty-prod trusty main'
+      key_url: 'https://packages.microsoft.com/keys/microsoft.asc'
+    packages:
+    - dotnet-hostfxr-1.0.1
+    - dotnet-sharedframework-microsoft.netcore.app-1.1.2
+
 install:
   - 'if [  ${DOTNETCORE} = 1 ]; then
         dotnet restore;
         dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
-        dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     else
         dotnet restore;
