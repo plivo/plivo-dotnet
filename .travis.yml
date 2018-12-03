@@ -7,7 +7,7 @@ matrix:
       mono: none
       env: DOTNETCORE=1  # optional, can be used to take different code paths in your script
     - mono: latest
-      dotnet: 1.1.5
+      dotnet: 2.1.4
 
 install:
   - 'if [  ${DOTNETCORE} = 1 ]; then
