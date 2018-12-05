@@ -33,7 +33,4 @@
     <Folder Include="Resource\Address\" />
     <Folder Include="Resource\Identity\" />
   </ItemGroup>
-<!--  <ItemGroup>
-    <PackageReference Update="Nerdbank.GitVersioning" Version="2.1.84" />
-  </ItemGroup> -->
 </Project>
