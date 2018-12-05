@@ -21,7 +21,7 @@
     <ProjectReference Include="..\..\src\Plivo\Plivo.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <PackageReference Update="Nerdbank.GitVersioning" Version="2.1.84" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>
