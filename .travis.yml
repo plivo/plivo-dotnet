@@ -8,7 +8,7 @@ matrix:
       env: DOTNETCORE=2  # optional, can be used to take different code paths in your script
     - dotnet: 1.1.5
       mono: none
-      env: DOTNETCORE=1
+      env: DOTNETCORE=1  # supporting GitVersioning package
 
 install:
   - 'if [  ${DOTNETCORE} = 2 ]; then
@@ -17,6 +17,7 @@ install:
         dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
   - 'if [  ${DOTNETCORE} = 1 ]; then
+        sudo apt-get install 2.1.300-rc1-008673;
         dotnet restore;
         dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
         dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
@@ -24,8 +25,8 @@ install:
 
 script:
   - 'if [  ${DOTNETCORE} = 2 ]; then
-        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        dotnet test --framework netcoreapp2.0 ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
   - 'if [  ${DOTNETCORE} = 1 ]; then
-        dotnet test ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        dotnet test --framework netcoreapp1.1  ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
     fi'
