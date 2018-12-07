@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Plivo.Http;
 
 namespace Plivo.Client
@@ -8,7 +9,7 @@ namespace Plivo.Client
     /// </summary>
     public interface IHttpClient
     {
-        PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+        Task<PlivoResponse<T>> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
             Dictionary<string, string> filesToUpload = null)
             where T : new();
     }

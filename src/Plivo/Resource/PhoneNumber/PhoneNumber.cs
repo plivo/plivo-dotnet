@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Plivo.Resource.PhoneNumber
 {
@@ -24,6 +25,7 @@ namespace Plivo.Resource.PhoneNumber
         public List<Prerequisite> Prerequisites { get; set; }
         public string City { get; set; }
 
+        #region Buy
         /// <summary>
         /// Buy PhoneNumber and associate it with
         /// application whose Id id appId.
@@ -34,5 +36,16 @@ namespace Plivo.Resource.PhoneNumber
         {
             return ((PhoneNumberInterface) Interface).Buy(Id, appId);
         }
+        /// <summary>
+        /// Asynchronously buy PhoneNumber and associate it with
+        /// application whose Id id appId.
+        /// </summary>
+        /// <returns>The buy.</returns>
+        /// <param name="appId">App identifier.</param>
+        public async Task<PhoneNumberBuyResponse> BuyAsync(string appId = null)
+        {
+            return await ((PhoneNumberInterface)Interface).BuyAsync(Id, appId);
+        }
+        #endregion
     }
 }

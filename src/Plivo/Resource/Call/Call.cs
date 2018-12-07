@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using Plivo.Client;
 
 namespace Plivo.Resource.Call
@@ -30,30 +31,31 @@ namespace Plivo.Resource.Call
         public string TotalAmount { get; set; }
         public string TotalRate { get; set; }
 
-//        public Call(string answerTime, string apiId, uint? billDuration, uint? billedDuration, string callDirection,
-//            uint? callDuration, string callUuid, string endTime, string fromNumber, string initiationTime,
-//            string parentCallUuid, string resourceUri, string toNumber, string totalAmount, string totalRate)
-//        {
-//            AnswerTime = answerTime ?? throw new ArgumentNullException(nameof(answerTime));
-//            ApiId = apiId ?? throw new ArgumentNullException(nameof(apiId));
-//            BillDuration = billDuration ?? throw new ArgumentNullException(nameof(billDuration));
-//            BilledDuration = billedDuration ?? throw new ArgumentNullException(nameof(billedDuration));
-//            CallDirection = callDirection ?? throw new ArgumentNullException(nameof(callDirection));
-//            CallDuration = callDuration ?? throw new ArgumentNullException(nameof(callDuration));
-//            CallUuid = callUuid ?? throw new ArgumentNullException(nameof(callUuid));
-//            EndTime = endTime ?? throw new ArgumentNullException(nameof(endTime));
-//            FromNumber = fromNumber ?? throw new ArgumentNullException(nameof(fromNumber));
-//            InitiationTime = initiationTime ?? throw new ArgumentNullException(nameof(initiationTime));
-//            ParentCallUuid = parentCallUuid ?? throw new ArgumentNullException(nameof(parentCallUuid));
-//            HangupCauseCode = hangupCauseCode ?? throw new ArgumentNullException(nameof(hangupCauseCode));
-//            HangupCauseName = hangupCauseName ?? throw new ArgumentNullException(nameof(hangupCauseName));
-//            HangupSource = hangupSource ?? throw new ArgumentNullException(nameof(hangupSource));
-//            ResourceUri = resourceUri ?? throw new ArgumentNullException(nameof(resourceUri));
-//            ToNumber = toNumber ?? throw new ArgumentNullException(nameof(toNumber));
-//            TotalAmount = totalAmount ?? throw new ArgumentNullException(nameof(totalAmount));
-//            TotalRate = totalRate ?? throw new ArgumentNullException(nameof(totalRate));
-//        }
+        //        public Call(string answerTime, string apiId, uint? billDuration, uint? billedDuration, string callDirection,
+        //            uint? callDuration, string callUuid, string endTime, string fromNumber, string initiationTime,
+        //            string parentCallUuid, string resourceUri, string toNumber, string totalAmount, string totalRate)
+        //        {
+        //            AnswerTime = answerTime ?? throw new ArgumentNullException(nameof(answerTime));
+        //            ApiId = apiId ?? throw new ArgumentNullException(nameof(apiId));
+        //            BillDuration = billDuration ?? throw new ArgumentNullException(nameof(billDuration));
+        //            BilledDuration = billedDuration ?? throw new ArgumentNullException(nameof(billedDuration));
+        //            CallDirection = callDirection ?? throw new ArgumentNullException(nameof(callDirection));
+        //            CallDuration = callDuration ?? throw new ArgumentNullException(nameof(callDuration));
+        //            CallUuid = callUuid ?? throw new ArgumentNullException(nameof(callUuid));
+        //            EndTime = endTime ?? throw new ArgumentNullException(nameof(endTime));
+        //            FromNumber = fromNumber ?? throw new ArgumentNullException(nameof(fromNumber));
+        //            InitiationTime = initiationTime ?? throw new ArgumentNullException(nameof(initiationTime));
+        //            ParentCallUuid = parentCallUuid ?? throw new ArgumentNullException(nameof(parentCallUuid));
+        //            HangupCauseCode = hangupCauseCode ?? throw new ArgumentNullException(nameof(hangupCauseCode));
+        //            HangupCauseName = hangupCauseName ?? throw new ArgumentNullException(nameof(hangupCauseName));
+        //            HangupSource = hangupSource ?? throw new ArgumentNullException(nameof(hangupSource));
+        //            ResourceUri = resourceUri ?? throw new ArgumentNullException(nameof(resourceUri));
+        //            ToNumber = toNumber ?? throw new ArgumentNullException(nameof(toNumber));
+        //            TotalAmount = totalAmount ?? throw new ArgumentNullException(nameof(totalAmount));
+        //            TotalRate = totalRate ?? throw new ArgumentNullException(nameof(totalRate));
+        //        }
 
+        #region Delete
         /// <summary>
         /// Delete Call with the specified callUuid.
         /// </summary>
@@ -64,6 +66,18 @@ namespace Plivo.Resource.Call
                 .Delete(Id);
         }
 
+        /// <summary>
+        /// Asynchronously delete Call with the specified callUuid.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async Task<DeleteResponse<Call>> DeleteAsync()
+        {
+            return await ((CallInterface)Interface)
+                .DeleteAsync(Id);
+        }
+        #endregion
+
+        #region Transfer
         /// <summary>
         /// Transfer Call with the specified callUuid, legs, alegUrl, alegMethod, blegUrl and blegMethod.
         /// </summary>
@@ -81,7 +95,26 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .Transfer(Id, legs, alegUrl, alegMethod, blegUrl, blegMethod);
         }
+        /// <summary>
+        /// Asynchronously transfer Call with the specified callUuid, legs, alegUrl, alegMethod, blegUrl and blegMethod.
+        /// </summary>
+        /// <returns>The transfer.</returns>
+        /// <param name="legs">Legs.</param>
+        /// <param name="alegUrl">Aleg URL.</param>
+        /// <param name="alegMethod">Aleg method.</param>
+        /// <param name="blegUrl">Bleg URL.</param>
+        /// <param name="blegMethod">Bleg method.</param>
+        public async Task<UpdateResponse<Call>> TransferAsync(
+            string legs = null, string alegUrl = null,
+            string alegMethod = null, string blegUrl = null,
+            string blegMethod = null)
+        {
+            return await ((CallInterface)Interface)
+                .TransferAsync(Id, legs, alegUrl, alegMethod, blegUrl, blegMethod);
+        }
+        #endregion
 
+        #region StartPlaying
         /// <summary>
         /// Starts the playing.
         /// </summary>
@@ -98,7 +131,25 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .StartPlaying(Id, urls, length, legs, loop, mix);
         }
+        /// <summary>
+        /// Asynchronously starts the playing.
+        /// </summary>
+        /// <returns>The playing.</returns>
+        /// <param name="urls">Urls.</param>
+        /// <param name="length">Length.</param>
+        /// <param name="legs">Legs.</param>
+        /// <param name="loop">Loop.</param>
+        /// <param name="mix">Mix.</param>
+        public async Task<UpdateResponse<Call>> StartPlayingAsync(
+            List<string> urls, uint? length = null,
+            string legs = null, bool? loop = null, bool? mix = null)
+        {
+            return await ((CallInterface)Interface)
+                .StartPlayingAsync(Id, urls, length, legs, loop, mix);
+        }
+        #endregion
 
+        #region StopPlaying
         /// <summary>
         /// Stops the playing.
         /// </summary>
@@ -108,7 +159,18 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .StopPlaying(Id);
         }
+        /// <summary>
+        /// Asynchronously stops the playing.
+        /// </summary>
+        /// <returns>The playing.</returns>
+        public async Task<DeleteResponse<Call>> StopPlayingAsync()
+        {
+            return await ((CallInterface)Interface)
+                .StopPlayingAsync(Id);
+        }
+        #endregion
 
+        #region StartRecording
         /// <summary>
         /// Starts the recording.
         /// </summary>
@@ -131,7 +193,31 @@ namespace Plivo.Resource.Call
                     Id, timeLimit, fileFormat, transactionType, transactionUrl,
                     transactionMethod, callbackUrl, callbackMethod);
         }
+        /// <summary>
+        /// Asynchronously starts the recording.
+        /// </summary>
+        /// <returns>The recording.</returns>
+        /// <param name="timeLimit">Time limit.</param>
+        /// <param name="fileFormat">File format.</param>
+        /// <param name="transactionType">Transaction type.</param>
+        /// <param name="transactionUrl">Transaction URL.</param>
+        /// <param name="transactionMethod">Transaction method.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<RecordCreateResponse<Call>> StartRecordingAsync(
+            uint? timeLimit = null, string fileFormat = null,
+            string transactionType = null, string transactionUrl = null,
+            string transactionMethod = null, string callbackUrl = null,
+            string callbackMethod = null)
+        {
+            return await ((CallInterface)Interface)
+                .StartRecordingAsync(
+                    Id, timeLimit, fileFormat, transactionType, transactionUrl,
+                    transactionMethod, callbackUrl, callbackMethod);
+        }
+        #endregion
 
+        #region StopRecording
         /// <summary>
         /// Stops the recording.
         /// </summary>
@@ -142,7 +228,19 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .StopRecording(Id, URL);
         }
+        /// <summary>
+        /// Asynchronously stops the recording.
+        /// </summary>
+        /// <returns>The recording.</returns>
+        /// <param name="URL">URL.</param>
+        public async Task<DeleteResponse<Call>> StopRecordingAsync(string URL = null)
+        {
+            return await ((CallInterface)Interface)
+                .StopRecordingAsync(Id, URL);
+        }
+        #endregion
 
+        #region StartSpeaking
         /// <summary>
         /// Starts the speaking.
         /// </summary>
@@ -162,7 +260,28 @@ namespace Plivo.Resource.Call
                 .StartSpeaking(
                     Id, text, voice, language, legs, loop, mix);
         }
+        /// <summary>
+        /// Asynchronously starts the speaking.
+        /// </summary>
+        /// <returns>The speaking.</returns>
+        /// <param name="text">Text.</param>
+        /// <param name="voice">Voice.</param>
+        /// <param name="language">Language.</param>
+        /// <param name="legs">Legs.</param>
+        /// <param name="loop">Loop.</param>
+        /// <param name="mix">Mix.</param>
+        public async Task<UpdateResponse<Call>> StartSpeakingAsync(
+            string text, string voice = null,
+            string language = null, string legs = null, bool? loop = null,
+            bool? mix = null)
+        {
+            return await ((CallInterface)Interface)
+                .StartSpeakingAsync(
+                    Id, text, voice, language, legs, loop, mix);
+        }
+        #endregion
 
+        #region StopSpeaking
         /// <summary>
         /// Stops the speaking.
         /// </summary>
@@ -172,20 +291,45 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .StopSpeaking(Id);
         }
+        /// <summary>
+        /// Asynchronously stops the speaking.
+        /// </summary>
+        /// <returns>The speaking.</returns>
+        public async Task<DeleteResponse<Call>> StopSpeakingAsync()
+        {
+            return await ((CallInterface)Interface)
+                .StopSpeakingAsync(Id);
+        }
+        #endregion
 
+        #region SendDigits
+        /// <summary>
+        /// Asynchronously sends the digits.
+        /// </summary>
+        /// <returns>The digits.</returns>
+        /// <param name="digits">Digits.</param>
+        /// <param name="leg">Leg.</param>
+        public async Task<UpdateResponse<Call>> SendDigitsAsync(
+            string digits, string leg = null)
+        {
+            return await ((CallInterface) Interface)
+                .SendDigitsAsync(Id, digits, leg);
+        }
         /// <summary>
         /// Sends the digits.
         /// </summary>
         /// <returns>The digits.</returns>
         /// <param name="digits">Digits.</param>
         /// <param name="leg">Leg.</param>
-        public UpdateResponse<Call> SendDigits(
+        public  UpdateResponse<Call> SendDigits(
             string digits, string leg = null)
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .SendDigits(Id, digits, leg);
         }
+        #endregion
 
+        #region CancelCall
         /// <summary>
         /// Cancels the call.
         /// </summary>
@@ -195,7 +339,16 @@ namespace Plivo.Resource.Call
             return ((CallInterface) Interface)
                 .CancelCall(Id);
         }
-
+        /// <summary>
+        /// Asynchronously cancels the call.
+        /// </summary>
+        /// <returns>The call.</returns>
+        public async Task<DeleteResponse<Call>> CancelCallAsync()
+        {
+            return await ((CallInterface)Interface)
+                .CancelCallAsync(Id);
+        }
+        #endregion
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.
         /// </summary>
