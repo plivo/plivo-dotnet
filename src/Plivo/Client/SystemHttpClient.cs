@@ -53,11 +53,11 @@ namespace Plivo.Client
             var networkCreds = new NetworkCredential();
             networkCreds.UserName = proxyServerSettings["Username"];
             networkCreds.Password = proxyServerSettings["Password"];
-            var useDefaultCreds = networkCreds.UserName.Length > 0 && networkCreds.UserName.Length > 0;
+            var useDefaultCreds = string.IsNullOrEmpty(networkCreds.UserName) && string.IsNullOrEmpty(networkCreds.Password);
 
             try
             {
-                if (useDefaultCreds)
+                if (!useDefaultCreds)
                 {
                     proxy = new WebProxy()
                     {
