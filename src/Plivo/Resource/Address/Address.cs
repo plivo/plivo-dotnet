@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Plivo.Resource.Address
 {
@@ -149,16 +150,25 @@ namespace Plivo.Resource.Address
         public Address()
         {
         }
-
+        #region Delete
         /// <summary>
         /// Delete this instance.
         /// </summary>
         /// <returns>The delete.</returns>
-        public DeleteResponse<Address> Delete()
+        public  DeleteResponse<Address> Delete()
         {
-            return ((AddressInterface) Interface).Delete(Id);
+            return ((AddressInterface)Interface).Delete(Id);
         }
-
+        /// <summary>
+        /// Asynchronously delete this instance.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async Task<DeleteResponse<Address>> DeleteAsync()
+        {
+            return await ((AddressInterface) Interface).DeleteAsync(Id);
+        }
+        #endregion
+        #region Update
         /// <summary>
         /// Update address with the specified params
         /// </summary>
@@ -210,5 +220,58 @@ namespace Plivo.Resource.Address
 
             return updateResponse;
         }
+
+        /// <summary>
+        /// Asynchronously update address with the specified params
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="salutation">Salutation.</param>
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        /// <param name="countryIso">2-letter country ISO.</param>
+        /// <param name="addressLine1">Address Line 1.</param>
+        /// <param name="addressLine2">Address Line 2.</param>
+        /// <param name="city">City.</param>
+        /// <param name="region">Region.</param>
+        /// <param name="postalCode">Postal Code.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
+        /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
+        /// <param name="callbackUrl">Callback URL</param>
+        public async Task<UpdateResponse<Address>> UpdateAsync(
+            string salutation = null,
+            string firstName = null,
+            string lastName = null,
+            string countryIso = null,
+            string addressLine1 = null,
+            string addressLine2 = null,
+            string city = null,
+            string region = null,
+            string postalCode = null,
+            string alias = null,
+            string fileToUpload = null,
+            bool? autoCorrectAddress = null,
+            string callbackUrl = null)
+        {
+            var updateResponse = await ((AddressInterface)Interface).UpdateAsync(
+                Id, salutation, firstName, lastName, countryIso, addressLine1,
+                addressLine2, city, region, postalCode, alias, fileToUpload,
+                autoCorrectAddress, callbackUrl
+            );
+
+            if (salutation != null) Salutation = salutation;
+            if (firstName != null) FirstName = firstName;
+            if (lastName != null) LastName = lastName;
+            if (countryIso != null) CountryIso = countryIso;
+            if (addressLine1 != null) AddressLine1 = addressLine1;
+            if (addressLine2 != null) AddressLine2 = addressLine2;
+            if (city != null) City = city;
+            if (region != null) Region = region;
+            if (postalCode != null) PostalCode = postalCode;
+            if (alias != null) Alias = alias;
+
+            return updateResponse;
+        }
+        #endregion
     }
 }

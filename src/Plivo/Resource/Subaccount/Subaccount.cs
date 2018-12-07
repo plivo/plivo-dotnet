@@ -1,6 +1,7 @@
 using System;
 // using System.Data;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace Plivo.Resource.Subaccount
 {
@@ -17,6 +18,7 @@ namespace Plivo.Resource.Subaccount
         public string Name { get; set; }
         public string ResourceUri { get; set; }
 
+        #region Delete
         /// <summary>
         /// Delete Subaccount.
         /// </summary>
@@ -27,7 +29,19 @@ namespace Plivo.Resource.Subaccount
                 ((SubaccountInterface) Interface)
                 .Delete(Id);
         }
+        /// <summary>
+        /// Asynchronously delete Subaccount.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async Task<DeleteResponse<Subaccount>> DeleteAsync()
+        {
+            return await
+                ((SubaccountInterface)Interface)
+                .DeleteAsync(Id);
+        }
+        #endregion
 
+        #region Update
         /// <summary>
         /// Update Subaccount with the specified name and enabled.
         /// </summary>
@@ -44,6 +58,23 @@ namespace Plivo.Resource.Subaccount
 
             return updateResponse;
         }
+        /// <summary>
+        /// Asynchronously update Subaccount with the specified name and enabled.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="enabled">Enabled.</param>
+        public async Task<UpdateResponse<Subaccount>> UpdateAsync(string name, bool? enabled = null)
+        {
+            var updateResponse = await
+                ((SubaccountInterface)Interface)
+                .UpdateAsync(Id, name, enabled);
+
+            if (enabled != null) Enabled = enabled;
+
+            return updateResponse;
+        }
+        #endregion
 
         public override string ToString()
         {

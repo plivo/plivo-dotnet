@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace Plivo.Resource.Recording
 {
     public class Recording : Resource
@@ -15,6 +17,7 @@ namespace Plivo.Resource.Recording
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
 
+        #region Delete
         /// <summary>
         /// Delete this recording
         /// </summary>
@@ -23,5 +26,14 @@ namespace Plivo.Resource.Recording
         {
             return ((RecordingInterface) Interface).Delete(Id);
         }
+        /// <summary>
+        /// Asynchronously delete this recording
+        /// </summary>
+        /// <returns></returns>
+        public async Task<DeleteResponse<Recording>> DeleteAsync()
+        {
+            return await ((RecordingInterface)Interface).DeleteAsync(Id);
+        }
+        #endregion
     }
 }

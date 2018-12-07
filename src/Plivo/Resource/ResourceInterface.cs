@@ -5,6 +5,7 @@ using System.Reflection;
 using Plivo.Client;
 using Plivo.Exception;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace Plivo.Resource
 {
@@ -39,7 +40,7 @@ namespace Plivo.Resource
         /// <param name="id">Identifier.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public T GetResource<T>(string id, Dictionary<string, object> data = null)
+        public async Task<T> GetResource<T>(string id, Dictionary<string, object> data = null)
             where T : new()
         {
             string to_append = id;
@@ -48,8 +49,10 @@ namespace Plivo.Resource
                 to_append = to_append + "/";
             }
 
-            return Client.Fetch<T>(
-                Uri + to_append, data).Object;
+            var result = await Client.Fetch<T>(
+                Uri + to_append, data);
+
+            return result.Object;
         }
 
         /// <summary>
@@ -58,10 +61,11 @@ namespace Plivo.Resource
         /// <returns>The resources.</returns>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public T ListResources<T>(Dictionary<string, object> data = null)
+        public async Task<T> ListResources<T>(Dictionary<string, object> data = null)
             where T : new()
         {
-            return Client.Fetch<T>(Uri, data).Object;
+            var result = await Client.Fetch<T>(Uri, data);
+            return result.Object;
         }
 
         /// <summary>
@@ -71,10 +75,11 @@ namespace Plivo.Resource
         /// <param name="id">Identifier.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public T DeleteResource<T>(string id, Dictionary<string, object> data = null)
+        public async Task<T> DeleteResource<T>(string id, Dictionary<string, object> data = null)
             where T : new()
         {
-            return Client.Delete<T>(Uri + id + "/", data).Object;
+            var result = await Client.Delete<T>(Uri + id + "/", data);
+            return result.Object;
         }
 
         /// <summary>
