@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace Plivo.Resource.Endpoint
 {
     /// <summary>
@@ -78,7 +80,8 @@ namespace Plivo.Resource.Endpoint
         /// </summary>
         /// <value>The password.</value>
         public string Password { get; set; }
-
+        
+        #region Delete
         /// <summary>
         /// Delete Endpoint with the specified endpointId.
         /// </summary>
@@ -87,7 +90,17 @@ namespace Plivo.Resource.Endpoint
         {
             return ((EndpointInterface) Interface).Delete(Id);
         }
+        /// <summary>
+        /// Asynchronously delete Endpoint with the specified endpointId.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async Task<DeleteResponse<Endpoint>> DeleteAsync()
+        {
+            return await ((EndpointInterface)Interface).DeleteAsync(Id);
+        }
+        #endregion
 
+        #region Update
         /// <summary>
         /// Update Endpoint with the specified endpointId, password, alias and appId.
         /// </summary>
@@ -115,5 +128,33 @@ namespace Plivo.Resource.Endpoint
 
             return updateResponse;
         }
+        /// <summary>
+        /// Asynchronously update Endpoint with the specified endpointId, password, alias and appId.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="password">Password.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="appId">App identifier.</param>
+        public async Task<UpdateResponse<Endpoint>> UpdateAsync(
+            string password = null, string alias = null,
+            string appId = null)
+        {
+            var updateResponse = await
+                ((EndpointInterface)Interface)
+                .UpdateAsync(password, alias, appId);
+
+            if (password != null) Password = password;
+            if (alias != null) Alias = alias;
+            if (appId != null)
+                Application =
+                    "/v1/Account/" +
+                    ((EndpointInterface)Interface).Client.GetAuthId() +
+                    "/Application/" +
+                    appId +
+                    "/";
+
+            return updateResponse;
+        }
+        #endregion
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Plivo.Client;
 
 
@@ -21,6 +22,7 @@ namespace Plivo.Resource.Message
             Uri = "Account/" + Client.GetAuthId() + "/Message/";
         }
 
+        #region Create
         /// <summary>
         /// Create Message with the specified src, dst, text, type, url, method and log.
         /// </summary>
@@ -77,10 +79,14 @@ namespace Plivo.Resource.Message
             } else if (src == null && powerpack_uuid == null){
                 return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
             }
-            return Client.Update<MessageCreateResponse>(Uri, data).Object;
-        }
 
-          /// <summary>
+            var result = Client.Update<MessageCreateResponse>(Uri, data).Result;
+            return result.Object;
+        }
+        #endregion
+
+        #region getResponseValidation
+        /// <summary>
         /// validation for src and powerpack id and return the repsonse.
         /// </summary>
         /// <returns>The get.</returns>
@@ -93,7 +99,9 @@ namespace Plivo.Resource.Message
                 notValidResponse.MessageUuid = new List<string>();
                 return notValidResponse;
         }
+        #endregion
 
+        #region Get
         /// <summary>
         /// Get Message with the specified messageUuid.
         /// </summary>
@@ -101,11 +109,24 @@ namespace Plivo.Resource.Message
         /// <param name="messageUuid">Message UUID.</param>
         public Message Get(string messageUuid)
         {
-            var message = GetResource<Message>(messageUuid);
+            var message = GetResource<Message>(messageUuid).Result;
             message.Interface = this;
             return message;
         }
+        /// <summary>
+        /// Asynchronously get Message with the specified messageUuid.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="messageUuid">Message UUID.</param>
+        public async Task<Message> GetAsync(string messageUuid)
+        {
+            var message = await GetResource<Message>(messageUuid);
+            message.Interface = this;
+            return message;
+        }
+        #endregion
 
+        #region List
         /// <summary>
         /// List Message with the specified subaccount, limit and offset.
         /// </summary>
@@ -155,7 +176,7 @@ namespace Plivo.Resource.Message
                     _message_time, 
                     error_code
                 });
-            var resources = ListResources<ListResponse<Message>>(data);
+            var resources = ListResources<ListResponse<Message>>(data).Result;
 
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
@@ -163,5 +184,64 @@ namespace Plivo.Resource.Message
 
             return resources;
         }
+        /// <summary>
+        /// List Message with the specified subaccount, limit and offset.
+        /// </summary>
+        /// <returns>The list.</returns>
+        /// <param name="subaccount">Subaccount.</param>
+        /// <param name="limit">Limit.</param>
+        /// <param name="offset">Offset.</param>
+        /// <param name="message_state">MessageState.</param>
+        /// <param name="message_direction">MessageDirection.</param>
+        /// <param name="message_time__gt">MessageTimeGT.</param>
+        /// <param name="message_time__gte">MessageTimeGTE.</param>
+        /// <param name="message_time__lt">MessageTimeLT.</param>
+        /// <param name="message_time__lte">MessageTimeLTE.</param>
+        /// <param name="message_time">MessageTime.</param>
+        /// <param name="error_code">ErrorCode.</param>
+        public async Task<ListResponse<Message>> ListAsync(
+            string subaccount = null,
+            uint? limit = null,
+            uint? offset = null,
+            string message_state = null,
+            string message_direction = null,
+            DateTime? message_time__gt = null,
+            DateTime? message_time__gte = null,
+            DateTime? message_time__lt = null,
+            DateTime? message_time__lte = null,
+            DateTime? message_time = null,
+            uint? error_code = null
+            )
+        {
+            var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time__gte = message_time__gte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time__lt = message_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time__lte = message_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _message_time = message_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams, new
+                {
+                    subaccount,
+                    limit,
+                    offset,
+                    message_state,
+                    message_direction,
+                    _message_time__gt,
+                    _message_time__gte,
+                    _message_time__lt,
+                    _message_time__lte,
+                    _message_time,
+                    error_code
+                });
+            var resources = await ListResources<ListResponse<Message>>(data);
+
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
+            return resources;
+        }
+        #endregion
     }
 }

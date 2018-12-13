@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Plivo.Resource.RentedNumber
 {
@@ -24,6 +25,7 @@ namespace Plivo.Resource.RentedNumber
         public string City { get; set; }
         public string Country { get; set; }
 
+        #region Update
         /// <summary>
         /// Update RentedNumber with the specified appId, subAccount and alias.
         /// </summary>
@@ -51,7 +53,36 @@ namespace Plivo.Resource.RentedNumber
 
             return updateResponse;
         }
+        /// <summary>
+        /// Update RentedNumber with the specified appId, subAccount and alias.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="appId">App identifier.</param>
+        /// <param name="subAccount">SubAccount.</param>
+        /// <param name="alias">Alias.</param>
+        public async Task<UpdateResponse<RentedNumber>> UpdateAsync(
+            string appId = null, string subAccount = null, string alias = null)
+        {
+            var updateResponse = await
+                ((RentedNumberInterface)Interface)
+                .UpdateAsync(Id, appId, subAccount, alias);
 
+            if (appId != null)
+                Application =
+                    "/v1/Account/" +
+                    ((RentedNumberInterface)Interface).Client.GetAuthId() +
+                    "/Application/" +
+                    appId +
+                    "/";
+            if (appId == "null") Application = null;
+            if (subAccount != null) SubAccount = subAccount;
+            if (alias != null) Alias = alias;
+
+            return updateResponse;
+        }
+        #endregion
+
+        #region Delete
         /// <summary>
         /// Unrent RentedNumber.
         /// </summary>
@@ -61,5 +92,15 @@ namespace Plivo.Resource.RentedNumber
             ((RentedNumberInterface) Interface)
                 .Delete(Id);
         }
+        /// <summary>
+        /// Asynchronously unrent RentedNumber.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async void DeleteAsync()
+        {
+            await ((RentedNumberInterface)Interface)
+                .DeleteAsync(Id);
+        }
+        #endregion
     }
 }

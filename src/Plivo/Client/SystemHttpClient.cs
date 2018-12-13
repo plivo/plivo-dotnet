@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
@@ -52,11 +53,11 @@ namespace Plivo.Client
             var networkCreds = new NetworkCredential();
             networkCreds.UserName = proxyServerSettings["Username"];
             networkCreds.Password = proxyServerSettings["Password"];
-            var useDefaultCreds = networkCreds.UserName.Length > 0 && networkCreds.UserName.Length > 0;
+            var useDefaultCreds = string.IsNullOrEmpty(networkCreds.UserName) && string.IsNullOrEmpty(networkCreds.Password);
 
             try
             {
-                if (useDefaultCreds)
+                if (!useDefaultCreds)
                 {
                     proxy = new WebProxy()
                     {
@@ -121,7 +122,7 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+        public async Task<PlivoResponse<T>> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
             Dictionary<string, string> filesToUpload = null)
             where T : new()
         {
@@ -205,7 +206,7 @@ namespace Plivo.Client
                         method + " not supported");
             }
 
-            response = _client.SendAsync(request).Result;
+            response = await _client.SendAsync(request);
 
             var responseContent = response.Content.ReadAsStringAsync().Result;
 

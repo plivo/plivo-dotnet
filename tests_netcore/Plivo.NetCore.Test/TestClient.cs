@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Plivo.Client;
@@ -14,8 +15,8 @@ namespace Plivo.NetCore.Test
         public string Response;
         public PlivoRequest Request;
 
-        public PlivoResponse<T> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
-            Dictionary<string, string> filesToUpload = null) where T : new()
+        public Task<PlivoResponse<T>> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+            Dictionary<string, string> filesToUpload = null)    where T : new()
         {
             switch (method)
             {
@@ -48,7 +49,7 @@ namespace Plivo.NetCore.Test
                     JsonConvert.DeserializeObject<T>(Response, jsonSettings),
                     new PlivoRequest(method, uri, string.Empty, data));
 
-            return plivoResponse;
+            return Task.FromResult(plivoResponse);
         }
 
         public void Setup(string response, uint statusCode)
