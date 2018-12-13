@@ -12,7 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      * 4.2.1 Removed .Net Framework 4.6.1 based unit test project.
+      * 4.2.1 Fix Web Proxy support.
       * 4.2.0 Changed base reference to .NET Standard 2.0 to support System.Web.Proxy.  Added Strong Naming instructions
       * 4.1.7 Add hangup party details to CDR. CDR filtering allowed by hangup_source and hangup_cause_code.
       * 4.1.7 Add sub-account cascade delete support.
