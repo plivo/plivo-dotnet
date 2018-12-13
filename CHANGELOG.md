@@ -1,5 +1,8 @@
 # Change Log
 
+## [v4.2.1](https://github.com/plivo/plivo-dotnet/tree/v4.2.1) (2018-12-13)
+- Fix Web Proxy Support.
+
 ## [v4.2.0](https://github.com/plivo/plivo-dotnet/tree/v4.2.0) (2018-12-04)
 - Changed base reference to .NET Standard 2.0 to support System.Web.Proxy.
 - Add Strong Naming instructions.
