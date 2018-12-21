@@ -42,7 +42,7 @@ namespace Plivo.Resource.Message
         {
           
             string _dst = string.Join("<", dst);
-            var data = (dynamic)null; 
+			Dictionary<string, object> data = null; 
             var mandatoryParams = new List<string> {""};
             if (src != null && powerpack_uuid == null){
                 data = CreateData(
@@ -83,15 +83,84 @@ namespace Plivo.Resource.Message
             var result = Client.Update<MessageCreateResponse>(Uri, data).Result;
             return result.Object;
         }
-        #endregion
 
-        #region getResponseValidation
-        /// <summary>
-        /// validation for src and powerpack id and return the repsonse.
-        /// </summary>
-        /// <returns>The get.</returns>
-        /// <param name="errormessagetext">errormessagetext</param>
-        private MessageCreateResponse getResponseValidation(string errorMessageText){
+		/// <summary>
+		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log.
+		/// </summary>
+		/// <returns>The create.</returns>
+		/// <param name="src">Source.</param>
+		/// <param name="dst">Dst.</param>
+		/// <param name="text">Text.</param>
+		/// <param name="type">Type.</param>
+		/// <param name="url">URL.</param>
+		/// <param name="method">Method.</param>
+		/// <param name="log">Log.</param>
+		/// <param name="trackable">trackable.</param>
+		/// <param name="powerpackUUID">powerpackUUID</param>
+		public async Task<MessageCreateResponse> CreateAsync(
+			List<string> dst, string text, string src = null, string type = null,
+			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+		{
+
+			string _dst = string.Join("<", dst);
+			Dictionary<string, object> data = null;
+			var mandatoryParams = new List<string> { "" };
+			if (src != null && powerpack_uuid == null)
+			{
+				data = CreateData(
+				mandatoryParams,
+				new
+				{
+					src,
+					_dst,
+					text,
+					type,
+					url,
+					method,
+					log,
+					trackable
+				});
+			}
+			else if (powerpack_uuid != null && src == null)
+			{
+				data = CreateData(
+				mandatoryParams,
+				new
+				{
+					powerpack_uuid,
+					_dst,
+					text,
+					type,
+					url,
+					method,
+					log,
+					trackable
+				});
+
+
+			}
+			else if (src != null && powerpack_uuid != null)
+			{
+				return getResponseValidation("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+			}
+			else if (src == null && powerpack_uuid == null)
+			{
+				return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
+			}
+
+			var result = await Client.Update<MessageCreateResponse>(Uri, data);
+			return result.Object;
+		}
+
+		#endregion
+
+		#region getResponseValidation
+		/// <summary>
+		/// validation for src and powerpack id and return the repsonse.
+		/// </summary>
+		/// <returns>The get.</returns>
+		/// <param name="errormessagetext">errormessagetext</param>
+		private MessageCreateResponse getResponseValidation(string errorMessageText){
 
                 MessageCreateResponse notValidResponse = new MessageCreateResponse();
                 notValidResponse.ApiId = null;
