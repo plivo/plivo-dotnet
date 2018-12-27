@@ -1,4 +1,8 @@
+
 # Change Log
+
+## [v4.2.2](https://github.com/plivo/plivo-dotnet/tree/v4.2.2) (2018-12-27)
+- Fix dynamic object usage with async/await statement.
 
 ## [v4.2.1](https://github.com/plivo/plivo-dotnet/tree/v4.2.1) (2018-12-13)
 - Fix Web Proxy Support.
