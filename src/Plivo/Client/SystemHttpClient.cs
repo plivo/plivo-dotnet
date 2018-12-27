@@ -208,7 +208,7 @@ namespace Plivo.Client
 
             response = await _client.SendAsync(request);
 
-            var responseContent = response.Content.ReadAsStringAsync().Result;
+            var responseContent = await response.Content.ReadAsStringAsync();
 
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse;
