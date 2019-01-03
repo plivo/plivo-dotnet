@@ -27,10 +27,10 @@ namespace Plivo.Resource.Pricing
         /// <param name="countryIso">Country iso.</param>
         public Pricing Get(string countryIso)
         {
-            return GetResource<Pricing>("", new Dictionary<string, object>()
+            return Task.Run(async() => await GetResource<Pricing>("", new Dictionary<string, object>()
             {
                 {"country_iso", countryIso}
-            }).Result;
+            }).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously get Procing for countryIso.

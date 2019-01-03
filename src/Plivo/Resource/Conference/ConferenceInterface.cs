@@ -29,7 +29,7 @@ namespace Plivo.Resource.Conference
         /// <param name="conferenceName">Name.</param>
         public Conference Get(string conferenceName)
         {
-            var conference = GetResource<Conference>(conferenceName).Result;
+            var conference = Task.Run(async () => await GetResource<Conference>(conferenceName).ConfigureAwait(false)).Result;
             conference.Interface = this;
             return conference;
         }
@@ -53,7 +53,7 @@ namespace Plivo.Resource.Conference
         /// <returns>The list.</returns>
         public ConferenceListResponse List()
         {
-            return ListResources<ConferenceListResponse>().Result;
+            return Task.Run(async () => await ListResources<ConferenceListResponse>().ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// List Conferences.
@@ -72,7 +72,7 @@ namespace Plivo.Resource.Conference
         /// <returns>The all.</returns>
         public DeleteResponse<Conference> DeleteAll()
         {
-            var result = Client.Delete<DeleteResponse<Conference>>(Uri).Result;
+            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Conference>>(Uri).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -94,7 +94,7 @@ namespace Plivo.Resource.Conference
         /// <param name="name">Name.</param>
         public DeleteResponse<Conference> Delete(string name)
         {
-            return DeleteResource<DeleteResponse<Conference>>(name).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Conference>>(name).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously delete with the specified name.
@@ -117,7 +117,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse HangupMember(
             string conferenceName, string memberId)
         {
-            var result = Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/").Result;
+            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/").ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -144,7 +144,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse KickMember(
             string conferenceName, string memberId)
         {
-            var result = Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/").Result;
+            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/").ConfigureAwait(false)).Result;
             return result.Object;
         }
 
@@ -172,7 +172,7 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse MuteMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").Result;
+            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -225,14 +225,14 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse PlayMember(
             string conferenceName, List<string> memberId, string url)
         {
-            var result = Client.Update<ConferenceMemberActionResponse>(
+            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Play/",
                     new Dictionary<string, object>() { { "url", url } }
-                ).Result;
+                ).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -267,14 +267,14 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse StopPlayMember(
             string conferenceName, List<string> memberId)
         {
-            var result = 
+            var result = Task.Run(async () => await 
                 Client.Delete<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Play/"
-                ).Result;
+                ).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -321,14 +321,14 @@ namespace Plivo.Resource.Conference
                     voice,
                     language
                 });
-            var result = Client.Update<ConferenceMemberActionResponse>(
+            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Speak/",
                     data
-                ).Result;
+                ).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -375,12 +375,12 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse StopSpeakMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Client.Delete<ConferenceMemberActionResponse>(
+            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
-                    "/Speak/")
+                    "/Speak/").ConfigureAwait(false))
                     .Result;
 
             return result.Object;
@@ -416,13 +416,13 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse DeafMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Client.Update<ConferenceMemberActionResponse>(
+            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Deaf/"
-                ).Result;
+                ).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -454,13 +454,13 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse UnDeafMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Client.Delete<ConferenceMemberActionResponse>(
+            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Deaf/"
-                ).Result;
+                ).ConfigureAwait(false)).Result;
             return result.Object;
         }
         public async Task<ConferenceMemberActionResponse> UnDeafMemberAsync(
@@ -507,10 +507,10 @@ namespace Plivo.Resource.Conference
                     callbackMethod
                 });
 
-            var result = Client.Update<RecordCreateResponse<Conference>>(
+            var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Conference>>(
                     Uri + conferenceName + "/Record/",
                     data
-                ).Result;
+                ).ConfigureAwait(false)).Result;
 
             return result.Object;
         }

@@ -211,7 +211,7 @@ namespace Plivo.Resource.Address
                 filesToUpload.Add("file", fileToUpload);
             }
 
-            var result = Client.Update<AddressCreateResponse>(Uri, data, filesToUpload).Result;
+            var result = Task.Run(async () => await Client.Update<AddressCreateResponse>(Uri, data, filesToUpload).ConfigureAwait(false)).Result;
 
             return result.Object;
         }
@@ -280,7 +280,7 @@ namespace Plivo.Resource.Address
                 filesToUpload.Add("file", fileToUpload);
             }
 
-            var result = Client.Update<UpdateResponse<Address>>(Uri + addressId + "/", data, filesToUpload).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Address>>(Uri + addressId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
             return result.Object;
         }
 
@@ -359,7 +359,7 @@ namespace Plivo.Resource.Address
         /// <param name="id">Identifier.</param>
         public Address Get(string id)
         {
-            var address = GetResource<Address>(id).Result;
+            var address = Task.Run(async () => await GetResource<Address>(id).ConfigureAwait(false)).Result;
             address.Interface = this;
             return address;
         }
@@ -408,7 +408,7 @@ namespace Plivo.Resource.Address
                 limit,
                 offset
             });
-            var resources = ListResources<ListResponse<Address>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Address>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -472,7 +472,7 @@ namespace Plivo.Resource.Address
         /// <param name="id">Identifier.</param>
         public DeleteResponse<Address> Delete(string id)
         {
-            return DeleteResource<DeleteResponse<Address>>(id).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Address>>(id).ConfigureAwait(false)).Result;
         }
         #endregion
     }

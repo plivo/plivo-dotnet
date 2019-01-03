@@ -30,7 +30,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="number">Number.</param>
         public RentedNumber Get(string number)
         {
-            var rentedNumber = GetResource<RentedNumber>(number).Result;
+            var rentedNumber = Task.Run(async () => await GetResource<RentedNumber>(number).ConfigureAwait(false)).Result;
             rentedNumber.Interface = this;
             return rentedNumber;
         }
@@ -78,7 +78,7 @@ namespace Plivo.Resource.RentedNumber
                     limit,
                     offset
                 });
-            var resources = ListResources<ListResponse<RentedNumber>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<RentedNumber>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -152,7 +152,7 @@ namespace Plivo.Resource.RentedNumber
                     appId,
                     subaccount
                 });
-            var result = Client.Update<UpdateResponse<RentedNumber>>(Uri, data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(Uri, data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -213,10 +213,10 @@ namespace Plivo.Resource.RentedNumber
                     verificationInfo
                 });
             if (appId == "null") data["app_id"] = null;
-            var result = Client.Update<UpdateResponse<RentedNumber>>(
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(
                     Uri + number + "/",
                     data
-                ).Result;
+                ).ConfigureAwait(false)).Result;
 
             return result.Object;
         }
@@ -261,7 +261,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="number">Number.</param>
         public DeleteResponse<RentedNumber> Delete(string number)
         {
-            return DeleteResource<DeleteResponse<RentedNumber>>(number).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<RentedNumber>>(number).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously unrent RentedNumber with the specified number.

@@ -206,9 +206,9 @@ namespace Plivo.Client
                         method + " not supported");
             }
 
-            response = await _client.SendAsync(request);
+            response = await _client.SendAsync(request).ConfigureAwait(false);
 
-            var responseContent = await response.Content.ReadAsStringAsync();
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse;
