@@ -97,7 +97,7 @@ namespace Plivo.Resource.Call
                     parentCallUuid,
                     errorIfrentNotFound
                 });
-            var result = Client.Update<CallCreateResponse>(Uri, data).Result;
+            var result = Task.Run(async () => await Client.Update<CallCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -252,7 +252,7 @@ namespace Plivo.Resource.Call
                     limit,
                     offset
                 });
-            var resources = ListResources<ListResponse<Call>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Call>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -349,7 +349,7 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public Call Get(string callUuid)
         {
-            var call = GetResource<Call>(callUuid).Result;
+            var call = Task.Run(async () => await GetResource<Call>(callUuid).ConfigureAwait(false)).Result;
             call.Interface = this;
             return call;
         }
@@ -389,7 +389,7 @@ namespace Plivo.Resource.Call
                     toNumber
                 });
 
-            return ListResources<LiveCallListResponse>(data).Result;
+            return Task.Run(async () => await ListResources<LiveCallListResponse>(data).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Lists the live.
@@ -425,8 +425,8 @@ namespace Plivo.Resource.Call
         /// <param name="liveCallUuid">Live call UUID.</param>
         public LiveCall GetLive(string liveCallUuid)
         {
-            var liveCall = GetResource<LiveCall>(
-                liveCallUuid, new Dictionary<string, object>() { { "status", "live" } }).Result;
+            var liveCall = Task.Run(async () => await GetResource<LiveCall>(
+                liveCallUuid, new Dictionary<string, object>() { { "status", "live" } }).ConfigureAwait(false)).Result;
             liveCall.Interface = this;
             return liveCall;
         }
@@ -452,8 +452,8 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public QueuedCall GetQueued(string callUuid)
         {
-            var queuedCall = GetResource<QueuedCall>(
-                callUuid, new Dictionary<string, object>() { { "status", "queued" } }).Result;
+            var queuedCall = Task.Run(async () => await GetResource<QueuedCall>(
+                callUuid, new Dictionary<string, object>() { { "status", "queued" } }).ConfigureAwait(false)).Result;
             queuedCall.Interface = this;
             return queuedCall;
         }
@@ -478,8 +478,8 @@ namespace Plivo.Resource.Call
         /// <returns>queued calls list</returns>
         public QueuedCallListResponse ListQueued()
         {
-            return ListResources<QueuedCallListResponse>(
-                    new Dictionary<string, object>() { { "status", "queued" } }).Result;
+            return Task.Run(async () => await ListResources<QueuedCallListResponse>(
+                    new Dictionary<string, object>() { { "status", "queued" } }).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Lists the queued calls.
@@ -501,7 +501,7 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> Delete(string callUuid)
         {
-            return DeleteResource<DeleteResponse<Call>>(callUuid).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Call>>(callUuid).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously delete Call with the specified callUuid.
@@ -541,7 +541,7 @@ namespace Plivo.Resource.Call
                     blegUrl,
                     blegMethod
                 });
-            var result = Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/", data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -602,7 +602,7 @@ namespace Plivo.Resource.Call
                     loop,
                     mix
                 });
-            var result = Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Play/", data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Play/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -644,7 +644,7 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> StopPlaying(string callUuid)
         {
-            var result = Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Play/").Result;
+            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Play/").ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -691,7 +691,7 @@ namespace Plivo.Resource.Call
                     callbackUrl,
                     callbackMethod
                 });
-            var result = Client.Update<RecordCreateResponse<Call>>(Uri + callUuid + "/Record/", data).Result;
+            var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Call>>(Uri + callUuid + "/Record/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -742,7 +742,7 @@ namespace Plivo.Resource.Call
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
                 mandatoryParams, new { URL });
-            var result = Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Record/", data).Result;
+            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Record/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -790,7 +790,7 @@ namespace Plivo.Resource.Call
                     loop,
                     mix
                 });
-            var result = Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Speak/", data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Speak/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -835,7 +835,7 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> StopSpeaking(string callUuid)
         {
-            var result = Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Speak/").Result;
+            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Speak/").ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -869,7 +869,7 @@ namespace Plivo.Resource.Call
                     digits,
                     leg
                 });
-            var result = Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/DTMF/", data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/DTMF/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -903,7 +903,7 @@ namespace Plivo.Resource.Call
         /// <param name="requestUuid">Request UUID.</param>
         public DeleteResponse<Call> CancelCall(string requestUuid)
         {
-            var result = Client.Delete<DeleteResponse<Call>>("Account/" + Client.GetAuthId() + "/Request/" + requestUuid + "/", null).Result;
+            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>("Account/" + Client.GetAuthId() + "/Request/" + requestUuid + "/", null).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>

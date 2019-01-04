@@ -43,7 +43,7 @@ namespace Plivo.Resource.Endpoint
                     alias,
                     appId
                 });
-            var result = Client.Update<EndpointCreateResponse>(Uri, data).Result;
+            var result = Task.Run(async () => await Client.Update<EndpointCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -80,7 +80,7 @@ namespace Plivo.Resource.Endpoint
         /// <param name="endpointId">App identifier.</param>
         public Endpoint Get(string endpointId)
         {
-            var endpoint = GetResource<Endpoint>(endpointId).Result;
+            var endpoint = Task.Run(async () => await GetResource<Endpoint>(endpointId).ConfigureAwait(false)).Result;
             endpoint.Interface = this;
             return endpoint;
         }
@@ -112,7 +112,7 @@ namespace Plivo.Resource.Endpoint
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
                 mandatoryParams, new {subaccount, limit, offset});
-            var resources = ListResources<ListResponse<Endpoint>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Endpoint>>(data).ConfigureAwait(false)).Result;
 
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
@@ -151,7 +151,7 @@ namespace Plivo.Resource.Endpoint
         /// <param name="endpointId">Endpoint identifier.</param>
         public DeleteResponse<Endpoint> Delete(string endpointId)
         {
-            return DeleteResource<DeleteResponse<Endpoint>>(endpointId).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Endpoint>>(endpointId).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously delete Endpoint with the specified endpointId.
@@ -186,7 +186,7 @@ namespace Plivo.Resource.Endpoint
                     alias,
                     appId
                 });
-            var result = Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>

@@ -27,7 +27,7 @@ namespace Plivo.Resource.Identity
         /// <param name="id">Identifier.</param>
         public Identity Get(string id)
         {
-            var identity = GetResource<Identity>(id).Result;
+            var identity = Task.Run(async () => await GetResource<Identity>(id).ConfigureAwait(false)).Result;
             identity.Interface = this;
             return identity;
         }
@@ -74,7 +74,7 @@ namespace Plivo.Resource.Identity
                 offset
             });
 
-            var resources = ListResources<ListResponse<Identity>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Identity>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -127,7 +127,7 @@ namespace Plivo.Resource.Identity
         /// <param name="id">Identifier.</param>
         public DeleteResponse<Identity> Delete(string id)
         {
-            return DeleteResource<DeleteResponse<Identity>>(id).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Identity>>(id).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously delete Identity with the specified id.
@@ -256,7 +256,7 @@ namespace Plivo.Resource.Identity
                 filesToUpload.Add("file", fileToUpload);
             }
 
-            var result = Client.Update<IdentityCreateResponse>(Uri, data, filesToUpload).Result;
+            var result = Task.Run(async () => await Client.Update<IdentityCreateResponse>(Uri, data, filesToUpload).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
@@ -476,7 +476,7 @@ namespace Plivo.Resource.Identity
             {
                 filesToUpload.Add("file", fileToUpload);
             }
-            var result = Client.Update<UpdateResponse<Identity>>(Uri + identityId + "/", data, filesToUpload).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Identity>>(Uri + identityId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>

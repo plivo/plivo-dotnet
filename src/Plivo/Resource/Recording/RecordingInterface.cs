@@ -29,7 +29,7 @@ namespace Plivo.Resource.Recording
         /// <param name="recordingId">Recording identifier.</param>
         public Recording Get(string recordingId)
         {
-            var recording = GetResource<Recording>(recordingId).Result;
+            var recording = Task.Run(async () => await GetResource<Recording>(recordingId).ConfigureAwait(false)).Result;
             recording.Interface = this;
             return recording;
         }
@@ -89,7 +89,7 @@ namespace Plivo.Resource.Recording
                     limit,
                     offset
                 });
-            var resources = ListResources<ListResponse<Recording>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Recording>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -155,7 +155,7 @@ namespace Plivo.Resource.Recording
         /// <param name="recordingId">Recording identifier.</param>
         public DeleteResponse<Recording> Delete(string recordingId)
         {
-            return DeleteResource<DeleteResponse<Recording>>(recordingId).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Recording>>(recordingId).ConfigureAwait(false)).Result;
         }
 
         /// <summary>
