@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.2.3](https://github.com/plivo/plivo-dotnet/tree/v4.2.3) (2019-01-04)
+- Update Thread Safety handling for synchronous execution.
+
 ## [v4.2.2](https://github.com/plivo/plivo-dotnet/tree/v4.2.2) (2018-12-27)
 - Fix dynamic object usage with async/await statement.
 

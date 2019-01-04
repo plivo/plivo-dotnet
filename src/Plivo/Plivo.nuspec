@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.2.2</version>
+    <version>4.2.3</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.2.3 Update Thread Safety handling for synchronous execution.
       * 4.2.2 Fix dynamic object usage with async/await statement.
       * 4.2.1 Fix Web Proxy support.
       * 4.2.0 Changed base reference to .NET Standard 2.0 to support System.Web.Proxy.  Added Strong Naming instructions
