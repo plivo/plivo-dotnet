@@ -57,7 +57,7 @@ namespace Plivo.Resource.PhoneNumber
                     limit,
                     offset
                 });
-            var resources = ListResources<ListResponse<PhoneNumber>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<PhoneNumber>>(data).ConfigureAwait(false)).Result;
 
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
@@ -126,10 +126,10 @@ namespace Plivo.Resource.PhoneNumber
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
                 mandatoryParams, new {appId, verificationInfo});
-            var result = Client.Update<PhoneNumberBuyResponse>(
+            var result = Task.Run(async () => await Client.Update<PhoneNumberBuyResponse>(
                     Uri + number + "/",
                     data
-                ).Result;
+                ).ConfigureAwait(false)).Result;
 
             return result.Object;
         }

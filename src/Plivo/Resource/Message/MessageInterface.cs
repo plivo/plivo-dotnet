@@ -80,7 +80,7 @@ namespace Plivo.Resource.Message
                 return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
             }
 
-            var result = Client.Update<MessageCreateResponse>(Uri, data).Result;
+            var result = Task.Run(async () => await Client.Update<MessageCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
             return result.Object;
         }
 
@@ -178,7 +178,7 @@ namespace Plivo.Resource.Message
         /// <param name="messageUuid">Message UUID.</param>
         public Message Get(string messageUuid)
         {
-            var message = GetResource<Message>(messageUuid).Result;
+            var message = Task.Run(async () => await GetResource<Message>(messageUuid).ConfigureAwait(false)).Result;
             message.Interface = this;
             return message;
         }
@@ -245,7 +245,7 @@ namespace Plivo.Resource.Message
                     _message_time, 
                     error_code
                 });
-            var resources = ListResources<ListResponse<Message>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
 
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this

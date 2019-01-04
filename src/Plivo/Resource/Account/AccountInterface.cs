@@ -27,7 +27,7 @@ namespace Plivo.Resource.Account
         /// <returns>The get.</returns>
         public Account Get()
         {
-            var account = GetResource<Account>("").Result;
+            var account = Task.Run(async () => await GetResource<Account>("").ConfigureAwait(false)).Result;
             account.Interface = this;
             return account;
         }
@@ -55,7 +55,7 @@ namespace Plivo.Resource.Account
             var mandatoryParams = new List<string> {"name"};
             var data = CreateData(
                 mandatoryParams, new {name, city, address});
-            var result = Client.Update<UpdateResponse<Account>>(Uri, data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Account>>(Uri, data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>

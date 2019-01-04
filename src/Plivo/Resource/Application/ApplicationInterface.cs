@@ -73,7 +73,7 @@ namespace Plivo.Resource.Application
                     logIncomingMessages
                 });
 
-            var result = Client.Update<ApplicationCreateResponse>(Uri, data).Result;
+            var result = Task.Run(async () => await Client.Update<ApplicationCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
 
             return result.Object;
         }
@@ -139,7 +139,7 @@ namespace Plivo.Resource.Application
         /// <param name="appId">App identifier.</param>
         public Application Get(string appId)
         {
-            var application = GetResource<Application>(appId).Result;
+            var application = Task.Run(async () => await GetResource<Application>(appId).ConfigureAwait(false)).Result;
             application.Interface = this;
             return application;
         }
@@ -171,7 +171,7 @@ namespace Plivo.Resource.Application
             var data = CreateData(
                 mandatoryParams, new { subaccount, limit, offset });
 
-            var resources = ListResources<ListResponse<Application>>(data).Result;
+            var resources = Task.Run(async () => await ListResources<ListResponse<Application>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -209,7 +209,7 @@ namespace Plivo.Resource.Application
         /// <param name="appId">App identifier.</param>
         public DeleteResponse<Application> Delete(string appId)
         {
-            return DeleteResource<DeleteResponse<Application>>(appId).Result;
+            return Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId).ConfigureAwait(false)).Result;
         }
         /// <summary>
         /// Asynchronously delete Application with the specified appId.
@@ -268,7 +268,7 @@ namespace Plivo.Resource.Application
                     logIncomingMessages
                 });
 
-            var result = Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).Result;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
             return result.Object;
         }
         /// <summary>
