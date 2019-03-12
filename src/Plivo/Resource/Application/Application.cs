@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Plivo.Client;
 
 namespace Plivo.Resource.Application
@@ -31,6 +32,7 @@ namespace Plivo.Resource.Application
         {
         }
 
+        #region Delete
         /// <summary>
         /// Delete this instance.
         /// </summary>
@@ -39,7 +41,17 @@ namespace Plivo.Resource.Application
         {
             return ((ApplicationInterface) Interface).Delete(AppId);
         }
+        /// <summary>
+        /// Asynchronously delete this instance.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async Task<DeleteResponse<Application>> DeleteAsync()
+        {
+            return await ((ApplicationInterface)Interface).DeleteAsync(AppId);
+        }
+        #endregion
 
+        #region Update
         /// <summary>
         /// Update the specified answerUrl, answerMethod, hangupUrl, hangupMethod, fallbackAnswerUrl, fallbackMethod,
         /// messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp and subaccount.
@@ -64,7 +76,7 @@ namespace Plivo.Resource.Application
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
             string subaccount = null)
         {
-            var updateResponse = ((ApplicationInterface) Interface).Update(
+            var updateResponse = ((ApplicationInterface)Interface).Update(
                 AppId, answerUrl, answerMethod, hangupUrl, hangupMethod,
                 fallbackAnswerUrl, fallbackMethod, messageUrl, messageMethod,
                 defaultNumberApp, defaultEndpointApp, subaccount);
@@ -83,7 +95,50 @@ namespace Plivo.Resource.Application
 
             return updateResponse;
         }
+        /// <summary>
+        /// Asynchronously update the specified answerUrl, answerMethod, hangupUrl, hangupMethod, fallbackAnswerUrl, fallbackMethod,
+        /// messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp and subaccount.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="answerUrl">Answer URL.</param>
+        /// <param name="answerMethod">Answer method.</param>
+        /// <param name="hangupUrl">Hangup URL.</param>
+        /// <param name="hangupMethod">Hangup method.</param>
+        /// <param name="fallbackAnswerUrl">Fallback answer URL.</param>
+        /// <param name="fallbackMethod">Fallback method.</param>
+        /// <param name="messageUrl">Message URL.</param>
+        /// <param name="messageMethod">Message method.</param>
+        /// <param name="defaultNumberApp">Default number app.</param>
+        /// <param name="defaultEndpointApp">Default endpoint app.</param>
+        /// <param name="subaccount">Subaccount.</param>
+        public async Task<UpdateResponse<Application>> UpdateAsync(
+            string answerUrl = null, string answerMethod = null,
+            string hangupUrl = null, string hangupMethod = null,
+            string fallbackAnswerUrl = null, string fallbackMethod = null,
+            string messageUrl = null, string messageMethod = null,
+            bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
+            string subaccount = null)
+        {
+            var updateResponse = await ((ApplicationInterface) Interface).UpdateAsync(
+                AppId, answerUrl, answerMethod, hangupUrl, hangupMethod,
+                fallbackAnswerUrl, fallbackMethod, messageUrl, messageMethod,
+                defaultNumberApp, defaultEndpointApp, subaccount);
 
+            if (answerUrl != null) AnswerUrl = answerUrl;
+            if (answerMethod != null) AnswerMethod = answerMethod;
+            if (hangupUrl != null) HangupUrl = hangupUrl;
+            if (hangupMethod != null) HangupMethod = hangupMethod;
+            if (fallbackAnswerUrl != null) FallbackAnswerUrl = fallbackAnswerUrl;
+            if (fallbackMethod != null) FallbackMethod = fallbackMethod;
+            if (messageUrl != null) MessageUrl = messageUrl;
+            if (messageMethod != null) MessageMethod = messageMethod;
+            if (defaultNumberApp != null) DefaultApp = defaultNumberApp;
+            if (defaultEndpointApp != null) DefaultEndpointApp = defaultEndpointApp;
+            if (subaccount != null) SubAccount = subaccount;
+
+            return updateResponse;
+        }
+        #endregion
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Application.Application"/>.
         /// </summary>

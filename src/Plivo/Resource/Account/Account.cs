@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Plivo.Client;
 
 namespace Plivo.Resource.Account
@@ -97,6 +98,7 @@ namespace Plivo.Resource.Account
         //            Timezone = timezone ?? throw new ArgumentNullException(nameof(timezone));
         //        }
 
+        #region Update
         /// <summary>
         /// Update the specified name, city and address.
         /// </summary>
@@ -112,7 +114,22 @@ namespace Plivo.Resource.Account
             if (address != null) Address = address;
             return updateResponse;
         }
-
+        /// <summary>
+        /// Asynchronously update the specified name, city and address.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="city">City.</param>
+        /// <param name="address">Address.</param>
+        public async Task<UpdateResponse<Account>> UpdateAsync(string name = null, string city = null, string address = null)
+        {
+            var updateResponse = await ((AccountInterface)Interface).UpdateAsync(name, city, address);
+            if (name != null) Name = name;
+            if (city != null) City = city;
+            if (address != null) Address = address;
+            return updateResponse;
+        }
+        #endregion
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Account.Account"/>.
         /// </summary>

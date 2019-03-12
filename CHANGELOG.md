@@ -1,4 +1,14 @@
+
 # Change Log
+
+## [v4.2.3](https://github.com/plivo/plivo-dotnet/tree/v4.2.3) (2019-01-04)
+- Update Thread Safety handling for synchronous execution.
+
+## [v4.2.2](https://github.com/plivo/plivo-dotnet/tree/v4.2.2) (2018-12-27)
+- Fix dynamic object usage with async/await statement.
+
+## [v4.2.1](https://github.com/plivo/plivo-dotnet/tree/v4.2.1) (2018-12-13)
+- Fix Web Proxy Support.
 
 ## [v4.2.0](https://github.com/plivo/plivo-dotnet/tree/v4.2.0) (2018-12-04)
 - Changed base reference to .NET Standard 2.0 to support System.Web.Proxy.

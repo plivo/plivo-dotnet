@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using Plivo.Client;
 
 
@@ -21,6 +22,7 @@ namespace Plivo.Resource.RentedNumber
             Uri = "Account/" + Client.GetAuthId() + "/Number/";
         }
 
+        #region Get
         /// <summary>
         /// Get RentedNumber with the specified number.
         /// </summary>
@@ -28,11 +30,25 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="number">Number.</param>
         public RentedNumber Get(string number)
         {
-            var rentedNumber = GetResource<RentedNumber>(number);
+            var rentedNumber = Task.Run(async () => await GetResource<RentedNumber>(number).ConfigureAwait(false)).Result;
             rentedNumber.Interface = this;
             return rentedNumber;
         }
 
+        /// <summary>
+        /// Asynchronously get RentedNumber with the specified number.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="number">Number.</param>
+        public async Task<RentedNumber> GetAsync(string number)
+        {
+            var rentedNumber = await GetResource<RentedNumber>(number);
+            rentedNumber.Interface = this;
+            return rentedNumber;
+        }
+        #endregion
+
+        #region List
         /// <summary>
         /// List RentedNumber with the specified type, numberStartswith, subaccount, alias, services, limit and offset.
         /// </summary>
@@ -62,14 +78,52 @@ namespace Plivo.Resource.RentedNumber
                     limit,
                     offset
                 });
-            var resources = ListResources<ListResponse<RentedNumber>>(data);
+            var resources = Task.Run(async () => await ListResources<ListResponse<RentedNumber>>(data).ConfigureAwait(false)).Result;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
 
             return resources;
         }
+        /// <summary>
+        /// List RentedNumber with the specified type, numberStartswith, subaccount, alias, services, limit and offset.
+        /// </summary>
+        /// <returns>The list.</returns>
+        /// <param name="type">Type.</param>
+        /// <param name="numberStartswith">Number startswith.</param>
+        /// <param name="subaccount">Subaccount.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="services">Services.</param>
+        /// <param name="limit">Limit.</param>
+        /// <param name="offset">Offset.</param>
+        public async Task<ListResponse<RentedNumber>> ListAsync(
+            string type = null, string numberStartswith = null,
+            string subaccount = null, string alias = null,
+            string services = null, uint? limit = null, uint? offset = null)
+        {
+            var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    type,
+                    numberStartswith,
+                    subaccount,
+                    alias,
+                    services,
+                    limit,
+                    offset
+                });
+            var resources = await ListResources<ListResponse<RentedNumber>>(data);
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
 
+            return resources;
+        }
+        #endregion
+
+        #region AddNumber
         /// <summary>
         /// Adds the number.
         /// </summary>
@@ -98,9 +152,43 @@ namespace Plivo.Resource.RentedNumber
                     appId,
                     subaccount
                 });
-            return Client.Update<UpdateResponse<RentedNumber>>(Uri, data).Object;
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(Uri, data).ConfigureAwait(false)).Result;
+            return result.Object;
         }
+        /// <summary>
+        /// Asynchronously adds the number.
+        /// </summary>
+        /// <returns>The number.</returns>
+        /// <param name="numbers">Numbers.</param>
+        /// <param name="carrier">Carrier.</param>
+        /// <param name="region">Region.</param>
+        /// <param name="numberType">Number type.</param>
+        /// <param name="appId">App identifier.</param>
+        /// <param name="subaccount">Subaccount.</param>
+        public async Task<UpdateResponse<RentedNumber>> AddNumberAsync(
+            List<string> numbers, string carrier, string region,
+            string numberType = null, string appId = null,
+            string subaccount = null)
+        {
+            string _numbers = string.Join(",", numbers);
+            var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    _numbers,
+                    carrier,
+                    region,
+                    numberType,
+                    appId,
+                    subaccount
+                });
+            var result = await Client.Update<UpdateResponse<RentedNumber>>(Uri, data);
+            return result.Object;
+        }
+        #endregion
 
+        #region Update
         /// <summary>
         /// Update RentedNumber with the specified number, appId, subaccount and alias.
         /// </summary>
@@ -125,13 +213,47 @@ namespace Plivo.Resource.RentedNumber
                     verificationInfo
                 });
             if (appId == "null") data["app_id"] = null;
-            return
-                Client.Update<UpdateResponse<RentedNumber>>(
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(
                     Uri + number + "/",
                     data
-                ).Object;
-        }
+                ).ConfigureAwait(false)).Result;
 
+            return result.Object;
+        }
+        /// <summary>
+        /// Asynchronously update RentedNumber with the specified number, appId, subaccount and alias.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="number">Number.</param>
+        /// <param name="appId">App identifier.</param>
+        /// <param name="subaccount">Subaccount.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="verificationInfo">Verification Information.</param>
+        public async Task<UpdateResponse<RentedNumber>> UpdateAsync(
+            string number, string appId = null, string subaccount = null,
+            string alias = null, Dictionary<string, string> verificationInfo = null)
+        {
+            var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    appId,
+                    subaccount,
+                    alias,
+                    verificationInfo
+                });
+            if (appId == "null") data["app_id"] = null;
+            var result = await Client.Update<UpdateResponse<RentedNumber>>(
+        Uri + number + "/",
+        data
+    );
+
+            return result.Object;
+        }
+        #endregion
+
+        #region Delete
         /// <summary>
         /// Unrent RentedNumber with the specified number.
         /// </summary>
@@ -139,7 +261,17 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="number">Number.</param>
         public DeleteResponse<RentedNumber> Delete(string number)
         {
-            return DeleteResource<DeleteResponse<RentedNumber>>(number);
+            return Task.Run(async () => await DeleteResource<DeleteResponse<RentedNumber>>(number).ConfigureAwait(false)).Result;
         }
+        /// <summary>
+        /// Asynchronously unrent RentedNumber with the specified number.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        /// <param name="number">Number.</param>
+        public async Task<DeleteResponse<RentedNumber>> DeleteAsync(string number)
+        {
+            return await DeleteResource<DeleteResponse<RentedNumber>>(number);
+        }
+        #endregion
     }
 }

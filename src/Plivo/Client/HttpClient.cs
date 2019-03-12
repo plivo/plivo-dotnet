@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Plivo.Authentication;
 using Plivo.Http;
 
@@ -53,10 +54,10 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> Fetch<T>(string uri, Dictionary<string, object> data = null)
+        public async Task<PlivoResponse<T>> Fetch<T>(string uri, Dictionary<string, object> data = null)
             where T : new()
         {
-            return _client.SendRequest<T>("GET", uri, data ?? new Dictionary<string, object>());
+            return await _client.SendRequest<T>("GET", uri, data ?? new Dictionary<string, object>());
         }
 
         /// <summary>
@@ -66,11 +67,11 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> Update<T>(string uri, Dictionary<string, object> data = null,
+        public async Task<PlivoResponse<T>> Update<T>(string uri, Dictionary<string, object> data = null,
             Dictionary<string, string> filesToUpload = null)
             where T : new()
         {
-            return _client.SendRequest<T>("POST", uri, data ?? new Dictionary<string, object>(), filesToUpload);
+            return await _client.SendRequest<T>("POST", uri, data ?? new Dictionary<string, object>(), filesToUpload);
         }
 
         /// <summary>
@@ -80,10 +81,10 @@ namespace Plivo.Client
         /// <param name="uri">URI.</param>
         /// <param name="data">Data.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public PlivoResponse<T> Delete<T>(string uri, Dictionary<string, object> data = null)
+        public async Task<PlivoResponse<T> >Delete<T>(string uri, Dictionary<string, object> data = null)
             where T : new()
         {
-            return _client.SendRequest<T>("DELETE", uri, data ?? new Dictionary<string, object>());
+            return await _client.SendRequest<T>("DELETE", uri, data ?? new Dictionary<string, object>());
         }
 
         /// <summary>
