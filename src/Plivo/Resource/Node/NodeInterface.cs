@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Plivo.Exception;
 using Plivo.Client;
 
@@ -34,7 +35,7 @@ namespace Plivo.Resource.Node
             {
                 throw new PlivoValidationException("nodeId is mandatory, can not be null or empty");
             }
-            var node = GetResource<Node>($"/{_nodeType}/{_nodeId}", new Dictionary<string, object>());
+            var node = Task.Run(async () => await GetResource<Node>($"/{_nodeType}/{_nodeId}", new Dictionary<string, object>()).ConfigureAwait(false)).Result;
             node.Interface = this;
             return node;
         }

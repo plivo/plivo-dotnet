@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Plivo.Client;
 using Plivo.Exception;
 using Plivo.Resource.Member;
@@ -38,7 +39,7 @@ namespace Plivo.Resource.MultiPartyCall
                 throw new PlivoValidationException("nodeId is mandatory, can not be null or empty");
             }
             _nodeId = nodeId;
-            var multiPartyCall = GetResource<MultiPartyCall>($"/{_nodeType}/{_nodeId}", new Dictionary<string, object>());
+            var multiPartyCall = Task.Run(async () => await GetResource<MultiPartyCall>($"/{_nodeType}/{_nodeId}", new Dictionary<string, object>()).ConfigureAwait(false)).Result;
             multiPartyCall.Interface = this;
             multiPartyCall._member = new Lazy<MemberInterface>(() => new MemberInterface(Client, phloId, _nodeType, _nodeId));
             return multiPartyCall;
@@ -53,12 +54,13 @@ namespace Plivo.Resource.MultiPartyCall
             var data = new Dictionary<string, object>
             {
                 { "action", action },
-                { "triggerSource", triggerSource },
+                { "trigger_source", triggerSource },
                 { "to", to },
                 { "role", role }
             };
             var qs = Client.AsQueryString(data);
-            return Client.Update<BaseResponse>(Uri + $"/{_nodeType}/{_nodeId}" + qs).Object;
+            var result = Task.Run(async () => await Client.Update<BaseResponse>(Uri + $"/{_nodeType}/{_nodeId}/" + qs, data).ConfigureAwait(false)).Result;
+            return result.Object;
         }
     }
 }

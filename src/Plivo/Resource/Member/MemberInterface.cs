@@ -1,4 +1,5 @@
 using Plivo.Client;
+using System.Threading.Tasks;
 
 namespace Plivo.Resource.Member
 {
@@ -34,7 +35,9 @@ namespace Plivo.Resource.Member
         
         public BaseResponse Update(string action)
         {
-            return Client.Update<BaseResponse>(Uri + $"{_nodeType}/{_nodeId}/members/{_memberId}?action={action}").Object;
+            var result = Task.Run(async () => await Client.Update<BaseResponse>(Uri + $"{_nodeType}/{_nodeId}/members/{_memberId}?action={action}").ConfigureAwait(false)).Result;
+            return result.Object;
+
         }
 
         public Member Get(string memberId)

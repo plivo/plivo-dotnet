@@ -57,6 +57,10 @@ namespace Plivo.NetCore.Test
             Response = response;
             StatusCode = statusCode;
         }
+
+        public string AsQueryString(IEnumerable<KeyValuePair<string, object>> parameters){
+            return "";
+        }
     }
 
     public class PascalCasePropertyNamesContractResolver : DefaultContractResolver

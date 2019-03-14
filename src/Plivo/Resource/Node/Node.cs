@@ -7,11 +7,7 @@ namespace Plivo.Resource.Node
     /// </summary>
     public class Node : Resource
     {
-     
-        /// <summary>
-        /// Api ID
-        /// </summary>
-        public string ApiId { get; set; }
+
         /// <summary>
         /// Node Id
         /// </summary>

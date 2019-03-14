@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Plivo.Exception;
 using Plivo.Client;
 using Plivo.Resource.MultiPartyCall;
@@ -55,7 +56,8 @@ namespace Plivo.Resource.Phlo
         public PhloRunCallResponse Run(Dictionary<string, object> data = null)
         {
             var qs = data!=null ? Client.AsQueryString(data) : "";
-            return Client.Update<PhloRunCallResponse>($"account/{_authId}/phlo/{_phloId}" + qs, data).Object;
+            var result = Task.Run(async () => await Client.Update<PhloRunCallResponse>($"account/{_authId}/phlo/{_phloId}" + qs, data).ConfigureAwait(false)).Result;
+            return result.Object;
         }
         
         public Node.Node Node(string nodeType, string nodeId)
@@ -85,7 +87,7 @@ namespace Plivo.Resource.Phlo
                 throw new PlivoValidationException("phloId is mandatory, can not be null or empty");
             }
             _phloId = phloId;
-            var phlo = GetResource<Phlo>("phlo/" + phloId, new Dictionary<string, object>());
+            var phlo = Task.Run(async () => await GetResource<Phlo>("phlo/" + phloId, new Dictionary<string, object>()).ConfigureAwait(false)).Result;
             phlo.Interface = this;
             phlo._node = new Lazy<NodeInterface>(() => new NodeInterface(Client, phloId));
             phlo._multiPartyCall = new Lazy<MultiPartyCallInterface>(() => new MultiPartyCallInterface(Client, phloId));

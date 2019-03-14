@@ -9,11 +9,6 @@ namespace Plivo.Resource.Phlo
     public class Phlo :Resource
     {
         /// <summary>
-        /// Api ID
-        /// </summary>
-        public string ApiId { get; set; }
-        
-        /// <summary>
         /// PHLO Run ID
         /// </summary>
         public string PhloId { get; set; }   
