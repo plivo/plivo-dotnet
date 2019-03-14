@@ -1,6 +1,10 @@
 
 # Change Log
 
+## [v4.3.0-beta1](https://github.com/plivo/plivo-dotnet/tree/v4.3.0-beta1) (2019-03-14)
+- Add PHLO support in beta release
+- Add Multi-Party Call triggers
+
 ## [v4.2.3](https://github.com/plivo/plivo-dotnet/tree/v4.2.3) (2019-01-04)
 - Update Thread Safety handling for synchronous execution.
 
