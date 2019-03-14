@@ -12,5 +12,7 @@ namespace Plivo.Client
         Task<PlivoResponse<T>> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
             Dictionary<string, string> filesToUpload = null)
             where T : new();
-    }
+        
+        string AsQueryString(IEnumerable<KeyValuePair<string, object>> parameters);
+    }    
 }

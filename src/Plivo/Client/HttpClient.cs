@@ -30,9 +30,11 @@ namespace Plivo.Client
         /// <param name="proxyPort">Proxy Port.</param>
         /// <param name="proxyUsername">Proxy Username.</param>
         /// <param name="proxyPassword">Proxy Password.</param>
+        /// <param name="baseUri">Switch between environments</param>
+
         public HttpClient(BasicAuth basicAuth,
             string proxyAddress = null, string proxyPort = null,
-            string proxyUsername = null, string proxyPassword = null)
+            string proxyUsername = null, string proxyPassword = null, string baseUri = null)
         {
             _client = new SystemHttpClient(basicAuth,
                 new Dictionary<string, string>
@@ -41,7 +43,7 @@ namespace Plivo.Client
                     {"Password", proxyPassword},
                     {"Username", proxyUsername},
                     {"Port", proxyPort}
-                });
+                }, baseUri);
             _basicAuth = basicAuth;
         }
 
@@ -101,5 +103,11 @@ namespace Plivo.Client
         {
             ((SystemHttpClient) _client)._client.Timeout = TimeSpan.FromSeconds(timeout);
         }
+        
+        public string AsQueryString(IEnumerable<KeyValuePair<string, object>> parameters)
+        {
+            return _client.AsQueryString(parameters);
+        }
+
     }
 }
