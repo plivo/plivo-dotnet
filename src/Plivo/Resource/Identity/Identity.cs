@@ -16,6 +16,18 @@ namespace Plivo.Resource.Identity
         public new string Id { get; set; }
 
         /// <summary>
+        /// Gets or sets country ISO of phone number
+        /// </summary>
+        /// <value>2-letter country ISO</value>
+        public string PhoneNumberCountry { get; set; }
+
+        /// <summary>
+        /// Gets or sets Number Type
+        /// </summary>
+        /// <value>Number Type</value>
+        public string NumberType { get; set; }
+
+        /// <summary>
         /// Gets or sets Country Iso
         /// </summary>
         /// <value>2-letter country ISO</value>
@@ -86,6 +98,12 @@ namespace Plivo.Resource.Identity
         /// </summary>
         /// <value>Business name of the user for whom the identity is created</value>
         public string BusinessName { get; set; }
+
+        /// <summary>
+        /// Gets or sets Address Proof Type
+        /// </summary>
+        /// <value>Address Proof Type</value>
+        public string AddressProofType { get; set; }
 
         /// <summary>
         /// Gets or sets Id Type
@@ -172,6 +190,18 @@ namespace Plivo.Resource.Identity
         public string Url { get; set; }
 
         /// <summary>
+        /// Gets or sets Iso3
+        /// </summary>
+        /// <value>Iso3</value>
+        public string Iso3 { get; set; }
+
+        /// <summary>
+        /// Gets or sets PK
+        /// </summary>
+        /// <value>PK</value>
+        public uint Pk { get; set; }
+
+        /// <summary>
         /// Gets or sets document details
         /// </summary>
         /// <value>Document Details</value>
@@ -201,6 +231,234 @@ namespace Plivo.Resource.Identity
         /// Update identity with the specified params
         /// </summary>
         /// <returns>The update.</returns>
+        /// <param name="phoneNumberCountry">2-letter country ISO.</param>
+        /// <param name="numberType">Number Type.</param>
+        /// <param name="countryIso">2-letter country ISO.</param>
+        /// <param name="salutation">Salutation.</param>
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        /// <param name="birthPlace">Place of birth.</param>
+        /// <param name="birthDate">Birth date.</param>
+        /// <param name="nationality">Nationality.</param>
+        /// <param name="idNationality">Nationality as per the ID proof.</param>
+        /// <param name="idIssueDate">ID issuing date.</param>
+        /// <param name="idNumber">ID Number.</param>
+        /// <param name="addressLine1">Address Line 1.</param>
+        /// <param name="addressLine2">Address Line 2.</param>
+        /// <param name="city">City.</param>
+        /// <param name="region">Region.</param>
+        /// <param name="postalCode">Postal Code.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="businessName">Name of the business.</param>
+        /// <param name="fiscalIdentificationCode">Fiscal Identification Code</param>
+        /// <param name="streetCode">Street code</param>
+        /// <param name="municipalCode">Municipal code</param>
+        /// <param name="subaccount">Subaccount to which this ID should be associated with</param>
+        /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
+        /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
+        /// <param name="callbackUrl">Callback URL</param>
+        public UpdateResponse<Identity> Update(
+            string phoneNumberCountry = null,
+            string numberType = null,
+            string countryIso = null,
+            string salutation = null,
+            string firstName = null,
+            string lastName = null,
+            string birthPlace = null,
+            string birthDate = null,
+            string nationality = null,
+            string idNationality = null,
+            string idIssueDate = null,
+            string idNumber = null,
+            string addressLine1 = null,
+            string addressLine2 = null,
+            string city = null,
+            string region = null,
+            string postalCode = null,
+            string alias = null,
+            string businessName = null,
+            string fiscalIdentificationCode = null,
+            string streetCode = null,
+            string municipalCode = null,
+            string subaccount = null,
+            string fileToUpload = null,
+            bool? autoCorrectAddress = null,
+            string callbackUrl = null
+        )
+        {
+            var updateResponse = ((IdentityInterface)Interface).Update(
+                Id,
+                phoneNumberCountry,
+                numberType,
+                countryIso,
+                salutation,
+                firstName,
+                lastName,
+                birthPlace,
+                birthDate,
+                nationality,
+                idNationality,
+                idIssueDate,
+                idNumber,
+                addressLine1,
+                addressLine2,
+                city,
+                region,
+                postalCode,
+                fiscalIdentificationCode,
+                streetCode,
+                municipalCode,
+                alias,
+                businessName,
+                subaccount,
+                fileToUpload,
+                autoCorrectAddress,
+                callbackUrl
+            );
+
+            if (phoneNumberCountry != null) PhoneNumberCountry = phoneNumberCountry;
+            if (numberType != null) NumberType = numberType;
+            if (salutation != null) Salutation = salutation;
+            if (firstName != null) FirstName = firstName;
+            if (lastName != null) LastName = lastName;
+            if (countryIso != null) CountryIso = countryIso;
+            if (birthPlace != null) BirthPlace = birthPlace;
+            if (birthDate != null) BirthDate = birthDate;
+            if (nationality != null) Nationality = nationality;
+            if (idNationality != null) IdNationality = idNationality;
+            if (idIssueDate != null) IdIssueDate = idIssueDate;
+            if (idNumber != null) IdNumber = idNumber;
+            if (alias != null) Alias = alias;
+            if (businessName != null) BusinessName = businessName;
+            if (subaccount != null) Subaccount = subaccount;
+            if (addressLine1 != null) AddressLine1 = addressLine1;
+            if (addressLine2 != null) AddressLine2 = addressLine2;
+            if (city != null) City = city;
+            if (region != null) Region = region;
+            if (postalCode != null) PostalCode = postalCode;
+
+            return updateResponse;
+        }
+        /// <summary>
+        /// Asynchronously update identity with the specified params
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="phoneNumberCountry">2-letter country ISO.</param>
+        /// <param name="numberType">Number Type.</param>
+        /// <param name="countryIso">2-letter country ISO.</param>
+        /// <param name="salutation">Salutation.</param>
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        /// <param name="birthPlace">Place of birth.</param>
+        /// <param name="birthDate">Birth date.</param>
+        /// <param name="nationality">Nationality.</param>
+        /// <param name="idNationality">Nationality as per the ID proof.</param>
+        /// <param name="idIssueDate">ID issuing date.</param>
+        /// <param name="idNumber">ID Number.</param>
+        /// <param name="addressLine1">Address Line 1.</param>
+        /// <param name="addressLine2">Address Line 2.</param>
+        /// <param name="city">City.</param>
+        /// <param name="region">Region.</param>
+        /// <param name="postalCode">Postal Code.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="businessName">Name of the business.</param>
+        /// <param name="fiscalIdentificationCode">Fiscal Identification Code</param>
+        /// <param name="streetCode">Street code</param>
+        /// <param name="municipalCode">Municipal code</param>
+        /// <param name="subaccount">Subaccount to which this ID should be associated with</param>
+        /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
+        /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
+        /// <param name="callbackUrl">Callback URL</param>
+        public async Task<UpdateResponse<Identity>> UpdateAsync(
+            string phoneNumberCountry = null,
+            string numberType = null,
+            string countryIso = null,
+            string salutation = null,
+            string firstName = null,
+            string lastName = null,
+            string birthPlace = null,
+            string birthDate = null,
+            string nationality = null,
+            string idNationality = null,
+            string idIssueDate = null,
+            string idNumber = null,
+            string addressLine1 = null,
+            string addressLine2 = null,
+            string city = null,
+            string region = null,
+            string postalCode = null,
+            string alias = null,
+            string businessName = null,
+            string fiscalIdentificationCode = null,
+            string streetCode = null,
+            string municipalCode = null,
+            string subaccount = null,
+            string fileToUpload = null,
+            bool? autoCorrectAddress = null,
+            string callbackUrl = null
+        )
+        {
+            var updateResponse = await ((IdentityInterface)Interface).UpdateAsync(
+                Id,
+                phoneNumberCountry,
+                numberType, 
+                countryIso,
+                salutation,
+                firstName,
+                lastName,
+                birthPlace,
+                birthDate,
+                nationality,
+                idNationality,
+                idIssueDate,
+                idNumber,
+                addressLine1,
+                addressLine2,
+                city,
+                region,
+                postalCode,
+                fiscalIdentificationCode,
+                streetCode,
+                municipalCode,
+                alias,
+                businessName,
+                subaccount,
+                fileToUpload,
+                autoCorrectAddress,
+                callbackUrl
+            );
+
+            if (phoneNumberCountry != null) PhoneNumberCountry = phoneNumberCountry;
+            if (numberType != null) NumberType = numberType;
+            if (salutation != null) Salutation = salutation;
+            if (firstName != null) FirstName = firstName;
+            if (lastName != null) LastName = lastName;
+            if (countryIso != null) CountryIso = countryIso;
+            if (birthPlace != null) BirthPlace = birthPlace;
+            if (birthDate != null) BirthDate = birthDate;
+            if (nationality != null) Nationality = nationality;
+            if (idNationality != null) IdNationality = idNationality;
+            if (idIssueDate != null) IdIssueDate = idIssueDate;
+            if (idNumber != null) IdNumber = idNumber;
+            if (alias != null) Alias = alias;
+            if (businessName != null) BusinessName = businessName;
+            if (subaccount != null) Subaccount = subaccount;
+            if (addressLine1 != null) AddressLine1 = addressLine1;
+            if (addressLine2 != null) AddressLine2 = addressLine2;
+            if (city != null) City = city;
+            if (region != null) Region = region;
+            if (postalCode != null) PostalCode = postalCode;
+
+            return updateResponse;
+        }
+        #endregion
+
+        #region Old
+
+        /// <summary>
+        /// Update identity with the specified params
+        /// </summary>
+        /// <returns>The update.</returns>
         /// <param name="countryIso">2-letter country ISO.</param>
         /// <param name="salutation">Salutation.</param>
         /// <param name="firstName">First Name.</param>
@@ -226,7 +484,7 @@ namespace Plivo.Resource.Identity
         /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
         /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
         /// <param name="callbackUrl">Callback URL</param>
-        public UpdateResponse<Identity> Update(
+        public UpdateResponse<Identity> UpdateOld(
             string countryIso = null,
             string salutation = null,
             string firstName = null,
@@ -254,32 +512,32 @@ namespace Plivo.Resource.Identity
             string callbackUrl = null
         )
         {
-            var updateResponse = ((IdentityInterface)Interface).Update(
+            var updateResponse = ((IdentityInterface)Interface).UpdateOld(
                 Id, countryIso,
-                    salutation,
-                    firstName,
-                    lastName,
-                    birthPlace,
-                    birthDate,
-                    nationality,
-                    idNationality,
-                    idIssueDate,
-                    idType,
-                    idNumber,
-                    addressLine1,
-                    addressLine2,
-                    city,
-                    region,
-                    postalCode,
-                    fiscalIdentificationCode,
-                    streetCode,
-                    municipalCode,
-                    alias,
-                    businessName,
-                    subaccount,
-                    fileToUpload,
-                    autoCorrectAddress,
-                    callbackUrl
+                salutation,
+                firstName,
+                lastName,
+                birthPlace,
+                birthDate,
+                nationality,
+                idNationality,
+                idIssueDate,
+                idType,
+                idNumber,
+                addressLine1,
+                addressLine2,
+                city,
+                region,
+                postalCode,
+                fiscalIdentificationCode,
+                streetCode,
+                municipalCode,
+                alias,
+                businessName,
+                subaccount,
+                fileToUpload,
+                autoCorrectAddress,
+                callbackUrl
             );
 
             if (salutation != null) Salutation = salutation;
@@ -333,7 +591,7 @@ namespace Plivo.Resource.Identity
         /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
         /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
         /// <param name="callbackUrl">Callback URL</param>
-        public async Task<UpdateResponse<Identity>> UpdateAsync(
+        public async Task<UpdateResponse<Identity>> UpdateAsyncOld(
             string countryIso = null,
             string salutation = null,
             string firstName = null,
@@ -361,32 +619,32 @@ namespace Plivo.Resource.Identity
             string callbackUrl = null
         )
         {
-            var updateResponse = await ((IdentityInterface)Interface).UpdateAsync(
+            var updateResponse = await ((IdentityInterface)Interface).UpdateAsyncOld(
                 Id, countryIso,
-                    salutation,
-                    firstName,
-                    lastName,
-                    birthPlace,
-                    birthDate,
-                    nationality,
-                    idNationality,
-                    idIssueDate,
-                    idType,
-                    idNumber,
-                    addressLine1,
-                    addressLine2,
-                    city,
-                    region,
-                    postalCode,
-                    fiscalIdentificationCode,
-                    streetCode,
-                    municipalCode,
-                    alias,
-                    businessName,
-                    subaccount,
-                    fileToUpload,
-                    autoCorrectAddress,
-                    callbackUrl
+                salutation,
+                firstName,
+                lastName,
+                birthPlace,
+                birthDate,
+                nationality,
+                idNationality,
+                idIssueDate,
+                idType,
+                idNumber,
+                addressLine1,
+                addressLine2,
+                city,
+                region,
+                postalCode,
+                fiscalIdentificationCode,
+                streetCode,
+                municipalCode,
+                alias,
+                businessName,
+                subaccount,
+                fileToUpload,
+                autoCorrectAddress,
+                callbackUrl
             );
 
             if (salutation != null) Salutation = salutation;
@@ -411,6 +669,7 @@ namespace Plivo.Resource.Identity
 
             return updateResponse;
         }
+
         #endregion
     }
 }

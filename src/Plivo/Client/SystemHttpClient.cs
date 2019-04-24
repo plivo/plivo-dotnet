@@ -232,8 +232,6 @@ namespace Plivo.Client
                         : new T(),
                     new PlivoRequest(method, uri, request.Headers.ToString(), data, filesToUpload));
             }
-            
-                
 
             return plivoResponse;
         }

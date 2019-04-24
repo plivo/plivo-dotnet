@@ -1,18 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace Plivo.Resource.Address
+namespace Plivo.Resource.Identity
 {
-    public class AddressCreateResponse : CreateResponse
+    public class IdentityGetResponse : Identity
     {
         /// <summary>
         /// Gets or sets the error.
         /// </summary>
         /// <value>The error.</value>
         public ErrorMessage Error { get; set; }
-
-        public override string ToString()
-        {
-            return base.ToString();
-        }
     }
 }

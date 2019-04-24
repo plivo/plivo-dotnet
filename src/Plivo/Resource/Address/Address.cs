@@ -16,6 +16,18 @@ namespace Plivo.Resource.Address
         public new string Id { get; set; }
 
         /// <summary>
+        /// Gets or sets country ISO of phone number
+        /// </summary>
+        /// <value>2-letter country ISO</value>
+        public string PhoneNumberCountry { get; set; }
+
+        /// <summary>
+        /// Gets or sets Number Type
+        /// </summary>
+        /// <value>Number Type</value>
+        public string NumberType { get; set; }
+
+        /// <summary>
         /// Gets or sets Country Iso
         /// </summary>
         /// <value>2-letter country ISO</value>
@@ -26,6 +38,12 @@ namespace Plivo.Resource.Address
         /// </summary>
         /// <value>Account</value>
         public string Account { get; set; }
+
+        /// <summary>
+        /// Gets or sets Id Number
+        /// </summary>
+        /// <value>Id Number</value>
+        public string IdNumber { get; set; }
 
         /// <summary>
         /// Gets or sets Alias
@@ -142,6 +160,18 @@ namespace Plivo.Resource.Address
         public List<string> LinkedPhoneNumbers { get; set; }
 
         /// <summary>
+        /// Gets or sets Iso3
+        /// </summary>
+        /// <value>Iso3</value>
+        public string Iso3 { get; set; }
+
+        /// <summary>
+        /// Gets or sets PK
+        /// </summary>
+        /// <value>PK</value>
+        public uint Pk { get; set; }
+
+        /// <summary>
         /// Gets or sets document details
         /// </summary>
         /// <value>Document Details</value>
@@ -155,7 +185,7 @@ namespace Plivo.Resource.Address
         /// Delete this instance.
         /// </summary>
         /// <returns>The delete.</returns>
-        public  DeleteResponse<Address> Delete()
+        public AddressDeleteResponse Delete()
         {
             return ((AddressInterface)Interface).Delete(Id);
         }
@@ -163,12 +193,156 @@ namespace Plivo.Resource.Address
         /// Asynchronously delete this instance.
         /// </summary>
         /// <returns>The delete.</returns>
-        public async Task<DeleteResponse<Address>> DeleteAsync()
+        public async Task<AddressDeleteResponse> DeleteAsync()
         {
             return await ((AddressInterface) Interface).DeleteAsync(Id);
         }
         #endregion
         #region Update
+        /// <summary>
+        /// Update address with the specified params
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="phoneNumberCountry">2-letter country ISO.</param>
+        /// <param name="numberType">Number Type.</param>
+        /// <param name="salutation">Salutation.</param>
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        /// <param name="countryIso">2-letter country ISO.</param>
+        /// <param name="addressLine1">Address Line 1.</param>
+        /// <param name="addressLine2">Address Line 2.</param>
+        /// <param name="city">City.</param>
+        /// <param name="region">Region.</param>
+        /// <param name="postalCode">Postal Code.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="idNumber">ID Number.</param>
+        /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
+        /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
+        /// <param name="callbackUrl">Callback URL</param>
+        public UpdateResponse<Address> Update(
+            string phoneNumberCountry = null,
+            string numberType = null,
+            string salutation = null,
+            string firstName = null,
+            string lastName = null,
+            string countryIso = null,
+            string addressLine1 = null,
+            string addressLine2 = null,
+            string city = null,
+            string region = null,
+            string postalCode = null,
+            string alias = null,
+            string idNumber = null,
+            string fileToUpload = null,
+            bool? autoCorrectAddress = null,
+            string callbackUrl = null)
+        {
+            var updateResponse = ((AddressInterface) Interface).Update(
+                Id, phoneNumberCountry, numberType, salutation, firstName, lastName, countryIso, addressLine1,
+                addressLine2, city, region, postalCode, alias, idNumber, fileToUpload,
+                autoCorrectAddress, callbackUrl
+            );
+
+            if (phoneNumberCountry != null) PhoneNumberCountry = phoneNumberCountry;
+            if (idNumber != null) IdNumber = idNumber;
+            if (numberType != null) NumberType = numberType;
+            if (salutation != null) Salutation = salutation;
+            if (firstName != null) FirstName = firstName;
+            if (lastName != null) LastName = lastName;
+            if (countryIso != null) CountryIso = countryIso;
+            if (addressLine1 != null) AddressLine1 = addressLine1;
+            if (addressLine2 != null) AddressLine2 = addressLine2;
+            if (city != null) City = city;
+            if (region != null) Region = region;
+            if (postalCode != null) PostalCode = postalCode;
+            if (alias != null) Alias = alias;
+
+            return updateResponse;
+        }
+
+        /// <summary>
+        /// Asynchronously update address with the specified params
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="phoneNumberCountry">2-letter country ISO.</param>
+        /// <param name="numberType">Number Type.</param>
+        /// <param name="salutation">Salutation.</param>
+        /// <param name="firstName">First Name.</param>
+        /// <param name="lastName">Last Name.</param>
+        /// <param name="countryIso">2-letter country ISO.</param>
+        /// <param name="addressLine1">Address Line 1.</param>
+        /// <param name="addressLine2">Address Line 2.</param>
+        /// <param name="city">City.</param>
+        /// <param name="region">Region.</param>
+        /// <param name="postalCode">Postal Code.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="idNumber">ID Number.</param>
+        /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
+        /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
+        /// <param name="callbackUrl">Callback URL</param>
+        public async Task<UpdateResponse<Address>> UpdateAsync(
+            string phoneNumberCountry = null,
+            string numberType = null,
+            string salutation = null,
+            string firstName = null,
+            string lastName = null,
+            string countryIso = null,
+            string addressLine1 = null,
+            string addressLine2 = null,
+            string city = null,
+            string region = null,
+            string postalCode = null,
+            string alias = null,
+            string idNumber = null,
+            string fileToUpload = null,
+            bool? autoCorrectAddress = null,
+            string callbackUrl = null)
+        {
+            var updateResponse = await ((AddressInterface)Interface).UpdateAsync(
+                Id, phoneNumberCountry, numberType, salutation, firstName, lastName, countryIso, addressLine1,
+                addressLine2, city, region, postalCode, alias, idNumber, fileToUpload,
+                autoCorrectAddress, callbackUrl
+            );
+
+            if (phoneNumberCountry != null) PhoneNumberCountry = phoneNumberCountry;
+            if (idNumber != null) IdNumber = idNumber;
+            if (numberType != null) NumberType = numberType;
+            if (phoneNumberCountry != null) PhoneNumberCountry = phoneNumberCountry;
+            if (numberType != null) NumberType = numberType;
+            if (salutation != null) Salutation = salutation;
+            if (firstName != null) FirstName = firstName;
+            if (lastName != null) LastName = lastName;
+            if (countryIso != null) CountryIso = countryIso;
+            if (addressLine1 != null) AddressLine1 = addressLine1;
+            if (addressLine2 != null) AddressLine2 = addressLine2;
+            if (city != null) City = city;
+            if (region != null) Region = region;
+            if (postalCode != null) PostalCode = postalCode;
+            if (alias != null) Alias = alias;
+
+            return updateResponse;
+        }
+        #endregion
+
+        #region Old
+
+        /// <summary>
+        /// Delete this instance.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public DeleteResponse<Address> DeleteOld()
+        {
+            return ((AddressInterface)Interface).DeleteOld(Id);
+        }
+        /// <summary>
+        /// Asynchronously delete this instance.
+        /// </summary>
+        /// <returns>The delete.</returns>
+        public async Task<DeleteResponse<Address>> DeleteAsyncOld()
+        {
+            return await ((AddressInterface)Interface).DeleteAsyncOld(Id);
+        }
+
         /// <summary>
         /// Update address with the specified params
         /// </summary>
@@ -201,7 +375,7 @@ namespace Plivo.Resource.Address
             bool? autoCorrectAddress = null,
             string callbackUrl = null)
         {
-            var updateResponse = ((AddressInterface) Interface).Update(
+            var updateResponse = ((AddressInterface)Interface).Update(
                 Id, salutation, firstName, lastName, countryIso, addressLine1,
                 addressLine2, city, region, postalCode, alias, fileToUpload,
                 autoCorrectAddress, callbackUrl
@@ -238,7 +412,7 @@ namespace Plivo.Resource.Address
         /// <param name="fileToUpload">File to be uploaded. Need the full path to the file</param>
         /// <param name="autoCorrectAddress">Auto Correct Address?.</param>
         /// <param name="callbackUrl">Callback URL</param>
-        public async Task<UpdateResponse<Address>> UpdateAsync(
+        public async Task<UpdateResponse<Address>> UpdateAsyncOld(
             string salutation = null,
             string firstName = null,
             string lastName = null,
@@ -253,7 +427,7 @@ namespace Plivo.Resource.Address
             bool? autoCorrectAddress = null,
             string callbackUrl = null)
         {
-            var updateResponse = await ((AddressInterface)Interface).UpdateAsync(
+            var updateResponse = await ((AddressInterface)Interface).UpdateAsyncOld(
                 Id, salutation, firstName, lastName, countryIso, addressLine1,
                 addressLine2, city, region, postalCode, alias, fileToUpload,
                 autoCorrectAddress, callbackUrl
@@ -272,6 +446,7 @@ namespace Plivo.Resource.Address
 
             return updateResponse;
         }
+
         #endregion
     }
 }

@@ -16,6 +16,8 @@ namespace Plivo.NetCore.Test.Resources
         {
             var data = new Dictionary<string, object>()
             {
+                {"phone_number_country" , "US" },
+                {"number_type" , "local" },
                 {"country_iso", "US"},
                 {"salutation", "MR"},
                 {"first_name", "Bruce"},
@@ -53,11 +55,11 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-
+            
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Address.Create("US", "MR", "Bruce", "Wayne", "124", "Gotham City", "New York", "New York",
+                    Api.Address.Create("US", "local","US", "MR", "Bruce", "Wayne", "124", "Gotham City", "New York", "New York",
                         "50607", "others", fileToUpload: fileToUpload)));
             AssertRequest(request);
         }
@@ -75,7 +77,29 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/addressGetResponse.json"
                 );
-            Setup<Address>(
+            Setup<AddressGetResponse>(
+                200,
+                response
+            );
+
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Address.Get(id)));
+            AssertRequest(request);
+        }
+
+        [Fact]
+        public void TestAddressGetNew()
+        {
+            var id = "20220771838737";
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Verification/Address/" + id + "/",
+                    "");
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/addressGetResponseNew.json"
+                );
+            Setup<AddressGetResponse>(
                 200,
                 response
             );
@@ -107,6 +131,28 @@ namespace Plivo.NetCore.Test.Resources
         }
 
         [Fact]
+        public void TestAddressListNew()
+        {
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Verification/Address/",
+                    ""
+                );
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/addressListResponseNew.json"
+                );
+            Setup<Address>(
+                200,
+                response
+            );
+
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Address.List()));
+            AssertRequest(request);
+        }
+
+        [Fact]
         public void TestAddressDelete()
         {
             var id = "20220771838737";
@@ -118,12 +164,35 @@ namespace Plivo.NetCore.Test.Resources
                 );
 
             var response = "";
-            Setup<UpdateResponse<Address>>(
+            Setup<AddressDeleteResponse>(
                 204,
                 response
             );
 
-            Assert.Null(Api.Address.Delete(id));
+            Assert.Null(Api.Address.DeleteOld(id));
+            AssertRequest(request);
+        }
+
+        [Fact]
+        public void TestAddressDeleteNew()
+        {
+            var id = "20220771838737";
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Verification/Address/" + id + "/",
+                    ""
+                );
+
+            var response = System.IO.File.ReadAllText(
+                SOURCE_DIR + @"../Mocks/addressDeleteResponse.json"
+            );
+            Setup<AddressDeleteResponse>(
+                204,
+                response
+            );
+
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.Address.Delete(id)));
             AssertRequest(request);
         }
     }

@@ -5,6 +5,36 @@ namespace Plivo.Resource.Identity
     public class IdentityDocumentDetail
     {
         /// <summary>
+        /// Gets or sets Address Line 1
+        /// </summary>
+        /// <value>Address Line 1</value>
+        public string AddressLine1 { get; set; }
+
+        /// <summary>
+        /// Gets or sets Address Line 2
+        /// </summary>
+        /// <value>Address Line 2</value>
+        public string AddressLine2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets City
+        /// </summary>
+        /// <value>City</value>
+        public string City { get; set; }
+
+        /// <summary>
+        /// Gets or sets Region
+        /// </summary>
+        /// <value>Region or State</value>
+        public string Region { get; set; }
+
+        /// <summary>
+        /// Gets or sets Postal Code
+        /// </summary>
+        /// <value>Postal Code</value>
+        public string PostalCode { get; set; }
+
+        /// <summary>
         /// Gets or sets Salutation
         /// </summary>
         /// <value>Salutation</value>
