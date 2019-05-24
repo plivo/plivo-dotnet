@@ -97,9 +97,13 @@ namespace Plivo.Resource.Call
                     parentCallUuid,
                     errorIfrentNotFound
                 });
-            var result = Task.Run(async () => await Client.Update<CallCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<CallCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously create Call with the specified from, to, answerUrl, answerMethod, ringUrl, ringMethod, hangupUrl, hangupMethod,
         /// fallbackUrl, fallbackMethod, callerName, sendDigits, sendOnPreanswer, timeLimit, hangupOnRing,
@@ -173,6 +177,7 @@ namespace Plivo.Resource.Call
                     parentCallUuid,
                     errorIfrentNotFound
                 });
+
             var result = await Client.Update<CallCreateResponse>(Uri, data);
             return result.Object;
         }
@@ -252,13 +257,17 @@ namespace Plivo.Resource.Call
                     limit,
                     offset
                 });
-            var resources = Task.Run(async () => await ListResources<ListResponse<Call>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
 
-            return resources;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Call>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
+		}
         /// <summary>
         /// List Call with the specified subaccount, callDirection, fromNumber, toNumber, billDuration, billDuration_Gt,
         /// billDuration_Gte, billDuration_Lt, billDuration_Lte, endTime, endTime_Gt, endTime_Gte, endTime_Lt,
@@ -349,10 +358,13 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public Call Get(string callUuid)
         {
-            var call = Task.Run(async () => await GetResource<Call>(callUuid).ConfigureAwait(false)).Result;
-            call.Interface = this;
-            return call;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var call = Task.Run(async () => await GetResource<Call>(callUuid).ConfigureAwait(false)).Result;
+				call.Interface = this;
+				return call;
+			});
+		}
         /// <summary>
         /// Asynchronously get Call with the specified callUuid.
         /// </summary>
@@ -389,8 +401,11 @@ namespace Plivo.Resource.Call
                     toNumber
                 });
 
-            return Task.Run(async () => await ListResources<LiveCallListResponse>(data).ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await ListResources<LiveCallListResponse>(data).ConfigureAwait(false)).Result;
+			});
+		}
         /// <summary>
         /// Lists the live.
         /// </summary>
@@ -425,11 +440,14 @@ namespace Plivo.Resource.Call
         /// <param name="liveCallUuid">Live call UUID.</param>
         public LiveCall GetLive(string liveCallUuid)
         {
-            var liveCall = Task.Run(async () => await GetResource<LiveCall>(
-                liveCallUuid, new Dictionary<string, object>() { { "status", "live" } }).ConfigureAwait(false)).Result;
-            liveCall.Interface = this;
-            return liveCall;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var liveCall = Task.Run(async () => await GetResource<LiveCall>(
+					liveCallUuid, new Dictionary<string, object>() { { "status", "live" } }).ConfigureAwait(false)).Result;
+				liveCall.Interface = this;
+				return liveCall;
+			});
+		}
         /// <summary>
         ///Asynchronously gets the live.
         /// </summary>
@@ -452,11 +470,14 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public QueuedCall GetQueued(string callUuid)
         {
-            var queuedCall = Task.Run(async () => await GetResource<QueuedCall>(
-                callUuid, new Dictionary<string, object>() { { "status", "queued" } }).ConfigureAwait(false)).Result;
-            queuedCall.Interface = this;
-            return queuedCall;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var queuedCall = Task.Run(async () => await GetResource<QueuedCall>(
+					callUuid, new Dictionary<string, object>() { { "status", "queued" } }).ConfigureAwait(false)).Result;
+				queuedCall.Interface = this;
+				return queuedCall;
+			});
+		}
         /// <summary>
         /// Asynchronously gets the Queued call.
         /// </summary>
@@ -478,9 +499,12 @@ namespace Plivo.Resource.Call
         /// <returns>queued calls list</returns>
         public QueuedCallListResponse ListQueued()
         {
-            return Task.Run(async () => await ListResources<QueuedCallListResponse>(
-                    new Dictionary<string, object>() { { "status", "queued" } }).ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await ListResources<QueuedCallListResponse>(
+						new Dictionary<string, object>() { { "status", "queued" } }).ConfigureAwait(false)).Result;
+			});
+		}
         /// <summary>
         /// Lists the queued calls.
         /// </summary>
@@ -501,8 +525,11 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> Delete(string callUuid)
         {
-            return Task.Run(async () => await DeleteResource<DeleteResponse<Call>>(callUuid).ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Call>>(callUuid).ConfigureAwait(false)).Result;
+			});
+		}
         /// <summary>
         /// Asynchronously delete Call with the specified callUuid.
         /// </summary>
@@ -541,9 +568,13 @@ namespace Plivo.Resource.Call
                     blegUrl,
                     blegMethod
                 });
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously transfer Call with the specified callUuid, legs, alegUrl, alegMethod, blegUrl and blegMethod.
         /// </summary>
@@ -602,9 +633,13 @@ namespace Plivo.Resource.Call
                     loop,
                     mix
                 });
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Play/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Play/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously starts the playing.
         /// </summary>
@@ -644,9 +679,12 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> StopPlaying(string callUuid)
         {
-            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Play/").ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Play/").ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously stops the playing.
         /// </summary>
@@ -691,9 +729,13 @@ namespace Plivo.Resource.Call
                     callbackUrl,
                     callbackMethod
                 });
-            var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Call>>(Uri + callUuid + "/Record/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Call>>(Uri + callUuid + "/Record/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously starts the recording.
         /// </summary>
@@ -742,9 +784,13 @@ namespace Plivo.Resource.Call
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
                 mandatoryParams, new { URL });
-            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Record/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Record/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously stops the recording.
         /// </summary>
@@ -790,9 +836,13 @@ namespace Plivo.Resource.Call
                     loop,
                     mix
                 });
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Speak/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/Speak/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously starts the speaking.
         /// </summary>
@@ -835,9 +885,12 @@ namespace Plivo.Resource.Call
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> StopSpeaking(string callUuid)
         {
-            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Speak/").ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>(Uri + callUuid + "/Speak/").ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously stops the speaking.
         /// </summary>
@@ -869,9 +922,13 @@ namespace Plivo.Resource.Call
                     digits,
                     leg
                 });
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/DTMF/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>>(Uri + callUuid + "/DTMF/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously sends the digits.
         /// </summary>
@@ -903,9 +960,12 @@ namespace Plivo.Resource.Call
         /// <param name="requestUuid">Request UUID.</param>
         public DeleteResponse<Call> CancelCall(string requestUuid)
         {
-            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>("Account/" + Client.GetAuthId() + "/Request/" + requestUuid + "/", null).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<DeleteResponse<Call>>("Account/" + Client.GetAuthId() + "/Request/" + requestUuid + "/", null).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously сancels the call.
         /// </summary>

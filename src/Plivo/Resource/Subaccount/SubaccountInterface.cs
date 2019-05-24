@@ -28,8 +28,12 @@ namespace Plivo.Resource.Subaccount
         {
             var mandatoryParams = new List<string> {"name"};
             var data = CreateData(mandatoryParams, new {name, enabled});
-            var result = Task.Run(async () => await Client.Update<SubaccountCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
-            return result.Object;
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<SubaccountCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously create Subaccount with the specified name and enabled.
@@ -55,9 +59,12 @@ namespace Plivo.Resource.Subaccount
         /// <param name="id">Identifier.</param>
         public Subaccount Get(string id)
         {
-            var subaccount = Task.Run(async () => await GetResource<Subaccount>(id).ConfigureAwait(false)).Result;
-            subaccount.Interface = this;
-            return subaccount;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var subaccount = Task.Run(async () => await GetResource<Subaccount>(id).ConfigureAwait(false)).Result;
+				subaccount.Interface = this;
+				return subaccount;
+			});
         }
         /// <summary>
         /// Asynchronously get Subaccount with the specified id.
@@ -83,12 +90,16 @@ namespace Plivo.Resource.Subaccount
         {
             var mandatoryParams = new List<string> { };
             var data = CreateData(mandatoryParams, new {limit, offset});
-            var resources = Task.Run(async () => await ListResources<ListResponse<Subaccount>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
 
-            return resources;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Subaccount>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
         }
         /// <summary>
         /// List Subaccount with the specified limit and offset.
@@ -100,6 +111,7 @@ namespace Plivo.Resource.Subaccount
         {
             var mandatoryParams = new List<string> { };
             var data = CreateData(mandatoryParams, new { limit, offset });
+
             var resources = await ListResources<ListResponse<Subaccount>>(data);
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
@@ -123,7 +135,11 @@ namespace Plivo.Resource.Subaccount
             {
                 data = CreateData(new List<string> {}, new {cascade});
             }
-            return Task.Run(async () => await DeleteResource<DeleteResponse<Subaccount>>(id, data).ConfigureAwait(false)).Result;
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Subaccount>>(id, data).ConfigureAwait(false)).Result;
+			});
         }
         /// <summary>
         /// Asynchronously delete Subaccount with the specified id.
@@ -155,8 +171,12 @@ namespace Plivo.Resource.Subaccount
             var mandatoryParams = new List<string> {"id", "name"};
             var data = CreateData(
                 mandatoryParams, new {name, enabled});
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Subaccount>>(Uri + id + "/", data).ConfigureAwait(false)).Result;
-            return result.Object;
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Subaccount>>(Uri + id + "/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously update Subaccount with the specified id, name and enabled.

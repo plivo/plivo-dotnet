@@ -583,10 +583,13 @@ namespace Plivo.Resource.Identity
         /// <param name="id">Identifier.</param>
         public IdentityGetResponse Get(string id)
         {
-            var identity = Task.Run(async () => await GetResource<IdentityGetResponse>(id).ConfigureAwait(false)).Result;
-            identity.Interface = this;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var identity = Task.Run(async () => await GetResource<IdentityGetResponse>(id).ConfigureAwait(false)).Result;
+				identity.Interface = this;
 
-            return identity;
+				return identity;
+			});
         }
         /// <summary>
         /// Asynchronously get identity with the specified id.
@@ -632,12 +635,15 @@ namespace Plivo.Resource.Identity
                 offset
             });
 
-            var resources = Task.Run(async () => await ListResources<ListResponse<Identity>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Identity>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
 
-            return resources;
+				return resources;
+			});
         }
         /// <summary>
         /// List Identities with the specified params.
@@ -685,7 +691,10 @@ namespace Plivo.Resource.Identity
         /// <param name="id">Identifier.</param>
         public IdentityDeleteResponse Delete(string id)
         {
-            return Task.Run(async () => await DeleteResource(id).ConfigureAwait(false)).Result;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource(id).ConfigureAwait(false)).Result;
+			});
         }
         /// <summary>
         /// Asynchronously delete Identity with the specified id.
@@ -834,8 +843,11 @@ namespace Plivo.Resource.Identity
                 filesToUpload.Add("file", fileToUpload);
             }
 
-            var result = Task.Run(async () => await Client.Update<IdentityCreateResponse>(Uri, data, filesToUpload).ConfigureAwait(false)).Result;
-            return result.Object;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<IdentityCreateResponse>(Uri, data, filesToUpload).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously create identity with the specified params
@@ -1065,8 +1077,12 @@ namespace Plivo.Resource.Identity
             {
                 filesToUpload.Add("file", fileToUpload);
             }
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Identity>>(Uri + identityId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
-            return result.Object;
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Identity>>(Uri + identityId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously update identity with the specified params

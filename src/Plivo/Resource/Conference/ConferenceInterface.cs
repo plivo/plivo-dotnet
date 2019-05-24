@@ -29,10 +29,13 @@ namespace Plivo.Resource.Conference
         /// <param name="conferenceName">Name.</param>
         public Conference Get(string conferenceName)
         {
-            var conference = Task.Run(async () => await GetResource<Conference>(conferenceName).ConfigureAwait(false)).Result;
-            conference.Interface = this;
-            return conference;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var conference = Task.Run(async () => await GetResource<Conference>(conferenceName).ConfigureAwait(false)).Result;
+				conference.Interface = this;
+				return conference;
+			});
+		}
         /// <summary>
         /// Asynchronously Get Conference with the specified name.
         /// </summary>
@@ -53,8 +56,11 @@ namespace Plivo.Resource.Conference
         /// <returns>The list.</returns>
         public ConferenceListResponse List()
         {
-            return Task.Run(async () => await ListResources<ConferenceListResponse>().ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await ListResources<ConferenceListResponse>().ConfigureAwait(false)).Result;
+			});
+		}
         /// <summary>
         /// List Conferences.
         /// </summary>
@@ -72,9 +78,12 @@ namespace Plivo.Resource.Conference
         /// <returns>The all.</returns>
         public DeleteResponse<Conference> DeleteAll()
         {
-            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Conference>>(Uri).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<DeleteResponse<Conference>>(Uri).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously deletes all.
         /// </summary>
@@ -94,8 +103,11 @@ namespace Plivo.Resource.Conference
         /// <param name="name">Name.</param>
         public DeleteResponse<Conference> Delete(string name)
         {
-            return Task.Run(async () => await DeleteResource<DeleteResponse<Conference>>(name).ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Conference>>(name).ConfigureAwait(false)).Result;
+			});
+		}
         /// <summary>
         /// Asynchronously delete with the specified name.
         /// </summary>
@@ -117,9 +129,12 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse HangupMember(
             string conferenceName, string memberId)
         {
-            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/").ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/").ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously hangups the member.
         /// </summary>
@@ -144,9 +159,12 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse KickMember(
             string conferenceName, string memberId)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/").ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/").ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
 
         /// <summary>
         /// Asynchronously kicks the member.
@@ -172,9 +190,12 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse MuteMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously mutes the member.
         /// </summary>
@@ -198,9 +219,12 @@ namespace Plivo.Resource.Conference
         public void UnmuteMember(
             string conferenceName, List<string> memberId)
         {
-             Client.Delete<ConferenceMemberActionResponse>(
-                Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").GetAwaiter().GetResult();
-        }
+			ExecuteWithExceptionUnwrap(() =>
+			{
+				Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
+					Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").ConfigureAwait(false)).Wait();
+			});
+		}
         /// <summary>
         /// Asynchronously unmutes the member.
         /// </summary>
@@ -225,16 +249,19 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse PlayMember(
             string conferenceName, List<string> memberId, string url)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
-                    Uri +
-                    conferenceName +
-                    "/Member/" +
-                    string.Join(",", memberId) +
-                    "/Play/",
-                    new Dictionary<string, object>() { { "url", url } }
-                ).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
+						Uri +
+						conferenceName +
+						"/Member/" +
+						string.Join(",", memberId) +
+						"/Play/",
+						new Dictionary<string, object>() { { "url", url } }
+					).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously plays audio to the member.
         /// </summary>
@@ -267,16 +294,19 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse StopPlayMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Task.Run(async () => await 
-                Client.Delete<ConferenceMemberActionResponse>(
-                    Uri +
-                    conferenceName +
-                    "/Member/" +
-                    string.Join(",", memberId) +
-                    "/Play/"
-                ).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await
+					Client.Delete<ConferenceMemberActionResponse>(
+						Uri +
+						conferenceName +
+						"/Member/" +
+						string.Join(",", memberId) +
+						"/Play/"
+					).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously stops playing audio to the member.
         /// </summary>
@@ -321,16 +351,20 @@ namespace Plivo.Resource.Conference
                     voice,
                     language
                 });
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
-                    Uri +
-                    conferenceName +
-                    "/Member/" +
-                    string.Join(",", memberId) +
-                    "/Speak/",
-                    data
-                ).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
+						Uri +
+						conferenceName +
+						"/Member/" +
+						string.Join(",", memberId) +
+						"/Speak/",
+						data
+					).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously speaks text to the member.
         /// </summary>
@@ -375,16 +409,19 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse StopSpeakMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
-                    Uri +
-                    conferenceName +
-                    "/Member/" +
-                    string.Join(",", memberId) +
-                    "/Speak/").ConfigureAwait(false))
-                    .Result;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
+						Uri +
+						conferenceName +
+						"/Member/" +
+						string.Join(",", memberId) +
+						"/Speak/").ConfigureAwait(false))
+						.Result;
 
-            return result.Object;
-        }
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously stops speaking text to the member.
         /// </summary>
@@ -416,15 +453,18 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse DeafMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
-                    Uri +
-                    conferenceName +
-                    "/Member/" +
-                    string.Join(",", memberId) +
-                    "/Deaf/"
-                ).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
+						Uri +
+						conferenceName +
+						"/Member/" +
+						string.Join(",", memberId) +
+						"/Deaf/"
+					).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously deafs the member.
         /// </summary>
@@ -454,15 +494,18 @@ namespace Plivo.Resource.Conference
         public ConferenceMemberActionResponse UnDeafMember(
             string conferenceName, List<string> memberId)
         {
-            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
-                    Uri +
-                    conferenceName +
-                    "/Member/" +
-                    string.Join(",", memberId) +
-                    "/Deaf/"
-                ).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
+						Uri +
+						conferenceName +
+						"/Member/" +
+						string.Join(",", memberId) +
+						"/Deaf/"
+					).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         public async Task<ConferenceMemberActionResponse> UnDeafMemberAsync(
          string conferenceName, List<string> memberId)
         {
@@ -507,13 +550,16 @@ namespace Plivo.Resource.Conference
                     callbackMethod
                 });
 
-            var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Conference>>(
-                    Uri + conferenceName + "/Record/",
-                    data
-                ).ConfigureAwait(false)).Result;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Conference>>(
+						Uri + conferenceName + "/Record/",
+						data
+					).ConfigureAwait(false)).Result;
 
-            return result.Object;
-        }
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously starts the recording.
         /// </summary>
@@ -560,10 +606,13 @@ namespace Plivo.Resource.Conference
         public void StopRecording(
             string conferenceName)
         {
-            Client.Delete<object>(
-                Uri + conferenceName + "/Record/"
-            ).GetAwaiter().GetResult();
-        }
+			ExecuteWithExceptionUnwrap(() =>
+			{
+				Task.Run(async () => await Client.Delete<object>(
+					Uri + conferenceName + "/Record/"
+				).ConfigureAwait(false)).Wait();
+			});
+		}
         /// <summary>
         /// Asynchronously stops the recording.
         /// </summary>
