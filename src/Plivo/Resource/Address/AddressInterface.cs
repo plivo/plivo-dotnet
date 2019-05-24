@@ -280,8 +280,12 @@ namespace Plivo.Resource.Address
                 filesToUpload.Add("file", fileToUpload);
             }
 
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Address>>(Uri + addressId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
-            return result.Object;
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Address>>(Uri + addressId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
         }
 
         /// <summary>
@@ -359,11 +363,14 @@ namespace Plivo.Resource.Address
         /// <param name="id">Identifier.</param>
         public Address Get(string id)
         {
-            var address = Task.Run(async () => await GetResource<Address>(id).ConfigureAwait(false)).Result;
-            address.Interface = this;
-            return address;
-        }
-        /// <summary>
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var address = Task.Run(async () => await GetResource<AddressGetResponse>(id).ConfigureAwait(false)).Result;
+				address.Interface = this;
+
+				return address;
+			});
+		}        /// <summary>
         /// Asynchronously get address with the specified id.
         /// </summary>
         /// <returns>The get.</returns>
@@ -408,13 +415,17 @@ namespace Plivo.Resource.Address
                 limit,
                 offset
             });
-            var resources = Task.Run(async () => await ListResources<ListResponse<Address>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
 
-            return resources;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Address>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
+		}
         /// <summary>
         /// List Addresses with the specified params.
         /// </summary>
@@ -472,8 +483,11 @@ namespace Plivo.Resource.Address
         /// <param name="id">Identifier.</param>
         public DeleteResponse<Address> Delete(string id)
         {
-            return Task.Run(async () => await DeleteResource<DeleteResponse<Address>>(id).ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource(id).ConfigureAwait(false)).Result;
+			});
+		}
         #endregion
     }
 }
