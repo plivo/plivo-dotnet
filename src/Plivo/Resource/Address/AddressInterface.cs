@@ -485,7 +485,7 @@ namespace Plivo.Resource.Address
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				return Task.Run(async () => await DeleteResource(id).ConfigureAwait(false)).Result;
+				return Task.Run(async () => await DeleteAsync(id).ConfigureAwait(false)).Result;
 			});
 		}
         #endregion
