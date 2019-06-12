@@ -73,10 +73,13 @@ namespace Plivo.Resource.Application
                     logIncomingMessages
                 });
 
-            var result = Task.Run(async () => await Client.Update<ApplicationCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<ApplicationCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
 
-            return result.Object;
-        }
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously create Application with the specified appName, answerUrl, answerMethod, hangupUrl, hangupMethod, fallbackAnswerUrl,
         /// fallbackMethod, messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp, subaccount and logIncomingMessages.
@@ -139,10 +142,13 @@ namespace Plivo.Resource.Application
         /// <param name="appId">App identifier.</param>
         public Application Get(string appId)
         {
-            var application = Task.Run(async () => await GetResource<Application>(appId).ConfigureAwait(false)).Result;
-            application.Interface = this;
-            return application;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var application = Task.Run(async () => await GetResource<Application>(appId).ConfigureAwait(false)).Result;
+				application.Interface = this;
+				return application;
+			});
+		}
         /// <summary>
         /// Asynchronously get Application with the specified appId.
         /// </summary>
@@ -171,13 +177,16 @@ namespace Plivo.Resource.Application
             var data = CreateData(
                 mandatoryParams, new { subaccount, limit, offset });
 
-            var resources = Task.Run(async () => await ListResources<ListResponse<Application>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Application>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
 
-            return resources;
-        }
+				return resources;
+			});
+		}
         /// <summary>
         /// List Application with the specified subaccount, limit and offset.
         /// </summary>
@@ -209,8 +218,11 @@ namespace Plivo.Resource.Application
         /// <param name="appId">App identifier.</param>
         public DeleteResponse<Application> Delete(string appId)
         {
-            return Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId).ConfigureAwait(false)).Result;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId).ConfigureAwait(false)).Result;
+			});
+		}
         /// <summary>
         /// Asynchronously delete Application with the specified appId.
         /// </summary>
@@ -268,9 +280,12 @@ namespace Plivo.Resource.Application
                     logIncomingMessages
                 });
 
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
-            return result.Object;
-        }
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
+		}
         /// <summary>
         /// Asynchronously update Application with the specified appId, answerUrl, answerMethod, hangupUrl, hangupMethod, fallbackAnswerUrl,
         /// fallbackMethod, messageUrl, messageMethod, defaultNumberApp, defaultEndpointApp and subaccount.

@@ -57,13 +57,17 @@ namespace Plivo.Resource.PhoneNumber
                     limit,
                     offset
                 });
-            var resources = Task.Run(async () => await ListResources<ListResponse<PhoneNumber>>(data).ConfigureAwait(false)).Result;
 
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<PhoneNumber>>(data).ConfigureAwait(false)).Result;
 
-            return resources;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
         }
         /// <summary>
         /// List PhoneNumber with the specified countryIso, type, pattern, region, services, lata, rateCenter, limit and offset.
@@ -126,12 +130,16 @@ namespace Plivo.Resource.PhoneNumber
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
                 mandatoryParams, new {appId, verificationInfo});
-            var result = Task.Run(async () => await Client.Update<PhoneNumberBuyResponse>(
-                    Uri + number + "/",
-                    data
-                ).ConfigureAwait(false)).Result;
 
-            return result.Object;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<PhoneNumberBuyResponse>(
+					Uri + number + "/",
+					data
+				).ConfigureAwait(false)).Result;
+
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously buy PhoneNumber with the specified number and associate it with

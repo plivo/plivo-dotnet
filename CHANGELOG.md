@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.1](https://github.com/plivo/plivo-dotnet/tree/v4.4.1) (2019-06-12)
+- Add AggregateException Flattening 
+
 ## [v4.4.0](https://github.com/plivo/plivo-dotnet/tree/v4.4.0) (2019-03-14)
 - Add PHLO support
 - Add Multi-Party Call triggers

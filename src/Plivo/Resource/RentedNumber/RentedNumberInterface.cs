@@ -30,9 +30,12 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="number">Number.</param>
         public RentedNumber Get(string number)
         {
-            var rentedNumber = Task.Run(async () => await GetResource<RentedNumber>(number).ConfigureAwait(false)).Result;
-            rentedNumber.Interface = this;
-            return rentedNumber;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var rentedNumber = Task.Run(async () => await GetResource<RentedNumber>(number).ConfigureAwait(false)).Result;
+				rentedNumber.Interface = this;
+				return rentedNumber;
+			});
         }
 
         /// <summary>
@@ -78,12 +81,16 @@ namespace Plivo.Resource.RentedNumber
                     limit,
                     offset
                 });
-            var resources = Task.Run(async () => await ListResources<ListResponse<RentedNumber>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
 
-            return resources;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<RentedNumber>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
         }
         /// <summary>
         /// List RentedNumber with the specified type, numberStartswith, subaccount, alias, services, limit and offset.
@@ -152,8 +159,12 @@ namespace Plivo.Resource.RentedNumber
                     appId,
                     subaccount
                 });
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(Uri, data).ConfigureAwait(false)).Result;
-            return result.Object;
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(Uri, data).ConfigureAwait(false)).Result;
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously adds the number.
@@ -213,12 +224,16 @@ namespace Plivo.Resource.RentedNumber
                     verificationInfo
                 });
             if (appId == "null") data["app_id"] = null;
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(
-                    Uri + number + "/",
-                    data
-                ).ConfigureAwait(false)).Result;
 
-            return result.Object;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(
+					Uri + number + "/",
+					data
+				).ConfigureAwait(false)).Result;
+
+				return result.Object;
+			});
         }
         /// <summary>
         /// Asynchronously update RentedNumber with the specified number, appId, subaccount and alias.
@@ -261,7 +276,10 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="number">Number.</param>
         public DeleteResponse<RentedNumber> Delete(string number)
         {
-            return Task.Run(async () => await DeleteResource<DeleteResponse<RentedNumber>>(number).ConfigureAwait(false)).Result;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<RentedNumber>>(number).ConfigureAwait(false)).Result;
+			});
         }
         /// <summary>
         /// Asynchronously unrent RentedNumber with the specified number.
