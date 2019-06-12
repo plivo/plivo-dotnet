@@ -29,9 +29,12 @@ namespace Plivo.Resource.Recording
         /// <param name="recordingId">Recording identifier.</param>
         public Recording Get(string recordingId)
         {
-            var recording = Task.Run(async () => await GetResource<Recording>(recordingId).ConfigureAwait(false)).Result;
-            recording.Interface = this;
-            return recording;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var recording = Task.Run(async () => await GetResource<Recording>(recordingId).ConfigureAwait(false)).Result;
+				recording.Interface = this;
+				return recording;
+			});
         }
         /// <summary>
         /// Asynchronously get Recording with the specified recordingId.
@@ -89,12 +92,16 @@ namespace Plivo.Resource.Recording
                     limit,
                     offset
                 });
-            var resources = Task.Run(async () => await ListResources<ListResponse<Recording>>(data).ConfigureAwait(false)).Result;
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
 
-            return resources;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Recording>>(data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
         }
         /// <summary>
         /// List Recording with the specified subaccount, callUuid, addTime, addTime_Gt, addTime_Gte, addTime_Lt, addTime_Lte, limit
@@ -155,7 +162,10 @@ namespace Plivo.Resource.Recording
         /// <param name="recordingId">Recording identifier.</param>
         public DeleteResponse<Recording> Delete(string recordingId)
         {
-            return Task.Run(async () => await DeleteResource<DeleteResponse<Recording>>(recordingId).ConfigureAwait(false)).Result;
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Recording>>(recordingId).ConfigureAwait(false)).Result;
+			});
         }
 
         /// <summary>

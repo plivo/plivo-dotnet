@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "previous": null,
+    "total_count": 4,
+    "next": "https://api.plivo.com/v1/Account/MAZJM2NGUZMDI1OGRLZW/Verification/Address/?offset=3",
+    "limit": 3,
+    "offset": 0
+  },
+  "objects": [
+    {
+      "document_details": null,
+      "verification_status": "pending",
+      "iso3": "USA",
+      "validation_status": "pending",
+      "id": "33394390956933",
+      "account": "MAZJM2NGUZMDI1OGRLZW",
+      "subaccount": null,
+      "url": "https://api.plivo.com/v1/Account/MAZJM2NGUZMDI1OGRLZW/Verification/Download/Document/33394390956933/",
+      "address_proof_type": "address",
+      "alias": null,
+      "country_iso": "US",
+      "pk": 10000334
+    },
+    {
+      "document_details": {
+        "address_line2": "MAKSIMIRSKA CESTA",
+        "city": "ZAGREB",
+        "first_name": "zz-test-1",
+        "address_line1": "128",
+        "region": "GRAD ZAGREB",
+        "last_name": "zz-test-2",
+        "postal_code": "10000",
+        "salutation": "Mr"
+      },
+      "verification_status": "pending",
+      "last_name": "zz-test-2",
+      "first_name": "zz-test-1",
+      "iso3": "HRV",
+      "postal_code": "10000",
+      "salutation": "Mr",
+      "validation_status": "accepted",
+      "id": "19246032249004",
+      "address_line2": "MAKSIMIRSKA CESTA",
+      "city": "ZAGREB",
+      "account": "MAZJM2NGUZMDI1OGRLZW",
+      "address_line1": "128",
+      "subaccount": null,
+      "url": "https://api.plivo.com/v1/Account/MAZJM2NGUZMDI1OGRLZW/Verification/Download/Document/19246032249004/",
+      "region": "GRAD ZAGREB",
+      "address_proof_type": "identity",
+      "alias": "testone",
+      "country_iso": "HR",
+      "pk": 10000340
+    },
+    {
+      "document_details": null,
+      "verification_status": "pending",
+      "iso3": "TUR",
+      "validation_status": "pending",
+      "id": "26421064527697",
+      "account": "MAZJM2NGUZMDI1OGRLZW",
+      "subaccount": null,
+      "url": "https://api.plivo.com/v1/Account/MAZJM2NGUZMDI1OGRLZW/Verification/Download/Document/26421064527697/",
+      "address_proof_type": "identity",
+      "alias": null,
+      "country_iso": "TR",
+      "pk": 10000388
+    }
+  ],
+  "api_id": "f1d172be-c07a-4957-b230-4aab28b848fd"
+}

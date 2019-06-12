@@ -143,5 +143,31 @@ namespace Plivo.Resource
         {
             return (from pi in parameterInfos where !pi.IsOptional select pi.Name).ToList();
         }
-    }
+
+		public static T ExecuteWithExceptionUnwrap<T>(Func<T> func) where T : class
+		{
+			try
+			{
+				return func();
+			}
+			catch (AggregateException ex)
+			{
+				ex.Flatten();
+				throw ex.InnerExceptions[0];
+			}
+		}
+
+		public static void ExecuteWithExceptionUnwrap(Action func)
+		{
+			try
+			{
+				func();
+			}
+			catch (AggregateException ex)
+			{
+				ex.Flatten();
+				throw ex.InnerExceptions[0];
+			}
+		}
+	}
 }
