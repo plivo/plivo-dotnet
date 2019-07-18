@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.4.2 Add Status Code in API responses
       * 4.4.1 Add AggregateException Flattening
       * 4.4.0 Add PHLO support and Multi-party call triggers
       * 4.3.0-beta1 Add PHLO support and Multi-party call triggers in beta release 
