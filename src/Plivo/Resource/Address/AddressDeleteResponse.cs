@@ -9,6 +9,6 @@ namespace Plivo.Resource.Address
         /// <summary>
         /// Gets or sets the status code.
         /// </summary>
-        public uint StatusCode { get; set; }
+        //public uint StatusCode { get; set; }
     }
 }

@@ -5,6 +5,7 @@ namespace Plivo.Resource
     /// </summary>
     public class BaseResponse
     {
+        public uint StatusCode { get; set; }
         /// <summary>
         /// Gets or sets the API identifier.
         /// </summary>
@@ -21,10 +22,12 @@ namespace Plivo.Resource
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.BaseResponse"/>.
         /// </summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.BaseResponse"/>.</returns>
+        
         public override string ToString()
         {
             return "Api Id: " + ApiId + "\n" +
-                   "Message: " + Message + "\n";
+                   "Message: " + Message + "\n" +
+                   "StatusCode: "+StatusCode + "\n";
         }
     }
 }

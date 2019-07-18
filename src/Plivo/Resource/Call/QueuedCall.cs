@@ -16,6 +16,7 @@ namespace Plivo.Resource.Call
         public override string ToString()
         {
             return base.ToString() +
+                    "StatusCode: " + StatusCode + "\n" +
                    "Direction: " + Direction + "\n" +
                    "From: " + From + "\n" +
                    "CallStatus: " + CallStatus + "\n" +

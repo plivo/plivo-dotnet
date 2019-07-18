@@ -8,12 +8,14 @@ namespace Plivo.Resource.Message
         public string Username { get; set; }
         public string Alias { get; set; }
 
+
         public override string ToString()
         {
             return base.ToString() +
-                   "Message Uuid: " + string.Join(",", MessageUuid) + "\n" +
+                   "Message Uuid: " + string.Join(",", MessageUuid) +
                    "Username: " + Username + "\n" +
                    "Alias: " + Alias + "\n";
+                   
         }
     }
 }

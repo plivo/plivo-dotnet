@@ -9,7 +9,7 @@ namespace Plivo.Exception
         /// Initializes a new instance of the <see cref="T:plivo.Exception.PlivoResponseException"/> class.
         /// </summary>
         /// <param name="message">Message.</param>
-        public PlivoResponseException(string message) : base(message)
+        public PlivoResponseException(string message, uint statusCode=0) : base(message, statusCode)
         {
         }
     }

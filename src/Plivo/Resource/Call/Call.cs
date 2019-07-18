@@ -31,6 +31,9 @@ namespace Plivo.Resource.Call
         public string TotalAmount { get; set; }
         public string TotalRate { get; set; }
 
+
+
+
         //        public Call(string answerTime, string apiId, uint? billDuration, uint? billedDuration, string callDirection,
         //            uint? callDuration, string callUuid, string endTime, string fromNumber, string initiationTime,
         //            string parentCallUuid, string resourceUri, string toNumber, string totalAmount, string totalRate)
@@ -353,9 +356,11 @@ namespace Plivo.Resource.Call
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.
         /// </summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.</returns>
+        
         public override string ToString()
         {
-            return base.ToString() +
+            return 
+                    "StatusCode: " + StatusCode + "\n" +
                    "AnswerTime: " + AnswerTime + "\n" +
                    "BillDuration: " + BillDuration + "\n" +
                    "BilledDuration: " + BilledDuration + "\n" +

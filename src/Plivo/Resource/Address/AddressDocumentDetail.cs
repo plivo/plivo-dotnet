@@ -51,5 +51,18 @@ namespace Plivo.Resource.Address
         /// </summary>
         /// <value>Postal Code</value>
         public string PostalCode { get; set; }
+
+        public override string ToString()
+        {
+            return "Salutation: " + Salutation + "\n" +
+                   "FirstName: " + FirstName + "\n" +
+                   "LastName: " + LastName + "\n" +
+                   "AddressLine1: " + AddressLine1 + "\n" +
+                   "AddressLine2: " + AddressLine2 + "\n" +
+                   "City: " + City + "\n" +
+                   "Region: " + Region + "\n" +
+                   "PostalCode: " + PostalCode + "\n";
+            
+        }
     }
 }

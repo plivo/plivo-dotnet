@@ -114,7 +114,7 @@ namespace Plivo.Resource.Address
             }
 
             var result = await Client.Update<AddressCreateResponse>(Uri, data, filesToUpload);
-
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         /// <summary>
@@ -212,7 +212,7 @@ namespace Plivo.Resource.Address
             }
 
             var result = Task.Run(async () => await Client.Update<AddressCreateResponse>(Uri, data, filesToUpload).ConfigureAwait(false)).Result;
-
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -284,6 +284,7 @@ namespace Plivo.Resource.Address
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<UpdateResponse<Address>>(Uri + addressId + "/", data, filesToUpload).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
         }
@@ -351,6 +352,7 @@ namespace Plivo.Resource.Address
             }
 
             var result = await Client.Update<UpdateResponse<Address>>(Uri + addressId + "/", data, filesToUpload);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion

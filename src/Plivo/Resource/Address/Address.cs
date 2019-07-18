@@ -147,6 +147,31 @@ namespace Plivo.Resource.Address
         /// <value>Document Details</value>
         public AddressDocumentDetail DocumentDetails { get; set; }
 
+        public override string ToString()
+        {
+            return "StreetCode: " + StreetCode + "\n" +
+                   "MunicipalCode: " + MunicipalCode + "\n" +
+                   "ValidationStatus: " + ValidationStatus + "\n" +
+                   "Subaccount: " + Subaccount + "\n" +
+                   "VerificationStatus: " + VerificationStatus + "\n" +
+                   "Url: " + Url + "\n" +
+                   "AddressProofType: " + AddressProofType + "\n" +
+                   "AddressProofNumber: " + AddressProofNumber + "\n" +
+                   "FiscalIdentificationCode: " + FiscalIdentificationCode + "\n" +
+                   "PostalCode: " + PostalCode + "\n" +
+                   "Region: " + Region + "\n" +
+                   "City: " + City + "\n" +
+                   "AddressLine2: " + AddressLine2 + "\n" +
+                   "AddressLine1: " + AddressLine1 + "\n" +
+                   "LastName: " + LastName + "\n" +
+                   "FirstName: " + FirstName + "\n" +
+                   "Salutation: " + Salutation + "\n" +
+                   "Alias: " + Alias + "\n" +
+                   "Account: " + Account + "\n" +
+                   "CountryIso: " + CountryIso + "\n" +
+                   "Id: " + Id + "\n" ;
+        }
+
         public Address()
         {
         }

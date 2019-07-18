@@ -7,6 +7,7 @@ namespace Plivo.Resource.Account
     /// <summary>
     /// Account.
     /// </summary>
+    
     public class Account : Resource
     {
         /// <summary>
@@ -81,6 +82,7 @@ namespace Plivo.Resource.Account
         /// <value>The timezone.</value>
         public string Timezone { get; set; }
 
+        
 
         //        public Account(string accountType, string address, string authId, bool autoRecharge, string billingMode,
         //            string cashCredits, string city, string name, string resourceUri, string state, string timezone)
@@ -106,12 +108,15 @@ namespace Plivo.Resource.Account
         /// <param name="name">Name.</param>
         /// <param name="city">City.</param>
         /// <param name="address">Address.</param>
-        public UpdateResponse<Account> Update(string name = null, string city = null, string address = null)
+        /// <param state="state">State.</param>
+
+        public UpdateResponse<Account> Update(string name = null, string city = null, string address = null, string state=null)
         {
-            var updateResponse = ((AccountInterface) Interface).Update(name, city, address);
+            var updateResponse = ((AccountInterface) Interface).Update(name, city, address, state);
             if (name != null) Name = name;
             if (city != null) City = city;
             if (address != null) Address = address;
+            if (state != null) State = state;
             return updateResponse;
         }
         /// <summary>
@@ -121,12 +126,14 @@ namespace Plivo.Resource.Account
         /// <param name="name">Name.</param>
         /// <param name="city">City.</param>
         /// <param name="address">Address.</param>
-        public async Task<UpdateResponse<Account>> UpdateAsync(string name = null, string city = null, string address = null)
+        /// <param name="state">State.</param>
+        public async Task<UpdateResponse<Account>> UpdateAsync(string name = null, string city = null, string address = null, string state = null)
         {
             var updateResponse = await ((AccountInterface)Interface).UpdateAsync(name, city, address);
             if (name != null) Name = name;
             if (city != null) City = city;
             if (address != null) Address = address;
+            if (state != null) State = state;
             return updateResponse;
         }
         #endregion

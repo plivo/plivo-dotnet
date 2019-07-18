@@ -78,5 +78,23 @@ namespace Plivo.Resource.Message
         /// </summary>
         /// <value>The units.</value>
         public uint Units { get; set; }
+
+        public override string ToString()
+        {
+            return "\n" +
+                    "StatusCode: " + StatusCode +"\n" +
+                    "ErrorCode: " + ErrorCode + "\n" + 
+                   "FromNumber: " + FromNumber + "\n" +
+                   "MessageDirection: " + MessageDirection + "\n" +
+                   "MessageState: " + MessageState + "\n" +
+                   "MessageTime: " + MessageTime + "\n" +
+                   "MessageType: " + MessageType + "\n" +
+                   "MessageUuid: " + MessageUuid + "\n" +
+                   "ResourceUri: " + ResourceUri + "\n" +
+                   "ToNumber: " + ToNumber + "\n" +
+                   "TotalAmount: " + TotalAmount + "\n" +
+                   "TotalRate: " + TotalRate + "\n" +
+                   "Units: " + Units + "\n";
+        }
     }
 }

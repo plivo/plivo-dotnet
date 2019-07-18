@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.2](https://github.com/plivo/plivo-dotnet/tree/v4.4.2) (2019-07-18)
+- Add Status Code in API responses.
+
 ## [v4.4.1](https://github.com/plivo/plivo-dotnet/tree/v4.4.1) (2019-06-12)
 - Add AggregateException Flattening 
 

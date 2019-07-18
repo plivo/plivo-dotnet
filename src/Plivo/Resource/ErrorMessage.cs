@@ -20,7 +20,7 @@ namespace Plivo.Resource
         /// Gets or sets the Status.
         /// </summary>
         /// <value>The Status.</value>
-        public string Status { get; set; }
+        public string Status{ get; set; }
 
     }
 }
