@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Plivo.Resource.RentedNumber
-{
-    public class RentedNumber : Resource
-    {
+namespace Plivo.Resource.RentedNumber {
+    public class RentedNumber : Resource {
+
         public new string Id => Number;
         public string AddedOn { get; set; }
         public object Alias { get; set; }
@@ -25,6 +24,19 @@ namespace Plivo.Resource.RentedNumber
         public string City { get; set; }
         public string Country { get; set; }
 
+        public override string ToString () {
+            return
+                "Addedon: " + AddedOn + "\n" +
+                "Alias " + Alias + "\n" +
+                "Application: " + Application + "\n" +
+                "SMSEnabled: " + SmsEnabled + "\n" +
+                "SMSrate " + SmsRate + "\n" +
+                "VoiceEnabled: " + VoiceEnabled + "\n" +
+                "VoiceRate: " + VoiceRate + "\n" +
+                "Region: " + Region + "\n" +
+                "MonthlyRentalRate " + MonthlyRentalRate + "\n";
+        }
+
         #region Update
         /// <summary>
         /// Update RentedNumber with the specified appId, subAccount and alias.
@@ -33,20 +45,19 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="subAccount">SubAccount.</param>
         /// <param name="alias">Alias.</param>
-        public UpdateResponse<RentedNumber> Update(
-            string appId = null, string subAccount = null, string alias = null)
-        {
+        public UpdateResponse<RentedNumber> Update (
+            string appId = null, string subAccount = null, string alias = null) {
             var updateResponse =
                 ((RentedNumberInterface) Interface)
-                .Update(Id, appId, subAccount, alias);
+                .Update (Id, appId, subAccount, alias);
 
             if (appId != null)
                 Application =
-                    "/v1/Account/" +
-                    ((RentedNumberInterface) Interface).Client.GetAuthId() +
-                    "/Application/" +
-                    appId +
-                    "/";
+                "/v1/Account/" +
+                ((RentedNumberInterface) Interface).Client.GetAuthId () +
+                "/Application/" +
+                appId +
+                "/";
             if (appId == "null") Application = null;
             if (subAccount != null) SubAccount = subAccount;
             if (alias != null) Alias = alias;
@@ -60,20 +71,18 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="subAccount">SubAccount.</param>
         /// <param name="alias">Alias.</param>
-        public async Task<UpdateResponse<RentedNumber>> UpdateAsync(
-            string appId = null, string subAccount = null, string alias = null)
-        {
-            var updateResponse = await
-                ((RentedNumberInterface)Interface)
-                .UpdateAsync(Id, appId, subAccount, alias);
+        public async Task<UpdateResponse<RentedNumber>> UpdateAsync (
+            string appId = null, string subAccount = null, string alias = null) {
+            var updateResponse = await ((RentedNumberInterface) Interface)
+                .UpdateAsync (Id, appId, subAccount, alias);
 
             if (appId != null)
                 Application =
-                    "/v1/Account/" +
-                    ((RentedNumberInterface)Interface).Client.GetAuthId() +
-                    "/Application/" +
-                    appId +
-                    "/";
+                "/v1/Account/" +
+                ((RentedNumberInterface) Interface).Client.GetAuthId () +
+                "/Application/" +
+                appId +
+                "/";
             if (appId == "null") Application = null;
             if (subAccount != null) SubAccount = subAccount;
             if (alias != null) Alias = alias;
@@ -87,19 +96,17 @@ namespace Plivo.Resource.RentedNumber
         /// Unrent RentedNumber.
         /// </summary>
         /// <returns>The delete.</returns>
-        public void Delete()
-        {
+        public void Delete () {
             ((RentedNumberInterface) Interface)
-                .Delete(Id);
+            .Delete (Id);
         }
         /// <summary>
         /// Asynchronously unrent RentedNumber.
         /// </summary>
         /// <returns>The delete.</returns>
-        public async void DeleteAsync()
-        {
-            await ((RentedNumberInterface)Interface)
-                .DeleteAsync(Id);
+        public async void DeleteAsync () {
+            await ((RentedNumberInterface) Interface)
+            .DeleteAsync (Id);
         }
         #endregion
     }

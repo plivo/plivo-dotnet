@@ -1,12 +1,10 @@
-using System.Collections.Generic;
 using System;
-using System.Linq;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
-namespace Plivo.Resource.Conference
-{
-    public class ConferenceMemberActionResponse : DeleteResponse<Conference>
-    {
+namespace Plivo.Resource.Conference {
+    public class ConferenceMemberActionResponse : DeleteResponse<Conference> {
         /// <summary>
         /// Gets or sets the member identifier.
         /// </summary>
@@ -15,6 +13,8 @@ namespace Plivo.Resource.Conference
         //public List<string> MemberId { get; set; }
 
         public string MemberId { get; set; }
+    
+
 
         //public void set_MemberId(string value) {
         //    if (!value.Contains(",")) {

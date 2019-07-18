@@ -24,6 +24,11 @@ namespace Plivo.Resource
         /// Gets or sets the interface.
         /// </summary>
         /// <value>The interface.</value>
+        /// 
+        public uint StatusCode { get; set; }
+
         public ResourceInterface Interface { get; set; }
+
+        
     }
 }

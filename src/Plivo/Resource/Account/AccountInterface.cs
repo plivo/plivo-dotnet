@@ -31,7 +31,7 @@ namespace Plivo.Resource.Account
 				{
 					var account = Task.Run(async () => await GetResource<Account>("").ConfigureAwait(false)).Result;
 					account.Interface = this;
-					return account;
+                    return account;
 				});
 		}
 		/// <summary>
@@ -44,40 +44,44 @@ namespace Plivo.Resource.Account
 			account.Interface = this;
 			return account;
 		}
-		#endregion
+        #endregion
 
-		#region Update
-		/// <summary>
-		/// Update the specified name, city and address.
-		/// </summary>
-		/// <returns>The update.</returns>
-		/// <param name="name">Name.</param>
-		/// <param name="city">City.</param>
-		/// <param name="address">Address.</param>
-		public UpdateResponse<Account> Update(string name = null, string city = null, string address = null)
+        #region Update
+        /// <summary>
+        /// Update the specified name, city, address and state.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="city">City.</param>
+        /// <param name="address">Address.</param>
+        /// <param name="state">State.</param>
+        public UpdateResponse<Account> Update(string name = null, string city = null, string address = null, string state = null)
 		{
 			var mandatoryParams = new List<string> { "name" };
-			var data = CreateData(mandatoryParams, new { name, city, address });
+			var data = CreateData(mandatoryParams, new { name, city, address, state });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<UpdateResponse<Account>>(Uri, data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
 		}
-		/// <summary>
-		/// Asynchronously update the specified name, city and address.
-		/// </summary>
-		/// <returns>The update.</returns>
-		/// <param name="name">Name.</param>
-		/// <param name="city">City.</param>
-		/// <param name="address">Address.</param>
-		public async Task<UpdateResponse<Account>> UpdateAsync(string name = null, string city = null, string address = null)
+        /// <summary>
+        /// Asynchronously update the specified name, city, address and state.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="name">Name.</param>
+        /// <param name="city">City.</param>
+        /// <param name="address">Address.</param>
+		/// <param name="state">State.</param>
+        public async Task<UpdateResponse<Account>> UpdateAsync(string name = null, string city = null, string address = null,string state = null)
 		{
 			var mandatoryParams = new List<string> { "name" };
 			var data = CreateData(
-				mandatoryParams, new { name, city, address });
+				mandatoryParams, new { name, city, address, state });
 			var result = await Client.Update<UpdateResponse<Account>>(Uri, data);
+            result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
 		#endregion

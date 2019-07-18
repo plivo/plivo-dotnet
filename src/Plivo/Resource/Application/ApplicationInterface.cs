@@ -76,7 +76,7 @@ namespace Plivo.Resource.Application
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<ApplicationCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
-
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
 		}
@@ -129,7 +129,7 @@ namespace Plivo.Resource.Application
                 });
 
             var result = await Client.Update<ApplicationCreateResponse>(Uri, data);
-
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -283,6 +283,7 @@ namespace Plivo.Resource.Application
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
 		}
@@ -332,6 +333,7 @@ namespace Plivo.Resource.Application
                 });
 
             var result = await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion

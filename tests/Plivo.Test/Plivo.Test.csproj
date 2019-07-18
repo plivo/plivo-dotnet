@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.3.11.0\build\NUnit.props')" />
-  <Import Project="..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.3.11.0\build\NUnit.props')"/>
+  <Import Project="..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props')"/>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets"/>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -11,8 +11,8 @@
     <AssemblyName>Plivo.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <ReleaseVersion>4.1.0</ReleaseVersion>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
+    <TargetFrameworkProfile/>
+    <NuGetPackageImportStamp>&#xD;
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -34,7 +34,7 @@
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System"/>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -55,79 +55,79 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config"/>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseTestCase.cs" />
-    <Compile Include="Resources\TestAccount.cs" />
-    <Compile Include="Resources\TestCall.cs" />
-    <Compile Include="Resources\TestConference.cs" />
-    <Compile Include="Resources\TestEndpoint.cs" />
-    <Compile Include="Resources\TestExceptions.cs" />
-    <Compile Include="Resources\TestMessage.cs" />
-    <Compile Include="Resources\TestNumber.cs" />
-    <Compile Include="Resources\TestPhoneNumber.cs" />
-    <Compile Include="Resources\TestPricing.cs" />
-    <Compile Include="Resources\TestRecording.cs" />
-    <Compile Include="Resources\TestSubaccount.cs" />
-    <Compile Include="TestClient.cs" />
-    <Compile Include="XML\TestXML.cs" />
-    <Compile Include="TestSignature.cs" />
-    <Compile Include="Resources\TestAddress.cs" />
-    <Compile Include="Resources\TestIdentity.cs" />
+    <Compile Include="BaseTestCase.cs"/>
+    <Compile Include="Resources\TestAccount.cs"/>
+    <Compile Include="Resources\TestCall.cs"/>
+    <Compile Include="Resources\TestConference.cs"/>
+    <Compile Include="Resources\TestEndpoint.cs"/>
+    <Compile Include="Resources\TestExceptions.cs"/>
+    <Compile Include="Resources\TestMessage.cs"/>
+    <Compile Include="Resources\TestNumber.cs"/>
+    <Compile Include="Resources\TestPhoneNumber.cs"/>
+    <Compile Include="Resources\TestPricing.cs"/>
+    <Compile Include="Resources\TestRecording.cs"/>
+    <Compile Include="Resources\TestSubaccount.cs"/>
+    <Compile Include="TestClient.cs"/>
+    <Compile Include="XML\TestXML.cs"/>
+    <Compile Include="TestSignature.cs"/>
+    <Compile Include="Resources\TestAddress.cs"/>
+    <Compile Include="Resources\TestIdentity.cs"/>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Mocks\accountGetResponse.json" />
-    <Content Include="Mocks\accountModifyResponse.json" />
-    <Content Include="Mocks\applicationCreateResponse.json" />
-    <Content Include="Mocks\applicationGetResponse.json" />
-    <Content Include="Mocks\applicationListResponse.json" />
-    <Content Include="Mocks\applicationModifyResponse.json" />
-    <Content Include="Mocks\callCreateResponse.json" />
-    <Content Include="Mocks\callGetResponse.json" />
-    <Content Include="Mocks\callListResponse.json" />
-    <Content Include="Mocks\callUpdateResponse.json" />
-    <Content Include="Mocks\conferenceDeleteAllResponse.json" />
-    <Content Include="Mocks\conferenceDeleteResponse.json" />
-    <Content Include="Mocks\conferenceGetResponse.json" />
-    <Content Include="Mocks\conferenceListResponse.json" />
-    <Content Include="Mocks\conferenceMemberDeafCreateResponse.json" />
-    <Content Include="Mocks\conferenceMemberDeleteResponse.json" />
-    <Content Include="Mocks\conferenceMemberKickCreateResponse.json" />
-    <Content Include="Mocks\conferenceMemberMuteCreateResponse.json" />
-    <Content Include="Mocks\conferenceMemberPlayCreateResponse.json" />
-    <Content Include="Mocks\conferenceMemberPlayDeleteResponse.json" />
-    <Content Include="Mocks\conferenceMemberSpeakCreateResponse.json" />
-    <Content Include="Mocks\conferenceMemberSpeakDeleteResponse.json" />
-    <Content Include="Mocks\conferenceRecordCreateResponse.json" />
-    <Content Include="Mocks\endpointCreateResponse.json" />
-    <Content Include="Mocks\endpointGetResponse.json" />
-    <Content Include="Mocks\endpointListResponse.json" />
-    <Content Include="Mocks\endpointUpdateResponse.json" />
-    <Content Include="Mocks\liveCallDtmfCreateResponse.json" />
-    <Content Include="Mocks\liveCallGetResponse.json" />
-    <Content Include="Mocks\queuedCallGetResponse.json" />
-    <Content Include="Mocks\liveCallListGetResponse.json" />
-    <Content Include="Mocks\liveCallPlayCreateResponse.json" />
-    <Content Include="Mocks\liveCallRecordCreateResponse.json" />
-    <Content Include="Mocks\liveCallSpeakCreateResponse.json" />
-    <Content Include="Mocks\liveCallSpeakDeleteResponse.json" />
-    <Content Include="Mocks\messageGetResponse.json" />
-    <Content Include="Mocks\messageListResponse.json" />
-    <Content Include="Mocks\messageSendResponse.json" />
-    <Content Include="Mocks\numberCreateResponse.json" />
-    <Content Include="Mocks\numberGetResponse.json" />
-    <Content Include="Mocks\numberListResponse.json" />
-    <Content Include="Mocks\numberUpdateResponse.json" />
-    <Content Include="Mocks\phoneNumberCreateResponse.json" />
-    <Content Include="Mocks\phoneNumberListResponse.json" />
-    <Content Include="Mocks\pricingGetResponse.json" />
-    <Content Include="Mocks\recordingGetResponse.json" />
-    <Content Include="Mocks\recordingListResponse.json" />
-    <Content Include="Mocks\subaccountCreateResponse.json" />
-    <Content Include="Mocks\subaccountGetResponse.json" />
-    <Content Include="Mocks\subaccountListResponse.json" />
-    <Content Include="Mocks\subaccountModifyResponse.json" />
+    <Content Include="Mocks\accountGetResponse.json"/>
+    <Content Include="Mocks\accountModifyResponse.json"/>
+    <Content Include="Mocks\applicationCreateResponse.json"/>
+    <Content Include="Mocks\applicationGetResponse.json"/>
+    <Content Include="Mocks\applicationListResponse.json"/>
+    <Content Include="Mocks\applicationModifyResponse.json"/>
+    <Content Include="Mocks\callCreateResponse.json"/>
+    <Content Include="Mocks\callGetResponse.json"/>
+    <Content Include="Mocks\callListResponse.json"/>
+    <Content Include="Mocks\callUpdateResponse.json"/>
+    <Content Include="Mocks\conferenceDeleteAllResponse.json"/>
+    <Content Include="Mocks\conferenceDeleteResponse.json"/>
+    <Content Include="Mocks\conferenceGetResponse.json"/>
+    <Content Include="Mocks\conferenceListResponse.json"/>
+    <Content Include="Mocks\conferenceMemberDeafCreateResponse.json"/>
+    <Content Include="Mocks\conferenceMemberDeleteResponse.json"/>
+    <Content Include="Mocks\conferenceMemberKickCreateResponse.json"/>
+    <Content Include="Mocks\conferenceMemberMuteCreateResponse.json"/>
+    <Content Include="Mocks\conferenceMemberPlayCreateResponse.json"/>
+    <Content Include="Mocks\conferenceMemberPlayDeleteResponse.json"/>
+    <Content Include="Mocks\conferenceMemberSpeakCreateResponse.json"/>
+    <Content Include="Mocks\conferenceMemberSpeakDeleteResponse.json"/>
+    <Content Include="Mocks\conferenceRecordCreateResponse.json"/>
+    <Content Include="Mocks\endpointCreateResponse.json"/>
+    <Content Include="Mocks\endpointGetResponse.json"/>
+    <Content Include="Mocks\endpointListResponse.json"/>
+    <Content Include="Mocks\endpointUpdateResponse.json"/>
+    <Content Include="Mocks\liveCallDtmfCreateResponse.json"/>
+    <Content Include="Mocks\liveCallGetResponse.json"/>
+    <Content Include="Mocks\queuedCallGetResponse.json"/>
+    <Content Include="Mocks\liveCallListGetResponse.json"/>
+    <Content Include="Mocks\liveCallPlayCreateResponse.json"/>
+    <Content Include="Mocks\liveCallRecordCreateResponse.json"/>
+    <Content Include="Mocks\liveCallSpeakCreateResponse.json"/>
+    <Content Include="Mocks\liveCallSpeakDeleteResponse.json"/>
+    <Content Include="Mocks\messageGetResponse.json"/>
+    <Content Include="Mocks\messageListResponse.json"/>
+    <Content Include="Mocks\messageSendResponse.json"/>
+    <Content Include="Mocks\numberCreateResponse.json"/>
+    <Content Include="Mocks\numberGetResponse.json"/>
+    <Content Include="Mocks\numberListResponse.json"/>
+    <Content Include="Mocks\numberUpdateResponse.json"/>
+    <Content Include="Mocks\phoneNumberCreateResponse.json"/>
+    <Content Include="Mocks\phoneNumberListResponse.json"/>
+    <Content Include="Mocks\pricingGetResponse.json"/>
+    <Content Include="Mocks\recordingGetResponse.json"/>
+    <Content Include="Mocks\recordingListResponse.json"/>
+    <Content Include="Mocks\subaccountCreateResponse.json"/>
+    <Content Include="Mocks\subaccountGetResponse.json"/>
+    <Content Include="Mocks\subaccountListResponse.json"/>
+    <Content Include="Mocks\subaccountModifyResponse.json"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plivo\Plivo.csproj">
@@ -135,12 +135,14 @@
       <Name>Plivo</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2"/>
+  </ItemGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props'))" />
-    <Error Condition="!Exists('..\..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit3TestAdapter.3.11.2\build\net35\NUnit3TestAdapter.props'))"/>
+    <Error Condition="!Exists('..\..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.11.0\build\NUnit.props'))"/>
   </Target>
 </Project>

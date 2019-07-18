@@ -32,6 +32,7 @@ namespace Plivo.Resource.Subaccount
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<SubaccountCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
         }
@@ -46,6 +47,7 @@ namespace Plivo.Resource.Subaccount
             var mandatoryParams = new List<string> { "name" };
             var data = CreateData(mandatoryParams, new { name, enabled });
             var result = await Client.Update<SubaccountCreateResponse>(Uri, data);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -175,6 +177,7 @@ namespace Plivo.Resource.Subaccount
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<UpdateResponse<Subaccount>>(Uri + id + "/", data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
         }
@@ -191,6 +194,7 @@ namespace Plivo.Resource.Subaccount
             var data = CreateData(
                 mandatoryParams, new { name, enabled });
             var result = await Client.Update<UpdateResponse<Subaccount>>(Uri + id + "/", data);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion  

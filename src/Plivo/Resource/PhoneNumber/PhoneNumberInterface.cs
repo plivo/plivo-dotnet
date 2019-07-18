@@ -137,7 +137,7 @@ namespace Plivo.Resource.PhoneNumber
 					Uri + number + "/",
 					data
 				).ConfigureAwait(false)).Result;
-
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
         }
@@ -159,7 +159,7 @@ namespace Plivo.Resource.PhoneNumber
                   Uri + number + "/",
                   data
               );
-
+            result.Object.StatusCode= result.StatusCode;
             return result.Object;
         }
         #endregion

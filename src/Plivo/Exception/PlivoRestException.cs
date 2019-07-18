@@ -2,8 +2,11 @@
 {
     public class PlivoRestException : System.Exception
     {
-        public PlivoRestException(string message) : base(message)
+        public uint StatusCode { get; set; }
+
+        public PlivoRestException(string message, uint statusCode) : base(message)
         {
+            this.StatusCode = statusCode;
         }
     }
 }

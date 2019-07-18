@@ -58,6 +58,7 @@ namespace Plivo.Client
             where T : new()
         {
             return await _client.SendRequest<T>("GET", uri, data ?? new Dictionary<string, object>());
+            
         }
 
         /// <summary>

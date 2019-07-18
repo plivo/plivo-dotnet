@@ -33,7 +33,7 @@ namespace Plivo.Resource.Endpoint
         public EndpointCreateResponse Create(
             string username, string password, string alias, string appId = null)
         {
-            var mandatoryParams = new List<string> {""};
+            var mandatoryParams = new List<string> { "" };
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -44,11 +44,12 @@ namespace Plivo.Resource.Endpoint
                     appId
                 });
 
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var result = Task.Run(async () => await Client.Update<EndpointCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
-				return result.Object;
-			});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () => await Client.Update<EndpointCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
+                return result.Object;
+            });
 
         }
         /// <summary>
@@ -73,6 +74,7 @@ namespace Plivo.Resource.Endpoint
                     appId
                 });
             var result = await Client.Update<EndpointCreateResponse>(Uri, data);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -85,12 +87,12 @@ namespace Plivo.Resource.Endpoint
         /// <param name="endpointId">App identifier.</param>
         public Endpoint Get(string endpointId)
         {
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var endpoint = Task.Run(async () => await GetResource<Endpoint>(endpointId).ConfigureAwait(false)).Result;
-				endpoint.Interface = this;
-				return endpoint;
-			});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var endpoint = Task.Run(async () => await GetResource<Endpoint>(endpointId).ConfigureAwait(false)).Result;
+                endpoint.Interface = this;
+                return endpoint;
+            });
         }
 
         /// <summary>
@@ -117,20 +119,20 @@ namespace Plivo.Resource.Endpoint
         public ListResponse<Endpoint> List(
             string subaccount = null, uint? limit = null, uint? offset = null)
         {
-            var mandatoryParams = new List<string> {""};
+            var mandatoryParams = new List<string> { "" };
             var data = CreateData(
-                mandatoryParams, new {subaccount, limit, offset});
+                mandatoryParams, new { subaccount, limit, offset });
 
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var resources = Task.Run(async () => await ListResources<ListResponse<Endpoint>>(data).ConfigureAwait(false)).Result;
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var resources = Task.Run(async () => await ListResources<ListResponse<Endpoint>>(data).ConfigureAwait(false)).Result;
 
-				resources.Objects.ForEach(
-					(obj) => obj.Interface = this
-				);
+                resources.Objects.ForEach(
+                    (obj) => obj.Interface = this
+                );
 
-				return resources;
-			});
+                return resources;
+            });
         }
         /// <summary>
         /// List Endpoint with the specified subaccount, limit and offset.
@@ -163,10 +165,10 @@ namespace Plivo.Resource.Endpoint
         /// <param name="endpointId">Endpoint identifier.</param>
         public DeleteResponse<Endpoint> Delete(string endpointId)
         {
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				return Task.Run(async () => await DeleteResource<DeleteResponse<Endpoint>>(endpointId).ConfigureAwait(false)).Result;
-			});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                return Task.Run(async () => await DeleteResource<DeleteResponse<Endpoint>>(endpointId).ConfigureAwait(false)).Result;
+            });
         }
         /// <summary>
         /// Asynchronously delete Endpoint with the specified endpointId.
@@ -192,7 +194,7 @@ namespace Plivo.Resource.Endpoint
             string endpointId, string password = null, string alias = null,
             string appId = null)
         {
-            var mandatoryParams = new List<string> {""};
+            var mandatoryParams = new List<string> { "" };
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -202,11 +204,12 @@ namespace Plivo.Resource.Endpoint
                     appId
                 });
 
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var result = Task.Run(async () => await Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
-				return result.Object;
-			});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () => await Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
+                return result.Object;
+            });
         }
         /// <summary>
         /// Asynchronously update Endpoint with the specified endpointId, password, alias and appId.
@@ -230,6 +233,7 @@ namespace Plivo.Resource.Endpoint
                     appId
                 });
             var result = await Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion

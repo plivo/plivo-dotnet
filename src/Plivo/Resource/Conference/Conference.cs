@@ -1,38 +1,42 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Plivo.Resource.Conference
-{
+namespace Plivo.Resource.Conference {
     /// <summary>
     /// Conference.
     /// </summary>
-    public class Conference : Resource
-    {
+    public class Conference : Resource {
         public new string Id => ConferenceName;
         public string ConferenceName { get; set; }
         public string ConferenceRunTime { get; set; }
         public string ConferenceMemberCount { get; set; }
         public List<Member> Members { get; set; }
 
+        public override string ToString () {
+            return "StatusCode: " + StatusCode + "\n" +
+                "ConferenceName: " + ConferenceName + "\n" +
+                "ConferenceRunTime: " + ConferenceRunTime + "\n" +
+                "ConferenceMemberCount: " + ConferenceMemberCount + "\n" +
+                "[Members]\n" + string.Join ("\n", Members);
+        }
+
         #region Delete
         /// <summary>
         /// Delete Conference.
         /// </summary>
         /// <returns>The delete.</returns>
-        public DeleteResponse<Conference> Delete()
-        {
-            return ((ConferenceInterface)Interface)
-                .Delete(Id);
+        public DeleteResponse<Conference> Delete () {
+            return ((ConferenceInterface) Interface)
+                .Delete (Id);
         }
 
         /// <summary>
         /// Asynchronously Delete Conference.
         /// </summary>
         /// <returns>The delete.</returns>
-        public async Task<DeleteResponse<Conference>> DeleteAsync()
-        {
-            return await ((ConferenceInterface)Interface)
-                .DeleteAsync(Id);
+        public async Task<DeleteResponse<Conference>> DeleteAsync () {
+            return await ((ConferenceInterface) Interface)
+                .DeleteAsync (Id);
         }
         #endregion
 
@@ -42,22 +46,20 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse HangupMember(
-            string memberId)
-        {
+        public ConferenceMemberActionResponse HangupMember (
+            string memberId) {
             return ((ConferenceInterface) Interface)
-                .HangupMember(Id, memberId);
+                .HangupMember (Id, memberId);
         }
         /// <summary>
         /// Asynchronously hangups the member.
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> HangupMemberAsync(
-           string memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .HangupMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> HangupMemberAsync (
+            string memberId) {
+            return await ((ConferenceInterface) Interface)
+                .HangupMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -67,11 +69,10 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse KickMember(
-            string memberId)
-        {
+        public ConferenceMemberActionResponse KickMember (
+            string memberId) {
             return ((ConferenceInterface) Interface)
-                .KickMember(Id, memberId);
+                .KickMember (Id, memberId);
         }
 
         /// <summary>
@@ -79,11 +80,10 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> KickMemberAsync(
-            string memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .KickMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> KickMemberAsync (
+            string memberId) {
+            return await ((ConferenceInterface) Interface)
+                .KickMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -93,22 +93,20 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse MuteMember(
-            List<string> memberId)
-        {
+        public ConferenceMemberActionResponse MuteMember (
+            List<string> memberId) {
             return ((ConferenceInterface) Interface)
-                .MuteMember(Id, memberId);
+                .MuteMember (Id, memberId);
         }
         /// <summary>
         /// Asynchronously mutes the member.
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> MuteMemberAsync(
-            List<string> memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .MuteMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> MuteMemberAsync (
+            List<string> memberId) {
+            return await ((ConferenceInterface) Interface)
+                .MuteMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -117,23 +115,21 @@ namespace Plivo.Resource.Conference
         /// Unmutes the member.
         /// </summary>
         /// <param name="memberId">Member identifier.</param>
-        public void UnmuteMember(
-            List<string> memberId)
-        {
+        public void UnmuteMember (
+            List<string> memberId) {
             ((ConferenceInterface) Interface)
-                .UnmuteMember(Id, memberId);
+            .UnmuteMember (Id, memberId);
         }
         /// <summary>
         /// Asynchronously unmutes the member.
         /// </summary>
         /// <param name="memberId">Member identifier.</param>
-        public async void UnmuteMemberAsync(
-            List<string> memberId)
-        {
-           
-                await ((ConferenceInterface)Interface)
-                .UnmuteMemberAsync(Id, memberId);
-           
+        public async void UnmuteMemberAsync (
+            List<string> memberId) {
+
+            await ((ConferenceInterface) Interface)
+            .UnmuteMemberAsync (Id, memberId);
+
         }
         #endregion
 
@@ -144,11 +140,10 @@ namespace Plivo.Resource.Conference
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
         /// <param name="url">URL.</param>
-        public ConferenceMemberActionResponse PlayMember(
-            List<string> memberId, string url)
-        {
+        public ConferenceMemberActionResponse PlayMember (
+            List<string> memberId, string url) {
             return ((ConferenceInterface) Interface)
-                .PlayMember(Id, memberId, url);
+                .PlayMember (Id, memberId, url);
         }
         /// <summary>
         /// Asynchronously plays audio to the member.
@@ -156,11 +151,10 @@ namespace Plivo.Resource.Conference
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
         /// <param name="url">URL.</param>
-        public async Task<ConferenceMemberActionResponse> PlayMemberAsync(
-            List<string> memberId, string url)
-        {
-            return await ((ConferenceInterface)Interface)
-                .PlayMemberAsync(Id, memberId, url);
+        public async Task<ConferenceMemberActionResponse> PlayMemberAsync (
+            List<string> memberId, string url) {
+            return await ((ConferenceInterface) Interface)
+                .PlayMemberAsync (Id, memberId, url);
         }
         #endregion
 
@@ -170,22 +164,20 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The play member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse StopPlayMember(
-            List<string> memberId)
-        {
+        public ConferenceMemberActionResponse StopPlayMember (
+            List<string> memberId) {
             return ((ConferenceInterface) Interface)
-                .StopPlayMember(Id, memberId);
+                .StopPlayMember (Id, memberId);
         }
         /// <summary>
         /// Asynchronously stops playing audio to the member.
         /// </summary>
         /// <returns>The play member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> StopPlayMemberAsync(
-            List<string> memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .StopPlayMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> StopPlayMemberAsync (
+            List<string> memberId) {
+            return await ((ConferenceInterface) Interface)
+                .StopPlayMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -198,12 +190,11 @@ namespace Plivo.Resource.Conference
         /// <param name="text">Text.</param>
         /// <param name="voice">Voice.</param>
         /// <param name="language">Language.</param>
-        public ConferenceMemberActionResponse SpeakMember(
+        public ConferenceMemberActionResponse SpeakMember (
             List<string> memberId, string text,
-            string voice = null, string language = null)
-        {
+            string voice = null, string language = null) {
             return ((ConferenceInterface) Interface)
-                .SpeakMember(Id, memberId, text, voice, language);
+                .SpeakMember (Id, memberId, text, voice, language);
         }
         /// <summary>
         /// Asynchronously speaks text to the member.
@@ -213,12 +204,11 @@ namespace Plivo.Resource.Conference
         /// <param name="text">Text.</param>
         /// <param name="voice">Voice.</param>
         /// <param name="language">Language.</param>
-        public async Task<ConferenceMemberActionResponse> SpeakMemberAsync(
+        public async Task<ConferenceMemberActionResponse> SpeakMemberAsync (
             List<string> memberId, string text,
-            string voice = null, string language = null)
-        {
-            return await ((ConferenceInterface)Interface)
-                .SpeakMemberAsync(Id, memberId, text, voice, language);
+            string voice = null, string language = null) {
+            return await ((ConferenceInterface) Interface)
+                .SpeakMemberAsync (Id, memberId, text, voice, language);
         }
         #endregion
 
@@ -228,22 +218,20 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The speak member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse StopSpeakMember(
-            List<string> memberId)
-        {
+        public ConferenceMemberActionResponse StopSpeakMember (
+            List<string> memberId) {
             return ((ConferenceInterface) Interface)
-                .StopSpeakMember(Id, memberId);
+                .StopSpeakMember (Id, memberId);
         }
         /// <summary>
         /// Asynchronously stops speaking text to the member.
         /// </summary>
         /// <returns>The speak member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> StopSpeakMemberAsync(
-            List<string> memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .StopSpeakMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> StopSpeakMemberAsync (
+            List<string> memberId) {
+            return await ((ConferenceInterface) Interface)
+                .StopSpeakMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -253,22 +241,20 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse DeafMember(
-            List<string> memberId)
-        {
+        public ConferenceMemberActionResponse DeafMember (
+            List<string> memberId) {
             return ((ConferenceInterface) Interface)
-                .DeafMember(Id, memberId);
+                .DeafMember (Id, memberId);
         }
         /// <summary>
         /// Asynchronous deafs the member.
         /// </summary>
         /// <returns>The member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> DeafMemberAsync(
-            List<string> memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .DeafMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> DeafMemberAsync (
+            List<string> memberId) {
+            return await ((ConferenceInterface) Interface)
+                .DeafMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -278,22 +264,20 @@ namespace Plivo.Resource.Conference
         /// </summary>
         /// <returns>The deaf member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public ConferenceMemberActionResponse UnDeafMember(
-            List<string> memberId)
-        {
+        public ConferenceMemberActionResponse UnDeafMember (
+            List<string> memberId) {
             return ((ConferenceInterface) Interface)
-                .UnDeafMember(Id, memberId);
+                .UnDeafMember (Id, memberId);
         }
         /// <summary>
         /// Enables hearing of the member.
         /// </summary>
         /// <returns>The deaf member.</returns>
         /// <param name="memberId">Member identifier.</param>
-        public async Task<ConferenceMemberActionResponse> UnDeafMemberAsync(
-            List<string> memberId)
-        {
-            return await ((ConferenceInterface)Interface)
-                .UnDeafMemberAsync(Id, memberId);
+        public async Task<ConferenceMemberActionResponse> UnDeafMemberAsync (
+            List<string> memberId) {
+            return await ((ConferenceInterface) Interface)
+                .UnDeafMemberAsync (Id, memberId);
         }
         #endregion
 
@@ -308,14 +292,13 @@ namespace Plivo.Resource.Conference
         /// <param name="transcriptionMethod">Transcription method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public RecordCreateResponse<Conference> StartRecording(
+        public RecordCreateResponse<Conference> StartRecording (
             string fileFormat = null,
             string transcriptionType = null, string transcriptionUrl = null,
             string transcriptionMethod = null, string callbackUrl = null,
-            string callbackMethod = null)
-        {
+            string callbackMethod = null) {
             return ((ConferenceInterface) Interface)
-                .StartRecording(
+                .StartRecording (
                     fileFormat,
                     transcriptionType,
                     transcriptionUrl,
@@ -333,14 +316,13 @@ namespace Plivo.Resource.Conference
         /// <param name="transcriptionMethod">Transcription method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<RecordCreateResponse<Conference>> StartRecordingAsync(
+        public async Task<RecordCreateResponse<Conference>> StartRecordingAsync (
             string fileFormat = null,
             string transcriptionType = null, string transcriptionUrl = null,
             string transcriptionMethod = null, string callbackUrl = null,
-            string callbackMethod = null)
-        {
-            return await ((ConferenceInterface)Interface)
-                .StartRecordingAsync(
+            string callbackMethod = null) {
+            return await ((ConferenceInterface) Interface)
+                .StartRecordingAsync (
                     fileFormat,
                     transcriptionType,
                     transcriptionUrl,
@@ -354,16 +336,14 @@ namespace Plivo.Resource.Conference
         /// <summary>
         /// Stops the recording.
         /// </summary>
-        public void StopRecording()
-        {
-            ((ConferenceInterface) Interface).StopRecording(Id);
+        public void StopRecording () {
+            ((ConferenceInterface) Interface).StopRecording (Id);
         }
         /// <summary>
         /// Asynchronous stops the recording.
         /// </summary>
-        public async void StopRecordingAsync()
-        {
-             await ((ConferenceInterface)Interface).StopRecordingAsync(Id);
+        public async void StopRecordingAsync () {
+            await ((ConferenceInterface) Interface).StopRecordingAsync (Id);
         }
         #endregion
     }
@@ -371,8 +351,7 @@ namespace Plivo.Resource.Conference
     /// <summary>
     /// Member.
     /// </summary>
-    public class Member
-    {
+    public class Member {
         public bool Muted { get; set; }
         public string MemberId { get; set; }
         public bool Deaf { get; set; }
@@ -382,5 +361,18 @@ namespace Plivo.Resource.Conference
         public string Direction { get; set; }
         public string CallUuid { get; set; }
         public string JoinTime { get; set; }
+
+        public override string ToString () {
+
+            return "JoinTime: " + JoinTime + "\n" +
+                "CallUuid: " + CallUuid + "\n" +
+                "Direction: " + Direction + "\n" +
+                "CallerName: " + CallerName + "\n" +
+                "To: " + To + "\n" +
+                "From: " + From + "\n" +
+                "Deaf: " + Deaf + "\n" +
+                "MemberId: " + MemberId + "\n" +
+                "Muted: " + Muted + "\n";
+        }
     }
 }

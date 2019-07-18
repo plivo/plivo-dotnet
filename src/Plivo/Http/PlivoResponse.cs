@@ -60,6 +60,7 @@ namespace Plivo.Http
             Object = obj;
             PlivoRequest = request;
 
+
             HandleResponse();
         }
 
@@ -95,7 +96,7 @@ namespace Plivo.Http
                 case 500:
                     throw new PlivoServerException(message);
                 default:
-                    throw new PlivoRestException(message);
+                    throw new PlivoRestException(message, StatusCode);
             }
         }
 

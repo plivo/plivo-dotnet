@@ -80,6 +80,21 @@ namespace Plivo.Resource.Endpoint
         /// </summary>
         /// <value>The password.</value>
         public string Password { get; set; }
+
+        public override string ToString()
+        {
+            return  "StatusCode: " + StatusCode + "\n"+
+                    "api_id: " + ApiId + "\n"+
+                    "Alias: " + Alias + "\n" +
+                   "Application: " + Application + "\n" +
+                   "EndpointId: " + EndpointId + "\n" +
+                   "Password: " + Password + "\n" +
+                   "ResourceUri: " + ResourceUri + "\n" +
+                   "SipRegistered: " + SipRegistered + "\n" +
+                   "SipUri: " + SipUri + "\n" +
+                   "SubAccount: " + SubAccount + "\n" +
+                   "Username: " + Username + "\n";
+        }
         
         #region Delete
         /// <summary>

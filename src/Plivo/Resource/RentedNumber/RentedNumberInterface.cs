@@ -163,6 +163,7 @@ namespace Plivo.Resource.RentedNumber
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<UpdateResponse<RentedNumber>>(Uri, data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
         }
@@ -195,6 +196,7 @@ namespace Plivo.Resource.RentedNumber
                     subaccount
                 });
             var result = await Client.Update<UpdateResponse<RentedNumber>>(Uri, data);
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -231,7 +233,7 @@ namespace Plivo.Resource.RentedNumber
 					Uri + number + "/",
 					data
 				).ConfigureAwait(false)).Result;
-
+                result.Object.StatusCode = result.StatusCode;
 				return result.Object;
 			});
         }
@@ -263,7 +265,7 @@ namespace Plivo.Resource.RentedNumber
         Uri + number + "/",
         data
     );
-
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion

@@ -5,5 +5,12 @@ namespace Plivo.Resource.RentedNumber
     {
         public string Type { get; set; }
         public string Id { get; set; }
+
+        public override string ToString()
+        {
+            return 
+            "Type: " + Type +
+            "Id: " + Id;
+        }
     }
 }

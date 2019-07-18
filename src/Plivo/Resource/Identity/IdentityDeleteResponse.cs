@@ -9,6 +9,5 @@ namespace Plivo.Resource.Identity
         /// <summary>
         /// Gets or sets the status code.
         /// </summary>
-        public uint StatusCode { get; set; }
     }
 }

@@ -83,7 +83,8 @@ namespace Plivo.Resource.Message
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var result = Task.Run(async () => await Client.Update<MessageCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
-				return result.Object;
+				result.Object.StatusCode = result.StatusCode;
+                return result.Object;
 			});
         }
 
@@ -152,6 +153,7 @@ namespace Plivo.Resource.Message
 			}
 
 			var result = await Client.Update<MessageCreateResponse>(Uri, data);
+            result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
 
@@ -255,11 +257,10 @@ namespace Plivo.Resource.Message
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
-
+                
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
-
 				return resources;
 			});
         }

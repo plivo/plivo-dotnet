@@ -17,6 +17,25 @@ namespace Plivo.Resource.Recording
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
 
+        public override string ToString()
+        {
+            return "StatusCode: " + StatusCode + "\n"+
+                    "AddTime: " + AddTime + "\n" +
+                   "CallUuid: " + CallUuid + "\n" +
+                   "ConferenceName: " + ConferenceName + "\n" +
+                   "RecordingDurationMs: " + RecordingDurationMs + "\n" +
+                   "RecordingEndMs: " + RecordingEndMs + "\n" +
+                   "RecordingFormat: " + RecordingFormat + "\n" +
+                   "RecordingId: " + RecordingId + "\n" +
+                   "RecordingStartMs: " + RecordingStartMs + "\n" +
+                   "RecordingType: " + RecordingType + "\n" +
+                   "RecordingUrl: " + RecordingUrl + "\n" +
+                   "ResourceUri: " + ResourceUri + "\n";
+            
+            
+                   
+        }
+
         #region Delete
         /// <summary>
         /// Delete this recording
