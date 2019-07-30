@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
-    <summary>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</summary>
-    <description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</description>
+    <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
+    <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
     <version>4.4.1</version>
     <title>Plivo</title>
