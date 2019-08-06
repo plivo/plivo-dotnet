@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.3](https://github.com/plivo/plivo-dotnet/tree/v4.4.3) (2019-08-06)
+- Add logic to handle invalid numbers for bulk SMS.
+
 ## [v4.4.2](https://github.com/plivo/plivo-dotnet/tree/v4.4.2) (2019-07-18)
 - Add Status Code in API responses.
 
