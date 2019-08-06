@@ -1,6 +1,6 @@
 ---
 parent: central
-serviceName: plivo-php
+serviceName: plivo-dotnet
 language: dotnet-sdk
 build:
   command: |
