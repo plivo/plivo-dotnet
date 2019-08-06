@@ -1,4 +1,6 @@
 ---
+parent: central
+serviceName: plivo-dotnet
 language: dotnet-sdk
 build:
   command: |
