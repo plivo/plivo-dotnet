@@ -1,0 +1,6 @@
+---
+language: dotnet-sdk
+build:
+  command: |
+      dotnet build --configuration Release
+      cd src/Plivo && ./pack.sh
