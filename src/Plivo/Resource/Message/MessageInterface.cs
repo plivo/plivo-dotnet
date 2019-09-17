@@ -40,9 +40,9 @@ namespace Plivo.Resource.Message
             List<string> dst, string text, string src = null, string type = null,
             string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
         {
-          
+
             string _dst = string.Join("<", dst);
-			Dictionary<string, object> data = null; 
+			Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> {""};
             if (src != null && powerpack_uuid == null){
                 data = CreateData(
@@ -72,7 +72,7 @@ namespace Plivo.Resource.Message
                     log,
                     trackable
                 });
-            
+
 
             } else if ( src != null && powerpack_uuid != null){
                 return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
@@ -159,6 +159,145 @@ namespace Plivo.Resource.Message
 
 		#endregion
 
+    // Handling List(Destination) Begins
+         #region Create
+        /// <summary>
+        /// Create Message with the specified src, dst, text, type, url, method and log.
+        /// </summary>
+        /// <returns>The create.</returns>
+        /// <param name="src">Source.</param>
+        /// <param name="dst">Dst.</param>
+        /// <param name="text">Text.</param>
+        /// <param name="type">Type.</param>
+        /// <param name="url">URL.</param>
+        /// <param name="method">Method.</param>
+        /// <param name="log">Log.</param>
+        /// <param name="trackable">trackable.</param>
+        /// <param name="powerpackUUID">powerpackUUID</param>
+        public MessageCreateResponse Create(
+            string dst, string text, string src = null, string type = null,
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+        {
+
+            string _dst = string.Join("<", dst);
+			Dictionary<string, object> data = null;
+            var mandatoryParams = new List<string> {""};
+            if (src != null && powerpack_uuid == null){
+                data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    src,
+                    _dst,
+                    text,
+                    type,
+                    url,
+                    method,
+                    log,
+                    trackable
+                });
+            } else if (powerpack_uuid != null && src == null){
+                data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    powerpack_uuid,
+                    _dst,
+                    text,
+                    type,
+                    url,
+                    method,
+                    log,
+                    trackable
+                });
+
+
+            } else if ( src != null && powerpack_uuid != null){
+                return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
+            } else if (src == null && powerpack_uuid == null){
+                return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
+            }
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var result = Task.Run(async () => await Client.Update<MessageCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+				result.Object.StatusCode = result.StatusCode;
+                return result.Object;
+			});
+        }
+
+		/// <summary>
+		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log.
+		/// </summary>
+		/// <returns>The create.</returns>
+		/// <param name="src">Source.</param>
+		/// <param name="dst">Dst.</param>
+		/// <param name="text">Text.</param>
+		/// <param name="type">Type.</param>
+		/// <param name="url">URL.</param>
+		/// <param name="method">Method.</param>
+		/// <param name="log">Log.</param>
+		/// <param name="trackable">trackable.</param>
+		/// <param name="powerpackUUID">powerpackUUID</param>
+		public async Task<MessageCreateResponse> CreateAsync(
+			string dst, string text, string src = null, string type = null,
+			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+		{
+
+			string _dst = string.Join("<", dst);
+			Dictionary<string, object> data = null;
+			var mandatoryParams = new List<string> { "" };
+			if (src != null && powerpack_uuid == null)
+			{
+				data = CreateData(
+				mandatoryParams,
+				new
+				{
+					src,
+					_dst,
+					text,
+					type,
+					url,
+					method,
+					log,
+					trackable
+				});
+			}
+			else if (powerpack_uuid != null && src == null)
+			{
+				data = CreateData(
+				mandatoryParams,
+				new
+				{
+					powerpack_uuid,
+					_dst,
+					text,
+					type,
+					url,
+					method,
+					log,
+					trackable
+				});
+
+
+			}
+			else if (src != null && powerpack_uuid != null)
+			{
+				return getResponseValidation("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+			}
+			else if (src == null && powerpack_uuid == null)
+			{
+				return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
+			}
+
+			var result = await Client.Update<MessageCreateResponse>(Uri, data);
+            result.Object.StatusCode = result.StatusCode;
+			return result.Object;
+		}
+
+		#endregion
+        // Handling List(Destination) Ends
+
 		#region getResponseValidation
 		/// <summary>
 		/// validation for src and powerpack id and return the repsonse.
@@ -220,9 +359,9 @@ namespace Plivo.Resource.Message
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
         public ListResponse<Message> List(
-            string subaccount = null, 
-            uint? limit = null, 
-            uint? offset = null, 
+            string subaccount = null,
+            uint? limit = null,
+            uint? offset = null,
             string message_state = null,
             string message_direction = null,
             DateTime? message_time__gt = null,
@@ -241,23 +380,23 @@ namespace Plivo.Resource.Message
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
                 mandatoryParams, new {
-                    subaccount, 
-                    limit, 
-                    offset, 
-                    message_state, 
-                    message_direction, 
-                    _message_time__gt, 
-                    _message_time__gte, 
-                    _message_time__lt, 
-                    _message_time__lte, 
-                    _message_time, 
+                    subaccount,
+                    limit,
+                    offset,
+                    message_state,
+                    message_direction,
+                    _message_time__gt,
+                    _message_time__gte,
+                    _message_time__lt,
+                    _message_time__lte,
+                    _message_time,
                     error_code
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
-                
+
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
