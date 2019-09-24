@@ -11,6 +11,7 @@ namespace Plivo.XML
             Nestables = new list()
             {
                 "Break",
+                "Cont",
                 "Emphasis",
                 "Lang",
                 "P",
