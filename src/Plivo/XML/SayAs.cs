@@ -15,6 +15,7 @@ namespace Plivo.XML
                 "format"
             };
             addAttributes();
+            Element.Name = "say-as";
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Plivo.XML
                 "ph"
             };
             addAttributes();
+            Element.Name = GetType().Name.ToLower();
         }
     }
 }
