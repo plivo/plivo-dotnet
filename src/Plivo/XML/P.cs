@@ -9,17 +9,19 @@ namespace Plivo.XML
             : base(body)
         {
             Nestables = new list() {
-            	"Break", 
-				"Emphasis", 
-				"Lang", 
-				"Phoneme", 
-				"Prosody", 
-				"SayAs", 
-				"Sub", 
-				"S", 
-				"W"
+                "Break",
+                "Cont",
+                "Emphasis",
+                "Lang",
+                "Phoneme",
+                "Prosody",
+                "SayAs",
+                "Sub",
+                "S",
+                "W"
             };
             ValidAttributes = new list() {""};
+            Element.Name = GetType().Name.ToLower();
         }
     }
 }

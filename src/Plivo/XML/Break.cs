@@ -14,6 +14,7 @@ namespace Plivo.XML
                 "time",
             };
             addAttributes();
+            Element.Name = GetType().Name.ToLower();
         }
     }
 }

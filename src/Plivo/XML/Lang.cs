@@ -1,6 +1,7 @@
 using dict = System.Collections.Generic.Dictionary<string, string>;
 using list = System.Collections.Generic.List<string>;
 using System.Xml.Linq;
+using System.Linq;
 
 namespace Plivo.XML
 {
@@ -12,6 +13,7 @@ namespace Plivo.XML
             Nestables = new list()
             {
                 "Break",
+                "Cont",
                 "Emphasis",
                 "Lang",
                 "P",
@@ -27,6 +29,13 @@ namespace Plivo.XML
                 "xmllang"
             };
             addAttributes();
+            var oldAttribute = Element.Attribute("xmllang");
+            var attributeList = Element.Attributes().ToList();
+            XAttribute newAttribute = new XAttribute(XNamespace.Xml + "lang", oldAttribute.Value);
+            attributeList.Add(newAttribute);
+            attributeList.Remove(oldAttribute);
+            Element.ReplaceAttributes(attributeList);
+            Element.Name = GetType().Name.ToLower();
         }
     }
 }

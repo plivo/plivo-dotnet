@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.4](https://github.com/plivo/plivo-dotnet/tree/v4.4.4) (2019-09-30)
+- Fix support for mixed SSML tags.
+
 ## [v4.4.3](https://github.com/plivo/plivo-dotnet/tree/v4.4.3) (2019-08-06)
 - Add logic to handle invalid numbers for bulk SMS.
 

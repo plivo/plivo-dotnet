@@ -14,6 +14,7 @@ namespace Plivo.XML
                 "alias",
             };
             addAttributes();
+            Element.Name = GetType().Name.ToLower();
         }
     }
 }
