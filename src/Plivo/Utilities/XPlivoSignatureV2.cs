@@ -33,7 +33,10 @@ namespace Plivo.Utilities
             }
 
             string baseUrl = url.Scheme + "://" + url.Host + pathToAppend;
-
+            if (!url.IsDefaultPort)
+            {
+                baseUrl = url.Scheme + "://" + url.Host + ":" + url.Port + pathToAppend;
+            }
             string payload = baseUrl + nonce;
             var hash = new HMACSHA256(Encoding.UTF8.GetBytes(authToken));
             var computedHash = hash.ComputeHash(Encoding.UTF8.GetBytes(payload));

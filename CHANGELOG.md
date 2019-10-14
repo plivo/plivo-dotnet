@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.5](https://github.com/plivo/plivo-dotnet/tree/v4.4.5) (2019-10-14)
+- Add proxy-support for Signature Validation.
+
 ## [v4.4.4](https://github.com/plivo/plivo-dotnet/tree/v4.4.4) (2019-09-30)
 - Fix support for mixed SSML tags.
 
