@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.4.5</version>
+    <version>4.4.4</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,7 +12,6 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      * 4.4.5 Added new XML verb - GetInput.
       * 4.4.4 Fix support for mixed SSML tags.
       * 4.4.3 Add logic to handle invalid numbers for bulk SMS.
       * 4.4.2 Add Status Code in API responses
