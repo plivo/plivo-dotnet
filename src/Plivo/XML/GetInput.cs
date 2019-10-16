@@ -29,7 +29,8 @@ namespace Plivo.XML
                 "interimSpeechResultsCallback",
                 "interimSpeechResultsCallbackMethod",
                 "log",
-                "redirect"
+                "redirect",
+                "profanityFilter"
             };
             addAttributes();
         }
