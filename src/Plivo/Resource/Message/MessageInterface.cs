@@ -24,7 +24,7 @@ namespace Plivo.Resource.Message
 
         #region Create
         /// <summary>
-        /// Create Message with the specified src, dst, text, type, url, method and log.
+        /// Create Message with the specified src, dst, text, type, url, method , log, media_urls.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="src">Source.</param>
@@ -36,9 +36,10 @@ namespace Plivo.Resource.Message
         /// <param name="log">Log.</param>
         /// <param name="trackable">trackable.</param>
         /// <param name="powerpackUUID">powerpackUUID</param>
+        ///<param name="media_urls">media_urls</param>
         public MessageCreateResponse Create(
-            List<string> dst, string text, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+            List<string> dst, string text = null, string src = null, string type = null,
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
         {
           
             string _dst = string.Join("<", dst);
@@ -56,7 +57,8 @@ namespace Plivo.Resource.Message
                     url,
                     method,
                     log,
-                    trackable
+                    trackable,
+                    media_urls
                 });
             } else if (powerpack_uuid != null && src == null){
                 data = CreateData(
@@ -70,7 +72,8 @@ namespace Plivo.Resource.Message
                     url,
                     method,
                     log,
-                    trackable
+                    trackable,
+                    media_urls
                 });
             
 
@@ -89,7 +92,7 @@ namespace Plivo.Resource.Message
         }
 
 		/// <summary>
-		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log.
+		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log, media_urls.
 		/// </summary>
 		/// <returns>The create.</returns>
 		/// <param name="src">Source.</param>
@@ -101,9 +104,10 @@ namespace Plivo.Resource.Message
 		/// <param name="log">Log.</param>
 		/// <param name="trackable">trackable.</param>
 		/// <param name="powerpackUUID">powerpackUUID</param>
+        ///<param name="media_urls">media_urls</param>
 		public async Task<MessageCreateResponse> CreateAsync(
-			List<string> dst, string text, string src = null, string type = null,
-			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+			List<string> dst, string text = null, string src = null, string type = null,
+			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
 		{
 
 			string _dst = string.Join("<", dst);
@@ -122,7 +126,8 @@ namespace Plivo.Resource.Message
 					url,
 					method,
 					log,
-					trackable
+					trackable,
+                    media_urls
 				});
 			}
 			else if (powerpack_uuid != null && src == null)
@@ -138,7 +143,8 @@ namespace Plivo.Resource.Message
 					url,
 					method,
 					log,
-					trackable
+					trackable,
+                    media_urls
 				});
 
 
@@ -201,6 +207,86 @@ namespace Plivo.Resource.Message
             message.Interface = this;
             return message;
         }
+        #endregion
+
+        #region GetMedia
+        public MMSMedia GetMedia(string messageUuid, string mediaID)
+        {
+            
+        return ExecuteWithExceptionUnwrap(() => 
+            {
+            var mmsMedia = Task.Run(async () => await GetResource<MMSMedia>(messageUuid + "/Media/" + mediaID + "/").ConfigureAwait(false)).Result;
+            mmsMedia.Interface = this;
+            return mmsMedia;
+        });
+        }
+
+        public async Task<MMSMedia> GetMediaAsync(string messageUuid, string mediaID)
+        {
+            var mmsMedia = await GetResource<MMSMedia>(messageUuid + "/Media/" + mediaID + "/");
+            mmsMedia.Interface = this;
+            return mmsMedia;
+        }
+
+        #endregion
+
+        #region ListMedia
+
+        public ListResponse<MMSMedia> ListMedia(string messageUuid){
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var resources = Task.Run(async () => await ListResources<ListResponse<MMSMedia>>(messageUuid + "/Media/", null).ConfigureAwait(false)).Result;
+
+                resources.Objects.ForEach(
+                    (obj) => obj.Interface = this
+                );
+                return resources;
+            });
+        }
+        public async Task<ListResponse<MMSMedia>> ListMediaAsync(string messageUuid)
+        {
+            var resources = await ListResources<ListResponse<MMSMedia>>( messageUuid + "/Media/", null);
+
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
+            return resources;
+
+        }
+        #endregion
+
+        #region DeleteMedia
+        public DeleteResponse<MMSMedia> DeleteMedia(string messageUuid)
+        {
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () => await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/").ConfigureAwait(false)).Result;
+                try
+                {
+                    result.Object.StatusCode = result.StatusCode;
+                }
+                catch (System.NullReferenceException)
+                {
+
+                }
+                return result.Object;
+            });
+        }
+        public async Task<DeleteResponse<MMSMedia>> DeleteMediaAsync(string messageUuid)
+        {
+            var result = await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/");
+            try
+            {
+                result.Object.StatusCode = result.StatusCode;
+            }
+            catch (System.NullReferenceException)
+            {
+
+            }
+            return result.Object;
+        }
+
         #endregion
 
         #region List
