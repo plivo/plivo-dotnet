@@ -13,6 +13,7 @@ namespace Plivo.XML
                 "Speak",
                 "Play",
                 "GetDigits",
+                "GetInput",
                 "Record",
                 "Dial",
                 "Message",
