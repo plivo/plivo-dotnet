@@ -22,6 +22,7 @@ namespace Plivo.XML
                 "executionTimeout",
                 "digitEndTimeout",
                 "speechEndTimeout",
+                "numDigits",
                 "finishOnKey",
                 "speechModel",
                 "hints",
