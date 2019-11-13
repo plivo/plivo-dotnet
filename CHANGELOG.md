@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.6](https://github.com/plivo/plivo-dotnet/tree/v4.4.6) (2019-11-13)
+- Add GetInput XML support.
+
 ## [v4.4.5](https://github.com/plivo/plivo-dotnet/tree/v4.4.5) (2019-10-14)
 - Add proxy-support for Signature Validation.
 

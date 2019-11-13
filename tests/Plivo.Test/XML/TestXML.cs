@@ -73,6 +73,20 @@ namespace Plivo.Test.XML
             resp.AddSpeak("Input not recieved.",
                 new Dictionary<string, string>() { });
 
+            Plivo.XML.GetInput get_input = new
+                Plivo.XML.GetInput("",
+                    new Dictionary<string, string>()
+                    {
+                        {"action", "http://www.foo.com/gather_feedback/"},
+                        {"method", "POST"}
+                    });
+            resp.Add(get_input);
+
+            get_input.AddSpeak("Tell us more about your experience.",
+                new Dictionary<string, string>() { });
+            resp.AddSpeak("Statement not recieved.",
+                new Dictionary<string, string>() { });
+
             resp.AddHangup(new Dictionary<string, string>()
             {
                 {"schedule", "60"},
