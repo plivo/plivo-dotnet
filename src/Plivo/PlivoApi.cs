@@ -88,7 +88,7 @@ namespace Plivo
         /// <value>The message.</value>
         public MessageInterface Message => _message.Value;
 
-        public PowerpackInterface Powerpack => _powerpack.Value;
+        public PowerpackInterface Powerpacks => _powerpack.Value;
 
         /// <summary>
         /// Gets the endpoint.

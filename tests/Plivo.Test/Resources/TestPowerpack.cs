@@ -38,7 +38,7 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Create( new List<string>() {name="vishnu", sticky_sender=True}
+                    Api.Powerpacks.Create( new List<string>() {name="vishnu", sticky_sender=True}
                        )));
             AssertRequest(request);
         }
@@ -68,7 +68,7 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.List(limit: 10)));
+                    Api.Powerpacks.List(limit: 10)));
 
             AssertRequest(request);
         }
@@ -94,7 +94,7 @@ namespace Plivo.Test.Resources
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Get(id)));
+                    Api.Powerpacks.Get(id)));
 
             AssertRequest(request);
         }
@@ -122,10 +122,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Update(id, name="vishnu123" )));
+                    powerpack.Update(name="vishnu123" )));
 
             AssertRequest(request);
         }
@@ -152,10 +153,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Delete(id, unrent_numbers=True )));
+                    powerpack.Delete( unrent_numbers=True )));
 
             AssertRequest(request);
         }
@@ -183,10 +185,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.List_Number(id, limit=1 )));
+                    powerpack.List_Numbers( limit=1 )));
 
             AssertRequest(request);
         }
@@ -211,10 +214,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Add_Number(id, number )));
+                    powerpack.Add_Number( number )));
 
             AssertRequest(request);
         }
@@ -239,10 +243,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Find_Number(id, number )));
+                    powerpack.Find_Number( number )));
 
             AssertRequest(request);
         }
@@ -252,12 +257,12 @@ namespace Plivo.Test.Resources
          public void TestFindShortcode()
         {
             var id = "d35f2e82-d387-427f-8594-6fa07613c43a";
-            var number ="444444";
+            var shortcode ="444444";
            
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/NumberPool/ca5fd1f2-26c0-43e9-a7e4-0dc426e9dd2f/Shortcode/"+number+"/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/NumberPool/ca5fd1f2-26c0-43e9-a7e4-0dc426e9dd2f/Shortcode/"+shortcode+"/",
                     "");
 
             var response =
@@ -268,10 +273,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.Find_Shortcode(id, number )));
+                    powerpack.Find_Shortcode( shortcode )));
 
             AssertRequest(request);
         }
@@ -300,10 +306,11 @@ namespace Plivo.Test.Resources
                 200,
                 response
             );
+            var powerpack = Api.Powerpack.Get(id);
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Powerpack.List_Shortcode(id, limit: 1)));
+                    powerpack.List_Shortcode( limit: 1)));
 
             AssertRequest(request);
         }

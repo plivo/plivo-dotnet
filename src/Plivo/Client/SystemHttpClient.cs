@@ -106,7 +106,7 @@ namespace Plivo.Client
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
             _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://apidev.sms.plivodev.com/" + Version.ApiVersion  : baseUri;
+            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _jsonSettings = new JsonSerializerSettings
