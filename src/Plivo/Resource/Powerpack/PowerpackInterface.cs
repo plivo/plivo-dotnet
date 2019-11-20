@@ -234,9 +234,9 @@ namespace Plivo.Resource.Powerpack
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var result = Task.Run(async () => await Client.Update<UpdateResponse<Powerpack>>(Uri, data).ConfigureAwait(false)).Result;
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid, data).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
-				return result.Object;
+				return result.Object; 
 			});
 		}
           /// <summary>
