@@ -170,6 +170,11 @@ namespace Plivo.XML
             return Add(new GetDigits("", parameters));
         }
 
+        public PlivoElement AddGetInput(dict parameters)
+        {
+            return Add(new GetInput("", parameters));
+        }
+
         public PlivoElement AddRecord(dict parameters)
         {
             return Add(new Record(parameters));
