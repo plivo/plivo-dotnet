@@ -28,6 +28,7 @@ namespace Plivo.Client
         /// </summary>
         /// <value>The client.</value>
         public System.Net.Http.HttpClient _client { get; set; }
+        public System.Net.Http.HttpClient _callInsightsclient { get; set; }
 
         public class PascalCasePropertyNamesContractResolver : DefaultContractResolver
         {
@@ -109,6 +110,13 @@ namespace Plivo.Client
             var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
+        
+            _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
+            _callInsightsclient.DefaultRequestHeaders.Authorization = authHeader;
+            _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var callInsightsBaseServerUri = "https://stats.plivo.com/" + Version.ApiVersion;
+            _callInsightsclient.BaseAddress = new Uri(callInsightsBaseServerUri + "/");
+
             _jsonSettings = new JsonSerializerSettings
             {
                 ContractResolver = new PascalCasePropertyNamesContractResolver(),
@@ -130,6 +138,12 @@ namespace Plivo.Client
         {
             HttpResponseMessage response = null;
             HttpRequestMessage request = null;
+
+            bool isCallInsightsRequest = false;
+            if (data.ContainsKey("is_call_insights_request")) {
+                isCallInsightsRequest = true;
+                data.Remove("is_call_insights_request");
+            }
 
             switch (method)
             {
@@ -207,8 +221,13 @@ namespace Plivo.Client
                     throw new NotSupportedException(
                         method + " not supported");
             }
-
-            response = await _client.SendAsync(request).ConfigureAwait(false);
+            
+            if (isCallInsightsRequest) {
+                response = await _callInsightsclient.SendAsync(request).ConfigureAwait(false);
+            } 
+            else {
+                response = await _client.SendAsync(request).ConfigureAwait(false);
+            }
 
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 

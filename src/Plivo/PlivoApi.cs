@@ -14,6 +14,7 @@ using Plivo.Resource.Recording;
 using Plivo.Resource.Subaccount;
 using Plivo.Resource.Address;
 using Plivo.Resource.Identity;
+using Plivo.Resource.CallFeedback;
 
 
 namespace Plivo
@@ -48,6 +49,7 @@ namespace Plivo
         private readonly Lazy<PhoneNumberInterface> _phoneNumber;
         private readonly Lazy<AddressInterface> _address;
         private readonly Lazy<IdentityInterface> _identity;
+        private readonly Lazy<CallFeedbackInterface> _callFeedback;
 
         /// <summary>
         /// Gets the account.
@@ -128,6 +130,12 @@ namespace Plivo
         public IdentityInterface Identity => _identity.Value;
 
         /// <summary>
+        /// Gets the call feedback.
+        /// </summary>
+        /// <value>Call Feedback.</value>
+        public CallFeedbackInterface CallFeedback => _callFeedback.Value;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
         /// <param name="authId">Auth identifier.</param>
@@ -160,6 +168,7 @@ namespace Plivo
             _phoneNumber = new Lazy<PhoneNumberInterface>(() => new PhoneNumberInterface(Client));
             _address = new Lazy<AddressInterface>(() => new AddressInterface(Client));
             _identity = new Lazy<IdentityInterface>(() => new IdentityInterface(Client));
+            _callFeedback = new Lazy<CallFeedbackInterface>(() => new CallFeedbackInterface(Client));
         }
     }
 }
