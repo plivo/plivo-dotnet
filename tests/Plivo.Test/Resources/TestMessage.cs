@@ -98,32 +98,5 @@ namespace Plivo.Test.Resources
 
             AssertRequest(request);
         }
-
-        [Test]
-        public void TestMessageGetMedia()
-        {
-            var id = "abcabcabc";
-            var mediaId="xyz";
-            var request =
-                new PlivoRequest(
-                    "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Message/" + id + "/Media/"+mediaId+"/",
-                    "");
-
-            var response =
-                System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"Mocks/mmsMediaGetResponse.json"
-                );
-            Setup<Message>(
-                200,
-                response
-            );
-            Assert.IsEmpty(
-                ComparisonUtilities.Compare(
-                    response,
-                    Api.Message.Get(id).GetMedia(mediaId)));
-
-            AssertRequest(request);
-        }
     }
 }

@@ -84,7 +84,7 @@ namespace Plivo.Resource.Message
         {
             return "\n" +
                     "StatusCode: " + StatusCode +"\n" +
-                    "ErrorCode: " + ErrorCode + "\n" + 
+                    "ErrorCode: " + ErrorCode + "\n" +
                    "FromNumber: " + FromNumber + "\n" +
                    "MessageDirection: " + MessageDirection + "\n" +
                    "MessageState: " + MessageState + "\n" +
@@ -97,24 +97,6 @@ namespace Plivo.Resource.Message
                    "TotalRate: " + TotalRate + "\n" +
                    "Units: " + Units + "\n";
         }
-        #region GetMedia
-        /// <summary>
-        /// Get the media resource.
-        /// </summary>
-        /// <returns>The Media.</returns>
-        public MMSMedia GetMedia(string mediaId)
-        {
-            return ((MessageInterface)Interface)
-                    .GetMedia(Id, mediaId);
-        }
-
-        public async Task<MMSMedia> GetMediaAsync(string mediaId)
-        {
-            return await ((MessageInterface)Interface)
-                .GetMediaAsync(Id, mediaId);
-        }
-        #endregion 
-
         #region ListMedia
         /// <summary>
         /// List the media resource.
