@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.8](https://github.com/plivo/plivo-dotnet/tree/v4.4.8) (2019-12-20)
+- Add Powerpack support.
+
 ## [v4.4.7](https://github.com/plivo/plivo-dotnet/tree/v4.4.7) (2019-12-04)
 - Add MMS support.
 
