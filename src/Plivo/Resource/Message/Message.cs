@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 namespace Plivo.Resource.Message
 {
     /// <summary>
@@ -83,7 +84,7 @@ namespace Plivo.Resource.Message
         {
             return "\n" +
                     "StatusCode: " + StatusCode +"\n" +
-                    "ErrorCode: " + ErrorCode + "\n" + 
+                    "ErrorCode: " + ErrorCode + "\n" +
                    "FromNumber: " + FromNumber + "\n" +
                    "MessageDirection: " + MessageDirection + "\n" +
                    "MessageState: " + MessageState + "\n" +
@@ -96,5 +97,37 @@ namespace Plivo.Resource.Message
                    "TotalRate: " + TotalRate + "\n" +
                    "Units: " + Units + "\n";
         }
+        #region ListMedia
+        /// <summary>
+        /// List the media resource.
+        /// </summary>
+        /// <returns>The List of Media.</returns>
+        public ListResponse<MMSMedia> ListMedia(){
+            return ((MessageInterface)Interface)
+                   .ListMedia(Id);
+        }
+        public async Task<ListResponse<MMSMedia>> ListMediaAsync(string mediaId)
+        {
+            return await ((MessageInterface)Interface)
+                .ListMediaAsync(Id);
+        }
+        #endregion
+
+        #region DeleteMedia
+        /// <summary>
+        /// Delete the media resource.
+        /// </summary>
+        /// <returns>The status code .</returns>
+
+        public DeleteResponse<MMSMedia> DeleteMedia(){
+            return ((MessageInterface)Interface)
+                               .DeleteMedia(Id);
+        }
+        public async Task<DeleteResponse<MMSMedia>> DeleteMediaAsync()
+        {
+            return await ((MessageInterface)Interface)
+                .DeleteMediaAsync(Id);
+        }
+        #endregion
     }
 }

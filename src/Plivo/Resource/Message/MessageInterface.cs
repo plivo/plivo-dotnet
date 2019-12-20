@@ -24,7 +24,7 @@ namespace Plivo.Resource.Message
 
         #region Create
         /// <summary>
-        /// Create Message with the specified src, dst, text, type, url, method and log.
+        /// Create Message with the specified src, dst, text, type, url, method , log, media_urls.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="src">Source.</param>
@@ -36,13 +36,14 @@ namespace Plivo.Resource.Message
         /// <param name="log">Log.</param>
         /// <param name="trackable">trackable.</param>
         /// <param name="powerpackUUID">powerpackUUID</param>
+        ///<param name="media_urls">media_urls</param>
         public MessageCreateResponse Create(
-            List<string> dst, string text, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+            List<string> dst, string text = null, string src = null, string type = null,
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
         {
-          
+
             string _dst = string.Join("<", dst);
-			Dictionary<string, object> data = null; 
+			Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> {""};
             if (src != null && powerpack_uuid == null){
                 data = CreateData(
@@ -56,7 +57,8 @@ namespace Plivo.Resource.Message
                     url,
                     method,
                     log,
-                    trackable
+                    trackable,
+                    media_urls
                 });
             } else if (powerpack_uuid != null && src == null){
                 data = CreateData(
@@ -70,9 +72,10 @@ namespace Plivo.Resource.Message
                     url,
                     method,
                     log,
-                    trackable
+                    trackable,
+                    media_urls
                 });
-            
+
 
             } else if ( src != null && powerpack_uuid != null){
                 return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
@@ -89,7 +92,7 @@ namespace Plivo.Resource.Message
         }
 
 		/// <summary>
-		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log.
+		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log, media_urls.
 		/// </summary>
 		/// <returns>The create.</returns>
 		/// <param name="src">Source.</param>
@@ -101,9 +104,10 @@ namespace Plivo.Resource.Message
 		/// <param name="log">Log.</param>
 		/// <param name="trackable">trackable.</param>
 		/// <param name="powerpackUUID">powerpackUUID</param>
+        ///<param name="media_urls">media_urls</param>
 		public async Task<MessageCreateResponse> CreateAsync(
-			List<string> dst, string text, string src = null, string type = null,
-			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null)
+			List<string> dst, string text = null, string src = null, string type = null,
+			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
 		{
 
 			string _dst = string.Join("<", dst);
@@ -122,7 +126,8 @@ namespace Plivo.Resource.Message
 					url,
 					method,
 					log,
-					trackable
+					trackable,
+                    media_urls
 				});
 			}
 			else if (powerpack_uuid != null && src == null)
@@ -138,7 +143,8 @@ namespace Plivo.Resource.Message
 					url,
 					method,
 					log,
-					trackable
+					trackable,
+                    media_urls
 				});
 
 
@@ -203,6 +209,65 @@ namespace Plivo.Resource.Message
         }
         #endregion
 
+        #region ListMedia
+
+        public ListResponse<MMSMedia> ListMedia(string messageUuid){
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var resources = Task.Run(async () => await ListResources<ListResponse<MMSMedia>>(messageUuid + "/Media/", null).ConfigureAwait(false)).Result;
+
+                resources.Objects.ForEach(
+                    (obj) => obj.Interface = this
+                );
+                return resources;
+            });
+        }
+        public async Task<ListResponse<MMSMedia>> ListMediaAsync(string messageUuid)
+        {
+            var resources = await ListResources<ListResponse<MMSMedia>>( messageUuid + "/Media/", null);
+
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
+            return resources;
+
+        }
+        #endregion
+
+        #region DeleteMedia
+        public DeleteResponse<MMSMedia> DeleteMedia(string messageUuid)
+        {
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () => await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/").ConfigureAwait(false)).Result;
+                try
+                {
+                    result.Object.StatusCode = result.StatusCode;
+                }
+                catch (System.NullReferenceException)
+                {
+
+                }
+                return result.Object;
+            });
+        }
+        public async Task<DeleteResponse<MMSMedia>> DeleteMediaAsync(string messageUuid)
+        {
+            var result = await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/");
+            try
+            {
+                result.Object.StatusCode = result.StatusCode;
+            }
+            catch (System.NullReferenceException)
+            {
+
+            }
+            return result.Object;
+        }
+
+        #endregion
+
         #region List
         /// <summary>
         /// List Message with the specified subaccount, limit and offset.
@@ -220,9 +285,9 @@ namespace Plivo.Resource.Message
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
         public ListResponse<Message> List(
-            string subaccount = null, 
-            uint? limit = null, 
-            uint? offset = null, 
+            string subaccount = null,
+            uint? limit = null,
+            uint? offset = null,
             string message_state = null,
             string message_direction = null,
             DateTime? message_time__gt = null,
@@ -241,23 +306,23 @@ namespace Plivo.Resource.Message
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
                 mandatoryParams, new {
-                    subaccount, 
-                    limit, 
-                    offset, 
-                    message_state, 
-                    message_direction, 
-                    _message_time__gt, 
-                    _message_time__gte, 
-                    _message_time__lt, 
-                    _message_time__lte, 
-                    _message_time, 
+                    subaccount,
+                    limit,
+                    offset,
+                    message_state,
+                    message_direction,
+                    _message_time__gt,
+                    _message_time__gte,
+                    _message_time__lt,
+                    _message_time__lte,
+                    _message_time,
                     error_code
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
-                
+
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);

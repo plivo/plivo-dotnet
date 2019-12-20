@@ -11,6 +11,7 @@ namespace Plivo.XML
             Nestables = new list()
             {
                 "Break",
+                "Cont",
                 "Emphasis",
                 "Lang",
                 "P",
@@ -28,6 +29,7 @@ namespace Plivo.XML
                 "pitch"
             };
             addAttributes();
+            Element.Name = Element.GetType().Name.ToLower();
         }
     }
 }

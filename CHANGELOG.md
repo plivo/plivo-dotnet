@@ -1,6 +1,18 @@
 
 # Change Log
 
+## [v4.4.7](https://github.com/plivo/plivo-dotnet/tree/v4.4.7) (2019-12-04)
+- Add MMS support.
+
+## [v4.4.6](https://github.com/plivo/plivo-dotnet/tree/v4.4.6) (2019-11-13)
+- Add GetInput XML support.
+
+## [v4.4.5](https://github.com/plivo/plivo-dotnet/tree/v4.4.5) (2019-10-14)
+- Add proxy-support for Signature Validation.
+
+## [v4.4.4](https://github.com/plivo/plivo-dotnet/tree/v4.4.4) (2019-09-30)
+- Fix support for mixed SSML tags.
+
 ## [v4.4.3](https://github.com/plivo/plivo-dotnet/tree/v4.4.3) (2019-08-06)
 - Add logic to handle invalid numbers for bulk SMS.
 

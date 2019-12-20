@@ -79,17 +79,21 @@ namespace Plivo.Resource {
         /// <param name="data">Data.</param>
         /// <param name="url"> URL </param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public async Task<T> ListResources<T> (string url, Dictionary<string, object> data = null)
-        where T : new () {
+        public async Task<T> ListResources<T>(string url, Dictionary<string, object> data = null)
+        where T : new()
+        {
             string to_append = url;
-            if (url != "") {
+            if (url != "")
+            {
                 to_append = to_append + "/";
             }
-            var result = await Client.Fetch<T> (Uri + to_append, data);
-            try {
-                result.Object.GetType ().GetRuntimeProperty ("StatusCode").SetValue (result.Object, result.StatusCode, null);
-            } catch (System.NullReferenceException) {
-
+            var result = await Client.Fetch<T>(Uri + to_append, data);
+            try
+            {
+                result.Object.GetType().GetRuntimeProperty("StatusCode").SetValue(result.Object, result.StatusCode, null);
+            }
+            catch (System.NullReferenceException)
+            {
             }
             return result.Object;
         }

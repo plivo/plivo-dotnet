@@ -87,6 +87,11 @@ namespace Plivo.XML
             int posn = Nestables.FindIndex(n => n == element.GetType().Name);
             if (posn >= 0)
             {
+                if (element.GetType().Name == "Cont")
+                {
+                    Element.Add(new XText(element.Element.Value));
+                    return element;
+                }
                 Element.Add(element.Element);
                 return element;
             }
@@ -102,81 +107,57 @@ namespace Plivo.XML
 
         public PlivoElement AddBreak(dict parameters)
         {
-            PlivoElement elem = new Break(parameters);
-            elem.Element.Name = "break";
-            return Add(elem);
+            return Add(new Break(parameters));
+        }
 
+        public PlivoElement AddCont(string body)
+        {
+            return Add(new Cont(body));
         }
 
         public PlivoElement AddEmphasis(string body, dict parameters)
         {
-            PlivoElement elem = new Emphasis(body, parameters);
-            elem.Element.Name = "emphasis";
-            return Add(elem);
+            return Add(new Emphasis(body, parameters));
         }
 
         public PlivoElement AddLang(string body, dict parameters)
         {
-            PlivoElement elem = new Lang(body, parameters);
-            elem.Element.Name = "lang";
-
-            var oldAttribute = elem.Element.Attribute("xmllang");
-            var attributeList = elem.Element.Attributes().ToList();
-            XAttribute newAttribute = new XAttribute(XNamespace.Xml + "lang", oldAttribute.Value);
-            attributeList.Add(newAttribute);
-            attributeList.Remove(oldAttribute);
-            elem.Element.ReplaceAttributes(attributeList);
-
-            return Add(elem);
+            return Add(new Lang(body, parameters));
         }
 
         public PlivoElement AddP(string body)
         {
-            PlivoElement elem = new P(body);
-            elem.Element.Name = "p";
-            return Add(elem);
+            return Add(new P(body));
         }
 
         public PlivoElement AddPhoneme(string body, dict parameters)
         {
-            PlivoElement elem = new Phoneme(body, parameters);
-            elem.Element.Name = "phoneme";
-            return Add(elem);
+            return Add(new Phoneme(body, parameters));
         }
 
         public PlivoElement AddProsody(string body, dict parameters)
         {
-            PlivoElement elem = new Prosody(body, parameters);
-            elem.Element.Name = "prosody";
-            return Add(elem);
+            return Add(new Prosody(body, parameters));
         }
 
         public PlivoElement AddS(string body)
         {
-            PlivoElement elem = new S(body);
-            elem.Element.Name = "s";
-            return Add(elem);
+            return Add(new S(body));
         }
 
         public PlivoElement AddSayAs(string body, dict parameters)
         {
-            PlivoElement elem = new SayAs(body, parameters);
-            elem.Element.Name = "say-as";
-            return Add(elem);
+            return Add(new SayAs(body, parameters));
         }
 
         public PlivoElement AddSub(string body, dict parameters)
         {
-            PlivoElement elem = new Sub(body, parameters);
-            elem.Element.Name = "sub";
-            return Add(elem);
+            return Add(new Sub(body, parameters));
         }
 
         public PlivoElement AddW(string body, dict parameters)
         {
-            PlivoElement elem = new W(body, parameters);
-            elem.Element.Name = "w";
-            return Add(elem);
+            return Add(new W(body, parameters));
         }
 
         public PlivoElement AddPlay(string body, dict parameters)
@@ -187,6 +168,11 @@ namespace Plivo.XML
         public PlivoElement AddGetDigits(dict parameters)
         {
             return Add(new GetDigits("", parameters));
+        }
+
+        public PlivoElement AddGetInput(dict parameters)
+        {
+            return Add(new GetInput("", parameters));
         }
 
         public PlivoElement AddRecord(dict parameters)
