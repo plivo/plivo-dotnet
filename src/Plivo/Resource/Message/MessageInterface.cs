@@ -41,9 +41,9 @@ namespace Plivo.Resource.Message
             List<string> dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
         {
-          
+
             string _dst = string.Join("<", dst);
-			Dictionary<string, object> data = null; 
+			Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> {""};
             if (src != null && powerpack_uuid == null){
                 data = CreateData(
@@ -75,7 +75,7 @@ namespace Plivo.Resource.Message
                     trackable,
                     media_urls
                 });
-            
+
 
             } else if ( src != null && powerpack_uuid != null){
                 return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
@@ -209,27 +209,6 @@ namespace Plivo.Resource.Message
         }
         #endregion
 
-        #region GetMedia
-        public MMSMedia GetMedia(string messageUuid, string mediaID)
-        {
-            
-        return ExecuteWithExceptionUnwrap(() => 
-            {
-            var mmsMedia = Task.Run(async () => await GetResource<MMSMedia>(messageUuid + "/Media/" + mediaID + "/").ConfigureAwait(false)).Result;
-            mmsMedia.Interface = this;
-            return mmsMedia;
-        });
-        }
-
-        public async Task<MMSMedia> GetMediaAsync(string messageUuid, string mediaID)
-        {
-            var mmsMedia = await GetResource<MMSMedia>(messageUuid + "/Media/" + mediaID + "/");
-            mmsMedia.Interface = this;
-            return mmsMedia;
-        }
-
-        #endregion
-
         #region ListMedia
 
         public ListResponse<MMSMedia> ListMedia(string messageUuid){
@@ -306,9 +285,9 @@ namespace Plivo.Resource.Message
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
         public ListResponse<Message> List(
-            string subaccount = null, 
-            uint? limit = null, 
-            uint? offset = null, 
+            string subaccount = null,
+            uint? limit = null,
+            uint? offset = null,
             string message_state = null,
             string message_direction = null,
             DateTime? message_time__gt = null,
@@ -327,23 +306,23 @@ namespace Plivo.Resource.Message
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
                 mandatoryParams, new {
-                    subaccount, 
-                    limit, 
-                    offset, 
-                    message_state, 
-                    message_direction, 
-                    _message_time__gt, 
-                    _message_time__gte, 
-                    _message_time__lt, 
-                    _message_time__lte, 
-                    _message_time, 
+                    subaccount,
+                    limit,
+                    offset,
+                    message_state,
+                    message_direction,
+                    _message_time__gt,
+                    _message_time__gte,
+                    _message_time__lt,
+                    _message_time__lte,
+                    _message_time,
                     error_code
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
-                
+
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);

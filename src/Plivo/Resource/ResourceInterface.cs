@@ -94,7 +94,6 @@ namespace Plivo.Resource {
             }
             catch (System.NullReferenceException)
             {
-
             }
             return result.Object;
         }
