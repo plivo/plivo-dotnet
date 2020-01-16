@@ -216,11 +216,18 @@ namespace Plivo.Resource.Application
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="appId">App identifier.</param>
-        public DeleteResponse<Application> Delete(string appId)
+        /// <param name="cascade">Cascade.</param>
+        public DeleteResponse<Application> Delete(string appId, bool? cascade = null)
         {
+            var data = new Dictionary<string, object> {};
+            if (cascade != null)
+            {
+                data = CreateData(new List<string> {}, new {cascade});
+            }
+
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				return Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId).ConfigureAwait(false)).Result;
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId, data).ConfigureAwait(false)).Result;
 			});
 		}
         /// <summary>
@@ -228,9 +235,15 @@ namespace Plivo.Resource.Application
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="appId">App identifier.</param>
-        public async Task<DeleteResponse<Application>> DeleteAsync(string appId)
+        /// <param name="cascade">Cascade.</param>
+        public async Task<DeleteResponse<Application>> DeleteAsync(string appId, bool? cascade = null)
         {
-            return await DeleteResource<DeleteResponse<Application>>(appId);
+            var data = new Dictionary<string, object> { };
+            if (cascade != null)
+            {
+                data = CreateData(new List<string> { }, new { cascade });
+            }
+            return await DeleteResource<DeleteResponse<Application>>(appId, data);
         }
         #endregion
 
