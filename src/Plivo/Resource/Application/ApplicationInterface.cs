@@ -217,13 +217,11 @@ namespace Plivo.Resource.Application
         /// <returns>The delete.</returns>
         /// <param name="appId">App identifier.</param>
         /// <param name="cascade">Cascade.</param>
-        public DeleteResponse<Application> Delete(string appId, bool? cascade = null)
+        /// <param name="newEndpointApplication">New Endpoint Application.</param>
+        public DeleteResponse<Application> Delete(string appId, bool? cascade = null, string newEndpointApplication = null)
         {
             var data = new Dictionary<string, object> {};
-            if (cascade != null)
-            {
-                data = CreateData(new List<string> {}, new {cascade});
-            }
+            data = CreateData(new List<string> {}, new {cascade, newEndpointApplication});
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
@@ -236,13 +234,12 @@ namespace Plivo.Resource.Application
         /// <returns>The delete.</returns>
         /// <param name="appId">App identifier.</param>
         /// <param name="cascade">Cascade.</param>
-        public async Task<DeleteResponse<Application>> DeleteAsync(string appId, bool? cascade = null)
+        /// <param name="newEndpointApplication">New Endpoint Application.</param>
+        public async Task<DeleteResponse<Application>> DeleteAsync(string appId, bool? cascade = null, string newEndpointApplication = null)
         {
             var data = new Dictionary<string, object> { };
-            if (cascade != null)
-            {
-                data = CreateData(new List<string> { }, new { cascade });
-            }
+            
+            data = CreateData(new List<string> { }, new { cascade, newEndpointApplication });
             return await DeleteResource<DeleteResponse<Application>>(appId, data);
         }
         #endregion
