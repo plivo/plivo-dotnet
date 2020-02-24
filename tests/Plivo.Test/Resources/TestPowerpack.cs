@@ -204,6 +204,34 @@ namespace Plivo.Test.Resources {
         }
 
         [Test]
+        public void TestAddTollfree () {
+            var id = "d35f2e82-d387-427f-8594-6fa07613c43a";
+            var tollfree = "18772209942";
+
+            var request =
+                new PlivoRequest (
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/NumberPool/ca5fd1f2-26c0-43e9-a7e4-0dc426e9dd2f/Tollfree/" + tollfree + "/",
+                    "");
+
+            var response =
+                System.IO.File.ReadAllText (
+                    SOURCE_DIR + @"Mocks/numberpoolSingleTollfreeResponse.json"
+                );
+            Setup<NumberPool> (
+                200,
+                response
+            );
+            var powerpack = Api.Powerpack.Get (id);
+            Assert.IsEmpty (
+                ComparisonUtilities.Compare (
+                    response,
+                    powerpack.Add_Tollfree (tollfree)));
+
+            AssertRequest (request);
+        }
+
+        [Test]
         public void TestFindNumbers () {
             var id = "d35f2e82-d387-427f-8594-6fa07613c43a";
             var number = "15799140336";
@@ -260,6 +288,34 @@ namespace Plivo.Test.Resources {
         }
 
         [Test]
+        public void TestFindTollfree () {
+            var id = "d35f2e82-d387-427f-8594-6fa07613c43a";
+            var tollfree = "18772209942";
+
+            var request =
+                new PlivoRequest (
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/NumberPool/ca5fd1f2-26c0-43e9-a7e4-0dc426e9dd2f/Tollfree/" + tollfree + "/",
+                    "");
+
+            var response =
+                System.IO.File.ReadAllText (
+                    SOURCE_DIR + @"Mocks/numberpoolSingleTollfreeResponse.json"
+                );
+            Setup<NumberPool> (
+                200,
+                response
+            );
+            var powerpack = Api.Powerpack.Get (id);
+            Assert.IsEmpty (
+                ComparisonUtilities.Compare (
+                    response,
+                    powerpack.Find_Tollfree (tollfree)));
+
+            AssertRequest (request);
+        }
+
+        [Test]
         public void TestListShortcode () {
             var id = "d35f2e82-d387-427f-8594-6fa07613c43a";
             var number = "444444";
@@ -276,6 +332,36 @@ namespace Plivo.Test.Resources {
             var response =
                 System.IO.File.ReadAllText (
                     SOURCE_DIR + @"Mocks/numberpoolShortcodeResponse.json"
+                );
+            Setup<Shortcode> (
+                200,
+                response
+            );
+            var powerpack = Api.Powerpack.Get (id);
+            Assert.IsEmpty (
+                ComparisonUtilities.Compare (
+                    response,
+                    powerpack.List_Shortcode (limit: 1)));
+
+            AssertRequest (request);
+        }
+
+        [Test]
+        public void TestListTollfree () {
+            var id = "d35f2e82-d387-427f-8594-6fa07613c43a";
+            var number = "18772209942";
+            var data = new Dictionary<string, object> () { { "limit", 1 }
+
+                };
+            var request =
+                new PlivoRequest (
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/NumberPool/ca5fd1f2-26c0-43e9-a7e4-0dc426e9dd2f/Tollfree/",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText (
+                    SOURCE_DIR + @"Mocks/numberpoolTollfreeResponse.json"
                 );
             Setup<Shortcode> (
                 200,

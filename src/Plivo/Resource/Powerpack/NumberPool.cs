@@ -11,12 +11,15 @@ namespace Plivo.Resource.Powerpack
         public  string number_pool_id { get; set; }
         public Numbers numbers ;
         public Shortcode shortcodes;
+        public Tollfree tollfree;
         public NumberPool(string number_pool_id, HttpClient Client){
             numbers = new Numbers(number_pool_id);
             numbers._phonenumber = new Lazy<PhoneNumberInterface>(() => new PhoneNumberInterface(Client));
             numbers._powerpackInterface = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
             shortcodes  = new Shortcode(number_pool_id);
             shortcodes._powerpackInterface = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
+            tollfree  = new Tollfree(number_pool_id);
+            tollfree._powerpackInterface = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
        
         }
         
