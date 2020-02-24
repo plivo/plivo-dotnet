@@ -43,9 +43,10 @@ namespace Plivo.Resource.Message
         {
 
             string _dst = string.Join("<", dst);
-			Dictionary<string, object> data = null;
-            var mandatoryParams = new List<string> {""};
-            if (src != null && powerpack_uuid == null){
+            Dictionary<string, object> data = null;
+            var mandatoryParams = new List<string> { "" };
+            if (src != null && powerpack_uuid == null)
+            {
                 data = CreateData(
                 mandatoryParams,
                 new
@@ -60,7 +61,9 @@ namespace Plivo.Resource.Message
                     trackable,
                     media_urls
                 });
-            } else if (powerpack_uuid != null && src == null){
+            }
+            else if (powerpack_uuid != null && src == null)
+            {
                 data = CreateData(
                 mandatoryParams,
                 new
@@ -77,107 +80,112 @@ namespace Plivo.Resource.Message
                 });
 
 
-            } else if ( src != null && powerpack_uuid != null){
-                return getResponseValidation ("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.") ;
-            } else if (src == null && powerpack_uuid == null){
+            }
+            else if (src != null && powerpack_uuid != null)
+            {
+                return getResponseValidation("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+            }
+            else if (src == null && powerpack_uuid == null)
+            {
                 return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
             }
 
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var result = Task.Run(async () => await Client.Update<MessageCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
-				result.Object.StatusCode = result.StatusCode;
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () => await Client.Update<MessageCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
                 return result.Object;
-			});
+            });
         }
 
-		/// <summary>
-		/// Asynchronously Create Message with the specified src, dst, text, type, url, method and log, media_urls.
-		/// </summary>
-		/// <returns>The create.</returns>
-		/// <param name="src">Source.</param>
-		/// <param name="dst">Dst.</param>
-		/// <param name="text">Text.</param>
-		/// <param name="type">Type.</param>
-		/// <param name="url">URL.</param>
-		/// <param name="method">Method.</param>
-		/// <param name="log">Log.</param>
-		/// <param name="trackable">trackable.</param>
-		/// <param name="powerpackUUID">powerpackUUID</param>
+        /// <summary>
+        /// Asynchronously Create Message with the specified src, dst, text, type, url, method and log, media_urls.
+        /// </summary>
+        /// <returns>The create.</returns>
+        /// <param name="src">Source.</param>
+        /// <param name="dst">Dst.</param>
+        /// <param name="text">Text.</param>
+        /// <param name="type">Type.</param>
+        /// <param name="url">URL.</param>
+        /// <param name="method">Method.</param>
+        /// <param name="log">Log.</param>
+        /// <param name="trackable">trackable.</param>
+        /// <param name="powerpackUUID">powerpackUUID</param>
         ///<param name="media_urls">media_urls</param>
-		public async Task<MessageCreateResponse> CreateAsync(
-			List<string> dst, string text = null, string src = null, string type = null,
-			string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
-		{
+        public async Task<MessageCreateResponse> CreateAsync(
+            List<string> dst, string text = null, string src = null, string type = null,
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
+        {
 
-			string _dst = string.Join("<", dst);
-			Dictionary<string, object> data = null;
-			var mandatoryParams = new List<string> { "" };
-			if (src != null && powerpack_uuid == null)
-			{
-				data = CreateData(
-				mandatoryParams,
-				new
-				{
-					src,
-					_dst,
-					text,
-					type,
-					url,
-					method,
-					log,
-					trackable,
+            string _dst = string.Join("<", dst);
+            Dictionary<string, object> data = null;
+            var mandatoryParams = new List<string> { "" };
+            if (src != null && powerpack_uuid == null)
+            {
+                data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    src,
+                    _dst,
+                    text,
+                    type,
+                    url,
+                    method,
+                    log,
+                    trackable,
                     media_urls
-				});
-			}
-			else if (powerpack_uuid != null && src == null)
-			{
-				data = CreateData(
-				mandatoryParams,
-				new
-				{
-					powerpack_uuid,
-					_dst,
-					text,
-					type,
-					url,
-					method,
-					log,
-					trackable,
+                });
+            }
+            else if (powerpack_uuid != null && src == null)
+            {
+                data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    powerpack_uuid,
+                    _dst,
+                    text,
+                    type,
+                    url,
+                    method,
+                    log,
+                    trackable,
                     media_urls
-				});
+                });
 
 
-			}
-			else if (src != null && powerpack_uuid != null)
-			{
-				return getResponseValidation("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
-			}
-			else if (src == null && powerpack_uuid == null)
-			{
-				return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
-			}
+            }
+            else if (src != null && powerpack_uuid != null)
+            {
+                return getResponseValidation("Both powerpack_uuid and src cannot be specified. Specify either powerpack_uuid or src in request params to send a message.");
+            }
+            else if (src == null && powerpack_uuid == null)
+            {
+                return getResponseValidation("Specify either powerpack_uuid or src in request params to send a message.");
+            }
 
-			var result = await Client.Update<MessageCreateResponse>(Uri, data);
+            var result = await Client.Update<MessageCreateResponse>(Uri, data);
             result.Object.StatusCode = result.StatusCode;
-			return result.Object;
-		}
+            return result.Object;
+        }
 
-		#endregion
+        #endregion
 
-		#region getResponseValidation
-		/// <summary>
-		/// validation for src and powerpack id and return the repsonse.
-		/// </summary>
-		/// <returns>The get.</returns>
-		/// <param name="errormessagetext">errormessagetext</param>
-		private MessageCreateResponse getResponseValidation(string errorMessageText){
+        #region getResponseValidation
+        /// <summary>
+        /// validation for src and powerpack id and return the repsonse.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="errormessagetext">errormessagetext</param>
+        private MessageCreateResponse getResponseValidation(string errorMessageText)
+        {
 
-                MessageCreateResponse notValidResponse = new MessageCreateResponse();
-                notValidResponse.ApiId = null;
-                notValidResponse.Message = errorMessageText;
-                notValidResponse.MessageUuid = new List<string>();
-                return notValidResponse;
+            MessageCreateResponse notValidResponse = new MessageCreateResponse();
+            notValidResponse.ApiId = null;
+            notValidResponse.Message = errorMessageText;
+            notValidResponse.MessageUuid = new List<string>();
+            return notValidResponse;
         }
         #endregion
 
@@ -189,12 +197,12 @@ namespace Plivo.Resource.Message
         /// <param name="messageUuid">Message UUID.</param>
         public Message Get(string messageUuid)
         {
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var message = Task.Run(async () => await GetResource<Message>(messageUuid).ConfigureAwait(false)).Result;
-				message.Interface = this;
-				return message;
-			});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var message = Task.Run(async () => await GetResource<Message>(messageUuid).ConfigureAwait(false)).Result;
+                message.Interface = this;
+                return message;
+            });
         }
         /// <summary>
         /// Asynchronously get Message with the specified messageUuid.
@@ -211,7 +219,8 @@ namespace Plivo.Resource.Message
 
         #region ListMedia
 
-        public ListResponse<MMSMedia> ListMedia(string messageUuid){
+        public ListResponse<MMSMedia> ListMedia(string messageUuid)
+        {
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () => await ListResources<ListResponse<MMSMedia>>(messageUuid + "/Media/", null).ConfigureAwait(false)).Result;
@@ -224,7 +233,7 @@ namespace Plivo.Resource.Message
         }
         public async Task<ListResponse<MMSMedia>> ListMediaAsync(string messageUuid)
         {
-            var resources = await ListResources<ListResponse<MMSMedia>>( messageUuid + "/Media/", null);
+            var resources = await ListResources<ListResponse<MMSMedia>>(messageUuid + "/Media/", null);
 
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
@@ -235,38 +244,6 @@ namespace Plivo.Resource.Message
         }
         #endregion
 
-        #region DeleteMedia
-        public DeleteResponse<MMSMedia> DeleteMedia(string messageUuid)
-        {
-            return ExecuteWithExceptionUnwrap(() =>
-            {
-                var result = Task.Run(async () => await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/").ConfigureAwait(false)).Result;
-                try
-                {
-                    result.Object.StatusCode = result.StatusCode;
-                }
-                catch (System.NullReferenceException)
-                {
-
-                }
-                return result.Object;
-            });
-        }
-        public async Task<DeleteResponse<MMSMedia>> DeleteMediaAsync(string messageUuid)
-        {
-            var result = await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/");
-            try
-            {
-                result.Object.StatusCode = result.StatusCode;
-            }
-            catch (System.NullReferenceException)
-            {
-
-            }
-            return result.Object;
-        }
-
-        #endregion
 
         #region List
         /// <summary>
@@ -303,9 +280,10 @@ namespace Plivo.Resource.Message
             var _message_time__lt = message_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
             var _message_time__lte = message_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
             var _message_time = message_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var mandatoryParams = new List<string> {""};
+            var mandatoryParams = new List<string> { "" };
             var data = CreateData(
-                mandatoryParams, new {
+                mandatoryParams, new
+                {
                     subaccount,
                     limit,
                     offset,
@@ -319,15 +297,15 @@ namespace Plivo.Resource.Message
                     error_code
                 });
 
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
 
-				resources.Objects.ForEach(
-					(obj) => obj.Interface = this
-				);
-				return resources;
-			});
+                resources.Objects.ForEach(
+                    (obj) => obj.Interface = this
+                );
+                return resources;
+            });
         }
         /// <summary>
         /// List Message with the specified subaccount, limit and offset.
