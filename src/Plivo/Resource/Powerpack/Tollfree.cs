@@ -13,13 +13,13 @@ namespace Plivo.Resource.Powerpack {
         public Tollfree () {
 
         }
-        public new string Id => NumberPoolUUID;
+        public new string Id => NumberPoolUuid;
 
         /// <summary>
         /// tollfree
         /// </summary>
         /// <value>The tollfree .</value>
-        public string tollfree { get; set; }
+        public string number { get; set; }
 
         /// <summary>
         /// Gets or sets AddedOn.
@@ -31,13 +31,13 @@ namespace Plivo.Resource.Powerpack {
         /// Gets or sets the created_on.
         /// </summary>
         /// <value>The created_on.</value>
-        public string CountryISO2 { get; set; }
+        public string CountryIso2 { get; set; }
 
         /// <summary>
         /// Gets or sets the NumberPoolUUID.
         /// </summary>
         /// <value>The NumberPoolUUID.</value>
-        public string NumberPoolUUID { get; set; }
+        public string NumberPoolUuid { get; set; }
 
         // public Tollfree Get(string memberId)
         // {
@@ -90,9 +90,9 @@ namespace Plivo.Resource.Powerpack {
 
         public override string ToString () {
             return "\n" +
-                "NumberPoolUUID: " + NumberPoolUUID + "\n" +
-                "Tollfree: " + tollfree + "\n" +
-                "CountryISO2: " + CountryISO2 + "\n" +
+                "NumberPoolUUID: " + NumberPoolUuid + "\n" +
+                "Tollfree: " + number + "\n" +
+                "CountryISO2: " + CountryIso2 + "\n" +
                 "AddedOn: " + AddedOn + "\n";
         }
     }

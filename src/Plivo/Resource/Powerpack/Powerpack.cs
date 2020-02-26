@@ -117,7 +117,7 @@ namespace Plivo.Resource.Powerpack {
                 .Add_NumberAsync (number_pool_id, number);
         }
 
-        public Tollfree Add_Tollfree (string number) {
+        public Tollfree Add_Tollfree (string tollfree) {
             return ((PowerpackInterface) Interface)
                 .Add_Tollfree (number_pool_id, tollfree);
         }

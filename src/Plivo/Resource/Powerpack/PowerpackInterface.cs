@@ -736,7 +736,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="shortcode">Shortcode.</param>
 		public async Task<DeleteResponse<Shortcode>> Remove_ShortcodeAsync(
-            string uuid, string tollfree,  bool? unrent=null)
+            string uuid, string shortcode,  bool? unrent=null)
 		{
         var mandatoryParams = new List<string>{""};
         var data = CreateData(
@@ -754,7 +754,7 @@ namespace Plivo.Resource.Powerpack
         /// Find a number
         /// </summary>
         /// <returns>The Number resource.</returns>
-         public ListResponse<TOLLFREE> ListTollfree(string uuid, uint? limit = null, uint? offset = null)
+         public ListResponse<Tollfree> ListTollfree(string uuid, uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
