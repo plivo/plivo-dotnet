@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.10](https://github.com/plivo/plivo-dotnet/tree/v4.4.10) (2020-03-05)
+- Fix Newtonsoft warning.
+
 ## [v4.4.9](https://github.com/plivo/plivo-dotnet/tree/v4.4.9) (2020-02-25)
 - Add Media support.
 
