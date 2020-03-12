@@ -16,7 +16,7 @@ using Plivo.Resource.Subaccount;
 using Plivo.Resource.Address;
 using Plivo.Resource.Identity;
 using Plivo.Resource.CallFeedback;
-
+using Plivo.Resource.Media;
 
 namespace Plivo
 {
@@ -45,6 +45,8 @@ namespace Plivo
         private readonly Lazy<MessageInterface> _message;
 
         private readonly Lazy<PowerpackInterface> _powerpack;
+
+        private readonly Lazy<MediaInterface> _media;
         private readonly Lazy<EndpointInterface> _endpoint;
         private readonly Lazy<PricingInterface> _pricing;
         private readonly Lazy<RecordingInterface> _recording;
@@ -91,6 +93,8 @@ namespace Plivo
         public MessageInterface Message => _message.Value;
 
         public PowerpackInterface Powerpacks => _powerpack.Value;
+
+        public MediaInterface Media => _media.Value;
 
         /// <summary>
         /// Gets the endpoint.
@@ -166,7 +170,8 @@ namespace Plivo
             _call = new Lazy<CallInterface>(() => new CallInterface(Client));
             _conference = new Lazy<ConferenceInterface>(() => new ConferenceInterface(Client));
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
-             _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
+            _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
+            _media = new Lazy<MediaInterface>(() => new MediaInterface(Client));
             _endpoint = new Lazy<EndpointInterface>(() => new EndpointInterface(Client));
             _pricing = new Lazy<PricingInterface>(() => new PricingInterface(Client));
             _recording = new Lazy<RecordingInterface>(() => new RecordingInterface(Client));
