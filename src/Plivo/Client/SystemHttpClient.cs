@@ -114,7 +114,7 @@ namespace Plivo.Client
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
             _callInsightsclient.DefaultRequestHeaders.Authorization = authHeader;
             _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var callInsightsBaseServerUri = "https://stats.plivo.com/" + Version.ApiVersion;
+            var callInsightsBaseServerUri = "https://stats.plivo.com/" + "v1";
             _callInsightsclient.BaseAddress = new Uri(callInsightsBaseServerUri + "/");
 
             _jsonSettings = new JsonSerializerSettings

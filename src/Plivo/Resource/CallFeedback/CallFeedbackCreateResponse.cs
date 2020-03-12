@@ -6,7 +6,7 @@ namespace Plivo.Resource.CallFeedback
 
         public override string ToString()
         {
-            return base.ToString() + "Data: " + Data +"\n";
+            return base.ToString();
         }
     }
 }
