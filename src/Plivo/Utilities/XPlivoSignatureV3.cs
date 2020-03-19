@@ -50,7 +50,7 @@ namespace Plivo.Utilities
 
         public static string ComputeSignature(string uri, string nonce, string authToken, Dictionary<string,string> parameters, string method)
         {
-			char[] charsToTrim = {'/'};
+			      char[] charsToTrim = {'/'};
             uri = uri.Trim(charsToTrim);
             string payload = GenerateUrl(uri, parameters, method) + "." + nonce;
             var hash = new HMACSHA256(Encoding.UTF8.GetBytes(authToken));
