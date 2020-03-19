@@ -11,7 +11,7 @@ namespace Plivo.Test
         {
             string url = "https://answer.url";
             string nonce = "12345";
-            string signature = "rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I=";
+            string signature = "pETJPPuss8j7tRO1V76pMhutvY1EbD905bph1xlJQhE=";
             string authToken = "my_auth_token";
             string method = "GET";
             Dictionary<string, string> params = new Dictionary<string, string>();
