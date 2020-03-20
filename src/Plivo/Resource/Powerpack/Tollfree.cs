@@ -34,6 +34,18 @@ namespace Plivo.Resource.Powerpack {
         public string CountryIso2 { get; set; }
 
         /// <summary>
+        /// Gets or sets Type.
+        /// </summary>
+        /// <value>The Type</value>
+        public string Type { get; set; }
+
+        /// <summary>
+        /// account_phone_number_resource
+        /// </summary>
+        /// <value>The account_phone_number_resource .</value>
+        public string AccountPhoneNumberResource { get; set; }
+
+        /// <summary>
         /// Gets or sets the NumberPoolUUID.
         /// </summary>
         /// <value>The NumberPoolUUID.</value>
@@ -93,7 +105,9 @@ namespace Plivo.Resource.Powerpack {
                 "NumberPoolUUID: " + NumberPoolUuid + "\n" +
                 "Tollfree: " + number + "\n" +
                 "CountryISO2: " + CountryIso2 + "\n" +
-                "AddedOn: " + AddedOn + "\n";
+                "AddedOn: " + AddedOn + "\n" +
+                "AccountPhoneNumberResource: " + AccountPhoneNumberResource + "\n" +
+                "Type: " + Type + "\n" ;
         }
     }
 }
