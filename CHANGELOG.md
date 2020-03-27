@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.5.0](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-03-27)
+- Add post call quality feedback API support.
+
 ## [v4.4.10](https://github.com/plivo/plivo-dotnet/tree/v4.4.10) (2020-03-05)
 - Fix Newtonsoft warning.
 
