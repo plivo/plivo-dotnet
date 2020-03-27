@@ -13,6 +13,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       * 4.4.11 Add Tollfree support for Powerpack
+      * 4.4.10 Fix Newtonsoft warning.
+      * 4.4.9 Add Media support.
       * 4.4.8 Add Powerpack support.
       * 4.4.7 Add MMS support.
       * 4.4.6 Add GetInput XML support.
