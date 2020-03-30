@@ -463,6 +463,57 @@ namespace Plivo.Resource.Powerpack
 		return result.Object;
 		}
        #endregion
+        
+        #region ADDTOLLFREE
+       /// <summary>
+        /// Add a tollfree
+        /// </summary>
+        /// <returns>The Tollfree resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="tollfree">Tollfree.</param>
+
+        public Tollfree Add_Tollfree( string uuid, string tollfree, bool rent=false )
+        { 
+        var mandatoryParams = new List<string>{""};
+           var data= CreateData(
+            mandatoryParams,
+            new
+            {
+                rent
+            }); 
+        
+    
+        
+		return ExecuteWithExceptionUnwrap(() =>
+		{
+				var result = Task.Run(async () => await Client.Update<Tollfree>(Uri + "NumberPool/"+uuid.ToString()+"/Tollfree/"+tollfree.ToString()+"/", data).ConfigureAwait(false)).Result;
+				result.Object.StatusCode = result.StatusCode;
+                return result.Object;
+		});
+        }
+
+		/// <summary>
+        /// Add a tollfree
+        /// </summary>
+        /// <returns>The Tollfree resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="tollfree">Tollfree.</param>
+		public async Task<Tollfree> Add_TollfreeAsync(
+			 string uuid, string tollfree, bool rent=false)
+		{
+        var mandatoryParams = new List<string>{""};
+                var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    rent
+                });
+           
+		var result = await Client.Update<Tollfree>(Uri + "NumberPool/"+uuid+"/Tollfree/"+tollfree+"/", data);
+        result.Object.StatusCode = result.StatusCode;
+		return result.Object;
+		}
+       #endregion
        #region REMOVENUMBER
        /// <summary>
         /// Remove a number
@@ -502,6 +553,47 @@ namespace Plivo.Resource.Powerpack
                 unrent,
             });
 		return await DeleteResource<DeleteResponse<Numbers>>("NumberPool/"+uuid+"/Number/"+number, data);
+		}
+       #endregion
+       #region REMOVETOLLFREE
+       /// <summary>
+        /// Remove a tollfree
+        /// </summary>
+        /// <returns>The Tollfree resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="tollfree">Tollfree.</param>
+        public DeleteResponse<Tollfree> Remove_Tollfree(string uuid, string tollfree, bool? unrent=null)
+        { 
+        var mandatoryParams = new List<string>{""};
+        var data = CreateData(
+            mandatoryParams,
+            new
+            {
+                unrent,
+            });
+		return ExecuteWithExceptionUnwrap(() =>
+		{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Tollfree>>("NumberPool/"+uuid+"/Tollfree/"+tollfree, data).ConfigureAwait(false)).Result;
+		});
+        }
+
+		/// <summary>
+        /// Add a number
+        /// </summary>
+        /// <returns>The Number resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="tollfree">Tollfree.</param>
+		public async Task<DeleteResponse<Tollfree>> Remove_TollfreeAsync(
+            string uuid, string tollfree,  bool? unrent=null)
+		{
+        var mandatoryParams = new List<string>{""};
+        var data = CreateData(
+            mandatoryParams,
+            new
+            {
+                unrent,
+            });
+		return await DeleteResource<DeleteResponse<Tollfree>>("NumberPool/"+uuid+"/Tollfree/"+tollfree, data);
 		}
        #endregion
        #region FINDNUMBER
@@ -610,6 +702,134 @@ namespace Plivo.Resource.Powerpack
         var shortcodeResponse = await GetResource<Shortcode>("NumberPool/"+uuid+"/Shortcode/"+shortcode);
         shortcodeResponse.Interface = this;
         return shortcodeResponse;
+
+        }
+
+       #endregion
+        
+        #region REMOVESHORTCODE
+       /// <summary>
+        /// Remove a shortcode
+        /// </summary>
+        /// <returns>The Shortcode resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="shortcode">Shortcode.</param>
+        public DeleteResponse<Shortcode> Remove_Shortcode(string uuid, string shortcode, bool? unrent=null)
+        { 
+        var mandatoryParams = new List<string>{""};
+        var data = CreateData(
+            mandatoryParams,
+            new
+            {
+                unrent,
+            });
+		return ExecuteWithExceptionUnwrap(() =>
+		{
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Shortcode>>("NumberPool/"+uuid+"/Shortcode/"+shortcode, data).ConfigureAwait(false)).Result;
+		});
+        }
+
+		/// <summary>
+        /// Add a number
+        /// </summary>
+        /// <returns>The Number resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="shortcode">Shortcode.</param>
+		public async Task<DeleteResponse<Shortcode>> Remove_ShortcodeAsync(
+            string uuid, string shortcode,  bool? unrent=null)
+		{
+        var mandatoryParams = new List<string>{""};
+        var data = CreateData(
+            mandatoryParams,
+            new
+            {
+                unrent,
+            });
+		return await DeleteResource<DeleteResponse<Shortcode>>("NumberPool/"+uuid+"/Shortcode/"+shortcode, data);
+		}
+       #endregion
+
+       #region LISTTOLLFREE
+       /// <summary>
+        /// Find a number
+        /// </summary>
+        /// <returns>The Number resource.</returns>
+         public ListResponse<Tollfree> ListTollfree(string uuid, uint? limit = null, uint? offset = null)
+        {
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var resources = Task.Run(async () => await ListResources<ListResponse<Tollfree>>("NumberPool/"+uuid+"/Tollfree", data).ConfigureAwait(false)).Result;
+				resources.Objects.ForEach(
+					(obj) => obj.Interface = this
+				);
+
+				return resources;
+			});
+
+        }
+
+        /// <summary>
+        /// List Powerpack Tollfree limit and offset.
+        /// </summary>
+        /// <returns>The list.</returns>
+        /// <param name="limit">Limit.</param>
+        /// <param uuid="uuid">UUID</param>
+        /// <param name="offset">Offset.</param>
+         public async Task<ListResponse<Tollfree>> List_TollfreeAsync(
+          string uuid,  uint? limit = null, uint? offset = null)
+        {
+            var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+            var resources = await ListResources<ListResponse<Tollfree>>("NumberPool/"+uuid+"/Tollfree", data);
+            resources.Objects.ForEach(
+                (obj) => obj.Interface = this
+            );
+
+            return resources;
+
+
+        }
+
+        #endregion
+
+        #region FINDTOLLFREE
+
+       /// <summary>
+        /// Find a tollfree
+        /// </summary>
+        /// <returns>The Tikkfree resource.</returns>
+        /// <param name="uuid">UUID.</param>
+        /// <param name="tollfree">Tollfree.</param>
+        public Tollfree Find_Tollfree(string tollfree, string uuid)
+        { 
+            return ExecuteWithExceptionUnwrap(() =>
+			{
+				var powerpackresp = Task.Run(async () => await GetResource<Tollfree>("NumberPool/"+uuid+"/Tollfree/"+tollfree).ConfigureAwait(false)).Result;
+				powerpackresp.Interface = this;
+				return powerpackresp;
+			});
+        }
+        public async Task<Tollfree> Find_TollfreeAsync(
+			string tollfree, string uuid)
+		{
+        var tollfreeResponse = await GetResource<Tollfree>("NumberPool/"+uuid+"/Tollfree/"+tollfree);
+        tollfreeResponse.Interface = this;
+        return tollfreeResponse;
 
         }
 
