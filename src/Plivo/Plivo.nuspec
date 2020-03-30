@@ -13,6 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       * 4.5.1 Add Tollfree support for Powerpack
+      * 4.5.0 Add post call quality feedback API support.
       * 4.4.10 Fix Newtonsoft warning.
       * 4.4.9 Add Media support.
       * 4.4.8 Add Powerpack support.
