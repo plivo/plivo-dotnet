@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.5.1</version>
+    <version>4.6.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,7 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      * 4.5.1 Add Tollfree support for Powerpack
+      * 4.6.0 Add Tollfree support for Powerpack
       * 4.5.0 Add post call quality feedback API support.
       * 4.4.10 Fix Newtonsoft warning.
       * 4.4.9 Add Media support.

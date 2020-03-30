@@ -1,7 +1,7 @@
 
 # Change Log
 
-## [v4.5.1](https://github.com/plivo/plivo-dotnet/tree/v4.5.1) (2020-03-30)
+## [v4.6.0](https://github.com/plivo/plivo-dotnet/tree/v4.6.0) (2020-03-30)
 - Add Tollfree support for Powerpack
 
 ## [v4.5.0](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-03-27)
