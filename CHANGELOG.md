@@ -2,7 +2,7 @@
 # Change Log
 
 ## [v4.7.0](https://github.com/plivo/plivo-dotnet/tree/v4.7.0) (2020-03-31)
-- Add endpoint cascade delete support.
+- Add application cascade delete support.
 
 ## [v4.6.0](https://github.com/plivo/plivo-dotnet/tree/v4.6.0) (2020-03-30)
 - Add Tollfree support for Powerpack
