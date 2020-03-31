@@ -15,7 +15,8 @@ using Plivo.Resource.Recording;
 using Plivo.Resource.Subaccount;
 using Plivo.Resource.Address;
 using Plivo.Resource.Identity;
-
+using Plivo.Resource.CallFeedback;
+using Plivo.Resource.Media;
 
 namespace Plivo
 {
@@ -44,6 +45,8 @@ namespace Plivo
         private readonly Lazy<MessageInterface> _message;
 
         private readonly Lazy<PowerpackInterface> _powerpack;
+
+        private readonly Lazy<MediaInterface> _media;
         private readonly Lazy<EndpointInterface> _endpoint;
         private readonly Lazy<PricingInterface> _pricing;
         private readonly Lazy<RecordingInterface> _recording;
@@ -51,6 +54,7 @@ namespace Plivo
         private readonly Lazy<PhoneNumberInterface> _phoneNumber;
         private readonly Lazy<AddressInterface> _address;
         private readonly Lazy<IdentityInterface> _identity;
+        private readonly Lazy<CallFeedbackInterface> _callFeedback;
 
         /// <summary>
         /// Gets the account.
@@ -89,6 +93,8 @@ namespace Plivo
         public MessageInterface Message => _message.Value;
 
         public PowerpackInterface Powerpacks => _powerpack.Value;
+
+        public MediaInterface Media => _media.Value;
 
         /// <summary>
         /// Gets the endpoint.
@@ -133,6 +139,12 @@ namespace Plivo
         public IdentityInterface Identity => _identity.Value;
 
         /// <summary>
+        /// Gets the call feedback.
+        /// </summary>
+        /// <value>Call Feedback.</value>
+        public CallFeedbackInterface CallFeedback => _callFeedback.Value;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
         /// <param name="authId">Auth identifier.</param>
@@ -158,7 +170,8 @@ namespace Plivo
             _call = new Lazy<CallInterface>(() => new CallInterface(Client));
             _conference = new Lazy<ConferenceInterface>(() => new ConferenceInterface(Client));
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
-             _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
+            _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
+            _media = new Lazy<MediaInterface>(() => new MediaInterface(Client));
             _endpoint = new Lazy<EndpointInterface>(() => new EndpointInterface(Client));
             _pricing = new Lazy<PricingInterface>(() => new PricingInterface(Client));
             _recording = new Lazy<RecordingInterface>(() => new RecordingInterface(Client));
@@ -166,6 +179,7 @@ namespace Plivo
             _phoneNumber = new Lazy<PhoneNumberInterface>(() => new PhoneNumberInterface(Client));
             _address = new Lazy<AddressInterface>(() => new AddressInterface(Client));
             _identity = new Lazy<IdentityInterface>(() => new IdentityInterface(Client));
+            _callFeedback = new Lazy<CallFeedbackInterface>(() => new CallFeedbackInterface(Client));
         }
     }
 }

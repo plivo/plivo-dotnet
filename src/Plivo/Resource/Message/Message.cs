@@ -83,7 +83,7 @@ namespace Plivo.Resource.Message
         public override string ToString()
         {
             return "\n" +
-                    "StatusCode: " + StatusCode +"\n" +
+                    "StatusCode: " + StatusCode + "\n" +
                     "ErrorCode: " + ErrorCode + "\n" +
                    "FromNumber: " + FromNumber + "\n" +
                    "MessageDirection: " + MessageDirection + "\n" +
@@ -102,7 +102,8 @@ namespace Plivo.Resource.Message
         /// List the media resource.
         /// </summary>
         /// <returns>The List of Media.</returns>
-        public ListResponse<MMSMedia> ListMedia(){
+        public ListResponse<MMSMedia> ListMedia()
+        {
             return ((MessageInterface)Interface)
                    .ListMedia(Id);
         }
@@ -113,21 +114,5 @@ namespace Plivo.Resource.Message
         }
         #endregion
 
-        #region DeleteMedia
-        /// <summary>
-        /// Delete the media resource.
-        /// </summary>
-        /// <returns>The status code .</returns>
-
-        public DeleteResponse<MMSMedia> DeleteMedia(){
-            return ((MessageInterface)Interface)
-                               .DeleteMedia(Id);
-        }
-        public async Task<DeleteResponse<MMSMedia>> DeleteMediaAsync()
-        {
-            return await ((MessageInterface)Interface)
-                .DeleteMediaAsync(Id);
-        }
-        #endregion
     }
 }
