@@ -32,10 +32,12 @@ namespace Plivo.Utilities {
      uri += "/?" + paramString;
     }
    } else {
-    foreach(string key in keys) {
-     paramString += key + parameters[key];
-    }
-    uri += "." + paramString;
+     if(keys.Count() > 0){
+      foreach(string key in keys) {
+       paramString += key + parameters[key];
+      }
+      uri += "." + paramString;
+     }
    }
    return uri;
   }
