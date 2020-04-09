@@ -7,33 +7,103 @@ namespace Plivo.Test
     public class TestSignature
     {
         [Test]
-        public void TestSignatureV3Pass()
+        public void TestSignatureV3Pass1()
         {
-            string url = "https://answer.url";
-            string nonce = "12345";
-            string signature = "pETJPPuss8j7tRO1V76pMhutvY1EbD905bph1xlJQhE=";
-            string authToken = "my_auth_token";
-            string method = "GET";
+            string url = "https://plivobin.non-prod.plivops.com/api/v1/validate_signature03.xml/?a=b&c=d";
+            string nonce = "31627761595286130198";
+            string signature = "k7Pusd4OxCIjR5IfA9iedDNu/h/gbdYqdzG/MiYtd1c=";
+            string authToken = "Y2Q2ZDgxZmY5YWRiOTI5YmQ1Njg0MTAxZWIyOTc4";
+            string method = "POST";
             Dictionary<string, string> params = new Dictionary<string, string>();
-            params.Add("CallUUID", "97ceeb52-58b6-11e1-86da-77300b68f8bb");
-            params.Add("Duration", "300");
-
+            parameters.Add("Direction", "outbound");
+            parameters.Add("From", "19792014278");
+            parameters.Add("ALegUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SessionStart", "2020-04-08 11:34:33.238707");
+            parameters.Add("BillRate", "0.002");
+            parameters.Add("ParentAuthID", "MANWVLYTK4ZWU1YTY4QA");
+            parameters.Add("To", "sip:PlivoSignature382029104058171078704104@phone-qa.voice.plivodev.com");
+            parameters.Add("RequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("ALegRequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("CallUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SIP-H-To", "<sip:PlivoSignature382029104058171078704104@52.9.11.55;transport=udp>;tag=1");
+            parameters.Add("CallStatus", "in-progress");
+            parameters.Add("Event", "StartApp");
             Assert.True(Utilities.XPlivoSignatureV3.VerifySignature(url, nonce, signature, authToken, params, method));
         }
 
         [Test]
-        public void TestSignatureV3Fail()
+        public void TestSignatureV3Pass2()
         {
-            string url = "https://answer.url";
-            string nonce = "12345";
-            string signature = "rXj4UwTSVxH6Kj+W0qX8LaCvVOOvmzPGzY8sQVn3d1I+";
-            string authToken = "my_auth_token";
+            string url = "https://plivobin.non-prod.plivops.com/api/v1/validate_signature03.xml";
+            string nonce = "31627761595286130198";
+            string signature = "UBq8jAtd32wR8EK9VgxbBn4n5rpI/l1H9iN4WfSEHFQ=";
+            string authToken = "Y2Q2ZDgxZmY5YWRiOTI5YmQ1Njg0MTAxZWIyOTc4";
             string method = "GET";
             Dictionary<string, string> params = new Dictionary<string, string>();
-            params.Add("CallUUID", "97ceeb52-58b6-11e1-86da-77300b68f8bb");
-            params.Add("Duration", "300");
-
-            Assert.False(Utilities.XPlivoSignatureV3.VerifySignature(url, nonce, signature, authToken, params, method));
+            parameters.Add("Direction", "outbound");
+            parameters.Add("From", "19792014278");
+            parameters.Add("ALegUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SessionStart", "2020-04-08 11:34:33.238707");
+            parameters.Add("BillRate", "0.002");
+            parameters.Add("ParentAuthID", "MANWVLYTK4ZWU1YTY4QA");
+            parameters.Add("To", "sip:PlivoSignature382029104058171078704104@phone-qa.voice.plivodev.com");
+            parameters.Add("RequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("ALegRequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("CallUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SIP-H-To", "<sip:PlivoSignature382029104058171078704104@52.9.11.55;transport=udp>;tag=1");
+            parameters.Add("CallStatus", "in-progress");
+            parameters.Add("Event", "StartApp");
+            Assert.True(Utilities.XPlivoSignatureV3.VerifySignature(url, nonce, signature, authToken, params, method));
+        }
+        
+        [Test]
+        public void TestSignatureV3Pass3()
+        {
+            string url = "https://plivobin.non-prod.plivops.com/api/v1/validate_signature03.xml";
+            string nonce = "31627761595286130198";
+            string signature = "iAjE5QqI37mbkYe4w3jTMudqEzbDufdqi7sYwTu64e0=";
+            string authToken = "Y2Q2ZDgxZmY5YWRiOTI5YmQ1Njg0MTAxZWIyOTc4";
+            string method = "POST";
+            Dictionary<string, string> params = new Dictionary<string, string>();
+            parameters.Add("Direction", "outbound");
+            parameters.Add("From", "19792014278");
+            parameters.Add("ALegUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SessionStart", "2020-04-08 11:34:33.238707");
+            parameters.Add("BillRate", "0.002");
+            parameters.Add("ParentAuthID", "MANWVLYTK4ZWU1YTY4QA");
+            parameters.Add("To", "sip:PlivoSignature382029104058171078704104@phone-qa.voice.plivodev.com");
+            parameters.Add("RequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("ALegRequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("CallUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SIP-H-To", "<sip:PlivoSignature382029104058171078704104@52.9.11.55;transport=udp>;tag=1");
+            parameters.Add("CallStatus", "in-progress");
+            parameters.Add("Event", "StartApp");
+            Assert.True(Utilities.XPlivoSignatureV3.VerifySignature(url, nonce, signature, authToken, params, method));
+        }
+        
+        [Test]
+        public void TestSignatureV3Pass4()
+        {
+            string url = "https://plivobin.non-prod.plivops.com/api/v1/validate_signature03.xml";
+            string nonce = "31627761595286130198";
+            string signature = "i/MQsaQSAd6fiKhOh2qeeeLHZ9faldADSb3/7+Akfbc=";
+            string authToken = "Y2Q2ZDgxZmY5YWRiOTI5YmQ1Njg0MTAxZWIyOTc4";
+            string method = "GET";
+            Dictionary<string, string> params = new Dictionary<string, string>();
+            parameters.Add("Direction", "outbound");
+            parameters.Add("From", "19792014278");
+            parameters.Add("ALegUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SessionStart", "2020-04-08 11:34:33.238707");
+            parameters.Add("BillRate", "0.002");
+            parameters.Add("ParentAuthID", "MANWVLYTK4ZWU1YTY4QA");
+            parameters.Add("To", "sip:PlivoSignature382029104058171078704104@phone-qa.voice.plivodev.com");
+            parameters.Add("RequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("ALegRequestUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("CallUUID", "3e82ae9d-2c78-4d85-b1a4-6eae7dbafb36");
+            parameters.Add("SIP-H-To", "<sip:PlivoSignature382029104058171078704104@52.9.11.55;transport=udp>;tag=1");
+            parameters.Add("CallStatus", "in-progress");
+            parameters.Add("Event", "StartApp");
+            Assert.True(Utilities.XPlivoSignatureV3.VerifySignature(url, nonce, signature, authToken, params, method));
         }
     }
 }
