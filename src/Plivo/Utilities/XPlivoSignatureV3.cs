@@ -19,6 +19,7 @@ namespace Plivo.Utilities
         {
             var parsedUrl = new Uri(uri);
             uri = parsedUrl.Scheme + "://" + parsedUrl.Host + parsedUrl.LocalPath;
+            var parsedUrlQuery = Uri.UnescapeDataString(parsedUrl.Query);
             if (parameters.Any() || parsedUrl.Query.Length > 0)
             {
                 uri += "?";
@@ -28,7 +29,7 @@ namespace Plivo.Utilities
             {
                 if (method == "GET")
                 {
-                    var queryParamMap = getMapFromQueryString(parsedUrl.Query.TrimStart('?'));
+                    var queryParamMap = getMapFromQueryString(parsedUrlQuery.TrimStart('?'));
                     foreach (var param in parameters.Keys)
                     {
                         queryParamMap.Add(param, parameters[param]);
@@ -43,7 +44,7 @@ namespace Plivo.Utilities
                 }
                 else
                 {
-                    uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrl.Query.TrimStart('?')), true) +
+                    uri += GetSortedQueryParamString(getMapFromQueryString(parsedUrlQuery.TrimStart('?')), true) +
                            "." + GetSortedQueryParamString(parameters, false);
                     uri = uri.TrimEnd('.');
                 }
