@@ -76,7 +76,7 @@ namespace Plivo.Utilities
             Array.Sort(keyValuePairs, StringComparer.Ordinal);
             foreach (var pairs in keyValuePairs)
             {
-                var pair = pairs.Split('=');
+                var pair = pairs.Split(new[] {'='}, 2);
                 if (pair.Count() == 2)
                 {
                     mp[pair[0]] = pair[1];
