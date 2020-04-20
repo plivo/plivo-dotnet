@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Plivo.Client;
 
 namespace Plivo.Resource.Call {
@@ -98,6 +99,10 @@ namespace Plivo.Resource.Call {
             {
                 var result = Task.Run (async () => await Client.Update<CallCreateResponse> (Uri, data).ConfigureAwait (false)).Result;
                 result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.RequestUuid = responseJson["request_uuid"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
             });
         }
