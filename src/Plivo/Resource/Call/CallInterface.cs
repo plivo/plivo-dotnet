@@ -57,14 +57,16 @@ namespace Plivo.Resource.Call {
             string hangupUrl = null, string hangupMethod = null,
             string fallbackUrl = null, string fallbackMethod = null,
             string callerName = null, string sendDigits = null,
-            bool? sendOnPreanswer = null, uint? timeLimit = null,
-            uint? hangupOnRing = null, string machineDetection = null,
+            bool? sendOnPreanswer = null, List<string> timeLimit = null,
+            List<string> hangupOnRing = null, string machineDetection = null,
             uint? machineDetectionTime = null, string machineDetectionUrl = null,
             string machineDetectionMethod = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
             bool? errorIfrentNotFound = null) 
             {
             string _to = string.Join("<", to);
+            string _timeLimit = string.Join("<", timeLimit);
+            string _hangupOnRing = string.Join("<", hangupOnRing);
             var mandatoryParams = new List<string> { "from", "to", "answerUrl", "answerMethod" };
             var data = CreateData(
                 mandatoryParams,
@@ -83,8 +85,8 @@ namespace Plivo.Resource.Call {
                     callerName,
                     sendDigits,
                     sendOnPreanswer,
-                    timeLimit,
-                    hangupOnRing,
+                    _timeLimit,
+                    _hangupOnRing,
                     machineDetection,
                     machineDetectionTime,
                     machineDetectionUrl,
