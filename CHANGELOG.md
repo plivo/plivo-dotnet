@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.7.1](https://github.com/plivo/plivo-dotnet/tree/v4.7.1) (2020-04-24)
+- Fix Bulk call API response.
+
 ## [v4.7.0](https://github.com/plivo/plivo-dotnet/tree/v4.7.0) (2020-03-31)
 - Add application cascade delete support.
 
