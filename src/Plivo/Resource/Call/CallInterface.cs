@@ -65,6 +65,18 @@ namespace Plivo.Resource.Call {
             bool? errorIfrentNotFound = null) 
             {
             string _to = string.Join("<", to);
+            string newTimeLimit = timeLimit.ToString();
+            string newHangupOnRing = hangupOnRing.ToString();
+            string newSendOnPreanswer = sendOnPreanswer.ToString();
+            if (to.Count > 1)
+            {
+                for (int i = 0; i < to.Count - 1; i++)
+                {
+                    if (newTimeLimit != null) newTimeLimit += "<" + timeLimit.ToString();
+                    if (newSendOnPreanswer != null) newSendOnPreanswer += "<" + sendOnPreanswer.ToString();
+                    if (newHangupOnRing != null) newHangupOnRing += "<" + hangupOnRing.ToString();
+                }
+            }
             var mandatoryParams = new List<string> { "from", "to", "answerUrl", "answerMethod" };
             var data = CreateData(
                 mandatoryParams,
@@ -82,9 +94,9 @@ namespace Plivo.Resource.Call {
                     fallbackMethod,
                     callerName,
                     sendDigits,
-                    sendOnPreanswer,
-                    timeLimit,
-                    hangupOnRing,
+                    newSendOnPreanswer,
+                    newTimeLimit,
+                    newHangupOnRing,
                     machineDetection,
                     machineDetectionTime,
                     machineDetectionUrl,
