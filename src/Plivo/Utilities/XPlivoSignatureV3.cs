@@ -17,6 +17,7 @@ namespace Plivo.Utilities
         /// <returns></returns>
         public static string GenerateUrl(string uri, Dictionary<string, string> parameters, string method)
         {
+            uri = uri.Replace("+", "%20");
             var parsedUrl = new Uri(uri);
             uri = parsedUrl.Scheme + "://" + parsedUrl.Host + parsedUrl.LocalPath;
             var parsedUrlQuery = Uri.UnescapeDataString(parsedUrl.Query);
@@ -60,7 +61,8 @@ namespace Plivo.Utilities
                     uri += GetSortedQueryParamString(parameters, false);
                 }
             }
-            
+
+            Console.WriteLine(uri);
             return uri;
         }
 
@@ -130,8 +132,12 @@ namespace Plivo.Utilities
         /// <param name="authToken"></param>
         /// <returns></returns>
         public static bool VerifySignature(string uri, string nonce, string xPlivoSignature, string authToken,
-            Dictionary<string, string> parameters, string method)
+            string method, Dictionary<string, string> parameters = null)
         {
+            if (parameters == null)
+            {
+                parameters = new Dictionary<string, string>();
+            }
             string computedSignature = ComputeSignature(uri, nonce, authToken, parameters, method);
             Console.WriteLine(computedSignature);
             var signatures = xPlivoSignature.Split(',');
