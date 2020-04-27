@@ -29,6 +29,7 @@
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
     
+    <PackageReference Include="JWT" Version="6.1.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resource\Address\" />
