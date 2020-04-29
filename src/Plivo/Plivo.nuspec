@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.8.0 Add V3 signature helper functions.
       * 4.7.1 Fix Bulk call API response.
       * 4.7.0 Add application cascade delete support.
       * 4.6.0 Add Tollfree support for Powerpack
