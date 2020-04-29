@@ -1,8 +1,21 @@
 
 # Change Log
 
-## [v4.4.10](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-04-29)
+
+## [v4.8.0](https://github.com/plivo/plivo-dotnet/tree/v4.8.0) (2020-04-29)
 - Add V3 signature helper functions.
+
+## [v4.7.1](https://github.com/plivo/plivo-dotnet/tree/v4.7.1) (2020-04-24)
+- Fix Bulk call API response.
+
+## [v4.7.0](https://github.com/plivo/plivo-dotnet/tree/v4.7.0) (2020-03-31)
+- Add application cascade delete support.
+
+## [v4.6.0](https://github.com/plivo/plivo-dotnet/tree/v4.6.0) (2020-03-30)
+- Add Tollfree support for Powerpack
+
+## [v4.5.0](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-03-27)
+- Add post call quality feedback API support.
 
 ## [v4.4.10](https://github.com/plivo/plivo-dotnet/tree/v4.4.10) (2020-03-05)
 - Fix Newtonsoft warning.
