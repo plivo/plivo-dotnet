@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.4.10](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-04-29)
+- Add V3 signature helper functions.
+
 ## [v4.4.10](https://github.com/plivo/plivo-dotnet/tree/v4.4.10) (2020-03-05)
 - Fix Newtonsoft warning.
 
