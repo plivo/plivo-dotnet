@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.8.0](https://github.com/plivo/plivo-dotnet/tree/v4.7.0) (2020-05-04)
+- Add JWT helper functions.
+
 ## [v4.7.0](https://github.com/plivo/plivo-dotnet/tree/v4.7.0) (2020-03-31)
 - Add application cascade delete support.
 

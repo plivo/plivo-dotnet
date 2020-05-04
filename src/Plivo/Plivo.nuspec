@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.7.0</version>
+    <version>4.8.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.8.0 Add JWT helper functions.
       * 4.7.0 Add application cascade delete support.
       * 4.6.0 Add Tollfree support for Powerpack
       * 4.5.0 Add post call quality feedback API support.
@@ -87,6 +88,7 @@
       <dependency id="System.Text.Encoding.Extensions" version="4.3.0" />
       <dependency id="System.Net.Http" version="4.3.1"/>
       <dependency id="System.IO.FileSystem" version="4.3.0" />
+      <dependency id="JWT" version="6.1.4" />
     </dependencies>
   </metadata>
   <files>
