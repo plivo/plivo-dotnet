@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.8.1](https://github.com/plivo/plivo-dotnet/tree/v4.8.1) (2020-05-19)
+- Add Send MMS using Media_ID support.
+
 ## [v4.8.0](https://github.com/plivo/plivo-dotnet/tree/v4.8.0) (2020-04-29)
 - Add V3 signature helper functions.
 
