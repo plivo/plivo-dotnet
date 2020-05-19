@@ -70,6 +70,16 @@ namespace Plivo.Resource.Powerpack {
                 .Find_ShortcodeAsync (shortcode, numberpooluuid);
         }
 
+        public DeleteResponse<Shortcode> Remove (string shortcode, bool? unrent = null) {
+            return PowerpackI
+                .Remove_Shortcode (numberpooluuid, shortcode, unrent);
+        }
+        public async Task<DeleteResponse<Shortcode>> RemoveAsync (
+            string shortcode, bool? unrent = null) {
+            return await PowerpackI
+                .Remove_ShortcodeAsync (numberpooluuid, shortcode, unrent);
+        }
+
         public override string ToString () {
             return "\n" +
                 "NumberPoolUUID: " + NumberPoolUUID + "\n" +

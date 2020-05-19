@@ -250,38 +250,6 @@ namespace Plivo.Resource.Message
         }
         #endregion
 
-        #region DeleteMedia
-        public DeleteResponse<MMSMedia> DeleteMedia(string messageUuid)
-        {
-            return ExecuteWithExceptionUnwrap(() =>
-            {
-                var result = Task.Run(async () => await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/").ConfigureAwait(false)).Result;
-                try
-                {
-                    result.Object.StatusCode = result.StatusCode;
-                }
-                catch (System.NullReferenceException)
-                {
-
-                }
-                return result.Object;
-            });
-        }
-        public async Task<DeleteResponse<MMSMedia>> DeleteMediaAsync(string messageUuid)
-        {
-            var result = await Client.Delete<DeleteResponse<MMSMedia>>(Uri + messageUuid + "/Media/");
-            try
-            {
-                result.Object.StatusCode = result.StatusCode;
-            }
-            catch (System.NullReferenceException)
-            {
-
-            }
-            return result.Object;
-        }
-
-        #endregion
 
         #region List
         /// <summary>

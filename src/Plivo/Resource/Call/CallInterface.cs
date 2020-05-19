@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Plivo.Client;
 
 namespace Plivo.Resource.Call {
@@ -64,6 +65,18 @@ namespace Plivo.Resource.Call {
             bool? errorIfrentNotFound = null) 
             {
             string _to = string.Join("<", to);
+            string newTimeLimit = timeLimit.ToString();
+            string newHangupOnRing = hangupOnRing.ToString();
+            string newSendOnPreanswer = sendOnPreanswer.ToString();
+            if (to.Count > 1)
+            {
+                for (int i = 0; i < to.Count - 1; i++)
+                {
+                    if (newTimeLimit != null) newTimeLimit += "<" + timeLimit.ToString();
+                    if (newSendOnPreanswer != null) newSendOnPreanswer += "<" + sendOnPreanswer.ToString();
+                    if (newHangupOnRing != null) newHangupOnRing += "<" + hangupOnRing.ToString();
+                }
+            }
             var mandatoryParams = new List<string> { "from", "to", "answerUrl", "answerMethod" };
             var data = CreateData(
                 mandatoryParams,
@@ -81,9 +94,9 @@ namespace Plivo.Resource.Call {
                     fallbackMethod,
                     callerName,
                     sendDigits,
-                    sendOnPreanswer,
-                    timeLimit,
-                    hangupOnRing,
+                    newSendOnPreanswer,
+                    newTimeLimit,
+                    newHangupOnRing,
                     machineDetection,
                     machineDetectionTime,
                     machineDetectionUrl,
@@ -98,6 +111,10 @@ namespace Plivo.Resource.Call {
             {
                 var result = Task.Run (async () => await Client.Update<CallCreateResponse> (Uri, data).ConfigureAwait (false)).Result;
                 result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.RequestUuid = responseJson["request_uuid"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
             });
         }
