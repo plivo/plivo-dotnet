@@ -12,6 +12,7 @@ namespace Plivo.Resource.RentedNumber {
         public string MonthlyRentalRate { get; set; }
         public string Number { get; set; }
         public string NumberType { get; set; }
+        public string Type { get; set; }
         public string Region { get; set; }
         public string ResourceUri { get; set; }
         public bool SmsEnabled { get; set; }
@@ -24,17 +25,27 @@ namespace Plivo.Resource.RentedNumber {
         public string City { get; set; }
         public string Country { get; set; }
 
-        public override string ToString () {
+        public override string ToString()
+        {
             return
-                "Addedon: " + AddedOn + "\n" +
-                "Alias " + Alias + "\n" +
-                "Application: " + Application + "\n" +
-                "SMSEnabled: " + SmsEnabled + "\n" +
-                "SMSrate " + SmsRate + "\n" +
-                "VoiceEnabled: " + VoiceEnabled + "\n" +
-                "VoiceRate: " + VoiceRate + "\n" +
-                "Region: " + Region + "\n" +
-                "MonthlyRentalRate " + MonthlyRentalRate + "\n";
+                "added_on: " + AddedOn + "\n" +
+                "alias: " + Alias + "\n" +
+                "application: " + Application + "\n" +
+                "carrier: " + Carrier + "\n" +
+                "monthly_rental_rate: " + MonthlyRentalRate + "\n" +
+                "number: " + Number + "\n" +
+                "number_type: " + NumberType + "\n" +
+                "type: " + Type + "\n" +
+                "region: " + Region + "\n" +
+                "resource_uri" + ResourceUri + "\n" +
+                "sms_enabled: " + SmsEnabled + "\n" +
+                "sms_rate: " + SmsRate + "\n" +
+                "subaccount: " + SubAccount + "\n" +
+                "voice_enabled: " + VoiceEnabled + "\n" +
+                "voice_rate: " + VoiceRate + "\n" +
+                "city: " + City + "\n" +
+                "country: " + Country + "\n" +
+                "verification_info: " + VerificationInfo + "\n";
         }
 
         #region Update
