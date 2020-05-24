@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.8.2 Fix List All Rented Numbers API response.
       * 4.8.1 Add Send MMS using Media_ID support.
       * 4.8.0 Add V3 signature helper functions.
       * 4.7.1 Fix Bulk call API response.
