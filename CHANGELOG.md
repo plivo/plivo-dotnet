@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.8.2](https://github.com/plivo/plivo-dotnet/tree/v4.8.1) (2020-05-19)
+- Fix List All Rented Numbers API response.
+
 ## [v4.8.1](https://github.com/plivo/plivo-dotnet/tree/v4.8.1) (2020-05-19)
 - Add Send MMS using Media_ID support.
 
