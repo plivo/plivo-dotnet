@@ -22,6 +22,9 @@ namespace Plivo
         public AccessToken(String authId, String authToken, String username)
         {
             BasicAuth = new BasicAuth(authId, authToken);
+            if (username.Length == 0) {
+                throw new PlivoValidationException("username empty");
+            }
             Username = username;
         }
 
