@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.9.0](https://github.com/plivo/plivo-dotnet/tree/v4.9.0) (2020-05-28)
+- Add JWT helper functions.
+
 ## [v4.8.2](https://github.com/plivo/plivo-dotnet/tree/v4.8.1) (2020-05-19)
 - Fix List All Rented Numbers API response.
 
