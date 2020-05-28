@@ -24,7 +24,7 @@ namespace Plivo.Resource.Message
 
         #region Create
         /// <summary>
-        /// Create Message with the specified src, dst, text, type, url, method , log, media_urls.
+        /// Create Message with the specified src, dst, text, type, url, method , log, media_urls, media_ids.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="src">Source.</param>
@@ -37,9 +37,10 @@ namespace Plivo.Resource.Message
         /// <param name="trackable">trackable.</param>
         /// <param name="powerpackUUID">powerpackUUID</param>
         ///<param name="media_urls">media_urls</param>
+        ///<param name="media_ids">media_ids</param>
         public MessageCreateResponse Create(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
         {
 
             string _dst = string.Join("<", dst);
@@ -59,7 +60,8 @@ namespace Plivo.Resource.Message
                     method,
                     log,
                     trackable,
-                    media_urls
+                    media_urls,
+                    media_ids
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -76,7 +78,8 @@ namespace Plivo.Resource.Message
                     method,
                     log,
                     trackable,
-                    media_urls
+                    media_urls,
+                    media_ids
                 });
 
 
@@ -112,9 +115,10 @@ namespace Plivo.Resource.Message
         /// <param name="trackable">trackable.</param>
         /// <param name="powerpackUUID">powerpackUUID</param>
         ///<param name="media_urls">media_urls</param>
+        ///<param name="media_ids">media_ids</param>
         public async Task<MessageCreateResponse> CreateAsync(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
         {
 
             string _dst = string.Join("<", dst);
@@ -134,7 +138,8 @@ namespace Plivo.Resource.Message
                     method,
                     log,
                     trackable,
-                    media_urls
+                    media_urls,
+                    media_ids
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -151,7 +156,8 @@ namespace Plivo.Resource.Message
                     method,
                     log,
                     trackable,
-                    media_urls
+                    media_urls,
+                    media_ids
                 });
 
 
