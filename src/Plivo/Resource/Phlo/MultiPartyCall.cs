@@ -1,13 +1,12 @@
 using System;
 using Plivo.Exception;
-using Plivo.Resource.Member;
 
 namespace Plivo.Resource.Phlo.MultiPartyCall
 {
     public class MultiPartyCall : Node.Node
     {
-        public Lazy<MemberInterface> _member;
-        private MemberInterface MemberI => _member.Value;
+        public Lazy<Member.MemberInterface> _member;
+        private Member.MemberInterface MemberI => _member.Value;
         
         public BaseResponse Call(string triggerSource, string to, string role)
         {
