@@ -2,7 +2,7 @@ using System;
 using Plivo.Exception;
 using Plivo.Resource.Member;
 
-namespace Plivo.Resource.MultiPartyCall
+namespace Plivo.Resource.Phlo.MultiPartyCall
 {
     public class MultiPartyCall : Node.Node
     {
