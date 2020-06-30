@@ -19,6 +19,8 @@ namespace Plivo.Resource.Call
         public uint? CallDuration { get; set; }
         public string CallStatus { get; set; }
         public string CallUuid { get; set; }
+        public string ConferenceUuid { get; set; }
+        public string CallState { get; set; }
         public string EndTime { get; set; }
         public string FromNumber { get; set; }
         public string InitiationTime { get; set; }
@@ -362,11 +364,14 @@ namespace Plivo.Resource.Call
             return 
                     "StatusCode: " + StatusCode + "\n" +
                    "AnswerTime: " + AnswerTime + "\n" +
+                   "ApiId: " + ApiId + "\n" +
                    "BillDuration: " + BillDuration + "\n" +
                    "BilledDuration: " + BilledDuration + "\n" +
                    "CallDirection: " + CallDirection + "\n" +
                    "CallDuration: " + CallDuration + "\n" +
+                   "CallState: " + CallState + "\n" +
                    "CallUuid: " + CallUuid + "\n" +
+                   "ConferenceUuid: " + ConferenceUuid + "\n" +
                    "EndTime: " + EndTime + "\n" +
                    "FromNumber: " + FromNumber + "\n" +
                    "InitiationTime: " + InitiationTime + "\n" +

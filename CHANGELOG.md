@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.9.1](https://github.com/plivo/plivo-dotnet/tree/v4.9.1) (2020-06-30)
+- Fix List Call Details response.
+
 ## [v4.9.0](https://github.com/plivo/plivo-dotnet/tree/v4.9.0) (2020-05-28)
 - Add JWT helper functions.
 
