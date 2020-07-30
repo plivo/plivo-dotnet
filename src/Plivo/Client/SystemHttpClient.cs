@@ -28,6 +28,9 @@ namespace Plivo.Client
         /// </summary>
         /// <value>The client.</value>
         public System.Net.Http.HttpClient _client { get; set; }
+        public System.Net.Http.HttpClient _voiceBaseUriClient { get; set; }
+        public System.Net.Http.HttpClient _voiceFallback1Client { get; set; }
+        public System.Net.Http.HttpClient _voiceFallback2Client { get; set; }
         public System.Net.Http.HttpClient _callInsightsclient { get; set; }
 
         public class PascalCasePropertyNamesContractResolver : DefaultContractResolver
@@ -110,7 +113,24 @@ namespace Plivo.Client
             var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
-        
+            _voiceBaseUriClient = _client;
+            _voiceBaseUriClient.DefaultRequestHeaders.Authorization = authHeader;
+            _voiceBaseUriClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api-dev.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            _voiceBaseUriClient.BaseAddress = new Uri(voiceBaseServerUri + "/");
+            
+            _voiceFallback1Client = _client;
+            _voiceFallback1Client.DefaultRequestHeaders.Authorization = authHeader;
+            _voiceFallback1Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://api-dev.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            _voiceFallback1Client.BaseAddress = new Uri(voiceFallback1Uri + "/");
+            
+            _voiceFallback2Client = _client;
+            _voiceFallback2Client.DefaultRequestHeaders.Authorization = authHeader;
+            _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://api-qa.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            _voiceFallback2Client.BaseAddress = new Uri(voiceFallback2Uri + "/");
+
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
             _callInsightsclient.DefaultRequestHeaders.Authorization = authHeader;
             _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
@@ -140,9 +160,15 @@ namespace Plivo.Client
             HttpRequestMessage request = null;
 
             bool isCallInsightsRequest = false;
+            bool isVoiceRequest = false;
+            // int voiceRetryCount = 0;
             if (data.ContainsKey("is_call_insights_request")) {
                 isCallInsightsRequest = true;
                 data.Remove("is_call_insights_request");
+            }
+            else if (data.ContainsKey("is_voice_request")) {
+                isVoiceRequest = true;
+                data.Remove("is_voice_request");
             }
 
             switch (method)
@@ -224,13 +250,21 @@ namespace Plivo.Client
             
             if (isCallInsightsRequest) {
                 response = await _callInsightsclient.SendAsync(request).ConfigureAwait(false);
-            } 
+            }
+            else if (isVoiceRequest) {
+                response = await _voiceBaseUriClient.SendAsync(request).ConfigureAwait(false);
+                if ((int)response.StatusCode >= 500) {
+                    response = await _voiceFallback1Client.SendAsync(request).ConfigureAwait(false);
+                    if ((int)response.StatusCode >= 500) {
+                        response = await _voiceFallback2Client.SendAsync(request).ConfigureAwait(false);
+                    }
+                }
+            }
             else {
                 response = await _client.SendAsync(request).ConfigureAwait(false);
             }
 
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse;
             try {

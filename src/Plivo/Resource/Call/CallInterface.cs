@@ -78,6 +78,7 @@ namespace Plivo.Resource.Call {
                 }
             }
             var mandatoryParams = new List<string> { "from", "to", "answerUrl", "answerMethod" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new 
@@ -104,7 +105,8 @@ namespace Plivo.Resource.Call {
                     sipHeaders,
                     ringTimeout,
                     parentCallUuid,
-                    errorIfrentNotFound
+                    errorIfrentNotFound,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap(() => 
