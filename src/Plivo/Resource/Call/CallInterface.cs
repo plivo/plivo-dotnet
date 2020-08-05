@@ -165,6 +165,7 @@ namespace Plivo.Resource.Call {
             {
             string _to = string.Join("<", to);
             var mandatoryParams = new List<string> { "from", "to", "answerUrl", "answerMethod" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new 
@@ -191,11 +192,16 @@ namespace Plivo.Resource.Call {
                     sipHeaders,
                     ringTimeout,
                     parentCallUuid,
-                    errorIfrentNotFound
+                    errorIfrentNotFound,
+                    isVoiceRequest
                 });
 
             var result = await Client.Update<CallCreateResponse>(Uri, data);
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.RequestUuid = responseJson["request_uuid"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -250,6 +256,7 @@ namespace Plivo.Resource.Call {
             var _endTime_Lte = endTime_Lte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
 
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new 
@@ -272,7 +279,8 @@ namespace Plivo.Resource.Call {
                     _endTime_Lt,
                     _endTime_Lte,
                     limit,
-                    offset
+                    offset,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap (() => 
@@ -334,6 +342,7 @@ namespace Plivo.Resource.Call {
             var _endTime_Lte = endTime_Lte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
 
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new 
@@ -356,7 +365,8 @@ namespace Plivo.Resource.Call {
                     _endTime_Lt,
                     _endTime_Lte,
                     limit,
-                    offset
+                    offset, 
+                    isVoiceRequest
                 });
             var resources = await ListResources<ListResponse<Call>> (data);
             resources.Objects.ForEach (
@@ -374,9 +384,11 @@ namespace Plivo.Resource.Call {
         /// <returns>The get.</returns>
         /// <param name="callUuid">Call UUID.</param>
         public Call Get (string callUuid) {
+            bool isVoiceRequest = true;
+            var data = CreateData(new List<string> {""},new {isVoiceRequest});
             return ExecuteWithExceptionUnwrap (() => 
             {
-                var call = Task.Run (async () => await GetResource<Call> (callUuid).ConfigureAwait (false)).Result;
+                var call = Task.Run (async () => await GetResource<Call> (callUuid, data).ConfigureAwait (false)).Result;
                 call.Interface = this;
                 return call;
             });
@@ -388,7 +400,9 @@ namespace Plivo.Resource.Call {
         /// <param name="callUuid">Call UUID.</param>
         public async Task<Call> GetAsync(string callUuid) 
         {
-            var call = await GetResource<Call>(callUuid);
+            bool isVoiceRequest = true;
+            var data = CreateData(new List<string> {""},new {isVoiceRequest});
+            var call = await GetResource<Call>(callUuid, data);
             call.Interface = this;
             return call;
         }
@@ -407,6 +421,7 @@ namespace Plivo.Resource.Call {
             {
             var status = "live";
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new 
@@ -414,7 +429,8 @@ namespace Plivo.Resource.Call {
                     status,
                     callDirection,
                     fromNumber,
-                    toNumber
+                    toNumber,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap(() => 
@@ -433,13 +449,15 @@ namespace Plivo.Resource.Call {
             string fromNumber = null, string toNumber = null) {
             var status = "live";
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
                     status,
                     callDirection,
                     fromNumber,
-                    toNumber
+                    toNumber,
+                    isVoiceRequest
                 });
 
             return await ListResources<LiveCallListResponse> (data);
@@ -455,7 +473,7 @@ namespace Plivo.Resource.Call {
         public LiveCall GetLive (string liveCallUuid) {
             return ExecuteWithExceptionUnwrap (() => {
                 var liveCall = Task.Run (async () => await GetResource<LiveCall> (
-                    liveCallUuid, new Dictionary<string, object> () { { "status", "live" } }).ConfigureAwait (false)).Result;
+                    liveCallUuid, new Dictionary<string, object> () { { "status", "live" } , {"is_voice_request", true}}).ConfigureAwait (false)).Result;
                 liveCall.Interface = this;
                 return liveCall;
             });
@@ -467,7 +485,7 @@ namespace Plivo.Resource.Call {
         /// <param name="liveCallUuid">Live call UUID.</param>
         public async Task<LiveCall> GetLiveAsync (string liveCallUuid) {
             var liveCall = await GetResource<LiveCall> (
-                liveCallUuid, new Dictionary<string, object> () { { "status", "live" } });
+                liveCallUuid, new Dictionary<string, object> () { { "status", "live" } , {"is_voice_request", true}});
             liveCall.Interface = this;
             return liveCall;
         }
@@ -482,7 +500,7 @@ namespace Plivo.Resource.Call {
         public QueuedCall GetQueued (string callUuid) {
             return ExecuteWithExceptionUnwrap (() => {
                 var queuedCall = Task.Run (async () => await GetResource<QueuedCall> (
-                    callUuid, new Dictionary<string, object> () { { "status", "queued" } }).ConfigureAwait (false)).Result;
+                    callUuid, new Dictionary<string, object> () { { "status", "queued" }, {"is_voice_request", true} }).ConfigureAwait (false)).Result;
                 queuedCall.Interface = this;
                 return queuedCall;
             });
@@ -494,7 +512,7 @@ namespace Plivo.Resource.Call {
         /// <param name="callUuid">Call UUID.</param>
         public async Task<QueuedCall> GetQueuedAsync (string callUuid) {
             var queuedCall = await GetResource<QueuedCall> (
-                callUuid, new Dictionary<string, object> () { { "status", "queued" } });
+                callUuid, new Dictionary<string, object> () { { "status", "queued" }, {"is_voice_request", true} });
             queuedCall.Interface = this;
             return queuedCall;
         }
@@ -508,7 +526,7 @@ namespace Plivo.Resource.Call {
         public QueuedCallListResponse ListQueued () {
             return ExecuteWithExceptionUnwrap (() => {
                 return Task.Run (async () => await ListResources<QueuedCallListResponse> (
-                    new Dictionary<string, object> () { { "status", "queued" } }).ConfigureAwait (false)).Result;
+                    new Dictionary<string, object> () { { "status", "queued" }, {"is_voice_request", true}}).ConfigureAwait (false)).Result;
             });
         }
         /// <summary>
@@ -518,7 +536,7 @@ namespace Plivo.Resource.Call {
         public async Task<QueuedCallListResponse> ListQueuedAsync () {
             return
             await ListResources<QueuedCallListResponse> (
-                new Dictionary<string, object> () { { "status", "queued" } });
+                new Dictionary<string, object> () { { "status", "queued" }, {"is_voice_request", true} });
         }
         #endregion
 
@@ -529,8 +547,10 @@ namespace Plivo.Resource.Call {
         /// <returns>The delete.</returns>
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> Delete (string callUuid) {
+            bool isVoiceRequest = true;
+            var data = CreateData(new List<string> {""},new {isVoiceRequest});
             return ExecuteWithExceptionUnwrap (() => {
-                return Task.Run (async () => await DeleteResource<DeleteResponse<Call>> (callUuid).ConfigureAwait (false)).Result;
+                return Task.Run (async () => await DeleteResource<DeleteResponse<Call>> (callUuid, data).ConfigureAwait (false)).Result;
             });
         }
         /// <summary>
@@ -539,7 +559,9 @@ namespace Plivo.Resource.Call {
         /// <returns>The delete.</returns>
         /// <param name="callUuid">Call UUID.</param>
         public async Task<DeleteResponse<Call>> DeleteAsync (string callUuid) {
-            return await DeleteResource<DeleteResponse<Call>> (callUuid);
+            bool isVoiceRequest = true;
+            var data = CreateData(new List<string> {""},new {isVoiceRequest});
+            return await DeleteResource<DeleteResponse<Call>> (callUuid,data);
         }
         #endregion
 
@@ -559,6 +581,7 @@ namespace Plivo.Resource.Call {
             string alegMethod = null, string blegUrl = null,
             string blegMethod = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -566,9 +589,9 @@ namespace Plivo.Resource.Call {
                     alegUrl,
                     alegMethod,
                     blegUrl,
-                    blegMethod
+                    blegMethod,
+                    isVoiceRequest
                 });
-
             return ExecuteWithExceptionUnwrap (() => {
                 var result = Task.Run (async () => await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/", data).ConfigureAwait (false)).Result;
                 result.Object.StatusCode = result.StatusCode;
@@ -590,6 +613,7 @@ namespace Plivo.Resource.Call {
             string alegMethod = null, string blegUrl = null,
             string blegMethod = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -597,7 +621,8 @@ namespace Plivo.Resource.Call {
                     alegUrl,
                     alegMethod,
                     blegUrl,
-                    blegMethod
+                    blegMethod,
+                    isVoiceRequest
                 });
             var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/", data);
             result.Object.StatusCode = result.StatusCode;
@@ -621,6 +646,7 @@ namespace Plivo.Resource.Call {
             string legs = null, bool? loop = null, bool? mix = null) {
             var _urls = string.Join (",", urls);
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -628,7 +654,8 @@ namespace Plivo.Resource.Call {
                     length,
                     legs,
                     loop,
-                    mix
+                    mix,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap (() => {
@@ -656,6 +683,7 @@ namespace Plivo.Resource.Call {
             string legs = null, bool? loop = null, bool? mix = null) {
             var _urls = string.Join (",", urls);
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -663,7 +691,8 @@ namespace Plivo.Resource.Call {
                     length,
                     legs,
                     loop,
-                    mix
+                    mix,
+                    isVoiceRequest
                 });
             var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/Play/", data);
             try {
@@ -683,7 +712,7 @@ namespace Plivo.Resource.Call {
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> StopPlaying (string callUuid) {
             return ExecuteWithExceptionUnwrap (() => {
-                var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/").ConfigureAwait (false)).Result;
+                var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/", new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait (false)).Result;
                 try {
                     result.Object.StatusCode = result.StatusCode;
                 } catch (System.NullReferenceException) {
@@ -698,7 +727,7 @@ namespace Plivo.Resource.Call {
         /// <returns>The playing.</returns>
         /// <param name="callUuid">Call UUID.</param>
         public async Task<DeleteResponse<Call>> StopPlayingAsync (string callUuid) {
-            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/");
+            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/", new Dictionary<string, object> () { {"is_voice_request", true} });
             try {
                 result.Object.StatusCode = result.StatusCode;
             } catch (System.NullReferenceException) {
@@ -727,6 +756,7 @@ namespace Plivo.Resource.Call {
             string transactionMethod = null, string callbackUrl = null,
             string callbackMethod = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -736,7 +766,8 @@ namespace Plivo.Resource.Call {
                     transactionUrl,
                     transactionMethod,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap (() => {
@@ -767,6 +798,7 @@ namespace Plivo.Resource.Call {
             string transactionMethod = null, string callbackUrl = null,
             string callbackMethod = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -776,7 +808,8 @@ namespace Plivo.Resource.Call {
                     transactionUrl,
                     transactionMethod,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    isVoiceRequest
                 });
             var result = await Client.Update<RecordCreateResponse<Call>> (Uri + callUuid + "/Record/", data);
             
@@ -794,8 +827,9 @@ namespace Plivo.Resource.Call {
         /// <param name="URL">URL.</param>
         public DeleteResponse<Call> StopRecording (string callUuid, string URL = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
-                mandatoryParams, new { URL });
+                mandatoryParams, new { URL, isVoiceRequest });
 
             return ExecuteWithExceptionUnwrap (() => {
                 var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Record/", data).ConfigureAwait (false)).Result;
@@ -815,8 +849,9 @@ namespace Plivo.Resource.Call {
         /// <param name="URL">URL.</param>
         public async Task<DeleteResponse<Call>> StopRecordingAsync (string callUuid, string URL = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
-                mandatoryParams, new { URL });
+                mandatoryParams, new { URL, isVoiceRequest });
             var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Record/", data);
             try {
                 result.Object.StatusCode = result.StatusCode;
@@ -844,6 +879,7 @@ namespace Plivo.Resource.Call {
             string language = null, string legs = null, bool? loop = null,
             bool? mix = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -852,7 +888,8 @@ namespace Plivo.Resource.Call {
                     language,
                     legs,
                     loop,
-                    mix
+                    mix,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap (() => {
@@ -877,6 +914,7 @@ namespace Plivo.Resource.Call {
             string language = null, string legs = null, bool? loop = null,
             bool? mix = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
@@ -885,7 +923,8 @@ namespace Plivo.Resource.Call {
                     language,
                     legs,
                     loop,
-                    mix
+                    mix,
+                    isVoiceRequest
                 });
             var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/Speak/", data);
             result.Object.StatusCode = result.StatusCode;
@@ -902,7 +941,7 @@ namespace Plivo.Resource.Call {
         /// <param name="callUuid">Call UUID.</param>
         public DeleteResponse<Call> StopSpeaking (string callUuid) {
             return ExecuteWithExceptionUnwrap (() => {
-                var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Speak/").ConfigureAwait (false)).Result;
+                var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Speak/",new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait (false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -913,7 +952,7 @@ namespace Plivo.Resource.Call {
         /// <returns>The speaking.</returns>
         /// <param name="callUuid">Call UUID.</param>
         public async Task<DeleteResponse<Call>> StopSpeakingAsync (string callUuid) {
-            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Speak/");
+            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Speak/", new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -930,11 +969,13 @@ namespace Plivo.Resource.Call {
         public UpdateResponse<Call> SendDigits (
             string callUuid, string digits, string leg = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
                     digits,
-                    leg
+                    leg,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap (() => {
@@ -953,11 +994,13 @@ namespace Plivo.Resource.Call {
         public async Task<UpdateResponse<Call>> SendDigitsAsync (
             string callUuid, string digits, string leg = null) {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData (
                 mandatoryParams,
                 new {
                     digits,
-                    leg
+                    leg,
+                    isVoiceRequest
                 });
             var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/DTMF/", data);
             result.Object.StatusCode = result.StatusCode;
@@ -973,7 +1016,7 @@ namespace Plivo.Resource.Call {
         /// <param name="requestUuid">Request UUID.</param>
         public DeleteResponse<Call> CancelCall (string requestUuid) {
             return ExecuteWithExceptionUnwrap (() => {
-                var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> ("Account/" + Client.GetAuthId () + "/Request/" + requestUuid + "/", null).ConfigureAwait (false)).Result;
+                var result = Task.Run (async () => await Client.Delete<DeleteResponse<Call>> ("Account/" + Client.GetAuthId () + "/Request/" + requestUuid + "/", new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait (false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -984,7 +1027,7 @@ namespace Plivo.Resource.Call {
         /// <returns>The call.</returns>
         /// <param name="requestUuid">Request UUID.</param>
         public async Task<DeleteResponse<Call>> CancelCallAsync (string requestUuid) {
-            var result = await Client.Delete<DeleteResponse<Call>> ("Account/" + Client.GetAuthId () + "/Request/" + requestUuid + "/", null);
+            var result = await Client.Delete<DeleteResponse<Call>> ("Account/" + Client.GetAuthId () + "/Request/" + requestUuid + "/", new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }

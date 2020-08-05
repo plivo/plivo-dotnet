@@ -110,25 +110,25 @@ namespace Plivo.Client
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
             _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api-qa.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _voiceBaseUriClient = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceBaseUriClient.DefaultRequestHeaders.Authorization = authHeader;
             _voiceBaseUriClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api-qa.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://voice.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceBaseUriClient.BaseAddress = new Uri(voiceBaseServerUri + "/");
             
             _voiceFallback1Client = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceFallback1Client.DefaultRequestHeaders.Authorization = authHeader;
             _voiceFallback1Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://api-qa.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-usw1.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceFallback1Client.BaseAddress = new Uri(voiceFallback1Uri + "/");
             
             _voiceFallback2Client = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceFallback2Client.DefaultRequestHeaders.Authorization = authHeader;
             _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://api-qa.voice.plivodev.com/" + Version.ApiVersion  : baseUri;
+            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-use1.plivo.com//" + Version.ApiVersion  : baseUri;
             _voiceFallback2Client.BaseAddress = new Uri(voiceFallback2Uri + "/");
 
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
@@ -251,108 +251,20 @@ namespace Plivo.Client
                 isVoiceRequest = true;
                 data.Remove("is_voice_request");
             }
-
-            switch (method)
-            {
-                case "GET":
-                    request = new HttpRequestMessage(HttpMethod.Get, uri + AsQueryString(data));
-                    request.Headers.Add("Accept", "application/json");
-                    break;
-
-                case "POST":
-                    request = new HttpRequestMessage(HttpMethod.Post, uri);
-
-                    if (filesToUpload == null)
-                    {
-                        request.Headers.Add("Accept", "application/json");
-                        request.Content = new StringContent(
-                            JsonConvert.SerializeObject(data),
-                            Encoding.UTF8,
-                            "application/json"
-                        );
-                    }
-                    else
-                    {
-                        MultipartFormDataContent multipartContent = new MultipartFormDataContent();
-
-                        foreach (var key in filesToUpload.Keys)
-                        {
-                            FileInfo fileInfo = new FileInfo(filesToUpload[key]);
-                            string fileName = fileInfo.Name;
-                            HttpContent fileContents = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
-
-                            string fileHeader = null;
-
-                            switch (fileName.Split('.')[1].ToLower())
-                            {
-                                case "jpg":
-                                    fileHeader = "image/jpeg";
-                                    break;
-                                case "png":
-                                    fileHeader = "image/png";
-                                    break;
-                                case "jpeg":
-                                    fileHeader = "image/jpeg";
-                                    break;
-                                case "pdf":
-                                    fileHeader = "application/pdf";
-                                    break;
-                            }
-
-                            fileContents.Headers.Add("Content-Type", fileHeader);
-                            multipartContent.Add(fileContents, "file", fileName);
-                        }
-
-                        foreach (var key in data.Keys)
-                        {
-                            HttpContent stringContent = new StringContent((string) data[key].ToString());
-                            multipartContent.Add(stringContent, key);
-                        }
-
-                        request.Content = multipartContent;
-                    }
-
-                    break;
-
-                case "DELETE":
-                    request = new HttpRequestMessage(HttpMethod.Delete, uri);
-                    request.Headers.Add("Accept", "application/json");
-                    request.Content = new StringContent(
-                        JsonConvert.SerializeObject(data),
-                        Encoding.UTF8,
-                        "application/json"
-                    );
-                    break;
-
-                default:
-                    throw new NotSupportedException(
-                        method + " not supported");
-            }
+            
             request = NewRequestFunc(method, uri, data, filesToUpload);
             if (isCallInsightsRequest) {
                 response = await _callInsightsclient.SendAsync(request).ConfigureAwait(false);
             }
             else if (isVoiceRequest)
             {
-                Console.WriteLine("0");
                 response = await _voiceBaseUriClient.SendAsync(request).ConfigureAwait(false);
-                Console.WriteLine((int)response.StatusCode);
-                // Console.WriteLine(response);
                 if ((int)response.StatusCode >= 500) {
-                    // request = new HttpRequestMessage(HttpMethod.Get, uri + AsQueryString(data));
-                    // request.Headers.Add("Accept", "application/json");
-                    Console.WriteLine("1");
                     request = NewRequestFunc(method, uri, data, filesToUpload);
                     response = await _voiceFallback1Client.SendAsync(request).ConfigureAwait(false);
-                    Console.WriteLine((int)response.StatusCode);
-                    Console.Write(_voiceFallback1Client.BaseAddress);
                     if ((int)response.StatusCode >= 500) {
-                        // request = new HttpRequestMessage(HttpMethod.Get, uri + AsQueryString(data));
-                        // request.Headers.Add("Accept", "application/json");
-                        Console.WriteLine("2");
                         request = NewRequestFunc(method, uri, data, filesToUpload);
                         response = await _voiceFallback2Client.SendAsync(request).ConfigureAwait(false);
-                        Console.WriteLine((int)response.StatusCode);
                     }
                 }
             }

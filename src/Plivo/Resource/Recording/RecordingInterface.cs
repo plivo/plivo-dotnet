@@ -31,7 +31,7 @@ namespace Plivo.Resource.Recording
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var recording = Task.Run(async () => await GetResource<Recording>(recordingId).ConfigureAwait(false)).Result;
+				var recording = Task.Run(async () => await GetResource<Recording>(recordingId, new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
 				recording.Interface = this;
 				return recording;
 			});
@@ -43,7 +43,7 @@ namespace Plivo.Resource.Recording
         /// <param name="recordingId">Recording identifier.</param>
         public async Task<Recording> GetAsync(string recordingId)
         {
-            var recording = await GetResource<Recording>(recordingId);
+            var recording = await GetResource<Recording>(recordingId, new Dictionary<string, object> () { {"is_voice_request", true} });
             recording.Interface = this;
             return recording;
         }
@@ -78,6 +78,7 @@ namespace Plivo.Resource.Recording
             var _addTime_Lte = addTime_Lte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
 
             var mandatoryParams = new List<string> {""};
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -90,7 +91,8 @@ namespace Plivo.Resource.Recording
                     _addTime_Lt,
                     _addTime_Lte,
                     limit,
-                    offset
+                    offset,
+                    isVoiceRequest
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -131,6 +133,7 @@ namespace Plivo.Resource.Recording
             var _addTime_Lte = addTime_Lte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
 
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -143,7 +146,8 @@ namespace Plivo.Resource.Recording
                     _addTime_Lt,
                     _addTime_Lte,
                     limit,
-                    offset
+                    offset,
+                    isVoiceRequest
                 });
             var resources = await ListResources<ListResponse<Recording>>(data);
             resources.Objects.ForEach(
@@ -164,7 +168,7 @@ namespace Plivo.Resource.Recording
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				return Task.Run(async () => await DeleteResource<DeleteResponse<Recording>>(recordingId).ConfigureAwait(false)).Result;
+				return Task.Run(async () => await DeleteResource<DeleteResponse<Recording>>(recordingId, new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
 			});
         }
 
@@ -175,7 +179,7 @@ namespace Plivo.Resource.Recording
         /// <param name="recordingId">Recording identifier.</param>
         public async Task<DeleteResponse<Recording>> DeleteAsync(string recordingId)
         {
-            return await DeleteResource<DeleteResponse<Recording>>(recordingId);
+            return await DeleteResource<DeleteResponse<Recording>>(recordingId, new Dictionary<string, object> () { {"is_voice_request", true} });
         }
         #endregion
     }
