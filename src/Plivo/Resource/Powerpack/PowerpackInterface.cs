@@ -277,7 +277,7 @@ namespace Plivo.Resource.Powerpack
         /// <param uuid="uuid">UUID</param>
         /// <param name="offset">Offset.</param>
         public ListResponse<Numbers> List_Numbers(string uuid, string starts_with =null, string country_iso2 =null,
-        string type=null, uint? limit = null, uint? offset = null)
+        string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -288,7 +288,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -315,7 +316,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="offset">Offset.</param>
          public async Task<ListResponse<Numbers>> List_NumbersAsync(
           string uuid, string starts_with =null, string country_iso2 =null,
-          string type=null, uint? limit = null, uint? offset = null)
+          string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
@@ -326,7 +327,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
             var resources = await ListResources<ListResponse<Numbers>>("NumberPool/"+uuid+"/Number", data);
             resources.Objects.ForEach(
@@ -352,7 +354,7 @@ namespace Plivo.Resource.Powerpack
         /// <param uuid="uuid">UUID</param>
         /// <param name="offset">Offset.</param>
         public uint  Count_Number(string uuid, string starts_with =null, string country_iso2 =null,
-        string type=null, uint? limit = null, uint? offset = null)
+        string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -363,7 +365,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
 
 			// return ExecuteWithExceptionUnwrap(() =>
@@ -390,7 +393,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="offset">Offset.</param>
          public async Task<uint> Count_NumbersAsync(
           string uuid, string starts_with =null, string country_iso2 =null,
-          string type=null, uint? limit = null, uint? offset = null)
+          string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
@@ -401,7 +404,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
             var resources = await ListResources<ListResponse<Numbers>>("NumberPool/"+uuid+"/Number", data);
             resources.Objects.ForEach(
@@ -421,14 +425,15 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
 
-        public Numbers Add_Number( string uuid, string number, bool rent=false )
+        public Numbers Add_Number( string uuid, string number, bool rent=false, string service = null)
         { 
         var mandatoryParams = new List<string>{""};
            var data= CreateData(
             mandatoryParams,
             new
             {
-                rent
+                rent,
+                service
             }); 
         
     
@@ -448,14 +453,15 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
 		public async Task<Numbers> Add_NumberAsync(
-			 string uuid, string number, bool rent=false)
+			 string uuid, string number, bool rent=false, string service = null)
 		{
         var mandatoryParams = new List<string>{""};
                 var data = CreateData(
                 mandatoryParams,
                 new
                 {
-                    rent
+                    rent,
+                    service
                 });
            
 		var result = await Client.Update<Numbers>(Uri + "NumberPool/"+uuid+"/Number/"+number+"/", data);
@@ -604,19 +610,35 @@ namespace Plivo.Resource.Powerpack
         /// <returns>The Number resource.</returns>
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
-        public Numbers Find_Number(string uuid,string number)
+        /// <param name="service">Service.</param>
+        public Numbers Find_Number(string uuid,string number, string service = null)
         { 
+            var mandatoryParams = new List<string>{""};
+            var data= CreateData(
+            mandatoryParams,
+            new
+            {
+                service
+            }); 
+
             return ExecuteWithExceptionUnwrap(() =>
 			{
-				var numberpoolResponse = Task.Run(async () => await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number).ConfigureAwait(false)).Result;
+				var numberpoolResponse = Task.Run(async () => await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number, data).ConfigureAwait(false)).Result;
 				numberpoolResponse.Interface = this;
 				return numberpoolResponse;
 			});
         }
         public async Task<Numbers> Find_NumberAsync(string uuid,
-			string number)
+			string number, string service = null)
 		{
-        var numberpoolresp = await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number);
+        var mandatoryParams = new List<string>{""};
+        var data= CreateData(
+        mandatoryParams,
+        new
+        {
+            service
+        }); 
+        var numberpoolresp = await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number, data);
         numberpoolresp.Interface = this;
         return numberpoolresp;
 

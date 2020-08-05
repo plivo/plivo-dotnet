@@ -84,37 +84,37 @@ namespace Plivo.Resource.Powerpack {
                 .UpdateAsync (Id, name, application_type, application_id, sticky_sender, local_connect);
         }
         public ListResponse<Numbers> List_Numbers (string starts_with = null, string country_iso2 = null,
-            string type = null, uint? limit = null, uint? offset = null) {
+            string type = null, string service = null, uint? limit = null, uint? offset = null) {
             return ((PowerpackInterface) Interface)
-                .List_Numbers (number_pool_id, starts_with, country_iso2, type, limit, offset);
+                .List_Numbers (number_pool_id, starts_with, country_iso2, type, limit, offset, service);
         }
         public async Task<ListResponse<Numbers>> List_NumbersAsync (
             string starts_with = null, string country_iso2 = null,
-            string type = null, uint? limit = null, uint? offset = null) {
+            string type = null, string service = null, uint? limit = null, uint? offset = null) {
             return await ((PowerpackInterface) Interface)
-                .List_NumbersAsync (number_pool_id, starts_with, country_iso2, type, limit, offset);
+                .List_NumbersAsync (number_pool_id, starts_with, country_iso2, type, limit, offset, service);
 
         }
 
         public uint Count_Numbers (string starts_with = null, string country_iso2 = null,
-            string type = null, uint? limit = null, uint? offset = null) {
+            string type = null, string service = null, uint? limit = null, uint? offset = null) {
             return ((PowerpackInterface) Interface)
-                .Count_Number (number_pool_id, starts_with, country_iso2, type, limit, offset);
+                .Count_Number (number_pool_id, starts_with, country_iso2, type, limit, offset, service);
         }
         public async Task<uint> Count_NumbersAsync (
             string starts_with = null, string country_iso2 = null,
-            string type = null, uint? limit = null, uint? offset = null) {
+            string type = null, string service = null, uint? limit = null, uint? offset = null) {
             return await ((PowerpackInterface) Interface)
-                .Count_NumbersAsync (number_pool_id, starts_with, country_iso2, type, limit, offset);
+                .Count_NumbersAsync (number_pool_id, starts_with, country_iso2, type, limit, offset, service);
 
         }
-        public Numbers Add_Number (string number) {
+        public Numbers Add_Number (string number, string service = null) {
             return ((PowerpackInterface) Interface)
-                .Add_Number (number_pool_id, number);
+                .Add_Number (number_pool_id, number, service);
         }
-        public async Task<Numbers> Add_NumberAsync (string number) {
+        public async Task<Numbers> Add_NumberAsync (string number, string service = null) {
             return await ((PowerpackInterface) Interface)
-                .Add_NumberAsync (number_pool_id, number);
+                .Add_NumberAsync (number_pool_id, number, service);
         }
 
         public Tollfree Add_Tollfree (string tollfree) {
@@ -146,14 +146,14 @@ namespace Plivo.Resource.Powerpack {
                 .Remove_TollfreeAsync (number_pool_id, tollfree, unrent);
         }
 
-        public Numbers Find_Number (string number) {
+        public Numbers Find_Number (string number, string service = null) {
             return ((PowerpackInterface) Interface)
-                .Find_Number (number_pool_id, number);
+                .Find_Number (number_pool_id, number, service);
         }
         public async Task<Numbers> Find_NumberAsync (
-            string number) {
+            string number, string service = null) {
             return await ((PowerpackInterface) Interface)
-                .Find_NumberAsync (number_pool_id, number);
+                .Find_NumberAsync (number_pool_id, number, service);
         }
         public ListResponse<Shortcode> List_Shortcode (uint? limit = null, uint? offset = null) {
             return ((PowerpackInterface) Interface)
@@ -203,23 +203,23 @@ namespace Plivo.Resource.Powerpack {
                 .Find_TollfreeAsync (tollfree, number_pool_id);
         }
 
-        public Numbers Buy_Add_Number (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null) {
+        public Numbers Buy_Add_Number (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null, string service = null) {
             if (number == null) {
                 var countryIso = country_iso2;
                 var numbers = PhoneNumberI.List (countryIso, type, pattern, region);
                 number = numbers.Objects[0].Number;
             }
             return ((PowerpackInterface) Interface)
-                .Add_Number (number_pool_id, number, true);
+                .Add_Number (number_pool_id, number, true, service);
         }
-        public async Task<Numbers> Buy_Add_NumberAsync (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null) {
+        public async Task<Numbers> Buy_Add_NumberAsync (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null, string service = null) {
             if (number == null) {
                 var countryIso = country_iso2;
                 var numbers = PhoneNumberI.List (countryIso, type, pattern, region);
                 number = numbers.Objects[0].Number;
             }
             return await ((PowerpackInterface) Interface)
-                .Add_NumberAsync (number_pool_id, number, true);
+                .Add_NumberAsync (number_pool_id, number, true, service);
         }
 
         public override string ToString () {
