@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
+- Add retries to multiple regions for voice requests.
+
 ## [v4.9.1](https://github.com/plivo/plivo-dotnet/tree/v4.9.1) (2020-06-30)
 - Fix List Call Details response.
 
