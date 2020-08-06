@@ -128,7 +128,7 @@ namespace Plivo.Client
             _voiceFallback2Client = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceFallback2Client.DefaultRequestHeaders.Authorization = authHeader;
             _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-use1.plivo.com//" + Version.ApiVersion  : baseUri;
+            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-use1.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceFallback2Client.BaseAddress = new Uri(voiceFallback2Uri + "/");
 
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
