@@ -175,8 +175,12 @@ namespace Plivo.Resource {
                 return func ();
             } catch (AggregateException ex) {
                 ex.Flatten ();
+                if (ex.InnerExceptions[0] is Newtonsoft.Json.JsonReaderException){
+                    throw new PlivoValidationException ("Unexpected error occured. Please contact plivo support");
+                }
                 throw ex.InnerExceptions[0];
-            }
+                
+            } 
         }
 
         public static void ExecuteWithExceptionUnwrap (Action func) {

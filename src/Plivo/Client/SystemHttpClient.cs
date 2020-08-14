@@ -15,6 +15,7 @@ using Newtonsoft.Json.Serialization;
 using Plivo.Authentication;
 using Plivo.Http;
 using Plivo.Utilities;
+using Plivo.Exception;
 
 namespace Plivo.Client
 {
@@ -157,7 +158,7 @@ namespace Plivo.Client
 
                 case "POST":
                     request = new HttpRequestMessage(HttpMethod.Post, uri);
-
+                    
                     if (filesToUpload == null)
                     {
                         request.Headers.Add("Accept", "application/json");
@@ -270,6 +271,10 @@ namespace Plivo.Client
             }
             else {
                 response = await _client.SendAsync(request).ConfigureAwait(false);
+            }
+
+            if (response.StatusCode.ToString() == "Unauthorized"){
+                    throw new PlivoAuthenticationException ("Unauthorized Request. Please check credentials");
             }
 
             var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
