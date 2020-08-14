@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.5.1](https://github.com/plivo/plivo-dotnet/tree/v4.5.1) (2020-08-14)
+- Added exception handling for non json error responses and statuscode 401.
+
 ## [v4.5.0](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-03-27)
 - Add post call quality feedback API support.
 
