@@ -1,8 +1,34 @@
 
 # Change Log
 
-## [v4.5.1](https://github.com/plivo/plivo-dotnet/tree/v4.5.1) (2020-08-14)
+## [v4.10.1](https://github.com/plivo/plivo-dotnet/tree/v4.10.1) (2020-08-14)
 - Added exception handling for non json error responses and statuscode 401.
+## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
+- Add retries to multiple regions for voice requests.
+
+## [v4.9.1](https://github.com/plivo/plivo-dotnet/tree/v4.9.1) (2020-06-30)
+- Fix List Call Details response.
+
+## [v4.9.0](https://github.com/plivo/plivo-dotnet/tree/v4.9.0) (2020-05-28)
+- Add JWT helper functions.
+
+## [v4.8.2](https://github.com/plivo/plivo-dotnet/tree/v4.8.1) (2020-05-19)
+- Fix List All Rented Numbers API response.
+
+## [v4.8.1](https://github.com/plivo/plivo-dotnet/tree/v4.8.1) (2020-05-19)
+- Add Send MMS using Media_ID support.
+
+## [v4.8.0](https://github.com/plivo/plivo-dotnet/tree/v4.8.0) (2020-04-29)
+- Add V3 signature helper functions.
+
+## [v4.7.1](https://github.com/plivo/plivo-dotnet/tree/v4.7.1) (2020-04-24)
+- Fix Bulk call API response.
+
+## [v4.7.0](https://github.com/plivo/plivo-dotnet/tree/v4.7.0) (2020-03-31)
+- Add application cascade delete support.
+
+## [v4.6.0](https://github.com/plivo/plivo-dotnet/tree/v4.6.0) (2020-03-30)
+- Add Tollfree support for Powerpack
 
 ## [v4.5.0](https://github.com/plivo/plivo-dotnet/tree/v4.5.0) (2020-03-27)
 - Add post call quality feedback API support.

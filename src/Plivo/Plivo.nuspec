@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.5.1</version>
+    <version>4.10.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,7 +12,16 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      * 4.5.1 Added exception handling for non json error responses and statuscode 401.
+      * 4.10.1 Added exception handling for non json error responses and statuscode 401.
+      * 4.10.0 Add retries to multiple regions for voice requests.
+      * 4.9.1 Fix List Call Details response.
+      * 4.9.0 Add JWT helper functions.
+      * 4.8.2 Fix List All Rented Numbers API response.
+      * 4.8.1 Add Send MMS using Media_ID support.
+      * 4.8.0 Add V3 signature helper functions.
+      * 4.7.1 Fix Bulk call API response.
+      * 4.7.0 Add application cascade delete support.
+      * 4.6.0 Add Tollfree support for Powerpack
       * 4.5.0 Add post call quality feedback API support.
       * 4.4.10 Fix Newtonsoft warning.
       * 4.4.9 Add Media support.
@@ -86,6 +95,7 @@
       <dependency id="System.Text.Encoding.Extensions" version="4.3.0" />
       <dependency id="System.Net.Http" version="4.3.1"/>
       <dependency id="System.IO.FileSystem" version="4.3.0" />
+      <dependency id="JWT" version="6.1.4" />
     </dependencies>
   </metadata>
   <files>

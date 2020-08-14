@@ -117,6 +117,15 @@ namespace Plivo.Resource.Powerpack {
                 .Add_NumberAsync (number_pool_id, number);
         }
 
+        public Tollfree Add_Tollfree (string tollfree) {
+            return ((PowerpackInterface) Interface)
+                .Add_Tollfree (number_pool_id, tollfree);
+        }
+        public async Task<Tollfree> Add_TollfreeAsync (string tollfree) {
+            return await ((PowerpackInterface) Interface)
+                .Add_TollfreeAsync (number_pool_id, tollfree);
+        }
+
         public DeleteResponse<Numbers> Remove_Number (string number, bool? unrent = null) {
             return ((PowerpackInterface) Interface)
                 .Remove_Number (number_pool_id, number, unrent);
@@ -125,6 +134,16 @@ namespace Plivo.Resource.Powerpack {
             string number, bool? unrent = null) {
             return await ((PowerpackInterface) Interface)
                 .Remove_NumberAsync (number_pool_id, number, unrent);
+        }
+
+        public DeleteResponse<Tollfree> Remove_Tollfree (string tollfree, bool? unrent = null) {
+            return ((PowerpackInterface) Interface)
+                .Remove_Tollfree (number_pool_id, tollfree, unrent);
+        }
+        public async Task<DeleteResponse<Tollfree>> Remove_TollfreeAsync (
+            string tollfree, bool? unrent = null) {
+            return await ((PowerpackInterface) Interface)
+                .Remove_TollfreeAsync (number_pool_id, tollfree, unrent);
         }
 
         public Numbers Find_Number (string number) {
@@ -153,6 +172,35 @@ namespace Plivo.Resource.Powerpack {
             string shortcode) {
             return await ((PowerpackInterface) Interface)
                 .Find_ShortcodeAsync (shortcode, number_pool_id);
+        }
+
+        public DeleteResponse<Shortcode> Remove_Shortcode (string shortcode, bool? unrent = null) {
+            return ((PowerpackInterface) Interface)
+                .Remove_Shortcode (number_pool_id, shortcode, unrent);
+        }
+        public async Task<DeleteResponse<Shortcode>> Remove_ShortcodeAsync (
+            string shortcode, bool? unrent = null) {
+            return await ((PowerpackInterface) Interface)
+                .Remove_ShortcodeAsync (number_pool_id, shortcode, unrent);
+        }
+
+        public ListResponse<Tollfree> List_Tollfree (uint? limit = null, uint? offset = null) {
+            return ((PowerpackInterface) Interface)
+                .ListTollfree (number_pool_id, limit, offset);
+        }
+        public async Task<ListResponse<Tollfree>> List_TollfreeAsync (uint? limit = null, uint? offset = null) {
+            return await ((PowerpackInterface) Interface)
+                .List_TollfreeAsync (number_pool_id, limit, offset);
+        }
+
+        public Tollfree Find_Tollfree (string tollfree) {
+            return ((PowerpackInterface) Interface)
+                .Find_Tollfree (tollfree, number_pool_id);
+        }
+        public async Task<Tollfree> Find_TollfreeAsync (
+            string tollfree) {
+            return await ((PowerpackInterface) Interface)
+                .Find_TollfreeAsync (tollfree, number_pool_id);
         }
 
         public Numbers Buy_Add_Number (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null) {

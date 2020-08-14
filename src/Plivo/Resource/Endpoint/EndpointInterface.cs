@@ -34,6 +34,7 @@ namespace Plivo.Resource.Endpoint
             string username, string password, string alias, string appId = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -41,7 +42,8 @@ namespace Plivo.Resource.Endpoint
                     username,
                     password,
                     alias,
-                    appId
+                    appId,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -64,6 +66,7 @@ namespace Plivo.Resource.Endpoint
             string username, string password, string alias, string appId = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -71,7 +74,8 @@ namespace Plivo.Resource.Endpoint
                     username,
                     password,
                     alias,
-                    appId
+                    appId,
+                    isVoiceRequest
                 });
             var result = await Client.Update<EndpointCreateResponse>(Uri, data);
             result.Object.StatusCode = result.StatusCode;
@@ -89,7 +93,7 @@ namespace Plivo.Resource.Endpoint
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var endpoint = Task.Run(async () => await GetResource<Endpoint>(endpointId).ConfigureAwait(false)).Result;
+                var endpoint = Task.Run(async () => await GetResource<Endpoint>(endpointId, new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
                 endpoint.Interface = this;
                 return endpoint;
             });
@@ -102,7 +106,7 @@ namespace Plivo.Resource.Endpoint
         /// <param name="endpointId">App identifier.</param>
         public async Task<Endpoint> GetAsync(string endpointId)
         {
-            var endpoint = await GetResource<Endpoint>(endpointId);
+            var endpoint = await GetResource<Endpoint>(endpointId, new Dictionary<string, object> () { {"is_voice_request", true} });
             endpoint.Interface = this;
             return endpoint;
         }
@@ -120,8 +124,9 @@ namespace Plivo.Resource.Endpoint
             string subaccount = null, uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
-                mandatoryParams, new { subaccount, limit, offset });
+                mandatoryParams, new { subaccount, limit, offset, isVoiceRequest});
 
             return ExecuteWithExceptionUnwrap(() =>
             {
@@ -145,8 +150,9 @@ namespace Plivo.Resource.Endpoint
             string subaccount = null, uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
-                mandatoryParams, new { subaccount, limit, offset });
+                mandatoryParams, new { subaccount, limit, offset, isVoiceRequest });
             var resources = await ListResources<ListResponse<Endpoint>>(data);
 
             resources.Objects.ForEach(
@@ -167,7 +173,7 @@ namespace Plivo.Resource.Endpoint
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                return Task.Run(async () => await DeleteResource<DeleteResponse<Endpoint>>(endpointId).ConfigureAwait(false)).Result;
+                return Task.Run(async () => await DeleteResource<DeleteResponse<Endpoint>>(endpointId, new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
             });
         }
         /// <summary>
@@ -177,7 +183,7 @@ namespace Plivo.Resource.Endpoint
         /// <param name="endpointId">Endpoint identifier.</param>
         public async Task<DeleteResponse<Endpoint>> DeleteAsync(string endpointId)
         {
-            return await DeleteResource<DeleteResponse<Endpoint>>(endpointId);
+            return await DeleteResource<DeleteResponse<Endpoint>>(endpointId, new Dictionary<string, object> () { {"is_voice_request", true} });
         }
         #endregion
 
@@ -195,13 +201,15 @@ namespace Plivo.Resource.Endpoint
             string appId = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
                 {
                     password,
                     alias,
-                    appId
+                    appId,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -224,13 +232,15 @@ namespace Plivo.Resource.Endpoint
             string appId = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
                 {
                     password,
                     alias,
-                    appId
+                    appId,
+                    isVoiceRequest
                 });
             var result = await Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data);
             result.Object.StatusCode = result.StatusCode;
