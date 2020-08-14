@@ -2,7 +2,7 @@
 # Change Log
 
 ## [v4.10.1](https://github.com/plivo/plivo-dotnet/tree/v4.10.1) (2020-08-14)
-- Added exception handling for non json error responses and statuscode 401.
+- Add exception handling for non-JSON error responses and statusCode 401.
 ## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
 - Add retries to multiple regions for voice requests.
 
