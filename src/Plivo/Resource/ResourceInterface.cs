@@ -176,7 +176,7 @@ namespace Plivo.Resource {
             } catch (AggregateException ex) {
                 ex.Flatten ();
                 if (ex.InnerExceptions[0] is Newtonsoft.Json.JsonReaderException){
-                    throw new PlivoValidationException ("Unexpected error occured. Please check credentials or contact plivo support");
+                    throw new PlivoValidationException ("Unexpected error occured. Please contact plivo support");
                 }
                 throw ex.InnerExceptions[0];
                 
