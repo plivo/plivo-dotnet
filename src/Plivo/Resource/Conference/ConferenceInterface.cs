@@ -31,7 +31,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var conference = Task.Run(async () => await GetResource<Conference>(conferenceName).ConfigureAwait(false)).Result;
+                var conference = Task.Run(async () => await GetResource<Conference>(conferenceName,new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
                 conference.Interface = this;
                 return conference;
             });
@@ -43,7 +43,7 @@ namespace Plivo.Resource.Conference
         /// <param name="conferenceName">Name.</param>
         public async Task<Conference> GetAsync(string conferenceName)
         {
-            var conference = await GetResource<Conference>(conferenceName);
+            var conference = await GetResource<Conference>(conferenceName, new Dictionary<string, object> () { {"is_voice_request", true} });
             conference.Interface = this;
             return conference;
         }
@@ -58,7 +58,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                return Task.Run(async () => await ListResources<ConferenceListResponse>().ConfigureAwait(false)).Result;
+                return Task.Run(async () => await ListResources<ConferenceListResponse>(new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
             });
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Plivo.Resource.Conference
         /// <returns>The list.</returns>
         public async Task<ConferenceListResponse> ListAsync()
         {
-            return await ListResources<ConferenceListResponse>();
+            return await ListResources<ConferenceListResponse>(new Dictionary<string, object> () { {"is_voice_request", true} });
         }
         #endregion
 
@@ -80,7 +80,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var result = Task.Run(async () => await Client.Delete<DeleteResponse<Conference>>(Uri).ConfigureAwait(false)).Result;
+                var result = Task.Run(async () => await Client.Delete<DeleteResponse<Conference>>(Uri, new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -91,7 +91,7 @@ namespace Plivo.Resource.Conference
         /// <returns>The all.</returns>
         public async Task<DeleteResponse<Conference>> DeleteAllAsync()
         {
-            var result = await Client.Delete<DeleteResponse<Conference>>(Uri);
+            var result = await Client.Delete<DeleteResponse<Conference>>(Uri, new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -107,7 +107,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                return Task.Run(async () => await DeleteResource<DeleteResponse<Conference>>(name).ConfigureAwait(false)).Result;
+                return Task.Run(async () => await DeleteResource<DeleteResponse<Conference>>(name,new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
             });
         }
         /// <summary>
@@ -117,7 +117,7 @@ namespace Plivo.Resource.Conference
         /// <param name="name">Name.</param>
         public async Task<DeleteResponse<Conference>> DeleteAsync(string name)
         {
-            return await DeleteResource<DeleteResponse<Conference>>(name);
+            return await DeleteResource<DeleteResponse<Conference>>(name, new Dictionary<string, object> () { {"is_voice_request", true} });
         }
         #endregion
 
@@ -133,7 +133,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/").ConfigureAwait(false)).Result;
+                var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/",new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -147,7 +147,7 @@ namespace Plivo.Resource.Conference
         public async Task<ConferenceMemberActionResponse> HangupMemberAsync(
             string conferenceName, string memberId)
         {
-            var result = await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/");
+            var result = await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/", new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -165,7 +165,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/").ConfigureAwait(false)).Result;
+                var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/",new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -180,7 +180,7 @@ namespace Plivo.Resource.Conference
         public async Task<ConferenceMemberActionResponse> KickMemberAsync(
             string conferenceName, string memberId)
         {
-            var result = await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/");
+            var result = await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/", new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -198,7 +198,7 @@ namespace Plivo.Resource.Conference
         {
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").ConfigureAwait(false)).Result;
+                var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/", new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -212,7 +212,7 @@ namespace Plivo.Resource.Conference
         public async Task<ConferenceMemberActionResponse> MuteMemberAsync(
             string conferenceName, List<string> memberId)
         {
-            var result = await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/");
+            var result = await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/", new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -230,7 +230,7 @@ namespace Plivo.Resource.Conference
             ExecuteWithExceptionUnwrap(() =>
             {
                 Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
-                    Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/").ConfigureAwait(false)).Wait();
+                    Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/",new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Wait();
             });
         }
         /// <summary>
@@ -242,7 +242,7 @@ namespace Plivo.Resource.Conference
             string conferenceName, List<string> memberId)
         {
             await Client.Delete<ConferenceMemberActionResponse>(
-                Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/");
+                Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/", new Dictionary<string, object> () { {"is_voice_request", true} });
         }
         #endregion
 
@@ -265,7 +265,7 @@ namespace Plivo.Resource.Conference
                         "/Member/" +
                         string.Join(",", memberId) +
                         "/Play/",
-                        new Dictionary<string, object>() { { "url", url } }
+                        new Dictionary<string, object>() { { "url", url } , {"is_voice_request", true}}
                     ).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
@@ -288,7 +288,7 @@ namespace Plivo.Resource.Conference
                     "/Member/" +
                     string.Join(",", memberId) +
                     "/Play/",
-                    new Dictionary<string, object>() { { "url", url } }
+                    new Dictionary<string, object>() { { "url", url }, {"is_voice_request", true} }
                 );
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
@@ -313,7 +313,8 @@ namespace Plivo.Resource.Conference
                         conferenceName +
                         "/Member/" +
                         string.Join(",", memberId) +
-                        "/Play/"
+                        "/Play/",
+                        new Dictionary<string, object> () { {"is_voice_request", true} }
                     ).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
@@ -334,7 +335,8 @@ namespace Plivo.Resource.Conference
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
-                    "/Play/"
+                    "/Play/",
+                    new Dictionary<string, object> () { {"is_voice_request", true} }
                 );
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
@@ -356,13 +358,15 @@ namespace Plivo.Resource.Conference
             string voice = null, string language = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
                 {
                     text,
                     voice,
-                    language
+                    language,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -393,13 +397,15 @@ namespace Plivo.Resource.Conference
             string voice = null, string language = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
                 new
                 {
                     text,
                     voice,
-                    language
+                    language,
+                    isVoiceRequest
                 });
             var result = await Client.Update<ConferenceMemberActionResponse>(
                     Uri +
@@ -431,7 +437,8 @@ namespace Plivo.Resource.Conference
                         conferenceName +
                         "/Member/" +
                         string.Join(",", memberId) +
-                        "/Speak/").ConfigureAwait(false))
+                        "/Speak/",
+                        new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false))
                         .Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
@@ -452,7 +459,8 @@ namespace Plivo.Resource.Conference
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
-                    "/Speak/"
+                    "/Speak/",
+                    new Dictionary<string, object> () { {"is_voice_request", true} }
                 );
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
@@ -476,7 +484,8 @@ namespace Plivo.Resource.Conference
                         conferenceName +
                         "/Member/" +
                         string.Join(",", memberId) +
-                        "/Deaf/"
+                        "/Deaf/",
+                        new Dictionary<string, object> () { {"is_voice_request", true} }
                     ).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
@@ -496,7 +505,8 @@ namespace Plivo.Resource.Conference
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
-                    "/Deaf/");
+                    "/Deaf/",
+                    new Dictionary<string, object> () { {"is_voice_request", true} });
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -519,7 +529,8 @@ namespace Plivo.Resource.Conference
                         conferenceName +
                         "/Member/" +
                         string.Join(",", memberId) +
-                        "/Deaf/"
+                        "/Deaf/",
+                        new Dictionary<string, object> () { {"is_voice_request", true} }
                     ).ConfigureAwait(false)).Result;
                 try{
                     result.Object.StatusCode = result.StatusCode;
@@ -539,7 +550,8 @@ namespace Plivo.Resource.Conference
                     conferenceName +
                     "/Member/" +
                     string.Join(",", memberId) +
-                    "/Deaf/"
+                    "/Deaf/",
+                    new Dictionary<string, object> () { {"is_voice_request", true} }
                 );
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
@@ -565,6 +577,7 @@ namespace Plivo.Resource.Conference
             string callbackMethod = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams, new
                 {
@@ -573,7 +586,8 @@ namespace Plivo.Resource.Conference
                     transcriptionUrl,
                     transcriptionMethod,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    isVoiceRequest
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -604,6 +618,7 @@ namespace Plivo.Resource.Conference
             string callbackMethod = null)
         {
             var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams, new
                 {
@@ -612,7 +627,8 @@ namespace Plivo.Resource.Conference
                     transcriptionUrl,
                     transcriptionMethod,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    isVoiceRequest
                 });
 
             var result = await Client.Update<RecordCreateResponse<Conference>>(
@@ -635,7 +651,8 @@ namespace Plivo.Resource.Conference
             ExecuteWithExceptionUnwrap(() =>
             {
                 Task.Run(async () => await Client.Delete<object>(
-                    Uri + conferenceName + "/Record/"
+                    Uri + conferenceName + "/Record/",
+                    new Dictionary<string, object> () { {"is_voice_request", true} }
                 ).ConfigureAwait(false)).Wait();
             });
         }
@@ -647,7 +664,8 @@ namespace Plivo.Resource.Conference
          string conferenceName)
         {
             await Client.Delete<object>(
-                Uri + conferenceName + "/Record/"
+                Uri + conferenceName + "/Record/",
+                new Dictionary<string, object> () { {"is_voice_request", true} }
             );
         }
         #endregion
