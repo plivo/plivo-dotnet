@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.10.2](https://github.com/plivo/plivo-dotnet/tree/v4.10.2) (2020-08-19)
+- Internal changes in PHLO for MultiPartyCall component.
+
 ## [v4.10.1](https://github.com/plivo/plivo-dotnet/tree/v4.10.1) (2020-08-14)
 - Add exception handling for non-JSON error responses and statusCode 401.
 ## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
