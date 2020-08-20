@@ -110,11 +110,11 @@ namespace Plivo.Resource.Powerpack {
         }
         public Numbers Add_Number (string number, string service = null) {
             return ((PowerpackInterface) Interface)
-                .Add_Number (number_pool_id, number, service);
+                .Add_Number (number_pool_id, number, false, service);
         }
         public async Task<Numbers> Add_NumberAsync (string number, string service = null) {
             return await ((PowerpackInterface) Interface)
-                .Add_NumberAsync (number_pool_id, number, service);
+                .Add_NumberAsync (number_pool_id, number, false, service);
         }
 
         public Tollfree Add_Tollfree (string tollfree) {
