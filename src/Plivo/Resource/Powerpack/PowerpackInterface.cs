@@ -234,7 +234,7 @@ namespace Plivo.Resource.Powerpack
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var result = Task.Run(async () => await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid, data).ConfigureAwait(false)).Result;
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid+"/", data).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
 				return result.Object; 
 			});
@@ -260,7 +260,7 @@ namespace Plivo.Resource.Powerpack
                 application_id,
                 sticky_sender,
                 local_connect });
-			var result = await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid, data);
+			var result = await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid+"/", data);
             result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
@@ -425,7 +425,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
 
-        public Numbers Add_Number( string uuid, string number, bool rent=false, string service = null)
+        public Numbers Add_Number( string uuid, string number, string service = null, bool rent=false)
         { 
         var mandatoryParams = new List<string>{""};
            var data= CreateData(
@@ -453,7 +453,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
 		public async Task<Numbers> Add_NumberAsync(
-			 string uuid, string number, bool rent=false, string service = null)
+			 string uuid, string number, string service = null, bool rent=false)
 		{
         var mandatoryParams = new List<string>{""};
                 var data = CreateData(

@@ -210,7 +210,7 @@ namespace Plivo.Resource.Powerpack {
                 number = numbers.Objects[0].Number;
             }
             return ((PowerpackInterface) Interface)
-                .Add_Number (number_pool_id, number, true, service);
+                .Add_Number (number_pool_id, number, service, true);
         }
         public async Task<Numbers> Buy_Add_NumberAsync (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null, string service = null) {
             if (number == null) {
@@ -219,7 +219,7 @@ namespace Plivo.Resource.Powerpack {
                 number = numbers.Objects[0].Number;
             }
             return await ((PowerpackInterface) Interface)
-                .Add_NumberAsync (number_pool_id, number, true, service);
+                .Add_NumberAsync (number_pool_id, number, service, true);
         }
 
         public override string ToString () {
