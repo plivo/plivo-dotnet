@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Plivo.Exception;
-using Plivo.Resource.MultiPartyCall;
 using Plivo.Resource.Node;
 
 namespace Plivo.Resource.Phlo
@@ -25,9 +24,9 @@ namespace Plivo.Resource.Phlo
         
         
         public Lazy<NodeInterface> _node;
-        public Lazy<MultiPartyCallInterface> _multiPartyCall;
+        public Lazy<MultiPartyCall.MultiPartyCallInterface> _multiPartyCall;
         public NodeInterface NodeI => _node.Value;
-        public MultiPartyCallInterface MultiPartyCallI => _multiPartyCall.Value;
+        public MultiPartyCall.MultiPartyCallInterface MultiPartyCallI => _multiPartyCall.Value;
 
         public MultiPartyCall.MultiPartyCall MultiPartyCall(string nodeId)
         {

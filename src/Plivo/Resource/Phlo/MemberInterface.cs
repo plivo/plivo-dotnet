@@ -1,7 +1,7 @@
 using Plivo.Client;
 using System.Threading.Tasks;
 
-namespace Plivo.Resource.Member
+namespace Plivo.Resource.Phlo.Member
 {
     public class MemberInterface: ResourceInterface
     {
