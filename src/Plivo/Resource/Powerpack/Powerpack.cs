@@ -7,6 +7,12 @@ namespace Plivo.Resource.Powerpack {
     /// Powerpack.
     /// </summary>
 
+    public class NumberPriority: {
+        public string service_type { get; set; }
+        public string country_iso { get; set; }
+        public Dictionary<string, string> priority { get; set; }
+    }
+
     public class Powerpack : Resource {
         public new string Id => uuid;
         public string number_pool_id { get; set; }
@@ -58,6 +64,12 @@ namespace Plivo.Resource.Powerpack {
         public string uuid { get; set; }
 
         /// <summary>
+        /// Number Priority
+        /// </summary>
+        /// <value>The number_priority .</value>
+        public List<NumberPriority> number_priority { get; set; }
+
+        /// <summary>
         /// Gets or sets the number_pool.
         /// </summary>
         /// <value>The number_pool.</value>
@@ -74,14 +86,14 @@ namespace Plivo.Resource.Powerpack {
         }
 
         public UpdateResponse<Powerpack> Update (string name = null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null) {
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority {}) {
             return ((PowerpackInterface) Interface)
-                .Update (Id, name, application_type, application_id, sticky_sender, local_connect);
+                .Update (Id, name, application_type, application_id, sticky_sender, local_connect, number_priority);
         }
         public async Task<UpdateResponse<Powerpack>> UpdateAsync (string name = null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null) {
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority {}) {
             return await ((PowerpackInterface) Interface)
-                .UpdateAsync (Id, name, application_type, application_id, sticky_sender, local_connect);
+                .UpdateAsync (Id, name, application_type, application_id, sticky_sender, local_connect, number_priority);
         }
         public ListResponse<Numbers> List_Numbers (string starts_with = null, string country_iso2 = null,
             string type = null, uint? limit = null, uint? offset = null) {
@@ -231,7 +243,8 @@ namespace Plivo.Resource.Powerpack {
                 "ApplicationType: " + application_type + "\n" +
                 "ApplicationId: " + application_id + "\n" +
                 "NumberPool: " + number_pool + "\n" +
-                "CreatedOn: " + created_on + "\n";
+                "CreatedOn: " + created_on + "\n" +
+                "NumberPriority: " + number_priority + "\n";
         }
     }
 }
