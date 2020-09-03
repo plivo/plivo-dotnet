@@ -9,12 +9,6 @@ using Plivo.Resource.PhoneNumber ;
 
 namespace Plivo.Resource.Powerpack
 {
-    public class NumberPriority: {
-        public string service_type { get; set; }
-        public string country_iso { get; set; }
-        public Dictionary<string, string> priority { get; set; }
-    }
-
     /// <summary>
     /// Powerpack interface.
     /// </summary>
@@ -41,7 +35,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="number_priority">NumberPriority</param>
         public Powerpack Create(
             string name, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = {})
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
         {
         var mandatoryParams = new List<string>{"name"};
         var data = CreateData(
@@ -75,7 +69,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="number_priority">NumberPriority.<param>
 		public async Task<Powerpack> CreateAsync(
 			string name, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = {})
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 
 			var mandatoryParams = new List<string>{"name"};
@@ -234,7 +228,7 @@ namespace Plivo.Resource.Powerpack
         ///<param name="uuid">UUID.</param>
         /// <param name="number_priority">NumberPriority.</param>
         public UpdateResponse<Powerpack> Update(string uuid, string name=null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = {})
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 			var mandatoryParams = new List<string> { "uuid" };
 			var data = CreateData(mandatoryParams, new { name,
@@ -265,7 +259,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="number_priority">NumberPriority.</param>
 
         public async Task<UpdateResponse<Powerpack>> UpdateAsync(string uuid, string name=null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 			var mandatoryParams = new List<string> { "uuid" };
 			var data = CreateData(

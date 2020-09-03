@@ -1,18 +1,11 @@
 using System;
 using System.Threading.Tasks;
 using Plivo.Resource.PhoneNumber;
-
+using System.Collections.Generic;
 namespace Plivo.Resource.Powerpack {
     /// <summary>
     /// Powerpack.
     /// </summary>
-
-    public class NumberPriority: {
-        public string service_type { get; set; }
-        public string country_iso { get; set; }
-        public Dictionary<string, string> priority { get; set; }
-    }
-
     public class Powerpack : Resource {
         public new string Id => uuid;
         public string number_pool_id { get; set; }
@@ -86,12 +79,12 @@ namespace Plivo.Resource.Powerpack {
         }
 
         public UpdateResponse<Powerpack> Update (string name = null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority {}) {
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null) {
             return ((PowerpackInterface) Interface)
                 .Update (Id, name, application_type, application_id, sticky_sender, local_connect, number_priority);
         }
         public async Task<UpdateResponse<Powerpack>> UpdateAsync (string name = null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority {}) {
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null) {
             return await ((PowerpackInterface) Interface)
                 .UpdateAsync (Id, name, application_type, application_id, sticky_sender, local_connect, number_priority);
         }
