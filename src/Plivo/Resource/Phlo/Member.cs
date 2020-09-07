@@ -1,4 +1,4 @@
-namespace Plivo.Resource.Member
+namespace Plivo.Resource.Phlo.Member
 {
     public class Member: Resource
     {
