@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.10.2</version>
+    <version>4.11.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.11.0 Add Powerpack for MMS
       * 4.10.2 Internal changes in PHLO for MultiPartyCall component.
       * 4.10.1 Added exception handling for non json error responses and statuscode 401.
       * 4.10.0 Add retries to multiple regions for voice requests.

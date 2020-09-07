@@ -57,19 +57,25 @@ namespace Plivo.Resource.Powerpack {
         /// <value>The Type</value>
         public string Type { get; set; }
 
+        /// <summary>
+        /// Gets or sets Service.
+        /// </summary>
+        /// <value>The Service</value>
+        public string Service { get; set; }
+
         public Numbers Get (string memberId) {
             var member = new Numbers ();
             return member;
         }
         public ListResponse<Numbers> List (string starts_with = null, string country_iso2 = null,
-            string type = null, uint? limit = null, uint? offset = null) {
-            return PowerpackI.List_Numbers (numberpooluuid, starts_with, country_iso2, type, limit, offset);
+            string type = null, uint? limit = null, uint? offset = null, string service = null) {
+            return PowerpackI.List_Numbers (numberpooluuid, starts_with, country_iso2, type, limit, offset, service);
         }
         public async Task<ListResponse<Numbers>> ListAsync (
             string starts_with = null, string country_iso2 = null,
-            string type = null, uint? limit = null, uint? offset = null) {
+            string type = null, uint? limit = null, uint? offset = null, string service = null) {
             return await PowerpackI
-                .List_NumbersAsync (numberpooluuid, starts_with, country_iso2, type, limit, offset);
+                .List_NumbersAsync (numberpooluuid, starts_with, country_iso2, type, limit, offset, service);
 
         }
 
@@ -115,23 +121,23 @@ namespace Plivo.Resource.Powerpack {
                 .Find_NumberAsync (numberpooluuid, number);
         }
 
-        public Numbers Buy_Add_Number (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null) {
+        public Numbers Buy_Add_Number (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null, string service = null) {
             if (number == null) {
                 var countryIso = country_iso2;
                 var numbers = PhoneNumberI.List (countryIso, type, pattern, region);
                 number = numbers.Objects[0].Number;
             }
             return PowerpackI
-                .Add_Number (numberpooluuid, number, true);
+                .Add_Number (numberpooluuid, number, service, true);
         }
-        public async Task<Numbers> Buy_Add_NumberAsync (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null) {
+        public async Task<Numbers> Buy_Add_NumberAsync (string number = null, string type = null, string country_iso2 = null, string region = null, string pattern = null, string service = null) {
             if (number == null) {
                 var countryIso = country_iso2;
                 var numbers = PhoneNumberI.List (countryIso, type, pattern, region);
                 number = numbers.Objects[0].Number;
             }
             return await PowerpackI
-                .Add_NumberAsync (numberpooluuid, number, true);
+                .Add_NumberAsync (numberpooluuid, number, service, true);
         }
 
         public override string ToString () {
@@ -139,6 +145,7 @@ namespace Plivo.Resource.Powerpack {
                 "Type: " + Type + "\n" +
                 "NumberPoolUUID: " + NumberPoolUuid + "\n" +
                 "Number: " + Number + "\n" +
+                "Service: " + Service + "\n" + 
                 "CountryISO2: " + CountryIso2 + "\n" +
                 "AddedOn: " + AddedOn + "\n" +
                 "AccountPhoneNumberResource: " + AccountPhoneNumberResource + "\n";
