@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.13.0](https://github.com/plivo/plivo-dotnet/tree/v4.13.0) (2020-10-06)
+- Added support for Lookup API.
+
 ## [v4.12.0](https://github.com/plivo/plivo-dotnet/tree/v4.12.0) (2020-09-24)
 - Add "PublicUri" optional param support for Application API
 
