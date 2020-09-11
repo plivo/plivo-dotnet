@@ -17,6 +17,7 @@ using Plivo.Resource.Address;
 using Plivo.Resource.Identity;
 using Plivo.Resource.CallFeedback;
 using Plivo.Resource.Media;
+using Plivo.Resource.MultiPartyCall;
 
 namespace Plivo
 {
@@ -40,6 +41,7 @@ namespace Plivo
         private readonly Lazy<AccountInterface> _account;
         private readonly Lazy<SubaccountInterface> _subaccount;
         private readonly Lazy<ApplicationInterface> _application;
+        private readonly Lazy<MultiPartyCallInterface> _multipartycall;
         private readonly Lazy<CallInterface> _call;
         private readonly Lazy<ConferenceInterface> _conference;
         private readonly Lazy<MessageInterface> _message;
@@ -143,6 +145,8 @@ namespace Plivo
         /// </summary>
         /// <value>Call Feedback.</value>
         public CallFeedbackInterface CallFeedback => _callFeedback.Value;
+        
+        public MultiPartyCallInterface MultiPartyCall => _multipartycall.Value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
@@ -180,6 +184,7 @@ namespace Plivo
             _address = new Lazy<AddressInterface>(() => new AddressInterface(Client));
             _identity = new Lazy<IdentityInterface>(() => new IdentityInterface(Client));
             _callFeedback = new Lazy<CallFeedbackInterface>(() => new CallFeedbackInterface(Client));
+            _multipartycall = new Lazy<MultiPartyCallInterface>(() => new MultiPartyCallInterface(Client));
         }
     }
 }
