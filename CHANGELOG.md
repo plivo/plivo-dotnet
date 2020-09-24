@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.12.0](https://github.com/plivo/plivo-dotnet/tree/v4.12.0) (2020-09-24)
+- Add "PublicUri" optional param support for Application URI
+
 ## [v4.11.0](https://github.com/plivo/plivo-dotnet/tree/v4.11.0) (2020-09-07)
 - Add Powerpack for MMS
 
