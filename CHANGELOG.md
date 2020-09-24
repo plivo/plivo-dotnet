@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.11.0](https://github.com/plivo/plivo-dotnet/tree/v4.11.0) (2020-09-07)
+- Add Powerpack for MMS
+
 ## [v4.10.2](https://github.com/plivo/plivo-dotnet/tree/v4.10.2) (2020-08-19)
 - Internal changes in PHLO for MultiPartyCall component.
 
