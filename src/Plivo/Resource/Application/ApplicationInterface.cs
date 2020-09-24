@@ -43,6 +43,7 @@ namespace Plivo.Resource.Application
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
+        /// <param name="publicUri">Public URI.</param>
 
         public ApplicationCreateResponse Create(
             string appName, string answerUrl = null, string answerMethod = null,
@@ -50,7 +51,7 @@ namespace Plivo.Resource.Application
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             string defaultNumberApp = null, string defaultEndpointApp = null,
-            string subaccount = null, bool? logIncomingMessages = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
         {
             var mandatoryParams = new List<string> { "appName" }
                 ;
@@ -72,7 +73,8 @@ namespace Plivo.Resource.Application
                     defaultEndpointApp,
                     subaccount,
                     logIncomingMessages,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    publicUri
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -100,6 +102,7 @@ namespace Plivo.Resource.Application
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
+        /// <param name="publicUri">Public URI.</param>
 
         public async Task<ApplicationCreateResponse> CreateAsync(
             string appName, string answerUrl = null, string answerMethod = null,
@@ -107,7 +110,7 @@ namespace Plivo.Resource.Application
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             string defaultNumberApp = null, string defaultEndpointApp = null,
-            string subaccount = null, bool? logIncomingMessages = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
         {
             var mandatoryParams = new List<string> {"appName"}
                 ;
@@ -129,7 +132,8 @@ namespace Plivo.Resource.Application
                     defaultEndpointApp,
                     subaccount,
                     logIncomingMessages,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    publicUri
                 });
 
             var result = await Client.Update<ApplicationCreateResponse>(Uri, data);
@@ -270,13 +274,15 @@ namespace Plivo.Resource.Application
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
+        /// <param name="publicUri">Public URI.</param>
+
         public UpdateResponse<Application> Update(
             string appId, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
-            string subaccount = null, bool? logIncomingMessages = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
         {
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
@@ -296,7 +302,8 @@ namespace Plivo.Resource.Application
                     defaultEndpointApp,
                     subaccount,
                     logIncomingMessages,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    publicUri
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -324,13 +331,15 @@ namespace Plivo.Resource.Application
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
+        /// <param name="publicUri">Public URI.</param>
+
         public async Task<UpdateResponse<Application>> UpdateAsync(
             string appId, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
-            string subaccount = null, bool? logIncomingMessages = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
         {
             var mandatoryParams = new List<string> {""};
             bool isVoiceRequest = true;
@@ -350,7 +359,8 @@ namespace Plivo.Resource.Application
                     defaultEndpointApp,
                     subaccount,
                     logIncomingMessages,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    publicUri
                 });
 
             var result = await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data);
