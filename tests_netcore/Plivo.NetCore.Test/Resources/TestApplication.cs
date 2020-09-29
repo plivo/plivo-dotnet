@@ -2,81 +2,48 @@ using System.Collections.Generic;
 using Xunit;
 using Plivo.Http;
 using Plivo.Resource;
-using Plivo.Resource.Endpoint;
+using Plivo.Resource.Application;
 using Plivo.Utilities;
 
 namespace Plivo.NetCore.Test.Resources
 {
-    public class TestEndpoint : BaseTestCase
+    public class TestApplication : BaseTestCase
     {
         [Fact]
-        public void TestEndpointCreate()
+        public void TestApplicationCreate()
         {
             var data = new Dictionary<string, object>()
             {
-                {"username", "user"},
-                {"password", "pass"},
-                {"alias", "alias"},
+                {"app_name", "Test Application"},
+                {"answer_url", "http://answer.url"},
                 {"is_voice_request", true}
             };
-
+            
             var request =
                 new PlivoRequest(
                     "POST",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/",
                     "",
                     data);
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"../Mocks/endpointCreateResponse.json"
+                    SOURCE_DIR + @"../Mocks/applicationCreateResponse.json"
                 );
-            Setup<EndpointCreateResponse>(
+            Setup<ApplicationCreateResponse>(
                 201,
                 response
             );
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Endpoint.Create("user", "pass", "alias")));
+                    Api.Application.Create("Test Application", "http://answer.url")));
             AssertRequest(request);
         }
-
+        
         [Fact]
-        public void TestEndpointList()
+        public void TestApplicationList()
         {
-            var data = new Dictionary<string, object>()
-            {
-                {"limit", 10},
-                {"is_voice_request", true}
-            };
-            var request =
-                new PlivoRequest(
-                    "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/",
-                    "",
-                    data);
-
-            var response =
-                System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"../Mocks/endpointListResponse.json"
-                );
-            Setup<ListResponse<Endpoint>>(
-                200,
-                response
-            );
-            Assert.Empty(
-                ComparisonUtilities.Compare(
-                    response,
-                    Api.Endpoint.List(limit: 10)));
-
-            AssertRequest(request);
-        }
-
-        [Fact]
-        public void TestEndpointGet()
-        {
-            var id = "abcabcabc";
             var data = new Dictionary<string, object>()
             {
                 {"is_voice_request", true}
@@ -84,62 +51,93 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/",
                     "",
                     data);
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"../Mocks/endpointGetResponse.json"
+                    SOURCE_DIR + @"../Mocks/applicationListResponse.json"
                 );
-            Setup<Endpoint>(
+            Setup<ListResponse<Application>>(
                 200,
                 response
             );
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Endpoint.Get(id)));
+                    Api.Application.List()));
 
             AssertRequest(request);
         }
-
+        
         [Fact]
-        public void TestEndpointUpdate()
+        public void TestApplicationGet()
         {
-            var id = "abcabcabc";
+            var id = "15784735442685051";
             var data = new Dictionary<string, object>()
             {
-                {"alias", "alalaalalala"},
+                {"is_voice_request", true}
+            };
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/" + id + "/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/applicationGetResponse.json"
+                );
+            Setup<Application>(
+                200,
+                response
+            );
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Application.Get(id)));
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestApplicationUpdate()
+        {
+            var id = "15784735442685051";
+            var data = new Dictionary<string, object>()
+            {
+                {"answer_url", "http://updated.answer.url"},
                 {"is_voice_request", true}
             };
 
             var request =
                 new PlivoRequest(
                     "POST",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/" + id + "/",
                     "",
                     data);
 
             var response =
                 System.IO.File.ReadAllText(
-                    SOURCE_DIR + @"../Mocks/endpointUpdateResponse.json"
+                    SOURCE_DIR + @"../Mocks/applicationModifyResponse.json"
                 );
-            Setup<UpdateResponse<Endpoint>>(
+            Setup<UpdateResponse<Application>>(
                 202,
                 response
             );
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
-                    Api.Endpoint.Update(id, alias: "alalaalalala")));
+                    Api.Application.Update(id, answerUrl: "http://updated.answer.url")));
             AssertRequest(request);
         }
-
+        
         [Fact]
-        public void TestEndpointDelete()
+        public void TestApplicationDelete()
         {
-            var id = "abcabcabc";
+            var id = "15784735442685051";
             var data = new Dictionary<string, object>()
             {
                 {"is_voice_request", true}
@@ -147,16 +145,16 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "DELETE",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/" + id + "/",
                     "",
                     data);
 
             var response = "";
-            Setup<UpdateResponse<Endpoint>>(
+            Setup<UpdateResponse<Application>>(
                 204,
                 response
             );
-            Assert.Null(Api.Endpoint.Delete(id));
+            Assert.Null(Api.Application.Delete(id));
             AssertRequest(request);
         }
     }
