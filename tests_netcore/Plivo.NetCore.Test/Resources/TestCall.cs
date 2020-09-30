@@ -18,7 +18,11 @@ namespace Plivo.NetCore.Test.Resources
                 {"from", "+919999999999"},
                 {"to", "+919898989898<+919090909090"},
                 {"answer_url", "http://answer.com"},
-                {"answer_method", "POST"}
+                {"answer_method", "POST"},
+                {"is_voice_request", true},
+                {"new_send_on_preanswer", "<"},
+                {"new_time_limit", "<"},
+                {"new_hangup_on_ring", "<"}
             };
 
             var request =
@@ -58,8 +62,10 @@ namespace Plivo.NetCore.Test.Resources
         {
             var id = "abcabcabc";
 
-            var data = new Dictionary<string, object>();
-
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
@@ -85,7 +91,8 @@ namespace Plivo.NetCore.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"end_time__gt", "2017-06-07 00:00:00.000000"}
+                        {"end_time__gt", "2017-06-07 00:00:00.000000"},
+                        {"is_voice_request", true}
                     });
 
             var response =
@@ -108,11 +115,16 @@ namespace Plivo.NetCore.Test.Resources
         public void TestCallGet()
         {
             var id = "abcabcabc";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Call/" + id + "/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -142,7 +154,8 @@ namespace Plivo.NetCore.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"status", "live"}
+                        {"status", "live"},
+                        {"is_voice_request", true}
                     });
 
             var response =
@@ -171,7 +184,8 @@ namespace Plivo.NetCore.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"status", "queued"}
+                        {"status", "queued"},
+                        {"is_voice_request", true}
                     });
 
             var response =
@@ -201,7 +215,8 @@ namespace Plivo.NetCore.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"status", "live"}
+                        {"status", "live"},
+                        {"is_voice_request", true}
                     });
 
             var response =
@@ -233,7 +248,8 @@ namespace Plivo.NetCore.Test.Resources
                     "",
                     new Dictionary<string, object>()
                     {
-                        {"status", "queued"}
+                        {"status", "queued"},
+                        {"is_voice_request", true}
                     });
 
             var response =
@@ -262,7 +278,8 @@ namespace Plivo.NetCore.Test.Resources
             var data = new Dictionary<string, object>()
             {
                 {"legs", "aleg"},
-                {"aleg_url", "http://asdsa.asdsa"}
+                {"aleg_url", "http://asdsa.asdsa"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -298,7 +315,8 @@ namespace Plivo.NetCore.Test.Resources
                 {"time_limit", 120},
                 {"file_format", "wav"},
                 {"callback_method", "http://a.a"},
-                {"callback_url", "http://s.s"}
+                {"callback_url", "http://s.s"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -332,7 +350,8 @@ namespace Plivo.NetCore.Test.Resources
             var data = new Dictionary<string, object>()
             {
                 {"text", "120"},
-                {"voice", "WOMAN"}
+                {"voice", "WOMAN"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -366,6 +385,7 @@ namespace Plivo.NetCore.Test.Resources
             var data = new Dictionary<string, object>()
             {
                 {"urls", "http://wewewe.ewewew,http:/second.url"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -399,6 +419,7 @@ namespace Plivo.NetCore.Test.Resources
             var data = new Dictionary<string, object>()
             {
                 {"URL", "http://wewewe.ewewew"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -421,7 +442,10 @@ namespace Plivo.NetCore.Test.Resources
         {
             var id = "abcabcabc";
 
-            var data = new Dictionary<string, object>();
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
 
             var request =
                 new PlivoRequest(
@@ -443,7 +467,10 @@ namespace Plivo.NetCore.Test.Resources
         {
             var id = "abcabcabc";
 
-            var data = new Dictionary<string, object>();
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
 
             var request =
                 new PlivoRequest(

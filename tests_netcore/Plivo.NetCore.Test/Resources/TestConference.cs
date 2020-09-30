@@ -13,11 +13,16 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestConferenceList()
         {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -38,12 +43,17 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestConferenceGet()
         {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var name = "my conference";
             var request =
                 new PlivoRequest(
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -64,12 +74,17 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestConferenceDelete()
         {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var name = "my conference";
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -91,11 +106,16 @@ namespace Plivo.NetCore.Test.Resources
         public void TestConferenceDeleteAll()
         {
             // var name = "my conference";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -118,11 +138,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -145,11 +170,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Kick/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -172,11 +202,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Mute/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -199,11 +234,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Mute/",
-                    "");
+                    "",
+                    data);
 
             var response = "";
             Setup<ConferenceMemberActionResponse>(204, response);
@@ -221,7 +261,8 @@ namespace Plivo.NetCore.Test.Resources
 
             var data = new Dictionary<string, object>()
             {
-                {"url", "http://url.url"}
+                {"url", "http://url.url"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -252,12 +293,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
-
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Play/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -283,7 +328,8 @@ namespace Plivo.NetCore.Test.Resources
 
             var data = new Dictionary<string, object>()
             {
-                {"text", "speak this"}
+                {"text", "speak this"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -314,12 +360,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
-
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Speak/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -342,12 +392,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11";
-
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "POST",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Deaf/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -370,12 +424,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             var memberId = "11,123";
-
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Member/" + memberId + "/Deaf/",
-                    "");
+                    "",
+                    data);
 
             var response = "";
 
@@ -394,7 +452,8 @@ namespace Plivo.NetCore.Test.Resources
 
             var data = new Dictionary<string, object>()
             {
-                {"file_format", "mp3"}
+                {"file_format", "mp3"},
+                {"is_voice_request", true}
             };
 
             var request =
@@ -425,12 +484,16 @@ namespace Plivo.NetCore.Test.Resources
         {
             var name = "my conference";
             // var memberId = "11,123";
-
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Conference/" + name + "/Record/",
-                    "");
+                    "",
+                    data);
 
             var response = "";
 
