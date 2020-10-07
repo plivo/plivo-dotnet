@@ -1,8 +1,11 @@
 
 # Change Log
 
+## [v4.13.0](https://github.com/plivo/plivo-dotnet/tree/v4.13.0) (2020-10-06)
+- Add support for Lookup API.
+
 ## [v4.12.0](https://github.com/plivo/plivo-dotnet/tree/v4.12.0) (2020-09-24)
-- Add "PublicUri" optional param support for Application API
+- Add "PublicUri" optional param support for Application API.
 
 ## [v4.11.0](https://github.com/plivo/plivo-dotnet/tree/v4.11.0) (2020-09-07)
 - Add Powerpack for MMS

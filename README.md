@@ -85,6 +85,23 @@ internal class Program
 }
 ```
 
+### Lookup a number
+
+```csharp
+internal class Program
+{
+    public static void Main(string[] args)
+    {
+        var api = new PlivoApi("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+        var response = api.Lookup.Get(
+	    number: "number",
+	    type: "carrier"
+        );
+        Console.WriteLine(response);
+    }
+}
+```
+
 ### Generate Plivo XML
 
 ```csharp
