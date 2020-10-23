@@ -17,7 +17,7 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Lookup/Number/" + number + "?type=carrier",
+                    "Number/" + number + "?type=carrier",
                     "");
 
             var response =

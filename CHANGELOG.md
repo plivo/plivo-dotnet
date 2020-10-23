@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.14.0](https://github.com/plivo/plivo-dotnet/tree/v4.14.0) (2020-10-27)
+- Change lookup API endpoint and response.
+
 ## [v4.13.0](https://github.com/plivo/plivo-dotnet/tree/v4.13.0) (2020-10-06)
 - Add support for Lookup API.
 

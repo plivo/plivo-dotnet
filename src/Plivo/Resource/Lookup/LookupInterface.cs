@@ -12,14 +12,15 @@ namespace Plivo.Resource.Lookup
     {
         public LookupInterface(HttpClient client) : base(client)
         {
-            Uri = "Lookup/Number/";
+            Uri = "Number/";
         }
 
         // getResource is like the method 'GetResource' from parent class but
         // doesn't add a trailing slash at the end.
-        private async Task<T> getResource<T>(string resource, Dictionary<string, object> data = null)
+        private async Task<T> getResource<T>(string resource, Dictionary<string, object> data)
         where T : new()
         {
+            data.Add("is_lookup_request", true);
             var result = await Client.Fetch<T>(Uri + resource, data);
             try
             {
