@@ -93,10 +93,7 @@ internal class Program
     public static void Main(string[] args)
     {
         var api = new PlivoApi("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
-        var response = api.Lookup.Get(
-	    number: "number",
-	    type: "carrier"
-        );
+        var response = api.Lookup.Get("phone_number_here");
         Console.WriteLine(response);
     }
 }
