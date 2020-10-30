@@ -33,6 +33,7 @@ namespace Plivo.Client
         public System.Net.Http.HttpClient _voiceFallback1Client { get; set; }
         public System.Net.Http.HttpClient _voiceFallback2Client { get; set; }
         public System.Net.Http.HttpClient _callInsightsclient { get; set; }
+        public System.Net.Http.HttpClient _lookupClient { get; set; }
 
         public class PascalCasePropertyNamesContractResolver : DefaultContractResolver
         {
@@ -137,6 +138,11 @@ namespace Plivo.Client
             _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             var callInsightsBaseServerUri = "https://stats.plivo.com/" + "v1";
             _callInsightsclient.BaseAddress = new Uri(callInsightsBaseServerUri + "/");
+
+            _lookupClient = new System.Net.Http.HttpClient(httpClientHandler);
+            _lookupClient.DefaultRequestHeaders.Authorization = authHeader;
+            _lookupClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            _lookupClient.BaseAddress = new Uri("https://lookup.plivo.com/v1/");
 
             _jsonSettings = new JsonSerializerSettings
             {
@@ -244,6 +250,8 @@ namespace Plivo.Client
 
             bool isCallInsightsRequest = false;
             bool isVoiceRequest = false;
+            bool isLookupRequest = false;
+
             if (data.ContainsKey("is_call_insights_request")) {
                 isCallInsightsRequest = true;
                 data.Remove("is_call_insights_request");
@@ -252,7 +260,11 @@ namespace Plivo.Client
                 isVoiceRequest = true;
                 data.Remove("is_voice_request");
             }
-            
+            else if (data.ContainsKey("is_lookup_request")) {
+                isLookupRequest = true;
+                data.Remove("is_lookup_request");
+            }
+
             request = NewRequestFunc(method, uri, data, filesToUpload);
             if (isCallInsightsRequest) {
                 response = await _callInsightsclient.SendAsync(request).ConfigureAwait(false);
@@ -269,6 +281,10 @@ namespace Plivo.Client
                     }
                 }
             }
+            else if (isLookupRequest)
+            {
+                response = await _lookupClient.SendAsync(request).ConfigureAwait(false);
+	    }
             else {
                 response = await _client.SendAsync(request).ConfigureAwait(false);
             }

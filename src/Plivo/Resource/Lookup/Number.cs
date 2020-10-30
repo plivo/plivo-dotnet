@@ -4,11 +4,11 @@ namespace Plivo.Resource.Lookup
 {
     public class Country
     {
-        [JsonProperty("code_iso2")]
-        public string CodeIso2 { get; set; }
+        [JsonProperty("iso2")]
+        public string Iso2 { get; set; }
 
-        [JsonProperty("code_iso3")]
-        public string CodeIso3 { get; set; }
+        [JsonProperty("iso3")]
+        public string Iso3 { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -41,7 +41,7 @@ namespace Plivo.Resource.Lookup
         public string Name { get; set; }
 
         [JsonProperty("ported")]
-        public bool Ported { get; set; }
+        public string Ported { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }
