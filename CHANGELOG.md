@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v5.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.0.0) (2020-11-04)
+- Add support for MPC APIs and XML (Voice retry included), validated voice UTs.
+
 ## [v4.14.0](https://github.com/plivo/plivo-dotnet/tree/v4.14.0) (2020-10-27)
 - Change lookup API endpoint and response.
 
