@@ -23,6 +23,7 @@ using Plivo.Resource.RegulatoryCompliance.Document;
 using Plivo.Resource.RegulatoryCompliance.DocumentType;
 using Plivo.Resource.RegulatoryCompliance.EndUser;
 using Plivo.Resource.RegulatoryCompliance.Requirement;
+using Plivo.Resource.MultiPartyCall;
 
 namespace Plivo
 {
@@ -66,6 +67,8 @@ namespace Plivo
         private readonly Lazy<DocumentInterface> _document;
         private readonly Lazy<ComplianceApplicationInterface> _complianceApplication;
 
+        private readonly Lazy<MultiPartyCallInterface> _multiPartyCall;
+        
         /// <summary>
         /// Gets the account.
         /// </summary>
@@ -166,6 +169,8 @@ namespace Plivo
 
         public ComplianceApplicationInterface ComplianceApplication => _complianceApplication.Value;
 
+        public MultiPartyCallInterface MultiPartyCall => _multiPartyCall.Value;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
@@ -210,6 +215,7 @@ namespace Plivo
             _document = new Lazy<DocumentInterface>(() => new DocumentInterface(Client));
             _complianceApplication =
                 new Lazy<ComplianceApplicationInterface>(() => new ComplianceApplicationInterface(Client));
+            _multiPartyCall = new Lazy<MultiPartyCallInterface>(() => new MultiPartyCallInterface(Client));
         }
     }
 }

@@ -22,7 +22,8 @@ namespace Plivo.XML
                 "Hangup",
                 "PreAnswer",
                 "Conference",
-                "DTMF"
+                "DTMF",
+                "MultiPartyCall"
             };
             ValidAttributes = new list() {""};
         }

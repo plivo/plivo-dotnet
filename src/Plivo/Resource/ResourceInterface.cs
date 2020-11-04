@@ -54,6 +54,87 @@ namespace Plivo.Resource {
             }
             return result.Object;
         }
+        
+        public async Task<T> GetSecondaryResource<T> (string id, Dictionary<string, object> data = null,
+            string secondaryName = null, string secondaryId = null)
+            where T : new () {
+            string to_append = id;
+            if (id != "") {
+                to_append = to_append + "/";
+            }
+
+            if (secondaryName != null)
+            {
+                to_append = to_append + secondaryName;
+            }
+            
+            if (secondaryId != null)
+            {
+                to_append = to_append + "/" + secondaryId + "/";
+            }
+            var result = await Client.Fetch<T> (
+                Uri + to_append, data);
+            try {
+                result.Object.GetType ().GetRuntimeProperty ("StatusCode").SetValue (result.Object, result.StatusCode, null);
+            } catch (System.NullReferenceException) {
+
+            }
+            return result.Object;
+        }
+        
+        public async Task<T> UpdateSecondaryResource<T> (string id, Dictionary<string, object> data = null,
+            string secondaryName = null, string secondaryId = null)
+            where T : new () {
+            string to_append = id;
+            if (id != "") {
+                to_append = to_append + "/";
+            }
+
+            if (secondaryName != null)
+            {
+                to_append = to_append + secondaryName;
+            }
+            
+            if (secondaryId != null)
+            {
+                to_append = to_append + "/" + secondaryId + "/";
+            }
+            var result = await Client.Update<T> (
+                Uri + to_append, data);
+            try {
+                result.Object.GetType ().GetRuntimeProperty ("StatusCode").SetValue (result.Object, result.StatusCode, null);
+            } catch (System.NullReferenceException) {
+
+            }
+            return result.Object;
+        }
+        
+        public async Task<T> DeleteSecondaryResource<T> (string id, Dictionary<string, object> data = null,
+            string secondaryName = null, string secondaryId = null)
+            where T : new () {
+            string to_append = id;
+            if (id != "") {
+                to_append = to_append + "/";
+            }
+
+            if (secondaryName != null)
+            {
+                to_append = to_append + secondaryName;
+            }
+            
+            if (secondaryId != null)
+            {
+                to_append = to_append + "/" + secondaryId + "/";
+            }
+            var result = await Client.Delete<T> (
+                Uri + to_append, data);
+            try {
+                result.Object.GetType ().GetRuntimeProperty ("StatusCode").SetValue (result.Object, result.StatusCode, null);
+            } catch (System.NullReferenceException) {
+
+            }
+            return result.Object;
+        }
 
         /// <summary>
         /// Lists the resources.

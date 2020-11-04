@@ -222,6 +222,11 @@ namespace Plivo.XML
         {
             return Add(new Conference(body, parameters));
         }
+        
+        public PlivoElement AddMultiPartyCall(string body, dict parameters)
+        {
+            return Add(new MultiPartyCall(body, parameters));
+        }
 
         public PlivoElement AddMessage(string body, dict parameters)
         {
