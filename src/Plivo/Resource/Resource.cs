@@ -31,4 +31,12 @@ namespace Plivo.Resource
 
         
     }
+
+    public class SecondaryResource : Resource
+    {
+        public string SecondaryId;
+        public string SecondaryName;
+        
+        public ResourceInterface Interface { get; set; }
+    }
 }
