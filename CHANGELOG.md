@@ -1,4 +1,8 @@
+
 # Change Log
+
+## [v5.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.0.0) (2020-11-04)
+- Add support for MPC APIs and XML (Voice retry included), validated voice UTs.
 
 ## [v4.17.0](https://github.com/plivo/plivo-dotnet/tree/v4.17.0) (2021-06-15)
 - Add stir verification param as part of Get CDR and Live call API response
