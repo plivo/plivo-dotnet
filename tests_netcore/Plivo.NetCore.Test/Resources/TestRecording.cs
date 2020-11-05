@@ -14,7 +14,8 @@ namespace Plivo.NetCore.Test.Resources
         {
             var data = new Dictionary<string, object>()
             {
-                {"limit", 10}
+                {"limit", 10},
+                {"is_voice_request", true}
             };
             var request =
                 new PlivoRequest(
@@ -43,11 +44,16 @@ namespace Plivo.NetCore.Test.Resources
         public void TestRecordingGet()
         {
             var id = "abcabcabc";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "GET",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/" + id + "/",
-                    "");
+                    "",
+                    data);
 
             var response =
                 System.IO.File.ReadAllText(
@@ -69,11 +75,16 @@ namespace Plivo.NetCore.Test.Resources
         public void TestRecordingDelete()
         {
             var id = "abcabcabc";
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
             var request =
                 new PlivoRequest(
                     "DELETE",
                     "Account/MAXXXXXXXXXXXXXXXXXX/Recording/" + id + "/",
-                    "");
+                    "",
+                    data);
 
             var response = "";
             Setup<UpdateResponse<Recording>>(
