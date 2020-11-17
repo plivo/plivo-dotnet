@@ -9,7 +9,7 @@ using Plivo.Resource.PhoneNumber ;
 
 namespace Plivo.Resource.Powerpack
 {
-     /// <summary>
+    /// <summary>
     /// Powerpack interface.
     /// </summary>
     public class PowerpackInterface : ResourceInterface
@@ -32,9 +32,10 @@ namespace Plivo.Resource.Powerpack
         /// <param name="local_connect">LocalConnect.</param>
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
+        /// <param name="number_priority">NumberPriority</param>
         public Powerpack Create(
             string name, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
         {
         var mandatoryParams = new List<string>{"name"};
         var data = CreateData(
@@ -45,7 +46,8 @@ namespace Plivo.Resource.Powerpack
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect
+                local_connect,
+                number_priority
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -64,9 +66,10 @@ namespace Plivo.Resource.Powerpack
         /// <param name="local_connect">LocalConnect.</param>
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
+        /// <param name="number_priority">NumberPriority.<param>
 		public async Task<Powerpack> CreateAsync(
 			string name, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 
 			var mandatoryParams = new List<string>{"name"};
@@ -78,7 +81,8 @@ namespace Plivo.Resource.Powerpack
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect
+                local_connect,
+                number_priority
             });
 
 			var result = await Client.Update<Powerpack>(Uri + "Powerpack/", data);
@@ -222,15 +226,18 @@ namespace Plivo.Resource.Powerpack
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
         ///<param name="uuid">UUID.</param>
+        /// <param name="number_priority">NumberPriority.</param>
         public UpdateResponse<Powerpack> Update(string uuid, string name=null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 			var mandatoryParams = new List<string> { "uuid" };
 			var data = CreateData(mandatoryParams, new { name,
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect });
+                local_connect,
+                number_priority
+            });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
@@ -249,9 +256,10 @@ namespace Plivo.Resource.Powerpack
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
         ///<param name="uuid">UUID.</param>
+        /// <param name="number_priority">NumberPriority.</param>
 
         public async Task<UpdateResponse<Powerpack>> UpdateAsync(string uuid, string name=null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 			var mandatoryParams = new List<string> { "uuid" };
 			var data = CreateData(
@@ -259,8 +267,11 @@ namespace Plivo.Resource.Powerpack
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect });
-			var result = await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid+"/", data);
+                local_connect,
+                number_priority
+            });
+			var result = await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid, data);
+
             result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
