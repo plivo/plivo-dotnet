@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Plivo.Client;
 using Plivo.Exception;
-using Plivo.Resource.Member;
 
-namespace Plivo.Resource.MultiPartyCall
+namespace Plivo.Resource.Phlo.MultiPartyCall
 {
     public class MultiPartyCallInterface : ResourceInterface
     {
@@ -22,7 +21,7 @@ namespace Plivo.Resource.MultiPartyCall
         /// </summary>
         private string _nodeId;
 
-        private MemberInterface MemberI { get; set; }
+        private Member.MemberInterface MemberI { get; set; }
 
         public MultiPartyCallInterface(HttpClient client, string phloId) : base(client)
         {
@@ -41,7 +40,7 @@ namespace Plivo.Resource.MultiPartyCall
             _nodeId = nodeId;
             var multiPartyCall = Task.Run(async () => await GetResource<MultiPartyCall>($"/{_nodeType}/{_nodeId}", new Dictionary<string, object>()).ConfigureAwait(false)).Result;
             multiPartyCall.Interface = this;
-            multiPartyCall._member = new Lazy<MemberInterface>(() => new MemberInterface(Client, phloId, _nodeType, _nodeId));
+            multiPartyCall._member = new Lazy<Member.MemberInterface>(() => new Member.MemberInterface(Client, phloId, _nodeType, _nodeId));
             return multiPartyCall;
         }
         

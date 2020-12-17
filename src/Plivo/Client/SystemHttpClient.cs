@@ -15,6 +15,7 @@ using Newtonsoft.Json.Serialization;
 using Plivo.Authentication;
 using Plivo.Http;
 using Plivo.Utilities;
+using Plivo.Exception;
 
 namespace Plivo.Client
 {
@@ -28,7 +29,11 @@ namespace Plivo.Client
         /// </summary>
         /// <value>The client.</value>
         public System.Net.Http.HttpClient _client { get; set; }
+        public System.Net.Http.HttpClient _voiceBaseUriClient { get; set; }
+        public System.Net.Http.HttpClient _voiceFallback1Client { get; set; }
+        public System.Net.Http.HttpClient _voiceFallback2Client { get; set; }
         public System.Net.Http.HttpClient _callInsightsclient { get; set; }
+        public System.Net.Http.HttpClient _lookupClient { get; set; }
 
         public class PascalCasePropertyNamesContractResolver : DefaultContractResolver
         {
@@ -110,12 +115,34 @@ namespace Plivo.Client
             var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
-        
+            _voiceBaseUriClient = new System.Net.Http.HttpClient(httpClientHandler);
+            _voiceBaseUriClient.DefaultRequestHeaders.Authorization = authHeader;
+            _voiceBaseUriClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://voice.plivo.com/" + Version.ApiVersion  : baseUri;
+            _voiceBaseUriClient.BaseAddress = new Uri(voiceBaseServerUri + "/");
+            
+            _voiceFallback1Client = new System.Net.Http.HttpClient(httpClientHandler);
+            _voiceFallback1Client.DefaultRequestHeaders.Authorization = authHeader;
+            _voiceFallback1Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-usw1.plivo.com/" + Version.ApiVersion  : baseUri;
+            _voiceFallback1Client.BaseAddress = new Uri(voiceFallback1Uri + "/");
+            
+            _voiceFallback2Client = new System.Net.Http.HttpClient(httpClientHandler);
+            _voiceFallback2Client.DefaultRequestHeaders.Authorization = authHeader;
+            _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-use1.plivo.com/" + Version.ApiVersion  : baseUri;
+            _voiceFallback2Client.BaseAddress = new Uri(voiceFallback2Uri + "/");
+
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
             _callInsightsclient.DefaultRequestHeaders.Authorization = authHeader;
             _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             var callInsightsBaseServerUri = "https://stats.plivo.com/" + "v1";
             _callInsightsclient.BaseAddress = new Uri(callInsightsBaseServerUri + "/");
+
+            _lookupClient = new System.Net.Http.HttpClient(httpClientHandler);
+            _lookupClient.DefaultRequestHeaders.Authorization = authHeader;
+            _lookupClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            _lookupClient.BaseAddress = new Uri("https://lookup.plivo.com/v1/");
 
             _jsonSettings = new JsonSerializerSettings
             {
@@ -124,27 +151,10 @@ namespace Plivo.Client
             };
         }
 
-        /// <summary>
-        /// Sends the request.
-        /// </summary>
-        /// <returns>The request.</returns>
-        /// <param name="method">Method.</param>
-        /// <param name="uri">URI.</param>
-        /// <param name="data">Data.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public async Task<PlivoResponse<T>> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+        public HttpRequestMessage NewRequestFunc(string method, string uri, Dictionary<string, object> data,
             Dictionary<string, string> filesToUpload = null)
-            where T : new()
         {
-            HttpResponseMessage response = null;
             HttpRequestMessage request = null;
-
-            bool isCallInsightsRequest = false;
-            if (data.ContainsKey("is_call_insights_request")) {
-                isCallInsightsRequest = true;
-                data.Remove("is_call_insights_request");
-            }
-
             switch (method)
             {
                 case "GET":
@@ -154,7 +164,7 @@ namespace Plivo.Client
 
                 case "POST":
                     request = new HttpRequestMessage(HttpMethod.Post, uri);
-
+                    
                     if (filesToUpload == null)
                     {
                         request.Headers.Add("Accept", "application/json");
@@ -221,16 +231,69 @@ namespace Plivo.Client
                     throw new NotSupportedException(
                         method + " not supported");
             }
-            
+            return request;
+        }
+        /// <summary>
+        /// Sends the request.
+        /// </summary>
+        /// <returns>The request.</returns>
+        /// <param name="method">Method.</param>
+        /// <param name="uri">URI.</param>
+        /// <param name="data">Data.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        public async Task<PlivoResponse<T>> SendRequest<T>(string method, string uri, Dictionary<string, object> data,
+            Dictionary<string, string> filesToUpload = null)
+            where T : new()
+        {
+            HttpResponseMessage response = null;
+            HttpRequestMessage request = null;
+
+            bool isCallInsightsRequest = false;
+            bool isVoiceRequest = false;
+            bool isLookupRequest = false;
+
+            if (data.ContainsKey("is_call_insights_request")) {
+                isCallInsightsRequest = true;
+                data.Remove("is_call_insights_request");
+            }
+            else if (data.ContainsKey("is_voice_request")) {
+                isVoiceRequest = true;
+                data.Remove("is_voice_request");
+            }
+            else if (data.ContainsKey("is_lookup_request")) {
+                isLookupRequest = true;
+                data.Remove("is_lookup_request");
+            }
+
+            request = NewRequestFunc(method, uri, data, filesToUpload);
             if (isCallInsightsRequest) {
                 response = await _callInsightsclient.SendAsync(request).ConfigureAwait(false);
-            } 
+            }
+            else if (isVoiceRequest)
+            {
+                response = await _voiceBaseUriClient.SendAsync(request).ConfigureAwait(false);
+                if ((int)response.StatusCode >= 500) {
+                    request = NewRequestFunc(method, uri, data, filesToUpload);
+                    response = await _voiceFallback1Client.SendAsync(request).ConfigureAwait(false);
+                    if ((int)response.StatusCode >= 500) {
+                        request = NewRequestFunc(method, uri, data, filesToUpload);
+                        response = await _voiceFallback2Client.SendAsync(request).ConfigureAwait(false);
+                    }
+                }
+            }
+            else if (isLookupRequest)
+            {
+                response = await _lookupClient.SendAsync(request).ConfigureAwait(false);
+	    }
             else {
                 response = await _client.SendAsync(request).ConfigureAwait(false);
             }
 
-            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            if (response.StatusCode.ToString() == "Unauthorized"){
+                    throw new PlivoAuthenticationException ("Unauthorized Request. Please check credentials");
+            }
 
+            var responseContent = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
             // create Plivo response object along with the deserialized object
             PlivoResponse<T> plivoResponse;
             try {

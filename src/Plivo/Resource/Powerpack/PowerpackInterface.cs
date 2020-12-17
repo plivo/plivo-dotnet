@@ -9,7 +9,7 @@ using Plivo.Resource.PhoneNumber ;
 
 namespace Plivo.Resource.Powerpack
 {
-     /// <summary>
+    /// <summary>
     /// Powerpack interface.
     /// </summary>
     public class PowerpackInterface : ResourceInterface
@@ -32,9 +32,10 @@ namespace Plivo.Resource.Powerpack
         /// <param name="local_connect">LocalConnect.</param>
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
+        /// <param name="number_priority">NumberPriority</param>
         public Powerpack Create(
             string name, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
         {
         var mandatoryParams = new List<string>{"name"};
         var data = CreateData(
@@ -45,7 +46,8 @@ namespace Plivo.Resource.Powerpack
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect
+                local_connect,
+                number_priority
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -64,9 +66,10 @@ namespace Plivo.Resource.Powerpack
         /// <param name="local_connect">LocalConnect.</param>
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
+        /// <param name="number_priority">NumberPriority.<param>
 		public async Task<Powerpack> CreateAsync(
 			string name, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 
 			var mandatoryParams = new List<string>{"name"};
@@ -78,7 +81,8 @@ namespace Plivo.Resource.Powerpack
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect
+                local_connect,
+                number_priority
             });
 
 			var result = await Client.Update<Powerpack>(Uri + "Powerpack/", data);
@@ -222,19 +226,22 @@ namespace Plivo.Resource.Powerpack
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
         ///<param name="uuid">UUID.</param>
+        /// <param name="number_priority">NumberPriority.</param>
         public UpdateResponse<Powerpack> Update(string uuid, string name=null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 			var mandatoryParams = new List<string> { "uuid" };
 			var data = CreateData(mandatoryParams, new { name,
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect });
+                local_connect,
+                number_priority
+            });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var result = Task.Run(async () => await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid, data).ConfigureAwait(false)).Result;
+				var result = Task.Run(async () => await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid+"/", data).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
 				return result.Object; 
 			});
@@ -249,9 +256,10 @@ namespace Plivo.Resource.Powerpack
         /// <param name="application_type">ApplicationType.</param>
         /// <param name="application_id">ApplicationID.</param>
         ///<param name="uuid">UUID.</param>
+        /// <param name="number_priority">NumberPriority.</param>
 
         public async Task<UpdateResponse<Powerpack>> UpdateAsync(string uuid, string name=null, string application_type = null, string application_id = null,
-            bool? sticky_sender = null, bool? local_connect = null)
+            bool? sticky_sender = null, bool? local_connect = null, List<NumberPriority> number_priority = null)
 		{
 			var mandatoryParams = new List<string> { "uuid" };
 			var data = CreateData(
@@ -259,8 +267,11 @@ namespace Plivo.Resource.Powerpack
                 application_type,
                 application_id,
                 sticky_sender,
-                local_connect });
+                local_connect,
+                number_priority
+            });
 			var result = await Client.Update<UpdateResponse<Powerpack>>(Uri +"Powerpack/"+uuid, data);
+
             result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
@@ -277,7 +288,7 @@ namespace Plivo.Resource.Powerpack
         /// <param uuid="uuid">UUID</param>
         /// <param name="offset">Offset.</param>
         public ListResponse<Numbers> List_Numbers(string uuid, string starts_with =null, string country_iso2 =null,
-        string type=null, uint? limit = null, uint? offset = null)
+        string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -288,7 +299,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -315,7 +327,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="offset">Offset.</param>
          public async Task<ListResponse<Numbers>> List_NumbersAsync(
           string uuid, string starts_with =null, string country_iso2 =null,
-          string type=null, uint? limit = null, uint? offset = null)
+          string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
@@ -326,7 +338,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
             var resources = await ListResources<ListResponse<Numbers>>("NumberPool/"+uuid+"/Number", data);
             resources.Objects.ForEach(
@@ -352,7 +365,7 @@ namespace Plivo.Resource.Powerpack
         /// <param uuid="uuid">UUID</param>
         /// <param name="offset">Offset.</param>
         public uint  Count_Number(string uuid, string starts_with =null, string country_iso2 =null,
-        string type=null, uint? limit = null, uint? offset = null)
+        string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -363,7 +376,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
 
 			// return ExecuteWithExceptionUnwrap(() =>
@@ -390,7 +404,7 @@ namespace Plivo.Resource.Powerpack
         /// <param name="offset">Offset.</param>
          public async Task<uint> Count_NumbersAsync(
           string uuid, string starts_with =null, string country_iso2 =null,
-          string type=null, uint? limit = null, uint? offset = null)
+          string type=null, uint? limit = null, uint? offset = null, string service = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
@@ -401,7 +415,8 @@ namespace Plivo.Resource.Powerpack
                     country_iso2,
                     type,
                     limit,
-                    offset
+                    offset,
+                    service
                 });
             var resources = await ListResources<ListResponse<Numbers>>("NumberPool/"+uuid+"/Number", data);
             resources.Objects.ForEach(
@@ -421,14 +436,15 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
 
-        public Numbers Add_Number( string uuid, string number, bool rent=false )
+        public Numbers Add_Number( string uuid, string number, string service = null, bool rent=false)
         { 
         var mandatoryParams = new List<string>{""};
            var data= CreateData(
             mandatoryParams,
             new
             {
-                rent
+                rent,
+                service
             }); 
         
     
@@ -448,14 +464,15 @@ namespace Plivo.Resource.Powerpack
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
 		public async Task<Numbers> Add_NumberAsync(
-			 string uuid, string number, bool rent=false)
+			 string uuid, string number, string service = null, bool rent=false)
 		{
         var mandatoryParams = new List<string>{""};
                 var data = CreateData(
                 mandatoryParams,
                 new
                 {
-                    rent
+                    rent,
+                    service
                 });
            
 		var result = await Client.Update<Numbers>(Uri + "NumberPool/"+uuid+"/Number/"+number+"/", data);
@@ -604,19 +621,35 @@ namespace Plivo.Resource.Powerpack
         /// <returns>The Number resource.</returns>
         /// <param name="uuid">UUID.</param>
         /// <param name="number">Number.</param>
-        public Numbers Find_Number(string uuid,string number)
+        /// <param name="service">Service.</param>
+        public Numbers Find_Number(string uuid,string number, string service = null)
         { 
+            var mandatoryParams = new List<string>{""};
+            var data= CreateData(
+            mandatoryParams,
+            new
+            {
+                service
+            }); 
+
             return ExecuteWithExceptionUnwrap(() =>
 			{
-				var numberpoolResponse = Task.Run(async () => await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number).ConfigureAwait(false)).Result;
+				var numberpoolResponse = Task.Run(async () => await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number, data).ConfigureAwait(false)).Result;
 				numberpoolResponse.Interface = this;
 				return numberpoolResponse;
 			});
         }
         public async Task<Numbers> Find_NumberAsync(string uuid,
-			string number)
+			string number, string service = null)
 		{
-        var numberpoolresp = await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number);
+        var mandatoryParams = new List<string>{""};
+        var data= CreateData(
+        mandatoryParams,
+        new
+        {
+            service
+        }); 
+        var numberpoolresp = await GetResource<Numbers>("NumberPool/"+uuid+"/Number/"+number, data);
         numberpoolresp.Interface = this;
         return numberpoolresp;
 

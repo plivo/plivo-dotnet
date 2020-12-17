@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.9.1</version>
+    <version>4.15.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,7 +12,16 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
-      * 4.9.1 Fix Prosody XML error- SSML.
+      * 4.15.1 Fix Prosody XML error - SSML.
+      * 4.15.0 Add number_priority support for Powerpack API.
+      * 4.14.0 Change lookup API endpoint and response.
+      * 4.13.0 Add support for Lookup API.
+      * 4.12.0 Add "PublicUri" optional param support for Application API
+      * 4.11.0 Add Powerpack for MMS
+      * 4.10.2 Internal changes in PHLO for MultiPartyCall component.
+      * 4.10.1 Added exception handling for non json error responses and statuscode 401.
+      * 4.10.0 Add retries to multiple regions for voice requests.
+      * 4.9.1 Fix List Call Details response.
       * 4.9.0 Add JWT helper functions.
       * 4.8.2 Fix List All Rented Numbers API response.
       * 4.8.1 Add Send MMS using Media_ID support.
@@ -89,7 +98,7 @@
     <copyright>Copyright (c) 2018 Plivo, Inc.</copyright>
     <tags>Plivo REST voice SMS telephony API XML</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="[10,)"/>
+      <dependency id="Newtonsoft.Json" version="[10.0.1,)"/>
       <dependency id="System.Text.Encoding.Extensions" version="4.3.0" />
       <dependency id="System.Net.Http" version="4.3.1"/>
       <dependency id="System.IO.FileSystem" version="4.3.0" />

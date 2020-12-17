@@ -7,6 +7,7 @@ using Plivo.Resource.Call;
 using Plivo.Resource.Conference;
 using Plivo.Resource.Endpoint;
 using Plivo.Resource.Message;
+using Plivo.Resource.Lookup;
 using Plivo.Resource.Powerpack;
 using Plivo.Resource.RentedNumber;
 using Plivo.Resource.PhoneNumber;
@@ -43,9 +44,8 @@ namespace Plivo
         private readonly Lazy<CallInterface> _call;
         private readonly Lazy<ConferenceInterface> _conference;
         private readonly Lazy<MessageInterface> _message;
-
+        private readonly Lazy<LookupInterface> _lookup;
         private readonly Lazy<PowerpackInterface> _powerpack;
-
         private readonly Lazy<MediaInterface> _media;
         private readonly Lazy<EndpointInterface> _endpoint;
         private readonly Lazy<PricingInterface> _pricing;
@@ -95,6 +95,8 @@ namespace Plivo
         public PowerpackInterface Powerpacks => _powerpack.Value;
 
         public MediaInterface Media => _media.Value;
+
+        public LookupInterface Lookup => _lookup.Value;
 
         /// <summary>
         /// Gets the endpoint.
@@ -170,6 +172,7 @@ namespace Plivo
             _call = new Lazy<CallInterface>(() => new CallInterface(Client));
             _conference = new Lazy<ConferenceInterface>(() => new ConferenceInterface(Client));
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
+            _lookup = new Lazy<LookupInterface>(() => new LookupInterface(Client));
             _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
             _media = new Lazy<MediaInterface>(() => new MediaInterface(Client));
             _endpoint = new Lazy<EndpointInterface>(() => new EndpointInterface(Client));

@@ -1,8 +1,35 @@
 
 # Change Log
 
-## [v4.9.1](https://github.com/plivo/plivo-dotnet/tree/v4.9.1) (2020-12-17)
-- Fix Prosody XML error- SSML.
+## [v4.15.1](https://github.com/plivo/plivo-dotnet/tree/v4.15.1) (2020-12-17)
+- Fix Prosody XML error - SSML.
+
+## [v4.15.0](https://github.com/plivo/plivo-dotnet/tree/v4.15.0) (2020-11-17)
+- Add number_priority support for Powerpack API.
+
+## [v4.14.0](https://github.com/plivo/plivo-dotnet/tree/v4.14.0) (2020-10-27)
+- Change lookup API endpoint and response.
+
+## [v4.13.0](https://github.com/plivo/plivo-dotnet/tree/v4.13.0) (2020-10-06)
+- Add support for Lookup API.
+
+## [v4.12.0](https://github.com/plivo/plivo-dotnet/tree/v4.12.0) (2020-09-24)
+- Add "PublicUri" optional param support for Application API.
+
+## [v4.11.0](https://github.com/plivo/plivo-dotnet/tree/v4.11.0) (2020-09-07)
+- Add Powerpack for MMS
+
+## [v4.10.2](https://github.com/plivo/plivo-dotnet/tree/v4.10.2) (2020-08-19)
+- Internal changes in PHLO for MultiPartyCall component.
+
+## [v4.10.1](https://github.com/plivo/plivo-dotnet/tree/v4.10.1) (2020-08-14)
+- Add exception handling for non-JSON error responses and statusCode 401.
+
+## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
+- Add retries to multiple regions for voice requests.
+
+## [v4.9.1](https://github.com/plivo/plivo-dotnet/tree/v4.9.1) (2020-06-30)
+- Fix List Call Details response.
 
 ## [v4.9.0](https://github.com/plivo/plivo-dotnet/tree/v4.9.0) (2020-05-28)
 - Add JWT helper functions.
