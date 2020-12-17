@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.9.1](https://github.com/plivo/plivo-dotnet/tree/v4.9.1) (2020-12-17)
+- Fix Prosody XML error- SSML.
+
 ## [v4.9.0](https://github.com/plivo/plivo-dotnet/tree/v4.9.0) (2020-05-28)
 - Add JWT helper functions.
 

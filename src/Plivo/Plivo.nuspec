@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>4.9.0</version>
+    <version>4.9.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 4.9.1 Fix Prosody XML error- SSML.
       * 4.9.0 Add JWT helper functions.
       * 4.8.2 Fix List All Rented Numbers API response.
       * 4.8.1 Add Send MMS using Media_ID support.
