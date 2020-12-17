@@ -1,6 +1,9 @@
 
 # Change Log
 
+## [v4.15.1](https://github.com/plivo/plivo-dotnet/tree/v4.15.1) (2020-12-17)
+- Fix Prosody XML error - SSML.
+
 ## [v4.15.0](https://github.com/plivo/plivo-dotnet/tree/v4.15.0) (2020-11-17)
 - Add number_priority support for Powerpack API.
 
@@ -21,6 +24,7 @@
 
 ## [v4.10.1](https://github.com/plivo/plivo-dotnet/tree/v4.10.1) (2020-08-14)
 - Add exception handling for non-JSON error responses and statusCode 401.
+
 ## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
 - Add retries to multiple regions for voice requests.
 
