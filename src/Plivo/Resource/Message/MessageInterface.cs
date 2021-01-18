@@ -199,8 +199,7 @@ namespace Plivo.Resource.Message
             string dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
         {
-
-            string _dst = string.Join("<", dst);
+            string _dst = dst;
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "" };
             if (src != null && powerpack_uuid == null)
@@ -210,7 +209,7 @@ namespace Plivo.Resource.Message
                 new
                 {
                     src,
-                    _dst,
+                    dst,
                     text,
                     type,
                     url,
@@ -277,8 +276,7 @@ namespace Plivo.Resource.Message
             string dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
         {
-
-            string _dst = string.Join("<", dst);
+            string _dst = dst;
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "" };
             if (src != null && powerpack_uuid == null)

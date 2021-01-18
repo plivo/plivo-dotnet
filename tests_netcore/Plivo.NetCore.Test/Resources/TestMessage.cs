@@ -39,7 +39,25 @@ namespace Plivo.NetCore.Test.Resources
                     response,
                     Api.Message.Create(src:"+919999999999", dst:new List<string>() {"+919898989898", "+919090909090"},
                        text:"textext")));
+
             AssertRequest(request);
+            Assert.Empty(
+               ComparisonUtilities.Compare(
+                   response,
+                   Api.Message.Create(src: "+919999999999", dst:  "+919898989898<+919090909090",
+                      text: "textext")));
+
+            Assert.Empty(
+               ComparisonUtilities.Compare(
+                   response,
+                   Api.Message.Create(dst: "+919898989898<+919090909090",
+                      text: "textext",powerpack_uuid:"asdasd-asdasd-asdasd21-asd")));
+
+            Assert.Empty(
+               ComparisonUtilities.Compare(
+                   response,
+                   Api.Message.Create(dst: new List<string>() { "+919898989898", "+919090909090" },
+                      text: "textext", powerpack_uuid: "asdasd-asdasd-asdasd21-asd")));
         }
 
         [Fact]
