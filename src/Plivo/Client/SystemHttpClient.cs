@@ -112,7 +112,7 @@ namespace Plivo.Client
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
             _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
+            var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.numbers.plivodev.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _voiceBaseUriClient = new System.Net.Http.HttpClient(httpClientHandler);
@@ -284,7 +284,7 @@ namespace Plivo.Client
             else if (isLookupRequest)
             {
                 response = await _lookupClient.SendAsync(request).ConfigureAwait(false);
-	    }
+	        }
             else {
                 response = await _client.SendAsync(request).ConfigureAwait(false);
             }
