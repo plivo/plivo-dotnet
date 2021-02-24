@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace Plivo.Resource
 {
     /// <summary>
@@ -5,11 +7,13 @@ namespace Plivo.Resource
     /// </summary>
     public class BaseResponse
     {
+        [JsonProperty("status_code")]
         public uint StatusCode { get; set; }
         /// <summary>
         /// Gets or sets the API identifier.
         /// </summary>
         /// <value>The API identifier.</value>
+        [JsonProperty("api_id")]
         public string ApiId { get; set; }
 
         /// <summary>

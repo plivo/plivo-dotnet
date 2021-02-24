@@ -18,7 +18,11 @@ using Plivo.Resource.Address;
 using Plivo.Resource.Identity;
 using Plivo.Resource.CallFeedback;
 using Plivo.Resource.Media;
-using Plivo.Resource.RegulatoryComplianceEndUser;
+using Plivo.Resource.RegulatoryCompliance.Application;
+using Plivo.Resource.RegulatoryCompliance.Document;
+using Plivo.Resource.RegulatoryCompliance.DocumentType;
+using Plivo.Resource.RegulatoryCompliance.EndUser;
+using Plivo.Resource.RegulatoryCompliance.Requirement;
 
 namespace Plivo
 {
@@ -56,7 +60,11 @@ namespace Plivo
         private readonly Lazy<AddressInterface> _address;
         private readonly Lazy<IdentityInterface> _identity;
         private readonly Lazy<CallFeedbackInterface> _callFeedback;
-        private readonly Lazy<RegulatoryComplianceEndUserInterface> _regulatoryComplianceEndUser;
+        private readonly Lazy<EndUserInterface> _endUser;
+        private readonly Lazy<DocumentTypeInterface> _documentType;
+        private readonly Lazy<RequirementInterface> _requirement;
+        private readonly Lazy<DocumentInterface> _document;
+        private readonly Lazy<ComplianceApplicationInterface> _complianceApplication;
 
         /// <summary>
         /// Gets the account.
@@ -148,11 +156,15 @@ namespace Plivo
         /// <value>Call Feedback.</value>
         public CallFeedbackInterface CallFeedback => _callFeedback.Value;
 
-        /// <summary>
-        /// Gets the regulatory compliance end user.
-        /// </summary>
-        /// <value>RegulatoryComplianceEndUser.</value>
-        public RegulatoryComplianceEndUserInterface RegulatoryComplianceEndUser => _regulatoryComplianceEndUser.Value;
+        public EndUserInterface ComplianceEndUser => _endUser.Value;
+
+        public DocumentTypeInterface ComplianceDocumentType => _documentType.Value;
+
+        public RequirementInterface ComplianceRequirement => _requirement.Value;
+
+        public DocumentInterface ComplianceDocument => _document.Value;
+
+        public ComplianceApplicationInterface ComplianceApplication => _complianceApplication.Value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
@@ -191,7 +203,13 @@ namespace Plivo
             _address = new Lazy<AddressInterface>(() => new AddressInterface(Client));
             _identity = new Lazy<IdentityInterface>(() => new IdentityInterface(Client));
             _callFeedback = new Lazy<CallFeedbackInterface>(() => new CallFeedbackInterface(Client));
-            _regulatoryComplianceEndUser = new Lazy<RegulatoryComplianceEndUserInterface>(() => new RegulatoryComplianceEndUserInterface(Client));
+
+            _endUser = new Lazy<EndUserInterface>(() => new EndUserInterface(Client));
+            _documentType = new Lazy<DocumentTypeInterface>(() => new DocumentTypeInterface(Client));
+            _requirement = new Lazy<RequirementInterface>(() => new RequirementInterface(Client));
+            _document = new Lazy<DocumentInterface>(() => new DocumentInterface(Client));
+            _complianceApplication =
+                new Lazy<ComplianceApplicationInterface>(() => new ComplianceApplicationInterface(Client));
         }
     }
 }

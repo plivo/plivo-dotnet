@@ -9,6 +9,7 @@
     <Title>Plivo</Title>
     <Description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Description>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
@@ -24,15 +25,21 @@
     <NoStdLib>false</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="CompareNETObjects" Version="4.72.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
-    
     <PackageReference Include="JWT" Version="6.1.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resource\Address\" />
     <Folder Include="Resource\Identity\" />
+    <Folder Include="Resource\RegulatoryCompliance" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == ''">
+    <PackageReference Include="Tapako.ObjectMerger" Version="0.5.0.15" />
+    <PackageReference Include="Tapako.ObjectMerger.Attributes" Version="0.5.0.15" />
+    <PackageReference Include="XASoft.Extensions" Version="0.1.0" />
   </ItemGroup>
 </Project>
