@@ -9,7 +9,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Requirement
         public string CountryIso2 { get; set; }
         public string NumberType { get; set; }
         public string EndUserType { get; set; }
-        public List<object> acceptableDocumentTypes { get; set; }
+        public List<object> AcceptableDocumentTypes { get; set; }
 
         public override string ToString()
         {
@@ -19,7 +19,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Requirement
                 "CountryIso2: " + CountryIso2 + "\n" +
                 "NumberType: " + NumberType + "\n" +
                 "EndUserType: " + EndUserType + "\n" +
-                "AcceptableDocumentTypes: " + string.Join(",\n", acceptableDocumentTypes) + "\n";
+                "AcceptableDocumentTypes: " + string.Join(",\n", AcceptableDocumentTypes) + "\n";
         }
     }
 }

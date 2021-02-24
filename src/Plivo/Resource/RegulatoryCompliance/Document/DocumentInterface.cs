@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Plivo.Client;
 using System.Threading.Tasks;
 
@@ -44,13 +45,14 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
         }
 
         public CreateResponse Create(string endUserId = null, string documentTypeId = null, string alias = null,
-            string inputFile = null, object dataFields = null)
+            string file = null, Dictionary<string, object> dataFields = null)
         {
             var data = CreateData(new List<string> {""}, new {endUserId, documentTypeId, alias});
+            dataFields?.ToList().ForEach(x => data.Add(x.Key, x.Value));
             var fileToUpload = new Dictionary<string, string>();
-            if (inputFile != null)
+            if (file != null)
             {
-                fileToUpload.Add("file", inputFile);
+                fileToUpload.Add("file", file);
             }
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -62,13 +64,14 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
         }
 
         public UpdateResponse Update(string endUserId = null, string documentTypeId = null, string alias = null,
-            string inputFile = null, object dataFields = null)
+            string file = null, Dictionary<string, object> dataFields = null)
         {
             var data = CreateData(new List<string> {""}, new {endUserId, documentTypeId, alias});
+            dataFields?.ToList().ForEach(x => data.Add(x.Key, x.Value));
             var fileToUpload = new Dictionary<string, string>();
-            if (inputFile != null)
+            if (file != null)
             {
-                fileToUpload.Add("file", inputFile);
+                fileToUpload.Add("file", file);
             }
             return ExecuteWithExceptionUnwrap(() =>
             {

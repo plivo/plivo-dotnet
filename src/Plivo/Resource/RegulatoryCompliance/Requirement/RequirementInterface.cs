@@ -22,16 +22,15 @@ namespace Plivo.Resource.RegulatoryCompliance.Requirement
             });
         }
 
-        public ListResponse<Requirement> List(string countryIso2 = null, string numberType = null,
+        public Requirement List(string countryIso2 = null, string numberType = null,
             string endUserType = null, string phoneNumber = null)
         {
             var data = CreateData(new List<string> {""}, new {countryIso2, numberType, endUserType, phoneNumber});
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () =>
-                        await ListResources<ListResponse<Requirement>>(data).ConfigureAwait(false))
+                        await ListResources<Requirement>(data).ConfigureAwait(false))
                     .Result;
-                resources.Objects.ForEach((obj) => obj.Interface = this);
                 return resources;
             });
         }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Plivo.Client;
 using System.Threading.Tasks;
+using Plivo.Resource.RegulatoryCompliance.EndUser;
 
 namespace Plivo.Resource.RegulatoryCompliance.Application
 {
@@ -26,7 +27,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
             string endUserType = null, string numberType = null, string countryIso2 = null, string alias = null,
             string endUserId = null)
         {
-            var data = CreateData( new List<string> {""}, new {limit, offset});
+            var data = CreateData(new List<string> {""}, new {limit, offset});
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () =>
@@ -36,10 +37,51 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
             });
         }
 
-        public DeleteResponse<ComplianceApplication> Delete(string complianceDocumentId)
+        public DeleteResponse<ComplianceApplication> Delete(string complianceApplicationId)
         {
             return Task.Run(async () =>
-                await DeleteResource<DeleteResponse<ComplianceApplication>>(complianceDocumentId).ConfigureAwait(false)).Result;
+                    await DeleteResource<DeleteResponse<ComplianceApplication>>(complianceApplicationId)
+                        .ConfigureAwait(false))
+                .Result;
+        }
+
+
+        public CreateResponse Create(string complianceRequirementId = null, string endUserId = null,
+            string alias = null, string endUserType = null, string countryIso2 = null, string numberType = null,
+            List<string> documentIds = null)
+        {
+            var data = CreateData(new List<string> {""}, new
+                {complianceRequirementId, endUserId, alias, endUserType, countryIso2, numberType, documentIds});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () =>
+                    await Client.Update<CreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                return result.Object;
+            });
+        }
+
+
+        public UpdateResponse Update(List<string> documentIds = null)
+        {
+            var data = CreateData(new List<string> {""}, new {documentIds});
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () =>
+                    await Client.Update<UpdateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                return result.Object;
+            });
+        }
+        
+        public UpdateResponse Submit(string complianceApplicationId)
+        {
+            var data = CreateData(new List<string> {"complianceApplicationId"}, new {});
+            Uri += complianceApplicationId+"/Submit/";
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () =>
+                    await Client.Update<UpdateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                return result.Object;
+            });
         }
     }
 }
