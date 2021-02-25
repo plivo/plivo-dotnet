@@ -19,10 +19,10 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
             return "ApiId: " + ApiId + "\n" +
                    "Alias: " + Alias + "\n" +
                    "CreatedAt: " + CreatedAt + "\n" +
-                   "DocumentId: " + DocumentId + "\n" +
+                   "ComplianceDocumentId: " + DocumentId + "\n" +
                    "DocumentTypeId: " + DocumentTypeId + "\n" +
                    "EndUserId: " + EndUserId + "\n" +
-                   "FileName: " + FileName + "\n" +
+                   "File: " + FileName + "\n" +
                    "Message: " + Message + "\n" +
                    "MetaInformation: " + MetaInformation + "\n";
         }
