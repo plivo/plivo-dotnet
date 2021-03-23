@@ -63,26 +63,26 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
         }
 
 
-        public UpdateResponse Update(List<string> documentIds = null)
+        public UpdateResponse Update(string complianceApplicationId, List<string> documentIds = null)
         {
             var data = CreateData(new List<string> {""}, new {documentIds});
-            Console.WriteLine(data);
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () =>
-                    await Client.Update<UpdateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                    await Client.Update<UpdateResponse>(Uri + complianceApplicationId + "/", data)
+                        .ConfigureAwait(false)).Result;
                 return result.Object;
             });
         }
-        
+
         public SubmitResponse Submit(string complianceApplicationId)
         {
-            var data = CreateData(new List<string> {"complianceApplicationId"}, new {});
-            Uri += complianceApplicationId+"/Submit/";
+            var data = CreateData(new List<string> {"complianceApplicationId"}, new { });
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () =>
-                    await Client.Update<SubmitResponse>(Uri, data).ConfigureAwait(false)).Result;
+                    await Client.Update<SubmitResponse>(Uri + complianceApplicationId + "/Submit/", data)
+                        .ConfigureAwait(false)).Result;
                 return result.Object;
             });
         }
