@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Plivo.Client;
 using System.Threading.Tasks;
@@ -27,7 +28,8 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
             string endUserType = null, string numberType = null, string countryIso2 = null, string alias = null,
             string endUserId = null)
         {
-            var data = CreateData(new List<string> {""}, new {limit, offset});
+            var data = CreateData(new List<string> {""},
+                new {limit, offset, status, endUserType, numberType, countryIso2, alias, endUserId});
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () =>
@@ -64,6 +66,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
         public UpdateResponse Update(List<string> documentIds = null)
         {
             var data = CreateData(new List<string> {""}, new {documentIds});
+            Console.WriteLine(data);
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () =>
@@ -72,14 +75,14 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
             });
         }
         
-        public UpdateResponse Submit(string complianceApplicationId)
+        public SubmitResponse Submit(string complianceApplicationId)
         {
             var data = CreateData(new List<string> {"complianceApplicationId"}, new {});
             Uri += complianceApplicationId+"/Submit/";
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () =>
-                    await Client.Update<UpdateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                    await Client.Update<SubmitResponse>(Uri, data).ConfigureAwait(false)).Result;
                 return result.Object;
             });
         }

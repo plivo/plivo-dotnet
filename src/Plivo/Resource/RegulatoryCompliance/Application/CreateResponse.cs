@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Plivo.Resource.RegulatoryCompliance.Application
 {
     public class CreateResponse
@@ -8,7 +10,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
         public string ComplianceRequirementId { get; set; }
         public string CountryIso2 { get; set; }
         public string CreatedAt { get; set; }
-        public string Documents { get; set; }
+        public List<object> Documents { get; set; }
         public string EndUserId { get; set; }
         public string EndUserType { get; set; }
         public string Message { get; set; }
@@ -23,7 +25,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
                          "ComplianceRequirementId: " + ComplianceRequirementId + "\n" +
                          "CountryIso2: " + CountryIso2 + "\n" +
                          "CreatedAt: " + CreatedAt + "\n" +
-                         "Documents: " + Documents + "\n" +
+                         "Documents: " + (Documents != null ? string.Join(",\n", Documents) + "\n" : null) +
                          "EndUserId: " + EndUserId + "\n" +
                          "EndUserType: " + EndUserType + "\n" +
                          "NumberType: " + NumberType + "\n" +

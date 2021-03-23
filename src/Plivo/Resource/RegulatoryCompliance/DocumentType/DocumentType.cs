@@ -9,6 +9,8 @@ namespace Plivo.Resource.RegulatoryCompliance.DocumentType
         public string Description { get; set; }
         public string ProofRequired { get; set; }
         public List<object> Information { get; set; }
+        public string CreatedAt { get; set; }
+
 
         public override string ToString()
         {
@@ -16,6 +18,7 @@ namespace Plivo.Resource.RegulatoryCompliance.DocumentType
                          "DocumentName: " + DocumentName + "\n" +
                          "Description: " + Description + "\n" +
                          "ProofRequired: " + ProofRequired + "\n" +
+                         "CreatedAt: " + CreatedAt + "\n" +
                          "Information: " + (Information != null ? string.Join(",\n", Information) + "\n" : null);
             return StatusCode != 0 ? "ApiId: " + ApiId + "\n" + result : result;
         }
