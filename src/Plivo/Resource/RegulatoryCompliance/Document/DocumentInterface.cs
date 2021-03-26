@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Plivo.Client;
 using System.Threading.Tasks;
+using Plivo.Resource.RegulatoryCompliance.EndUser;
 
 namespace Plivo.Resource.RegulatoryCompliance.Document
 {
@@ -63,8 +64,8 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
             });
         }
 
-        public UpdateResponse Update(string endUserId = null, string documentTypeId = null, string alias = null,
-            string file = null, Dictionary<string, object> dataFields = null)
+        public UpdateResponse Update(string complianceDocumentId, string endUserId = null, string documentTypeId = null,
+            string alias = null, string file = null, Dictionary<string, object> dataFields = null)
         {
             var data = CreateData(new List<string> {""}, new {endUserId, documentTypeId, alias});
             dataFields?.ToList().ForEach(x => data.Add(x.Key, x.Value));
@@ -73,11 +74,12 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
             {
                 fileToUpload.Add("file", file);
             }
+
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () =>
-                        await Client.Update<UpdateResponse>(Uri, data, fileToUpload).ConfigureAwait(false))
-                    .Result;
+                    await Client.Update<UpdateResponse>(Uri + complianceDocumentId + "/", data, fileToUpload)
+                        .ConfigureAwait(false)).Result;
                 return result.Object;
             });
         }

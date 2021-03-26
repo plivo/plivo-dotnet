@@ -16,13 +16,13 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
 
         public override string ToString()
         {
+            var file = !string.IsNullOrWhiteSpace(FileName) ? "File: " + FileName + "\n" : "";
             return "ApiId: " + ApiId + "\n" +
                    "Alias: " + Alias + "\n" +
                    "CreatedAt: " + CreatedAt + "\n" +
                    "ComplianceDocumentId: " + DocumentId + "\n" +
                    "DocumentTypeId: " + DocumentTypeId + "\n" +
-                   "EndUserId: " + EndUserId + "\n" +
-                   "File: " + FileName + "\n" +
+                   "EndUserId: " + EndUserId + "\n" + file +
                    "Message: " + Message + "\n" +
                    "MetaInformation: " + MetaInformation + "\n";
         }

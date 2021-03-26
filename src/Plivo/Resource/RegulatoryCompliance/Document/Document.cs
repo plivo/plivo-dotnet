@@ -13,8 +13,8 @@ namespace Plivo.Resource.RegulatoryCompliance.Document
         [JsonProperty("document_type_id")] public string DocumentTypeId { get; set; }
         [JsonProperty("end_user_id")] public string EndUserId { get; set; }
         [JsonProperty("file")] public string File { get; set; }
-        [JsonProperty("meta_information")] MetaInformation _metaInformation = new MetaInformation();
         [JsonProperty("created_at")] public string CreatedAt { get; set; }
+        [JsonProperty("meta_information")] MetaInformation _metaInformation = new MetaInformation();
 
         public override string ToString()
         {
