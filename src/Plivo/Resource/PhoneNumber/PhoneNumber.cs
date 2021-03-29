@@ -28,7 +28,7 @@ namespace Plivo.Resource.PhoneNumber
         public bool MmsEnabled { get; set; }
         public string MmsRate { get; set; }
 
-        public List<Requirement> ComplianceRequirement {get; set; }
+        public Requirement ComplianceRequirement { get; set; }
 
         public override string ToString()
         {
