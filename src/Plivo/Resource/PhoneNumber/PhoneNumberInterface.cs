@@ -35,11 +35,13 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="eligible">Eligible.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="npanxx">npanxx.</param>
+        /// <param name="local_calling_area">local_calling_area.</param>
         public ListResponse<PhoneNumber> List(
             string countryIso, string type = null, string pattern = null,
             string region = null, string services = null, uint? lata = null,
             string rateCenter = null, bool? eligible = null, uint? limit = null, 
-            uint? offset = null)
+            uint? offset = null, string npanxx = null, bool? local_calling_area = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -55,7 +57,9 @@ namespace Plivo.Resource.PhoneNumber
                     rateCenter,
                     eligible,
                     limit,
-                    offset
+                    offset,
+                    npanxx,
+                    local_calling_area
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>

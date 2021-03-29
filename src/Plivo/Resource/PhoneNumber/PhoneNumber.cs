@@ -25,6 +25,11 @@ namespace Plivo.Resource.PhoneNumber
         public List<Prerequisite> Prerequisites { get; set; }
         public string City { get; set; }
 
+        public bool MmsEnabled { get; set; }
+        public string MmsRate { get; set; }
+
+        public List<Requirement> ComplianceRequirement {get; set; }
+
         public override string ToString()
         {
             return 
@@ -44,6 +49,10 @@ namespace Plivo.Resource.PhoneNumber
                 "SmsRate: " + SmsRate + "\n" +
                 "VoiceEnabled: " + VoiceEnabled + "\n" +
                 "VoiceRate: " + VoiceRate + "\n" +
+                "City: " + City + "\n" + 
+                "MmsEnabled: " + MmsEnabled + "\n" +
+                "MmsRate: " + MmsRate + "\n" +
+                "ComplianceRequirement: " + ComplianceRequirement + "\n" +
                 "Prerequisites: " + Prerequisites + "\n";
                 
         }
