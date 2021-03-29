@@ -5,15 +5,17 @@ namespace Plivo.Resource.PhoneNumber
 {
     public class Requirement
     {
-        public string Individual { get; set; }
+        
         public string Business { get; set; }
+        public string Individual { get; set; }
 
         public override string ToString()
         {
-            var individual =  "Individual: " + Individual + "\n" ;
+            
             var business = "Business: " + Business + "\n" ;
+            var individual =  "Individual: " + Individual + "\n" ;
 
-            return "{\n" + individual + business + "}";
+            return "{\n" + business + individual + "}";
 
         }
     }
