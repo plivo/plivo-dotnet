@@ -1,6 +1,12 @@
 
 # Change Log
 
+## [v4.16.0](https://github.com/plivo/plivo-dotnet/tree/v4.16.0) (2021-03-30)
+- Add support for Regulatory Compliance APIs.
+- Add "complianceApplicationId","complianceStatus" - these new feilds in the List/Get rented numbers
+- Add "city","mmsEnabled","mmsRate","complianceRequirement" - These new feilds are added in the Search Phone Number
+- Add "npanxx" and "local_calling_area" support for Search Phone Number.
+
 ## [v4.15.1](https://github.com/plivo/plivo-dotnet/tree/v4.15.1) (2020-12-17)
 - Fix Prosody XML error - SSML.
 

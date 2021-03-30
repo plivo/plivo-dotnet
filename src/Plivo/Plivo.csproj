@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard1.3</TargetFrameworks>
-    <ReleaseVersion>4.15.1</ReleaseVersion>
+    <ReleaseVersion>4.16.0</ReleaseVersion>
     <Version />
     <Authors>Plivo SDKs Team</Authors>
     <Owners>Plivo Inc.</Owners>
@@ -9,6 +9,7 @@
     <Title>Plivo</Title>
     <Description>A .NET SDK to make voice calls &amp; send SMS using Plivo and to generate Plivo XML</Description>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
@@ -28,11 +29,11 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
     <PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
-    
     <PackageReference Include="JWT" Version="6.1.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resource\Address\" />
     <Folder Include="Resource\Identity\" />
+    <Folder Include="Resource\RegulatoryCompliance" />
   </ItemGroup>
 </Project>

@@ -28,6 +28,9 @@ namespace Plivo.Resource.RentedNumber
         public List<VerificationInfo> VerificationInfo { get; set; }
         public bool VoiceEnabled { get; set; }
         public string VoiceRate { get; set; }
+
+        public string ComplianceApplicationId {get; set;}
+        public string ComplianceStatus {get; set;}
         
         public override string ToString()
         {
@@ -54,6 +57,8 @@ namespace Plivo.Resource.RentedNumber
                     "Type: " + Type + "\n" +
                     "VerificationInfo: " + VerificationInfo.ToString() + "\n" +
                     "VoiceEnabled: " + VoiceEnabled + "\n" +
+                    "ComplianceApplicationId: " + ComplianceApplicationId + "\n" +
+                    "ComplianceStatus: " + ComplianceStatus + "\n" +
                     "VoiceRate: " + VoiceRate + "\n";
             }
             return
