@@ -1,5 +1,7 @@
-
 # Change Log
+
+## [v4.16.0](https://github.com/plivo/plivo-dotnet/tree/v4.16.0) (2021-05-28)
+- New Send Message interface along with existing interface support.
 
 ## [v4.15.0](https://github.com/plivo/plivo-dotnet/tree/v4.15.0) (2020-11-17)
 - Add number_priority support for Powerpack API.
