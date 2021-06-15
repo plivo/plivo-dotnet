@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.17.0](https://github.com/plivo/plivo-dotnet/tree/v4.17.0) (2020-06-15)
+## [v4.17.0](https://github.com/plivo/plivo-dotnet/tree/v4.17.0) (2021-06-15)
 - Add stir verification param as part of Get CDR and Live call API response
 
 ## [v4.16.1](https://github.com/plivo/plivo-dotnet/tree/v4.16.1) (2020-04-08)
