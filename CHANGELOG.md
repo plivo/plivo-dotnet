@@ -1,4 +1,7 @@
 # Change Log
+## [v5.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.0.0) (2021-06-18)
+**BREAKING**:- Removed the total_count parameter in meta data for list MDR response
+
 ## [v4.16.1](https://github.com/plivo/plivo-dotnet/tree/v4.16.1) (2020-04-08)
 - Read origination prefix from voice pricing
 
