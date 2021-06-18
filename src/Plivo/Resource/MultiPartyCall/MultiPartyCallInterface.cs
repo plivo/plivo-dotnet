@@ -176,6 +176,7 @@ namespace Plivo.Resource.MultiPartyCall
             string from = null,
             string to = null,
             string callUuid = null,
+            string callerName = null,
             string callStatusCallbackUrl = null,
             string callStatusCallbackMethod = "POST",
             string sipHeaders = null,
@@ -183,7 +184,8 @@ namespace Plivo.Resource.MultiPartyCall
             string confirmKeySoundUrl = null,
             string confirmKeySoundMethod = "GET",
             string dialMusic = "Real",
-            uint? ringTimeout = 45,
+            dynamic ringTimeout = null,
+            dynamic delayDial = null,
             uint? maxDuration = 14400,
             uint? maxParticipants = 10,
             string waitMusicUrl = null,
@@ -259,6 +261,16 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("callUuid", callUuid, false);
             }
 
+            if(callerName!=null)
+            {
+                MpcUtils.ValidParamString("callerName", callerName, false);
+                MpcUtils.ValidRange("callerName Length",(uint)callerName.Length, false , 0, 50);
+            }
+            else
+            {
+                callerName = from;
+            }
+
             if (callStatusCallbackUrl != null)
             {
                 MpcUtils.ValidUrl("callStatusCallbackUrl", callStatusCallbackUrl, false);
@@ -300,9 +312,44 @@ namespace Plivo.Resource.MultiPartyCall
 
             if (ringTimeout != null)
             {
-                MpcUtils.ValidRange("ringTimeout", ringTimeout, false, 15, 120);
+                if (ringTimeout.GetType() == typeof(System.Int32))
+                {
+                    MpcUtils.ValidRange("ringTimeout", (uint)ringTimeout, false, 15, 120);
+                }
+                else if (ringTimeout.GetType() == typeof(System.String))
+                {
+                    MpcUtils.ValidMultipleDestinationIntegers("ringTimeout", ringTimeout);
+                }
+                else
+                {
+                    throw new PlivoValidationException("RingTimeout must be of type uint or String");
+                }
+            }
+            else
+            {
+                ringTimeout = 45;
             }
 
+            if (delayDial != null)
+            {
+                if (delayDial.GetType() == typeof(System.Int32))
+                {
+                    MpcUtils.ValidRange("delayDial", (uint)delayDial, false, 0, 120);
+                }
+                else if (delayDial.GetType() == typeof(System.String))
+                {
+                    MpcUtils.ValidMultipleDestinationIntegers("delayDial", delayDial);
+                }
+                else
+                {
+                    throw new PlivoValidationException("DelayDial must be of type uint or String");
+                }
+            }
+            else
+            {
+                delayDial = 0;
+            }
+            
             if (maxDuration != null)
             {
                 MpcUtils.ValidRange("maxDuration", maxDuration, false, 300, 28800);
@@ -432,6 +479,7 @@ namespace Plivo.Resource.MultiPartyCall
                     from,
                     to,
                     callUuid,
+                    callerName,
                     callStatusCallbackUrl,
                     callStatusCallbackMethod,
                     sipHeaders,
@@ -440,6 +488,7 @@ namespace Plivo.Resource.MultiPartyCall
                     confirmKeySoundMethod,
                     dialMusic,
                     ringTimeout,
+                    delayDial,
                     maxDuration,
                     maxParticipants,
                     waitMusicUrl,
@@ -686,7 +735,141 @@ namespace Plivo.Resource.MultiPartyCall
                 return result.Object;
             });
         }
+
+        public RecordCreateResponse<MultiPartyCallParticipant> StartParticipantRecording (
+            string participantId,
+            string mpcUuid = null, string friendlyName = null,
+            string fileFormat = "mp3", 
+            string statusCallbackUrl = null, string statusCallbackMethod = "POST"
+            ) 
+        {
+            if (mpcUuid != null)
+            {
+                MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
+            }
+            if (friendlyName != null)
+            {
+                MpcUtils.ValidParamString("friendlyName", friendlyName, false);
+            }
+
+            if (fileFormat != null)
+            {
+                MpcUtils.ValidParamString("fileFormat", fileFormat.ToLower(), false,
+                    new List<string>() {"mp3", "wav"});
+            }
+
+            if (statusCallbackUrl != null)
+            {
+                MpcUtils.ValidUrl("statusCallbackUrl", statusCallbackUrl, false);
+            }
+
+            if (statusCallbackMethod != null)
+            {
+                MpcUtils.ValidParamString("statusCallbackMethod", statusCallbackMethod.ToUpper(), false,
+                    new List<string>() {"GET", "POST"});
+            }
+            MpcUtils.ValidParamString("participantId", participantId, true);
+            string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams,
+                new {
+                    fileFormat,
+                    statusCallbackUrl,
+                    statusCallbackMethod,
+                    isVoiceRequest
+                });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                return Task.Run(async () =>
+                    await UpdateSecondaryResource<RecordCreateResponse<MultiPartyCallParticipant>>(mpcId,
+                        data,
+                        "Participant", participantId + "/Record").ConfigureAwait(false)).Result;
+            });
+        }
         
+        public DeleteResponse<MultiPartyCallParticipant> StopParticipantRecording (string participantId, string mpcUuid = null, string friendlyName = null) {
+            if (mpcUuid != null)
+            {
+                MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
+            }
+            if (friendlyName != null)
+            {
+                MpcUtils.ValidParamString("friendlyName", friendlyName, false);
+            }
+            MpcUtils.ValidParamString("participantId", participantId, true);
+            string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams, new { isVoiceRequest });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                return Task.Run(async () => await DeleteSecondaryResource<DeleteResponse<MultiPartyCallParticipant>>(mpcId,
+                    new Dictionary<string, object> () { {"is_voice_request", true} }, 
+                    "Participant", participantId+"/Record").ConfigureAwait(false)).Result;
+            });
+        }
+        
+        public UpdateResponse<MultiPartyCallParticipant> PauseParticipantRecording (
+            string participantId, string mpcUuid = null, string friendlyName = null) 
+        {
+            if (mpcUuid != null)
+            {
+                MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
+            }
+            if (friendlyName != null)
+            {
+                MpcUtils.ValidParamString("friendlyName", friendlyName, false);
+            }
+            MpcUtils.ValidParamString("participantId", participantId, true);
+            string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams,
+                new {
+                    isVoiceRequest
+                });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                return Task.Run(async () =>
+                    await UpdateSecondaryResource<UpdateResponse<MultiPartyCallParticipant>>(mpcId,
+                        data,
+                        "Participant", participantId + "/Record/Pause").ConfigureAwait(false)).Result;
+            });
+        }
+
+        public UpdateResponse<MultiPartyCallParticipant> ResumeParticipantRecording (
+            string participantId, string mpcUuid = null, string friendlyName = null) 
+        {
+            if (mpcUuid != null)
+            {
+                MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
+            }
+            if (friendlyName != null)
+            {
+                MpcUtils.ValidParamString("friendlyName", friendlyName, false);
+            }
+            MpcUtils.ValidParamString("participantId", participantId, true);
+            string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams,
+                new {
+                    isVoiceRequest
+                });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                 return Task.Run(async () =>
+                    await UpdateSecondaryResource<UpdateResponse<MultiPartyCallParticipant>>(mpcId,
+                        data,
+                        "Participant", participantId + "/Record/Resume").ConfigureAwait(false)).Result;
+            });
+        }
+
         public ListResponse<MultiPartyCallParticipant> ListParticipants(
             string mpcUuid = null, string friendlyName = null,
             string callUuid = null)
