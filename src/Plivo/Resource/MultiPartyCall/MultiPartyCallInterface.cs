@@ -807,7 +807,7 @@ namespace Plivo.Resource.MultiPartyCall
 
             return ExecuteWithExceptionUnwrap (() => {
                 return Task.Run(async () => await DeleteSecondaryResource<DeleteResponse<MultiPartyCallParticipant>>(mpcId,
-                    new Dictionary<string, object> () { {"is_voice_request", true} }, 
+                    data, 
                     "Participant", participantId+"/Record").ConfigureAwait(false)).Result;
             });
         }
