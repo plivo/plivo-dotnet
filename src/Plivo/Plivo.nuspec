@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.0.1 Make parameters optional for XML method AddSpeak
       * 5.0.0 Removed the total_count parameter in meta data for list MDR response
       * 4.17.1 Read voice network group from voice pricing and list/get CDR response
       * 4.17.0 Add stir verification param as part of Get CDR and Live call API response
