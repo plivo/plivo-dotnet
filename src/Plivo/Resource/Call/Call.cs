@@ -32,7 +32,7 @@ namespace Plivo.Resource.Call
         public string ToNumber { get; set; }
         public string TotalAmount { get; set; }
         public string TotalRate { get; set; }
-
+        public string StirVerification { get; set; }
 
 
 
@@ -382,7 +382,8 @@ namespace Plivo.Resource.Call
                    "ResourceUri: " + ResourceUri + "\n" +
                    "ToNumber: " + ToNumber + "\n" +
                    "TotalAmount: " + TotalAmount + "\n" +
-                   "TotalRate: " + TotalRate + "\n";
+                   "TotalRate: " + TotalRate + "\n" +
+                   "StirVerification: " + StirVerification + "\n";
         }
     }
 }
