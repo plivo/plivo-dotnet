@@ -1,6 +1,6 @@
 # Change Log
 
-## [v4.17.1](https://github.com/plivo/plivo-dotnet/tree/v4.17.1) (2021-07-01)
+## [v4.17.1](https://github.com/plivo/plivo-dotnet/tree/v4.17.1) (2021-07-02)
 - Read voice network group from voice pricing
 - Read voice network group from List/Get CDR response
 
