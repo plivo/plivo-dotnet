@@ -103,6 +103,11 @@ namespace Plivo.Client
         public void SetTimeout(int timeout)
         {
             ((SystemHttpClient) _client)._client.Timeout = TimeSpan.FromSeconds(timeout);
+            ((SystemHttpClient) _client)._voiceBaseUriClient.Timeout = TimeSpan.FromSeconds(timeout);
+            ((SystemHttpClient) _client)._voiceFallback1Client.Timeout = TimeSpan.FromSeconds(timeout);
+            ((SystemHttpClient) _client)._voiceFallback2Client.Timeout = TimeSpan.FromSeconds(timeout);
+            ((SystemHttpClient) _client)._callInsightsclient.Timeout = TimeSpan.FromSeconds(timeout);
+            ((SystemHttpClient) _client)._lookupClient.Timeout = TimeSpan.FromSeconds(timeout);
         }
         
         public string AsQueryString(IEnumerable<KeyValuePair<string, object>> parameters)
