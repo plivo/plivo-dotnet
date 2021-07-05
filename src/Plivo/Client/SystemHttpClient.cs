@@ -138,14 +138,12 @@ namespace Plivo.Client
             _voiceFallback2Client.BaseAddress = new Uri(voiceFallback2Uri + "/");
 
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
-            _callInsightsclient.Timeout = TimeSpan.FromSeconds(5);
             _callInsightsclient.DefaultRequestHeaders.Authorization = authHeader;
             _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             var callInsightsBaseServerUri = "https://stats.plivo.com/" + "v1";
             _callInsightsclient.BaseAddress = new Uri(callInsightsBaseServerUri + "/");
 
             _lookupClient = new System.Net.Http.HttpClient(httpClientHandler);
-            _lookupClient.Timeout = TimeSpan.FromSeconds(5);
             _lookupClient.DefaultRequestHeaders.Authorization = authHeader;
             _lookupClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             _lookupClient.BaseAddress = new Uri("https://lookup.plivo.com/v1/");
