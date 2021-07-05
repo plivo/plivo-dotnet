@@ -13,6 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       * 5.0.0 Removed the total_count parameter in meta data for list MDR response
+      * 4.17.1 Read voice network group from voice pricing and list/get CDR response
       * 4.17.0 Add stir verification param as part of Get CDR and Live call API response
       * 4.16.1 Read origination prefix from voice pricing
       * 4.15.1 Fix Prosody XML error - SSML.
