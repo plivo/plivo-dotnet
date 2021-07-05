@@ -267,7 +267,7 @@ namespace Plivo.Resource.Message
         /// <param name="message_time__lte">MessageTimeLTE.</param>
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
-        public ListResponse<Message> List(
+        public MessageListResponse<Message> List(
             string subaccount = null,
             uint? limit = null,
             uint? offset = null,
@@ -305,8 +305,7 @@ namespace Plivo.Resource.Message
 
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
-
+                var resources = Task.Run(async () => await ListResources<MessageListResponse<Message>>(data).ConfigureAwait(false)).Result;
                 resources.Objects.ForEach(
                     (obj) => obj.Interface = this
                 );
@@ -328,7 +327,7 @@ namespace Plivo.Resource.Message
         /// <param name="message_time__lte">MessageTimeLTE.</param>
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
-        public async Task<ListResponse<Message>> ListAsync(
+        public async Task<MessageListResponse<Message>> ListAsync(
             string subaccount = null,
             uint? limit = null,
             uint? offset = null,
@@ -363,8 +362,7 @@ namespace Plivo.Resource.Message
                     _message_time,
                     error_code
                 });
-            var resources = await ListResources<ListResponse<Message>>(data);
-
+            var resources = await ListResources<MessageListResponse<Message>>(data);
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );

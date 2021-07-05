@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.0.0) (2021-07-05)
+- **BREAKING**: Removed the total_count parameter in meta data for list MDR response
+
 ## [v4.17.1](https://github.com/plivo/plivo-dotnet/tree/v4.17.1) (2021-07-02)
 - Read voice network group from voice pricing
 - Read voice network group from List/Get CDR response
