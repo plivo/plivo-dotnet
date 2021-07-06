@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.0.1](https://github.com/plivo/plivo-dotnet/tree/v5.0.1) (2021-07-05)
+- Make parameters optional for XML method AddSpeak
+
 ## [v5.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.0.0) (2021-07-05)
 - **BREAKING**: Removed the total_count parameter in meta data for list MDR response
 

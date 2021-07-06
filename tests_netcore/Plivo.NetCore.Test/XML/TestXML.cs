@@ -115,8 +115,7 @@ namespace Plivo.NetCore.Test.XML
             answer.AddSpeak("This call will cost $2 a min.",
                 new Dictionary<string, string>() { });
             resp.Add(answer);
-            resp.AddSpeak("Thanks for dropping by.",
-                new Dictionary<string, string>() { });
+            resp.AddSpeak("Thanks for dropping by.");
 
             resp.AddRecord(new Dictionary<string, string>()
             {
