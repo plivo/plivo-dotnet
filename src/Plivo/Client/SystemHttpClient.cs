@@ -103,7 +103,6 @@ namespace Plivo.Client
             };
 #endif
             _client = new System.Net.Http.HttpClient(httpClientHandler);
-            _client.Timeout = TimeSpan.FromSeconds(5);
             var authHeader =
                 new AuthenticationHeaderValue("Basic",
                     Convert.ToBase64String(Encoding.UTF8.GetBytes(
