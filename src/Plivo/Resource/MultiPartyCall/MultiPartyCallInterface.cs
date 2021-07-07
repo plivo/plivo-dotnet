@@ -312,17 +312,13 @@ namespace Plivo.Resource.MultiPartyCall
 
             if (ringTimeout != null)
             {
-                if (ringTimeout.GetType() == typeof(System.Int32))
-                {
-                    MpcUtils.ValidRange("ringTimeout", (uint)ringTimeout, false, 15, 120);
-                }
-                else if (ringTimeout.GetType() == typeof(System.String))
+                if (ringTimeout.GetType() == typeof(System.String))
                 {
                     MpcUtils.ValidMultipleDestinationIntegers("ringTimeout", ringTimeout);
                 }
-                else
+                else if (ringTimeout.GetType() != typeof(System.Int32))
                 {
-                    throw new PlivoValidationException("RingTimeout must be of type uint or String");
+                    throw new PlivoValidationException("RingTimeout must be of type int or String");
                 }
             }
             else
@@ -332,17 +328,13 @@ namespace Plivo.Resource.MultiPartyCall
 
             if (delayDial != null)
             {
-                if (delayDial.GetType() == typeof(System.Int32))
-                {
-                    MpcUtils.ValidRange("delayDial", (uint)delayDial, false, 0, 120);
-                }
-                else if (delayDial.GetType() == typeof(System.String))
+                if (delayDial.GetType() == typeof(System.String))
                 {
                     MpcUtils.ValidMultipleDestinationIntegers("delayDial", delayDial);
                 }
-                else
+                else if(delayDial.GetType() != typeof(System.Int32))
                 {
-                    throw new PlivoValidationException("DelayDial must be of type uint or String");
+                    throw new PlivoValidationException("DelayDial must be of type int or String");
                 }
             }
             else
