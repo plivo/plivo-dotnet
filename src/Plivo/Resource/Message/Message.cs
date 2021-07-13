@@ -80,6 +80,12 @@ namespace Plivo.Resource.Message
         /// <value>The units.</value>
         public uint Units { get; set; }
 
+        /// <summary>
+        /// Gets or sets the powerpack id.
+        /// </summary>
+        /// <value>The powerpack id.</value>
+        public string PowerpackId { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -95,6 +101,7 @@ namespace Plivo.Resource.Message
                    "ToNumber: " + ToNumber + "\n" +
                    "TotalAmount: " + TotalAmount + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
+                   "PowerpackID: " + PowerpackId + "\n" +
                    "Units: " + Units + "\n";
         }
         #region ListMedia
