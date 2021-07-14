@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.1.0</version>
+    <version>5.2.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.2.0 Add support for MPC APIs and XML (Voice retry included), validated voice UTs.
       * 5.1.0 Power pack ID has been included to the response for the list all messages API and the get message details API.
       * 5.0.1 Make parameters optional for XML method AddSpeak
       * 5.0.0 Removed the total_count parameter in meta data for list MDR response
