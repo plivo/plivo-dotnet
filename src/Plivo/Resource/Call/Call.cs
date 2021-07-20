@@ -32,6 +32,8 @@ namespace Plivo.Resource.Call
         public string ToNumber { get; set; }
         public string TotalAmount { get; set; }
         public string TotalRate { get; set; }
+        public string StirVerification { get; set; }
+        public string VoiceNetworkGroup { get; set; }
 
 
 
@@ -67,7 +69,7 @@ namespace Plivo.Resource.Call
         /// <returns>The delete.</returns>
         public DeleteResponse<Call> Delete()
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .Delete(Id);
         }
 
@@ -97,7 +99,7 @@ namespace Plivo.Resource.Call
             string alegMethod = null, string blegUrl = null,
             string blegMethod = null)
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .Transfer(Id, legs, alegUrl, alegMethod, blegUrl, blegMethod);
         }
         /// <summary>
@@ -133,7 +135,7 @@ namespace Plivo.Resource.Call
             List<string> urls, uint? length = null,
             string legs = null, bool? loop = null, bool? mix = null)
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .StartPlaying(Id, urls, length, legs, loop, mix);
         }
         /// <summary>
@@ -161,7 +163,7 @@ namespace Plivo.Resource.Call
         /// <returns>The playing.</returns>
         public DeleteResponse<Call> StopPlaying()
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .StopPlaying(Id);
         }
         /// <summary>
@@ -193,7 +195,7 @@ namespace Plivo.Resource.Call
             string transactionMethod = null, string callbackUrl = null,
             string callbackMethod = null)
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .StartRecording(
                     Id, timeLimit, fileFormat, transactionType, transactionUrl,
                     transactionMethod, callbackUrl, callbackMethod);
@@ -230,7 +232,7 @@ namespace Plivo.Resource.Call
         /// <param name="URL">URL.</param>
         public DeleteResponse<Call> StopRecording(string URL = null)
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .StopRecording(Id, URL);
         }
         /// <summary>
@@ -261,7 +263,7 @@ namespace Plivo.Resource.Call
             string language = null, string legs = null, bool? loop = null,
             bool? mix = null)
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .StartSpeaking(
                     Id, text, voice, language, legs, loop, mix);
         }
@@ -293,7 +295,7 @@ namespace Plivo.Resource.Call
         /// <returns>The speaking.</returns>
         public DeleteResponse<Call> StopSpeaking()
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .StopSpeaking(Id);
         }
         /// <summary>
@@ -317,7 +319,7 @@ namespace Plivo.Resource.Call
         public async Task<UpdateResponse<Call>> SendDigitsAsync(
             string digits, string leg = null)
         {
-            return await ((CallInterface) Interface)
+            return await ((CallInterface)Interface)
                 .SendDigitsAsync(Id, digits, leg);
         }
         /// <summary>
@@ -326,7 +328,7 @@ namespace Plivo.Resource.Call
         /// <returns>The digits.</returns>
         /// <param name="digits">Digits.</param>
         /// <param name="leg">Leg.</param>
-        public  UpdateResponse<Call> SendDigits(
+        public UpdateResponse<Call> SendDigits(
             string digits, string leg = null)
         {
             return ((CallInterface)Interface)
@@ -341,7 +343,7 @@ namespace Plivo.Resource.Call
         /// <returns>The call.</returns>
         public DeleteResponse<Call> CancelCall()
         {
-            return ((CallInterface) Interface)
+            return ((CallInterface)Interface)
                 .CancelCall(Id);
         }
         /// <summary>
@@ -358,11 +360,11 @@ namespace Plivo.Resource.Call
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.
         /// </summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.</returns>
-        
+
         public override string ToString()
         {
-            return 
-                    "StatusCode: " + StatusCode + "\n" +
+            return
+                   "StatusCode: " + StatusCode + "\n" +
                    "AnswerTime: " + AnswerTime + "\n" +
                    "ApiId: " + ApiId + "\n" +
                    "BillDuration: " + BillDuration + "\n" +
@@ -382,7 +384,9 @@ namespace Plivo.Resource.Call
                    "ResourceUri: " + ResourceUri + "\n" +
                    "ToNumber: " + ToNumber + "\n" +
                    "TotalAmount: " + TotalAmount + "\n" +
-                   "TotalRate: " + TotalRate + "\n";
+                   "TotalRate: " + TotalRate + "\n" +
+                   "StirVerification: " + StirVerification + "\n" +
+                   "VoiceNetworkGroup: " + VoiceNetworkGroup + "\n";
         }
     }
 }

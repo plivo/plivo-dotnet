@@ -138,7 +138,9 @@ namespace Plivo.Resource.Pricing
     public class RateClass
     {
         public List<string> Prefix { get; set; }
+        public List<string> OriginationPrefix { get; set; }
         public string Rate { get; set; }
+        public string VoiceNetworkGroup { get; set; }
 
         public override string ToString()
         {

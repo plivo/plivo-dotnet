@@ -100,8 +100,11 @@ namespace Plivo.XML
                     $"Element {element.GetType().Name} cannot be nested within {GetType().Name}");
         }
 
-        public PlivoElement AddSpeak(string body, dict parameters)
+        public PlivoElement AddSpeak(string body, dict parameters = null)
         {
+            if (parameters == null) {
+                parameters = new Dictionary<string, string>();
+            }
             return Add(new Speak(body, parameters));
         }
 
@@ -218,6 +221,11 @@ namespace Plivo.XML
         public PlivoElement AddConference(string body, dict parameters)
         {
             return Add(new Conference(body, parameters));
+        }
+        
+        public PlivoElement AddMultiPartyCall(string body, dict parameters)
+        {
+            return Add(new MultiPartyCall(body, parameters));
         }
 
         public PlivoElement AddMessage(string body, dict parameters)

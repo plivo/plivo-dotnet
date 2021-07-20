@@ -422,7 +422,8 @@ namespace Plivo.Resource.Message
         /// <param name="message_time__lte">MessageTimeLTE.</param>
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
-        public ListResponse<Message> List(
+        /// <param name="powerpack_id">PowerpackID.</param>
+        public MessageListResponse<Message> List(
             string subaccount = null,
             uint? limit = null,
             uint? offset = null,
@@ -433,7 +434,8 @@ namespace Plivo.Resource.Message
             DateTime? message_time__lt = null,
             DateTime? message_time__lte = null,
             DateTime? message_time = null,
-            uint? error_code = null
+            uint? error_code = null,
+            string powerpack_id = null 
             )
         {
             var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
@@ -455,13 +457,13 @@ namespace Plivo.Resource.Message
                     _message_time__lt,
                     _message_time__lte,
                     _message_time,
-                    error_code
+                    error_code,
+                    powerpack_id
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var resources = Task.Run(async () => await ListResources<ListResponse<Message>>(data).ConfigureAwait(false)).Result;
-
+                var resources = Task.Run(async () => await ListResources<MessageListResponse<Message>>(data).ConfigureAwait(false)).Result;
                 resources.Objects.ForEach(
                     (obj) => obj.Interface = this
                 );
@@ -483,7 +485,8 @@ namespace Plivo.Resource.Message
         /// <param name="message_time__lte">MessageTimeLTE.</param>
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
-        public async Task<ListResponse<Message>> ListAsync(
+        /// <param name="powerpack_id">PowerpackID.</param>
+        public async Task<MessageListResponse<Message>> ListAsync(
             string subaccount = null,
             uint? limit = null,
             uint? offset = null,
@@ -494,7 +497,8 @@ namespace Plivo.Resource.Message
             DateTime? message_time__lt = null,
             DateTime? message_time__lte = null,
             DateTime? message_time = null,
-            uint? error_code = null
+            uint? error_code = null,
+            string powerpack_id = null
             )
         {
             var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
@@ -516,10 +520,10 @@ namespace Plivo.Resource.Message
                     _message_time__lt,
                     _message_time__lte,
                     _message_time,
-                    error_code
+                    error_code,
+                    powerpack_id
                 });
-            var resources = await ListResources<ListResponse<Message>>(data);
-
+            var resources = await ListResources<MessageListResponse<Message>>(data);
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );

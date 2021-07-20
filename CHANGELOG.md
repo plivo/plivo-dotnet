@@ -1,7 +1,36 @@
 # Change Log
 
-## [v4.16.0](https://github.com/plivo/plivo-dotnet/tree/v4.16.0) (2021-05-28)
-- New Send Message interface along with existing interface support.
+## [v5.2.0](https://github.com/plivo/plivo-dotnet/tree/v5.2.0) (2021-07-14)
+- Add support for MPC APIs and XML (Voice retry included), validated voice UTs.
+
+## [v5.1.0](https://github.com/plivo/plivo-dotnet/tree/v5.1.0) (2021-07-13)
+- Power pack ID has been included to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message).
+- Support for filtering messages by Power pack ID has been added to the [list all messages API](https://www.plivo.com/docs/sms/api/message#list-all-messages).
+
+## [v5.0.1](https://github.com/plivo/plivo-dotnet/tree/v5.0.1) (2021-07-05)
+- Make parameters optional for XML method AddSpeak
+
+## [v5.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.0.0) (2021-07-05)
+- **BREAKING**: Removed the total_count parameter in meta data for list MDR response
+
+## [v4.17.1](https://github.com/plivo/plivo-dotnet/tree/v4.17.1) (2021-07-02)
+- Read voice network group from voice pricing
+- Read voice network group from List/Get CDR response
+
+## [v4.17.0](https://github.com/plivo/plivo-dotnet/tree/v4.17.0) (2021-06-15)
+- Add stir verification param as part of Get CDR and Live call API response
+
+## [v4.16.1](https://github.com/plivo/plivo-dotnet/tree/v4.16.1) (2020-04-08)
+- Read origination prefix from voice pricing
+
+## [v4.16.0](https://github.com/plivo/plivo-dotnet/tree/v4.16.0) (2021-03-30)
+- Add support for Regulatory Compliance APIs.
+- Add "complianceApplicationId","complianceStatus" - these new feilds in the List/Get rented numbers
+- Add "city","mmsEnabled","mmsRate","complianceRequirement" - These new feilds are added in the Search Phone Number
+- Add "npanxx" and "local_calling_area" support for Search Phone Number.
+
+## [v4.15.1](https://github.com/plivo/plivo-dotnet/tree/v4.15.1) (2020-12-17)
+- Fix Prosody XML error - SSML.
 
 ## [v4.15.0](https://github.com/plivo/plivo-dotnet/tree/v4.15.0) (2020-11-17)
 - Add number_priority support for Powerpack API.
@@ -23,6 +52,7 @@
 
 ## [v4.10.1](https://github.com/plivo/plivo-dotnet/tree/v4.10.1) (2020-08-14)
 - Add exception handling for non-JSON error responses and statusCode 401.
+
 ## [v4.10.0](https://github.com/plivo/plivo-dotnet/tree/v4.10.0) (2020-08-06)
 - Add retries to multiple regions for voice requests.
 

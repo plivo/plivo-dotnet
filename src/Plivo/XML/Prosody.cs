@@ -29,7 +29,7 @@ namespace Plivo.XML
                 "pitch"
             };
             addAttributes();
-            Element.Name = Element.GetType().Name.ToLower();
+            Element.Name = GetType().Name.ToLower();
         }
     }
 }
