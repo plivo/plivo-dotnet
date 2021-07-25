@@ -170,7 +170,7 @@ namespace Plivo.Resource.MultiPartyCall
         }
 
         public MultiPartyCallAddParticipantResponse AddParticipant(
-            string role,
+            string role = null,
             string friendlyName = null,
             string mpcUuid = null,
             string from = null,
@@ -216,10 +216,6 @@ namespace Plivo.Resource.MultiPartyCall
             string exitSoundMethod = "GET"
         ) 
         {
-            if (role == null)
-            {
-                throw new PlivoValidationException("role is mandatory");
-            }
             if (mpcUuid != null)
             {
                 MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
@@ -243,8 +239,10 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 throw new PlivoValidationException("specify (from, to) when not adding an existing callUuid to multi party participant");
             }
-
-            MpcUtils.ValidParamString("role", role.ToLower(), true, new List<string>() {"agent", "supervisor", "customer"});
+            if (role != null)
+            {
+                MpcUtils.ValidParamString("role", role.ToLower(), true, new List<string>() {"agent", "supervisor", "customer"});
+            }
             if (from != null)
             {
                 MpcUtils.ValidParamString("from", from, false);
@@ -469,7 +467,7 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            var mandatoryParams = new List<string> {""};
+            var mandatoryParams = new List<string> {"role"};
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
@@ -737,7 +735,7 @@ namespace Plivo.Resource.MultiPartyCall
         }
 
         public RecordCreateResponse<MultiPartyCallParticipant> StartParticipantRecording (
-            string participantId,
+            string participantId = null,
             string mpcUuid = null, string friendlyName = null,
             string fileFormat = "mp3", 
             string statusCallbackUrl = null, string statusCallbackMethod = "POST"
@@ -789,7 +787,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public DeleteResponse<MultiPartyCallParticipant> StopParticipantRecording (string participantId, string mpcUuid = null, string friendlyName = null) {
+        public DeleteResponse<MultiPartyCallParticipant> StopParticipantRecording (string participantId = null, string mpcUuid = null, string friendlyName = null) {
             if (mpcUuid != null)
             {
                 MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
@@ -813,7 +811,7 @@ namespace Plivo.Resource.MultiPartyCall
         }
         
         public UpdateResponse<MultiPartyCallParticipant> PauseParticipantRecording (
-            string participantId, string mpcUuid = null, string friendlyName = null) 
+            string participantId = null, string mpcUuid = null, string friendlyName = null) 
         {
             if (mpcUuid != null)
             {
@@ -842,7 +840,7 @@ namespace Plivo.Resource.MultiPartyCall
         }
 
         public UpdateResponse<MultiPartyCallParticipant> ResumeParticipantRecording (
-            string participantId, string mpcUuid = null, string friendlyName = null) 
+            string participantId = null, string mpcUuid = null, string friendlyName = null) 
         {
             if (mpcUuid != null)
             {
@@ -909,7 +907,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
 
-        public MultiPartyCallParticipantUpdateResponse<MultiPartyCallParticipant> UpdateParticipant(string participantId, string mpcUuid = null, 
+        public MultiPartyCallParticipantUpdateResponse<MultiPartyCallParticipant> UpdateParticipant(string participantId = null, string mpcUuid = null, 
             string friendlyName = null,
             bool? coachMode = null, bool? mute = null, bool? hold = null)
         {
@@ -944,7 +942,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
 
-        public MultiPartyCallParticipant GetParticipant(string participantId, string mpcUuid = null, string friendlyName = null)
+        public MultiPartyCallParticipant GetParticipant(string participantId = null, string mpcUuid = null, string friendlyName = null)
         {
             if (mpcUuid != null)
             {
@@ -968,7 +966,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public DeleteResponse<MultiPartyCallParticipant> KickParticipant(string participantId, string mpcUuid = null, string friendlyName = null)
+        public DeleteResponse<MultiPartyCallParticipant> KickParticipant(string participantId = null, string mpcUuid = null, string friendlyName = null)
         {
             if (mpcUuid != null)
             {
