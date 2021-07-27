@@ -308,7 +308,7 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"real", "none"});
             }
 
-           if (ringTimeout != null)
+            if (ringTimeout != null)
             {
                 if (ringTimeout.GetType() == typeof(System.String))
                 {
