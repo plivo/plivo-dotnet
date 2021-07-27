@@ -1,6 +1,7 @@
 # Change Log
-## [v5.2.1](https://github.com/plivo/plivo-dotnet/tree/v5.2.1) (2021-07-19)
-- Change default request timeout value to 5.
+
+## [v5.2.1](https://github.com/plivo/plivo-dotnet/tree/v5.2.1) (2021-07-27)
+- Updated default HTTP client request timeout to 5 seconds.
 
 ## [v5.2.0](https://github.com/plivo/plivo-dotnet/tree/v5.2.0) (2021-07-14)
 - Add support for MPC APIs and XML (Voice retry included), validated voice UTs.
