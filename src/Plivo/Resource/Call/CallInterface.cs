@@ -79,7 +79,7 @@ namespace Plivo.Resource.Call {
                     if (newHangupOnRing != null) newHangupOnRing += "<" + hangupOnRing.ToString();
                 }
             }
-            var mandatoryParams = new List<string> { "from", "_to", "answerUrl", "answerMethod" };
+            var mandatoryParams = new List<string> { "from", "_to", "answerUrl"};
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
