@@ -42,23 +42,12 @@ namespace Plivo.Utilities
         public static bool ValidMultipleDestinationIntegers(string paramName, string paramValue)
         {
             string[] values = paramValue.Split('<');
-            uint n;
+            int n;
             for (int i=0;i<values.Length;i++)
             {
-                if (uint.TryParse(values[i], out n))
+                if (!(int.TryParse(values[i], out n)))
                 {
-                    if (paramName == "ringTimeout")
-                    {
-                        MpcUtils.ValidRange("RingTimeout Desination Value", uint.Parse(values[i]), false, 15, 120);
-                    }
-                    else
-                    {
-                        MpcUtils.ValidRange("DelayDial Destination Value", uint.Parse(values[i]) ,false, 0, 120 );
-                    }
-                }
-                else
-                {
-                    throw new PlivoValidationException(paramName + "Destination Values must be of type uint");
+                    throw new PlivoValidationException(paramName + "Destination Values must be of type int");
                 }
             }
             return true;
