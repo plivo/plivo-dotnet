@@ -1,8 +1,8 @@
 # Change Log
 
 ## [v5.3.0](https://github.com/plivo/plivo-dotnet/tree/v5.3.0) (2021-07-28)
-- Added Generic error message for mandatory params in Call and MPC.
-- Removed range validation for ringtimeout and delaydial params in MPC.
+- Added generic error message for mandatory params in [Make Call](https://www.plivo.com/docs/voice/api/call#make-a-call) and [Multi party call](https://www.plivo.com/docs/voice/api/multiparty-call#start-a-new-multiparty-call).
+- Removed validation for `ringtimeout` and `delaydial` params in [Start a multi party call](https://www.plivo.com/docs/voice/api/multiparty-call#start-a-new-multiparty-call).
 
 ## [v5.2.1](https://github.com/plivo/plivo-dotnet/tree/v5.2.1) (2021-07-27)
 - Updated default HTTP client request timeout to 5 seconds.
