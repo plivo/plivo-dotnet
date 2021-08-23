@@ -18,34 +18,34 @@ jobs:
       - name: Setup dotnet 2.1.300
         uses: actions/setup-dotnet@v1
         if: ${{  matrix.dotnet-version == '2.1.300' }}
-          env:
-            DOTNETCORE: 2
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
+        env:
+          DOTNETCORE: 2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
       - name: Setup dotnet 1.1.5
         uses: actions/setup-dotnet@v1
         if: ${{  matrix.dotnet-version == '1.1.5' }}
-          env:
-            DOTNETCORE: 1
-          with:
-            dotnet-version: ${{ matrix.dotnet-version }}
+        env:
+          DOTNETCORE: 1
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
       - name: Display dotnet version
         run: |
           dotnet --version
           echo $DOTNETCORE
       - name: "Install and run tests 2.1.300"
         if: ${{  matrix.dotnet-version == '2.1.300' }}
-          run: |
-            dotnet restore;
-            dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
-            dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-            dotnet test --framework netcoreapp2.0 ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        run: |
+          dotnet restore;
+          dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
+          dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+          dotnet test --framework netcoreapp2.0 ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
       - name: "Install and run tests 1.1.5"
         if: ${{  matrix.dotnet-version == '1.1.5' }}
-          run: |
-            sudo apt-get install 2.1.300-rc1-008673;
-            dotnet restore;
-            dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
-            dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-            dotnet test --framework netcoreapp1.1  ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        run: |
+          sudo apt-get install 2.1.300-rc1-008673;
+          dotnet restore;
+          dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
+          dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+          dotnet test --framework netcoreapp1.1  ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
         
