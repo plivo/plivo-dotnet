@@ -1,0 +1,27 @@
+name: UnitTests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '2.1.300', '1.1.5']
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup dotnet ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+        env:
+          DOTNETCORE=${{ matrix.dotnet-version[0] }}
+      - name: Display dotnet version
+        run: |
+          dotnet --version
+          echo $DOTNETCORE
