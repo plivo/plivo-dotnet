@@ -9,12 +9,6 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
-    if: ${{  matrix.dotnet-version == '2.1.300' }}
-        env:
-          DOTNETCORE: 2
-    if: ${{  matrix.dotnet-version == '1.1.5' }}
-        env:
-          DOTNETCORE: 1
     strategy:
       matrix:
         dotnet-version: ['2.1.300']
@@ -24,24 +18,10 @@ jobs:
             os: ubuntu-16.04
     steps:
       - uses: actions/checkout@v2
-      - name: Setup dotnet 2.1.300
+      - name: Setup dotnet
         uses: actions/setup-dotnet@v1
-        if: ${{  matrix.dotnet-version == '2.1.300' }}
-        env:
-          DOTNETCORE: 2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Setup dotnet 1.1.5
-        uses: actions/setup-dotnet@v1
-        if: ${{  matrix.dotnet-version == '1.1.5' }}
-        env:
-          DOTNETCORE: 1
-        with:
-          dotnet-version: ${{ matrix.dotnet-version }}
-      - name: Display dotnet version
-        run: |
-          dotnet --version
-          echo $DOTNETCORE
       - name: "Install and run tests 2.1.300"
         if: ${{  matrix.dotnet-version == '2.1.300' }}
         run: |
@@ -49,6 +29,8 @@ jobs:
           dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
           dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
           dotnet test --framework netcoreapp2.0 ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        env:
+          DOTNETCORE: 2
       - name: "Install and run tests 1.1.5"
         if: ${{  matrix.dotnet-version == '1.1.5' }}
         run: |
@@ -57,4 +39,6 @@ jobs:
           dotnet build --framework netstandard1.3 src/Plivo/Plivo.csproj;
           dotnet build --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
           dotnet test --framework netcoreapp1.1  ./tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
+        env:
+          DOTNETCORE: 1
         
