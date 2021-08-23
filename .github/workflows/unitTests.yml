@@ -25,7 +25,7 @@ jobs:
       - name: "Install and run tests 2.1.300"
         if: ${{  matrix.dotnet-version == '2.1.300' }}
         run: |
-          ln -s /usr/lib/libssl.so.47.0.6 /usr/lib/libssl.so.1.0.0
+          sudo ln -s /usr/lib/libssl.so.47.0.6 /usr/lib/libssl.so.1.0.0
           dotnet restore;
           dotnet build --framework netstandard2.0 src/Plivo/Plivo.csproj;
           dotnet build --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
