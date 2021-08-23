@@ -9,6 +9,12 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    if: ${{  matrix.dotnet-version == '2.1.300' }}
+        env:
+          DOTNETCORE: 2
+    if: ${{  matrix.dotnet-version == '1.1.5' }}
+        env:
+          DOTNETCORE: 1
     strategy:
       matrix:
         dotnet-version: ['2.1.300']
