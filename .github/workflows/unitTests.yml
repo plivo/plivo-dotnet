@@ -16,15 +16,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Setup dotnet 2.1.300
+        uses: actions/setup-dotnet@v1
         if: ${{  matrix.dotnet-version == '2.1.300' }}
-          uses: actions/setup-dotnet@v1
           env:
             DOTNETCORE: 2
           with:
             dotnet-version: ${{ matrix.dotnet-version }}
       - name: Setup dotnet 1.1.5
+        uses: actions/setup-dotnet@v1
         if: ${{  matrix.dotnet-version == '1.1.5' }}
-          uses: actions/setup-dotnet@v1
           env:
             DOTNETCORE: 1
           with:
