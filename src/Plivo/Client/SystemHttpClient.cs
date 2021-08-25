@@ -116,18 +116,21 @@ namespace Plivo.Client
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _voiceBaseUriClient = new System.Net.Http.HttpClient(httpClientHandler);
+            _voiceBaseUriClient.Timeout = TimeSpan.FromSeconds(5);
             _voiceBaseUriClient.DefaultRequestHeaders.Authorization = authHeader;
             _voiceBaseUriClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://voice.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceBaseUriClient.BaseAddress = new Uri(voiceBaseServerUri + "/");
             
             _voiceFallback1Client = new System.Net.Http.HttpClient(httpClientHandler);
+            _voiceFallback1Client.Timeout = TimeSpan.FromSeconds(5);
             _voiceFallback1Client.DefaultRequestHeaders.Authorization = authHeader;
             _voiceFallback1Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-usw1.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceFallback1Client.BaseAddress = new Uri(voiceFallback1Uri + "/");
             
             _voiceFallback2Client = new System.Net.Http.HttpClient(httpClientHandler);
+            _voiceFallback2Client.Timeout = TimeSpan.FromSeconds(5);
             _voiceFallback2Client.DefaultRequestHeaders.Authorization = authHeader;
             _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
             var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-use1.plivo.com/" + Version.ApiVersion  : baseUri;
