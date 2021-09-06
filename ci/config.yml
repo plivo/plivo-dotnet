@@ -6,3 +6,7 @@ build:
   command: |
       dotnet build --configuration Release
       cd src/Plivo && ./pack.sh
+postDeployJobs:
+  prod:
+    - name: plivo/messaging-qa/dotnetSDKSmoke
+      disabled: false
