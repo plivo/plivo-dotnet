@@ -55,11 +55,11 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        var api = new PlivoApi("your_auth_id", "your_auth_token");
+        var api = new PlivoApi("<auth_id>", "<auth_token>");
         var response = api.Message.Create(
-            src:"the_source_number",
-            dst:new List<String>{"the_destination_number"},
-            text:"Hello, world!"
+            src:"14156667778",
+            dst:"14156667777",
+            text:"Hello, this is a sample text from Plivo"
         );
         Console.WriteLine(response);
     }
@@ -73,7 +73,7 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        var api = new PlivoApi("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+        var api = new PlivoApi("<auth_id>", "<auth_token>");
         var response = api.Call.Create(
             to:new List<String>{"the_to_number"},
             from:"the_from_number",
@@ -92,7 +92,7 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        var api = new PlivoApi("YOUR_AUTH_ID", "YOUR_AUTH_TOKEN");
+        var api = new PlivoApi("<auth_id>", "<auth_token>");
         var response = api.Lookup.Get("phone_number_here");
         Console.WriteLine(response);
     }
