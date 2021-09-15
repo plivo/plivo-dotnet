@@ -1,6 +1,6 @@
 # Change Log
 
-## [v5.4.0](https://github.com/plivo/plivo-dotnet/tree/v5.4.0) (2021-08-25)
+## [v5.4.0](https://github.com/plivo/plivo-dotnet/tree/v5.4.0) (2021-09-16)
 - This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
 
 ## [v5.3.0](https://github.com/plivo/plivo-dotnet/tree/v5.3.0) (2021-07-28)
