@@ -1,7 +1,10 @@
 # Change Log
 
 ## [v5.4.0](https://github.com/plivo/plivo-dotnet/tree/v5.4.0) (2021-09-16)
+**Features - Messaging**
 - This version includes advancements to the Messaging Interface that deals with the [Send SMS/MMS](https://www.plivo.com/docs/sms/api/message#send-a-message) interface, Creating a standard structure for `request/input` arguments to make implementation easier and incorporating support for the older interface.
+
+  Example for [send SMS](https://github.com/plivo/plivo-dotnet#send-a-message)
 
 ## [v5.3.0](https://github.com/plivo/plivo-dotnet/tree/v5.3.0) (2021-07-28)
 - Added generic error message for mandatory params in [Make Call](https://www.plivo.com/docs/voice/api/call#make-a-call) and [Multi party call](https://www.plivo.com/docs/voice/api/multiparty-call#start-a-new-multiparty-call).
