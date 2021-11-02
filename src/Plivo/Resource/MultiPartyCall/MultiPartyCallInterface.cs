@@ -213,7 +213,11 @@ namespace Plivo.Resource.MultiPartyCall
             string enterSound = "beep:1",
             string enterSoundMethod = "GET",
             string exitSound = "beep:2",
-            string exitSoundMethod = "GET"
+            string exitSoundMethod = "GET",
+            string startRecordingAudio = null,
+            string startRecordingAudioMethod = "GET",
+            string stopRecordingAudio = null,
+            string stopRecordingAudioMethod = "GET"
         ) 
         {
             if (mpcUuid != null)
@@ -458,6 +462,28 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("exitSoundMethod", exitSoundMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
+            
+            if (startRecordingAudio != null)
+            {
+                MpcUtils.ValidUrl("startRecordingAudio", startRecordingAudio, false);
+            }
+            
+            if (startRecordingAudioMethod != null)
+            {
+                MpcUtils.ValidParamString("startRecordingAudioMethod", startRecordingAudioMethod.ToUpper(), false,
+                    new List<string>() {"GET", "POST"});
+            }
+            
+            if (stopRecordingAudio != null)
+            {
+                MpcUtils.ValidUrl("stopRecordingAudio", stopRecordingAudio, false);
+            }
+            
+            if (stopRecordingAudioMethod != null)
+            {
+                MpcUtils.ValidParamString("stopRecordingAudioMethod", stopRecordingAudioMethod.ToUpper(), false,
+                    new List<string>() {"GET", "POST"});
+            }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
             var mandatoryParams = new List<string> {"role"};
             bool isVoiceRequest = true;
@@ -507,6 +533,10 @@ namespace Plivo.Resource.MultiPartyCall
                     enterSoundMethod,
                     exitSound,
                     exitSoundMethod,
+                    startRecordingAudio,
+                    startRecordingAudioMethod,
+                    stopRecordingAudio,
+                    stopRecordingAudioMethod,
                     isVoiceRequest
                 });
             
@@ -976,6 +1006,77 @@ namespace Plivo.Resource.MultiPartyCall
                 return Task.Run(async () => await DeleteSecondaryResource<DeleteResponse<MultiPartyCallParticipant>>(mpcId,
                     new Dictionary<string, object> () { {"is_voice_request", true} }, 
                     "Participant", participantId).ConfigureAwait(false)).Result;
+            });
+        }
+
+        public MultiPartyCallParticipantPlayResponse<MultiPartyCallParticipant> StartPlayAudio(string participantId = null, string mpcUuid = null, 
+            string friendlyName = null, string url = null)
+        {
+            if (mpcUuid != null)
+            {
+                MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
+            }
+            if (friendlyName != null)
+            {
+                MpcUtils.ValidParamString("friendlyName", friendlyName, false);
+            }
+            MpcUtils.ValidUrl("url", url, true);
+            MpcUtils.ValidParamString("participantId", participantId, true);
+            string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var mandatoryParams = new List<string> {"url"};
+            bool isVoiceRequest = true;
+            var data = CreateData(
+                mandatoryParams,
+                new 
+                {
+                    url,
+                    isVoiceRequest
+                });
+
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run (async () => 
+                    await Client.Update<MultiPartyCallParticipantPlayResponse<MultiPartyCallParticipant>> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
+                try {
+                    result.Object.StatusCode = result.StatusCode;
+                    JObject responseJson = JObject.Parse(result.Content);
+                    Console.WriteLine(responseJson);
+                    result.Object.ApiId = responseJson["api_id"].ToString();
+                    result.Object.MpcMemberId = responseJson["mpcMemberId"].ToString();
+                    result.Object.MpcName = responseJson["mpcName"].ToString();
+                    result.Object.Message = responseJson["message"].ToString();
+                } catch (System.NullReferenceException) {
+                }
+                return result.Object;
+            });
+        }
+        
+        public DeleteResponse<MultiPartyCallParticipant> StopPlayAudio(string participantId = null, string mpcUuid = null, 
+            string friendlyName = null)
+        {
+            if (mpcUuid != null)
+            {
+                MpcUtils.ValidParamString("mpcUuid", mpcUuid, false);
+            }
+            if (friendlyName != null)
+            {
+                MpcUtils.ValidParamString("friendlyName", friendlyName, false);
+            }
+            MpcUtils.ValidParamString("participantId", participantId, true);
+            string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams, new { isVoiceRequest });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                var result = Task.Run (async () => 
+                    await Client.Delete<DeleteResponse<MultiPartyCallParticipant>> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
+                try {
+                    result.Object.StatusCode = result.StatusCode;
+                } catch (System.NullReferenceException) {
+                }
+                return result.Object;
             });
         }
     }
