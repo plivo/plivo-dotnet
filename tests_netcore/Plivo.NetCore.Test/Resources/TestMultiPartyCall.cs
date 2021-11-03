@@ -80,6 +80,7 @@ namespace Plivo.NetCore.Test.Resources
                 {"role", "agent"},
                 {"from", "918888888888"},
                 {"to", "917013835803"},
+                {"caller_name", "918888888888"},
                 {"call_status_callback_method", "POST"},
                 {"confirm_key_sound_method", "GET"},
                 {"dial_music", "Real"},
@@ -106,6 +107,9 @@ namespace Plivo.NetCore.Test.Resources
                 {"enter_sound_method", "GET"},
                 {"exit_sound", "beep:2"},
                 {"exit_sound_method", "GET"},
+                {"delay_dial", 0},
+                {"start_recording_audio_method", "GET"},
+                {"stop_recording_audio_method", "GET"},
                 {"is_voice_request", true}
             };
             
@@ -413,6 +417,169 @@ namespace Plivo.NetCore.Test.Resources
                     Api.MultiPartyCall.KickParticipant(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
                         participantId: "209" )
                 );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStartParticipantRecording()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"file_format", "mp3"},
+                {"status_callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/",
+                    "",
+                    data);
+
+            var response = System.IO.File.ReadAllText(
+                SOURCE_DIR + @"../Mocks/mpcStartParticipantRecordingResponse.json"
+            );
+            Setup<RecordCreateResponse<MultiPartyCallParticipant>>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StartParticipantRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        participantId: "10")
+                )
+            );
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStopParticipantRecording()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/",
+                    "",
+                    data);
+
+            var response = "";
+            Setup<DeleteResponse<MultiPartyCallParticipant>>(204, response);
+            
+            Assert.Null(
+                Api.MultiPartyCall.StopParticipantRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", participantId: "10")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcPauseParticipantRecording()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/Pause/",
+                    "",
+                    data);
+
+            var response = "";
+            Setup<UpdateResponse<MultiPartyCallParticipant>>(204, response);
+            
+            Assert.Null(
+                Api.MultiPartyCall.PauseParticipantRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", participantId: "10")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcResumeParticipantRecording()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/Resume/",
+                    "",
+                    data);
+
+            var response = "";
+            Setup<UpdateResponse<MultiPartyCallParticipant>>(204, response);
+            
+            Assert.Null(
+                Api.MultiPartyCall.ResumeParticipantRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", participantId: "10")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStartPlayAudio()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"url", "https://s3.amazonaws.com/XXX/XXX.mp3"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/name_sampleMpc/Member/10/Play/",
+                    "",
+                    data);
+
+            var response = System.IO.File.ReadAllText(
+                SOURCE_DIR + @"../Mocks/mpcStartPlayAudio.json"
+            );
+            Setup<MultiPartyCallParticipantPlayResponse<MultiPartyCallParticipant>>(202, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StartPlayAudio(friendlyName: "sampleMpc",
+                        participantId: "10", url: "https://s3.amazonaws.com/XXX/XXX.mp3")
+                )
+            );
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStopPlayAudio()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/name_sampleMpc/Member/10/Play/",
+                    "",
+                    data);
+
+            var response = "";
+            Setup<DeleteResponse<MultiPartyCallParticipant>>(204, response);
+            
+            Assert.Null(
+                Api.MultiPartyCall.StopPlayAudio(friendlyName: "sampleMpc", participantId: "10")
+            );
 
             AssertRequest(request);
         }
