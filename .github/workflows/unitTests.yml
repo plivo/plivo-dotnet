@@ -26,13 +26,13 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: "Install and run tests 2.1.300"
-        if: ${{  matrix.dotnet-version == '2.1.300' }}
+        if: ${{  matrix.dotnet-version == '3.1.x' }}
         run: |
           dotnet test --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
         env:
           DOTNETCORE: 2
       - name: "Install and run tests 1.1.5"
-        if: ${{  matrix.dotnet-version == '1.1.5' }}
+        if: ${{  matrix.dotnet-version == '5.0.x' }}
         run: |
           sudo apt-get install 2.1.300-rc1-008673;
           dotnet test --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
