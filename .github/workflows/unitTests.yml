@@ -16,7 +16,7 @@ jobs:
         os: [ubuntu-latest]
         include:
           - dotnet-version: '1.1.5'
-            os: ubuntu-16.04
+            os: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
