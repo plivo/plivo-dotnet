@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dotnet-version: ['3.1.21']
+        dotnet-version: ['3.1.x']
         os: [ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
