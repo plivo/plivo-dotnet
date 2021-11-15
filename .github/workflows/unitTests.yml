@@ -14,9 +14,6 @@ jobs:
       matrix:
         dotnet-version: ['3.1.x']
         os: [ubuntu-latest]
-        include:
-          - dotnet-version: '5.0.x'
-            os: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
@@ -31,11 +28,4 @@ jobs:
           dotnet test --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
         env:
           DOTNETCORE: 2
-      - name: "Install and run tests 1.1.5"
-        if: ${{  matrix.dotnet-version == '5.0.x' }}
-        run: |
-          sudo apt-get install 2.1.300-rc1-008673;
-          dotnet test --framework netcoreapp1.1 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
-        env:
-          DOTNETCORE: 1
-        
+ 
