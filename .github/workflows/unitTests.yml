@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        dotnet-version: ['3.1.x']
+        dotnet-version: ['2.1.x']
         os: [ubuntu-18.04]
     steps:
       - uses: actions/checkout@v2
@@ -23,7 +23,7 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: "Install and run tests 2.1.300"
-        if: ${{  matrix.dotnet-version == '3.1.x' }}
+        if: ${{  matrix.dotnet-version == '2.1.x' }}
         run: |
           dotnet test --framework netcoreapp2.0 tests_netcore/Plivo.NetCore.Test/Plivo.NetCore.Test.csproj;
         env:
