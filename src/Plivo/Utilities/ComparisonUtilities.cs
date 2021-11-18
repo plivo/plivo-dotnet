@@ -69,10 +69,6 @@ namespace Plivo.Utilities
                     var actual = target.SelectToken(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
                     if (actual == null)
                     {
-                        actual = target.SelectToken(sourcePair.Key);
-                    }
-                    if (actual == null)
-                    {
                         returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)
                                                    + " not found" + ", ");
                     }

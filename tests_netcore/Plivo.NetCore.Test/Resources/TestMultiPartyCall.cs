@@ -108,6 +108,8 @@ namespace Plivo.NetCore.Test.Resources
                 {"exit_sound", "beep:2"},
                 {"exit_sound_method", "GET"},
                 {"delay_dial", 0},
+                {"start_recording_audio_method", "GET"},
+                {"stop_recording_audio_method", "GET"},
                 {"is_voice_request", true}
             };
             
