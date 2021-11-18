@@ -213,11 +213,7 @@ namespace Plivo.Resource.MultiPartyCall
             string enterSound = "beep:1",
             string enterSoundMethod = "GET",
             string exitSound = "beep:2",
-            string exitSoundMethod = "GET",
-            string startRecordingAudio = null,
-            string startRecordingAudioMethod = "GET",
-            string stopRecordingAudio = null,
-            string stopRecordingAudioMethod = "GET"
+            string exitSoundMethod = "GET"
         ) 
         {
             if (mpcUuid != null)
@@ -462,28 +458,6 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("exitSoundMethod", exitSoundMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
-            
-            if (startRecordingAudio != null)
-            {
-                MpcUtils.ValidUrl("startRecordingAudio", startRecordingAudio, false);
-            }
-            
-            if (startRecordingAudioMethod != null)
-            {
-                MpcUtils.ValidParamString("startRecordingAudioMethod", startRecordingAudioMethod.ToUpper(), false,
-                    new List<string>() {"GET", "POST"});
-            }
-            
-            if (stopRecordingAudio != null)
-            {
-                MpcUtils.ValidUrl("stopRecordingAudio", stopRecordingAudio, false);
-            }
-            
-            if (stopRecordingAudioMethod != null)
-            {
-                MpcUtils.ValidParamString("stopRecordingAudioMethod", stopRecordingAudioMethod.ToUpper(), false,
-                    new List<string>() {"GET", "POST"});
-            }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
             var mandatoryParams = new List<string> {"role"};
             bool isVoiceRequest = true;
@@ -533,10 +507,6 @@ namespace Plivo.Resource.MultiPartyCall
                     enterSoundMethod,
                     exitSound,
                     exitSoundMethod,
-                    startRecordingAudio,
-                    startRecordingAudioMethod,
-                    stopRecordingAudio,
-                    stopRecordingAudioMethod,
                     isVoiceRequest
                 });
             
