@@ -43,7 +43,11 @@ namespace Plivo.XML
                 "exitSoundMethod",
                 "onExitActionUrl",
                 "onExitActionMethod",
-                "relayDTMFInputs"
+                "relayDTMFInputs",
+                "startRecordingAudio",
+                "startRecordingAudioMethod",
+                "stopRecordingAudio",
+                "stopRecordingAudioMethod"
             };
             if (body == null)
             {
@@ -311,6 +315,36 @@ namespace Plivo.XML
                 !MpcUtils.ValidUrl("onExitActionUrl", Attributes["onExitActionUrl"], false))
             {
                 throw new PlivoXMLException("Invalid attribute value " + Attributes["onExitActionUrl"] + " for onExitActionUrl");
+            }
+            
+            if (Attributes.ContainsKey("startRecordingAudio") &&
+                !MpcUtils.ValidUrl("startRecordingAudio", Attributes["startRecordingAudio"], false))
+            {
+                throw new PlivoXMLException("Invalid attribute value " + Attributes["startRecordingAudio"] + " for startRecordingAudio");
+            }
+            
+            if (!Attributes.ContainsKey("startRecordingAudioMethod"))
+            {
+                Attributes["startRecordingAudioMethod"] = "GET";
+            }
+            else if (Attributes["startRecordingAudioMethod"] != null && !VALID_METHOD_VALUES.Contains(Attributes["startRecordingAudioMethod"].ToUpper()))
+            {
+                throw new PlivoXMLException("Invalid attribute value " + Attributes["startRecordingAudioMethod"] + " for startRecordingAudioMethod");
+            }
+            
+            if (Attributes.ContainsKey("stopRecordingAudio") &&
+                !MpcUtils.ValidUrl("stopRecordingAudio", Attributes["stopRecordingAudio"], false))
+            {
+                throw new PlivoXMLException("Invalid attribute value " + Attributes["stopRecordingAudio"] + " for stopRecordingAudio");
+            }
+            
+            if (!Attributes.ContainsKey("stopRecordingAudioMethod"))
+            {
+                Attributes["stopRecordingAudioMethod"] = "GET";
+            }
+            else if (Attributes["stopRecordingAudioMethod"] != null && !VALID_METHOD_VALUES.Contains(Attributes["stopRecordingAudioMethod"].ToUpper()))
+            {
+                throw new PlivoXMLException("Invalid attribute value " + Attributes["stopRecordingAudioMethod"] + " for stopRecordingAudioMethod");
             }
             addAttributes();
         }
