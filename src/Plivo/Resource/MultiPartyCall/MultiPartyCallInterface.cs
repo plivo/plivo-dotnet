@@ -1042,7 +1042,7 @@ namespace Plivo.Resource.MultiPartyCall
                     JObject responseJson = JObject.Parse(result.Content);
                     Console.WriteLine(responseJson);
                     result.Object.ApiId = responseJson["api_id"].ToString();
-                    result.Object.MpcMemberId = responseJson["mpcMemberId"].ToString();
+                    result.Object.MpcMemberId = responseJson["mpcMemberId"].ToObject<List<string>>();
                     result.Object.MpcName = responseJson["mpcName"].ToString();
                     result.Object.Message = responseJson["message"].ToString();
                 } catch (System.NullReferenceException) {

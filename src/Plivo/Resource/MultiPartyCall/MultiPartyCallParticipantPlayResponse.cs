@@ -1,9 +1,11 @@
+using System.Collections.Generic;
+
 namespace Plivo.Resource.MultiPartyCall
 {
     public class MultiPartyCallParticipantPlayResponse<T> : BaseResponse
     {
         
-        public string MpcMemberId { get; set; }
+        public List<string> MpcMemberId { get; set; }
         public string MpcName { get; set; }
         public string Message { get; set; }
         public override string ToString()
