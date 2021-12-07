@@ -14,6 +14,7 @@ namespace Plivo.Resource.Call
         public string RequestUuid { get; set; }
         public string SessionStart { get; set; }
         public string StirVerification { get; set; }
+        public string StirAttestation { get; set; }
 
         public override string ToString()
         {
@@ -26,7 +27,8 @@ namespace Plivo.Resource.Call
                        "CallUuid: " + CallUuid + "\n" +
                        "RequestUuid: " + RequestUuid + "\n" +
                        "SessionStart: " + SessionStart + "\n"+ 
-                       "StirVerification: " + StirVerification + "\n";
+                       "StirVerification: " + StirVerification + "\n"+
+                       "StirAttestation: " + StirAttestation + "\n";
         }
     }
 }
