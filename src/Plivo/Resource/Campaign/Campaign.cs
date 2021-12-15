@@ -7,14 +7,20 @@ namespace Plivo.Resource.Campaign
     /// </summary>
 
      public class MnoMetaData {
-        public TPMDetail at_t { get; set; }
-        public TPMDetail t_mobile { get; set; }
-        public TPMDetail us_cellular { get; set; }
-        public TPMDetail verizon_wireless { get; set; }
+        [JsonProperty("at&t")]
+        public TPMDetail At_t { get; set; }
+        [JsonProperty("t-mobile")]
+        public TPMDetail Tmobile { get; set; }
+        [JsonProperty("us_cellular")]
+        public TPMDetail UsCellular { get; set; }
+        [JsonProperty("verizon_wireless")]
+        public TPMDetail VerizonWireless { get; set; }
     }
 
     public class TPMDetail {
+        [JsonProperty("tpm")]
         public string tpm { get; set; }
+        [JsonProperty("brand_tier")]
         public string brand_tier { get; set; }
     }
 
