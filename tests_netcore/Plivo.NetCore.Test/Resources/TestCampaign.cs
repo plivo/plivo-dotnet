@@ -24,7 +24,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/campaignListResponse.json"
                 );
-            Setup<ListResponse<ListCampaign>>(
+            Setup<ListResponse<ListCampaigns>>(
                 200,
                 response
             );
