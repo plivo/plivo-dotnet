@@ -61,9 +61,9 @@ namespace Plivo.Resource.Brand
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<ListBrands>>("10dlc/Brand/", null).ConfigureAwait(false)).Result;
-				resources.Objects.ForEach(
-					(obj) => obj.Interface = this
-				);
+				// resources.Objects.ForEach(
+				// 	(obj) => obj.Interface = this
+				// );
 
 				return resources;
 			});
@@ -79,9 +79,9 @@ namespace Plivo.Resource.Brand
         {
 
             var resources = await ListResources<ListResponse<ListBrands>>("10dlc/Brand/", null);
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
+            // resources.Objects.ForEach(
+            //     (obj) => obj.Interface = this
+            // );
 
             return resources;
         }

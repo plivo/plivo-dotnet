@@ -39,7 +39,7 @@ namespace Plivo.Resource.Brand
     public class GetBrand: Resource
     {  
         [JsonProperty("api_id")]
-        public string ApiId {get; set;}
+        public new string ApiId {get; set;}
 
         [JsonProperty("brand")]
         public BrandResponse Brand {get; set;}
@@ -53,7 +53,7 @@ namespace Plivo.Resource.Brand
     public class ListBrands: Resource
     {
         [JsonProperty("api_id")]
-        public string ApiId {get; set;}
+        public new string ApiId {get; set;}
 
         [JsonProperty("brands")]
         public BrandResponse Brands {get; set;}
@@ -107,7 +107,7 @@ namespace Plivo.Resource.Brand
     public class BrandCreateResponse: Resource
     {
         [JsonProperty("api_id")]
-        public string ApiId {get; set;}
+        public new string ApiId {get; set;}
 
         [JsonProperty("brand")]
         public BrandCreate Brand {get; set;}
