@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-
+using System.Threading.Tasks;
 namespace Plivo.Resource.Brand
 {
     /// <summary>
@@ -91,20 +91,36 @@ namespace Plivo.Resource.Brand
         }
     }
 
-    // [JsonObject(MemberSerialization.OptIn)]
-    // public class ListBrands: Resource
-    // {
-    //     [JsonProperty("api_id")]
-    //     public new string ApiId {get; set;}
+    [JsonObject(MemberSerialization.OptIn)]
+    public class ListBrands: Resource
+    {
+       [JsonProperty("brand_id")]
+        public string BrandId { get; set; }
 
-    //     [JsonProperty("brands")]
-    //     public List<BrandResponse> Brands {get; set;}
+        [JsonProperty("company_name")]
+        public string CompanyName { get; set; }
 
-    //      public override string ToString()
-    //     {
-    //         return JsonConvert.SerializeObject(this, Formatting.Indented);
-    //     }
-    // }
+        [JsonProperty("ein")]
+        public string Ein { get; set; }
+
+        [JsonProperty("ein_issuing_country")]
+        public string EinIssuingCountry { get; set; }
+
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
+        [JsonProperty("entity_type")]
+        public string EntityType { get; set; }
+
+        [JsonProperty("registration_status")]
+        public string RegistrationStatus { get; set; }
+
+        [JsonProperty("vertical")]
+        public string Vertical { get; set; }
+
+        [JsonProperty("website")]
+        public string Website { get; set; }
+    }
 
     [JsonObject(MemberSerialization.OptIn)]
     public class GetBrand: Resource

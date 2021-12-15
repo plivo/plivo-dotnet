@@ -59,7 +59,6 @@ namespace Plivo.Resource
         public override string ToString()
         {
             return "Api Id: " + ApiId + "\n" +
-                   "[Meta]\n" + Meta +
                    "StatusCode: " + StatusCode +
                    "[Brands]\n" + string.Join("\n", Brands);
 
