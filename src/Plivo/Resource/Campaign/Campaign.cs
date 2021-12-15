@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
-using System;
-using System.Collection.Generic;
+
 namespace Plivo.Resource.Campaign
 {
     /// <summary>
