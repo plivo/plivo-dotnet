@@ -77,10 +77,10 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">status.</param>
-        public async Task<ListResponse<Campaigns>> ListAsync()
+        public async Task<ListResponse<ListCampaigns>> ListAsync()
         {
            
-            var resources = await ListResources<ListResponse<Campaigns>>("10dlc/Campaign", null);
+            var resources = await ListResources<ListResponse<ListCampaigns>>("10dlc/Campaign", null);
             return resources;
         }
         #endregion
@@ -156,7 +156,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="subscriber_help">subscriber_help</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
-		public async Task<Campaign> CreateAsync(string brand_id, string vertical, string campaign_alias, string usecase, string[] sub_usecases,
+		public async Task<GetCampaign> CreateAsync(string brand_id, string vertical, string campaign_alias, string usecase, string[] sub_usecases,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2)
 		{
@@ -183,7 +183,7 @@ namespace Plivo.Resource.Campaign
                 sample2
             });
 
-			var result = await Client.Update<Campaign>(Uri + "10dlc/Campaign/", data);
+			var result = await Client.Update<GetCampaign>(Uri + "10dlc/Campaign/", data);
             result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
