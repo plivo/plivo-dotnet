@@ -36,7 +36,7 @@ namespace Plivo.Resource.Brand
         
     }
      [JsonObject(MemberSerialization.OptIn)]
-    public class Brand: Resource
+    public class GetBrand: Resource
     {  
         [JsonProperty("api_id")]
         public string ApiId {get; set;}
@@ -50,7 +50,7 @@ namespace Plivo.Resource.Brand
         }
     }
      [JsonObject(MemberSerialization.OptIn)]
-    public class Brands: Resource
+    public class ListBrands: Resource
     {
         [JsonProperty("api_id")]
         public string ApiId {get; set;}

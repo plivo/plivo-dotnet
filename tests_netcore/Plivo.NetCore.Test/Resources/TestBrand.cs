@@ -10,32 +10,32 @@ namespace Plivo.NetCore.Test.Resources
 {
     public class TestBrand : BaseTestCase
     {
-        // [Fact]
-        // public void TestBrandList()
-        // {
-        //     var data = new Dictionary<string, object>();
-        //     var request =
-        //         new PlivoRequest(
-        //             "GET",
-        //             "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/",
-        //             "",
-        //             data);
+        [Fact]
+        public void TestBrandList()
+        {
+            var data = new Dictionary<string, object>();
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/",
+                    "",
+                    data);
 
-        //     var response =
-        //         System.IO.File.ReadAllText(
-        //             SOURCE_DIR + @"../Mocks/brandListResponse.json"
-        //         );
-        //     Setup<ListResponse<Brands>>(
-        //         200,
-        //         response
-        //     );
-        //     Assert.Empty(
-        //         ComparisonUtilities.Compare(
-        //             response,
-        //             Api.Brand.List()));
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/brandListResponse.json"
+                );
+            Setup<ListResponse<ListBrands>>(
+                200,
+                response
+            );
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Brand.List()));
 
-        //     AssertRequest(request);
-        // }
+            AssertRequest(request);
+        }
 
         [Fact]
         public void TestBrandGet()
@@ -51,7 +51,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/brandGetResponse.json"
                 );
-            Setup<Brand>(
+            Setup<GetBrand>(
                 200,
                 response
             );

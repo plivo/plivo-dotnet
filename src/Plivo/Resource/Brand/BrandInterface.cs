@@ -26,11 +26,11 @@ namespace Plivo.Resource.Brand
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="brand_id">BrandID.</param>
-        public Brand Get(string brandID)
+        public GetBrand Get(string brandID)
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await GetResource<Brand>("10dlc/Brand/"+brandID).ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await GetResource<GetBrand>("10dlc/Brand/"+brandID).ConfigureAwait(false)).Result;
                 // response.Interface = this;
 				return response;
 			});
@@ -40,9 +40,9 @@ namespace Plivo.Resource.Brand
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="brand_id"> BrandID.</param>
-        public async Task<Brand> GetAsync(string brandID)
+        public async Task<GetBrand> GetAsync(string brandID)
         {
-            var response = await GetResource<Brand>("10dlc/Brand/"+brandID);
+            var response = await GetResource<GetBrand>("10dlc/Brand/"+brandID);
             response.Interface = this;
             return response;
         }
@@ -55,12 +55,12 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public ListResponse<Brands> List()
+        public ListResponse<ListBrands> List()
         {
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<ListResponse<Brands>>("10dlc/Brand/", null).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<ListResponse<ListBrands>>("10dlc/Brand/", null).ConfigureAwait(false)).Result;
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -75,10 +75,10 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public async Task<ListResponse<Brands>> ListAsync()
+        public async Task<ListResponse<ListBrands>> ListAsync()
         {
 
-            var resources = await ListResources<ListResponse<Brands>>("10dlc/Brand/", null);
+            var resources = await ListResources<ListResponse<ListBrands>>("10dlc/Brand/", null);
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
