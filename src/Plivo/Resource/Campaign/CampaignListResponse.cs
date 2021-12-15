@@ -29,7 +29,7 @@ namespace Plivo.Resource
         /// </summary>
         /// <param name="meta">Meta.</param>
         /// <param name="Campaigns">Campaigns.</param>
-        public CampaignListResponse( List<T> Campaigns)
+        public CampaignListResponse( List<T> campaigns)
         {
             Campaigns = campaigns ?? throw new ArgumentNullException(nameof(campaigns));
         }
