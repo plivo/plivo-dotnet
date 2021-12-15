@@ -31,7 +31,7 @@ namespace Plivo.Resource.Brand
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var response = Task.Run(async () => await GetResource<Brand>("10dlc/Brand/"+brandID).ConfigureAwait(false)).Result;
-                response.Interface = this;
+                // response.Interface = this;
 				return response;
 			});
         }
