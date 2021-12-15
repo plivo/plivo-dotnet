@@ -56,18 +56,18 @@ namespace Plivo.Resource.Campaign
         public ListResponse<Campaigns> List(
             uint? brand = null, uint? usecase = null)
         {
-            var mandatoryParams = new List<string> {""};
-            var data = CreateData(
-                mandatoryParams,
-                new
-                {
-                    brand,
-                    usecase
-                });
+            // var mandatoryParams = new List<string> {""};
+            // var data = CreateData(
+            //     mandatoryParams,
+            //     new
+            //     {
+            //         brand,
+            //         usecase
+            //     });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<ListResponse<Campaigns>>("10dlc/Campaign",data).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<ListResponse<Campaigns>>("10dlc/Campaign",null).ConfigureAwait(false)).Result;
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
