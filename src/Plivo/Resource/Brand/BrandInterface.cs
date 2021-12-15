@@ -55,15 +55,16 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public ListResponse<ListBrands> List()
+        public BrandListResponse<ListBrands> List()
         {
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<ListResponse<ListBrands>>("10dlc/Brand/", null).ConfigureAwait(false)).Result;
-				// resources.Objects.ForEach(
-				// 	(obj) => obj.Interface = this
-				// );
+				var resources = Task.Run(async () => await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand/", null).ConfigureAwait(false)).Result;
+				resources.Brands.ForEach(
+					(obj) => obj.Interface = this
+				);
+                Console.WriteLine(resources);
 
 				return resources;
 			});
@@ -75,13 +76,13 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public async Task<ListResponse<ListBrands>> ListAsync()
+        public async Task<BrandListResponse<ListBrands>> ListAsync()
         {
 
-            var resources = await ListResources<ListResponse<ListBrands>>("10dlc/Brand/", null);
-            // resources.Objects.ForEach(
-            //     (obj) => obj.Interface = this
-            // );
+            var resources = await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand/", null);
+            resources.Brands.ForEach(
+                (obj) => obj.Interface = this
+            );
 
             return resources;
         }
