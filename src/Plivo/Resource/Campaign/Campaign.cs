@@ -52,8 +52,20 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("api_id")]
         public new string ApiId {get; set;}
 
-        [JsonProperty("campaigns")]
-        public CampaignResponse Campaigns {get; set;}
+        [JsonProperty("brand_id")]
+        public string BrandId { get; set; }
+
+        [JsonProperty("campaign_id")]
+        public string CampaignId { get; set; }
+
+        [JsonProperty("mno_metadata")]
+        public MnoMetaData MnoMetadata { get; set; }
+
+        [JsonProperty("reseller_id")]
+        public string ResellerId { get; set; }
+
+        [JsonProperty("usecase")]
+        public string Usecase { get; set; }  
     }
 
 }
