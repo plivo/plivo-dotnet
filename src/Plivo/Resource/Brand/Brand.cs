@@ -1,5 +1,5 @@
 using Newtonsoft.Json;
-
+using System;
 namespace Plivo.Resource.Brand
 {
     /// <summary>
@@ -35,34 +35,7 @@ namespace Plivo.Resource.Brand
         public string Website { get; set; }
         
     }
-     [JsonObject(MemberSerialization.OptIn)]
-    public class GetBrand: Resource
-    {  
-        [JsonProperty("api_id")]
-        public new string ApiId {get; set;}
-
-        [JsonProperty("brand")]
-        public BrandResponse Brand {get; set;}
-
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-    }
-     [JsonObject(MemberSerialization.OptIn)]
-    public class ListBrands: Resource
-    {
-        [JsonProperty("api_id")]
-        public new string ApiId {get; set;}
-
-        [JsonProperty("brands")]
-        public BrandResponse Brands {get; set;}
-         public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-    }
-
+    
     public class BrandCreate
     {   
         [JsonProperty("alt_business_id_type")]
@@ -113,6 +86,35 @@ namespace Plivo.Resource.Brand
         public BrandCreate Brand {get; set;}
 
          public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class ListBrands: Resource
+    {
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
+        [JsonProperty("brands")]
+        public List<BrandResponse> Brands {get; set;}
+         public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class GetBrand: Resource
+    {  
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
+        [JsonProperty("brand")]
+        public BrandResponse Brand {get; set;}
+
+        public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }

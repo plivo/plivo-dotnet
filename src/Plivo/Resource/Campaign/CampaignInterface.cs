@@ -26,11 +26,11 @@ namespace Plivo.Resource.Campaign
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="campaign_id">campaignID.</param>
-        public Campaign Get(string campaignID)
+        public GetCampaign Get(string campaignID)
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await GetResource<Campaign>("10dlc/Campaign/"+campaignID).ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await GetResource<GetCampaign>("10dlc/Campaign/"+campaignID).ConfigureAwait(false)).Result;
 				return response;
 			});
         }
@@ -39,9 +39,9 @@ namespace Plivo.Resource.Campaign
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="campaign_id"> campaignID.</param>
-        public async Task<Campaign> GetAsync(string campaignID)
+        public async Task<GetCampaign> GetAsync(string campaignID)
         {
-            var response = await GetResource<Campaign>("10dlc/Campaign/"+campaignID);
+            var response = await GetResource<GetCampaign>("10dlc/Campaign/"+campaignID);
             return response;
         }
         #endregion
@@ -53,7 +53,7 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">usecase.</param>
-        public ListResponse<Campaigns> List()
+        public ListResponse<ListCampaigns> List()
         {
             // var mandatoryParams = new List<string> {""};
             // var data = CreateData(
@@ -66,11 +66,7 @@ namespace Plivo.Resource.Campaign
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<ListResponse<Campaigns>>("10dlc/Campaign/",null).ConfigureAwait(false)).Result;
-				resources.Objects.ForEach(
-					(obj) => obj.Interface = this
-				);
-
+				var resources = Task.Run(async () => await ListResources<ListResponse<ListCampaigns>>("10dlc/Campaign/",null).ConfigureAwait(false)).Result;
 				return resources;
 			});
         }
@@ -85,10 +81,6 @@ namespace Plivo.Resource.Campaign
         {
            
             var resources = await ListResources<ListResponse<Campaigns>>("10dlc/Campaign", null);
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
-
             return resources;
         }
         #endregion
@@ -113,7 +105,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
 
-        public Campaign Create(string brand_id, string vertical, string campaign_alias, string usecase, string[] sub_usecases,
+        public GetCampaign Create(string brand_id, string vertical, string campaign_alias, string usecase, string[] sub_usecases,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2)
         {
@@ -140,7 +132,7 @@ namespace Plivo.Resource.Campaign
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
-				var result = Task.Run(async () => await Client.Update<Campaign>(Uri + "10dlc/Campaign/", data).ConfigureAwait(false)).Result;
+				var result = Task.Run(async () => await Client.Update<GetCampaign>(Uri + "10dlc/Campaign/", data).ConfigureAwait(false)).Result;
 				result.Object.StatusCode = result.StatusCode;
                 return result.Object;
 		});
