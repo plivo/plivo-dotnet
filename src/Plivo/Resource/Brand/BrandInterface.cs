@@ -68,8 +68,6 @@ namespace Plivo.Resource.Brand
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Brands>>("10dlc/Brand", null).ConfigureAwait(false)).Result;
-                System.out.Println("#$$$");
-                System.out.Println(resources);
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
