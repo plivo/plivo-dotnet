@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 using System;
-
+using System.Collection.Generic;
 namespace Plivo.Resource.Campaign
 {
     /// <summary>
@@ -54,7 +54,7 @@ namespace Plivo.Resource.Campaign
         public new string ApiId {get; set;}
 
         [JsonProperty("campaigns")]
-        public CampaignResponse Campaigns {get; set;}
+        public List<CampaignResponse> Campaigns {get; set;}
     }
 
 }

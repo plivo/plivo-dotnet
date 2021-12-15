@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collection.Generic;
 namespace Plivo.Resource.Brand
 {
     /// <summary>
@@ -99,6 +100,7 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("brands")]
         public List<BrandResponse> Brands {get; set;}
+        
          public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
