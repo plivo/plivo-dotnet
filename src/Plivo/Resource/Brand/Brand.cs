@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading.Tasks;
-using Plivo.Client;
 using Newtonsoft.Json;
 
 namespace Plivo.Resource.Brand
@@ -14,35 +9,44 @@ namespace Plivo.Resource.Brand
     {
         [JsonProperty("brand_id")]
         public string brand_id { get; set; }
+
         [JsonProperty("company_name")]
         public string company_name { get; set; }
+
         [JsonProperty("ein")]
         public string ein { get; set; }
+
         [JsonProperty("ein_issuing_country")]
         public string ein_issuing_country { get; set; }
+
         [JsonProperty("email")]
         public string email { get; set; }
+
         [JsonProperty("entity_type")]
         public string entity_type { get; set; }
+
         [JsonProperty("registration_status")]
         public string registration_status { get; set; }
+
         [JsonProperty("companverticaly_name")]
         public string vertical { get; set; }
+
         [JsonProperty("website")]
         public string website { get; set; }
         
     }
     public class Brand: Resource
-    {   [JsonProperty("api_id")]
+    {  
+        [JsonProperty("api_id")]
         public string ApiId {get; set;}
+
         [JsonProperty("brand")]
         public BrandResponse brand {get; set;}
-        // public override string ToString()
-        // {
-	    // // this intentionally returns json instead of manually printing
-	    // // each nested objected individually.
-        //     return JsonConvert.SerializeObject(this, Formatting.Indented);
-        // }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
     }
     public class Brands: Resource
     {
