@@ -92,20 +92,20 @@ namespace Plivo.Resource.Brand
         }
     }
 
-    [JsonObject(MemberSerialization.OptIn)]
-    public class ListBrands: Resource
-    {
-        [JsonProperty("api_id")]
-        public new string ApiId {get; set;}
+    // [JsonObject(MemberSerialization.OptIn)]
+    // public class ListBrands: Resource
+    // {
+    //     [JsonProperty("api_id")]
+    //     public new string ApiId {get; set;}
 
-        [JsonProperty("brands")]
-        public List<BrandResponse> Brands {get; set;}
-        
-         public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
-    }
+    //     [JsonProperty("brands")]
+    //     public List<BrandResponse> Brands {get; set;}
+
+    //      public override string ToString()
+    //     {
+    //         return JsonConvert.SerializeObject(this, Formatting.Indented);
+    //     }
+    // }
 
     [JsonObject(MemberSerialization.OptIn)]
     public class GetBrand: Resource

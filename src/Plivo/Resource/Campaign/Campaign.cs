@@ -54,7 +54,7 @@ namespace Plivo.Resource.Campaign
         public new string ApiId {get; set;}
 
         [JsonProperty("campaigns")]
-        public List<CampaignResponse> Campaigns {get; set;}
+        public CampaignResponse Campaigns {get; set;}
     }
 
 }
