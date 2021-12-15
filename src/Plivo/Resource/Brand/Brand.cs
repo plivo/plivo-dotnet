@@ -37,12 +37,12 @@ namespace Plivo.Resource.Brand
         public string ApiId {get; set;}
         [JsonProperty("brand")]
         public BrandResponse brand {get; set;}
-         public override string ToString()
-        {
-	    // this intentionally returns json instead of manually printing
-	    // each nested objected individually.
-            return JsonConvert.SerializeObject(this, Formatting.Indented);
-        }
+        // public override string ToString()
+        // {
+	    // // this intentionally returns json instead of manually printing
+	    // // each nested objected individually.
+        //     return JsonConvert.SerializeObject(this, Formatting.Indented);
+        // }
     }
     public class Brands: Resource
     {
