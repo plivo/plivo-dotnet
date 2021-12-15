@@ -5,7 +5,7 @@ namespace Plivo.Resource.Brand
     /// <summary>
     /// Brand.
     /// </summary>
-    public class BrandResponse : Resource
+    public class BrandResponse 
     {
         [JsonProperty("brand_id")]
         public string brand_id { get; set; }
@@ -35,6 +35,7 @@ namespace Plivo.Resource.Brand
         public string website { get; set; }
         
     }
+     [JsonObject(MemberSerialization.OptIn)]
     public class Brand: Resource
     {  
         [JsonProperty("api_id")]
@@ -48,20 +49,21 @@ namespace Plivo.Resource.Brand
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }
+     [JsonObject(MemberSerialization.OptIn)]
     public class Brands: Resource
     {
         [JsonProperty("api_id")]
         public string ApiId {get; set;}
+
         [JsonProperty("brands")]
         public BrandResponse brands {get; set;}
          public override string ToString()
         {
-	    // this intentionally returns json instead of manually printing
-	    // each nested objected individually.
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }
-    public class BrandCreate: Resource
+
+    public class BrandCreate
     {   
         [JsonProperty("alt_business_id_type")]
         public string AltBusinessIdType { get; set; }
@@ -100,17 +102,18 @@ namespace Plivo.Resource.Brand
         [JsonProperty("website")]
         public string Website { get; set; }
     }
+    
+    [JsonObject(MemberSerialization.OptIn)]
     public class BrandCreateResponse: Resource
     {
         [JsonProperty("api_id")]
         public string ApiId {get; set;}
+
         [JsonProperty("brand")]
         public BrandCreate Brand {get; set;}
 
          public override string ToString()
         {
-	    // this intentionally returns json instead of manually printing
-	    // each nested objected individually.
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }

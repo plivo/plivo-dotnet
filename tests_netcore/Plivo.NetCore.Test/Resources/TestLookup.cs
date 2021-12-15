@@ -4,6 +4,7 @@ using Plivo.Http;
 using Plivo.Resource;
 using Plivo.Resource.Lookup;
 using Plivo.Utilities;
+using System;
 
 namespace Plivo.NetCore.Test.Resources
 {
@@ -28,6 +29,8 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
+            Console.WriteLine(Api.Lookup.Get(number));
+
             Assert.IsEmpty(
                 ComparisonUtilities.Compare(
                     response,
