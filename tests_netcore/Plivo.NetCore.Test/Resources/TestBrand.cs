@@ -54,6 +54,8 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
+            Console.WriteLine(response)
+            Console.WriteLine(Api.Brand.Get(id))
             Assert.Empty(
                 ComparisonUtilities.Compare(
                     response,
