@@ -53,8 +53,7 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public ListResponse<Brands> List(
-            uint? type = null, uint? status = null)
+        public ListResponse<Brands> List()
         {
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -74,8 +73,7 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public async Task<ListResponse<Brands>> ListAsync(
-           uint? type = null, uint? status = null)
+        public async Task<ListResponse<Brands>> ListAsync()
         {
 
             var resources = await ListResources<ListResponse<Brands>>("10dlc/Brand/", null);
