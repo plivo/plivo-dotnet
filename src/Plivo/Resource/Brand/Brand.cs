@@ -8,31 +8,31 @@ namespace Plivo.Resource.Brand
     public class BrandResponse 
     {
         [JsonProperty("brand_id")]
-        public string brand_id { get; set; }
+        public string BrandId { get; set; }
 
         [JsonProperty("company_name")]
-        public string company_name { get; set; }
+        public string CompanyName { get; set; }
 
         [JsonProperty("ein")]
-        public string ein { get; set; }
+        public string Ein { get; set; }
 
         [JsonProperty("ein_issuing_country")]
-        public string ein_issuing_country { get; set; }
+        public string EinIssuingCountry { get; set; }
 
         [JsonProperty("email")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [JsonProperty("entity_type")]
-        public string entity_type { get; set; }
+        public string EntityType { get; set; }
 
         [JsonProperty("registration_status")]
-        public string registration_status { get; set; }
+        public string RegistrationStatus { get; set; }
 
-        [JsonProperty("companverticaly_name")]
-        public string vertical { get; set; }
+        [JsonProperty("vertical")]
+        public string Vertical { get; set; }
 
         [JsonProperty("website")]
-        public string website { get; set; }
+        public string Website { get; set; }
         
     }
      [JsonObject(MemberSerialization.OptIn)]
@@ -42,7 +42,7 @@ namespace Plivo.Resource.Brand
         public string ApiId {get; set;}
 
         [JsonProperty("brand")]
-        public BrandResponse brand {get; set;}
+        public BrandResponse Brand {get; set;}
 
         public override string ToString()
         {
@@ -56,7 +56,7 @@ namespace Plivo.Resource.Brand
         public string ApiId {get; set;}
 
         [JsonProperty("brands")]
-        public BrandResponse brands {get; set;}
+        public BrandResponse Brands {get; set;}
          public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
@@ -102,7 +102,7 @@ namespace Plivo.Resource.Brand
         [JsonProperty("website")]
         public string Website { get; set; }
     }
-    
+
     [JsonObject(MemberSerialization.OptIn)]
     public class BrandCreateResponse: Resource
     {
