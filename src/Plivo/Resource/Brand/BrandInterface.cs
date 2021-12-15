@@ -60,7 +60,7 @@ namespace Plivo.Resource.Brand
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand/", null).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand", null).ConfigureAwait(false)).Result;
 				resources.Brands.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -78,7 +78,7 @@ namespace Plivo.Resource.Brand
         /// <param name="status">status.</param>
         public async Task<BrandListResponse<ListBrands>> ListAsync()
         {
-            var resources = await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand/", null);
+            var resources = await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand", null);
             resources.Brands.ForEach(
                 (obj) => obj.Interface = this
             );
