@@ -29,12 +29,8 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            Console.WriteLine(Api.Campaign.List());
-            // Assert.Empty(
-            //     ComparisonUtilities.Compare(
-            //         response,
-            //         Api.Campaign.List()));
-
+            res= Api.Campaign.List();
+           
             AssertRequest(request);
         }
 
@@ -56,12 +52,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            Console.WriteLine(Api.Campaign.Get(id));
-            // Assert.Empty(
-            //     ComparisonUtilities.Compare(
-            //         response,
-            //         Api.Campaign.Get(id)));
-
+            res = Api.Campaign.Get(id);
             AssertRequest(request);
         }
     }

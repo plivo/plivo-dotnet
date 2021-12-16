@@ -55,15 +55,6 @@ namespace Plivo.Resource.Campaign
         /// <param name="usecase">usecase.</param>
         public CampaignListResponse<ListCampaigns> List()
         {
-            // var mandatoryParams = new List<string> {""};
-            // var data = CreateData(
-            //     mandatoryParams,
-            //     new
-            //     {
-            //         brand,
-            //         usecase
-            //     });
-
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign",null).ConfigureAwait(false)).Result;
@@ -84,9 +75,9 @@ namespace Plivo.Resource.Campaign
         {
            
             var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", null);
-            // resources.Campaigns.ForEach(
-			// 		(obj) => obj.Interface = this
-			// 	);
+            resources.Campaigns.ForEach(
+					(obj) => obj.Interface = this
+				);
             return resources;
         }
         #endregion
