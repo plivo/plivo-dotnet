@@ -102,9 +102,9 @@ namespace Plivo.Resource.Campaign
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
 
-        public GetCampaign Create(string brand_id, string vertical, string campaign_alias, string usecase, string[] sub_usecases,
+        public GetCampaign Create(string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2, string[] sub_usecases= null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
@@ -113,7 +113,6 @@ namespace Plivo.Resource.Campaign
             {
                 brand_id,
                 vertical,
-                campaign_alias,
                 usecase,
                 sub_usecases,
                 description,
@@ -153,9 +152,9 @@ namespace Plivo.Resource.Campaign
         /// <param name="subscriber_help">subscriber_help</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
-		public async Task<GetCampaign> CreateAsync(string brand_id, string vertical, string campaign_alias, string usecase, string[] sub_usecases,
+		public async Task<GetCampaign> CreateAsync(string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2,string[] sub_usecases= null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -165,7 +164,6 @@ namespace Plivo.Resource.Campaign
             {
                  brand_id,
                 vertical,
-                campaign_alias,
                 usecase,
                 sub_usecases,
                 description,
