@@ -99,7 +99,6 @@ namespace Plivo.Resource.Brand
         /// <param name="email">Email</param>
         /// <param name="entity_type">EntityType</param>
         /// <param name="postal_code">PostalCode</param>
-        /// <param name="registration_status">RegistrationStatus</param>
         /// <param name="state">State</param>
         /// <param name="stock_exchange">StockExchange</param>
         /// <param name="stock_symbol">StockSymbol</param>
@@ -108,7 +107,7 @@ namespace Plivo.Resource.Brand
 
         public BrandCreateResponse Create(string city, string company_name, string country, string ein, string ein_issuing_country,
             string email, string entity_type,  string phone, string postal_code,
-            string registration_status, string state, string stock_exchange, string stock_symbol, string street, string vertical,string first_name, string last_name,
+            string state, string stock_exchange, string stock_symbol, string street, string vertical,string first_name, string last_name,
             string website = null, string secondary_vetting = null,
             string alt_business_id_type = null,  string alt_business_id = null)
         {
@@ -126,7 +125,6 @@ namespace Plivo.Resource.Brand
                 entity_type,
                 phone,
                 postal_code,
-                registration_status,
                 state,
                 stock_exchange,
                 stock_symbol,
