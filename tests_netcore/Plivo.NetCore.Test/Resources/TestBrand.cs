@@ -29,7 +29,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            res = Api.Brand.List());
+            res = Api.Brand.List();
             AssertRequest(request);
         }
 
@@ -51,7 +51,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            res = Api.Brand.Get(id));
+            res = Api.Brand.Get(id);
             AssertRequest(request);
         }
     }
