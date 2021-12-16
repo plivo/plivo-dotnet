@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.6.1](https://github.com/plivo/plivo-dotnet/tree/v5.6.1) (2021-12-16)
+**Bug fix**
+- Added an exception to allow for more efficient error logs.
+
 ## [v5.6.0](https://github.com/plivo/plivo-dotnet/tree/v5.6.0) (2021-12-14)
 **Features - Voice**
 - Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
