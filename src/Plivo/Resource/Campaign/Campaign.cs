@@ -54,10 +54,7 @@ namespace Plivo.Resource.Campaign
 
     [JsonObject(MemberSerialization.OptIn)]
     public class ListCampaigns: Resource
-    {  
-        [JsonProperty("api_id")]
-        public new string ApiId {get; set;}
-
+    { 
         [JsonProperty("brand_id")]
         public string BrandId { get; set; }
 
