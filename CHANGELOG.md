@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.5.1](https://github.com/plivo/plivo-dotnet/tree/v5.5.1) (2021-12-16)
+**Bug fix**
+- Added an exception to allow for more efficient error logs.
+
 ## [v5.5.0](https://github.com/plivo/plivo-dotnet/tree/v5.5.0) (2021-11-25)
 **Features - Voice: Multiparty calls**
 - The [Add Multiparty Call API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant) allows for greater functionality by accepting options like `start recording audio`, `stop recording audio`, and their HTTP methods.
