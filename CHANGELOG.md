@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.7.0](https://github.com/plivo/plivo-dotnet/tree/v5.7.0) (2021-12-16)
+**Features - SMS**
+- 10dlc api support
+
 ## [v5.6.1](https://github.com/plivo/plivo-dotnet/tree/v5.6.1) (2021-12-16)
 **Bug fix**
 - Added an exception to allow for more efficient error logs.

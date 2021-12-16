@@ -24,6 +24,8 @@ using Plivo.Resource.RegulatoryCompliance.DocumentType;
 using Plivo.Resource.RegulatoryCompliance.EndUser;
 using Plivo.Resource.RegulatoryCompliance.Requirement;
 using Plivo.Resource.MultiPartyCall;
+using Plivo.Resource.Brand;
+using Plivo.Resource.Campaign;
 
 namespace Plivo
 {
@@ -52,6 +54,8 @@ namespace Plivo
         private readonly Lazy<MessageInterface> _message;
         private readonly Lazy<LookupInterface> _lookup;
         private readonly Lazy<PowerpackInterface> _powerpack;
+        private readonly Lazy<BrandInterface> _brand;
+        private readonly Lazy<CampaignInterface> _campiagn;
         private readonly Lazy<MediaInterface> _media;
         private readonly Lazy<EndpointInterface> _endpoint;
         private readonly Lazy<PricingInterface> _pricing;
@@ -106,6 +110,10 @@ namespace Plivo
         public MessageInterface Message => _message.Value;
 
         public PowerpackInterface Powerpacks => _powerpack.Value;
+
+        public BrandInterface Brand => _brand.Value;
+
+        public CampaignInterface Campaign => _campiagn.Value;
 
         public MediaInterface Media => _media.Value;
 
@@ -199,6 +207,8 @@ namespace Plivo
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
             _lookup = new Lazy<LookupInterface>(() => new LookupInterface(Client));
             _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
+            _brand = new Lazy<BrandInterface>(() => new BrandInterface(Client));
+            _campiagn = new Lazy<CampaignInterface>(() => new CampaignInterface(Client));
             _media = new Lazy<MediaInterface>(() => new MediaInterface(Client));
             _endpoint = new Lazy<EndpointInterface>(() => new EndpointInterface(Client));
             _pricing = new Lazy<PricingInterface>(() => new PricingInterface(Client));
