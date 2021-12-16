@@ -4,6 +4,11 @@
 **Features - SMS**
 - 10dlc api support
 
+## [v5.6.0](https://github.com/plivo/plivo-dotnet/tree/v5.6.0) (2021-12-14)
+**Features - Voice**
+- Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
+
+
 ## [v5.5.0](https://github.com/plivo/plivo-dotnet/tree/v5.5.0) (2021-11-25)
 **Features - Voice: Multiparty calls**
 - The [Add Multiparty Call API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant) allows for greater functionality by accepting options like `start recording audio`, `stop recording audio`, and their HTTP methods.
