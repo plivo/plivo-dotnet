@@ -47,12 +47,9 @@ namespace Plivo.Resource.Campaign
    [JsonObject(MemberSerialization.OptIn)]
     public class GetCampaign: Resource
     {   
-        [JsonProperty("api_id")]
-        public new string api_id {get; set;}
-
         [JsonProperty("campaign")]
         public CampaignResponse Campaign {get; set;}
-        
+
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
