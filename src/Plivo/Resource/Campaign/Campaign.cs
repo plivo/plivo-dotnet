@@ -55,20 +55,26 @@ namespace Plivo.Resource.Campaign
     [JsonObject(MemberSerialization.OptIn)]
     public class ListCampaigns: Resource
     { 
-        [JsonProperty("brand_id")]
-        public string BrandId { get; set; }
+        [JsonProperty("api_id")]
+        public new string api_id {get; set;}
 
-        [JsonProperty("campaign_id")]
-        public string CampaignId { get; set; }
+        [JsonProperty("campaigns")]
+        public CampaignResponse Campaigns {get; set;}
 
-        [JsonProperty("mno_metadata")]
-        public MnoMetaData MnoMetadata { get; set; }
+        // [JsonProperty("brand_id")]
+        // public string BrandId { get; set; }
 
-        [JsonProperty("reseller_id")]
-        public string ResellerId { get; set; }
+        // [JsonProperty("campaign_id")]
+        // public string CampaignId { get; set; }
 
-        [JsonProperty("usecase")]
-        public string Usecase { get; set; }  
+        // [JsonProperty("mno_metadata")]
+        // public MnoMetaData MnoMetadata { get; set; }
+
+        // [JsonProperty("reseller_id")]
+        // public string ResellerId { get; set; }
+
+        // [JsonProperty("usecase")]
+        // public string Usecase { get; set; }  
     }
 
 }
