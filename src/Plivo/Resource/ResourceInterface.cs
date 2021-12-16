@@ -269,6 +269,8 @@ namespace Plivo.Resource {
             } catch (AggregateException ex) {
                 ex.Flatten ();
                 throw ex.InnerExceptions[0];
+            } catch(System.Exception ex){
+                throw new PlivoServerException(ex.ToString());
             }
         }
     }
