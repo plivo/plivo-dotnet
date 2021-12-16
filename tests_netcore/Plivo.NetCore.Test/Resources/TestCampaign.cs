@@ -29,7 +29,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-           // res= Api.Campaign.List();
+            var resp = Api.Campaign.List();
            
             AssertRequest(request);
         }
@@ -52,7 +52,12 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-           // res = Api.Campaign.Get(id);
+            var resp = Api.Campaign.Get(id));
+            // Assert.Empty(
+            //     ComparisonUtilities.Compare(
+            //         response,
+            //         Api.Campaign.Get(id)));
+
             AssertRequest(request);
         }
     }
