@@ -52,7 +52,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            var resp = Api.Campaign.Get(id));
+            var resp = Api.Campaign.Get(id);
             // Assert.Empty(
             //     ComparisonUtilities.Compare(
             //         response,
