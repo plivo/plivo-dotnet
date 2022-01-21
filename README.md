@@ -27,7 +27,7 @@ You can also use the .NET CLI to install this package as follows
 To make the API requests, you need to create a `PlivoApi` instance and provide it with authentication credentials (which can be found at [https://manage.plivo.com/dashboard/](https://manage.plivo.com/dashboard/)).
 
 ```csharp
-var api = new PlivoApi("your_auth_id", "your_auth_token");
+var api = new PlivoApi("<auth_id>", "<auth_token>");
 ```
 
 ## The Basics
