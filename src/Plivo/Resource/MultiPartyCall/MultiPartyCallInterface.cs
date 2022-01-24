@@ -612,7 +612,7 @@ namespace Plivo.Resource.MultiPartyCall
         public RecordCreateResponse<MultiPartyCall> StartRecording (
             string mpcUuid = null, string friendlyName = null,
             string fileFormat = "mp3", 
-            string statusCallbackUrl = null, string statusCallbackMethod = "POST"
+            string recordingCallbackUrl = null, string recordingCallbackMethod = "POST"
             ) 
         {
             if (mpcUuid != null)
@@ -630,14 +630,14 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"mp3", "wav"});
             }
 
-            if (statusCallbackUrl != null)
+            if (recordingCallbackUrl != null)
             {
-                MpcUtils.ValidUrl("statusCallbackUrl", statusCallbackUrl, false);
+                MpcUtils.ValidUrl("recordingCallbackUrl", recordingCallbackUrl, false);
             }
 
-            if (statusCallbackMethod != null)
+            if (recordingCallbackMethod != null)
             {
-                MpcUtils.ValidParamString("statusCallbackMethod", statusCallbackMethod.ToUpper(), false,
+                MpcUtils.ValidParamString("recordingCallbackMethod", recordingCallbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
@@ -647,8 +647,8 @@ namespace Plivo.Resource.MultiPartyCall
                 mandatoryParams,
                 new {
                     fileFormat,
-                    statusCallbackUrl,
-                    statusCallbackMethod,
+                    recordingCallbackUrl,
+                    recordingCallbackMethod,
                     isVoiceRequest
                 });
 
@@ -760,7 +760,7 @@ namespace Plivo.Resource.MultiPartyCall
             string participantId = null,
             string mpcUuid = null, string friendlyName = null,
             string fileFormat = "mp3", 
-            string statusCallbackUrl = null, string statusCallbackMethod = "POST"
+            string recordingCallbackUrl = null, string recordingCallbackMethod = "POST"
             ) 
         {
             if (mpcUuid != null)
@@ -778,14 +778,14 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"mp3", "wav"});
             }
 
-            if (statusCallbackUrl != null)
+            if (recordingCallbackUrl != null)
             {
-                MpcUtils.ValidUrl("statusCallbackUrl", statusCallbackUrl, false);
+                MpcUtils.ValidUrl("recordingCallbackUrl", recordingCallbackUrl, false);
             }
 
-            if (statusCallbackMethod != null)
+            if (recordingCallbackMethod != null)
             {
-                MpcUtils.ValidParamString("statusCallbackMethod", statusCallbackMethod.ToUpper(), false,
+                MpcUtils.ValidParamString("recordingCallbackMethod", recordingCallbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
@@ -796,8 +796,8 @@ namespace Plivo.Resource.MultiPartyCall
                 mandatoryParams,
                 new {
                     fileFormat,
-                    statusCallbackUrl,
-                    statusCallbackMethod,
+                    recordingCallbackUrl,
+                    recordingCallbackMethod,
                     isVoiceRequest
                 });
 

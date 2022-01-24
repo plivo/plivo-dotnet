@@ -195,7 +195,7 @@ namespace Plivo.NetCore.Test.Resources
             var data = new Dictionary<string, object>()
             {
                 {"file_format", "mp3"},
-                {"status_callback_method", "POST"},
+                {"recording_callback_method", "POST"},
                 {"is_voice_request", true}
             };
             
@@ -427,7 +427,7 @@ namespace Plivo.NetCore.Test.Resources
             var data = new Dictionary<string, object>()
             {
                 {"file_format", "mp3"},
-                {"status_callback_method", "POST"},
+                {"recording_callback_method", "POST"},
                 {"is_voice_request", true}
             };
             
