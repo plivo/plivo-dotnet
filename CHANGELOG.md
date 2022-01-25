@@ -1,6 +1,6 @@
 # Change Log
 
-## [v5.7.1](https://github.com/plivo/plivo-dotnet/tree/v5.7.1) (2022-01-24)
+## [v5.7.1](https://github.com/plivo/plivo-dotnet/tree/v5.7.1) (2022-01-25)
 **Fix - HTTP Client**
 - Log SDK version in the HTTP request.
 
