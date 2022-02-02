@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.7.2](https://github.com/plivo/plivo-dotnet/tree/v5.7.2) (2022-01-25)
+**MPCStartCallRecording**
+- parameter change from statusCallback to recordingCallback
+
 ## [v5.7.1](https://github.com/plivo/plivo-dotnet/tree/v5.7.1) (2022-01-25)
 **Fix - HTTP Client**
 - Log SDK version in the HTTP request.
