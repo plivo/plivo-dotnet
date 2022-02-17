@@ -29,6 +29,7 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="type">Type.</param>
         /// <param name="pattern">Pattern.</param>
         /// <param name="region">Region.</param>
+        /// <param name="city">Region.</param>
         /// <param name="services">Services.</param>
         /// <param name="lata">Lata.</param>
         /// <param name="rateCenter">Rate center.</param>
@@ -39,7 +40,7 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="local_calling_area">local_calling_area.</param>
         public ListResponse<PhoneNumber> List(
             string countryIso, string type = null, string pattern = null,
-            string region = null, string services = null, uint? lata = null,
+            string region = null, string city = null, string services = null, uint? lata = null,
             string rateCenter = null, bool? eligible = null, uint? limit = null, 
             uint? offset = null, string npanxx = null, bool? local_calling_area = null)
         {
@@ -52,6 +53,7 @@ namespace Plivo.Resource.PhoneNumber
                     type,
                     pattern,
                     region,
+                    city,
                     services,
                     lata,
                     rateCenter,
@@ -74,13 +76,14 @@ namespace Plivo.Resource.PhoneNumber
 			});
         }
         /// <summary>
-        /// List PhoneNumber with the specified countryIso, type, pattern, region, services, lata, rateCenter, limit and offset.
+        /// List PhoneNumber with the specified countryIso, type, pattern, region, city, services, lata, rateCenter, limit and offset.
         /// </summary>
         /// <returns>The list.</returns>
         /// <param name="countryIso">Country iso.</param>
         /// <param name="type">Type.</param>
         /// <param name="pattern">Pattern.</param>
         /// <param name="region">Region.</param>
+        /// <param name="city">Region.</param>
         /// <param name="services">Services.</param>
         /// <param name="lata">Lata.</param>
         /// <param name="rateCenter">Rate center.</param>
@@ -89,7 +92,7 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="offset">Offset.</param>
         public async Task<ListResponse<PhoneNumber>> ListAsync(
             string countryIso, string type = null, string pattern = null,
-            string region = null, string services = null, uint? lata = null,
+            string region = null, string city = null, string services = null, uint? lata = null,
             string rateCenter = null, bool? eligible = null, uint? limit = null,
             uint? offset = null)
         {
@@ -102,6 +105,7 @@ namespace Plivo.Resource.PhoneNumber
                     type,
                     pattern,
                     region,
+                    city,
                     services,
                     lata,
                     rateCenter,
