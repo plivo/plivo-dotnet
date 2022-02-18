@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.7.3](https://github.com/plivo/plivo-dotnet/tree/v5.7.3) (2022-02-18)
+**MPCListParticipant**
+- member_address parameter added in response
+
 ## [v5.7.2](https://github.com/plivo/plivo-dotnet/tree/v5.7.2) (2022-01-25)
 **MPCStartCallRecording**
 - parameter change from statusCallback to recordingCallback
