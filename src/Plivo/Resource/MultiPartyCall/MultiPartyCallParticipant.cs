@@ -17,6 +17,7 @@ namespace Plivo.Resource.MultiPartyCall
         public bool Hold { get; set; }
         public string JoinTime { get; set; }
         public string MemberId { get; set; }
+        public string MemberAddress { get; set; }
         public string MpcUuid { get; set; }
         public bool Mute { get; set; }
         public string ResourceUri { get; set; }
@@ -36,6 +37,7 @@ namespace Plivo.Resource.MultiPartyCall
                    "Hold: " + Hold + "\n" +
                    "JoinTime: " + JoinTime + "\n" +
                    "MemberId: " + MemberId + "\n" +
+                   "MemberAddress: " + MemberAddress + "\n" +
                    "MpcUuid: " + MpcUuid + "\n" +
                    "Mute: " + Mute + "\n" +
                    "ResourceUri: " + ResourceUri + "\n" +

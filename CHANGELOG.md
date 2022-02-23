@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.7.4](https://github.com/plivo/plivo-dotnet/tree/v5.7.4) (2022-02-22)
+**MPCListParticipant**
+- member_address parameter added in response
+
 ## [v5.7.3](https://github.com/plivo/plivo-dotnet/tree/v5.7.3) (2022-02-17)
 **Bug Fix - Phone number**
 - Added support to query via city for Phone number List calls.
