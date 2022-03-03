@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.7.5](https://github.com/plivo/plivo-dotnet/tree/v5.7.5) (2022-03-03)
+**Feature - DialElement**
+- confirmTimeout parameter added
+
 ## [v5.7.4](https://github.com/plivo/plivo-dotnet/tree/v5.7.4) (2022-02-22)
 **MPCListParticipant**
 - member_address parameter added in response

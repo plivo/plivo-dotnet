@@ -23,6 +23,7 @@ namespace Plivo.XML
                 "callerId",
                 "callerName",
                 "confirmSound",
+                "confirmTimeout",
                 "confirmKey",
                 "dialMusic",
                 "callbackUrl",
