@@ -1,8 +1,8 @@
 # Change Log
 
-## [v5.7.5](https://github.com/plivo/plivo-dotnet/tree/v5.7.5) (2022-03-03)
+## [v5.8.0](https://github.com/plivo/plivo-dotnet/tree/v5.8.0) (2022-03-25)
 **Feature - DialElement**
-- confirmTimeout parameter added
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
 
 ## [v5.7.4](https://github.com/plivo/plivo-dotnet/tree/v5.7.4) (2022-02-22)
 **MPCListParticipant**
