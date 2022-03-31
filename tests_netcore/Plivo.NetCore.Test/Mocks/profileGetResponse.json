@@ -1,0 +1,27 @@
+{
+    "api_id": "130cb7a4-b0cc-11ec-baa7-0242ac110002",
+    "profile": {
+        "address": "123 Band NY 10001 US",
+        "alt_business_id_type": "NONE",
+        "authorized_contact": {
+            "email": "vishnu@plivo.com",
+            "first_name": "Hello",
+            "last_name": "Test",
+            "phone": "14845355113",
+            "seniority": "admin",
+            "title": "bro"
+        },
+        "company_name": "ABC Inc",
+        "customer_type": "RESELLER",
+        "ein": "111111111",
+        "ein_issuing_country": "US",
+        "entity_type": "PRIVATE_PROFIT",
+        "primary_profile": "0ac18ad2-5086-4bde-84e5-275a2782cb40",
+        "profile_alias": "vishnu104",
+        "profile_type": "SECONDARY",
+        "profile_uuid": "8a9f1eef-6273-4444-822a-a3c2941c51dd",
+        "stock_symbol": "ABC",
+        "vertical": "PROFESSIONAL",
+        "website": "google.com"
+    }
+}
