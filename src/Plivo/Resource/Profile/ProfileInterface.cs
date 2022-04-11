@@ -59,7 +59,7 @@ namespace Plivo.Resource.Profile
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ProfileListResponse<ListProfiles>>("Profile",null).ConfigureAwait(false)).Result;
-                resources.Campaigns.ForEach(
+                resources.Profiles.ForEach(
 					(obj) => obj.Interface = this
 				);
 				return resources;
@@ -76,7 +76,7 @@ namespace Plivo.Resource.Profile
         {
            
             var resources = await ListResources<ProfileListResponse<ListProfiles>>("Profile", null);
-            resources.Campaigns.ForEach(
+            resources.Profiles.ForEach(
 					(obj) => obj.Interface = this
 				);
             return resources;
@@ -89,7 +89,6 @@ namespace Plivo.Resource.Profile
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="profile_alias">profile_alias.</param>
-        /// <param name="profile_type">profile_type.</param>
         /// <param name="customer_type">customer_type.</param>
         /// <param name="entity_type">entity_type.</param>
         /// <param name="company_name">company_name.</param>
@@ -157,7 +156,6 @@ namespace Plivo.Resource.Profile
             new
             {
                 profile_alias,
-                profile_type,
                 customer_type,
                 entity_type,
                 company_name,
