@@ -655,12 +655,9 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
-        /// <param name="callbackUrl">CallbackUrl.</param>
-        /// <param name="callbackMethod">CallbackMethod.</param>
         public UpdateResponse<Call> StartPlaying (
             string callUuid = null, List<string> urls = null, uint? length = null,
-            string legs = null, bool? loop = null, bool? mix = null,
-            string callbackUrl = null, string callbackMethod = null) {
+            string legs = null, bool? loop = null, bool? mix = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             urls = urls ?? new List<string>();
             var _urls = string.Join (",", urls);
@@ -674,8 +671,6 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
-                    callbackUrl,
-                    callbackMethod,
                     isVoiceRequest
                 });
 
