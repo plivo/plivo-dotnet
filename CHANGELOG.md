@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.8.1](https://github.com/plivo/plivo-dotnet/tree/v5.8.1) (2022-04-11)
+**Feature - List all recordings**
+- `fromNumber` and `toNumber` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
 ## [v5.8.0](https://github.com/plivo/plivo-dotnet/tree/v5.8.0) (2022-03-25)
 **Feature - DialElement**
 - `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
