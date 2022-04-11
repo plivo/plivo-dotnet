@@ -212,7 +212,7 @@ namespace Plivo
             _lookup = new Lazy<LookupInterface>(() => new LookupInterface(Client));
             _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
             _brand = new Lazy<BrandInterface>(() => new BrandInterface(Client));
-            _profile = new Lazy<ProfileInterface>(()=> new ProfileInterface(client));
+            _profile = new Lazy<ProfileInterface>(()=> new ProfileInterface(Client));
             _campiagn = new Lazy<CampaignInterface>(() => new CampaignInterface(Client));
             _media = new Lazy<MediaInterface>(() => new MediaInterface(Client));
             _endpoint = new Lazy<EndpointInterface>(() => new EndpointInterface(Client));
