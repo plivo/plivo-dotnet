@@ -105,7 +105,9 @@ namespace Plivo.Resource.Profile
             string entity_type, string company_name,  string ein, string vertical,
             string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
         {
+        var mandatoryParams = new List<string>{"profile_alias"};
         var data = CreateData(
+            mandatoryParams,
             new
             {
                 profile_alias,
@@ -152,7 +154,9 @@ namespace Plivo.Resource.Profile
             string entity_type, string company_name,  string ein, string vertical, string website,
             string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
 		{
+         var mandatoryParams = new List<string>{"profile_alias"};
           var data = CreateData(
+            mandatoryParams,
             new
             {
                 profile_alias,
@@ -192,7 +196,9 @@ namespace Plivo.Resource.Profile
         public GetProfile Update(string profile_uuid, string company_name =null,  string website = null, 
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null)
         {
+             var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
+            mandatoryParams,
             new
             {
                 company_name,
@@ -225,7 +231,9 @@ namespace Plivo.Resource.Profile
 		public async Task<ProfileResponse> UpdateAsync(string profile_uuid, string company_name =null,  string website = null, 
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null)
         {
+             var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
+            mandatoryParams,
             new
             {
                 company_name,
