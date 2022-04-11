@@ -41,7 +41,10 @@ namespace Plivo.Resource.Campaign
         public string ResellerId { get; set; }
 
         [JsonProperty("usecase")]
-        public string Usecase { get; set; }        
+        public string Usecase { get; set; }  
+
+        [JsonProperty("sub_usecase")]
+        public string SubUsecase { get; set; }
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -73,7 +76,10 @@ namespace Plivo.Resource.Campaign
         public string ResellerId { get; set; }
 
         [JsonProperty("usecase")]
-        public string Usecase { get; set; }  
+        public string Usecase { get; set; } 
+
+        [JsonProperty("sub_usecase")]
+        public string SubUsecase { get; set; } 
 
         public override string ToString()
         {

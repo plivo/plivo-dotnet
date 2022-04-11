@@ -82,8 +82,11 @@ namespace Plivo.Resource.Brand
         [JsonProperty("api_id")]
         public new string ApiId {get; set;}
 
-        [JsonProperty("brand")]
-        public BrandCreate Brand {get; set;}
+        [JsonProperty("brand_id")]
+        public string BrandId {get; set;}
+
+        [JsonProperty("message")]
+        public string Message {get; set;}
 
          public override string ToString()
         {
