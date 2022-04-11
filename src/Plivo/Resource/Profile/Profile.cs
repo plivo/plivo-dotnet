@@ -115,4 +115,53 @@ namespace Plivo.Resource.Profile
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }
+
+     [JsonObject(MemberSerialization.OptIn)]
+    public class ListProfiles: Resource
+    { 
+
+        [JsonProperty("brand_id")]
+        public string BrandId { get; set; }
+
+        [JsonProperty("address")]
+        public string Address { get; set; }
+
+        [JsonProperty("alt_business_id_type")]
+        public string AltBusinessIdType { get; set; }
+
+        [JsonProperty("company_name")]
+        public string CompanyName { get; set; }
+
+        [JsonProperty("CustomerType")]
+        public string CustomerType { get; set; }  
+
+        [JsonProperty("entity_type")]
+        public string EntityType { get; set; }  
+
+        [JsonProperty("primary_profile")]
+        public string PrimaryProfile { get; set; }  
+
+        [JsonProperty("profile_alias")]
+        public string ProfileAlias { get; set; }  
+
+        [JsonProperty("profile_type")]
+        public string ProfileType { get; set; } 
+
+        [JsonProperty("vertical")]
+        public string Vertical { get; set; }  
+
+        [JsonProperty("stock_symbol")]
+        public string StockSymbol { get; set; }  
+
+        [JsonProperty("profile_uuid")]
+        public string ProfileUuid { get; set; }  
+
+        [JsonProperty("authorized_contact")]
+        public AuthorizedContact authorized_contact { get; set; }
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
 }
