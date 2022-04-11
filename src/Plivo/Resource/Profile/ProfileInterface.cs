@@ -102,15 +102,15 @@ namespace Plivo.Resource.Profile
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
 
-        public ProfileResponse Create(string profile_alias, string profile_type,  string customer_type, 
+        public ProfileResponse Create(string profile_alias, string plivo_subaccount,  string customer_type, 
             string entity_type, string company_name,  string ein, string vertical,
-            string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
+            string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
         {
         var data = CreateData(
             new
             {
                 profile_alias,
-                profile_type,
+                plivo_subaccount,
                 customer_type,
                 entity_type,
                 company_name,
@@ -121,7 +121,8 @@ namespace Plivo.Resource.Profile
                 stock_exchange,
                 alt_business_id_type,
                 authorized_contact,
-                address
+                address,
+                website
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -136,7 +137,7 @@ namespace Plivo.Resource.Profile
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="profile_alias">profile_alias.</param>
-        /// <param name="profile_type">profile_type.</param>
+        /// <param name="plivo_subaccount">plivo_subaccount.</param>
         /// <param name="customer_type">customer_type.</param>
         /// <param name="entity_type">entity_type.</param>
         /// <param name="company_name">company_name.</param>
@@ -148,8 +149,8 @@ namespace Plivo.Resource.Profile
         /// <param name="alt_business_id_type">alt_business_id_type</param>
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
-		public async Task<ProfileResponse> CreateAsync(string profile_alias, string profile_type,  string customer_type, 
-            string entity_type, string company_name,  string ein, string vertical,
+		public async Task<ProfileResponse> CreateAsync(string profile_alias, string plivo_subaccount,  string customer_type, 
+            string entity_type, string company_name,  string ein, string vertical, string website,
             string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
 		{
           var data = CreateData(
@@ -167,7 +168,8 @@ namespace Plivo.Resource.Profile
                 stock_exchange,
                 alt_business_id_type,
                 authorized_contact,
-                address
+                address,
+                website
             });
 			var result = await Client.Update<ProfileResponse>(Uri + "Profile/", data);
             result.Object.StatusCode = result.StatusCode;
@@ -189,7 +191,7 @@ namespace Plivo.Resource.Profile
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
 
-        public GetProfile Create(string profile_uuid, string company_name =null,  string website = null, 
+        public GetProfile Update(string profile_uuid, string company_name =null,  string website = null, 
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null)
         {
         var data = CreateData(
@@ -222,7 +224,7 @@ namespace Plivo.Resource.Profile
         /// <param name="vertical">vertical.</param>
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
-		public async Task<ProfileResponse> CreateAsync(string profile_uuid, string company_name =null,  string website = null, 
+		public async Task<ProfileResponse> UpdateAsync(string profile_uuid, string company_name =null,  string website = null, 
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null)
         {
         var data = CreateData(
