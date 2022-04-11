@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plivo.Client;
+using Plivo.Http;
 using Plivo.Utilities;
 
 namespace Plivo.Resource.Call {
@@ -654,9 +655,12 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
         public UpdateResponse<Call> StartPlaying (
             string callUuid = null, List<string> urls = null, uint? length = null,
-            string legs = null, bool? loop = null, bool? mix = null) {
+            string legs = null, bool? loop = null, bool? mix = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             urls = urls ?? new List<string>();
             var _urls = string.Join (",", urls);
@@ -670,6 +674,8 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
 
@@ -693,9 +699,12 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
         public async Task<UpdateResponse<Call>> StartPlayingAsync (
             string callUuid = null, List<string> urls = null, uint? length = null,
-            string legs = null, bool? loop = null, bool? mix = null) {
+            string legs = null, bool? loop = null, bool? mix = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             urls = urls ?? new List<string>();
             var _urls = string.Join (",", urls);
@@ -709,9 +718,12 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/Play/", data);
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/Play/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             try {
                 result.Object.StatusCode = result.StatusCode;
             } catch (System.NullReferenceException) {
@@ -744,9 +756,17 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The playing.</returns>
         /// <param name="callUuid">Call UUID.</param>
-        public async Task<DeleteResponse<Call>> StopPlayingAsync (string callUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<DeleteResponse<Call>> StopPlayingAsync (string callUuid = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
-            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/", new Dictionary<string, object> () { {"is_voice_request", true} });
+            var result =  Task.Run (async () => await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/", new Dictionary<string, object> () {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            }).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             try {
                 result.Object.StatusCode = result.StatusCode;
             } catch (System.NullReferenceException) {

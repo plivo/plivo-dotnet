@@ -147,12 +147,15 @@ namespace Plivo.Resource.Call
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
         public async Task<UpdateResponse<Call>> StartPlayingAsync(
             List<string> urls, uint? length = null,
-            string legs = null, bool? loop = null, bool? mix = null)
+            string legs = null, bool? loop = null, bool? mix = null, 
+            string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .StartPlayingAsync(Id, urls, length, legs, loop, mix);
+                .StartPlayingAsync(Id, urls, length, legs, loop, mix, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -170,10 +173,11 @@ namespace Plivo.Resource.Call
         /// Asynchronously stops the playing.
         /// </summary>
         /// <returns>The playing.</returns>
-        public async Task<DeleteResponse<Call>> StopPlayingAsync()
+        public async Task<DeleteResponse<Call>> StopPlayingAsync( 
+        string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .StopPlayingAsync(Id);
+                .StopPlayingAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
 
