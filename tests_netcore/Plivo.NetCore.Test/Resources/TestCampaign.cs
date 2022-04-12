@@ -64,7 +64,7 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestCampaignListNumber()
         {
-            var campaignID = "CRIGC80"
+            var campaignID = "CRIGC80";
             var data = new Dictionary<string, object>();
             var request =
                 new PlivoRequest(
@@ -89,8 +89,8 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestCampaignGetNumber()
         {
-            var campaignID = "CRIGC80"
-            var number = "14845007032"
+            var campaignID = "CRIGC80";
+            var number = "14845007032";
             var data = new Dictionary<string, object>();
             var request =
                 new PlivoRequest(
