@@ -45,9 +45,15 @@ namespace Plivo.Resource.Application
         /// Asynchronously delete this instance.
         /// </summary>
         /// <returns>The delete.</returns>
-        public async Task<DeleteResponse<Application>> DeleteAsync()
+        /// <param name="cascade">Cascade.</param>
+        /// <param name="newEndpointApplication">New Endpoint Application.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<DeleteResponse<Application>> DeleteAsync(bool? cascade = null, string newEndpointApplication = null,
+            string callbackUrl = null, string callbackMethod = null)
         {
-            return await ((ApplicationInterface)Interface).DeleteAsync(AppId);
+            return await ((ApplicationInterface)Interface).DeleteAsync(AppId, cascade, newEndpointApplication,
+                callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -111,18 +117,23 @@ namespace Plivo.Resource.Application
         /// <param name="defaultNumberApp">Default number app.</param>
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="logIncomingMessages">Log incoming messages.</param>
+        /// <param name="publicUri">Public URI.</param>
         public async Task<UpdateResponse<Application>> UpdateAsync(
             string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
-            string subaccount = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
+            string callbackUrl = null)
         {
             var updateResponse = await ((ApplicationInterface) Interface).UpdateAsync(
                 AppId, answerUrl, answerMethod, hangupUrl, hangupMethod,
                 fallbackAnswerUrl, fallbackMethod, messageUrl, messageMethod,
-                defaultNumberApp, defaultEndpointApp, subaccount);
+                defaultNumberApp, defaultEndpointApp, subaccount, logIncomingMessages,
+                publicUri, callbackUrl);
 
             if (answerUrl != null) AnswerUrl = answerUrl;
             if (answerMethod != null) AnswerMethod = answerMethod;

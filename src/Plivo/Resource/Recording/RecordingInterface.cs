@@ -41,9 +41,17 @@ namespace Plivo.Resource.Recording
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="recordingId">Recording identifier.</param>
-        public async Task<Recording> GetAsync(string recordingId)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<Recording> GetAsync(string recordingId, string callbackUrl = null, string callbackMethod = null)
         {
-            var recording = await GetResource<Recording>(recordingId, new Dictionary<string, object> () { {"is_voice_request", true} });
+            var recording = Task.Run(async () => await GetResource<Recording>(recordingId, new Dictionary<string, object> ()
+            {
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod},
+                {"is_voice_request", true}
+            }).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             recording.Interface = this;
             return recording;
         }
@@ -119,12 +127,14 @@ namespace Plivo.Resource.Recording
         /// <param name="addTime_Lte">Add time lte.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
         public async Task<ListResponse<Recording>> ListAsync(
             string subaccount = null, string callUuid = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
             DateTime? addTime_Lte = null, uint? limit = null,
-            uint? offset = null)
+            uint? offset = null, string callbackUrl = null, string callbackMethod = null)
         {
             var _addTime = addTime?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
             var _addTime_Gt = addTime_Gt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
@@ -147,9 +157,12 @@ namespace Plivo.Resource.Recording
                     _addTime_Lte,
                     limit,
                     offset,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var resources = await ListResources<ListResponse<Recording>>(data);
+            var resources = Task.Run(async () => await ListResources<ListResponse<Recording>>(data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -177,9 +190,16 @@ namespace Plivo.Resource.Recording
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="recordingId">Recording identifier.</param>
-        public async Task<DeleteResponse<Recording>> DeleteAsync(string recordingId)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<DeleteResponse<Recording>> DeleteAsync(string recordingId, string callbackUrl = null, string callbackMethod = null)
         {
-            return await DeleteResource<DeleteResponse<Recording>>(recordingId, new Dictionary<string, object> () { {"is_voice_request", true} });
+            var result = Task.Run(async () => await DeleteResource<DeleteResponse<Recording>>(recordingId, new Dictionary<string, object> ()
+            {
+                {"is_voice_request", true}
+            }).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            return result;
         }
         #endregion
     }

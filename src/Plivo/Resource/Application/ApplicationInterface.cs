@@ -103,6 +103,8 @@ namespace Plivo.Resource.Application
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
         /// <param name="publicUri">Public URI.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
 
         public async Task<ApplicationCreateResponse> CreateAsync(
             string appName, string answerUrl = null, string answerMethod = null,
@@ -110,7 +112,8 @@ namespace Plivo.Resource.Application
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             string defaultNumberApp = null, string defaultEndpointApp = null,
-            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
+            string callbackUrl = null)
         {
             var mandatoryParams = new List<string> {"appName"}
                 ;
@@ -133,10 +136,12 @@ namespace Plivo.Resource.Application
                     subaccount,
                     logIncomingMessages,
                     isVoiceRequest,
-                    publicUri
+                    publicUri,
+                    callbackUrl
                 });
 
-            var result = await Client.Update<ApplicationCreateResponse>(Uri, data);
+            var result = Task.Run(async () => await Client.Update<ApplicationCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -162,9 +167,18 @@ namespace Plivo.Resource.Application
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="appId">App identifier.</param>
-        public async Task<Application> GetAsync(string appId)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<Application> GetAsync(string appId, string callbackUrl = null, string callbackMethod = null)
         {
-            var application = await GetResource<Application>(appId, new Dictionary<string, object> () { {"is_voice_request", true} });
+            var application = Task.Run(async () => await GetResource<Application>(appId, 
+                new Dictionary<string, object> ()
+                {
+                    {"callback_url", callbackUrl},
+                    {"callback_method", callbackMethod},
+                    {"is_voice_request", true}
+                }).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             application.Interface = this;
             return application;
         }
@@ -203,15 +217,19 @@ namespace Plivo.Resource.Application
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
         public async Task<ListResponse<Application>> ListAsync(
-            string subaccount = null, uint? limit = null, uint? offset = null)
+            string subaccount = null, uint? limit = null, uint? offset = null, 
+            string callbackUrl = null, string callbackMethod = null)
         {
             var mandatoryParams = new List<string> {""};
             bool isVoiceRequest = true;
             var data = CreateData(
-                mandatoryParams, new {subaccount, limit, offset, isVoiceRequest});
+                mandatoryParams, new {subaccount, limit, offset, callbackUrl, callbackMethod, isVoiceRequest});
 
-            var resources = await ListResources<ListResponse<Application>>(data);
+            var resources = Task.Run(async () => await ListResources<ListResponse<Application>>(data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -246,12 +264,24 @@ namespace Plivo.Resource.Application
         /// <param name="appId">App identifier.</param>
         /// <param name="cascade">Cascade.</param>
         /// <param name="newEndpointApplication">New Endpoint Application.</param>
-        public async Task<DeleteResponse<Application>> DeleteAsync(string appId, bool? cascade = null, string newEndpointApplication = null)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<DeleteResponse<Application>> DeleteAsync(string appId, bool? cascade = null, 
+            string newEndpointApplication = null, string callbackUrl = null, string callbackMethod = null)
         {
             var data = new Dictionary<string, object> { };
             bool isVoiceRequest = true;
-            data = CreateData(new List<string> { }, new { cascade, newEndpointApplication, isVoiceRequest });
-            return await DeleteResource<DeleteResponse<Application>>(appId, data);
+            data = CreateData(new List<string> { }, new
+            {
+                cascade, 
+                newEndpointApplication,
+                callbackUrl,
+                callbackMethod,
+                isVoiceRequest
+            });
+            var result = Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId, data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            return result;
         }
         #endregion
 
@@ -332,6 +362,8 @@ namespace Plivo.Resource.Application
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
         /// <param name="publicUri">Public URI.</param>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
 
         public async Task<UpdateResponse<Application>> UpdateAsync(
             string appId, string answerUrl = null, string answerMethod = null,
@@ -339,7 +371,8 @@ namespace Plivo.Resource.Application
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
-            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
+            string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
+            string callbackUrl = null)
         {
             var mandatoryParams = new List<string> {""};
             bool isVoiceRequest = true;
@@ -360,10 +393,12 @@ namespace Plivo.Resource.Application
                     subaccount,
                     logIncomingMessages,
                     isVoiceRequest,
-                    publicUri
+                    publicUri,
+                    callbackUrl
                 });
 
-            var result = await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data);
+            var result = Task.Run(async () => await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
