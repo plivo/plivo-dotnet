@@ -293,7 +293,7 @@ namespace Plivo.Resource.Campaign
         /// <returns>The delete.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="number">Number.</param>
-        public DeleteResponse<Application> DeleteNumber(string campaignId, string number)
+        public DeleteResponse<DeleteNumber> DeleteNumber(string campaignId, string number)
         {
             data = CreateData(new List<string> {}, new {});
 			return ExecuteWithExceptionUnwrap(() =>
@@ -307,7 +307,7 @@ namespace Plivo.Resource.Campaign
         /// <returns>The delete.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="number">Number.</param>
-        public async Task<DeleteResponse<Application>> DeleteNumberAsync(string campaignId, string number)
+        public async Task<DeleteResponse<DeleteNumber>> DeleteNumberAsync(string campaignId, string number)
         {
             var data = new Dictionary<string, object> { };
             return await DeleteResource<DeleteResponse<DeleteNumber>>("10dlc/Campaign/"+campaignId+"/Number/"+number, data);
