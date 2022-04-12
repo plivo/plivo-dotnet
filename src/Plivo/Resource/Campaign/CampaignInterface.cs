@@ -195,7 +195,7 @@ namespace Plivo.Resource.Campaign
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number/"+number+"/").ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number/"+number).ConfigureAwait(false)).Result;
 				return response;
 			});
         }
@@ -207,7 +207,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="number">number.</param>
         public async Task<Number> GetNumberAsync(string campaignID, string number)
         {
-            var response = await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number/"+number+"/");
+            var response = await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number/"+number);
             return response;
         }
         #endregion
@@ -222,7 +222,7 @@ namespace Plivo.Resource.Campaign
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number/").ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number").ConfigureAwait(false)).Result;
 				return response;
 			});
         }
@@ -234,7 +234,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="number">number.</param>
         public async Task<Number> ListNumberAsync(string campaignID, string number)
         {
-            var response = await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number/");
+            var response = await GetResource<Number>("10dlc/Campaign/"+campaignID+"/Number");
             return response;
         }
         #endregion
