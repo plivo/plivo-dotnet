@@ -184,68 +184,6 @@ namespace Plivo.Resource.Campaign
 		}
 		#endregion
 
-
-        #region GET
-         /// <summary>
-        /// Get Campaign with the specified uuid.
-        /// </summary>
-        /// <returns>The get.</returns>
-        /// <param name="campaign_id">campaignID.</param>
-        public GetCampaign Get(string campaignID)
-        {
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var response = Task.Run(async () => await GetResource<GetCampaign>("10dlc/Campaign/"+campaignID).ConfigureAwait(false)).Result;
-				return response;
-			});
-        }
-        /// <summary>
-        /// Asynchronously get Campaign with the specified campaignID.
-        /// </summary>
-        /// <returns>The get.</returns>
-        /// <param name="campaign_id"> campaignID.</param>
-        public async Task<GetCampaign> GetAsync(string campaignID)
-        {
-            var response = await GetResource<GetCampaign>("10dlc/Campaign/"+campaignID);
-            return response;
-        }
-        #endregion
-        #region List
-        /// <summary>
-        /// <summary>
-        /// List campaign list type and status.
-        /// </summary>
-        /// <returns>The list.</returns>
-        /// <param name="brand">brand.</param>
-        /// <param name="usecase">usecase.</param>
-        public CampaignListResponse<ListCampaigns> List()
-        {
-			return ExecuteWithExceptionUnwrap(() =>
-			{
-				var resources = Task.Run(async () => await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign",null).ConfigureAwait(false)).Result;
-                resources.Campaigns.ForEach(
-					(obj) => obj.Interface = this
-				);
-				return resources;
-			});
-        }
-        /// <summary>
-        /// <summary>
-        /// List Brand list type and status.
-        /// </summary>
-        /// <returns>The list.</returns>
-        /// <param name="brand">brand.</param>
-        /// <param name="usecase">status.</param>
-        public async Task<CampaignListResponse<ListCampaigns>> ListAsync()
-        {
-           
-            var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", null);
-            resources.Campaigns.ForEach(
-					(obj) => obj.Interface = this
-				);
-            return resources;
-        }
-        #endregion
         #region GETNumber
          /// <summary>
         /// Get Campaign with the specified uuid.
