@@ -69,7 +69,7 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/"+campaignID+"/Number/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/"+campaignID+"/Number",
                     "",
                     data);
 
@@ -95,7 +95,7 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/"+campaignID+"/Number/"+number+"/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/"+campaignID+"/Number/"+number,
                     "",
                     data);
 
