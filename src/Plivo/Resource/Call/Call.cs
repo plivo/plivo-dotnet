@@ -77,6 +77,8 @@ namespace Plivo.Resource.Call
         /// Asynchronously delete Call with the specified callUuid.
         /// </summary>
         /// <returns>The delete.</returns>
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
         public async Task<DeleteResponse<Call>> DeleteAsync
             (string callbackUrl = null, string callbackMethod = null)
         {
@@ -176,6 +178,8 @@ namespace Plivo.Resource.Call
         /// Asynchronously stops the playing.
         /// </summary>
         /// <returns>The playing.</returns>
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
         public async Task<DeleteResponse<Call>> StopPlayingAsync( 
         string callbackUrl = null, string callbackMethod = null)
         {
