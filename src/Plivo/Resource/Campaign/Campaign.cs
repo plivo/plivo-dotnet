@@ -81,4 +81,41 @@ namespace Plivo.Resource.Campaign
         }
     }
 
+    public class NumberObject
+    {
+        [JsonProperty("number")]
+        public string number { get; set; }
+        [JsonProperty("status")]
+        public string status { get; set; }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Number:Resource
+    {
+        [JsonProperty("campaign_alias")]
+        public string campaign_alias { get; set; }  
+        
+        [JsonProperty("usecase")]
+        public string Usecase { get; set; }  
+
+        [JsonProperty("campaign_id")]
+        public string CampaignId { get; set; }
+
+        [JsonProperty("phone_numbers")]
+        public List<NumberObject> PhoneNumbers { get; set; }  
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class LinkNumber:Resource
+    {
+        [JsonProperty("error")]
+        public string Error { get; set; }  
+        
+        [JsonProperty("message")]
+        public string Message { get; set; }  
+    }
+    public class DeleteNumber{
+
+    }
+
 }
