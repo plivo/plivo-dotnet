@@ -295,7 +295,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="number">Number.</param>
         public DeleteResponse<DeleteNumber> DeleteNumber(string campaignId, string number)
         {
-            data = CreateData(new List<string> {}, new {});
+            var data = new Dictionary<string, object> { };
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				return Task.Run(async () => await DeleteResource<DeleteResponse<DeleteNumber>>("10dlc/Campaign/"+campaignId+"/Number/"+number, data).ConfigureAwait(false)).Result;
