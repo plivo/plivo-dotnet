@@ -42,6 +42,42 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestApplicationCreateAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"app_name", "Test Application"},
+                {"answer_url", "http://answer.url"},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                        response,
+                        Api.Application.CreateAsync("Test Application", "http://answer.url",
+                            callbackUrl: "https://www.google.com",
+                            callbackMethod: "POST"
+                        ).Result
+                    )
+                );
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestApplicationList()
         {
             var data = new Dictionary<string, object>()
@@ -67,6 +103,38 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Application.List()));
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestApplicationListAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Application.ListAsync(callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST").Result
+                    )
+                );
 
             AssertRequest(request);
         }
@@ -98,6 +166,41 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.Application.Get(id)));
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestApplicationGetAsync()
+        {
+            var id = "15784735442685051";
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/" + id + "/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Application.GetAsync(id,
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                        ).Result
+                    )
+                );
 
             AssertRequest(request);
         }
@@ -135,6 +238,42 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestApplicationUpdateAsync()
+        {
+            var id = "15784735442685051";
+            var data = new Dictionary<string, object>()
+            {
+                {"answer_url", "http://updated.answer.url"},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/" + id + "/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Application.UpdateAsync(id, answerUrl: "http://updated.answer.url",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                        ).Result
+                    )
+                );
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestApplicationDelete()
         {
             var id = "15784735442685051";
@@ -155,6 +294,41 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             Assert.Null(Api.Application.Delete(id));
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestApplicationDeleteAsync()
+        {
+            var id = "15784735442685051";
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Application/" + id + "/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Application.DeleteAsync(id, 
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+            
             AssertRequest(request);
         }
     }

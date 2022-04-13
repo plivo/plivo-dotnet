@@ -49,7 +49,7 @@ namespace Plivo.Resource.Application
         /// <param name="newEndpointApplication">New Endpoint Application.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<DeleteResponse<Application>> DeleteAsync(bool? cascade = null, string newEndpointApplication = null,
+        public async Task<AsyncResponse> DeleteAsync(bool? cascade = null, string newEndpointApplication = null,
             string callbackUrl = null, string callbackMethod = null)
         {
             return await ((ApplicationInterface)Interface).DeleteAsync(AppId, cascade, newEndpointApplication,
@@ -120,7 +120,7 @@ namespace Plivo.Resource.Application
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
         /// <param name="publicUri">Public URI.</param>
-        public async Task<UpdateResponse<Application>> UpdateAsync(
+        public async Task<AsyncResponse> UpdateAsync(
             string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,

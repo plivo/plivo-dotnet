@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Plivo.Client;
 using Plivo.Http;
 
@@ -106,14 +107,14 @@ namespace Plivo.Resource.Application
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
 
-        public async Task<ApplicationCreateResponse> CreateAsync(
+        public async Task<AsyncResponse> CreateAsync(
             string appName, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             string defaultNumberApp = null, string defaultEndpointApp = null,
             string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
-            string callbackUrl = null)
+            string callbackUrl = null, string callbackMethod = null)
         {
             var mandatoryParams = new List<string> {"appName"}
                 ;
@@ -137,12 +138,16 @@ namespace Plivo.Resource.Application
                     logIncomingMessages,
                     isVoiceRequest,
                     publicUri,
-                    callbackUrl
+                    callbackUrl,
+                    callbackMethod
                 });
 
-            var result = Task.Run(async () => await Client.Update<ApplicationCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -169,18 +174,21 @@ namespace Plivo.Resource.Application
         /// <param name="appId">App identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<Application> GetAsync(string appId, string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> GetAsync(string appId, string callbackUrl = null, string callbackMethod = null)
         {
-            var application = Task.Run(async () => await GetResource<Application>(appId, 
-                new Dictionary<string, object> ()
+            var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
+                Uri + appId + "/", new Dictionary<string, object> ()
                 {
                     {"callback_url", callbackUrl},
                     {"callback_method", callbackMethod},
                     {"is_voice_request", true}
                 }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            application.Interface = this;
-            return application;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -219,7 +227,7 @@ namespace Plivo.Resource.Application
         /// <param name="offset">Offset.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ListResponse<Application>> ListAsync(
+        public async Task<AsyncResponse> ListAsync(
             string subaccount = null, uint? limit = null, uint? offset = null, 
             string callbackUrl = null, string callbackMethod = null)
         {
@@ -228,13 +236,14 @@ namespace Plivo.Resource.Application
             var data = CreateData(
                 mandatoryParams, new {subaccount, limit, offset, callbackUrl, callbackMethod, isVoiceRequest});
 
-            var resources = Task.Run(async () => await ListResources<ListResponse<Application>>(data).ConfigureAwait(false)).Result;
+            var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
+                Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
-
-            return resources;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -266,7 +275,7 @@ namespace Plivo.Resource.Application
         /// <param name="newEndpointApplication">New Endpoint Application.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<DeleteResponse<Application>> DeleteAsync(string appId, bool? cascade = null, 
+        public async Task<AsyncResponse> DeleteAsync(string appId, bool? cascade = null, 
             string newEndpointApplication = null, string callbackUrl = null, string callbackMethod = null)
         {
             var data = new Dictionary<string, object> { };
@@ -279,9 +288,14 @@ namespace Plivo.Resource.Application
                 callbackMethod,
                 isVoiceRequest
             });
-            var result = Task.Run(async () => await DeleteResource<DeleteResponse<Application>>(appId, data).ConfigureAwait(false)).Result;
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
+                Uri + appId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -365,14 +379,14 @@ namespace Plivo.Resource.Application
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
 
-        public async Task<UpdateResponse<Application>> UpdateAsync(
+        public async Task<AsyncResponse> UpdateAsync(
             string appId, string answerUrl = null, string answerMethod = null,
             string hangupUrl = null, string hangupMethod = null,
             string fallbackAnswerUrl = null, string fallbackMethod = null,
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
             string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
-            string callbackUrl = null)
+            string callbackUrl = null, string callbackMethod = null)
         {
             var mandatoryParams = new List<string> {""};
             bool isVoiceRequest = true;
@@ -394,12 +408,16 @@ namespace Plivo.Resource.Application
                     logIncomingMessages,
                     isVoiceRequest,
                     publicUri,
-                    callbackUrl
+                    callbackUrl,
+                    callbackMethod
                 });
 
-            var result = Task.Run(async () => await Client.Update<UpdateResponse<Application>>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
