@@ -118,6 +118,7 @@ namespace Plivo.Resource.Application
         /// <param name="defaultEndpointApp">Default endpoint app.</param>
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
         /// <param name="logIncomingMessages">Log incoming messages.</param>
         /// <param name="publicUri">Public URI.</param>
         public async Task<AsyncResponse> UpdateAsync(
@@ -127,13 +128,13 @@ namespace Plivo.Resource.Application
             string messageUrl = null, string messageMethod = null,
             bool? defaultNumberApp = null, bool? defaultEndpointApp = null,
             string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
-            string callbackUrl = null)
+            string callbackUrl = null, string callbackMethod = null)
         {
             var updateResponse = await ((ApplicationInterface) Interface).UpdateAsync(
                 AppId, answerUrl, answerMethod, hangupUrl, hangupMethod,
                 fallbackAnswerUrl, fallbackMethod, messageUrl, messageMethod,
                 defaultNumberApp, defaultEndpointApp, subaccount, logIncomingMessages,
-                publicUri, callbackUrl);
+                publicUri, callbackUrl, callbackMethod);
 
             if (answerUrl != null) AnswerUrl = answerUrl;
             if (answerMethod != null) AnswerMethod = answerMethod;

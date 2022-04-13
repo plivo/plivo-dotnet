@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plivo.Client;
 using Plivo.Http;
+using Plivo.Utilities;
 
 
 namespace Plivo.Resource.Application
@@ -54,8 +55,7 @@ namespace Plivo.Resource.Application
             string defaultNumberApp = null, string defaultEndpointApp = null,
             string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null)
         {
-            var mandatoryParams = new List<string> { "appName" }
-                ;
+            var mandatoryParams = new List<string> { "appName" };
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
@@ -116,8 +116,8 @@ namespace Plivo.Resource.Application
             string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
             string callbackUrl = null, string callbackMethod = null)
         {
-            var mandatoryParams = new List<string> {"appName"}
-                ;
+            var mandatoryParams = new List<string> {"appName"};
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
@@ -176,6 +176,7 @@ namespace Plivo.Resource.Application
         /// <param name="callbackMethod">Callback method.</param>
         public async Task<AsyncResponse> GetAsync(string appId, string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
                 Uri + appId + "/", new Dictionary<string, object> ()
                 {
@@ -231,6 +232,7 @@ namespace Plivo.Resource.Application
             string subaccount = null, uint? limit = null, uint? offset = null, 
             string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> {""};
             bool isVoiceRequest = true;
             var data = CreateData(
@@ -278,6 +280,7 @@ namespace Plivo.Resource.Application
         public async Task<AsyncResponse> DeleteAsync(string appId, bool? cascade = null, 
             string newEndpointApplication = null, string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var data = new Dictionary<string, object> { };
             bool isVoiceRequest = true;
             data = CreateData(new List<string> { }, new
@@ -388,6 +391,7 @@ namespace Plivo.Resource.Application
             string subaccount = null, bool? logIncomingMessages = null, bool? publicUri = null,
             string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> {""};
             bool isVoiceRequest = true;
             var data = CreateData(
