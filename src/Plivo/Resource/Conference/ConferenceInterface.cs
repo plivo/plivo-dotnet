@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Plivo.Client;
+using Plivo.Resource.Call;
+using Plivo.Utilities;
+using Newtonsoft.Json.Linq;
 
 
 namespace Plivo.Resource.Conference
@@ -43,17 +46,21 @@ namespace Plivo.Resource.Conference
         /// <param name="conferenceName">Name.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<Conference> GetAsync(string conferenceName, string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> GetAsync(string conferenceName, string callbackUrl = null, string callbackMethod = null)
         {
-            var conference = Task.Run(async () => await GetResource<Conference>(conferenceName,new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + conferenceName + "/", new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
                 {"is_voice_request", true}
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            conference.Interface = this;
-            return conference;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -75,16 +82,21 @@ namespace Plivo.Resource.Conference
         /// <returns>The list.</returns>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceListResponse> ListAsync(string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> ListAsync(string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await ListResources<ConferenceListResponse>(new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri, new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
                 {"is_voice_request", true}
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -108,9 +120,10 @@ namespace Plivo.Resource.Conference
         /// <returns>The all.</returns>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<DeleteResponse<Conference>> DeleteAllAsync(string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> DeleteAllAsync(string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Delete<DeleteResponse<Conference>>(Uri, new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri, new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
@@ -118,6 +131,9 @@ namespace Plivo.Resource.Conference
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -142,16 +158,21 @@ namespace Plivo.Resource.Conference
         /// <param name="name">Name.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<DeleteResponse<Conference>> DeleteAsync(string name, string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> DeleteAsync(string name, string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await DeleteResource<DeleteResponse<Conference>>(name,new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + name + "/", new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
                 {"is_voice_request", true}
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -180,10 +201,11 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> HangupMemberAsync(
+        public async Task<AsyncResponse> HangupMemberAsync(
             string conferenceName, string memberId, string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/",new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + conferenceName + "/Member/" + memberId + "/", new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
@@ -191,6 +213,9 @@ namespace Plivo.Resource.Conference
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -221,10 +246,11 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         ///  <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> KickMemberAsync(
+        public async Task<AsyncResponse> KickMemberAsync(
             string conferenceName, string memberId, string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + memberId + "/Kick/",new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + conferenceName + "/Member/" + memberId + "/Kick/", new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
@@ -232,6 +258,9 @@ namespace Plivo.Resource.Conference
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -261,10 +290,11 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> MuteMemberAsync(
+        public async Task<AsyncResponse> MuteMemberAsync(
             string conferenceName, List<string> memberId, string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/", new Dictionary<string, object> ()
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/", new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
@@ -272,6 +302,9 @@ namespace Plivo.Resource.Conference
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -298,17 +331,22 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task UnmuteMemberAsync(
+        public async Task<AsyncResponse> UnmuteMemberAsync(
             string conferenceName, List<string> memberId, string callbackUrl = null, string callbackMethod = null)
         {
-            Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
-                Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/",new Dictionary<string, object> ()
-                {
-                    {"callback_url", callbackUrl},
-                    {"callback_method", callbackMethod},
-                    {"is_voice_request", true}
-                }).ConfigureAwait(false)).Wait();
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + conferenceName + "/Member/" + string.Join(",", memberId) + "/Mute/", new Dictionary<string, object> ()
+            {
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod},
+                {"is_voice_request", true}
+            }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -347,25 +385,26 @@ namespace Plivo.Resource.Conference
         /// <param name="url">URL.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> PlayMemberAsync(
+        public async Task<AsyncResponse> PlayMemberAsync(
             string conferenceName, List<string> memberId, string url, string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
-                Uri +
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri +
                 conferenceName +
                 "/Member/" +
                 string.Join(",", memberId) +
-                "/Play/",
-                new Dictionary<string, object>()
+                "/Play/", new Dictionary<string, object> ()
                 {
-                    { "url", url } , 
-                    {"is_voice_request", true},
+                    { "url", url },
                     {"callback_url", callbackUrl},
                     {"callback_method", callbackMethod},
-                }
-            ).ConfigureAwait(false)).Result;
+                    {"is_voice_request", true}
+                }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -403,11 +442,12 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> StopPlayMemberAsync(
+        public async Task<AsyncResponse> StopPlayMemberAsync(
             string conferenceName, List<string> memberId, string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var result = Task.Run(async () => await
-                Client.Delete<ConferenceMemberActionResponse>(
+                Client.Delete<AsyncResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
@@ -422,6 +462,9 @@ namespace Plivo.Resource.Conference
                 ).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -477,11 +520,12 @@ namespace Plivo.Resource.Conference
         /// <param name="language">Language.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> SpeakMemberAsync(
+        public async Task<AsyncResponse> SpeakMemberAsync(
             string conferenceName, List<string> memberId, string text,
             string voice = null, string language = null, 
             string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(
@@ -495,7 +539,7 @@ namespace Plivo.Resource.Conference
                     callbackMethod,
                     isVoiceRequest
                 });
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(
                 Uri +
                 conferenceName +
                 "/Member/" +
@@ -505,6 +549,9 @@ namespace Plivo.Resource.Conference
             ).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -541,11 +588,12 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> StopSpeakMemberAsync(
+        public async Task<AsyncResponse> StopSpeakMemberAsync(
             string conferenceName, List<string> memberId,
             string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
                     Uri +
                     conferenceName +
                     "/Member/" +
@@ -560,6 +608,9 @@ namespace Plivo.Resource.Conference
                 .Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -596,11 +647,12 @@ namespace Plivo.Resource.Conference
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
-        public async Task<ConferenceMemberActionResponse> DeafMemberAsync(
+        public async Task<AsyncResponse> DeafMemberAsync(
             string conferenceName, List<string> memberId,
             string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Update<ConferenceMemberActionResponse>(
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(
                 Uri +
                 conferenceName +
                 "/Member/" +
@@ -615,6 +667,9 @@ namespace Plivo.Resource.Conference
             ).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -649,11 +704,12 @@ namespace Plivo.Resource.Conference
                 return result.Object;
             });
         }
-        public async Task<ConferenceMemberActionResponse> UnDeafMemberAsync(
+        public async Task<AsyncResponse> UnDeafMemberAsync(
          string conferenceName, List<string> memberId,
          string callbackUrl = null, string callbackMethod = null)
         {
-            var result = Task.Run(async () => await Client.Delete<ConferenceMemberActionResponse>(
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
                 Uri +
                 conferenceName +
                 "/Member/" +
@@ -668,6 +724,9 @@ namespace Plivo.Resource.Conference
             ).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -725,12 +784,13 @@ namespace Plivo.Resource.Conference
         /// <param name="transcriptionMethod">Transcription method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<RecordCreateResponse<Conference>> StartRecordingAsync(
+        public async Task<AsyncResponse> StartRecordingAsync(
             string conferenceName, string fileFormat = null,
             string transcriptionType = null, string transcriptionUrl = null,
             string transcriptionMethod = null, string callbackUrl = null,
             string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(
@@ -744,13 +804,17 @@ namespace Plivo.Resource.Conference
                     callbackMethod,
                     isVoiceRequest
                 });
-
-            var result = Task.Run(async () => await Client.Update<RecordCreateResponse<Conference>>(
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(
                 Uri + conferenceName + "/Record/",
                 data
             ).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -777,11 +841,12 @@ namespace Plivo.Resource.Conference
         /// <param name="conferenceName">Conference name.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task StopRecordingAsync(
+        public async Task<AsyncResponse> StopRecordingAsync(
          string conferenceName, string callbackUrl = null,
          string callbackMethod = null)
         {
-            Task.Run(async () => await Client.Delete<object>(
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
                 Uri + conferenceName + "/Record/",
                 new Dictionary<string, object> ()
                 {
@@ -789,8 +854,13 @@ namespace Plivo.Resource.Conference
                     {"callback_method", callbackMethod},
                     {"is_voice_request", true}
                 }
-            ).ConfigureAwait(false)).Wait();
+            ).ConfigureAwait(false)).Result;
             await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
     }

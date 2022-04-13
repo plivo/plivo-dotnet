@@ -36,7 +36,7 @@ namespace Plivo.Resource.Conference {
         /// <returns>The delete.</returns>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<DeleteResponse<Conference>> DeleteAsync (string callbackUrl = null, string callbackMethod = null) {
+        public async Task<AsyncResponse> DeleteAsync (string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .DeleteAsync (Id, callbackUrl, callbackMethod);
         }
@@ -60,7 +60,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> HangupMemberAsync (
+        public async Task<AsyncResponse> HangupMemberAsync (
             string memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .HangupMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -86,7 +86,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> KickMemberAsync (
+        public async Task<AsyncResponse> KickMemberAsync (
             string memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .KickMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -111,7 +111,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> MuteMemberAsync (
+        public async Task<AsyncResponse> MuteMemberAsync (
             List<string> memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .MuteMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -134,12 +134,11 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async void UnmuteMemberAsync (
+        public async Task<AsyncResponse> UnmuteMemberAsync (
             List<string> memberId, string callbackUrl = null, string callbackMethod = null) {
 
-            await ((ConferenceInterface) Interface)
+            return await ((ConferenceInterface) Interface)
             .UnmuteMemberAsync (Id, memberId, callbackUrl, callbackMethod);
-
         }
         #endregion
 
@@ -163,7 +162,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="url">URL.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> PlayMemberAsync (
+        public async Task<AsyncResponse> PlayMemberAsync (
             List<string> memberId, string url, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .PlayMemberAsync (Id, memberId, url, callbackUrl, callbackMethod);
@@ -188,7 +187,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> StopPlayMemberAsync (
+        public async Task<AsyncResponse> StopPlayMemberAsync (
             List<string> memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .StopPlayMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -220,7 +219,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="language">Language.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> SpeakMemberAsync (
+        public async Task<AsyncResponse> SpeakMemberAsync (
             List<string> memberId, string text,
             string voice = null, string language = null, 
             string callbackUrl = null, string callbackMethod = null) {
@@ -247,7 +246,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> StopSpeakMemberAsync (
+        public async Task<AsyncResponse> StopSpeakMemberAsync (
             List<string> memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .StopSpeakMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -272,7 +271,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> DeafMemberAsync (
+        public async Task<AsyncResponse> DeafMemberAsync (
             List<string> memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .DeafMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -297,7 +296,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="memberId">Member identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<ConferenceMemberActionResponse> UnDeafMemberAsync (
+        public async Task<AsyncResponse> UnDeafMemberAsync (
             List<string> memberId, string callbackUrl = null, string callbackMethod = null) {
             return await ((ConferenceInterface) Interface)
                 .UnDeafMemberAsync (Id, memberId, callbackUrl, callbackMethod);
@@ -339,7 +338,7 @@ namespace Plivo.Resource.Conference {
         /// <param name="transcriptionMethod">Transcription method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<RecordCreateResponse<Conference>> StartRecordingAsync (
+        public async Task<AsyncResponse> StartRecordingAsync (
             string fileFormat = null,
             string transcriptionType = null, string transcriptionUrl = null,
             string transcriptionMethod = null, string callbackUrl = null,
@@ -367,9 +366,9 @@ namespace Plivo.Resource.Conference {
         /// </summary>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async void StopRecordingAsync (string callbackUrl = null,
+        public async Task<AsyncResponse> StopRecordingAsync (string callbackUrl = null,
             string callbackMethod = null) {
-            await ((ConferenceInterface) Interface).StopRecordingAsync(Id, callbackUrl, callbackMethod);
+            return await ((ConferenceInterface) Interface).StopRecordingAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
     }
