@@ -148,7 +148,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<ListResponse<MultiPartyCall>> ListAsync(
+        public async Task<AsyncResponse> ListAsync(
             string subAccount = null,
             string friendlyName = null,
             string status = null,
@@ -230,10 +230,7 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidRange("offset", offset, false, 0);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -262,13 +259,13 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
             
-            
-            var resources = Task.Run (async () => await ListResources<ListResponse<MultiPartyCall>>(data).ConfigureAwait(false)).Result;
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            resources.Objects.ForEach (
-                (obj) => obj.Interface = this
-            );
-            return resources;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         
         public MultiPartyCall Get(string mpcUuid = null, string friendlyName = null)
@@ -292,7 +289,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<MultiPartyCall> GetAsync(string mpcUuid = null, string friendlyName = null,
+        public async Task<AsyncResponse> GetAsync(string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null)
         {
             if (mpcUuid != null)
@@ -303,27 +300,25 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            var mpc = Task.Run(async () =>
-                    await GetResource<MultiPartyCall>(mpcId,
-                        new Dictionary<string, object>()
-                        {
-                            {"callback_url", callbackUrl},
-                            {"callback_method", callbackMethod},
-                            {"is_voice_request", true}
-                        }).ConfigureAwait(false)).Result;
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + mpcId + "/", new Dictionary<string, object> ()
+            {
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod},
+                {"is_voice_request", true}
+            }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            mpc.Interface = this;
-            return mpc;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public MultiPartyCallAddParticipantResponse AddParticipant(
@@ -715,7 +710,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
 
-        public async Task<MultiPartyCallAddParticipantResponse> AddParticipantAsync(
+        public async Task<AsyncResponse> AddParticipantAsync(
             string role = null,
             string friendlyName = null,
             string mpcUuid = null,
@@ -1032,10 +1027,7 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("stopRecordingAudioMethod", stopRecordingAudioMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1099,19 +1091,12 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
             
-            var result = Task.Run (async () => await Client.Update<MultiPartyCallAddParticipantResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait (false)).Result;
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
-            try
-            {
-                result.Object.StatusCode = result.StatusCode;
-                JObject responseJson = JObject.Parse(result.Content);
-                result.Object.ApiId = responseJson["api_id"].ToString();
-                result.Object.RequestUuid = responseJson["request_uuid"].ToString();
-                result.Object.Message = responseJson["message"].ToString();
-            }
-            catch (System.NullReferenceException)
-            {
-            }
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         
@@ -1149,7 +1134,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<UpdateResponse<MultiPartyCall>> StartAsync(string mpcUuid = null, string friendlyName = null,
+        public async Task<AsyncResponse> StartAsync(string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null)
         {
             if (mpcUuid != null)
@@ -1160,10 +1145,7 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1181,14 +1163,12 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            var result = Task.Run (async () => await Client.Update<UpdateResponse<MultiPartyCall>> (Uri + mpcId + "/", data).ConfigureAwait (false)).Result;
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
-            try
-            {
-                result.Object.StatusCode = result.StatusCode;
-            }
-            catch (System.NullReferenceException) {
-            }
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         
@@ -1209,7 +1189,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<DeleteResponse<MultiPartyCall>> StopAsync(string mpcUuid = null, string friendlyName = null,
+        public async Task<AsyncResponse> StopAsync(string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null)
         {
             if (mpcUuid != null)
@@ -1220,24 +1200,25 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            var result = Task.Run(async () => await DeleteResource<DeleteResponse<MultiPartyCall>>(mpcId,new Dictionary<string, object> ()
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/",new Dictionary<string, object> ()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
                 {"is_voice_request", true}
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         
         public RecordCreateResponse<MultiPartyCall> StartRecording (
@@ -1299,7 +1280,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<RecordCreateResponse<MultiPartyCall>> StartRecordingAsync (
+        public async Task<AsyncResponse> StartRecordingAsync (
             string mpcUuid = null, string friendlyName = null,
             string fileFormat = "mp3", 
             string recordingCallbackUrl = null, string recordingCallbackMethod = "POST",
@@ -1331,10 +1312,7 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("recordingCallbackMethod", recordingCallbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1353,20 +1331,13 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-
             
-                var result = Task.Run (async () => await Client.Update<RecordCreateResponse<MultiPartyCall>> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
-                await Task.WhenAll();
-                try{
-                    result.Object.StatusCode = result.StatusCode;
-                    JObject responseJson = JObject.Parse(result.Content);
-                    result.Object.ApiId = responseJson["api_id"].ToString();
-                    result.Object.RecordingId = responseJson["recording_id"].ToString();
-                    result.Object.RecordingUrl = responseJson["recording_url"].ToString();
-                    result.Object.Message = responseJson["message"].ToString();
-                } catch (System.NullReferenceException) {
-
-                }
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
     }
         
@@ -1396,7 +1367,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<DeleteResponse<MultiPartyCall>> StopRecordingAsync (string mpcUuid = null, string friendlyName = null,
+        public async Task<AsyncResponse> StopRecordingAsync (string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null) {
             if (mpcUuid != null)
             {
@@ -1406,10 +1377,7 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1427,13 +1395,12 @@ namespace Plivo.Resource.MultiPartyCall
                 });
 
             
-                var result = Task.Run (async () => await Client.Delete<DeleteResponse<MultiPartyCall>> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
+                var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
-                try {
-                    result.Object.StatusCode = result.StatusCode;
-                } catch (System.NullReferenceException) {
-
-                }
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
         
@@ -1468,7 +1435,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<UpdateResponse<MultiPartyCall>> PauseRecordingAsync (
+        public async Task<AsyncResponse> PauseRecordingAsync (
             string mpcUuid = null, string friendlyName = null, 
             string callbackUrl = null, string callbackMethod = null) 
         {
@@ -1480,10 +1447,7 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1501,13 +1465,12 @@ namespace Plivo.Resource.MultiPartyCall
                 });
 
             
-                var result = Task.Run (async () => await Client.Update<UpdateResponse<MultiPartyCall>> (Uri + mpcId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
+                var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
-                try {
-                    result.Object.StatusCode = result.StatusCode;
-                } catch (System.NullReferenceException) {
-
-                }
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
         
@@ -1542,7 +1505,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<UpdateResponse<MultiPartyCall>> ResumeRecordingAsync (
+        public async Task<AsyncResponse> ResumeRecordingAsync (
             string mpcUuid = null, string friendlyName = null, 
             string callbackUrl = null, string callbackMethod = null) 
         {
@@ -1554,10 +1517,7 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1575,13 +1535,12 @@ namespace Plivo.Resource.MultiPartyCall
                 });
 
             
-                var result = Task.Run (async () => await Client.Update<UpdateResponse<MultiPartyCall>> (Uri + mpcId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
+                var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
-                try {
-                    result.Object.StatusCode = result.StatusCode;
-                } catch (System.NullReferenceException) {
-
-                }
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
 
@@ -1638,7 +1597,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<RecordCreateResponse<MultiPartyCallParticipant>> StartParticipantRecordingAsync (
+        public async Task<AsyncResponse> StartParticipantRecordingAsync (
             string participantId = null,
             string mpcUuid = null, string friendlyName = null,
             string fileFormat = "mp3", 
@@ -1671,10 +1630,7 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"GET", "POST"});
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1693,14 +1649,14 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-
-            
-                var result = Task.Run(async () =>
-                    await UpdateSecondaryResource<RecordCreateResponse<MultiPartyCallParticipant>>(mpcId,
-                        data,
-                        "Participant", participantId + "/Record").ConfigureAwait(false)).Result;
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
+                    + participantId + "/Record/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
-                return result;
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
+                return result.Object;
         }
         
         public DeleteResponse<MultiPartyCallParticipant> StopParticipantRecording (string participantId = null, string mpcUuid = null, string friendlyName = null) {
@@ -1726,7 +1682,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<DeleteResponse<MultiPartyCallParticipant>> StopParticipantRecordingAsync (string participantId = null, 
+        public async Task<AsyncResponse> StopParticipantRecordingAsync (string participantId = null, 
             string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null) {
             if (mpcUuid != null)
@@ -1738,10 +1694,7 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1757,13 +1710,15 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-
             
-                var result = Task.Run(async () => await DeleteSecondaryResource<DeleteResponse<MultiPartyCallParticipant>>(mpcId,
-                    data, 
-                    "Participant", participantId+"/Record").ConfigureAwait(false)).Result;
-                await Task.WhenAll();
-                return result;
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Participant/"
+                    + participantId + "/Record/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         
         public UpdateResponse<MultiPartyCallParticipant> PauseParticipantRecording (
@@ -1795,7 +1750,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
 
-        public async Task<UpdateResponse<MultiPartyCallParticipant>> PauseParticipantRecordingAsync (
+        public async Task<AsyncResponse> PauseParticipantRecordingAsync (
             string participantId = null, string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null) 
         {
@@ -1808,10 +1763,7 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1828,12 +1780,14 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            var result = Task.Run(async () =>
-                    await UpdateSecondaryResource<UpdateResponse<MultiPartyCallParticipant>>(mpcId,
-                        data,
-                        "Participant", participantId + "/Record/Pause").ConfigureAwait(false)).Result;
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
+                + participantId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public UpdateResponse<MultiPartyCallParticipant> ResumeParticipantRecording (
@@ -1865,7 +1819,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<UpdateResponse<MultiPartyCallParticipant>> ResumeParticipantRecordingAsync (
+        public async Task<AsyncResponse> ResumeParticipantRecordingAsync (
             string participantId = null, string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null) 
         {
@@ -1878,10 +1832,7 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1898,12 +1849,14 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            var result = Task.Run(async () =>
-                    await UpdateSecondaryResource<UpdateResponse<MultiPartyCallParticipant>>(mpcId,
-                        data,
-                        "Participant", participantId + "/Record/Resume").ConfigureAwait(false)).Result;
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
+                + participantId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public ListResponse<MultiPartyCallParticipant> ListParticipants(
@@ -1945,7 +1898,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<ListResponse<MultiPartyCallParticipant>> ListParticipantsAsync(
+        public async Task<AsyncResponse> ListParticipantsAsync(
             string mpcUuid = null, string friendlyName = null,
             string callUuid = null, string callbackUrl = null, string callbackMethod = null)
         {
@@ -1962,10 +1915,7 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidParamString("callUuid", callUuid, false);
             }
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -1984,13 +1934,13 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
             
-                var resources = Task.Run (async () => await ListResources<ListResponse<MultiPartyCallParticipant>>(mpcId + "/Participant" , data).ConfigureAwait(false)).Result;
-                await Task.WhenAll();
-                resources.Objects.ForEach (
-                    (obj) => obj.Interface = this
-                );
-
-                return resources;
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public MultiPartyCallParticipantUpdateResponse<MultiPartyCallParticipant> UpdateParticipant(string participantId = null, string mpcUuid = null, 
@@ -2028,7 +1978,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<MultiPartyCallParticipantUpdateResponse<MultiPartyCallParticipant>> UpdateParticipantAsync(
+        public async Task<AsyncResponse> UpdateParticipantAsync(
             string participantId = null, string mpcUuid = null, 
             string friendlyName = null,
             bool? coachMode = null, bool? mute = null, bool? hold = null,
@@ -2044,10 +1994,7 @@ namespace Plivo.Resource.MultiPartyCall
             }
 
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -2067,12 +2014,14 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
             
-                var result = Task.Run(async () =>
-                    await UpdateSecondaryResource<MultiPartyCallParticipantUpdateResponse<MultiPartyCallParticipant>>(mpcId,
-                        data,
-                        "Participant", participantId).ConfigureAwait(false)).Result;
-                await Task.WhenAll();
-                return result;
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (
+                Uri + mpcId + "/Participant/" + participantId + "/", data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public MultiPartyCallParticipant GetParticipant(string participantId = null, string mpcUuid = null, string friendlyName = null)
@@ -2099,7 +2048,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<MultiPartyCallParticipant> GetParticipantAsync(
+        public async Task<AsyncResponse> GetParticipantAsync(
             string participantId = null, string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null)
         {
@@ -2113,10 +2062,7 @@ namespace Plivo.Resource.MultiPartyCall
             }
 
             MpcUtils.ValidParamString("participantId", participantId, true); 
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -2124,18 +2070,19 @@ namespace Plivo.Resource.MultiPartyCall
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
             
-                var mpcParticipant = Task.Run(async () =>
-                    await GetSecondaryResource<MultiPartyCallParticipant>(mpcId,
-                        new Dictionary<string, object>()
-                        {
-                            {"callback_url", callbackUrl},
-                            {"callback_method", callbackMethod},
-                            {"is_voice_request", true}
-                        },
-                        "Participant", participantId).ConfigureAwait(false)).Result;
-                await Task.WhenAll();
-                mpcParticipant.Interface = this;
-                return mpcParticipant;
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (
+                Uri + mpcId + "/Participant/" + participantId + "/", new Dictionary<string, object>()
+                {
+                    {"callback_url", callbackUrl},
+                    {"callback_method", callbackMethod},
+                    {"is_voice_request", true}
+                }).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         
         public DeleteResponse<MultiPartyCallParticipant> KickParticipant(string participantId = null, string mpcUuid = null, string friendlyName = null)
@@ -2159,7 +2106,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<DeleteResponse<MultiPartyCallParticipant>> KickParticipantAsync(
+        public async Task<AsyncResponse> KickParticipantAsync(
             string participantId = null, string mpcUuid = null, string friendlyName = null,
             string callbackUrl = null, string callbackMethod = null)
         {
@@ -2173,26 +2120,26 @@ namespace Plivo.Resource.MultiPartyCall
             }
 
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            var result = Task.Run(async () => await DeleteSecondaryResource<DeleteResponse<MultiPartyCallParticipant>>(mpcId,
-                    new Dictionary<string, object> ()
-                    {
-                        {"callback_url", callbackUrl},
-                        {"callback_method", callbackMethod},
-                        {"is_voice_request", true}
-                    }, 
-                    "Participant", participantId).ConfigureAwait(false)).Result;
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (
+                Uri + mpcId + "/Participant/" + participantId + "/", new Dictionary<string, object>()
+                {
+                    {"callback_url", callbackUrl},
+                    {"callback_method", callbackMethod},
+                    {"is_voice_request", true}
+                }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
-            return result;
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public MultiPartyCallParticipantPlayResponse<MultiPartyCallParticipant> StartPlayAudio(string participantId = null, string mpcUuid = null, 
@@ -2237,7 +2184,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<MultiPartyCallParticipantPlayResponse<MultiPartyCallParticipant>> StartPlayAudioAsync(
+        public async Task<AsyncResponse> StartPlayAudioAsync(
             string participantId = null, string mpcUuid = null, 
             string friendlyName = null, string url = null,
             string callbackUrl = null, string callbackMethod = null
@@ -2252,20 +2199,13 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
             MpcUtils.ValidUrl("url", url, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
                     new List<string>() {"GET", "POST"});
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -2285,18 +2225,12 @@ namespace Plivo.Resource.MultiPartyCall
                 });
             
                 var result = Task.Run (async () => 
-                    await Client.Update<MultiPartyCallParticipantPlayResponse<MultiPartyCallParticipant>> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
+                    await Client.Update<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
-                try {
-                    result.Object.StatusCode = result.StatusCode;
-                    JObject responseJson = JObject.Parse(result.Content);
-                    Console.WriteLine(responseJson);
-                    result.Object.ApiId = responseJson["api_id"].ToString();
-                    result.Object.MpcMemberId = responseJson["mpcMemberId"].ToObject<List<string>>();
-                    result.Object.MpcName = responseJson["mpcName"].ToString();
-                    result.Object.Message = responseJson["message"].ToString();
-                } catch (System.NullReferenceException) {
-                }
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
         
@@ -2329,7 +2263,7 @@ namespace Plivo.Resource.MultiPartyCall
             });
         }
         
-        public async Task<DeleteResponse<MultiPartyCallParticipant>> StopPlayAudioAsync(
+        public async Task<AsyncResponse> StopPlayAudioAsync(
             string participantId = null, string mpcUuid = null, 
             string friendlyName = null, string callbackUrl = null, string callbackMethod = null)
         {
@@ -2342,10 +2276,7 @@ namespace Plivo.Resource.MultiPartyCall
                 MpcUtils.ValidParamString("friendlyName", friendlyName, false);
             }
             MpcUtils.ValidParamString("participantId", participantId, true);
-            if (callbackUrl != null)
-            {
-                MpcUtils.ValidUrl("callbackUrl", callbackUrl, false);
-            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             if (callbackMethod != null)
             {
                 MpcUtils.ValidParamString("callbackMethod", callbackMethod.ToUpper(), false,
@@ -2364,12 +2295,12 @@ namespace Plivo.Resource.MultiPartyCall
 
             
                 var result = Task.Run (async () => 
-                    await Client.Delete<DeleteResponse<MultiPartyCallParticipant>> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
+                    await Client.Delete<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
-                try {
-                    result.Object.StatusCode = result.StatusCode;
-                } catch (System.NullReferenceException) {
-                }
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
     }
