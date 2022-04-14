@@ -74,8 +74,6 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("message")]
         public new string Messgae {get; set;}
         
-        [JsonProperty("error")]
-        public new string Error {get; set;}
 
         public override string ToString()
         {
