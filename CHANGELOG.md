@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.9.0](https://github.com/plivo/plivo-dotnet/tree/v5.9.0) (2022-04-14)
+**Feature - 10dlc api**
+- Profile API, Brand API, Number Linking
+
 ## [v5.8.0](https://github.com/plivo/plivo-dotnet/tree/v5.8.0) (2022-03-25)
 **Feature - DialElement**
 - `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
