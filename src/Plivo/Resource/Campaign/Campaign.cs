@@ -92,6 +92,9 @@ namespace Plivo.Resource.Campaign
     [JsonObject(MemberSerialization.OptIn)]
     public class Number:Resource
     {
+        [JsonProperty("apiId")]
+        public string ApidID { get; set; }  
+
         [JsonProperty("campaign_alias")]
         public string campaign_alias { get; set; }  
         
@@ -103,6 +106,11 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("phone_numbers")]
         public List<NumberObject> PhoneNumbers { get; set; }  
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
     }
 
     [JsonObject(MemberSerialization.OptIn)]

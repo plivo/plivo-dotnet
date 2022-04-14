@@ -249,7 +249,7 @@ namespace Plivo.Resource.Campaign
 
         public LinkNumber LinkNumber(string campaignId, List<string> numbers)
         {
-        var mandatoryParams = new List<string>{"numbers"};
+        var mandatoryParams = new List<string> { "" };
         var data = CreateData(
             mandatoryParams,
             new
@@ -258,7 +258,7 @@ namespace Plivo.Resource.Campaign
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
-				var result = Task.Run(async () => await Client.Update<LinkNumber>(Uri + "10dlc/Campaign/"+campaignId+"/", data).ConfigureAwait(false)).Result;
+				var result = Task.Run(async () => await Client.Update<LinkNumber>(Uri + "10dlc/Campaign/"+campaignId+"/Number/", data).ConfigureAwait(false)).Result;
 				result.Object.StatusCode = result.StatusCode;
                 return result.Object;
 		});
@@ -280,7 +280,7 @@ namespace Plivo.Resource.Campaign
                 numbers
             });
 
-			var result = await Client.Update<LinkNumber>(Uri + "10dlc/Campaign/"+campaignId+"/", data);
+			var result = await Client.Update<LinkNumber>(Uri + "10dlc/Campaign/"+campaignId+"/Number/", data);
             result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}
@@ -293,7 +293,7 @@ namespace Plivo.Resource.Campaign
         /// <returns>The delete.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="number">Number.</param>
-        public DeleteResponse<DeleteNumber> DeleteNumber(string campaignId, string number)
+        public DeleteResponse<DeleteNumber> UnlinkNumber(string campaignId, string number)
         {
             var data = new Dictionary<string, object> { };
 			return ExecuteWithExceptionUnwrap(() =>
@@ -307,7 +307,7 @@ namespace Plivo.Resource.Campaign
         /// <returns>The delete.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="number">Number.</param>
-        public async Task<DeleteResponse<DeleteNumber>> DeleteNumberAsync(string campaignId, string number)
+        public async Task<DeleteResponse<DeleteNumber>> UnlinkNumberNumberAsync(string campaignId, string number)
         {
             var data = new Dictionary<string, object> { };
             return await DeleteResource<DeleteResponse<DeleteNumber>>("10dlc/Campaign/"+campaignId+"/Number/"+number, data);
