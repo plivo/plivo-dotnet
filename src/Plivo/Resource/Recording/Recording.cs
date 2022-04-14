@@ -51,7 +51,7 @@ namespace Plivo.Resource.Recording
         /// <returns></returns>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<DeleteResponse<Recording>> DeleteAsync(string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> DeleteAsync(string callbackUrl = null, string callbackMethod = null)
         {
             return await ((RecordingInterface)Interface).DeleteAsync(Id, callbackUrl, callbackMethod);
         }
