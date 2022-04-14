@@ -41,7 +41,7 @@ namespace Plivo.Resource.Brand
         public string VettingStatus { get; set; }
         
         [JsonProperty("address")]
-        public string Address { get; set; }
+        public Address Address { get; set; }
         
     }
     
