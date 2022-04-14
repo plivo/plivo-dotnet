@@ -111,7 +111,7 @@ namespace Plivo.Resource.Endpoint
         /// <returns>The delete.</returns>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<DeleteResponse<Endpoint>> DeleteAsync(string callbackUrl = null, string callbackMethod = null)
+        public async Task<AsyncResponse> DeleteAsync(string callbackUrl = null, string callbackMethod = null)
         {
             return await ((EndpointInterface)Interface).DeleteAsync(Id, callbackUrl, callbackMethod);
         }
@@ -153,13 +153,14 @@ namespace Plivo.Resource.Endpoint
         /// <param name="alias">Alias.</param>
         /// <param name="appId">App identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
-        public async Task<UpdateResponse<Endpoint>> UpdateAsync(
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> UpdateAsync(
             string password = null, string alias = null,
-            string appId = null, string callbackUrl = null)
+            string appId = null, string callbackUrl = null, string callbackMethod = null)
         {
             var updateResponse = await
                 ((EndpointInterface)Interface)
-                .UpdateAsync(Id, password, alias, appId, callbackUrl);
+                .UpdateAsync(Id, password, alias, appId, callbackUrl, callbackMethod);
 
             if (password != null) Password = password;
             if (alias != null) Alias = alias;
