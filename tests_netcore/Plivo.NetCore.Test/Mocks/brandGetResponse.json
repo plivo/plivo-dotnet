@@ -8,7 +8,14 @@
             "state": "",
             "street": ""
         },
-        "authorized_contact": {},
+        "authorized_contact": {
+            "email": "vishnu@plivo.com",
+            "first_name": "vishnu",
+            "last_name": "Doe",
+            "phone": "919742763781",
+            "seniority": "admin",
+            "title": "Doe"
+        },
         "brand_id": "BRPXS6E",
         "company_name": "Ren_With_Vetting",
         "ein": "2342334534231",
