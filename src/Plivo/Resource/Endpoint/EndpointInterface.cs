@@ -225,9 +225,6 @@ namespace Plivo.Resource.Endpoint
                 }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion

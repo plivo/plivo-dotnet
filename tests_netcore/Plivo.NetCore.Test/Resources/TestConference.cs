@@ -191,7 +191,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
 
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -257,7 +257,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
 
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -326,7 +326,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
 
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -523,7 +523,7 @@ namespace Plivo.NetCore.Test.Resources
             var response = System.IO.File.ReadAllText(
                 SOURCE_DIR + @"../Mocks/asyncResponse.json"
             );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
             
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -667,7 +667,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
 
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -810,7 +810,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
 
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -941,7 +941,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
             
             Assert.Empty(
                 ComparisonUtilities.Compare(
@@ -1078,7 +1078,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/asyncResponse.json"
                 );
-            Setup<AsyncResponse>(200, response);
+            Setup<AsyncResponse>(204, response);
             
             Assert.Empty(
                 ComparisonUtilities.Compare(

@@ -1215,9 +1215,6 @@ namespace Plivo.Resource.MultiPartyCall
             }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         
@@ -1398,9 +1395,6 @@ namespace Plivo.Resource.MultiPartyCall
                 var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
                 result.Object.StatusCode = result.StatusCode;
-                JObject responseJson = JObject.Parse(result.Content);
-                result.Object.ApiId = responseJson["api_id"].ToString();
-                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
         
@@ -1715,9 +1709,6 @@ namespace Plivo.Resource.MultiPartyCall
                     + participantId + "/Record/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         
@@ -2136,9 +2127,6 @@ namespace Plivo.Resource.MultiPartyCall
                 }).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
 
@@ -2298,9 +2286,6 @@ namespace Plivo.Resource.MultiPartyCall
                     await Client.Delete<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
                 result.Object.StatusCode = result.StatusCode;
-                JObject responseJson = JObject.Parse(result.Content);
-                result.Object.ApiId = responseJson["api_id"].ToString();
-                result.Object.Message = responseJson["message"].ToString();
                 return result.Object;
         }
     }

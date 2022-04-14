@@ -641,9 +641,6 @@ namespace Plivo.Resource.Call {
             var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + callUuid + "/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -844,15 +841,11 @@ namespace Plivo.Resource.Call {
                 }).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
 
         #region StartRecording
-        /// HOW ABOUT THIS ??
         /// <summary>
         /// Starts the recording.
         /// </summary>
@@ -982,9 +975,6 @@ namespace Plivo.Resource.Call {
             var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + callUuid + "/Record/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -1103,9 +1093,6 @@ namespace Plivo.Resource.Call {
             }).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -1204,9 +1191,6 @@ namespace Plivo.Resource.Call {
             }).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
-            JObject responseJson = JObject.Parse(result.Content);
-            result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
