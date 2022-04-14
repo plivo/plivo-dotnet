@@ -11,12 +11,16 @@ namespace Plivo.Resource.Profile
      public class AuthorizedContactResponse {
         [JsonProperty("email")]
         public string Email { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
         [JsonProperty("seniority")]
         public string Seniority { get; set; }
         [JsonProperty("title")]
         public string Title { get; set; }
+        [JsonProperty("first_name")]
+        public string FirstName { get; set; }
+        [JsonProperty("last_name")]
+        public string LastName { get; set; }
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
     }
 
     public class AuthorizedContact {
