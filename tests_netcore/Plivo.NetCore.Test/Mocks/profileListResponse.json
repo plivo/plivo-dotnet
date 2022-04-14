@@ -5,6 +5,13 @@
     "offset": 0,
     "profiles": [
         {
+            "address": {
+                "city": "New York",
+                "country": "IN",
+                "postal_code": "10001",
+                "state": "NY",
+                "street": "123"
+            },
             "alt_business_id_type": "NONE",
             "authorized_contact": {
                 "email": "johndoe.com",
@@ -23,6 +30,13 @@
             "vertical": "ENERGY"
         },
         {
+            "address": {
+                "city": "New York",
+                "country": "IN",
+                "postal_code": "10001",
+                "state": "NY",
+                "street": "123"
+            },
             "alt_business_id_type": "NONE",
             "authorized_contact": {
                 "email": "johndoe.com",
