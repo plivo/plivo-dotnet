@@ -64,6 +64,11 @@ namespace Plivo.Resource.Profile
         }
     }
 
+    public class ProfileDeleteResponse
+    {
+    
+    }
+
     public class Profile 
     {
         [JsonProperty("address")]

@@ -275,11 +275,11 @@ namespace Plivo.Resource.Profile
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="uuid">profile identifier.</param>
-         public DeleteResponse<Profile> Delete(string profileUuid)
+         public DeleteResponse<ProfileDeleteResponse> Delete(string profileUuid)
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				return Task.Run(async () => await DeleteResource<DeleteResponse<Profile>>(profileUuid).ConfigureAwait(false)).Result;
+				return Task.Run(async () => await DeleteResource<DeleteResponse<ProfileDeleteResponse>>(profileUuid).ConfigureAwait(false)).Result;
 			});
         }
         /// <summary>
@@ -287,9 +287,9 @@ namespace Plivo.Resource.Profile
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="profileID">profileUUId.</param>
-        public async Task<DeleteResponse<Profile>> DeleteAsync(string profileUuid)
+        public async Task<DeleteResponse<ProfileDeleteResponse>> DeleteAsync(string profileUuid)
         {
-            return await DeleteResource<DeleteResponse<Profile>>(profileUuid);
+            return await DeleteResource<DeleteResponse<ProfileDeleteResponse>>(profileUuid);
         }
         #endregion
     }
