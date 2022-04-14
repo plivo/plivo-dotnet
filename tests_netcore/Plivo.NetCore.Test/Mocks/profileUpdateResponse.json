@@ -1,7 +1,13 @@
 {
     "api_id": "15783daa-b01e-11ec-88b1-0242ac110002",
     "profile": {
-        "address": "123 New York NY 10001 IN",
+        "address": {
+            "city": "New York",
+            "country": "IN",
+            "postal_code": "10001",
+            "state": "NY",
+            "street": "123"
+        },
         "alt_business_id_type": "NONE",
         "authorized_contact": {
             "email": "Doe",
