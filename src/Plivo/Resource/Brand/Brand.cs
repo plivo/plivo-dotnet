@@ -110,9 +110,6 @@ namespace Plivo.Resource.Brand
         [JsonProperty("message")]
         public string Message {get; set;}
 
-        [JsonProperty("error")]
-        public string Error {get; set;}
-
          public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
