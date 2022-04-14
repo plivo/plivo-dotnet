@@ -116,11 +116,19 @@ namespace Plivo.Resource.Campaign
     [JsonObject(MemberSerialization.OptIn)]
     public class LinkNumber:Resource
     {
+        [JsonProperty("apiId")]
+        public string ApidID { get; set; } 
+        
         [JsonProperty("error")]
         public string Error { get; set; }  
         
         [JsonProperty("message")]
-        public string Message { get; set; }  
+        public string Message { get; set; } 
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
     }
     public class DeleteNumber{
 
