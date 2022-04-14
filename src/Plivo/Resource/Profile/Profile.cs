@@ -49,8 +49,14 @@ namespace Plivo.Resource.Profile
     [JsonObject(MemberSerialization.OptIn)]
     public class ProfileResponse: Resource{
 
+        [JsonProperty("api_id")]
+        public string ApiId {get; set;}
+
         [JsonProperty("profile_uuid")]
-        public Profile ProfileUUID {get; set;}
+        public string ProfileUUID {get; set;}
+
+        [JsonProperty("message")]
+        public string Message {get; set;}
 
         public override string ToString()
         {

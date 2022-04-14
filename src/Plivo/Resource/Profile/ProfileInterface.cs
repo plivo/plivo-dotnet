@@ -125,6 +125,7 @@ namespace Plivo.Resource.Profile
             string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
         {
         var mandatoryParams = new List<string>{"profile_alias"};
+        Console.WriteLine(entity_type);
         var data = CreateData(
             mandatoryParams,
             new
