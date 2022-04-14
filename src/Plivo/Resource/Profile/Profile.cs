@@ -34,6 +34,8 @@ namespace Plivo.Resource.Profile
         public string Seniority { get; set; }
         [JsonProperty("title")]
         public string Title { get; set; }
+        [JsonProperty("phone")]
+        public string Phone { get; set; }
     }
 
     public class Address {
