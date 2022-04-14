@@ -31,7 +31,7 @@ namespace Plivo.Resource.Profile
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var response = Task.Run(async () => await GetResource<GetProfile>("Profile/"+profileUuid).ConfigureAwait(false)).Result;
-				return response;
+                return response;
 			});
         }
         /// <summary>
@@ -54,11 +54,21 @@ namespace Plivo.Resource.Profile
         /// <returns>The list.</returns>
         /// <param name="limit">limit.</param>
         /// <param name="offset">offset.</param>
-        public ProfileListResponse<ListProfiles> List()
+        public ProfileListResponse<ListProfiles> List(uint? limit = null,uint? offset = null,string type = null, string entity_type=null,string vertical=null)
         {
+            var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams, new
+                {
+                    type,
+                    entity_type,
+                    vertical,
+                    limit,
+                    offset,
+                });
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<ProfileListResponse<ListProfiles>>("Profile",null).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<ProfileListResponse<ListProfiles>>("Profile",data).ConfigureAwait(false)).Result;
                 resources.Profiles.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -72,10 +82,19 @@ namespace Plivo.Resource.Profile
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">status.</param>
-        public async Task<ProfileListResponse<ListProfiles>> ListAsync()
+        public async Task<ProfileListResponse<ListProfiles>> ListAsync(uint? limit = null,uint? offset = null,string type = null, string entity_type=null,string vertical=null)
         {
-           
-            var resources = await ListResources<ProfileListResponse<ListProfiles>>("Profile", null);
+           var mandatoryParams = new List<string> { "" };
+            var data = CreateData(
+                mandatoryParams, new
+                {
+                    type,
+                    entity_type,
+                    vertical,
+                    limit,
+                    offset,
+                });
+            var resources = await ListResources<ProfileListResponse<ListProfiles>>("Profile", data);
             resources.Profiles.ForEach(
 					(obj) => obj.Interface = this
 				);

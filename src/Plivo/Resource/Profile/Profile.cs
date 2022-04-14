@@ -61,7 +61,7 @@ namespace Plivo.Resource.Profile
     public class Profile 
     {
         [JsonProperty("address")]
-        public string Address { get; set; }
+        public Address Address { get; set; }
 
         [JsonProperty("alt_business_id_type")]
         public string AltBusinessIdType { get; set; }
@@ -105,8 +105,11 @@ namespace Plivo.Resource.Profile
     }
 
     [JsonObject(MemberSerialization.OptIn)]
-    public class GetProfile: Resource
+    public class GetProfile:Resource
     {
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
         [JsonProperty("profile")]
         public Profile Profile {get; set;}
 
@@ -116,15 +119,11 @@ namespace Plivo.Resource.Profile
         }
     }
 
-     [JsonObject(MemberSerialization.OptIn)]
+    [JsonObject(MemberSerialization.OptIn)]
     public class ListProfiles: Resource
     { 
-
-        [JsonProperty("brand_id")]
-        public string BrandId { get; set; }
-
         [JsonProperty("address")]
-        public string Address { get; set; }
+        public Address Address { get; set; }
 
         [JsonProperty("alt_business_id_type")]
         public string AltBusinessIdType { get; set; }
