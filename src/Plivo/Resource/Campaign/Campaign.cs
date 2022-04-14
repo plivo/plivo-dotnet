@@ -118,10 +118,7 @@ namespace Plivo.Resource.Campaign
     {
         [JsonProperty("apiId")]
         public string ApidID { get; set; } 
-        
-        [JsonProperty("error")]
-        public string Error { get; set; }  
-        
+                
         [JsonProperty("message")]
         public string Message { get; set; } 
 
