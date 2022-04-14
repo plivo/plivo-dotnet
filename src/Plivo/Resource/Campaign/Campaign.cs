@@ -50,8 +50,32 @@ namespace Plivo.Resource.Campaign
    [JsonObject(MemberSerialization.OptIn)]
     public class GetCampaign: Resource
     {   
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
         [JsonProperty("campaign")]
         public CampaignResponse Campaign {get; set;}
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class CreateCampaign: Resource
+    {   
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+        
+        [JsonProperty("campaignId")]
+        public new string CampaignId {get; set;}
+
+        [JsonProperty("message")]
+        public new string Messgae {get; set;}
+        
+        [JsonProperty("error")]
+        public new string Error {get; set;}
 
         public override string ToString()
         {
