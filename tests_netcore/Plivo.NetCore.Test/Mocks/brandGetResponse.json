@@ -1,14 +1,23 @@
 {
     "api_id": "71aa47e0-3750-11ec-8e4c-0242ac110002",
     "brand": {
+        "address": {
+            "city": "",
+            "country": "",
+            "postal_code": "",
+            "state": "",
+            "street": ""
+        },
+        "authorized_contact": {},
         "brand_id": "BRPXS6E",
-        "company_name": "ABC Inc.",
-        "ein": "111111111",
-        "ein_issuing_country": "US",
-        "email": "johndoe@abc.com",
-        "entity_type": "PRIVATE_PROFIT",
+        "company_name": "Ren_With_Vetting",
+        "ein": "2342334534231",
+        "ein_issuing_country": "IN",
+        "entity_type": "NON_PROFIT",
         "registration_status": "COMPLETED",
-        "vertical": "RETAIL",
-        "website": "http://www.abcmobile.com"
+        "vertical": "COMMUNICATION",
+        "vetting_score": 80,
+        "vetting_status": "ACTIVE",
+        "website": "www.renold.com"
     }
 }
