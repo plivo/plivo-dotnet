@@ -102,7 +102,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
 
-        public GetCampaign Create(string brand_id, string vertical,  string usecase, 
+        public CreateCampaign Create(string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2, string[] sub_usecases= null)
         {
@@ -128,7 +128,7 @@ namespace Plivo.Resource.Campaign
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
-				var result = Task.Run(async () => await Client.Update<GetCampaign>(Uri + "10dlc/Campaign/", data).ConfigureAwait(false)).Result;
+				var result = Task.Run(async () => await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data).ConfigureAwait(false)).Result;
 				result.Object.StatusCode = result.StatusCode;
                 return result.Object;
 		});
@@ -152,7 +152,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="subscriber_help">subscriber_help</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
-		public async Task<GetCampaign> CreateAsync(string brand_id, string vertical, string usecase,
+		public async Task<CreateCampaign> CreateAsync(string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2,string[] sub_usecases= null)
 		{
@@ -178,7 +178,7 @@ namespace Plivo.Resource.Campaign
                 sample2
             });
 
-			var result = await Client.Update<GetCampaign>(Uri + "10dlc/Campaign/", data);
+			var result = await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data);
             result.Object.StatusCode = result.StatusCode;
 			return result.Object;
 		}

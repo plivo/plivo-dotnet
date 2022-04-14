@@ -91,51 +91,22 @@ namespace Plivo.Resource.Brand
         /// Create Brand with the specified vertical, city, ein etc.
         /// </summary>
         /// <returns>The create.</returns>
-        /// <param name="city">City.</param>
-        /// <param name="company_name">CompanyName.</param>
-        /// <param name="country">Country.</param>
-        /// <param name="Ein">Ein.</param>
-        /// <param name="ein_issuing_country">EinIssuingCountry.</param>
-        /// <param name="email">Email</param>
-        /// <param name="entity_type">EntityType</param>
-        /// <param name="postal_code">PostalCode</param>
-        /// <param name="state">State</param>
-        /// <param name="stock_exchange">StockExchange</param>
-        /// <param name="stock_symbol">StockSymbol</param>
-        /// <param name="street">Street</param>
-        /// <param name="vertical">Vertical</param>
+        /// <param name="brand_alias">brand_alias.</param>
+        /// <param name="profile_uuid">profile_uuid.</param>
+        /// <param name="brand_type">brand_type.</param>
+        /// <param name="secondary_vetting">secondary_vetting.</param>
 
-        public BrandCreateResponse Create(string city, string company_name, string country, string ein, string ein_issuing_country,
-            string email, string entity_type,  string phone, string postal_code,
-            string state, string stock_exchange, string stock_symbol, string street, string vertical,string first_name, string last_name,
-            string website = null, string secondary_vetting = null,
-            string alt_business_id_type = null,  string alt_business_id = null)
+        public BrandCreateResponse Create(string brand_alias, string profile_uuid, string brand_type, bool secondary_vetting)
         {
-        var mandatoryParams = new List<string>{"city", "vertical"};
+        var mandatoryParams = new List<string>{"brand_alias", "profile_uuid"};
         var data = CreateData(
             mandatoryParams,
             new
             {
-                city,
-                company_name,
-                country,
-                ein,
-                ein_issuing_country,
-                email,
-                entity_type,
-                phone,
-                postal_code,
-                state,
-                stock_exchange,
-                stock_symbol,
-                street,
-                vertical,
-                website,
-                secondary_vetting,
-                alt_business_id_type,
-                first_name,
-                last_name,
-                alt_business_id
+                brand_alias,
+                profile_uuid,
+                brand_type,
+                secondary_vetting
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -148,54 +119,22 @@ namespace Plivo.Resource.Brand
 		 /// <summary>
         /// Create Brand .
        /// <returns>The create.</returns>
-        /// <param name="city">City.</param>
-        /// <param name="company_name">CompanyName.</param>
-        /// <param name="country">Country.</param>
-        /// <param name="Ein">Ein.</param>
-        /// <param name="ein_issuing_country">EinIssuingCountry.</param>
-        /// <param name="email">Email</param>
-        /// <param name="entity_type">EntityType</param>
-        /// <param name="postal_code">PostalCode</param>
-        /// <param name="registration_status">RegistrationStatus</param>
-        /// <param name="state">State</param>
-        /// <param name="stock_exchange">StockExchange</param>
-        /// <param name="stock_symbol">StockSymbol</param>
-        /// <param name="street">Street</param>
-        /// <param name="vertical">Vertical</param>
-		public async Task<BrandCreateResponse> CreateAsync(
-			string city, string company_name, string country, string ein, string ein_issuing_country,
-            string email, string entity_type,  string phone, string postal_code,
-            string registration_status, string state, string stock_exchange, string stock_symbol, string street, string vertical,string first_name, string last_name,
-            string website = null, string secondary_vetting = null,
-            string alt_business_id_type = null,  string alt_business_id = null)
+        /// <param name="brand_alias">brand_alias.</param>
+        /// <param name="profile_uuid">profile_uuid.</param>
+        /// <param name="brand_type">brand_type.</param>
+        /// <param name="secondary_vetting">secondary_vetting.</param>
+		public async Task<BrandCreateResponse> CreateAsync(string brand_alias, string profile_uuid, string brand_type, bool secondary_vetting)
 		{
 
-			 var mandatoryParams = new List<string>{"city", "vertical"};
+			 var mandatoryParams = new List<string>{"brand_alias", "profile_uuid"};
         var data = CreateData(
             mandatoryParams,
             new
             {
-                city,
-                company_name,
-                country,
-                ein,
-                ein_issuing_country,
-                email,
-                entity_type,
-                phone,
-                postal_code,
-                registration_status,
-                state,
-                stock_exchange,
-                stock_symbol,
-                street,
-                vertical,
-                website,
-                secondary_vetting,
-                alt_business_id_type,
-                first_name,
-                last_name,
-                alt_business_id
+                brand_alias,
+                profile_uuid,
+                brand_type,
+                secondary_vetting
             });
 
 			var result = await Client.Update<BrandCreateResponse>(Uri + "10dlc/Brand/", data);
