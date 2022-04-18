@@ -104,7 +104,7 @@ namespace Plivo.Resource.Campaign
 
         public CreateCampaign Create(string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2, string[] sub_usecases= null)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2, string[] sub_usecases= null, string url=null, string method=null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
@@ -124,7 +124,9 @@ namespace Plivo.Resource.Campaign
                 subscriber_optout,
                 subscriber_help,
                 sample1,
-                sample2
+                sample2,
+                url,
+                method
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -154,7 +156,7 @@ namespace Plivo.Resource.Campaign
         /// <param name="sample2">sample1</param>
 		public async Task<CreateCampaign> CreateAsync(string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2,string[] sub_usecases= null)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2,string[] sub_usecases= null, string url=null, string method=null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -175,7 +177,9 @@ namespace Plivo.Resource.Campaign
                 subscriber_optout,
                 subscriber_help,
                 sample1,
-                sample2
+                sample2,
+                url,
+                method
             });
 
 			var result = await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data);
@@ -247,14 +251,16 @@ namespace Plivo.Resource.Campaign
         /// <param name="campaignId">campaignId.</param>
         /// <param name="numbers">numbers.</param>
 
-        public LinkNumber LinkNumber(string campaignId, List<string> numbers)
+        public LinkNumber LinkNumber(string campaignId, List<string> numbers,  string url=null, string method=null)
         {
         var mandatoryParams = new List<string> { "" };
         var data = CreateData(
             mandatoryParams,
             new
             {
-                numbers
+                numbers,
+                url,
+                method
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -269,7 +275,7 @@ namespace Plivo.Resource.Campaign
         /// <returns>The create.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="numbers">numbers.</param>
-		public async Task<LinkNumber> LinkNumberAsync(string campaignId, List<string> numbers)
+		public async Task<LinkNumber> LinkNumberAsync(string campaignId, List<string> numbers, string url=null, string method=null)
 		{
 
 			 var mandatoryParams = new List<string>{"numbers"};
@@ -277,7 +283,9 @@ namespace Plivo.Resource.Campaign
             mandatoryParams,
             new
             {
-                numbers
+                numbers,
+                url,
+                method
             });
 
 			var result = await Client.Update<LinkNumber>(Uri + "10dlc/Campaign/"+campaignId+"/Number/", data);
