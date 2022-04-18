@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.10.0](https://github.com/plivo/plivo-dotnet/tree/v5.10.0) (2022-04-18)
+**Feature - Voice Async API requests**
+- Added [asynchronous](https://www.plivo.com/docs/voice/api/request#asynchronous-request) SDK requests support for all The Voice APIs
+
 ## [v5.9.0](https://github.com/plivo/plivo-dotnet/tree/v5.9.0) (2022-04-14)
 **Feature - 10dlc api**
 - Profile API, Brand API, Number Linking
