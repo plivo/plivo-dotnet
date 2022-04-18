@@ -85,9 +85,8 @@ namespace Plivo.Resource.Endpoint
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
@@ -190,9 +189,8 @@ namespace Plivo.Resource.Endpoint
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams, new { subaccount, limit, offset, callbackUrl, callbackMethod, isVoiceRequest });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
                 Uri, data).ConfigureAwait(false)).Result;
@@ -306,9 +304,8 @@ namespace Plivo.Resource.Endpoint
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();

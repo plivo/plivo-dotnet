@@ -142,9 +142,8 @@ namespace Plivo.Resource.Application
                     callbackMethod
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
@@ -246,9 +245,8 @@ namespace Plivo.Resource.Application
             var data = CreateData(
                 mandatoryParams, new {subaccount, limit, offset, callbackUrl, callbackMethod, isVoiceRequest});
             
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
 
             var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
@@ -304,9 +302,8 @@ namespace Plivo.Resource.Application
                 callbackMethod,
                 isVoiceRequest
             });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
                 Uri + appId + "/", data).ConfigureAwait(false)).Result;
@@ -429,9 +426,8 @@ namespace Plivo.Resource.Application
                     callbackUrl,
                     callbackMethod
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
 
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + appId + "/", data).ConfigureAwait(false)).Result;

@@ -172,9 +172,8 @@ namespace Plivo.Resource.Recording
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(

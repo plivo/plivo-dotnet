@@ -562,9 +562,8 @@ namespace Plivo.Resource.Conference
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(
                 Uri +
@@ -791,9 +790,8 @@ namespace Plivo.Resource.Conference
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -837,9 +835,8 @@ namespace Plivo.Resource.Conference
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             

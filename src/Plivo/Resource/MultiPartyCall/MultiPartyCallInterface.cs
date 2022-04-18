@@ -258,9 +258,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
@@ -1097,9 +1096,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1173,9 +1171,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1346,9 +1343,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1412,9 +1408,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1482,9 +1477,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1555,9 +1549,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1673,9 +1666,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
                     + participantId + "/Record/", data).ConfigureAwait (false)).Result;
@@ -1738,9 +1730,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Participant/"
                     + participantId + "/Record/", data).ConfigureAwait (false)).Result;
@@ -1808,9 +1799,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
                 + participantId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
@@ -1881,9 +1871,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
                 + participantId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
@@ -1969,9 +1958,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
@@ -2052,9 +2040,8 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (
                 Uri + mpcId + "/Participant/" + participantId + "/", data).ConfigureAwait(false)).Result;
@@ -2270,9 +2257,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
             
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => 
                     await Client.Update<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
@@ -2343,9 +2329,8 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            if (callbackMethod == null)
-            {
-                data.Remove(callbackMethod);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
             var result = Task.Run (async () => 
                     await Client.Delete<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
