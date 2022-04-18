@@ -1207,12 +1207,16 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            var result = Task.Run(async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/",new Dictionary<string, object> ()
+            var data = new Dictionary<string, object>()
             {
                 {"callback_url", callbackUrl},
                 {"callback_method", callbackMethod},
                 {"is_voice_request", true}
-            }).ConfigureAwait(false)).Result;
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
@@ -2118,13 +2122,17 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod},
+                {"is_voice_request", true}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
             var result = Task.Run (async () => await Client.Delete<AsyncResponse> (
-                Uri + mpcId + "/Participant/" + participantId + "/", new Dictionary<string, object>()
-                {
-                    {"callback_url", callbackUrl},
-                    {"callback_method", callbackMethod},
-                    {"is_voice_request", true}
-                }).ConfigureAwait(false)).Result;
+                Uri + mpcId + "/Participant/" + participantId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;

@@ -216,13 +216,17 @@ namespace Plivo.Resource.Endpoint
             string callbackUrl = null, string callbackMethod = null)
         {
             MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
             var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
-                Uri + endpointId + "/", new Dictionary<string, object> ()
-                {
-                    {"callback_url", callbackUrl},
-                    {"callback_method", callbackMethod},
-                    {"is_voice_request", true}
-                }).ConfigureAwait(false)).Result;
+                Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
