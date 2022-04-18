@@ -77,10 +77,13 @@ namespace Plivo.Resource.Call
         /// Asynchronously delete Call with the specified callUuid.
         /// </summary>
         /// <returns>The delete.</returns>
-        public async Task<DeleteResponse<Call>> DeleteAsync()
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> DeleteAsync
+            (string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .DeleteAsync(Id);
+                .DeleteAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -111,13 +114,15 @@ namespace Plivo.Resource.Call
         /// <param name="alegMethod">Aleg method.</param>
         /// <param name="blegUrl">Bleg URL.</param>
         /// <param name="blegMethod">Bleg method.</param>
-        public async Task<UpdateResponse<Call>> TransferAsync(
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> TransferAsync(
             string legs = null, string alegUrl = null,
             string alegMethod = null, string blegUrl = null,
-            string blegMethod = null)
+            string blegMethod = null, string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .TransferAsync(Id, legs, alegUrl, alegMethod, blegUrl, blegMethod);
+                .TransferAsync(Id, legs, alegUrl, alegMethod, blegUrl, blegMethod, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -147,12 +152,15 @@ namespace Plivo.Resource.Call
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
-        public async Task<UpdateResponse<Call>> StartPlayingAsync(
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
+        public async Task<AsyncResponse> StartPlayingAsync(
             List<string> urls, uint? length = null,
-            string legs = null, bool? loop = null, bool? mix = null)
+            string legs = null, bool? loop = null, bool? mix = null, 
+            string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .StartPlayingAsync(Id, urls, length, legs, loop, mix);
+                .StartPlayingAsync(Id, urls, length, legs, loop, mix, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -170,14 +178,18 @@ namespace Plivo.Resource.Call
         /// Asynchronously stops the playing.
         /// </summary>
         /// <returns>The playing.</returns>
-        public async Task<DeleteResponse<Call>> StopPlayingAsync()
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
+        public async Task<AsyncResponse> StopPlayingAsync( 
+        string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .StopPlayingAsync(Id);
+                .StopPlayingAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
 
         #region StartRecording
+        // HOW ABOUT THIS??
         /// <summary>
         /// Starts the recording.
         /// </summary>
@@ -211,7 +223,7 @@ namespace Plivo.Resource.Call
         /// <param name="transactionMethod">Transaction method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<RecordCreateResponse<Call>> StartRecordingAsync(
+        public async Task<AsyncResponse> StartRecordingAsync(
             uint? timeLimit = null, string fileFormat = null,
             string transactionType = null, string transactionUrl = null,
             string transactionMethod = null, string callbackUrl = null,
@@ -240,10 +252,13 @@ namespace Plivo.Resource.Call
         /// </summary>
         /// <returns>The recording.</returns>
         /// <param name="URL">URL.</param>
-        public async Task<DeleteResponse<Call>> StopRecordingAsync(string URL = null)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> StopRecordingAsync(string URL = null, 
+            string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .StopRecordingAsync(Id, URL);
+                .StopRecordingAsync(Id, URL, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -277,14 +292,16 @@ namespace Plivo.Resource.Call
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
-        public async Task<UpdateResponse<Call>> StartSpeakingAsync(
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> StartSpeakingAsync(
             string text, string voice = null,
             string language = null, string legs = null, bool? loop = null,
-            bool? mix = null)
+            bool? mix = null, string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
                 .StartSpeakingAsync(
-                    Id, text, voice, language, legs, loop, mix);
+                    Id, text, voice, language, legs, loop, mix, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -302,10 +319,12 @@ namespace Plivo.Resource.Call
         /// Asynchronously stops the speaking.
         /// </summary>
         /// <returns>The speaking.</returns>
-        public async Task<DeleteResponse<Call>> StopSpeakingAsync()
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> StopSpeakingAsync(string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .StopSpeakingAsync(Id);
+                .StopSpeakingAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
 
@@ -316,11 +335,13 @@ namespace Plivo.Resource.Call
         /// <returns>The digits.</returns>
         /// <param name="digits">Digits.</param>
         /// <param name="leg">Leg.</param>
-        public async Task<UpdateResponse<Call>> SendDigitsAsync(
-            string digits, string leg = null)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> SendDigitsAsync(
+            string digits, string leg = null, string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .SendDigitsAsync(Id, digits, leg);
+                .SendDigitsAsync(Id, digits, leg, callbackUrl, callbackMethod);
         }
         /// <summary>
         /// Sends the digits.
@@ -350,10 +371,12 @@ namespace Plivo.Resource.Call
         /// Asynchronously cancels the call.
         /// </summary>
         /// <returns>The call.</returns>
-        public async Task<DeleteResponse<Call>> CancelCallAsync()
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> CancelCallAsync(string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
-                .CancelCallAsync(Id);
+                .CancelCallAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
         /// <summary>
