@@ -258,7 +258,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
@@ -307,12 +310,16 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + mpcId + "/", new Dictionary<string, object> ()
+            var data = new Dictionary<string, object>()
             {
+                {"is_voice_request", true},
                 {"callback_url", callbackUrl},
-                {"callback_method", callbackMethod},
-                {"is_voice_request", true}
-            }).ConfigureAwait(false)).Result;
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + mpcId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             JObject responseJson = JObject.Parse(result.Content);
@@ -1090,7 +1097,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
@@ -1163,6 +1173,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
@@ -1332,7 +1346,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
@@ -1395,11 +1412,14 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            
-                var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
-                await Task.WhenAll();
-                result.Object.StatusCode = result.StatusCode;
-                return result.Object;
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Record/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            return result.Object;
         }
         
         public UpdateResponse<MultiPartyCall> PauseRecording (
@@ -1462,14 +1482,17 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            
-                var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
-                await Task.WhenAll();
-                result.Object.StatusCode = result.StatusCode;
-                JObject responseJson = JObject.Parse(result.Content);
-                result.Object.ApiId = responseJson["api_id"].ToString();
-                result.Object.Message = responseJson["message"].ToString();
-                return result.Object;
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         
         public UpdateResponse<MultiPartyCall> ResumeRecording (
@@ -1532,14 +1555,17 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            
-                var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
-                await Task.WhenAll();
-                result.Object.StatusCode = result.StatusCode;
-                JObject responseJson = JObject.Parse(result.Content);
-                result.Object.ApiId = responseJson["api_id"].ToString();
-                result.Object.Message = responseJson["message"].ToString();
-                return result.Object;
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
 
         public RecordCreateResponse<MultiPartyCallParticipant> StartParticipantRecording (
@@ -1647,6 +1673,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
                     + participantId + "/Record/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
@@ -1708,7 +1738,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + mpcId + "/Participant/"
                     + participantId + "/Record/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1775,6 +1808,10 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
                 + participantId + "/Record/Pause/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1844,6 +1881,10 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + mpcId + "/Participant/"
                 + participantId + "/Record/Resume/", data).ConfigureAwait (false)).Result;
             await Task.WhenAll();
@@ -1928,7 +1969,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + mpcId + "/Participant/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
@@ -2008,7 +2052,10 @@ namespace Plivo.Resource.MultiPartyCall
                     callbackMethod,
                     isVoiceRequest
                 });
-            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run (async () => await Client.Update<AsyncResponse> (
                 Uri + mpcId + "/Participant/" + participantId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
@@ -2064,14 +2111,17 @@ namespace Plivo.Resource.MultiPartyCall
                     new List<string>() {"GET", "POST"});
             }
             string mpcId = MakeMpcId(mpcUuid, friendlyName);
-            
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
             var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (
-                Uri + mpcId + "/Participant/" + participantId + "/", new Dictionary<string, object>()
-                {
-                    {"callback_url", callbackUrl},
-                    {"callback_method", callbackMethod},
-                    {"is_voice_request", true}
-                }).ConfigureAwait(false)).Result;
+                Uri + mpcId + "/Participant/" + participantId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             JObject responseJson = JObject.Parse(result.Content);
@@ -2220,7 +2270,11 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
             
-                var result = Task.Run (async () => 
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
+            var result = Task.Run (async () => 
                     await Client.Update<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
                 result.Object.StatusCode = result.StatusCode;
@@ -2289,8 +2343,11 @@ namespace Plivo.Resource.MultiPartyCall
                     isVoiceRequest
                 });
 
-            
-                var result = Task.Run (async () => 
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
+            var result = Task.Run (async () => 
                     await Client.Delete<AsyncResponse> (Uri + mpcId + "/Member/" + participantId + "/Play/", data).ConfigureAwait (false)).Result;
                 await Task.WhenAll();
                 result.Object.StatusCode = result.StatusCode;

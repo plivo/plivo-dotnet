@@ -142,6 +142,10 @@ namespace Plivo.Resource.Application
                     callbackMethod
                 });
 
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
@@ -177,13 +181,17 @@ namespace Plivo.Resource.Application
         public async Task<AsyncResponse> GetAsync(string appId, string callbackUrl = null, string callbackMethod = null)
         {
             MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
             var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
-                Uri + appId + "/", new Dictionary<string, object> ()
-                {
-                    {"callback_url", callbackUrl},
-                    {"callback_method", callbackMethod},
-                    {"is_voice_request", true}
-                }).ConfigureAwait(false)).Result;
+                Uri + appId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             JObject responseJson = JObject.Parse(result.Content);
@@ -237,6 +245,11 @@ namespace Plivo.Resource.Application
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams, new {subaccount, limit, offset, callbackUrl, callbackMethod, isVoiceRequest});
+            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
 
             var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
                 Uri, data).ConfigureAwait(false)).Result;
@@ -291,6 +304,10 @@ namespace Plivo.Resource.Application
                 callbackMethod,
                 isVoiceRequest
             });
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
             var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
                 Uri + appId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
@@ -412,6 +429,10 @@ namespace Plivo.Resource.Application
                     callbackUrl,
                     callbackMethod
                 });
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
 
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + appId + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
