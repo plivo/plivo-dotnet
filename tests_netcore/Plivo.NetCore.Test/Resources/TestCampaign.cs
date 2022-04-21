@@ -60,5 +60,56 @@ namespace Plivo.NetCore.Test.Resources
 
             AssertRequest(request);
         }
+
+        [Fact]
+        public void TestCampaignListNumber()
+        {
+            var campaignID = "CRIGC80";
+            var data = new Dictionary<string, object>();
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/"+campaignID+"/Number/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/campaignListNumberResponse.json"
+                );
+            Setup<Number>(
+                200,
+                response
+            );
+            var resp = Api.Campaign.ListNumber(campaignID);
+           
+            AssertRequest(request);
+        }
+
+        [Fact]
+        public void TestCampaignGetNumber()
+        {
+            var campaignID = "CRIGC80";
+            var number = "14845007032";
+            var data = new Dictionary<string, object>();
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/"+campaignID+"/Number/"+number+"/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/campaignGetNumberResponse.json"
+                );
+            Setup<Number>(
+                200,
+                response
+            );
+            var resp = Api.Campaign.GetNumber(campaignID, number);
+           
+            AssertRequest(request);
+        }
     }
 }

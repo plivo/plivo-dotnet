@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plivo.Client;
+using Plivo.Http;
 using Plivo.Utilities;
 
 namespace Plivo.Resource.Call {
@@ -152,7 +153,9 @@ namespace Plivo.Resource.Call {
         /// <param name="ringTimeout">Ring timeout.</param>
         /// <param name="parentCallUuid">Parent call UUID.</param>
         /// <param name="errorIfrentNotFound">Error ifrent not found.</param>
-        public async Task<CallCreateResponse> CreateAsync(
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> CreateAsync(
             string from = null, List<string> to = null, string answerUrl = null, string answerMethod = null,
             string ringUrl = null, string ringMethod = null,
             string hangupUrl = null, string hangupMethod = null,
@@ -163,7 +166,7 @@ namespace Plivo.Resource.Call {
             uint? machineDetectionTime = null, string machineDetectionUrl = null,
             string machineDetectionMethod = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
-            bool? errorIfrentNotFound = null) 
+            bool? errorIfrentNotFound = null, string callbackUrl = null, string callbackMethod = "POST") 
             {
             to = to ?? new List<string>();
             string _to = string.Join("<", to);
@@ -196,14 +199,22 @@ namespace Plivo.Resource.Call {
                     ringTimeout,
                     parentCallUuid,
                     errorIfrentNotFound,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-
-            var result = await Client.Update<CallCreateResponse>(Uri, data);
+            
+            if (callbackMethod == null)
+            {
+                data.Remove(callbackMethod);
+            }
+            
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result =  Task.Run (async () => await Client.Update<AsyncResponse> (Uri, data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             JObject responseJson = JObject.Parse(result.Content);
             result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.RequestUuid = responseJson["request_uuid"].ToString();
             result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
@@ -321,7 +332,9 @@ namespace Plivo.Resource.Call {
         /// <param name="endTime_Lte">End time lte.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
-        public async Task<ListResponse<Call>> ListAsync(
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> ListAsync(
             string subaccount = null, string callDirection = null,
             string fromNumber = null, string toNumber = null, string parentCallUuid = null,
             string hangupSource = null, uint? hangupCauseCode = null,
@@ -330,7 +343,7 @@ namespace Plivo.Resource.Call {
             DateTime? billDuration_Lte = null, DateTime? endTime = null,
             DateTime? endTime_Gt = null, DateTime? endTime_Gte = null,
             DateTime? endTime_Lt = null, DateTime? endTime_Lte = null,
-            uint? limit = null, uint? offset = null) 
+            uint? limit = null, uint? offset = null, string callbackUrl = null, string callbackMethod = null) 
             {
             var _billDuration = billDuration?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
             var _billDuration_Gt = billDuration_Gt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
@@ -368,16 +381,24 @@ namespace Plivo.Resource.Call {
                     _endTime_Lt,
                     _endTime_Lte,
                     limit,
-                    offset, 
+                    offset,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var resources = await ListResources<ListResponse<Call>> (data);
-            resources.Objects.ForEach (
-                (obj) => obj.Interface = this
-            );
-
-            return resources;
-        }
+            
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri, data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
+            }
         #endregion
 
         #region Get
@@ -402,14 +423,24 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="callUuid">Call UUID.</param>
-        public async Task<Call> GetAsync(string callUuid = null) 
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> GetAsync(string callUuid = null, string callbackUrl = null, string callbackMethod = null) 
         {
             MpcUtils.ValidParamString("CallUUid",callUuid,true);
             bool isVoiceRequest = true;
-            var data = CreateData(new List<string> {""},new {isVoiceRequest});
-            var call = await GetResource<Call>(callUuid, data);
-            call.Interface = this;
-            return call;
+            var data = CreateData(new List<string> {""},new {callbackUrl, callbackMethod, isVoiceRequest});
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + callUuid + "/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -450,8 +481,10 @@ namespace Plivo.Resource.Call {
         /// <param name="callDirection">Call direction.</param>
         /// <param name="fromNumber">From number.</param>
         /// <param name="toNumber">To number.</param>
-        public async Task<LiveCallListResponse> ListLiveAsync (string callDirection = null,
-            string fromNumber = null, string toNumber = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> ListLiveAsync (string callDirection = null,
+            string fromNumber = null, string toNumber = null, string callbackUrl = null, string callbackMethod = null) {
             var status = "live";
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
@@ -462,10 +495,22 @@ namespace Plivo.Resource.Call {
                     callDirection,
                     fromNumber,
                     toNumber,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
 
-            return await ListResources<LiveCallListResponse> (data);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri, data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -489,12 +534,28 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The live.</returns>
         /// <param name="liveCallUuid">Live call UUID.</param>
-        public async Task<LiveCall> GetLiveAsync (string liveCallUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> GetLiveAsync (string liveCallUuid = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("liveCallUuid",liveCallUuid,true);
-            var liveCall = await GetResource<LiveCall> (
-                liveCallUuid, new Dictionary<string, object> () { { "status", "live" } , {"is_voice_request", true}});
-            liveCall.Interface = this;
-            return liveCall;
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"status", "live" } ,
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (Uri + liveCallUuid + "/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -518,12 +579,28 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>Queued call details.</returns>
         /// <param name="callUuid">Call UUID.</param>
-        public async Task<QueuedCall> GetQueuedAsync (string callUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> GetQueuedAsync (string callUuid = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
-            var queuedCall = await GetResource<QueuedCall> (
-                callUuid, new Dictionary<string, object> () { { "status", "queued" }, {"is_voice_request", true} });
-            queuedCall.Interface = this;
-            return queuedCall;
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"status", "queued" } ,
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> ( Uri + callUuid + "/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -542,10 +619,27 @@ namespace Plivo.Resource.Call {
         /// Lists the queued calls.
         /// </summary>
         /// <returns>queued calls list</returns>
-        public async Task<QueuedCallListResponse> ListQueuedAsync () {
-            return
-            await ListResources<QueuedCallListResponse> (
-                new Dictionary<string, object> () { { "status", "queued" }, {"is_voice_request", true} });
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> ListQueuedAsync (string callbackUrl = null, string callbackMethod = null) {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"status", "queued" } ,
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> ( Uri, data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -568,11 +662,22 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="callUuid">Call UUID.</param>
-        public async Task<DeleteResponse<Call>> DeleteAsync (string callUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> DeleteAsync (string callUuid = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             bool isVoiceRequest = true;
-            var data = CreateData(new List<string> {""},new {isVoiceRequest});
-            return await DeleteResource<DeleteResponse<Call>> (callUuid,data);
+            var data = CreateData(new List<string> {""},
+                new {isVoiceRequest, callbackUrl, callbackMethod});
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + callUuid + "/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            return result.Object;
         }
         #endregion
 
@@ -620,10 +725,12 @@ namespace Plivo.Resource.Call {
         /// <param name="alegMethod">Aleg method.</param>
         /// <param name="blegUrl">Bleg URL.</param>
         /// <param name="blegMethod">Bleg method.</param>
-        public async Task<UpdateResponse<Call>> TransferAsync (
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> TransferAsync (
             string callUuid = null, string legs = null, string alegUrl = null,
             string alegMethod = null, string blegUrl = null,
-            string blegMethod = null) {
+            string blegMethod = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
@@ -635,10 +742,20 @@ namespace Plivo.Resource.Call {
                     alegMethod,
                     blegUrl,
                     blegMethod,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/", data);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + callUuid + "/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -693,9 +810,12 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
-        public async Task<UpdateResponse<Call>> StartPlayingAsync (
+        /// <param name="callbackUrl">CallbackUrl.</param>
+        /// <param name="callbackMethod">CallbackMethod.</param>
+        public async Task<AsyncResponse> StartPlayingAsync (
             string callUuid = null, List<string> urls = null, uint? length = null,
-            string legs = null, bool? loop = null, bool? mix = null) {
+            string legs = null, bool? loop = null, bool? mix = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             urls = urls ?? new List<string>();
             var _urls = string.Join (",", urls);
@@ -709,14 +829,20 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/Play/", data);
-            try {
-                result.Object.StatusCode = result.StatusCode;
-            } catch (System.NullReferenceException) {
-
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + callUuid + "/Play/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -744,14 +870,24 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The playing.</returns>
         /// <param name="callUuid">Call UUID.</param>
-        public async Task<DeleteResponse<Call>> StopPlayingAsync (string callUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> StopPlayingAsync (string callUuid = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
-            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Play/", new Dictionary<string, object> () { {"is_voice_request", true} });
-            try {
-                result.Object.StatusCode = result.StatusCode;
-            } catch (System.NullReferenceException) {
-
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + callUuid + "/Play/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -790,6 +926,9 @@ namespace Plivo.Resource.Call {
                     isVoiceRequest
                 });
 
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
             return ExecuteWithExceptionUnwrap (() => {
                 var result = Task.Run (async () => await Client.Update<RecordCreateResponse<Call>> (Uri + callUuid + "/Record/", data).ConfigureAwait (false)).Result;
                 try {
@@ -812,7 +951,7 @@ namespace Plivo.Resource.Call {
         /// <param name="transactionMethod">Transaction method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
-        public async Task<RecordCreateResponse<Call>> StartRecordingAsync (
+        public async Task<AsyncResponse> StartRecordingAsync (
             string callUuid = null, uint? timeLimit = null, string fileFormat = null,
             string transactionType = null, string transactionUrl = null,
             string transactionMethod = null, string callbackUrl = null,
@@ -832,9 +971,16 @@ namespace Plivo.Resource.Call {
                     callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<RecordCreateResponse<Call>> (Uri + callUuid + "/Record/", data);
-            
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + callUuid + "/Record/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -869,18 +1015,22 @@ namespace Plivo.Resource.Call {
         /// <returns>The recording.</returns>
         /// <param name="callUuid">Call UUID.</param>
         /// <param name="URL">URL.</param>
-        public async Task<DeleteResponse<Call>> StopRecordingAsync (string callUuid = null, string URL = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> StopRecordingAsync (string callUuid = null, string URL = null, 
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var data = CreateData (
-                mandatoryParams, new { URL, isVoiceRequest });
-            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Record/", data);
-            try {
-                result.Object.StatusCode = result.StatusCode;
-            } catch (System.NullReferenceException) {
-
+                mandatoryParams, new { URL, callbackUrl, callbackMethod, isVoiceRequest });
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
             }
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + callUuid + "/Record/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
         #endregion
@@ -933,10 +1083,12 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
-        public async Task<UpdateResponse<Call>> StartSpeakingAsync (
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> StartSpeakingAsync (
             string callUuid = null, string text = null, string voice = null,
             string language = null, string legs = null, bool? loop = null,
-            bool? mix = null) {
+            bool? mix = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "text" };
             bool isVoiceRequest = true;
@@ -949,10 +1101,20 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/Speak/", data);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + callUuid + "/Speak/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
 
@@ -977,9 +1139,22 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The speaking.</returns>
         /// <param name="callUuid">Call UUID.</param>
-        public async Task<DeleteResponse<Call>> StopSpeakingAsync (string callUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> StopSpeakingAsync (string callUuid = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
-            var result = await Client.Delete<DeleteResponse<Call>> (Uri + callUuid + "/Speak/", new Dictionary<string, object> () { {"is_voice_request", true} });
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> (Uri + callUuid + "/Speak/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
@@ -1019,8 +1194,11 @@ namespace Plivo.Resource.Call {
         /// <param name="callUuid">Call UUID.</param>
         /// <param name="digits">Digits.</param>
         /// <param name="leg">Leg.</param>
-        public async Task<UpdateResponse<Call>> SendDigitsAsync (
-            string callUuid = null, string digits = null, string leg = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> SendDigitsAsync (
+            string callUuid = null, string digits = null, string leg = null,
+            string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "digits" };
             bool isVoiceRequest = true;
@@ -1029,10 +1207,20 @@ namespace Plivo.Resource.Call {
                 new {
                     digits,
                     leg,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<UpdateResponse<Call>> (Uri + callUuid + "/DTMF/", data);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var result = Task.Run (async () => await Client.Update<AsyncResponse> (Uri + callUuid + "/DTMF/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -1056,9 +1244,22 @@ namespace Plivo.Resource.Call {
         /// </summary>
         /// <returns>The call.</returns>
         /// <param name="requestUuid">Request UUID.</param>
-        public async Task<DeleteResponse<Call>> CancelCallAsync (string requestUuid = null) {
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> CancelCallAsync (string requestUuid = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("requestUuid",requestUuid,true);
-            var result = await Client.Delete<DeleteResponse<Call>> ("Account/" + Client.GetAuthId () + "/Request/" + requestUuid + "/", new Dictionary<string, object> () { {"is_voice_request", true} });
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run (async () => await Client.Delete<AsyncResponse> ("Account/" + Client.GetAuthId () + "/Request/" + requestUuid + "/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             return result.Object;
         }
