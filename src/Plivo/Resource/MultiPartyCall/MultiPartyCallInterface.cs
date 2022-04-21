@@ -188,6 +188,7 @@ namespace Plivo.Resource.MultiPartyCall
             dynamic delayDial = null,
             uint? maxDuration = 14400,
             uint? maxParticipants = 10,
+            uint? recordMinMemberCount = 1,
             string waitMusicUrl = null,
             string waitMusicMethod = "GET",
             string agentHoldMusicUrl = null,
@@ -353,6 +354,11 @@ namespace Plivo.Resource.MultiPartyCall
             {
                 MpcUtils.ValidRange("maxParticipants", maxParticipants, false, 2, 10);
             }
+            
+            if (recordMinMemberCount != null)
+            {
+                MpcUtils.ValidRange("recordMinMemberCount", recordMinMemberCount, false, 1, 2);
+            }
 
             if (waitMusicUrl != null)
             {
@@ -507,6 +513,7 @@ namespace Plivo.Resource.MultiPartyCall
                     delayDial,
                     maxDuration,
                     maxParticipants,
+                    recordMinMemberCount,
                     waitMusicUrl,
                     waitMusicMethod,
                     agentHoldMusicUrl,
