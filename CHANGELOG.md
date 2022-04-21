@@ -1,8 +1,17 @@
 # Change Log
 
-## [v5.8.1](https://github.com/plivo/plivo-dotnet/tree/v5.8.1) (2022-04-11)
+## [v5.10.1](https://github.com/plivo/plivo-dotnet/tree/v5.10.1) (2022-04-11)
 **Feature - List all recordings**
 - `fromNumber` and `toNumber` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- `record_min_member_count` param added to [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
+
+## [v5.10.0](https://github.com/plivo/plivo-dotnet/tree/v5.10.0) (2022-04-18)
+**Feature - Voice Async API requests**
+- Added [asynchronous](https://www.plivo.com/docs/voice/api/request#asynchronous-request) SDK requests support for all The Voice APIs
+
+## [v5.9.0](https://github.com/plivo/plivo-dotnet/tree/v5.9.0) (2022-04-14)
+**Feature - 10dlc api**
+- Profile API, Brand API, Number Linking
 
 ## [v5.8.0](https://github.com/plivo/plivo-dotnet/tree/v5.8.0) (2022-03-25)
 **Feature - DialElement**

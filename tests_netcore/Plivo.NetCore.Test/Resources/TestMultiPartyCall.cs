@@ -42,6 +42,41 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcListAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/",
+                    "",
+                    data);
+            
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.ListAsync( callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcGet()
         {
             var data = new Dictionary<string, object>()
@@ -66,6 +101,41 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.MultiPartyCall.Get(mpcUuid: "b1e37275-b8e2-42cd-ae63-fffcc54a50b5")
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcGetAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_b1e37275-b8e2-42cd-ae63-fffcc54a50b5/",
+                    "",
+                    data);
+            
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.GetAsync(mpcUuid: "b1e37275-b8e2-42cd-ae63-fffcc54a50b5",callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
                 )
             );
 
@@ -140,6 +210,77 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcAddParticipantAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"role", "agent"},
+                {"from", "918888888888"},
+                {"to", "917013835803"},
+                {"caller_name", "918888888888"},
+                {"call_status_callback_method", "POST"},
+                {"confirm_key_sound_method", "GET"},
+                {"dial_music", "Real"},
+                {"ring_timeout", 45},
+                {"max_duration", 14400},
+                {"max_participants", 10},
+                {"wait_music_method", "GET"},
+                {"agent_hold_music_method", "GET"},
+                {"customer_hold_music_method", "GET"},
+                {"recording_callback_method", "GET"},
+                {"status_callback_method", "GET"},
+                {"on_exit_action_method", "POST"},
+                {"record", false},
+                {"record_file_format", "mp3"},
+                {"status_callback_events", "mpc-state-changes,participant-state-changes"},
+                {"stay_alone", false},
+                {"coach_mode", true},
+                {"mute", false},
+                {"hold", false},
+                {"start_mpc_on_enter", true},
+                {"end_mpc_on_exit", false},
+                {"relay_dtmf_inputs", false},
+                {"enter_sound", "beep:1"},
+                {"enter_sound_method", "GET"},
+                {"exit_sound", "beep:2"},
+                {"exit_sound_method", "GET"},
+                {"delay_dial", 0},
+                {"start_recording_audio_method", "GET"},
+                {"stop_recording_audio_method", "GET"},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/name_thanos/Participant/",
+                    "",
+                    data);
+            
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.AddParticipantAsync(role: "agent", 
+                        friendlyName: "thanos",
+                        from: "918888888888", to: "917013835803",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcStart()
         {
             var data = new Dictionary<string, object>()
@@ -166,6 +307,43 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcStartAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"status", "active"},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StartAsync("ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcStop()
         {
             var data = new Dictionary<string, object>()
@@ -186,6 +364,42 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Null(
                     Api.MultiPartyCall.Stop(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b")
                 );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStopAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(204, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StopAsync("ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
 
             AssertRequest(request);
         }
@@ -223,6 +437,44 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcStartRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"file_format", "mp3"},
+                {"recording_callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Record/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StartRecordingAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcStopRecording()
         {
             var data = new Dictionary<string, object>()
@@ -242,6 +494,42 @@ namespace Plivo.NetCore.Test.Resources
             
             Assert.Null(
                 Api.MultiPartyCall.StopRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStopRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Record/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(204, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StopRecordingAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
             );
 
             AssertRequest(request);
@@ -273,6 +561,42 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcPauseRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Record/Pause/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.PauseRecordingAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcResumeRecording()
         {
             var data = new Dictionary<string, object>()
@@ -292,6 +616,42 @@ namespace Plivo.NetCore.Test.Resources
             
             Assert.Null(
                 Api.MultiPartyCall.ResumeRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcResumeRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Record/Resume/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.ResumeRecordingAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
             );
 
             AssertRequest(request);
@@ -322,6 +682,42 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.MultiPartyCall.ListParticipants(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b")
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcListParticipantsAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.ListParticipantsAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
                 )
             );
 
@@ -365,6 +761,46 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcUpdateParticipantAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"coach_mode", false},
+                {"mute", true},
+                {"hold", false},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/209/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.UpdateParticipantAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
+                        participantId: "209", coachMode: false,
+                        mute: true, hold: false, callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcGetParticipant()
         {
             var data = new Dictionary<string, object>()
@@ -397,6 +833,42 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcGetParticipantAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/209/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.GetParticipantAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
+                        participantId: "209", callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcKickParticipant()
         {
             var data = new Dictionary<string, object>()
@@ -418,6 +890,42 @@ namespace Plivo.NetCore.Test.Resources
                     Api.MultiPartyCall.KickParticipant(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
                         participantId: "209" )
                 );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcKickParticipantAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/209/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(204, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.KickParticipantAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
+                        participantId: "209", callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
 
             AssertRequest(request);
         }
@@ -455,6 +963,43 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcStartParticipantRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"file_format", "mp3"},
+                {"recording_callback_method", "POST"},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StartParticipantRecordingAsync(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b",
+                        participantId: "10", callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcStopParticipantRecording()
         {
             var data = new Dictionary<string, object>()
@@ -474,6 +1019,44 @@ namespace Plivo.NetCore.Test.Resources
             
             Assert.Null(
                 Api.MultiPartyCall.StopParticipantRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", participantId: "10")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStopParticipantRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(204, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StopParticipantRecordingAsync(
+                        mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
+                        participantId: "10",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
             );
 
             AssertRequest(request);
@@ -505,6 +1088,44 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcPauseParticipantRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/Pause/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.PauseParticipantRecordingAsync(
+                        mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
+                        participantId: "10",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcResumeParticipantRecording()
         {
             var data = new Dictionary<string, object>()
@@ -524,6 +1145,44 @@ namespace Plivo.NetCore.Test.Resources
             
             Assert.Null(
                 Api.MultiPartyCall.ResumeParticipantRecording(mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", participantId: "10")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcResumeParticipantRecordingAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/uuid_ebacced2-21ab-466d-9df4-67339991761b/Participant/10/Record/Resume/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.ResumeParticipantRecordingAsync(
+                        mpcUuid: "ebacced2-21ab-466d-9df4-67339991761b", 
+                        participantId: "10",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST"
+                    ).Result
+                )
             );
 
             AssertRequest(request);
@@ -561,6 +1220,42 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestMpcStartPlayAudioAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"url", "https://s3.amazonaws.com/XXX/XXX.mp3"},
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/name_sampleMpc/Member/10/Play/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(200, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StartPlayAudioAsync(friendlyName: "sampleMpc",
+                        participantId: "10", url: "https://s3.amazonaws.com/XXX/XXX.mp3",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST").Result
+                )
+            );
+            AssertRequest(request);
+        }
+        
+        [Fact]
         public void TestMpcStopPlayAudio()
         {
             var data = new Dictionary<string, object>()
@@ -580,6 +1275,41 @@ namespace Plivo.NetCore.Test.Resources
             
             Assert.Null(
                 Api.MultiPartyCall.StopPlayAudio(friendlyName: "sampleMpc", participantId: "10")
+            );
+
+            AssertRequest(request);
+        }
+        
+        [Fact]
+        public void TestMpcStopPlayAudioAsync()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"callback_url", "https://www.google.com"},
+                {"callback_method", "POST"},
+                {"is_voice_request", true}
+            };
+            
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/MultiPartyCall/name_sampleMpc/Member/10/Play/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/asyncResponse.json"
+                );
+            Setup<AsyncResponse>(204, response);
+            
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.MultiPartyCall.StopPlayAudioAsync(friendlyName: "sampleMpc", participantId: "10",
+                        callbackUrl: "https://www.google.com",
+                        callbackMethod: "POST").Result
+                )
             );
 
             AssertRequest(request);

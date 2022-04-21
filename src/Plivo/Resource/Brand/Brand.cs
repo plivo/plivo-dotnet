@@ -33,9 +33,31 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("website")]
         public string Website { get; set; }
+
+        [JsonProperty("vetting_score")]
+        public string VettingScore { get; set; }
+
+        [JsonProperty("vetting_status")]
+        public string VettingStatus { get; set; }
+        
+        [JsonProperty("address")]
+        public Address Address { get; set; }
         
     }
     
+    public class Address {
+        [JsonProperty("street")]
+        public string Street { get; set; }
+        [JsonProperty("city")]
+        public string City { get; set; }
+        [JsonProperty("state")]
+        public string State { get; set; }
+        [JsonProperty("postal_code")]
+        public string PostalCode { get; set; }
+        [JsonProperty("country")]
+        public string Country { get; set; }
+    }
+
     public class BrandCreate
     {   
         [JsonProperty("alt_business_id_type")]
@@ -82,8 +104,11 @@ namespace Plivo.Resource.Brand
         [JsonProperty("api_id")]
         public new string ApiId {get; set;}
 
-        [JsonProperty("brand")]
-        public BrandCreate Brand {get; set;}
+        [JsonProperty("brand_id")]
+        public string BrandId {get; set;}
+
+        [JsonProperty("message")]
+        public string Message {get; set;}
 
          public override string ToString()
         {
@@ -120,6 +145,16 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("website")]
         public string Website { get; set; }
+
+        [JsonProperty("vetting_score")]
+        public string VettingScore { get; set; }
+
+        [JsonProperty("vetting_status")]
+        public string VettingStatus { get; set; }
+
+        [JsonProperty("address")]
+        public Address Address { get; set; }
+        
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
