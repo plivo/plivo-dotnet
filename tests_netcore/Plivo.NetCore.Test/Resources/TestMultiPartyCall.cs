@@ -87,6 +87,7 @@ namespace Plivo.NetCore.Test.Resources
                 {"ring_timeout", 45},
                 {"max_duration", 14400},
                 {"max_participants", 10},
+                {"record_min_member_count", 1},
                 {"wait_music_method", "GET"},
                 {"agent_hold_music_method", "GET"},
                 {"customer_hold_music_method", "GET"},
