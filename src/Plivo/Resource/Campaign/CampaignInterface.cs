@@ -301,9 +301,16 @@ namespace Plivo.Resource.Campaign
         /// <returns>The delete.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="number">Number.</param>
-        public DeleteResponse<DeleteNumber> UnlinkNumber(string campaignId, string number)
+        public DeleteResponse<DeleteNumber> UnlinkNumber(string campaignId, string number, string url = null, string method = null)
         {
-            var data = new Dictionary<string, object> { };
+            var mandatoryParams = new List<string>{""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    url,
+                    method
+                });
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				return Task.Run(async () => await DeleteResource<DeleteResponse<DeleteNumber>>("10dlc/Campaign/"+campaignId+"/Number/"+number, data).ConfigureAwait(false)).Result;
@@ -315,9 +322,16 @@ namespace Plivo.Resource.Campaign
         /// <returns>The delete.</returns>
         /// <param name="campaignId">campaignId.</param>
         /// <param name="number">Number.</param>
-        public async Task<DeleteResponse<DeleteNumber>> UnlinkNumberNumberAsync(string campaignId, string number)
+        public async Task<DeleteResponse<DeleteNumber>> UnlinkNumberNumberAsync(string campaignId, string number, string url = null, string method = null)
         {
-            var data = new Dictionary<string, object> { };
+            var mandatoryParams = new List<string>{""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    url,
+                    method
+                });
             return await DeleteResource<DeleteResponse<DeleteNumber>>("10dlc/Campaign/"+campaignId+"/Number/"+number, data);
         }
         #endregion
