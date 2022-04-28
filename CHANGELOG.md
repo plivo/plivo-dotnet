@@ -1,9 +1,9 @@
 # Change Log
 
 
-## [v5.10.1](https://github.com/plivo/plivo-dotnet/tree/v5.9.1) (2022-04-18)
+## [v5.11.0](https://github.com/plivo/plivo-dotnet/tree/v5.11.0) (2022-04-28)
 **Feature - 10dlc API Callback**
-- callback support for brand, campaign and link number api 
+- callback support for brand, campaign and link number api
 
 ## [v5.10.0](https://github.com/plivo/plivo-dotnet/tree/v5.10.0) (2022-04-18)
 **Feature - Voice Async API requests**
@@ -175,7 +175,7 @@
 - Add Status Code in API responses.
 
 ## [v4.4.1](https://github.com/plivo/plivo-dotnet/tree/v4.4.1) (2019-06-12)
-- Add AggregateException Flattening 
+- Add AggregateException Flattening
 
 ## [v4.4.0](https://github.com/plivo/plivo-dotnet/tree/v4.4.0) (2019-03-14)
 - Add PHLO support
