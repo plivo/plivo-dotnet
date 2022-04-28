@@ -96,7 +96,7 @@ namespace Plivo.Resource.Brand
         /// <param name="brand_type">brand_type.</param>
         /// <param name="secondary_vetting">secondary_vetting.</param>
 
-        public BrandCreateResponse Create(string brand_alias, string profile_uuid, string brand_type, bool secondary_vetting)
+        public BrandCreateResponse Create(string brand_alias, string profile_uuid, string brand_type, bool secondary_vetting=false, string url=null, string method=null)
         {
         var mandatoryParams = new List<string>{"brand_alias", "profile_uuid"};
         var data = CreateData(
@@ -106,7 +106,9 @@ namespace Plivo.Resource.Brand
                 brand_alias,
                 profile_uuid,
                 brand_type,
-                secondary_vetting
+                secondary_vetting,
+                url,
+                method
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -123,7 +125,7 @@ namespace Plivo.Resource.Brand
         /// <param name="profile_uuid">profile_uuid.</param>
         /// <param name="brand_type">brand_type.</param>
         /// <param name="secondary_vetting">secondary_vetting.</param>
-		public async Task<BrandCreateResponse> CreateAsync(string brand_alias, string profile_uuid, string brand_type, bool secondary_vetting)
+		public async Task<BrandCreateResponse> CreateAsync(string brand_alias, string profile_uuid, string brand_type, bool secondary_vetting=false, string url=null, string method=null)
 		{
 
 			 var mandatoryParams = new List<string>{"brand_alias", "profile_uuid"};
@@ -134,7 +136,9 @@ namespace Plivo.Resource.Brand
                 brand_alias,
                 profile_uuid,
                 brand_type,
-                secondary_vetting
+                secondary_vetting,
+                url,
+                method
             });
 
 			var result = await Client.Update<BrandCreateResponse>(Uri + "10dlc/Brand/", data);
