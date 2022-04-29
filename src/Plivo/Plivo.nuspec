@@ -63,7 +63,7 @@
       * 4.4.2 Add Status Code in API responses
       * 4.4.1 Add AggregateException Flattening
       * 4.4.0 Add PHLO support and Multi-party call triggers
-      * 4.3.0-beta1 Add PHLO support and Multi-party call triggers in beta release
+      * 4.3.0-beta1 Add PHLO support and Multi-party call triggers in beta release 
       * 4.2.3 Update Thread Safety handling for synchronous execution.
       * 4.2.2 Fix dynamic object usage with async/await statement.
       * 4.2.1 Fix Web Proxy support.
