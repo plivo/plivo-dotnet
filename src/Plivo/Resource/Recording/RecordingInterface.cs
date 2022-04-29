@@ -83,7 +83,16 @@ namespace Plivo.Resource.Recording
         /// <param name="addTime_Lte">Add time lte.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="fromNumber">From Number.</param>
+        /// <param name="toNumber">To Number.</param>
+        /// <param name="conferenceName">Conference Name.</param>
+        /// <param name="mpcName">Mpc Name.</param>
+        /// <param name="conferenceUuid">Conference Uuid.</param>
+        /// <param name="mpcUuid">mpc Uuid.</param>
         public ListResponse<Recording> List(
+            string fromNumber = null, string toNumber = null,
+            string conferenceName = null, string mpcName = null,
+            string conferenceUuid = null, string mpcUuid = null,
             string subaccount = null, string callUuid = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
@@ -102,6 +111,12 @@ namespace Plivo.Resource.Recording
                 mandatoryParams,
                 new
                 {
+                    fromNumber,
+                    toNumber,
+                    conferenceName,
+                    mpcName,
+                    conferenceUuid,
+                    mpcUuid,
                     subaccount,
                     callUuid,
                     _addTime,
@@ -140,7 +155,16 @@ namespace Plivo.Resource.Recording
         /// <param name="offset">Offset.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
+        /// <param name="fromNumber">From Number.</param>
+        /// <param name="toNumber">To Number.</param>
+        /// <param name="conferenceName">Conference Name.</param>
+        /// <param name="mpcName">Mpc Name.</param>
+        /// <param name="conferenceUuid">Conference Uuid.</param>
+        /// <param name="mpcUuid">mpc Uuid.</param>
         public async Task<AsyncResponse> ListAsync(
+            string fromNumber = null, string toNumber = null,
+            string conferenceName = null, string mpcName = null,
+            string conferenceUuid = null, string mpcUuid = null,
             string subaccount = null, string callUuid = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
@@ -159,6 +183,12 @@ namespace Plivo.Resource.Recording
                 mandatoryParams,
                 new
                 {
+                    fromNumber,
+                    toNumber,
+                    conferenceName,
+                    mpcName,
+                    conferenceUuid,
+                    mpcUuid,
                     subaccount,
                     callUuid,
                     _addTime,

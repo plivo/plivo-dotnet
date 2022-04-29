@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.12.0](https://github.com/plivo/plivo-dotnet/tree/v5.12.0) (2022-04-29)
+**Feature - List all recordings and The MultiPartyCall element**
+- `from_number` and `to_number` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- `record_min_member_count` param added to [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
 
 ## [v5.11.0](https://github.com/plivo/plivo-dotnet/tree/v5.11.0) (2022-04-28)
 **Feature - 10dlc API Callback**
