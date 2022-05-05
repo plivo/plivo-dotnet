@@ -16,6 +16,8 @@ namespace Plivo.Resource.Recording
         public string RecordingType { get; set; }
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
+        public string FromNumber { get; set; }
+        public string ToNumber { get; set; }
 
         public override string ToString()
         {
@@ -30,7 +32,9 @@ namespace Plivo.Resource.Recording
                    "RecordingStartMs: " + RecordingStartMs + "\n" +
                    "RecordingType: " + RecordingType + "\n" +
                    "RecordingUrl: " + RecordingUrl + "\n" +
-                   "ResourceUri: " + ResourceUri + "\n";
+                   "ResourceUri: " + ResourceUri + "\n" +
+                    "FromNumber: " + FromNumber + "\n" +
+                    "ToNumber: " + ToNumber + "\n";
             
             
                    
