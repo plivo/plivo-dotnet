@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.12.1](https://github.com/plivo/plivo-dotnet/tree/v5.12.1) (2022-05-10)
+- Added `affiliate_marketing` param to CreateCampaign request
+
 ## [v5.12.0](https://github.com/plivo/plivo-dotnet/tree/v5.12.0) (2022-05-05)
 **Feature - List all recordings and The MultiPartyCall element**
 - `from_number` and `to_number` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
