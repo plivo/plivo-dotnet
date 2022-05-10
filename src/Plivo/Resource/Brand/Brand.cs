@@ -25,6 +25,9 @@ namespace Plivo.Resource.Brand
         [JsonProperty("entity_type")]
         public string EntityType { get; set; }
 
+        [JsonProperty("brand_type")]
+        public string BrandType { get; set; }
+
         [JsonProperty("registration_status")]
         public string RegistrationStatus { get; set; }
 
@@ -136,6 +139,9 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("entity_type")]
         public string EntityType { get; set; }
+
+        [JsonProperty("brand_type")]
+        public string BrandType { get; set; }
 
         [JsonProperty("registration_status")]
         public string RegistrationStatus { get; set; }
