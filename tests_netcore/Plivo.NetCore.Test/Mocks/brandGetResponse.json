@@ -21,6 +21,7 @@
         "ein": "2342334534231",
         "ein_issuing_country": "IN",
         "entity_type": "NON_PROFIT",
+        "brand_type": "STANDARD",
         "registration_status": "COMPLETED",
         "vertical": "COMMUNICATION",
         "vetting_score": 80,
