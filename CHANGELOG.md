@@ -1,6 +1,6 @@
 # Change Log
 
-## [v5.13.1](https://github.com/plivo/plivo-dotnet/tree/v5.12.1) (2022-05-10)
+## [v5.13.1](https://github.com/plivo/plivo-dotnet/tree/v5.13.1) (2022-05-12)
 - Added `affiliate_marketing` param to CreateCampaign request
 
 ## [v5.13.0](https://github.com/plivo/plivo-dotnet/tree/v5.13.0) (2022-05-10)
