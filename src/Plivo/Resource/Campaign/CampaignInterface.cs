@@ -99,12 +99,14 @@ namespace Plivo.Resource.Campaign
         /// <param name="subscriber_optin">subscriber_optin</param>
         /// <param name="subscriber_optout">subscriber_optout</param>
         /// <param name="subscriber_help">subscriber_help</param>
+        /// <param name="affiliate_marketing">affiliate_marketing</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
 
         public CreateCampaign Create(string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2, string[] sub_usecases= null, string url=null, string method=null)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
+            bool affiliate_marketing, string sample1, string sample2, string[] sub_usecases= null, string url=null, string method=null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
@@ -123,6 +125,7 @@ namespace Plivo.Resource.Campaign
                 subscriber_optin,
                 subscriber_optout,
                 subscriber_help,
+                affiliate_marketing,
                 sample1,
                 sample2,
                 url,
@@ -152,11 +155,13 @@ namespace Plivo.Resource.Campaign
         /// <param name="subscriber_optin">subscriber_optin</param>
         /// <param name="subscriber_optout">subscriber_optout</param>
         /// <param name="subscriber_help">subscriber_help</param>
+        /// <param name="affiliate_marketing">affiliate_marketing</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
 		public async Task<CreateCampaign> CreateAsync(string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, string sample1, string sample2,string[] sub_usecases= null, string url=null, string method=null)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
+            bool affiliate_marketing, string sample1, string sample2,string[] sub_usecases= null, string url=null, string method=null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -164,7 +169,7 @@ namespace Plivo.Resource.Campaign
             mandatoryParams,
             new
             {
-                 brand_id,
+                brand_id,
                 vertical,
                 usecase,
                 sub_usecases,
@@ -176,6 +181,7 @@ namespace Plivo.Resource.Campaign
                 subscriber_optin,
                 subscriber_optout,
                 subscriber_help,
+                affiliate_marketing,
                 sample1,
                 sample2,
                 url,
