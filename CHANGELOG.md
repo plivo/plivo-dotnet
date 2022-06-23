@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.13.3](https://github.com/plivo/plivo-dotnet/tree/v5.13.3) (2022-06-23)
+- Fixed versioning issue in nuspec
+
 ## [v5.13.2](https://github.com/plivo/plivo-dotnet/tree/v5.13.2) (2022-06-23)
 - Mapped `first_name` and `last_name` param to AuthorizedContact Profile Creation request
 
