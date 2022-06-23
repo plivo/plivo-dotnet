@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.13.2](https://github.com/plivo/plivo-dotnet/tree/v5.13.2) (2022-06-23)
+- Mapped `first_name` and `last_name` param to AuthorizedContact Profile Creation request
+
 ## [v5.13.1](https://github.com/plivo/plivo-dotnet/tree/v5.13.1) (2022-05-12)
 - Added `affiliate_marketing` param to CreateCampaign request
 
