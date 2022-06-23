@@ -26,9 +26,9 @@ namespace Plivo.Resource.Profile
     public class AuthorizedContact {
         [JsonProperty("email")]
         public string Email { get; set; }
-        [JsonProperty("firstName")]
+        [JsonProperty("first_name")]
         public string FirstName { get; set; }
-        [JsonProperty("LastName")]
+        [JsonProperty("last_name")]
         public string LastName { get; set; }
         [JsonProperty("seniority")]
         public string Seniority { get; set; }
