@@ -274,13 +274,19 @@ namespace Plivo.Client
             }
             else if (isVoiceRequest)
             {
+                Console.WriteLine("Is a voice request");
                 response = await _voiceBaseUriClient.SendAsync(request).ConfigureAwait(false);
+                Console.WriteLine("First request {0}", response);
                 if ((int)response.StatusCode >= 500) {
                     request = NewRequestFunc(method, uri, data, filesToUpload);
+                    Console.WriteLine("First request failed. Making second request. Retrying on {0}", request);
                     response = await _voiceFallback1Client.SendAsync(request).ConfigureAwait(false);
+                    Console.WriteLine("Second request {0}", response);
                     if ((int)response.StatusCode >= 500) {
                         request = NewRequestFunc(method, uri, data, filesToUpload);
+                        Console.WriteLine("Second request failed. Making third request. Retrying on {0}", request);
                         response = await _voiceFallback2Client.SendAsync(request).ConfigureAwait(false);
+                        Console.WriteLine("Third request {0}", response);
                     }
                 }
             }
