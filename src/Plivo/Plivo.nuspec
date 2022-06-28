@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.13.3</version>
+    <version>5.13.4</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.13.4 Printing the Exception for 400 error case.
       * 5.11.0 tendlc brand, campaign, number linking api callback support.
       * 5.10.0 Async SDK requests support for all the Voice APIs.
       * 5.9.0 tendlc related api support.

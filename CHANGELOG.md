@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.13.4](https://github.com/plivo/plivo-dotnet/tree/v5.13.4) (2022-06-28)
+**Fix - Print Exception for 400 case**
+- Printing the Exception for 400 error case
+
 ## [v5.13.3](https://github.com/plivo/plivo-dotnet/tree/v5.13.3) (2022-06-23)
 - Fixed versioning issue in nuspec
 
