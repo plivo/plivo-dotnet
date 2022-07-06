@@ -10,7 +10,7 @@ namespace Plivo
         /// <summary>
         /// DotNet SDK version
         /// </summary>
-        public const string SdkVersion = "5.13.4";
+        public const string SdkVersion = "5.14.0";
         /// <summary>
         /// Plivo API version
         /// </summary>

@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.14.0](https://github.com/plivo/plivo-go/tree/v5.14.0) (2022-07-06)
+- Added stir attestation param as part of Get CDR and live call APIs
+
 ## [v5.13.4](https://github.com/plivo/plivo-dotnet/tree/v5.13.4) (2022-06-28)
 **Fix - Print Exception for 400 case**
 - Printing the Exception for 400 error case
