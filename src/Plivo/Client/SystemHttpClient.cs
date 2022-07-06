@@ -111,40 +111,40 @@ namespace Plivo.Client
                     )
                 );
             _client.DefaultRequestHeaders.Authorization = authHeader;
-            _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            _client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyFileVersion);
             var baseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _client.BaseAddress = new Uri(baseServerUri + "/");
 
             _voiceBaseUriClient = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceBaseUriClient.Timeout = TimeSpan.FromSeconds(5);
             _voiceBaseUriClient.DefaultRequestHeaders.Authorization = authHeader;
-            _voiceBaseUriClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://voice.plivo.com/" + Version.ApiVersion  : baseUri;
+            _voiceBaseUriClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyFileVersion);
+            var voiceBaseServerUri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceBaseUriClient.BaseAddress = new Uri(voiceBaseServerUri + "/");
             
             _voiceFallback1Client = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceFallback1Client.Timeout = TimeSpan.FromSeconds(5);
             _voiceFallback1Client.DefaultRequestHeaders.Authorization = authHeader;
-            _voiceFallback1Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-usw1.plivo.com/" + Version.ApiVersion  : baseUri;
+            _voiceFallback1Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyFileVersion);
+            var voiceFallback1Uri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceFallback1Client.BaseAddress = new Uri(voiceFallback1Uri + "/");
             
             _voiceFallback2Client = new System.Net.Http.HttpClient(httpClientHandler);
             _voiceFallback2Client.Timeout = TimeSpan.FromSeconds(5);
             _voiceFallback2Client.DefaultRequestHeaders.Authorization = authHeader;
-            _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
-            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://voice-use1.plivo.com/" + Version.ApiVersion  : baseUri;
+            _voiceFallback2Client.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyFileVersion);
+            var voiceFallback2Uri = string.IsNullOrEmpty(baseUri) ? "https://api.plivo.com/" + Version.ApiVersion  : baseUri;
             _voiceFallback2Client.BaseAddress = new Uri(voiceFallback2Uri + "/");
 
             _callInsightsclient = new System.Net.Http.HttpClient(httpClientHandler);
             _callInsightsclient.DefaultRequestHeaders.Authorization = authHeader;
-            _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            _callInsightsclient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyFileVersion);
             var callInsightsBaseServerUri = "https://stats.plivo.com/" + "v1";
             _callInsightsclient.BaseAddress = new Uri(callInsightsBaseServerUri + "/");
 
             _lookupClient = new System.Net.Http.HttpClient(httpClientHandler);
             _lookupClient.DefaultRequestHeaders.Authorization = authHeader;
-            _lookupClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyVersion);
+            _lookupClient.DefaultRequestHeaders.Add("User-Agent", "plivo-dotnet/" + ThisAssembly.AssemblyFileVersion);
             _lookupClient.BaseAddress = new Uri("https://lookup.plivo.com/v1/");
 
             _jsonSettings = new JsonSerializerSettings

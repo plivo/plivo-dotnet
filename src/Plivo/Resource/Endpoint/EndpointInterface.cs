@@ -3,6 +3,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Plivo.Client;
+using Newtonsoft.Json.Linq;
+using Plivo.Utilities;
 
 
 namespace Plivo.Resource.Endpoint
@@ -62,9 +64,13 @@ namespace Plivo.Resource.Endpoint
         /// <param name="password">Password.</param>
         /// <param name="alias">Alias.</param>
         /// <param name="appId">App identifier.</param>
-        public async Task<EndpointCreateResponse> CreateAsync(
-            string username, string password, string alias, string appId = null)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> CreateAsync(
+            string username, string password, string alias, string appId = null,
+            string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(
@@ -75,10 +81,19 @@ namespace Plivo.Resource.Endpoint
                     password,
                     alias,
                     appId,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<EndpointCreateResponse>(Uri, data);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion
@@ -104,11 +119,28 @@ namespace Plivo.Resource.Endpoint
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="endpointId">App identifier.</param>
-        public async Task<Endpoint> GetAsync(string endpointId)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> GetAsync(string endpointId, string callbackUrl = null, string callbackMethod = null)
         {
-            var endpoint = await GetResource<Endpoint>(endpointId, new Dictionary<string, object> () { {"is_voice_request", true} });
-            endpoint.Interface = this;
-            return endpoint;
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
+                Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -146,20 +178,28 @@ namespace Plivo.Resource.Endpoint
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
-        public async Task<ListResponse<Endpoint>> ListAsync(
-            string subaccount = null, uint? limit = null, uint? offset = null)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> ListAsync(
+            string subaccount = null, uint? limit = null, uint? offset = null,
+            string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(
-                mandatoryParams, new { subaccount, limit, offset, isVoiceRequest });
-            var resources = await ListResources<ListResponse<Endpoint>>(data);
-
-            resources.Objects.ForEach(
-                (obj) => obj.Interface = this
-            );
-
-            return resources;
+                mandatoryParams, new { subaccount, limit, offset, callbackUrl, callbackMethod, isVoiceRequest });
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run(async () => await Client.Fetch<AsyncResponse>(
+                Uri, data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
         }
         #endregion
 
@@ -181,9 +221,26 @@ namespace Plivo.Resource.Endpoint
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="endpointId">Endpoint identifier.</param>
-        public async Task<DeleteResponse<Endpoint>> DeleteAsync(string endpointId)
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> DeleteAsync(string endpointId, 
+            string callbackUrl = null, string callbackMethod = null)
         {
-            return await DeleteResource<DeleteResponse<Endpoint>>(endpointId, new Dictionary<string, object> () { {"is_voice_request", true} });
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
+            var data = new Dictionary<string, object>()
+            {
+                {"is_voice_request", true},
+                {"callback_url", callbackUrl},
+                {"callback_method", callbackMethod}
+            };
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run(async () => await Client.Delete<AsyncResponse>(
+                Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            return result.Object;
         }
         #endregion
 
@@ -227,10 +284,13 @@ namespace Plivo.Resource.Endpoint
         /// <param name="password">Password.</param>
         /// <param name="alias">Alias.</param>
         /// <param name="appId">App identifier.</param>
-        public async Task<UpdateResponse<Endpoint>> UpdateAsync(
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback Method.</param>
+        public async Task<AsyncResponse> UpdateAsync(
             string endpointId, string password = null, string alias = null,
-            string appId = null)
+            string appId = null, string callbackUrl = null, string callbackMethod = null)
         {
+            MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(
@@ -240,10 +300,19 @@ namespace Plivo.Resource.Endpoint
                     password,
                     alias,
                     appId,
+                    callbackUrl,
+                    callbackMethod,
                     isVoiceRequest
                 });
-            var result = await Client.Update<UpdateResponse<Endpoint>>(Uri + endpointId + "/", data);
+            if (data.ContainsKey("callback_method") && callbackMethod == null) {
+                data.Remove("callback_method");
+            }
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + endpointId + "/", data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
             return result.Object;
         }
         #endregion

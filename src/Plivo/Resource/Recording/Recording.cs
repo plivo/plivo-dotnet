@@ -16,6 +16,8 @@ namespace Plivo.Resource.Recording
         public string RecordingType { get; set; }
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
+        public string FromNumber { get; set; }
+        public string ToNumber { get; set; }
 
         public override string ToString()
         {
@@ -30,7 +32,9 @@ namespace Plivo.Resource.Recording
                    "RecordingStartMs: " + RecordingStartMs + "\n" +
                    "RecordingType: " + RecordingType + "\n" +
                    "RecordingUrl: " + RecordingUrl + "\n" +
-                   "ResourceUri: " + ResourceUri + "\n";
+                   "ResourceUri: " + ResourceUri + "\n" +
+                    "FromNumber: " + FromNumber + "\n" +
+                    "ToNumber: " + ToNumber + "\n";
             
             
                    
@@ -49,9 +53,11 @@ namespace Plivo.Resource.Recording
         /// Asynchronously delete this recording
         /// </summary>
         /// <returns></returns>
-        public async Task<DeleteResponse<Recording>> DeleteAsync()
+        /// <param name="callbackUrl">Callback URL.</param>
+        /// <param name="callbackMethod">Callback method.</param>
+        public async Task<AsyncResponse> DeleteAsync(string callbackUrl = null, string callbackMethod = null)
         {
-            return await ((RecordingInterface)Interface).DeleteAsync(Id);
+            return await ((RecordingInterface)Interface).DeleteAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
     }

@@ -1,5 +1,71 @@
 # Change Log
 
+## [v5.13.4](https://github.com/plivo/plivo-dotnet/tree/v5.13.4) (2022-06-28)
+**Fix - Print Exception for 400 case**
+- Printing the Exception for 400 error case
+
+## [v5.13.3](https://github.com/plivo/plivo-dotnet/tree/v5.13.3) (2022-06-23)
+- Fixed versioning issue in nuspec
+
+## [v5.13.2](https://github.com/plivo/plivo-dotnet/tree/v5.13.2) (2022-06-23)
+- Mapped `first_name` and `last_name` param to AuthorizedContact Profile Creation request
+
+## [v5.13.1](https://github.com/plivo/plivo-dotnet/tree/v5.13.1) (2022-05-12)
+- Added `affiliate_marketing` param to CreateCampaign request
+
+## [v5.13.0](https://github.com/plivo/plivo-dotnet/tree/v5.13.0) (2022-05-10)
+- add `brand_type` field in BrandResponse
+
+## [v5.12.0](https://github.com/plivo/plivo-dotnet/tree/v5.12.0) (2022-05-05)
+**Feature - List all recordings and The MultiPartyCall element**
+- `from_number` and `to_number` added to filtering param [List all recordings](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- `record_min_member_count` param added to [Add a participant to a multiparty call using API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant)
+
+## [v5.11.0](https://github.com/plivo/plivo-dotnet/tree/v5.11.0) (2022-04-28)
+**Feature - 10dlc API Callback**
+- callback support for brand, campaign and link number api
+
+## [v5.10.0](https://github.com/plivo/plivo-dotnet/tree/v5.10.0) (2022-04-18)
+**Feature - Voice Async API requests**
+- Added [asynchronous](https://www.plivo.com/docs/voice/api/request#asynchronous-request) SDK requests support for all The Voice APIs
+
+
+## [v5.9.0](https://github.com/plivo/plivo-dotnet/tree/v5.9.0) (2022-04-14)
+**Feature - 10dlc api**
+- Profile API, Brand API, Number Linking
+
+## [v5.8.0](https://github.com/plivo/plivo-dotnet/tree/v5.8.0) (2022-03-25)
+**Feature - DialElement**
+- `confirmTimeout` parameter added to [The Dial element](https://www.plivo.com/docs/voice/xml/dial/)
+
+## [v5.7.4](https://github.com/plivo/plivo-dotnet/tree/v5.7.4) (2022-02-22)
+**MPCListParticipant**
+- member_address parameter added in response
+
+## [v5.7.3](https://github.com/plivo/plivo-dotnet/tree/v5.7.3) (2022-02-17)
+**Bug Fix - Phone number**
+- Added support to query via city for Phone number List calls.
+
+## [v5.7.2](https://github.com/plivo/plivo-dotnet/tree/v5.7.2) (2022-01-25)
+**MPCStartCallRecording**
+- parameter change from statusCallback to recordingCallback
+
+## [v5.7.1](https://github.com/plivo/plivo-dotnet/tree/v5.7.1) (2022-01-25)
+**Fix - HTTP Client**
+- Log SDK version in the HTTP request.
+
+## [v5.7.0](https://github.com/plivo/plivo-dotnet/tree/v5.7.0) (2021-12-16)
+**Features - SMS**
+- 10dlc api support
+
+## [v5.6.1](https://github.com/plivo/plivo-dotnet/tree/v5.6.1) (2021-12-16)
+**Bug fix**
+- Added an exception to allow for more efficient error logs.
+
+## [v5.6.0](https://github.com/plivo/plivo-dotnet/tree/v5.6.0) (2021-12-14)
+**Features - Voice**
+- Routing SDK traffic through Akamai endpoints for all the [Voice APIs](https://www.plivo.com/docs/voice/api/overview/)
+
 ## [v5.5.0](https://github.com/plivo/plivo-dotnet/tree/v5.5.0) (2021-11-25)
 **Features - Voice: Multiparty calls**
 - The [Add Multiparty Call API](https://www.plivo.com/docs/voice/api/multiparty-call/participants#add-a-participant) allows for greater functionality by accepting options like `start recording audio`, `stop recording audio`, and their HTTP methods.
@@ -129,7 +195,7 @@
 - Add Status Code in API responses.
 
 ## [v4.4.1](https://github.com/plivo/plivo-dotnet/tree/v4.4.1) (2019-06-12)
-- Add AggregateException Flattening 
+- Add AggregateException Flattening
 
 ## [v4.4.0](https://github.com/plivo/plivo-dotnet/tree/v4.4.0) (2019-03-14)
 - Add PHLO support

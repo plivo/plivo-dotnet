@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.5.0</version>
+    <version>5.13.4</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,18 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.13.4 Printing the Exception for 400 error case.
+      * 5.11.0 tendlc brand, campaign, number linking api callback support.
+      * 5.10.0 Async SDK requests support for all the Voice APIs.
+      * 5.9.0 tendlc related api support.
+      * 5.8.0 confirmTimeout parameter added in DialElement.
+      * 5.7.4 member_address added in ListParticipants response.
+      * 5.7.3 Added support to query via city for Phone number list calls.
+      * 5.7.2 parameter change from status_callback to recording_callback.
+      * 5.7.1 Log SDK version in the HTTP request.
+      * 5.7.0 10dlc api suuport
+      * 5.6.1 Added an exception to allow for more efficient error logs.
+      * 5.6.0 Route Voice SDK traffic through AKAMAI endpoints
       * 5.5.0 Consists of enhancements to the Voice Multi Party Call Interface that deals with accepting more params to the MPC AddParticipant API and allows support for Play and Stop Audio APIs of MPC similar to that of Conference
       * 5.4.0 This version includes advancements to the Messaging Interface that deals with the Send SMS/MMS interface, Creating a standard structure for request/input arguments to make implementation easier and incorporating support for the older interface.
       * 5.3.0 Added Generic error message for mandatory params in Call and MPC, and removed range validation for ringtimeout and delaydial params in MPC.
@@ -52,7 +64,7 @@
       * 4.4.2 Add Status Code in API responses
       * 4.4.1 Add AggregateException Flattening
       * 4.4.0 Add PHLO support and Multi-party call triggers
-      * 4.3.0-beta1 Add PHLO support and Multi-party call triggers in beta release 
+      * 4.3.0-beta1 Add PHLO support and Multi-party call triggers in beta release
       * 4.2.3 Update Thread Safety handling for synchronous execution.
       * 4.2.2 Fix dynamic object usage with async/await statement.
       * 4.2.1 Fix Web Proxy support.

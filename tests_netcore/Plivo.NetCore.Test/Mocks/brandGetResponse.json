@@ -1,0 +1,31 @@
+{
+    "api_id": "71aa47e0-3750-11ec-8e4c-0242ac110002",
+    "brand": {
+        "address": {
+            "city": "",
+            "country": "",
+            "postal_code": "",
+            "state": "",
+            "street": ""
+        },
+        "authorized_contact": {
+            "email": "vishnu@plivo.com",
+            "first_name": "vishnu",
+            "last_name": "Doe",
+            "phone": "919742763781",
+            "seniority": "admin",
+            "title": "Doe"
+        },
+        "brand_id": "BRPXS6E",
+        "company_name": "Ren_With_Vetting",
+        "ein": "2342334534231",
+        "ein_issuing_country": "IN",
+        "entity_type": "NON_PROFIT",
+        "brand_type": "STANDARD",
+        "registration_status": "COMPLETED",
+        "vertical": "COMMUNICATION",
+        "vetting_score": 80,
+        "vetting_status": "ACTIVE",
+        "website": "www.renold.com"
+    }
+}

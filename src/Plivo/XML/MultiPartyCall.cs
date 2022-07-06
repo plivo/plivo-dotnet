@@ -18,6 +18,7 @@ namespace Plivo.XML
                 "role",
                 "maxDuration",
                 "maxParticipants",
+                "recordMinMemberCount",
                 "waitMusicUrl",
                 "waitMusicMethod",
                 "agentHoldMusicUrl",
@@ -88,6 +89,17 @@ namespace Plivo.XML
             {
                 throw new PlivoXMLException("Invalid attribute value " + Attributes["maxParticipants"] +
                                             " for maxParticipants");
+            }
+            
+            if(!Attributes.ContainsKey("recordMinMemberCount"))
+            {
+                Attributes["recordMinMemberCount"] = "1";
+            }
+            else if (Attributes["recordMinMemberCount"] != null && (Convert.ToUInt32(Attributes["recordMinMemberCount"]) < 1 ||
+                                                               Convert.ToUInt32(Attributes["recordMinMemberCount"]) > 2))
+            {
+                throw new PlivoXMLException("Invalid attribute value " + Attributes["recordMinMemberCount"] +
+                                            " for recordMinMemberCount");
             }
 
             if (!Attributes.ContainsKey("waitMusicMethod"))
