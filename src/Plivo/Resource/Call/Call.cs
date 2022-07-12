@@ -34,6 +34,7 @@ namespace Plivo.Resource.Call
         public string TotalRate { get; set; }
         public string StirVerification { get; set; }
         public string VoiceNetworkGroup { get; set; }
+        public string StirAttestation { get; set; }
 
 
 
@@ -409,7 +410,8 @@ namespace Plivo.Resource.Call
                    "TotalAmount: " + TotalAmount + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
                    "StirVerification: " + StirVerification + "\n" +
-                   "VoiceNetworkGroup: " + VoiceNetworkGroup + "\n";
+                   "VoiceNetworkGroup: " + VoiceNetworkGroup + "\n" +
+                   "StirAttestation: " + StirAttestation + "\n";
         }
     }
 }
