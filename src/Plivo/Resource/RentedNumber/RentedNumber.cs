@@ -31,6 +31,8 @@ namespace Plivo.Resource.RentedNumber
 
         public string ComplianceApplicationId {get; set;}
         public string ComplianceStatus {get; set;}
+        public string TendlcCampaign {get; set;}
+        public string TendlcRegistrationStatus {get; set;}
         
         public override string ToString()
         {
@@ -59,6 +61,8 @@ namespace Plivo.Resource.RentedNumber
                     "VoiceEnabled: " + VoiceEnabled + "\n" +
                     "ComplianceApplicationId: " + ComplianceApplicationId + "\n" +
                     "ComplianceStatus: " + ComplianceStatus + "\n" +
+                    "TendlcCampaign: " + TendlcCampaign + "\n" +
+                    "TendlcRegistrationStatus: " + TendlcRegistrationStatus + "\n" +
                     "VoiceRate: " + VoiceRate + "\n";
             }
             return
