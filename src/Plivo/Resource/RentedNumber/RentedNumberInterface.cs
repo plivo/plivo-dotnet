@@ -66,7 +66,9 @@ namespace Plivo.Resource.RentedNumber
         public ListResponse<RentedNumber> List(
             string type = null, string numberStartswith = null,
             string subaccount = null, string alias = null,
-            string services = null, uint? limit = null, uint? offset = null)
+            string services = null,
+            string tendlcCampaign = null, string tendlcRegistrationStatus = null,
+            uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -78,6 +80,8 @@ namespace Plivo.Resource.RentedNumber
                     subaccount,
                     alias,
                     services,
+                    tendlcCampaign,
+                    tendlcRegistrationStatus,
                     limit,
                     offset
                 });
