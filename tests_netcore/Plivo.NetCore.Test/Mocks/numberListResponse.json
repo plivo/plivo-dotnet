@@ -22,7 +22,9 @@
       "sms_rate": "0.00000",
       "sub_account": null,
       "voice_enabled": true,
-      "voice_rate": "0.00850"
+      "voice_rate": "0.00850",
+      "tendlc_campaign" : "ABC1234",
+      "tendlc_registration_status": "completed"
     },
     {
       "added_on": "2013-01-01",
@@ -38,7 +40,9 @@
       "sms_rate": "0.00000",
       "sub_account": null,
       "voice_enabled": true,
-      "voice_rate": "0.00850"
+      "voice_rate": "0.00850",
+      "tendlc_campaign" : "ABC1235",
+      "tendlc_registration_status": "completed"
     },
     {
       "added_on": "2013-03-25",
@@ -54,7 +58,9 @@
       "sms_rate": "0.00000",
       "sub_account": null,
       "voice_enabled": true,
-      "voice_rate": "0.00850"
+      "voice_rate": "0.00850",
+      "tendlc_campaign" : "ABC1235",
+      "tendlc_registration_status": "completed"
     }
   ]
 }
