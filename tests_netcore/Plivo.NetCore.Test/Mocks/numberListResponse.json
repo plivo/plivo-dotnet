@@ -23,7 +23,7 @@
       "sub_account": null,
       "voice_enabled": true,
       "voice_rate": "0.00850",
-      "tendlc_campaign" : "ABC1234",
+      "tendlc_campaign_id" : "ABC1234",
       "tendlc_registration_status": "completed"
     },
     {
@@ -41,7 +41,7 @@
       "sub_account": null,
       "voice_enabled": true,
       "voice_rate": "0.00850",
-      "tendlc_campaign" : "ABC1235",
+      "tendlc_campaign_id" : "ABC1235",
       "tendlc_registration_status": "completed"
     },
     {
@@ -59,7 +59,7 @@
       "sub_account": null,
       "voice_enabled": true,
       "voice_rate": "0.00850",
-      "tendlc_campaign" : "ABC1235",
+      "tendlc_campaign_id" : "ABC1235",
       "tendlc_registration_status": "completed"
     }
   ]

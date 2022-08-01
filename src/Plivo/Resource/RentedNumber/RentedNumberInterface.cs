@@ -63,11 +63,13 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="services">Services.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="tendlcCampaignId">TenDlc Campaign ID.</param>
+        /// <param name="tendlcRegistrationStatus">TenDLC Registration Status.</param>
         public ListResponse<RentedNumber> List(
             string type = null, string numberStartswith = null,
             string subaccount = null, string alias = null,
             string services = null,
-            string tendlcCampaign = null, string tendlcRegistrationStatus = null,
+            string tendlcCampaignId = null, string tendlcRegistrationStatus = null,
             uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> {""};
@@ -80,7 +82,7 @@ namespace Plivo.Resource.RentedNumber
                     subaccount,
                     alias,
                     services,
-                    tendlcCampaign,
+                    tendlcCampaignId,
                     tendlcRegistrationStatus,
                     limit,
                     offset
