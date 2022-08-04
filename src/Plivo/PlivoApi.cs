@@ -103,7 +103,7 @@ namespace Plivo
         /// <summary>
         /// Gets the Token.
         /// </summary>
-        /// <value>The Token.</value>
+        /// <value>The token.</value>
         public TokenInterface Token => _token.Value;
 
         /// <summary>

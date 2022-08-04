@@ -48,7 +48,8 @@ namespace Plivo.Resource.Token
         {
             var mandatoryParams = new List<string> { "iss" };
             bool isVoiceRequest = true;
-            var data = CreateData(
+           
+           var data = CreateData(
                 mandatoryParams,
                 new
                 {
@@ -65,7 +66,7 @@ namespace Plivo.Resource.Token
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () =>
-                    await Client.Update<CallCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
+                    await Client.Update<TokenCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
                 JObject responseJson = JObject.Parse(result.Content);
                 result.Object.ApiId = responseJson["api_id"].ToString();
@@ -94,6 +95,39 @@ namespace Plivo.Resource.Token
         {
             var mandatoryParams = new List<string> { "iss" };
             bool isVoiceRequest = true;
+            // if incoming_allow != null || outgoing_allow != null || app != null)
+            // {
+            //     params["per"] = new Dictionary<object, object> {};
+            //         params["per"]["voice"] = new Dictionary<object, object> {};
+            //     if (incoming_allow != null) {
+            //         params["per"]["voice"]["incoming_allow"] = incoming_allow;
+            //     }
+            //     if (outgoing_allow != null) {
+            //         params["per"]["voice"]["outgoing_allow"] = outgoing_allow;
+            //     }
+            // }
+            // // if incoming_allow is true then sub should not be empty
+            // if (incoming_allow == true && sub == null)
+            // {
+            //     throw new PlivoException("sub is mandatory when incoming_allow is true");
+            // }
+            // // Add sub,nbf,exp,app if they are not null
+            // if (sub != null)
+            // {
+            //     params["sub"] = sub;
+            // }
+            // if (nbf != null)
+            // {
+            //     params["nbf"] = nbf;
+            // }
+            // if (exp != null)
+            // {
+            //     params["exp"] = exp;
+            // }
+            // if (app != null)
+            // {
+            //     params["app"] = app;
+            // }
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -102,8 +136,7 @@ namespace Plivo.Resource.Token
                     sub,
                     nbf,
                     exp,
-                    incoming_allow,
-                    outgoing_allow,
+                    // params
                     app,
                     isVoiceRequest
                 });
