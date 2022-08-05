@@ -386,7 +386,10 @@ namespace Plivo.Resource.Powerpack
 				resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
-
+                // return zero when no meta
+                if (resources.Meta is null) {
+                    return 0;
+                }
                 return resources.Meta.TotalCount; // Need to check
 			// });
 
@@ -422,6 +425,10 @@ namespace Plivo.Resource.Powerpack
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
+
+            if (resources.Meta is null) {
+                    return 0;
+            }
 
             return resources.Meta.TotalCount;
 

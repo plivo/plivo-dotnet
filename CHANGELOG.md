@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.14.1](https://github.com/plivo/plivo-go/tree/v5.14.1) (2022-08-05)
+**Fix - Powerpack number count**
+- Handle zero numbers on powerpack
+
 ## [v5.14.0](https://github.com/plivo/plivo-go/tree/v5.14.0) (2022-07-12)
 **Feature - STIR Attestation**
 - Add stir attestation param as part of Get CDR and Get live call APIs Response
