@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.14.0</version>
+    <version>5.14.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.14.1 Bug fix on powerpack count number api
       * 5.14.0 Added stir attestation param as part of Get CDR and live call APIs
       * 5.13.4 Printing the Exception for 400 error case.
       * 5.11.0 tendlc brand, campaign, number linking api callback support.
