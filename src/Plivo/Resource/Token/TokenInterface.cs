@@ -17,7 +17,7 @@ namespace Plivo.Resource.Token
     public class TokenInterface : ResourceInterface
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="T:plivo.Resource.Call.CallInterface"/> class.
+        /// Initializes a new instance of the <see cref="T:plivo.Resource.Token.TokenInterface"/> class.
         /// </summary>
         /// <param name="client">Client.</param>
         public TokenInterface(HttpClient client) : base(client)
@@ -57,11 +57,20 @@ namespace Plivo.Resource.Token
                     sub,
                     nbf,
                     exp,
-                    incoming_allow,
-                    outgoing_allow,
                     app,
                     isVoiceRequest
                 });
+			if (incoming_allow != null || outgoing_allow != null)
+			{
+				if(incomming_allow != null)
+                {
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", incoming_allow)))));
+                }
+				if(outgoing_allow != null)
+                {
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", outgoing_allow)))));
+                }
+            }
 
             return ExecuteWithExceptionUnwrap(() =>
             {
@@ -91,39 +100,6 @@ namespace Plivo.Resource.Token
         {
             var mandatoryParams = new List<string> { "iss" };
             bool isVoiceRequest = true;
-            // if incoming_allow != null || outgoing_allow != null || app != null)
-            // {
-            //     params["per"] = new Dictionary<object, object> {};
-            //         params["per"]["voice"] = new Dictionary<object, object> {};
-            //     if (incoming_allow != null) {
-            //         params["per"]["voice"]["incoming_allow"] = incoming_allow;
-            //     }
-            //     if (outgoing_allow != null) {
-            //         params["per"]["voice"]["outgoing_allow"] = outgoing_allow;
-            //     }
-            // }
-            // // if incoming_allow is true then sub should not be empty
-            // if (incoming_allow == true && sub == null)
-            // {
-            //     throw new PlivoException("sub is mandatory when incoming_allow is true");
-            // }
-            // // Add sub,nbf,exp,app if they are not null
-            // if (sub != null)
-            // {
-            //     params["sub"] = sub;
-            // }
-            // if (nbf != null)
-            // {
-            //     params["nbf"] = nbf;
-            // }
-            // if (exp != null)
-            // {
-            //     params["exp"] = exp;
-            // }
-            // if (app != null)
-            // {
-            //     params["app"] = app;
-            // }
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -131,11 +107,21 @@ namespace Plivo.Resource.Token
                     iss,
                     sub,
                     nbf,
-                    exp,
-                    // params
+                    exp, 
                     app,
                     isVoiceRequest
                 });
+			if (incoming_allow != null || outgoing_allow != null)
+			{
+				if(incomming_allow != null)
+                {
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", incoming_allow)))));
+                }
+				if(outgoing_allow != null)
+                {
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", outgoing_allow)))));
+                }
+            }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false))
                 .Result;
             await Task.WhenAll();
