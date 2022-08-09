@@ -17,6 +17,7 @@ namespace Plivo.Resource.Token
         public int exp { get; set; }
         public bool incoming_allow { get; set; }
         public bool outgoing_allow { get; set; }
+		public JsonObject per { get; set; }
         public string app { get; set; }
     }
 
@@ -26,8 +27,8 @@ namespace Plivo.Resource.Token
                "Sub: " + Sub + "\n" +
                "Nbf: " + Nbf + "\n" +
                "Exp: " + Exp + "\n" +
-               "Incoming_Allow: " + Incoming_Allow + "\n" +
-               "Outgoing_Allow: " + Outgoing_Allow + "\n" +
+	           "Incoming Allow: " + IncomingAllow + "\n" +	
+               "Outgoing Allow: " + OutgoingAllow + "\n" +
                "App: " + App + "\n";
     }
 
