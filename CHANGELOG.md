@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.14.2](https://github.com/plivo/plivo-go/tree/v5.14.2) (2022-08-05)
+- Fix Incorrect Exception handling for JSON response parsing exceptions
+
 ## [v5.14.1](https://github.com/plivo/plivo-go/tree/v5.14.1) (2022-08-05)
 **Fix - Powerpack number count**
 - Handle zero numbers on powerpack
