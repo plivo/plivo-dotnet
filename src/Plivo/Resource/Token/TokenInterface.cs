@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Text.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plivo.Client;
@@ -43,6 +44,7 @@ namespace Plivo.Resource.Token
             string sub = null, 
             int nbf = null, int exp = null,
             bool incoming_allow = null, bool outgoing_allow = null,
+			JSONObject per = null
             string app = null)
             
         {

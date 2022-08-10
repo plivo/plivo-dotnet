@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Text.Json;
 using Plivo.Client;
+
 
 namespace Plivo.Resource.Token
 {
@@ -17,7 +19,7 @@ namespace Plivo.Resource.Token
         public int exp { get; set; }
         public bool incoming_allow { get; set; }
         public bool outgoing_allow { get; set; }
-		public JsonObject per { get; set; }
+	   	public JsonElement emptyJsonObject = JsonSerializer.Deserialize<JsonElement>("{}");
         public string app { get; set; }
     }
 
@@ -30,10 +32,6 @@ namespace Plivo.Resource.Token
 	           "Incoming Allow: " + IncomingAllow + "\n" +	
                "Outgoing Allow: " + OutgoingAllow + "\n" +
                "App: " + App + "\n";
-    }
-
-    public Token()
-    {
     }
 }
 
