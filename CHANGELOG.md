@@ -1,5 +1,5 @@
 # Change Log
-## [v5.15.0](https://github.com/plivo/plivo-go/tree/v5.14.0) (2022-07-12)
+## [v5.15.1](https://github.com/plivo/plivo-go/tree/v5.14.0) (2022-07-12)
 **Feature - STIR Attestation**
 -  `JWT Token Creation API` added functionality to create a new JWT token.
 

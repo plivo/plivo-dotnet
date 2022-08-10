@@ -7,7 +7,7 @@ namespace Plivo.Resource.Token
 
         public override string ToString()
         {
-            return base.ToString();+
+            return base.ToString() +
 						"token=" + token + "\n" +
 						"app_id=" + app_id + "\n";
         }

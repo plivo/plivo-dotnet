@@ -40,12 +40,7 @@ namespace Plivo.Resource.Token
         /// <param name="outgoing_allow"></param>
         /// <param name="app"></param>
         public TokenCreateResponse Create(
-            string iss = null, 
-            string sub = null, 
-            int nbf = null, int exp = null,
-            bool incoming_allow = null, bool outgoing_allow = null,
-			JSONObject per = null
-            string app = null)
+            string iss , string sub = null,int nbf = 0,  int exp = 0,bool incoming_allow = false, bool outgoing_allow = false, string app = null)
             
         {
             var mandatoryParams = new List<string> { "iss" };
@@ -62,15 +57,15 @@ namespace Plivo.Resource.Token
                     app,
                     isVoiceRequest
                 });
-			if (incoming_allow != null || outgoing_allow != null)
+			if (incoming_allow || outgoing_allow )
 			{
-				if(incomming_allow != null)
+				if(incoming_allow)
                 {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", incoming_allow)))));
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", true)))));
                 }
-				if(outgoing_allow != null)
+				if(outgoing_allow)
                 {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", outgoing_allow)))));
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", true)))));
                 }
             }
 
@@ -94,11 +89,8 @@ namespace Plivo.Resource.Token
         /// <param name="outgoing_allow">Outgoing_Allow.</param>
         /// <param name="app">App.</param>
         public async Task<AsyncResponse> CreateAsync(
-            string iss = null,
-            string sub = null,
-            int nbf = null, int exp = null,
-            bool incoming_allow = null, bool outgoing_allow = null,
-            string app = null)
+            string iss , string sub = null,int nbf = 0,  int exp = 0,bool incoming_allow = false, bool outgoing_allow = false, string app = null)
+
         {
             var mandatoryParams = new List<string> { "iss" };
             bool isVoiceRequest = true;
@@ -113,15 +105,15 @@ namespace Plivo.Resource.Token
                     app,
                     isVoiceRequest
                 });
-			if (incoming_allow != null || outgoing_allow != null)
-			{
-				if(incomming_allow != null)
+            if (incoming_allow || outgoing_allow )
+            {
+                if(incoming_allow )
                 {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", incoming_allow)))));
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", true)))));
                 }
-				if(outgoing_allow != null)
+                if(outgoing_allow)
                 {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", outgoing_allow)))));
+                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", true)))));
                 }
             }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false))
@@ -133,7 +125,6 @@ namespace Plivo.Resource.Token
             result.Object.Message = responseJson["token"].ToString();
             return result.Object;
         }
-
         #endregion
     }
 }
