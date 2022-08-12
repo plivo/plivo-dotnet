@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.15.1](https://github.com/plivo/plivo-go/tree/v5.15.1) (2022-08-09)
+**Feature - STIR Attestation**
+-  `JWT Token Creation API` added functionality to create a new JWT token.
+
 ## [v5.14.1](https://github.com/plivo/plivo-go/tree/v5.14.1) (2022-08-05)
 **Fix - Powerpack number count**
 - Handle zero numbers on powerpack

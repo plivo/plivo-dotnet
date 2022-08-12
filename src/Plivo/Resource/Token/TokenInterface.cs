@@ -42,7 +42,7 @@ namespace Plivo.Resource.Token
             string iss , string sub = null,int nbf = 0,  int exp = 0,bool incoming_allow = false, bool outgoing_allow = false, string app = null)
             
         {
-            var mandatoryParams = new List<string> { "iss" };
+            var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
            
            var data = CreateData(
