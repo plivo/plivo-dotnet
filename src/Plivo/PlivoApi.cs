@@ -215,6 +215,7 @@ namespace Plivo
             _subaccount = new Lazy<SubaccountInterface>(() => new SubaccountInterface(Client));
             _application = new Lazy<ApplicationInterface>(() => new ApplicationInterface(Client));
             _call = new Lazy<CallInterface>(() => new CallInterface(Client));
+            _token = new Lazy<TokenInterface>(()=> new TokenInterface(Client));
             _conference = new Lazy<ConferenceInterface>(() => new ConferenceInterface(Client));
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
             _lookup = new Lazy<LookupInterface>(() => new LookupInterface(Client));
