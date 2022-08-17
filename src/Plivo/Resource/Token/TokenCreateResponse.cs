@@ -8,7 +8,7 @@ namespace Plivo.Resource.Token
         {
             return base.ToString() +
 						"token=" + token + "\n" +
-						"app_id=" + ApiId + "\n";
+						"api_id=" + ApiId + "\n";
         }
     }
 }
