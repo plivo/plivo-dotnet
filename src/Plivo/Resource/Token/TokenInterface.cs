@@ -1,13 +1,8 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Plivo.Client;
-using Plivo.Http;
-using Plivo.Utilities;
+using Plivo.Exception;
 
 namespace Plivo.Resource.Token
 {
@@ -44,8 +39,17 @@ namespace Plivo.Resource.Token
         {
             var mandatoryParams = new List<string> { "iss" };
             bool isVoiceRequest = true;
-           
-           var data = CreateData(
+
+            if (sub == null && incoming_allow)
+            {
+                throw new PlivoValidationException("sub should be present if incoming allow is true");
+            }
+            if (nbf != 0 && exp != 0 && exp <= nbf)
+            {
+                throw new PlivoValidationException("exp should be greater than nbf");
+            }
+            
+            var data = CreateData(
                 mandatoryParams,
                 new
                 {
@@ -56,22 +60,34 @@ namespace Plivo.Resource.Token
                     app,
                     isVoiceRequest
                 });
-			if (incoming_allow || outgoing_allow )
-			{
-				if(incoming_allow)
-                {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", true)))));
-                }
-				if(outgoing_allow)
-                {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", true)))));
-                }
-            }
+           var voice = new Dictionary<string, bool> ()
+           {
+               {"incoming_allow", incoming_allow},
+               {"outgoing_allow", outgoing_allow}
+           };
+           var per = new Dictionary<string, object>()
+           {
+               { "voice", voice }
+           };
+           data.Add("per", per);
+
+           if (nbf == 0) 
+           { 
+               data.Remove("nbf");
+           }
+           
+           if (exp == 0) 
+           { 
+               data.Remove("exp");
+           }
 
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var result = Task.Run(async () => await Client.Update<TokenCreateResponse>(Uri, data).ConfigureAwait(false)).Result;
                 result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.token = responseJson["token"].ToString();
                 return result.Object;
             });
         }
@@ -93,6 +109,16 @@ namespace Plivo.Resource.Token
         {
             var mandatoryParams = new List<string> { "iss" };
             bool isVoiceRequest = true;
+            
+            if (sub == null && incoming_allow)
+            {
+                throw new PlivoValidationException("sub should be present if incoming allow is true");
+            }
+            if (nbf != 0 && exp != 0 && exp <= nbf)
+            {
+                throw new PlivoValidationException("exp should be greater than nbf");
+            }
+            
             var data = CreateData(
                 mandatoryParams,
                 new
@@ -104,17 +130,27 @@ namespace Plivo.Resource.Token
                     app,
                     isVoiceRequest
                 });
-            if (incoming_allow || outgoing_allow )
+            var voice = new Dictionary<string, bool> ()
             {
-                if(incoming_allow )
-                {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("incoming_allow", true)))));
-                }
-                if(outgoing_allow)
-                {
-                    data.Add("per", new JObject(new JProperty("voice", new JObject(new JProperty("outgoing_allow", true)))));
-                }
+                {"incoming_allow", incoming_allow},
+                {"outgoing_allow", outgoing_allow}
+            };
+            var per = new Dictionary<string, object>()
+            {
+                { "voice", voice }
+            };
+            data.Add("per", per);
+
+            if (nbf == 0) 
+            { 
+                data.Remove("nbf");
             }
+           
+            if (exp == 0) 
+            { 
+                data.Remove("exp");
+            }
+            
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false))
                 .Result;
             await Task.WhenAll();
