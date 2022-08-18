@@ -27,6 +27,7 @@ using Plivo.Resource.MultiPartyCall;
 using Plivo.Resource.Brand;
 using Plivo.Resource.Campaign;
 using Plivo.Resource.Profile;
+using Plivo.Resource.Token;
 
 namespace Plivo
 {
@@ -51,6 +52,7 @@ namespace Plivo
         private readonly Lazy<SubaccountInterface> _subaccount;
         private readonly Lazy<ApplicationInterface> _application;
         private readonly Lazy<CallInterface> _call;
+        private readonly Lazy<TokenInterface>_token;
         private readonly Lazy<ConferenceInterface> _conference;
         private readonly Lazy<MessageInterface> _message;
         private readonly Lazy<LookupInterface> _lookup;
@@ -99,6 +101,12 @@ namespace Plivo
         /// <value>The call.</value>
         public CallInterface Call => _call.Value;
 
+        /// <summary>
+        /// Gets the token.
+        /// </summary>
+        /// <value>The token.</value>
+        public TokenInterface Token => _token.Value;
+        
         /// <summary>
         /// Gets the conference.
         /// </summary>
@@ -207,6 +215,7 @@ namespace Plivo
             _subaccount = new Lazy<SubaccountInterface>(() => new SubaccountInterface(Client));
             _application = new Lazy<ApplicationInterface>(() => new ApplicationInterface(Client));
             _call = new Lazy<CallInterface>(() => new CallInterface(Client));
+            _token = new Lazy<TokenInterface>(()=> new TokenInterface(Client));
             _conference = new Lazy<ConferenceInterface>(() => new ConferenceInterface(Client));
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
             _lookup = new Lazy<LookupInterface>(() => new LookupInterface(Client));

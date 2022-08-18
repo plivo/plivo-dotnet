@@ -1,7 +1,12 @@
 # Change Log
 
-## [v5.14.2](https://github.com/plivo/plivo-go/tree/v5.14.2) (2022-08-05)
+
+## [v5.15.1](https://github.com/plivo/plivo-go/tree/v5.15.1) (2022-08-05)
 - Fix Incorrect Exception handling for JSON response parsing exceptions
+
+## [v5.15.0](https://github.com/plivo/plivo-go/tree/v5.15.0) (2022-08-18)
+**Features - JWT Token Creation API**
+- `JWT Token Creation API` added API to create a new JWT token.
 
 ## [v5.14.1](https://github.com/plivo/plivo-go/tree/v5.14.1) (2022-08-05)
 **Fix - Powerpack number count**
