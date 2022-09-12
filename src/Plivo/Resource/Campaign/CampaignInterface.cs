@@ -102,11 +102,17 @@ namespace Plivo.Resource.Campaign
         /// <param name="affiliate_marketing">affiliate_marketing</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
-
+        ///<param name="message_flow">message_flow<param>
+        ///<param name="help_message">help_message<param>
+        ///<param name="optout_message">optout_message<param>
+        ///<param name="optin_keywords">optin_keywords<param>
+        ///<param name="optin_message">optin_message<param>
+        ///<param name="optout_keywords">optout_keywords<param>
+         ///<param name="help_keywords">optout_keywords<param>
         public CreateCampaign Create(string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
-            bool affiliate_marketing, string sample1, string sample2, string[] sub_usecases= null, string url=null, string method=null)
+            bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
@@ -129,7 +135,14 @@ namespace Plivo.Resource.Campaign
                 sample1,
                 sample2,
                 url,
-                method
+                method,
+                message_flow,
+                help_message,
+                optout_message,
+                optin_keywords,
+                optin_message,
+                optout_keywords,
+                help_keywords
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -158,10 +171,17 @@ namespace Plivo.Resource.Campaign
         /// <param name="affiliate_marketing">affiliate_marketing</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
+        ///<param name="message_flow">message_flow<param>
+        ///<param name="help_message">help_message<param>
+        ///<param name="optout_message">optout_message<param>
+         ///<param name="optin_keywords">optin_keywords<param>
+        ///<param name="optin_message">optin_message<param>
+        ///<param name="optout_keywords">optout_keywords<param>
+         ///<param name="help_keywords">optout_keywords<param>
 		public async Task<CreateCampaign> CreateAsync(string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
-            bool affiliate_marketing, string sample1, string sample2,string[] sub_usecases= null, string url=null, string method=null)
+            bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -185,7 +205,14 @@ namespace Plivo.Resource.Campaign
                 sample1,
                 sample2,
                 url,
-                method
+                method,
+                message_flow,
+                help_message,
+                optout_message,
+                optin_keywords,
+                optin_message,
+                optout_keywords,
+                help_keywords,
             });
 
 			var result = await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data);

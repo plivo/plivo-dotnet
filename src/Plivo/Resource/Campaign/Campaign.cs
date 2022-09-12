@@ -45,6 +45,29 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; }
+
+        [JsonProperty("message_flow")]
+        public string MessageFlow { get; set; }
+        
+        [JsonProperty("help_message")]
+        public string HelpMessage { get; set; }
+        
+        [JsonProperty("optin_keywords")]
+        public string OptinKeywords { get; set; }
+        
+        [JsonProperty("optin_message")]
+        public string OptinMessage { get; set; }
+        
+        [JsonProperty("optout_keywords")]
+        public string OptoutKeywords { get; set; }
+        
+        [JsonProperty("optout_message")]
+        public string OptoutMessage { get; set; }
+        
+        [JsonProperty("help_keywords")]
+        public string HelpKeywords { get; set; }
+
+
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -102,6 +125,27 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; } 
+
+        [JsonProperty("message_flow")]
+        public string MessageFlow { get; set; }
+        
+        [JsonProperty("help_message")]
+        public string HelpMessage { get; set; }
+        
+        [JsonProperty("optin_keywords")]
+        public string OptinKeywords { get; set; }
+        
+        [JsonProperty("optin_message")]
+        public string OptinMessage { get; set; }
+        
+        [JsonProperty("optout_keywords")]
+        public string OptoutKeywords { get; set; }
+        
+        [JsonProperty("optout_message")]
+        public string OptoutMessage { get; set; }
+        
+        [JsonProperty("help_keywords")]
+        public string HelpKeywords { get; set; }
 
         public override string ToString()
         {
