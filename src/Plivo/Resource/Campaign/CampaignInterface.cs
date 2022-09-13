@@ -284,14 +284,14 @@ namespace Plivo.Resource.Campaign
 		public async Task<LinkNumber> LinkNumberAsync(string campaignId, List<string> numbers, string url=null, string method=null)
 		{
 
-			 var mandatoryParams = new List<string>{"numbers"};
-        var data = CreateData(
-            mandatoryParams,
-            new
-            {
-                numbers,
-                url,
-                method
+			var mandatoryParams = new List<string>{ "" };
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    numbers,
+                    url,
+                    method
             });
 
 			var result = await Client.Update<LinkNumber>(Uri + "10dlc/Campaign/"+campaignId+"/Number/", data);
