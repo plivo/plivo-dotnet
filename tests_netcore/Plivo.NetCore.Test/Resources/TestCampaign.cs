@@ -39,9 +39,9 @@ namespace Plivo.NetCore.Test.Resources
         {
             var data = new Dictionary<string, object>()
             {
-                {"api_id": "23772eb8-3253-11ed-9b52-0242ac110004"},
-                {"campaign_id": "CBBT3J1"},
-                {"message": "Request to create campaign was received and is being processed."}
+                {"api_id","23772eb8-3253-11ed-9b52-0242ac110004"},
+                {"campaign_id", "CBBT3J1"},
+                {"message", "Request to create campaign was received and is being processed."}
             };
 
             var request =
