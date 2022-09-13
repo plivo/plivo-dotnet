@@ -39,9 +39,30 @@ namespace Plivo.NetCore.Test.Resources
         {
             var data = new Dictionary<string, object>()
             {
-                {"api_id","23772eb8-3253-11ed-9b52-0242ac110004"},
-                {"campaign_id", "CBBT3J1"},
-                {"message", "Request to create campaign was received and is being processed."}
+                {"brand_id", "BYEKDY1"},
+                {"vertical", "REAL_ESTATE"},
+                {"usecase", "MIXED"},
+                {"description", "description should be minimum 40 character"},
+                {"embedded_link", false},
+                {"embedded_phone", false},
+                {"age_gated", false},
+                {"direct_lending", false},
+                {"subscriber_optin", true},
+                {"subscriber_optout", true},
+                {"subscriber_help", true},
+                {"affiliate_marketing", false},
+                {"sample1", "sample message 1"},
+                {"sample2", "sample message 2"},
+                {"message_flow", "message_flow"},
+                {"help_message", "help_message"},
+                {"optout_message", "optout_message"},
+                {"sub_usecases", new string[]{}},
+                {"url", "https://test.exmple.com/v1"}, 
+                {"method", "POST"},
+                {"optin_keywords", "optin_keywords"},
+                {"optin_message", "optin_message"},
+                {"optout_keywords", "optout_keywords"},
+                {"help_keywords", "help_keywords"}
             };
 
             var request =
