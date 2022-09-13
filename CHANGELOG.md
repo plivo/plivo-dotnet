@@ -1,5 +1,7 @@
 # Change Log
 
+## [v5.15.2](https://github.com/plivo/plivo-go/tree/v5.15.2) (2022-09-13)
+- 10DLC: Adding more attributes to campaign creation request
 
 ## [v5.15.1](https://github.com/plivo/plivo-go/tree/v5.15.1) (2022-08-22)
 - Fix Incorrect Exception handling for JSON response parsing exceptions
