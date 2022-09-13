@@ -35,6 +35,62 @@ namespace Plivo.NetCore.Test.Resources
         }
 
         [Fact]
+        public void TestCampaignCreate()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"brand_id", "BYEKDY1"},
+                {"vertical", "REAL_ESTATE"},
+                {"usecase", "MIXED"},
+                {"description", "description should be minimum 40 character"},
+                {"embedded_link", false},
+                {"embedded_phone", false},
+                {"age_gated", false},
+                {"direct_lending", false},
+                {"subscriber_optin", true},
+                {"subscriber_optout", true},
+                {"subscriber_help", true},
+                {"affiliate_marketing", false},
+                {"sample1", "sample message 1"},
+                {"sample2", "sample message 2"},
+                {"message_flow", "message_flow"},
+                {"help_message", "help_message"},
+                {"optout_message", "optout_message"},
+                {"sub_usecases":  new List<string>{"2FA","MARKETING"}},
+                {"url", "https://test.exmple.com/v1"}, 
+                {"method", "POST"},
+                {"optin_keywords", "optin_keywords"},
+                {"optin_message", "optin_message"},
+                {"optout_keywords", "optout_keywords"},
+                {"help_keywords", "help_keywords"}
+            };
+
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/campaignCreateResponse.json"
+                );
+            Setup<CreateCampaign>(
+                200,
+                response
+            );
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Campaign.Create(brand_id:"BYEKDY1",vertical:"REAL_ESTATE", usecase:"MIXED",description:"description should be minimum 40 character",  embedded_link:false,embedded_phone:false,  age_gated:false,
+             direct_lending:false,  subscriber_optin:true,  subscriber_optout:true,  subscriber_help:true, 
+             affiliate_marketing:false,  sample1:"sample message 1",  sample2:"sample message 2",  message_flow:"message_flow",  help_message:"help_message",  optout_message:"optout_message", sub_usecases= new List<string>{"2FA","MARKETING"},  url="https://test.exmple.com/v1",  method="POST",  optin_keywords="optin_keywords", optin_message="optin_message", optout_keywords="optout_keywords", help_keywords="help_keywords")));
+
+            AssertRequest(request);
+        }
+
+        [Fact]
         public void TestCampaignGet()
         {
             var id = "CMPT4EP";
