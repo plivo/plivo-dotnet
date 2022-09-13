@@ -91,7 +91,7 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("api_id")]
         public new string ApiId {get; set;}
         
-        [JsonProperty("campaignId")]
+        [JsonProperty("campaign_id")]
         public new string CampaignId {get; set;}
 
         [JsonProperty("message")]
