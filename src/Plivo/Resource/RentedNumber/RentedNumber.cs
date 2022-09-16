@@ -33,6 +33,7 @@ namespace Plivo.Resource.RentedNumber
         public string ComplianceStatus {get; set;}
         public string TendlcCampaignId {get; set;}
         public string TendlcRegistrationStatus {get; set;}
+        public string TollFreeSmsVerification {get; set;}
         
         public override string ToString()
         {
@@ -63,6 +64,7 @@ namespace Plivo.Resource.RentedNumber
                     "ComplianceStatus: " + ComplianceStatus + "\n" +
                     "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                     "TendlcRegistrationStatus: " + TendlcRegistrationStatus + "\n" +
+                    "TollFreeSMSVerification: " + TollFreeSmsVerification + "\n" +
                     "VoiceRate: " + VoiceRate + "\n";
             }
             return
@@ -83,6 +85,7 @@ namespace Plivo.Resource.RentedNumber
                 "VoiceEnabled: " + VoiceEnabled + "\n" +
                 "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                 "TendlcRegistrationStatus: " + TendlcRegistrationStatus + "\n" +
+                "TollFreeSMSVerification: " + TollFreeSmsVerification + "\n" +
                 "VoiceRate: " + VoiceRate + "\n";
         }
 

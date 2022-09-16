@@ -24,7 +24,8 @@
       "voice_enabled": true,
       "voice_rate": "0.00850",
       "tendlc_campaign_id" : "ABC1234",
-      "tendlc_registration_status": "completed"
+      "tendlc_registration_status": "completed",
+      "toll_free_sms_verification": "verified"
     },
     {
       "added_on": "2013-01-01",
@@ -42,7 +43,8 @@
       "voice_enabled": true,
       "voice_rate": "0.00850",
       "tendlc_campaign_id" : "ABC1235",
-      "tendlc_registration_status": "completed"
+      "tendlc_registration_status": "completed",
+      "toll_free_sms_verification": "verified"
     },
     {
       "added_on": "2013-03-25",
@@ -60,7 +62,8 @@
       "voice_enabled": true,
       "voice_rate": "0.00850",
       "tendlc_campaign_id" : "ABC1235",
-      "tendlc_registration_status": "completed"
+      "tendlc_registration_status": "completed",
+      "toll_free_sms_verification": "verified"
     }
   ]
 }
