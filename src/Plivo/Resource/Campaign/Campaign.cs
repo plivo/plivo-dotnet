@@ -13,9 +13,9 @@ namespace Plivo.Resource.Campaign
         public TPMDetail At_t { get; set; }
         [JsonProperty("t-mobile")]
         public TPMDetail Tmobile { get; set; }
-        [JsonProperty("us_cellular")]
+        [JsonProperty("us cellular")]
         public TPMDetail UsCellular { get; set; }
-        [JsonProperty("verizon_wireless")]
+        [JsonProperty("verizon wireless")]
         public TPMDetail VerizonWireless { get; set; }
     }
 
