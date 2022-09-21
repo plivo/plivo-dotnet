@@ -53,11 +53,20 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">usecase.</param>
-        public CampaignListResponse<ListCampaigns> List()
+        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null)
         {
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign",null).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign",data).ConfigureAwait(false)).Result;
                 resources.Campaigns.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -71,10 +80,18 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">status.</param>
-        public async Task<CampaignListResponse<ListCampaigns>> ListAsync()
+        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null)
         {
-           
-            var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", null);
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+
+            var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", data);
             resources.Campaigns.ForEach(
 					(obj) => obj.Interface = this
 				);
