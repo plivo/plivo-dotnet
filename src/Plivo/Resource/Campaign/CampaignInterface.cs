@@ -126,7 +126,7 @@ namespace Plivo.Resource.Campaign
         ///<param name="optin_message">optin_message<param>
         ///<param name="optout_keywords">optout_keywords<param>
          ///<param name="help_keywords">optout_keywords<param>
-        public CreateCampaign Create(string brand_id, string vertical,  string usecase, 
+        public CreateCampaign Create(string campaign_alias,string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
             bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
@@ -135,7 +135,8 @@ namespace Plivo.Resource.Campaign
         var data = CreateData(
             mandatoryParams,
             new
-            {
+            {   
+                campaign_alias,
                 brand_id,
                 vertical,
                 usecase,
@@ -195,7 +196,7 @@ namespace Plivo.Resource.Campaign
         ///<param name="optin_message">optin_message<param>
         ///<param name="optout_keywords">optout_keywords<param>
          ///<param name="help_keywords">optout_keywords<param>
-		public async Task<CreateCampaign> CreateAsync(string brand_id, string vertical, string usecase,
+		public async Task<CreateCampaign> CreateAsync(string campaign_alias, string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
             bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
@@ -206,6 +207,7 @@ namespace Plivo.Resource.Campaign
             mandatoryParams,
             new
             {
+                campaign_alias,
                 brand_id,
                 vertical,
                 usecase,
