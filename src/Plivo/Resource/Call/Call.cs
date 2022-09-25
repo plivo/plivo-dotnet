@@ -380,6 +380,75 @@ namespace Plivo.Resource.Call
                 .CancelCallAsync(Id, callbackUrl, callbackMethod);
         }
         #endregion
+
+        #region StartStream
+        public StreamCreateResponse StartStream(
+            string callUuid = null, string serviceUrl = null, string bidirectional = null,
+            string audioTrack = null, string streamTimeout = null,
+            string statusCallbackUrl = null, string statusCallbackMethod = null,
+            string contentType = null, string extraHeaders = null)
+        {
+            return ((CallInterface)Interface).StartStream(callUuid, serviceUrl, bidirectional, audioTrack,
+                streamTimeout, statusCallbackUrl, statusCallbackMethod, contentType, extraHeaders);
+        }
+
+        public async Task<Stream.AsyncResponse> StartStreamAsync(
+            string callUuid = null, string serviceUrl = null, string bidirectional = null,
+            string audioTrack = null, string streamTimeout = null,
+            string statusCallbackUrl = null, string statusCallbackMethod = null,
+            string contentType = null, string extraHeaders = null)
+        {
+            return await ((CallInterface)Interface).StartStreamAsync(callUuid, serviceUrl, bidirectional, audioTrack,
+                streamTimeout, statusCallbackUrl, statusCallbackMethod, contentType, extraHeaders);
+        }
+        #endregion
+        
+        #region GetStream
+        public ListResponse<Stream.Stream> GetAllStreams(
+            string callUuid = null)
+        {
+            return ((CallInterface)Interface).GetAllStreams(callUuid);
+        }
+
+        public async Task<AsyncResponse> GetAllStreamsAsync(
+            string callUuid = null)
+        {
+            return await ((CallInterface)Interface).GetAllStreamsAsync(callUuid);
+        }
+        
+        public Stream.Stream GetStream(string callUuid = null, string streamId = null)
+        {
+            return ((CallInterface)Interface).GetStream(callUuid, streamId);
+        }
+
+        public async Task<AsyncResponse> GetStreamAsync(string callUuid = null, string streamId = null)
+        {
+            return await ((CallInterface)Interface).GetStreamAsync(callUuid, streamId);
+        }
+        #endregion
+        
+        #region StopStream
+        public DeleteResponse<Stream.Stream> StopStream(string callUuid = null, string streamId = null)
+        {
+            return ((CallInterface)Interface).StopStream(callUuid, streamId);
+        }
+
+        public async Task<AsyncResponse> StopStreamAsync (string callUuid = null, string streamId = null) {
+            return await ((CallInterface)Interface).StopStreamAsync(callUuid, streamId);
+        }
+
+        public DeleteResponse<Stream.Stream> StopAllStreams(string callUuid = null)
+        {
+            return ((CallInterface)Interface).StopAllStreams(callUuid);
+        }
+
+        public async Task<AsyncResponse> StopAllStreamAsync(string callUuid = null)
+        {
+            return await ((CallInterface)Interface).StopAllStreamsAsync(callUuid);
+        }
+        #endregion
+        
+        
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Call.Call"/>.
         /// </summary>
