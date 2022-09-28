@@ -181,4 +181,30 @@ namespace Plivo.Resource.Brand
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }
+
+
+    public class BrandUsecase
+    {
+        [JsonProperty("name")]
+        public string name { get; set; }
+        [JsonProperty("code")]
+        public string code { get; set; }
+        [JsonProperty("details")]
+        public string details { get; set; }
+    }
+    
+    [JsonObject(MemberSerialization.OptIn)]
+    public class GetBrandUsecases: Resource
+    {  
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
+        [JsonProperty("use_cases")]
+        public List<BrandUsecase> BrandUsecase {get; set;}
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
 }
