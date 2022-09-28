@@ -146,5 +146,32 @@ namespace Plivo.Resource.Brand
 			return result.Object;
 		}
 		#endregion
+        #region ListUsecases
+         /// <summary>
+        /// Get Usecases with the specified brandID.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="brand_id">brandID.</param>
+        public BrandListUsecaseResponse<BrandListUsecase> ListUsecases(string brandID)
+        {
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var response = Task.Run(async () => await GetResource<BrandListUsecaseResponse<ListUsecases>>("10dlc/Brand/"+brandID+"/usecases").ConfigureAwait(false)).Result;
+				return response;
+			});
+        }
+        /// <summary>
+        /// Asynchronously get Brand Usecases with the specified brandId.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="brand_id">brandID.</param>
+        public async Task<BrandListUsecaseResponse<Usecase>> ListUsecasesAsync(string brandID)
+        {
+            var response = await GetResource<BrandListUsecaseResponse<ListUsecases>>("10dlc/Brand/"+brandID+"/usecases");
+            return response;
+        }
+        #endregion
+
+    
     }
 }

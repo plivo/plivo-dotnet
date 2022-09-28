@@ -1,0 +1,11 @@
+{
+    "use_cases": [
+        {
+            "name": "Two-Factor Authentication",
+            "code": "2FA",
+            "details": "Any two-factor authentication with passcodes used to unlock accounts"
+        }
+    ],
+    "brand_id": "BSWXXXX",
+    "api_id": "95e1df78-3f08-11e7-8bc8-065f6a74a84a"
+}
