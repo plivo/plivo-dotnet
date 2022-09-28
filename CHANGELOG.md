@@ -1,4 +1,6 @@
 # Change Log
+## [v5.15.3](https://github.com/plivo/plivo-go/tree/v5.15.3) (2022-09-28)
+- 10DLC: Adding more attributes to campaign creation request
 
 ## [v5.15.2](https://github.com/plivo/plivo-go/tree/v5.15.2) (2022-09-13)
 - Bug fix: 10DLC LinkNumberSync remove mandatory params
