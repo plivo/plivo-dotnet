@@ -19,6 +19,25 @@ namespace Plivo.Resource.Campaign
         public TPMDetail VerizonWireless { get; set; }
     }
 
+    public class CampaignAttributes {
+        [JsonProperty("subscriber_optin")]
+        public string SubscriberOptin { get; set; }
+        [JsonProperty("subscriber_optout")]
+        public string SubscriberOptout { get; set; }
+        [JsonProperty("embedded_link")]
+        public string EmbeddedLink { get; set; }
+        [JsonProperty("embedded_phone")]
+        public string EmbeddedPhone { get; set; }
+        [JsonProperty("age_gated")]
+        public string AgeGated { get; set; }
+        [JsonProperty("direct_lending")]
+        public string DirectLending { get; set; }
+        [JsonProperty("subscriber_help")]
+        public string SubscriberHelp { get; set; }
+        [JsonProperty("affiliate_marketing")]
+        public string AffiliateMarketing { get; set; }
+    }
+
     public class TPMDetail {
         [JsonProperty("tpm")]
         public string tpm { get; set; }
@@ -45,6 +64,10 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; }
+
+        [JsonProperty("campaign_attributes")]
+        public CampaignAttributes CampaignAttributes { get; set; }
+        
 
         [JsonProperty("message_flow")]
         public string MessageFlow { get; set; }
@@ -125,6 +148,8 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; } 
+        [JsonProperty("campaign_attributes")]
+        public CampaignAttributes CampaignAttributes { get; set; }
 
         [JsonProperty("message_flow")]
         public string MessageFlow { get; set; }
@@ -178,6 +203,8 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("phone_numbers")]
         public List<NumberObject> PhoneNumbers { get; set; }  
+        [JsonProperty("phone_numbers_summary")]
+        public Dictionary<string, int> PhoneNumbersSummary { get; set; }  
 
         public override string ToString()
         {
