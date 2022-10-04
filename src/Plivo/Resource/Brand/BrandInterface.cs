@@ -147,16 +147,17 @@ namespace Plivo.Resource.Brand
 		}
 		#endregion
         #region ListUsecases
-         /// <summary>
-        /// Get Usecases with the specified brandID.
+        /// <summary>
+        /// Get List of possible Usecases with the specified brandID.
         /// </summary>
-        /// <returns>The get.</returns>
+        /// <returns>The ListUsecases.</returns>
         /// <param name="brand_id">brandID.</param>
-        public BrandListUsecaseResponse<BrandListUsecase> ListUsecases(string brandID)
+        
+        public GetBrandUsecases ListUsecases(string brandID)
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await GetResource<BrandListUsecaseResponse<ListUsecases>>("10dlc/Brand/"+brandID+"/usecases").ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await GetResource<GetBrandUsecases>("10dlc/Brand/"+brandID+"/usecases").ConfigureAwait(false)).Result;
 				return response;
 			});
         }
@@ -165,9 +166,9 @@ namespace Plivo.Resource.Brand
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="brand_id">brandID.</param>
-        public async Task<BrandListUsecaseResponse<Usecase>> ListUsecasesAsync(string brandID)
+        public async Task<GetBrandUsecases> ListUsecasesAsync(string brandID)
         {
-            var response = await GetResource<BrandListUsecaseResponse<ListUsecases>>("10dlc/Brand/"+brandID+"/usecases");
+            var response = await GetResource<GetBrandUsecases>("10dlc/Brand/"+brandID+"/usecases");
             return response;
         }
         #endregion
