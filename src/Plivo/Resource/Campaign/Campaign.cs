@@ -65,6 +65,14 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; }
 
+        [JsonProperty("sample1")]
+        public string Sample1 { get; set; }
+
+        [JsonProperty("sample2")]
+        public string Sample2 { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
         [JsonProperty("campaign_attributes")]
         public CampaignAttributes CampaignAttributes { get; set; }
         
@@ -148,6 +156,14 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; } 
+
+        [JsonProperty("sample1")]
+        public string Sample1 { get; set; }
+
+        [JsonProperty("sample2")]
+        public string Sample2 { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
         [JsonProperty("campaign_attributes")]
         public CampaignAttributes CampaignAttributes { get; set; }
 
