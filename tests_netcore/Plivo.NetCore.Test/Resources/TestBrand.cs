@@ -73,7 +73,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
-            var resp =  Api.Brand.Get(id);
+            var resp =  Api.Brand.ListUsecases(id);
             AssertRequest(request);
         }
     }
