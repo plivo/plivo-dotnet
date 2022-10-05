@@ -62,7 +62,7 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/" + id + "/usecases",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/" + id + "/usecases/",
                     "");
 
             var response =
