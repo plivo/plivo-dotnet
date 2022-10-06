@@ -94,7 +94,7 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestCampaignGet()
         {
-            var id = "CMPT4EP";
+            var id = "CKRSQ9R";
             var request =
                 new PlivoRequest(
                     "GET",
