@@ -98,7 +98,7 @@ namespace Plivo.NetCore.Test.Resources
             var request =
                 new PlivoRequest(
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/" + id,
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/" + id + "/",
                     "");
 
             var response =
