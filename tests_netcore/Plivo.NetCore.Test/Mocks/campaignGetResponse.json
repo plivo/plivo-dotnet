@@ -13,6 +13,19 @@
             "Verizon Wireless": {}
         },
         "reseller_id": "RPDPPUM",
-        "usecase": "ACCOUNT_NOTIFICATION"
+        "usecase": "ACCOUNT_NOTIFICATION",
+        "sample1": "Sample 1",
+        "sample2": "Sample 2",
+        "description": "Campaign",
+        "campaign_attributes": {
+            "embedded_link": false,
+            "embedded_phone": false,
+            "age_gated": false,
+            "direct_lending": false,
+            "subscriber_optin": false,
+            "subscriber_optout": false,
+            "subscriber_help": false,
+            "affiliate_marketing": false
+        }
     }
 }
