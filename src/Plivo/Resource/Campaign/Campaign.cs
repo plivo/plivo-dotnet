@@ -221,6 +221,8 @@ namespace Plivo.Resource.Campaign
         public List<NumberObject> PhoneNumbers { get; set; }  
         [JsonProperty("phone_numbers_summary")]
         public Dictionary<string, int> PhoneNumbersSummary { get; set; }  
+        [JsonProperty("number_pool_limit")]
+        public int NumberPoolLimit { get; set; }
 
         public override string ToString()
         {
