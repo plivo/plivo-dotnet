@@ -110,10 +110,10 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             var resp = Api.Campaign.Get(id);
-            // Assert.Empty(
-            //     ComparisonUtilities.Compare(
-            //         response,
-            //         Api.Campaign.Get(id)));
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Campaign.Get(id)));
 
             AssertRequest(request);
         }
