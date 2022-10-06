@@ -1,42 +1,38 @@
 {
-    "api_id": "c890e51e-4532-11ed-a786-0242ac110002",
-    "campaign": {
-      "brand_id": "BXZRASW",
-      "campaign_id": "CKRSQ9R",
-      "mno_metadata": {
-        "at&t": null,
-        "t-mobile": null,
-        "us cellular": {
-          "tpm": null,
-          "brand_tier": null
-        },
-        "verizon wireless": {
-          "tpm": null,
-          "brand_tier": null
-        }
-      },
+  "api_id": "71aa47e0-3750-11ec-8e4c-0242ac110002",
+  "campaign": {
+      "campaign_id": "CCMZZOS",
+      "registration_status": "PROCESSING",
       "reseller_id": "",
-      "usecase": "2FA",
-      "sub_usecase": null,
-      "sample1": "test 1",
-      "sample2": "Hi it's test message 2",
-      "description": "test messaging",
-      "campaign_attributes": {
-        "subscriber_optin": "false",
-        "subscriber_optout": "false",
-        "embedded_link": "false",
-        "embedded_phone": "false",
-        "age_gated": "false",
-        "direct_lending": "false",
-        "subscriber_help": "false",
-        "affiliate_marketing": "false"
+      "brand_id": "B4TE2AH",
+      "usecase": "LOW_VOLUME",
+      "sub_usecase": "DELIVERY_NOTIFICATION",
+      "mno_metadata": {
+          "AT&T": {
+              "tpm": 75
+          },
+          "T-Mobile": {
+              "brand_tier": "TOP"
+          },
+          "US Cellular": {
+              "tpm": 75
+          },
+          "Verizon Wireless": {
+              "tpm": 75
+          }
       },
-      "message_flow": null,
-      "help_message": null,
-      "optin_keywords": null,
-      "optin_message": null,
-      "optout_keywords": null,
-      "optout_message": null,
-      "help_keywords": null
-    }
+      "sample1": "Sample 1",
+      "sample2": "Sample 2",
+      "description": "Campaign",
+      "campaign_attributes": {
+          "embedded_link": false,
+          "embedded_phone": false,
+          "age_gated": false,
+          "direct_lending": false,
+          "subscriber_optin": false,
+          "subscriber_optout": false,
+          "subscriber_help": false,
+          "affiliate_marketing": false
+      }
   }
+}
