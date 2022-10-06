@@ -116,8 +116,11 @@ namespace Plivo.Resource.Profile
         [JsonProperty("vertical")]
         public string Vertical { get; set; }  
 
-         [JsonProperty("website")]
+        [JsonProperty("website")]
         public string Website { get; set; }
+
+        [JsonProperty("plivo_subaccount")]
+        public string PlivoSubaccount { get; set; }
 
     }
 
@@ -170,7 +173,10 @@ namespace Plivo.Resource.Profile
         public string StockSymbol { get; set; }  
 
         [JsonProperty("profile_uuid")]
-        public string ProfileUuid { get; set; }  
+        public string ProfileUuid { get; set; }
+
+        [JsonProperty("plivo_subaccount")]
+        public string PlivoSubaccount { get; set; }
 
         [JsonProperty("authorized_contact")]
         public AuthorizedContact authorized_contact { get; set; }
