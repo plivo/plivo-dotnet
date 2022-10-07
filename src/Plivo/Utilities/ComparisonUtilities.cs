@@ -36,7 +36,11 @@ namespace Plivo.Utilities
             foreach (KeyValuePair<string, JToken> sourcePair in source)
             {
                 if (sourcePair.Value.Type == JTokenType.Object)
-                {
+                {   
+                    Console.WriteLine("StringUtilities.SnakeCaseToPascalCase(sourcePair.Key---");
+                    Console.WriteLine(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
+                    Console.WriteLine("snake-", target.GetValue(sourcePair.Key));
+                    Console.WriteLine("pascal-", StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
                     if (target.GetValue(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)) == null)
                     {
                         returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)
