@@ -39,8 +39,15 @@ namespace Plivo.Utilities
                 {   
                     Console.WriteLine("StringUtilities.SnakeCaseToPascalCase(sourcePair.Key---");
                     Console.WriteLine(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
-                    Console.WriteLine("snake-", target.GetValue(sourcePair.Key));
-                    Console.WriteLine("pascal-", StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
+                    if (StringUtilities.SnakeCaseToPascalCase(sourcePair.Key) == "Campaign" ){
+                        Console.WriteLine("snake-");
+                        Console.WriteLine(sourcePair.Key);
+                        Console.WriteLine(target.GetValue(sourcePair.Key));
+                        Console.WriteLine("pascal-");
+                        Console.WriteLine(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key));
+                    }
+                    
+
                     if (target.GetValue(StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)) == null)
                     {
                         returnString.Append("Key " + StringUtilities.SnakeCaseToPascalCase(sourcePair.Key)
