@@ -20,6 +20,7 @@
         "company_name": "ABC Inc",
         "customer_type": "RESELLER",
         "ein": "111111111",
+        "plivo_subaccount": "1289760",
         "ein_issuing_country": "US",
         "entity_type": "PRIVATE_PROFIT",
         "primary_profile": "0ac18ad2-5086-4bde-84e5-275a2782cb40",
