@@ -1,4 +1,7 @@
 # Change Log
+## [v5.16.0](https://github.com/plivo/plivo-dotnet/tree/v5.16.0) (2022-10-10)
+- Added:: Brandusecase API, 10dlc api enhancement
+
 ## [v5.15.4](https://github.com/plivo/plivo-dotnet/tree/v5.15.4) (2022-09-30)
 - Bug fix:: plivo_subaccount added in 10dlc profile api
 
