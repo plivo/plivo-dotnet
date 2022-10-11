@@ -21,21 +21,21 @@ namespace Plivo.Resource.Campaign
 
     public class CampaignAttributes {
         [JsonProperty("subscriber_optin")]
-        public string SubscriberOptin { get; set; }
+        public bool SubscriberOptin { get; set; }
         [JsonProperty("subscriber_optout")]
-        public string SubscriberOptout { get; set; }
+        public bool SubscriberOptout { get; set; }
         [JsonProperty("embedded_link")]
-        public string EmbeddedLink { get; set; }
+        public bool EmbeddedLink { get; set; }
         [JsonProperty("embedded_phone")]
-        public string EmbeddedPhone { get; set; }
+        public bool EmbeddedPhone { get; set; }
         [JsonProperty("age_gated")]
-        public string AgeGated { get; set; }
+        public bool AgeGated { get; set; }
         [JsonProperty("direct_lending")]
-        public string DirectLending { get; set; }
+        public bool DirectLending { get; set; }
         [JsonProperty("subscriber_help")]
-        public string SubscriberHelp { get; set; }
+        public bool SubscriberHelp { get; set; }
         [JsonProperty("affiliate_marketing")]
-        public string AffiliateMarketing { get; set; }
+        public bool AffiliateMarketing { get; set; }
     }
 
     public class TPMDetail {
