@@ -199,6 +199,8 @@ namespace Plivo.Resource.Brand
     {  
         [JsonProperty("api_id")]
         public new string ApiId {get; set;}
+        [JsonProperty("brand_id")]
+        public string BrandId { get; set; }
 
         [JsonProperty("use_cases")]
         public List<BrandUsecase> BrandUsecase {get; set;}
