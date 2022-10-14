@@ -13,9 +13,9 @@ namespace Plivo.Resource.Campaign
         public TPMDetail At_t { get; set; }
         [JsonProperty("t-mobile")]
         public TPMDetail Tmobile { get; set; }
-        [JsonProperty("us_cellular")]
+        [JsonProperty("us cellular")]
         public TPMDetail UsCellular { get; set; }
-        [JsonProperty("verizon_wireless")]
+        [JsonProperty("verizon wireless")]
         public TPMDetail VerizonWireless { get; set; }
     }
 
@@ -45,6 +45,29 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; }
+
+        [JsonProperty("message_flow")]
+        public string MessageFlow { get; set; }
+        
+        [JsonProperty("help_message")]
+        public string HelpMessage { get; set; }
+        
+        [JsonProperty("optin_keywords")]
+        public string OptinKeywords { get; set; }
+        
+        [JsonProperty("optin_message")]
+        public string OptinMessage { get; set; }
+        
+        [JsonProperty("optout_keywords")]
+        public string OptoutKeywords { get; set; }
+        
+        [JsonProperty("optout_message")]
+        public string OptoutMessage { get; set; }
+        
+        [JsonProperty("help_keywords")]
+        public string HelpKeywords { get; set; }
+
+
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -68,7 +91,7 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("api_id")]
         public new string ApiId {get; set;}
         
-        [JsonProperty("campaignId")]
+        [JsonProperty("campaign_id")]
         public new string CampaignId {get; set;}
 
         [JsonProperty("message")]
@@ -102,6 +125,27 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; } 
+
+        [JsonProperty("message_flow")]
+        public string MessageFlow { get; set; }
+        
+        [JsonProperty("help_message")]
+        public string HelpMessage { get; set; }
+        
+        [JsonProperty("optin_keywords")]
+        public string OptinKeywords { get; set; }
+        
+        [JsonProperty("optin_message")]
+        public string OptinMessage { get; set; }
+        
+        [JsonProperty("optout_keywords")]
+        public string OptoutKeywords { get; set; }
+        
+        [JsonProperty("optout_message")]
+        public string OptoutMessage { get; set; }
+        
+        [JsonProperty("help_keywords")]
+        public string HelpKeywords { get; set; }
 
         public override string ToString()
         {

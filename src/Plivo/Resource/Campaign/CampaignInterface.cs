@@ -53,11 +53,20 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">usecase.</param>
-        public CampaignListResponse<ListCampaigns> List()
+        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null)
         {
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign",null).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign",data).ConfigureAwait(false)).Result;
                 resources.Campaigns.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -71,10 +80,18 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">status.</param>
-        public async Task<CampaignListResponse<ListCampaigns>> ListAsync()
+        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null)
         {
-           
-            var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", null);
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+
+            var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", data);
             resources.Campaigns.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -102,17 +119,24 @@ namespace Plivo.Resource.Campaign
         /// <param name="affiliate_marketing">affiliate_marketing</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
-
-        public CreateCampaign Create(string brand_id, string vertical,  string usecase, 
+        ///<param name="message_flow">message_flow<param>
+        ///<param name="help_message">help_message<param>
+        ///<param name="optout_message">optout_message<param>
+        ///<param name="optin_keywords">optin_keywords<param>
+        ///<param name="optin_message">optin_message<param>
+        ///<param name="optout_keywords">optout_keywords<param>
+         ///<param name="help_keywords">optout_keywords<param>
+        public CreateCampaign Create(string campaign_alias,string brand_id, string vertical,  string usecase, 
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
-            bool affiliate_marketing, string sample1, string sample2, string[] sub_usecases= null, string url=null, string method=null)
+            bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
             mandatoryParams,
             new
-            {
+            {   
+                campaign_alias,
                 brand_id,
                 vertical,
                 usecase,
@@ -129,7 +153,14 @@ namespace Plivo.Resource.Campaign
                 sample1,
                 sample2,
                 url,
-                method
+                method,
+                message_flow,
+                help_message,
+                optout_message,
+                optin_keywords,
+                optin_message,
+                optout_keywords,
+                help_keywords
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -158,10 +189,17 @@ namespace Plivo.Resource.Campaign
         /// <param name="affiliate_marketing">affiliate_marketing</param>
         /// <param name="sample1">sample1</param>
         /// <param name="sample2">sample1</param>
-		public async Task<CreateCampaign> CreateAsync(string brand_id, string vertical, string usecase,
+        ///<param name="message_flow">message_flow<param>
+        ///<param name="help_message">help_message<param>
+        ///<param name="optout_message">optout_message<param>
+         ///<param name="optin_keywords">optin_keywords<param>
+        ///<param name="optin_message">optin_message<param>
+        ///<param name="optout_keywords">optout_keywords<param>
+         ///<param name="help_keywords">optout_keywords<param>
+		public async Task<CreateCampaign> CreateAsync(string campaign_alias, string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
-            bool affiliate_marketing, string sample1, string sample2,string[] sub_usecases= null, string url=null, string method=null)
+            bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -169,6 +207,7 @@ namespace Plivo.Resource.Campaign
             mandatoryParams,
             new
             {
+                campaign_alias,
                 brand_id,
                 vertical,
                 usecase,
@@ -185,7 +224,14 @@ namespace Plivo.Resource.Campaign
                 sample1,
                 sample2,
                 url,
-                method
+                method,
+                message_flow,
+                help_message,
+                optout_message,
+                optin_keywords,
+                optin_message,
+                optout_keywords,
+                help_keywords,
             });
 
 			var result = await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data);

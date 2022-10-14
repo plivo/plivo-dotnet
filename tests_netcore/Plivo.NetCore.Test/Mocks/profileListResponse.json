@@ -23,6 +23,7 @@
             "customer_type": "RESELLER",
             "ein_issuing_country": "US",
             "entity_type": "PUBLIC_PROFIT",
+            "plivo_subaccount": "1289760",
             "profile_alias": "vishnu1",
             "profile_type": "SECONDARY",
             "profile_uuid": "1c41faed-a38e-42a3-a966-fe7df34b51b9",
@@ -50,6 +51,7 @@
             "entity_type": "SOLE_PROPRIETOR",
             "profile_alias": "vishnu1",
             "profile_type": "SECONDARY",
+            "plivo_subaccount": "1289760",
             "profile_uuid": "1d77a5fe-bca4-4a6d-a7c4-58b70e8cd7a2",
             "stock_symbol": "ABC",
             "vertical": "ENERGY"

@@ -55,12 +55,20 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public BrandListResponse<ListBrands> List()
+        public BrandListResponse<ListBrands> List(uint? limit = null, uint? offset = null)
         {
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var resources = Task.Run(async () => await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand", null).ConfigureAwait(false)).Result;
+				var resources = Task.Run(async () => await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand", data).ConfigureAwait(false)).Result;
 				resources.Brands.ForEach(
 					(obj) => obj.Interface = this
 				);
@@ -76,9 +84,18 @@ namespace Plivo.Resource.Brand
         /// <returns>The list.</returns>
         /// <param name="type">type.</param>
         /// <param name="status">status.</param>
-        public async Task<BrandListResponse<ListBrands>> ListAsync()
+        public async Task<BrandListResponse<ListBrands>> ListAsync(uint? limit = null, uint? offset = null)
         {
-            var resources = await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand", null);
+            var mandatoryParams = new List<string> {""};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    limit,
+                    offset
+                });
+
+            var resources = await ListResources<BrandListResponse<ListBrands>>("10dlc/Brand", data);
             resources.Brands.ForEach(
                 (obj) => obj.Interface = this
             );
