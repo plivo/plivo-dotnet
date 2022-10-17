@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.16.0</version>
+    <version>5.17.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.17.0 Adding more attribute on Account PhoneNumber Object
       * 5.16.0 Added BrandUsecase Api, 10dlc enhancements
       * 5.15.4 Bug fix on Get and List Profile Api
       * 5.15.3 Adding more attributes on 10dlc campaign creation request
