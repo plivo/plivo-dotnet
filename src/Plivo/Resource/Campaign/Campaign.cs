@@ -19,6 +19,25 @@ namespace Plivo.Resource.Campaign
         public TPMDetail VerizonWireless { get; set; }
     }
 
+    public class CampaignAttributes {
+        [JsonProperty("subscriber_optin")]
+        public bool SubscriberOptin { get; set; }
+        [JsonProperty("subscriber_optout")]
+        public bool SubscriberOptout { get; set; }
+        [JsonProperty("embedded_link")]
+        public bool EmbeddedLink { get; set; }
+        [JsonProperty("embedded_phone")]
+        public bool EmbeddedPhone { get; set; }
+        [JsonProperty("age_gated")]
+        public bool AgeGated { get; set; }
+        [JsonProperty("direct_lending")]
+        public bool DirectLending { get; set; }
+        [JsonProperty("subscriber_help")]
+        public bool SubscriberHelp { get; set; }
+        [JsonProperty("affiliate_marketing")]
+        public bool AffiliateMarketing { get; set; }
+    }
+
     public class TPMDetail {
         [JsonProperty("tpm")]
         public string tpm { get; set; }
@@ -45,6 +64,18 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; }
+
+        [JsonProperty("sample1")]
+        public string Sample1 { get; set; }
+
+        [JsonProperty("sample2")]
+        public string Sample2 { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
+        [JsonProperty("campaign_attributes")]
+        public CampaignAttributes CampaignAttributes { get; set; }
+        
 
         [JsonProperty("message_flow")]
         public string MessageFlow { get; set; }
@@ -126,6 +157,16 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; } 
 
+        [JsonProperty("sample1")]
+        public string Sample1 { get; set; }
+
+        [JsonProperty("sample2")]
+        public string Sample2 { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("campaign_attributes")]
+        public CampaignAttributes CampaignAttributes { get; set; }
+
         [JsonProperty("message_flow")]
         public string MessageFlow { get; set; }
         
@@ -178,6 +219,10 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("phone_numbers")]
         public List<NumberObject> PhoneNumbers { get; set; }  
+        [JsonProperty("phone_numbers_summary")]
+        public Dictionary<string, int> PhoneNumbersSummary { get; set; }  
+        [JsonProperty("number_pool_limit")]
+        public int NumberPoolLimit { get; set; }
 
         public override string ToString()
         {
