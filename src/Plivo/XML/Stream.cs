@@ -42,22 +42,7 @@ namespace Plivo.XML
 
             if (Attributes.ContainsKey("extraHeaders"))
             {
-                //var headers = Attributes["extraHeaders"];
-                var headers = JsonConvert.DeserializeObject<Dictionary<string, string>>(Attributes["extraHeaders"]);
-                dict headersDict = new Dictionary<string, string>();
-                
-                foreach(KeyValuePair<string, string> element in headers)
-                {
-                    if (element.Key.EndsWith("X-PH"))
-                    {
-                        headersDict.Add(element.Key, element.Value);
-                    }
-                    else
-                    {
-                        headersDict.Add(element.Key + "X-PH", element.Value);
-                    }
-                }
-                string headersString = JsonConvert.SerializeObject(headersDict);
+                string headersString = JsonConvert.SerializeObject(Attributes["extraHeaders"]);
                 Attributes.Remove("extraHeaders");
                 Attributes.Add("extraHeaders", headersString);
             }
