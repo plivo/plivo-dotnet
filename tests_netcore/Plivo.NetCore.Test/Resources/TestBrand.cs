@@ -54,5 +54,27 @@ namespace Plivo.NetCore.Test.Resources
             var resp =  Api.Brand.Get(id);
             AssertRequest(request);
         }
+
+        [Fact]
+        public void TestBrandUsecase()
+        {
+            var id = "BSWXXXX";
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/" + id + "/usecases/",
+                    "");
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/brandListUsecase.json"
+                );
+            Setup<GetBrandUsecases>(
+                200,
+                response
+            );
+            var resp =  Api.Brand.ListUsecases(id);
+            AssertRequest(request);
+        }
     }
 }

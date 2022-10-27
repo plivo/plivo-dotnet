@@ -94,7 +94,7 @@ namespace Plivo.NetCore.Test.Resources
         [Fact]
         public void TestCampaignGet()
         {
-            var id = "CMPT4EP";
+            var id = "CCMZZOS";
             var request =
                 new PlivoRequest(
                     "GET",
@@ -109,6 +109,7 @@ namespace Plivo.NetCore.Test.Resources
                 200,
                 response
             );
+            
             var resp = Api.Campaign.Get(id);
             // Assert.Empty(
             //     ComparisonUtilities.Compare(

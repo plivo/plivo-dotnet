@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 namespace Plivo.Resource.Brand
 {
     /// <summary>
@@ -175,6 +176,34 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("brand")]
         public BrandResponse Brand {get; set;}
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
+
+
+    public class BrandUsecase
+    {
+        [JsonProperty("name")]
+        public string name { get; set; }
+        [JsonProperty("code")]
+        public string code { get; set; }
+        [JsonProperty("details")]
+        public string details { get; set; }
+    }
+    
+    [JsonObject(MemberSerialization.OptIn)]
+    public class GetBrandUsecases: Resource
+    {  
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+        [JsonProperty("brand_id")]
+        public string BrandId { get; set; }
+
+        [JsonProperty("use_cases")]
+        public List<BrandUsecase> BrandUsecase {get; set;}
 
         public override string ToString()
         {
