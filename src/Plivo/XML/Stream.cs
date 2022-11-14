@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using Plivo.Exception;
 using dict = System.Collections.Generic.Dictionary<string, string>;
 using list = System.Collections.Generic.List<string>;
@@ -38,13 +36,6 @@ namespace Plivo.XML
             if (Attributes.ContainsKey("audioTrack") && !VALID_AUDIOTRACK_VALUES.Contains(Attributes["audioTrack"]))
             {
                 throw new PlivoXMLException("Invalid attribute value " + Attributes["audioTrack"] + " for audioTrack"); 
-            }
-
-            if (Attributes.ContainsKey("extraHeaders"))
-            {
-                string headersString = JsonConvert.SerializeObject(Attributes["extraHeaders"]);
-                Attributes.Remove("extraHeaders");
-                Attributes.Add("extraHeaders", headersString);
             }
             addAttributes();
         }
