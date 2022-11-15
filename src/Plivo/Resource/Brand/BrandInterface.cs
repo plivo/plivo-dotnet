@@ -196,11 +196,11 @@ namespace Plivo.Resource.Brand
         /// <returns>message</returns>
         /// <param name="brand_id">brandID.</param>
         
-        public DeleteBrand Delete(string brandID)
+        public DeleteResponse<DeleteBrand> Delete(string brandID)
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await DeleteResource<DeleteBrand>("10dlc/Brand/"+brandID).ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await DeleteResource<DeleteResponse<DeleteBrand>>("10dlc/Brand/"+brandID).ConfigureAwait(false)).Result;
 				return response;
 			});
         }
@@ -209,9 +209,9 @@ namespace Plivo.Resource.Brand
         /// </summary>
         /// <returns>message</returns>
         /// <param name="brand_id">brandID.</param>
-        public async Task<DeleteBrand> DeleteAsync(string brandID)
+        public async Task<DeleteResponse<DeleteBrand>> DeleteAsync(string brandID)
         {
-            var response = await DeleteResource<DeleteBrand>("10dlc/Brand/"+brandID);
+            var response = await DeleteResource<DeleteResponse<DeleteBrand>>("10dlc/Brand/"+brandID);
             return response;
         }
         #endregion

@@ -393,11 +393,11 @@ namespace Plivo.Resource.Campaign
         /// </summary>
         /// <returns>message</returns>
         /// <param name="campaign_id">campaignID.</param>
-        public DeleteCampaign Delete(string campaignID)
+        public DeleteResponse<DeleteCampaign> Delete(string campaignID)
         {
 			return ExecuteWithExceptionUnwrap(() =>
 			{
-				var response = Task.Run(async () => await DeleteResource<DeleteCampaign>("10dlc/Campaign/"+campaignID).ConfigureAwait(false)).Result;
+				var response = Task.Run(async () => await DeleteResource<DeleteResponse<DeleteCampaign>>("10dlc/Campaign/"+campaignID).ConfigureAwait(false)).Result;
 				return response;
 			});
         }
@@ -406,9 +406,9 @@ namespace Plivo.Resource.Campaign
         /// </summary>
         /// <returns>The get.</returns>
         /// <param name="campaign_id"> campaignID.</param>
-        public async Task<DeleteCampaign> DeleteAsync(string campaignID)
+        public async Task<DeleteResponse<DeleteCampaign>> DeleteAsync(string campaignID)
         {
-            var response = await DeleteResource<DeleteCampaign>("10dlc/Campaign/"+campaignID);
+            var response = await DeleteResource<DeleteResponse<DeleteCampaign>>("10dlc/Campaign/"+campaignID);
             return response;
         }
         #endregion
