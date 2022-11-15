@@ -248,4 +248,25 @@ namespace Plivo.Resource.Campaign
 
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
+    public class DeleteCampaign: Resource
+    {
+        
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
+        [JsonProperty("campaign_id")]
+        public string CampaignId { get; set; }
+
+        [JsonProperty("message")]
+        public string Message {get; set;}
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+
+
+    }
+
 }

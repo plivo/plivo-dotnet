@@ -387,5 +387,30 @@ namespace Plivo.Resource.Campaign
             return await DeleteResource<DeleteResponse<DeleteNumber>>("10dlc/Campaign/"+campaignId+"/Number/"+number, data);
         }
         #endregion
+        #region Delete
+         /// <summary>
+        /// Delete Campaign with the specified uuid.
+        /// </summary>
+        /// <returns>message</returns>
+        /// <param name="campaign_id">campaignID.</param>
+        public DeleteCampaign Delete(string campaignID)
+        {
+			return ExecuteWithExceptionUnwrap(() =>
+			{
+				var response = Task.Run(async () => await DeleteResource<DeleteCampaign>("10dlc/Campaign/"+campaignID).ConfigureAwait(false)).Result;
+				return response;
+			});
+        }
+        /// <summary>
+        /// Asynchronously delete Campaign with the specified campaignID.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="campaign_id"> campaignID.</param>
+        public async Task<DeleteCampaign> DeleteAsync(string campaignID)
+        {
+            var response = await DeleteResource<DeleteCampaign>("10dlc/Campaign/"+campaignID);
+            return response;
+        }
+        #endregion
     }
 }
