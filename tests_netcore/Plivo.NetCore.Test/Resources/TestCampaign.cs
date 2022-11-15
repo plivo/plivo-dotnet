@@ -184,12 +184,12 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/campaignDeleteResponse.json"
                 );
-            Setup<DeleteCampaign>(
+            Setup<DeleteResponse<DeleteCampaign>>(
                 200,
                 response
             );
             
-            var resp = Api.Campaign.Get(id);
+            var resp = Api.Campaign.Delete(id);
             AssertRequest(request);
         }
     }

@@ -91,7 +91,7 @@ namespace Plivo.NetCore.Test.Resources
                 System.IO.File.ReadAllText(
                     SOURCE_DIR + @"../Mocks/brandDeleteResponse.json"
                 );
-            Setup<DeleteBrand>(
+            Setup<DeleteResponse<DeleteBrand>>(
                 200,
                 response
             );
