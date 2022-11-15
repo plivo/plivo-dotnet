@@ -1,7 +1,9 @@
 # Change Log
 
 ## [v5.18.0](https://github.com/plivo/plivo-dotnet/tree/v5.18.0) (2022-11-15)
-- Added: Brandusecase API, 10dlc api enhancement
+**Feature - Streaming API and XML**
+- Added Stream API endpoints
+- Added Stream XML creation ability
 
 ## [v5.17.0](https://github.com/plivo/plivo-dotnet/tree/v5.17.0) (2022-10-17)
 - Added: Brandusecase API, 10dlc api enhancement
