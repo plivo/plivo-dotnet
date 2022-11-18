@@ -14,11 +14,14 @@ namespace Plivo.Resource.Stream
         public string ResourceUri { get; set; }
         public string ServiceUrl { get; set; }
         public string StartTime { get; set; }
+        public string Status { get; set; }
+        public string StatusCallbackUrl { get; set; }
         public string StreamId { get; set; }
         
         public override string ToString()
         {
             return
+                "ApiId: " + ApiId + "\n" +
                 "AudioTrack: " + AudioTrack + "\n" +
                 "Bidirectional: " + Bidirectional + "\n" +
                 "BilledAmount: " + BilledAmount + "\n" +
@@ -30,6 +33,8 @@ namespace Plivo.Resource.Stream
                 "ServiceUrl: " + ServiceUrl + "\n" +
                 "EndTime: " + EndTime + "\n" +
                 "StartTime: " + StartTime + "\n" +
+                "Status: " + Status + "\n" +
+                "StatusCallbackUrl: " + StatusCallbackUrl + "\n" +
                 "StreamId: " + StreamId + "\n";
         }
     }
