@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.18.0](https://github.com/plivo/plivo-dotnet/tree/v5.18.0) (2022-12-06)
+- Added: Delete campaign and brand api endpoints
+
 ## [v5.17.0](https://github.com/plivo/plivo-dotnet/tree/v5.17.0) (2022-10-17)
 - Added: Brandusecase API, 10dlc api enhancement
 
