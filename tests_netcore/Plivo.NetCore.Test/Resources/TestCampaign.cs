@@ -169,5 +169,28 @@ namespace Plivo.NetCore.Test.Resources
            
             AssertRequest(request);
         }
+
+        [Fact]
+        public void TestCampaignDelete()
+        {
+            var id = "CUU5RCB";
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/" + id + "/",
+                    "");
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/campaignDeleteResponse.json"
+                );
+            Setup<DeleteResponse<DeleteCampaign>>(
+                200,
+                response
+            );
+            
+            var resp = Api.Campaign.Delete(id);
+            AssertRequest(request);
+        }
     }
 }
