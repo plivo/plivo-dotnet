@@ -1,0 +1,38 @@
+{
+    "api_id": "71aa47e0-3750-11ec-8e4c-0242ac110002",
+    "campaign": {
+        "campaign_id": "CCMZZOS",
+        "registration_status": "PROCESSING",
+        "reseller_id": "",
+        "brand_id": "B4TE2AH",
+        "usecase": "LOW_VOLUME",
+        "sub_usecase": "DELIVERY_NOTIFICATION",
+        "mno_metadata": {
+            "AT&T": {
+                "tpm": 75
+            },
+            "T-Mobile": {
+                "brand_tier": "TOP"
+            },
+            "US Cellular": {
+                "tpm": 75
+            },
+            "Verizon Wireless": {
+                "tpm": 75
+            }
+        },
+        "sample1": "Sample 1",
+        "sample2": "Sample 2",
+        "description": "Campaign",
+        "campaign_attributes": {
+            "embedded_link": false,
+            "embedded_phone": false,
+            "age_gated": false,
+            "direct_lending": false,
+            "subscriber_optin": false,
+            "subscriber_optout": false,
+            "subscriber_help": false,
+            "affiliate_marketing": false
+        }
+    }
+  }
