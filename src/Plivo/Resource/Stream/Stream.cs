@@ -6,7 +6,7 @@ namespace Plivo.Resource.Stream
         public string AudioTrack { get; set; }
         public bool Bidirectional { get; set; }
         public string BilledAmount { get; set; }
-        public uint? BilledDuration { get; set; }
+        public uint? BillDuration { get; set; }
         public string CallUuid { get; set; }
         public string CreatedAt { get; set; }
         public string EndTime { get; set; }
@@ -17,6 +17,7 @@ namespace Plivo.Resource.Stream
         public string Status { get; set; }
         public string StatusCallbackUrl { get; set; }
         public string StreamId { get; set; }
+        public string RoundedBillDuration { get; set; }
         
         public override string ToString()
         {
@@ -25,7 +26,8 @@ namespace Plivo.Resource.Stream
                 "AudioTrack: " + AudioTrack + "\n" +
                 "Bidirectional: " + Bidirectional + "\n" +
                 "BilledAmount: " + BilledAmount + "\n" +
-                "BilledDuration: " + BilledDuration + "\n" +
+                "BillDuration: " + BillDuration + "\n" +
+                "RoundedBillDuration: " + RoundedBillDuration + "\n" +
                 "CallUuid: " + CallUuid + "\n" +
                 "CreatedAt: " + CreatedAt + "\n" +
                 "PlivoAuthId: " + PlivoAuthId + "\n" +
