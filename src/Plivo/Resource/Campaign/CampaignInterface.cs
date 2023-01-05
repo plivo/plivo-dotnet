@@ -240,6 +240,99 @@ namespace Plivo.Resource.Campaign
 		}
 		#endregion
 
+        #region Update
+        /// <summary>
+        /// Update Campaign with the specified sample, keyword etc.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="campaign_id">campaign_id</param>
+        /// <param name="reseller_id">reseller_id</param>
+        /// <param name="description">description</param>
+        /// <param name="sample1">sample1</param>
+        /// <param name="sample2">sample2</param>
+        ///<param name="message_flow">message_flow<param>
+        ///<param name="help_message">help_message<param>
+        ///<param name="optin_keywords">optin_keywords<param>
+        ///<param name="optin_message">optin_message<param>
+        ///<param name="optout_keywords">optout_keywords<param>
+        ///<param name="optout_message">optout_message<param>
+         ///<param name="help_keywords">help_keywords<param>
+        public UpdateCampaign Update(string campaign_id,string reseller_id="", string description="",  string sample1="", 
+            string sample2="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="", 
+            string optout_keywords="", string optout_message="", string help_keywords="")
+        {
+            var mandatoryParams = new List<string>{};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {   
+                    reseller_id,
+                    description,
+                    sample1,
+                    sample2,
+                    message_flow,
+                    help_message,
+                    optin_keywords,
+                    optin_message,
+                    optout_keywords,
+                    optout_message,
+                    help_keywords,
+                    
+                });
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                    var result = Task.Run(async () => await Client.Update<UpdateCampaign>(Uri + "10dlc/Campaign/"+campaign_id+"/", data).ConfigureAwait(false)).Result;
+                    result.Object.StatusCode = result.StatusCode;
+                    return result.Object;
+            });
+        }
+
+		/// <summary>
+        /// Update Campaign with the specified sample, keyword etc.
+        /// </summary>
+        /// <returns>The update.</returns>
+        /// <param name="campaign_id">campaign_id</param>
+        /// <param name="reseller_id">reseller_id</param>
+        /// <param name="description">description</param>
+        /// <param name="sample1">sample1</param>
+        /// <param name="sample2">sample2</param>
+        ///<param name="message_flow">message_flow<param>
+        ///<param name="help_message">help_message<param>
+        ///<param name="optin_keywords">optin_keywords<param>
+        ///<param name="optin_message">optin_message<param>
+        ///<param name="optout_keywords">optout_keywords<param>
+        ///<param name="optout_message">optout_message<param>
+        ///<param name="help_keywords">help_keywords<param>
+		public async Task<UpdateCampaign> UpdateAsync(string campaign_id,string reseller_id="", string description="",  string sample1="", 
+            string sample2="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="", 
+            string optout_keywords="", string optout_message="", string help_keywords="")
+		{
+
+			var mandatoryParams = new List<string>{};
+            var data = CreateData(
+                mandatoryParams,
+                new
+                {   
+                    reseller_id,
+                    description,
+                    sample1,
+                    sample2,
+                    message_flow,
+                    help_message,
+                    optin_keywords,
+                    optin_message,
+                    optout_keywords,
+                    optout_message,
+                    help_keywords,
+                    
+                });
+
+			var result = await Client.Update<UpdateCampaign>(Uri + "10dlc/Campaign/"+campaign_id+"/", data);
+            result.Object.StatusCode = result.StatusCode;
+			return result.Object;
+		}
+		#endregion
+
         #region GETNumber
          /// <summary>
         /// Get Campaign with the specified uuid.

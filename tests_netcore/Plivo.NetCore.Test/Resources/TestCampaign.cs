@@ -91,6 +91,51 @@ namespace Plivo.NetCore.Test.Resources
             AssertRequest(request);
         }
 
+
+        [Fact]
+        public void TestCampaignUpdate()
+        {
+            var id = "CCMZZOS";
+            var data = new Dictionary<string, object>()
+            {
+                {"reseller_id", ""},
+                {"description", ""},
+                {"sample1", "sample1"},
+                {"sample2", ""},
+                {"message_flow", ""},
+                {"help_message", ""},
+                {"optin_keywords", ""},
+                {"optin_message", ""},
+                {"optout_keywords", ""},
+                {"optout_message", ""},
+                {"help_keywords", ""},
+                
+            };
+
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/" + id + "/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/campaignUpdateResponse.json"
+                );
+            Setup<UpdateCampaign>(
+                200,
+                response
+            );
+            var resp = Api.Campaign.Update(id, sample1:"sample1");
+            // Assert.Empty(
+            //     ComparisonUtilities.Compare(
+            //         response,
+            //         Api.Campaign.Update(campaign_id:id, sample1:"sample1")));
+
+            AssertRequest(request);
+        }
+
         [Fact]
         public void TestCampaignGet()
         {
