@@ -80,11 +80,6 @@ namespace Plivo.Resource.Message
         /// <value>The units.</value>
         public uint Units { get; set; }
         
-          /// <summary>
-        /// Gets or sets the message expiry .
-        /// </summary>
-        /// <value>The message_expiry.</value>
-        public string MessageExpiry { get; set; }
 
         /// <summary>
         /// Gets or sets the powerpack id.
@@ -108,7 +103,6 @@ namespace Plivo.Resource.Message
                    "TotalAmount: " + TotalAmount + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
                    "PowerpackID: " + PowerpackId + "\n" +
-                   "MessageExpiry: " + MessageExpiry + "\n" +
                    "Units: " + Units + "\n";
         }
         #region ListMedia
