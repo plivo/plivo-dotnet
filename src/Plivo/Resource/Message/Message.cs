@@ -79,6 +79,7 @@ namespace Plivo.Resource.Message
         /// </summary>
         /// <value>The units.</value>
         public uint Units { get; set; }
+        
 
         /// <summary>
         /// Gets or sets the powerpack id.

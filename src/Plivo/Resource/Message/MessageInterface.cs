@@ -195,9 +195,10 @@ namespace Plivo.Resource.Message
         /// <param name="powerpackUUID">powerpackUUID</param>
         ///<param name="media_urls">media_urls</param>
         ///<param name="media_ids">media_ids</param>
+        ///<param name="message_expiry">message_expiry</param>
         public MessageCreateResponse Create(
             string dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null, uint? message_expiry = null)
         {
             string _dst = dst;
             Dictionary<string, object> data = null;
@@ -217,7 +218,8 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    message_expiry
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -235,7 +237,8 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    message_expiry
                 });
 
 
@@ -272,9 +275,10 @@ namespace Plivo.Resource.Message
         /// <param name="powerpackUUID">powerpackUUID</param>
         ///<param name="media_urls">media_urls</param>
         ///<param name="media_ids">media_ids</param>
+        ///<param name="message_expiry">message_expiry</param>
         public async Task<MessageCreateResponse> CreateAsync(
             string dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null, uint? message_expiry = null)
         {
             string _dst = dst;
             Dictionary<string, object> data = null;
@@ -294,7 +298,8 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    message_expiry
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -312,7 +317,8 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    message_expiry
                 });
 
 
