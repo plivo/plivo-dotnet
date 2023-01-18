@@ -2,6 +2,12 @@
 ## [v5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-01-18)
 - Added new param - 'message_expiry' in plivo-dotnet
 
+## [v5.19.0](https://github.com/plivo/plivo-dotnet/tree/v5.19.0) (2022-12-16)
+- Added: Update campaign api endpoints
+
+## [v5.18.0](https://github.com/plivo/plivo-dotnet/tree/v5.18.0) (2022-12-06)
+- Added: Delete campaign and brand api endpoints
+
 ## [v5.17.0](https://github.com/plivo/plivo-dotnet/tree/v5.17.0) (2022-10-17)
 - Added: Brandusecase API, 10dlc api enhancement
 
