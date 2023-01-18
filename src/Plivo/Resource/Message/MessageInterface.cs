@@ -423,6 +423,9 @@ namespace Plivo.Resource.Message
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
         /// <param name="powerpack_id">PowerpackID.</param>
+        /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
+        /// <param name="tendlc_campaign_id">TendlcCampaignID.</param>
+        /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
         public MessageListResponse<Message> List(
             string subaccount = null,
             uint? limit = null,
@@ -435,7 +438,10 @@ namespace Plivo.Resource.Message
             DateTime? message_time__lte = null,
             DateTime? message_time = null,
             uint? error_code = null,
-            string powerpack_id = null 
+            string powerpack_id = null ,
+            string tendlc_campaign_id = null,
+            string destination_country_iso2 = null,
+            string tendlc_registration_status = null
             )
         {
             var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
@@ -458,7 +464,10 @@ namespace Plivo.Resource.Message
                     _message_time__lte,
                     _message_time,
                     error_code,
-                    powerpack_id
+                    powerpack_id,
+                    tendlc_campaign_id,
+                    destination_country_iso2,
+                    tendlc_registration_status
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -486,6 +495,9 @@ namespace Plivo.Resource.Message
         /// <param name="message_time">MessageTime.</param>
         /// <param name="error_code">ErrorCode.</param>
         /// <param name="powerpack_id">PowerpackID.</param>
+        /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
+        /// <param name="tendlc_campaign_id">TendlcCampaignID.</param>
+        /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
         public async Task<MessageListResponse<Message>> ListAsync(
             string subaccount = null,
             uint? limit = null,
@@ -498,7 +510,10 @@ namespace Plivo.Resource.Message
             DateTime? message_time__lte = null,
             DateTime? message_time = null,
             uint? error_code = null,
-            string powerpack_id = null
+            string powerpack_id = null,
+            string tendlc_campaign_id = null,
+            string destination_country_iso2 = null,
+            string tendlc_registration_status = null
             )
         {
             var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
@@ -521,7 +536,10 @@ namespace Plivo.Resource.Message
                     _message_time__lte,
                     _message_time,
                     error_code,
-                    powerpack_id
+                    powerpack_id,
+                    tendlc_campaign_id,
+                    destination_country_iso2,
+                    tendlc_registration_status
                 });
             var resources = await ListResources<MessageListResponse<Message>>(data);
             resources.Objects.ForEach(
