@@ -1,4 +1,6 @@
 # Change Log
+## [v5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-01-18)
+- Added new param - 'message_expiry' in plivo-dotnet
 
 ## [v5.17.0](https://github.com/plivo/plivo-dotnet/tree/v5.17.0) (2022-10-17)
 - Added: Brandusecase API, 10dlc api enhancement
