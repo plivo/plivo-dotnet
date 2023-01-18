@@ -1,4 +1,7 @@
 # Change Log
+## [v5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-01-18)
+- Added new param - 'message_expiry' in plivo-dotnet
+- 
 ## [v5.19.0](https://github.com/plivo/plivo-dotnet/tree/v5.19.0) (2022-12-16)
 - Added: Update campaign api endpoints
 
