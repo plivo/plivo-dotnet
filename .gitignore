@@ -44,3 +44,6 @@ Thumbs.db
 
 # rider
 .idea
+
+# test files
+dotnet-sdk-test/
