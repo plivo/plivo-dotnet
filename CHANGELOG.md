@@ -1,9 +1,21 @@
 # Change Log
 
-## [v5.18.0](https://github.com/plivo/plivo-dotnet/tree/v5.18.0) (2022-11-15)
+## [v5.22.0](https://github.com/plivo/plivo-dotnet/tree/v5.22.0) (2022-02-10)
 **Feature - Streaming API and XML**
 - Added Stream API endpoints
 - Added Stream XML creation ability
+
+## [v5.21.0](https://github.com/plivo/plivo-dotnet/tree/v5.21.0) (2023-01-25)
+- Added new param `RequesterIp` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [v5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-01-18)
+- Added new param - 'message_expiry' in plivo-dotnet
+
+## [v5.19.0](https://github.com/plivo/plivo-dotnet/tree/v5.19.0) (2022-12-16)
+- Added: Update campaign api endpoints
+
+## [v5.18.0](https://github.com/plivo/plivo-dotnet/tree/v5.18.0) (2022-12-06)
+- Added: Delete campaign and brand api endpoints
 
 ## [v5.17.0](https://github.com/plivo/plivo-dotnet/tree/v5.17.0) (2022-10-17)
 - Added: Brandusecase API, 10dlc api enhancement

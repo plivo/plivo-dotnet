@@ -76,5 +76,27 @@ namespace Plivo.NetCore.Test.Resources
             var resp =  Api.Brand.ListUsecases(id);
             AssertRequest(request);
         }
+
+        [Fact]
+        public void TestBrandDelete()
+        {
+            var id = "BSWXXXX";
+            var request =
+                new PlivoRequest(
+                    "DELETE",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Brand/" + id + "/",
+                    "");
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/brandDeleteResponse.json"
+                );
+            Setup<DeleteResponse<DeleteBrand>>(
+                200,
+                response
+            );
+            var resp =  Api.Brand.Delete(id);
+            AssertRequest(request);
+        }
     }
 }

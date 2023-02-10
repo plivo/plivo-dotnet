@@ -79,12 +79,19 @@ namespace Plivo.Resource.Message
         /// </summary>
         /// <value>The units.</value>
         public uint Units { get; set; }
+        
 
         /// <summary>
         /// Gets or sets the powerpack id.
         /// </summary>
         /// <value>The powerpack id.</value>
         public string PowerpackId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the requester ip.
+        /// </summary>
+        /// <value>The requester ip.</value>
+        public string RequesterIp { get; set; }
 
         public override string ToString()
         {
@@ -102,7 +109,8 @@ namespace Plivo.Resource.Message
                    "TotalAmount: " + TotalAmount + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
                    "PowerpackID: " + PowerpackId + "\n" +
-                   "Units: " + Units + "\n";
+                   "Units: " + Units + "\n" +
+                   "RequesterIP: " + RequesterIp + "\n";
         }
         #region ListMedia
         /// <summary>

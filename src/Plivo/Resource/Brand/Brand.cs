@@ -210,4 +210,23 @@ namespace Plivo.Resource.Brand
             return JsonConvert.SerializeObject(this, Formatting.Indented);
         }
     }
+
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class DeleteBrand: Resource
+    {  
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+
+        [JsonProperty("brand_id")]
+        public string BrandId { get; set; }
+
+        [JsonProperty("message")]
+        public string Message {get; set;}
+
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
 }
