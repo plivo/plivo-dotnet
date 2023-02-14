@@ -424,7 +424,7 @@ namespace Plivo.Resource.Message
         /// <param name="error_code">ErrorCode.</param>
         /// <param name="powerpack_id">PowerpackID.</param>
         /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
-        /// <param name="tendlc_campaign_id">TendlcCampaignID.</param>
+        /// <param name="tendlc_campaign_id">TendlcCampaignId.</param>
         /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
         public MessageListResponse<Message> List(
             string subaccount = null,

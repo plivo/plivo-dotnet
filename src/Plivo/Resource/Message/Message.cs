@@ -90,8 +90,8 @@ namespace Plivo.Resource.Message
         /// <summary>
         /// Gets or sets the tendlc_campaign_id.
         /// </summary>
-        /// <value>The TendlcCampaignID.</value>
-        public string TendlcCampaignID { get; set; }
+        /// <value>The TendlcCampaignId.</value>
+        public string TendlcCampaignId { get; set; }
 
         /// <summary>
         /// Gets or sets the TendlcRegistrationStatus.
@@ -123,7 +123,7 @@ namespace Plivo.Resource.Message
                    "PowerpackID: " + PowerpackId + "\n" +
                    "Units: " + Units + "\n" +
                    "DestinationCountryIso2: " + DestinationCountryIso2 + "\n" +
-                   "TendlcCampaignID: " + TendlcCampaignID + "\n" +
+                   "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                    "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n";
         }
         #region ListMedia
