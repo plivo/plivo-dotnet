@@ -130,7 +130,7 @@ namespace Plivo.Resource.Message
                    "Units: " + Units + "\n" +
                    "DestinationCountryIso2: " + DestinationCountryIso2 + "\n" +
                    "TendlcCampaignId: " + TendlcCampaignId + "\n" +
-                   "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n";
+                   "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n" +
                    "RequesterIP: " + RequesterIp + "\n";
         }
         #region ListMedia

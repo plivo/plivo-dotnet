@@ -1,4 +1,6 @@
 # Change Log
+## [v5.22.0](https://github.com/plivo/plivo-dotnet/tree/v5.22.0) (2023-02-23)
+ - Enhance MDR filtering capabilities 
 
 ## [v5.21.0](https://github.com/plivo/plivo-dotnet/tree/v5.21.0) (2023-01-25)
 - Added new param `RequesterIp` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
