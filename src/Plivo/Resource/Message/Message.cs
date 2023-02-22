@@ -79,13 +79,13 @@ namespace Plivo.Resource.Message
         /// </summary>
         /// <value>The units.</value>
         public uint Units { get; set; }
+        
 
         /// <summary>
         /// Gets or sets the powerpack id.
         /// </summary>
         /// <value>The powerpack id.</value>
         public string PowerpackId { get; set; }
-
 
         /// <summary>
         /// Gets or sets the tendlc_campaign_id.
@@ -104,6 +104,12 @@ namespace Plivo.Resource.Message
         /// </summary>
         /// <value>The destination_country_iso2.</value>
         public string DestinationCountryIso2 { get; set; }
+
+        /// <summary>
+        /// Gets or sets the requester ip.
+        /// </summary>
+        /// <value>The requester ip.</value>
+        public string RequesterIp { get; set; }
 
         public override string ToString()
         {
@@ -125,6 +131,7 @@ namespace Plivo.Resource.Message
                    "DestinationCountryIso2: " + DestinationCountryIso2 + "\n" +
                    "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                    "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n";
+                   "RequesterIP: " + RequesterIp + "\n";
         }
         #region ListMedia
         /// <summary>

@@ -1,4 +1,11 @@
 # Change Log
+
+## [v5.21.0](https://github.com/plivo/plivo-dotnet/tree/v5.21.0) (2023-01-25)
+- Added new param `RequesterIp` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [v5.20.0](https://github.com/plivo/plivo-dotnet/tree/v5.20.0) (2023-01-18)
+- Added new param - 'message_expiry' in plivo-dotnet
+
 ## [v5.19.0](https://github.com/plivo/plivo-dotnet/tree/v5.19.0) (2022-12-16)
 - Added: Update campaign api endpoints
 
