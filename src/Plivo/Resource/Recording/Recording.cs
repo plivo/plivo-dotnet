@@ -8,6 +8,8 @@ namespace Plivo.Resource.Recording
         public string AddTime { get; set; }
         public string CallUuid { get; set; }
         public string ConferenceName { get; set; }
+        public string Cost { get; set; }
+        public string DaysOfStorage { get; set; }
         public string RecordingDurationMs { get; set; }
         public string RecordingEndMs { get; set; }
         public string RecordingFormat { get; set; }
@@ -16,6 +18,7 @@ namespace Plivo.Resource.Recording
         public string RecordingType { get; set; }
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
+        public string RoundedDuration { get; set; }
         public string FromNumber { get; set; }
         public string ToNumber { get; set; }
 
@@ -25,6 +28,8 @@ namespace Plivo.Resource.Recording
                     "AddTime: " + AddTime + "\n" +
                    "CallUuid: " + CallUuid + "\n" +
                    "ConferenceName: " + ConferenceName + "\n" +
+                   "Cost: " + Cost + "\n" +
+                   "DaysOfStorage: " + DaysOfStorage + "\n" +
                    "RecordingDurationMs: " + RecordingDurationMs + "\n" +
                    "RecordingEndMs: " + RecordingEndMs + "\n" +
                    "RecordingFormat: " + RecordingFormat + "\n" +
@@ -33,6 +38,7 @@ namespace Plivo.Resource.Recording
                    "RecordingType: " + RecordingType + "\n" +
                    "RecordingUrl: " + RecordingUrl + "\n" +
                    "ResourceUri: " + ResourceUri + "\n" +
+                   "RoundedDuration: " + RoundedDuration + "\n" +
                     "FromNumber: " + FromNumber + "\n" +
                     "ToNumber: " + ToNumber + "\n";
             
