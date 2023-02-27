@@ -89,11 +89,13 @@ namespace Plivo.Resource.Recording
         /// <param name="mpcName">Mpc Name.</param>
         /// <param name="conferenceUuid">Conference Uuid.</param>
         /// <param name="mpcUuid">mpc Uuid.</param>
+        /// <param name="roundedDuration">Rounded duration.</param>
         public ListResponse<Recording> List(
             string fromNumber = null, string toNumber = null,
             string conferenceName = null, string mpcName = null,
             string conferenceUuid = null, string mpcUuid = null,
-            string subaccount = null, string callUuid = null,
+            string subaccount = null, string callUuid = null, 
+            uint? roundedDuration = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
             DateTime? addTime_Lte = null, uint? limit = null,
@@ -119,6 +121,7 @@ namespace Plivo.Resource.Recording
                     mpcUuid,
                     subaccount,
                     callUuid,
+                    roundedDuration,
                     _addTime,
                     _addTime_Gt,
                     _addTime_Gte,
@@ -161,11 +164,13 @@ namespace Plivo.Resource.Recording
         /// <param name="mpcName">Mpc Name.</param>
         /// <param name="conferenceUuid">Conference Uuid.</param>
         /// <param name="mpcUuid">mpc Uuid.</param>
+        /// <param name="roundedDuration">Rounded duration.</param>
         public async Task<AsyncResponse> ListAsync(
             string fromNumber = null, string toNumber = null,
             string conferenceName = null, string mpcName = null,
             string conferenceUuid = null, string mpcUuid = null,
             string subaccount = null, string callUuid = null,
+            uint? roundedDuration = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
             DateTime? addTime_Lte = null, uint? limit = null,
@@ -191,6 +196,7 @@ namespace Plivo.Resource.Recording
                     mpcUuid,
                     subaccount,
                     callUuid,
+                    roundedDuration,
                     _addTime,
                     _addTime_Gt,
                     _addTime_Gte,
