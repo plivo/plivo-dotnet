@@ -111,6 +111,12 @@ namespace Plivo.Resource.Message
         /// <value>The requester ip.</value>
         public string RequesterIp { get; set; }
 
+        /// <summary>
+        /// Gets or sets the is domestic.
+        /// </summary>
+        /// <value>The is domestic.</value>
+        public bool? IsDomestic { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -131,7 +137,8 @@ namespace Plivo.Resource.Message
                    "DestinationCountryIso2: " + DestinationCountryIso2 + "\n" +
                    "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                    "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n" +
-                   "RequesterIP: " + RequesterIp + "\n";
+                   "RequesterIP: " + RequesterIp + "\n" +
+                   "IsDomestic: " + IsDomestic + "\n";
         }
         #region ListMedia
         /// <summary>
