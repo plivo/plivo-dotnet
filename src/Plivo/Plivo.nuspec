@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.23.0</version>
+    <version>5.23.1</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.23.1 Added new Params 'cost', 'roundedDuration', and 'daysOfStorage' to List Recordings and Get Recording APIs
       * 5.23.0 Added New Param 'IsDomestic' to List Message and Get Message APIs
       * 5.22.0 Added New Params to List Message and Get Message APIs
       * 5.21.0 Added New Param 'RequesterIp' to List Message and Get Message APIs
