@@ -1,5 +1,9 @@
 # Change Log
 
+## [v5.28.0](https://github.com/plivo/plivo-dotnet/tree/v5.28.0) (2023-05-29)
+- Added `MonthlyRecordingStorageAmount`, `RecordingStorageRate`, `RoundedRecordingDuration`, and `RecordingStorageDuration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `RecordingStorageDuration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
 ## [v5.27.0](https://github.com/plivo/plivo-dotnet/tree/v5.27.0) (2023-05-04)
 - Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
 - Add 5 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
