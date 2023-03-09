@@ -1,4 +1,9 @@
 # Change Log
+## [5.23.1](https://github.com/plivo/plivo-java/tree/v5.23.1) (2023-03-08)
+**Feature - Recording API changes**
+- Added `cost`, `rounded_duration`, and `days_of_storage` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `rounded_duration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
 ## [v5.23.0](https://github.com/plivo/plivo-dotnet/tree/v5.23.0) (2023-03-03)
 - Added new param `IsDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
 
