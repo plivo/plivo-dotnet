@@ -2,7 +2,7 @@ FROM ubuntu:latest
 
 WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get install -y wget git vim
+RUN apt-get update && apt-get install -y wget git vim make
 RUN apt-get install -y apt-transport-https
 
 # Install dotnet sdk and runtime: https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#scripted-install
