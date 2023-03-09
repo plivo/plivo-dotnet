@@ -1,4 +1,8 @@
-# Change Log
+# Change Log]
+## [v5.24.1](https://github.com/plivo/plivo-dotnet/tree/v5.23.1) (2023-04-04)
+- Added `MonthlyRecordingStorageAmount`, `RecordingStorageRate`, `RoundedRecordingDuration`, and `RecordingStorageDuration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `RecordingStorageDuration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
 ## [v5.24.0](https://github.com/plivo/plivo-dotnet/tree/v5.23.0) (2023-17-03)
 - Added New Param `CreatedAt` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)  and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
 
