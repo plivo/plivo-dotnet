@@ -122,6 +122,9 @@ namespace Plivo.Resource.Profile
         [JsonProperty("plivo_subaccount")]
         public string PlivoSubaccount { get; set; }
 
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
+
     }
 
     [JsonObject(MemberSerialization.OptIn)]
@@ -174,6 +177,9 @@ namespace Plivo.Resource.Profile
 
         [JsonProperty("profile_uuid")]
         public string ProfileUuid { get; set; }
+
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
 
         [JsonProperty("plivo_subaccount")]
         public string PlivoSubaccount { get; set; }

@@ -46,6 +46,9 @@ namespace Plivo.Resource.Brand
         
         [JsonProperty("address")]
         public Address Address { get; set; }
+
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
         
     }
     
@@ -158,6 +161,9 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("vetting_status")]
         public string VettingStatus { get; set; }
+
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
 
         [JsonProperty("address")]
         public Address Address { get; set; }
