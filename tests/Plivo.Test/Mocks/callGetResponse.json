@@ -16,5 +16,5 @@
   "total_amount": "0.00000",
   "total_rate": "0.03570",
   "voice_network_group": "India All Networks",
-  "cnam_lookup_number_config": ""
+  "cnam_lookup": "disabled"
 }
