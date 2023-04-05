@@ -18,7 +18,7 @@ PM> Install-Package Plivo -Version 5.23.1
 You can also use the .NET CLI to install this package as follows
 
 ```
-> dotnet add package Plivo --version 5.23.1
+> dotnet add package Plivo --version 5.24.1
 ```
 
 ## Getting started
