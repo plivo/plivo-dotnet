@@ -89,13 +89,21 @@ namespace Plivo.Resource.Recording
         /// <param name="mpcName">Mpc Name.</param>
         /// <param name="conferenceUuid">Conference Uuid.</param>
         /// <param name="mpcUuid">mpc Uuid.</param>
-        /// <param name="roundedDuration">Rounded duration.</param>
+        /// <param name="recordingStorageDuration">Number of days the recording has been stored.</param>
+        /// <param name="recordingStorageDuration__Gt">All recordings older than given number of days.</param>
+        /// <param name="recordingStorageDuration__Gte">All recordings older than given number of days or equal to it.</param>
+        /// <param name="recordingStorageDuration__Lt">All recordings newer than given number of days.</param>
+        /// <param name="recordingStorageDuration__Lte">All recordings older than given number of days or equal to it.</param>
         public ListResponse<Recording> List(
             string fromNumber = null, string toNumber = null,
             string conferenceName = null, string mpcName = null,
             string conferenceUuid = null, string mpcUuid = null,
             string subaccount = null, string callUuid = null, 
-            uint? roundedDuration = null,
+            uint? recordingStorageDuration = null,
+            uint? recordingStorageDuration__Gt = null,
+            uint? recordingStorageDuration__Gte = null,
+            uint? recordingStorageDuration__Lt = null,
+            uint? recordingStorageDuration__Lte = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
             DateTime? addTime_Lte = null, uint? limit = null,
@@ -121,7 +129,11 @@ namespace Plivo.Resource.Recording
                     mpcUuid,
                     subaccount,
                     callUuid,
-                    roundedDuration,
+                    recordingStorageDuration,
+                    recordingStorageDuration__Gt,
+                    recordingStorageDuration__Gte,
+                    recordingStorageDuration__Lt,
+                    recordingStorageDuration__Lte,
                     _addTime,
                     _addTime_Gt,
                     _addTime_Gte,
@@ -164,13 +176,21 @@ namespace Plivo.Resource.Recording
         /// <param name="mpcName">Mpc Name.</param>
         /// <param name="conferenceUuid">Conference Uuid.</param>
         /// <param name="mpcUuid">mpc Uuid.</param>
-        /// <param name="roundedDuration">Rounded duration.</param>
+        /// <param name="recordingStorageDuration">Number of days the recording has been stored.</param>
+        /// <param name="recordingStorageDuration__Gt">All recordings older than given number of days.</param>
+        /// <param name="recordingStorageDuration__Gte">All recordings older than given number of days or equal to it.</param>
+        /// <param name="recordingStorageDuration__Lt">All recordings newer than given number of days.</param>
+        /// <param name="recordingStorageDuration__Lte">All recordings older than given number of days or equal to it.</param>
         public async Task<AsyncResponse> ListAsync(
             string fromNumber = null, string toNumber = null,
             string conferenceName = null, string mpcName = null,
             string conferenceUuid = null, string mpcUuid = null,
             string subaccount = null, string callUuid = null,
-            uint? roundedDuration = null,
+            uint? recordingStorageDuration = null,
+            uint? recordingStorageDuration__Gt = null,
+            uint? recordingStorageDuration__Gte = null,
+            uint? recordingStorageDuration__Lt = null,
+            uint? recordingStorageDuration__Lte = null,
             DateTime? addTime = null, DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
             DateTime? addTime_Lte = null, uint? limit = null,
@@ -196,7 +216,11 @@ namespace Plivo.Resource.Recording
                     mpcUuid,
                     subaccount,
                     callUuid,
-                    roundedDuration,
+                    recordingStorageDuration,
+                    recordingStorageDuration__Gt,
+                    recordingStorageDuration__Gte,
+                    recordingStorageDuration__Lt,
+                    recordingStorageDuration__Lte,
                     _addTime,
                     _addTime_Gt,
                     _addTime_Gte,

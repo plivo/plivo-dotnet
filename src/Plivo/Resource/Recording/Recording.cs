@@ -8,17 +8,18 @@ namespace Plivo.Resource.Recording
         public string AddTime { get; set; }
         public string CallUuid { get; set; }
         public string ConferenceName { get; set; }
-        public string Cost { get; set; }
-        public string DaysOfStorage { get; set; }
+        public float MonthlyRecordingStorageAmount { get; set; }
         public string RecordingDurationMs { get; set; }
         public string RecordingEndMs { get; set; }
         public string RecordingFormat { get; set; }
         public string RecordingId { get; set; }
         public string RecordingStartMs { get; set; }
+        public uint RecordingStorageDuration { get; set; }
+        public float RecordingStorageRate { get; set; }
         public string RecordingType { get; set; }
         public string RecordingUrl { get; set; }
         public string ResourceUri { get; set; }
-        public string RoundedDuration { get; set; }
+        public uint RoundedRecordingDuration { get; set; }
         public string FromNumber { get; set; }
         public string ToNumber { get; set; }
 
@@ -28,17 +29,18 @@ namespace Plivo.Resource.Recording
                     "AddTime: " + AddTime + "\n" +
                    "CallUuid: " + CallUuid + "\n" +
                    "ConferenceName: " + ConferenceName + "\n" +
-                   "Cost: " + Cost + "\n" +
-                   "DaysOfStorage: " + DaysOfStorage + "\n" +
+                   "MonthlyRecordingStorageAmount: " + MonthlyRecordingStorageAmount + "\n" +
                    "RecordingDurationMs: " + RecordingDurationMs + "\n" +
                    "RecordingEndMs: " + RecordingEndMs + "\n" +
                    "RecordingFormat: " + RecordingFormat + "\n" +
                    "RecordingId: " + RecordingId + "\n" +
                    "RecordingStartMs: " + RecordingStartMs + "\n" +
+                   "RecordingStorageDuration: " + RecordingStorageDuration + "\n" +
+                   "RecordingStorageRate: " + RecordingStorageRate + "\n" +
                    "RecordingType: " + RecordingType + "\n" +
                    "RecordingUrl: " + RecordingUrl + "\n" +
                    "ResourceUri: " + ResourceUri + "\n" +
-                   "RoundedDuration: " + RoundedDuration + "\n" +
+                   "RoundedRecordingDuration: " + RoundedRecordingDuration + "\n" +
                     "FromNumber: " + FromNumber + "\n" +
                     "ToNumber: " + ToNumber + "\n";
             
