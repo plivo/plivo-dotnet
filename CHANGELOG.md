@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Change Log]
 ## [v5.24.1](https://github.com/plivo/plivo-dotnet/tree/v5.23.1) (2023-04-04)
 - Added `MonthlyRecordingStorageAmount`, `RecordingStorageRate`, `RoundedRecordingDuration`, and `RecordingStorageDuration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
