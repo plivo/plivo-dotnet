@@ -98,7 +98,8 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("help_keywords")]
         public string HelpKeywords { get; set; }
 
-
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -202,6 +203,9 @@ namespace Plivo.Resource.Campaign
         
         [JsonProperty("help_keywords")]
         public string HelpKeywords { get; set; }
+
+        [JsonProperty("created_at")]
+        public string CreatedAt { get; set; }
 
         public override string ToString()
         {
