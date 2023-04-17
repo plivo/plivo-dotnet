@@ -65,13 +65,21 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="offset">Offset.</param>
         /// <param name="tendlcCampaignId">TenDlc Campaign ID.</param>
         /// <param name="tendlcRegistrationStatus">TenDLC Registration Status.</param>
-        /// <param name="tollFreeSMSVerification">TenDLC Registration Status.</param>
+        /// <param name="tollFreeSMSVerification">Toll-free SMS Verification status .</param>
+        /// <param name="renewalDate">Renewal Date</param>
+        /// <param name="renewalDateLt">Renewal Date</param>
+        /// <param name="renewalDateLte">Renewal Date</param>
+        /// <param name="renewalDateGt">Renewal Date</param>
+        /// <param name="renewalDateGte">Renewal Date</param>
         public ListResponse<RentedNumber> List(
             string type = null, string numberStartswith = null,
             string subaccount = null, string alias = null,
             string services = null,
             string tendlcCampaignId = null, string tendlcRegistrationStatus = null,
-            string tollFreeSmsVerification = null,
+            PropertyInfo tollFreeSmsVerification = null,
+            string renewalDate = null,
+            string renewalDate_Lt = null, string renewalDate_Lte = null,
+            string renewalDate_Gt = null, string renewalDate_Gte = null,
             uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> {""};
@@ -87,6 +95,11 @@ namespace Plivo.Resource.RentedNumber
                     tendlcCampaignId,
                     tendlcRegistrationStatus,
                     tollFreeSmsVerification,
+                    renewalDate,
+                    renewalDate_Lt,
+                    renewalDate_Lte,
+                    renewalDate_Gte,
+                    renewalDate_Gt,
                     limit,
                     offset
                 });
