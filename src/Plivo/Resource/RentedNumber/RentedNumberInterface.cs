@@ -67,10 +67,10 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="tendlcRegistrationStatus">TenDLC Registration Status.</param>
         /// <param name="tollFreeSMSVerification">Toll-free SMS Verification status .</param>
         /// <param name="renewalDate">Renewal Date</param>
-        /// <param name="renewalDateLt">Renewal Date</param>
-        /// <param name="renewalDateLte">Renewal Date</param>
-        /// <param name="renewalDateGt">Renewal Date</param>
-        /// <param name="renewalDateGte">Renewal Date</param>
+        /// <param name="renewalDate_Lt">Renewal Date Less Than</param>
+        /// <param name="renewalDate_Lte">Renewal Date Less Than or Equal</param>
+        /// <param name="renewalDate_Gt">Renewal Date Greater Than</param>
+        /// <param name="renewalDate_Gte">Renewal Date Greater Than or Equal</param>
         public ListResponse<RentedNumber> List(
             string type = null, string numberStartswith = null,
             string subaccount = null, string alias = null,
