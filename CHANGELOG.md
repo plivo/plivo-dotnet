@@ -1,5 +1,8 @@
 # Change Log
 
+## [v5.26.0](https://github.com/plivo/plivo-dotnet/tree/v5.26.0) (2023-04-25)
+- Added new param `ReplacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
 ## [v5.25.0](https://github.com/plivo/plivo-dotnet/tree/v5.25.0) (2023-04-11)
 **Feature - Added New Param 'source_ip' in GetCall and ListCalls**
 - Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
