@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      *5.27.0 Added New Param 'renewalDate' in GetNumbers and ListNumbers. Add 5 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` 
       *5.25.0 Added New Param 'source_ip' in GetCall and ListCalls. Add source_ip to the response for the retrieve a call details API and the retreive all call details API
       * 5.24.0 Added New Param 'CreatedAt' to List Profiles, Get Profile, List Brands, Get Brand, List Campaigns, Get Campaign APIs
       * 5.23.0 Added New Param 'IsDomestic' to List Message and Get Message APIs
