@@ -34,6 +34,7 @@ namespace Plivo.Resource.RentedNumber
         public string TendlcCampaignId {get; set;}
         public string TendlcRegistrationStatus {get; set;}
         public string TollFreeSmsVerification {get; set;}
+        public string RenewalDate {get; set;}
         
         public override string ToString()
         {
@@ -53,6 +54,7 @@ namespace Plivo.Resource.RentedNumber
                     "Number: " + Number + "\n" +
                     "NumberType: " + NumberType + "\n" +
                     "Region: " + Region + "\n" +
+                    "RenewalDate: " + RenewalDate + "\n" +
                     "ResourceUri: " + ResourceUri + "\n" +
                     "SmsEnabled: " + SmsEnabled + "\n" +
                     "SmsRate: " + SmsRate + "\n" +
@@ -77,6 +79,7 @@ namespace Plivo.Resource.RentedNumber
                 "Number: " + Number + "\n" +
                 "NumberType: " + NumberType + "\n" +
                 "Region: " + Region + "\n" +
+                "RenewalDate: " + RenewalDate + "\n" +
                 "ResourceUri: " + ResourceUri + "\n" +
                 "SmsEnabled: " + SmsEnabled + "\n" +
                 "SmsRate: " + SmsRate + "\n" +
