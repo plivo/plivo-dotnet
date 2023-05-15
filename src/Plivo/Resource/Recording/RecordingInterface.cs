@@ -104,12 +104,11 @@ namespace Plivo.Resource.Recording
             uint? recordingStorageDuration__Gte = null,
             uint? recordingStorageDuration__Lt = null,
             uint? recordingStorageDuration__Lte = null,
-            DateTime? addTime = null, DateTime? addTime_Gt = null,
+            DateTime? addTime_Gt = null,
             DateTime? addTime_Gte = null, DateTime? addTime_Lt = null,
             DateTime? addTime_Lte = null, uint? limit = null,
             uint? offset = null)
         {
-            var _addTime = addTime?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
             var _addTime_Gt = addTime_Gt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
             var _addTime_Gte = addTime_Gte?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
             var _addTime_Lt = addTime_Lt?.ToString("yyyy-MM-dd HH':'mm':'ss'.'ffffff''") ?? null;
@@ -134,7 +133,6 @@ namespace Plivo.Resource.Recording
                     recordingStorageDuration__Gte,
                     recordingStorageDuration__Lt,
                     recordingStorageDuration__Lte,
-                    _addTime,
                     _addTime_Gt,
                     _addTime_Gte,
                     _addTime_Lt,
