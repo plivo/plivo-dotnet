@@ -35,6 +35,7 @@ namespace Plivo.Resource.RentedNumber
         public string TendlcRegistrationStatus {get; set;}
         public string TollFreeSmsVerification {get; set;}
         public string RenewalDate {get; set;}
+        public string CnamLookup {get; set;}
         
         public override string ToString()
         {
@@ -48,6 +49,7 @@ namespace Plivo.Resource.RentedNumber
                     "Carrier: " + Carrier + "\n" +
                     "City: " + City + "\n" +
                     "Country: " + Country + "\n" +
+                    "CnamLookup: " + CnamLookup + "\n" +
                     "MmsEnabled: " + MmsEnabled + "\n" +
                     "MmsRate: " + MmsRate + "\n" +
                     "MonthlyRentalRate: " + MonthlyRentalRate + "\n" +
@@ -75,6 +77,7 @@ namespace Plivo.Resource.RentedNumber
                 "Alias: " + Alias + "\n" +
                 "Application: " + Application + "\n" +
                 "Carrier: " + Carrier + "\n" +
+                "CnamLookup: " + CnamLookup + "\n" +
                 "MonthlyRentalRate: " + MonthlyRentalRate + "\n" +
                 "Number: " + Number + "\n" +
                 "NumberType: " + NumberType + "\n" +
