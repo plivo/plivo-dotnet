@@ -117,6 +117,12 @@ namespace Plivo.Resource.Message
         /// <value>The is domestic.</value>
         public bool? IsDomestic { get; set; }
 
+        /// <summary>
+        /// Gets or sets the replaced sender.
+        /// </summary>
+        /// <value> The replaced sender.</value>
+        public string ReplacedSender { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -138,7 +144,8 @@ namespace Plivo.Resource.Message
                    "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                    "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n" +
                    "RequesterIP: " + RequesterIp + "\n" +
-                   "IsDomestic: " + IsDomestic + "\n";
+                   "IsDomestic: " + IsDomestic + "\n" +
+                   "ReplacedSender: " + ReplacedSender + "\n";
         }
         #region ListMedia
         /// <summary>

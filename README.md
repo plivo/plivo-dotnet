@@ -12,13 +12,13 @@ You can install this SDK either by referencing the .dll file or using NuGet.
 Use the following line to install the latest SDK using the NuGet CLI.
 
 ```
-PM> Install-Package Plivo -Version 4.2.5
+PM> Install-Package Plivo -Version 5.28.0
 ```
 
 You can also use the .NET CLI to install this package as follows
 
 ```
-> dotnet add package Plivo --version 4.2.5
+> dotnet add package Plivo --version 5.28.0
 ```
 
 ## Getting started
@@ -142,3 +142,9 @@ export PLIVO_API_PROD_HOST=<plivoapi_public_endpoint>
 5. The sdk directory will be mounted as a volume in the container. So any changes in the sdk code will also be reflected inside the container. However, when any change is made, the dependencies for the test program need to be re-installed. To do that:
     * Either restart the docker container
     * Or Run the `setup_sdk.sh` script
+6. To run test code, run `make run CONTAINER=<cont_id>` in host.
+> `<cont_id>` is the docker container id created in 2.
+(The docker container should be running)
+
+> Test code can also be run within the container using
+`make run`. (`CONTAINER` argument should be omitted when running from the container)

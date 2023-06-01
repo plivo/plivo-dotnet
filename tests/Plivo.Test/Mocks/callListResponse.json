@@ -25,6 +25,7 @@
       "total_amount": "0.13600",
       "total_rate": "0.00850",
       "voice_network_group": "USA All Networks",
+      "source_ip": "127.0.01",
       "cnam_lookup": "disabled"
     },
     {
@@ -44,6 +45,7 @@
       "total_amount": "0.13600",
       "total_rate": "0.00850",
       "voice_network_group": "USA All Networks",
+      "source_ip": "127.0.01",
       "cnam_lookup": "disabled"
     }
   ]

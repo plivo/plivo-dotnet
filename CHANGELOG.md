@@ -1,7 +1,25 @@
 # Change Log
-## [v5.23.1](https://github.com/plivo/plivo-dotnet/tree/v5.23.1) (2023-03-16)
+## [v5.29.0](https://github.com/plivo/plivo-dotnet/tree/v5.23.1) (2023-03-16)
 **Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
 - Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [v5.28.0](https://github.com/plivo/plivo-dotnet/tree/v5.28.0) (2023-05-29)
+- Added `MonthlyRecordingStorageAmount`, `RecordingStorageRate`, `RoundedRecordingDuration`, and `RecordingStorageDuration` parameters to the response for [get single recording API](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording) and [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+- Added `RecordingStorageDuration` parameter as a filter option for [get all recordings API](https://www.plivo.com/docs/voice/api/recording#list-all-recordings)
+
+## [v5.27.0](https://github.com/plivo/plivo-dotnet/tree/v5.27.0) (2023-05-04)
+- Add New Param `renewalDate` to the response of the [list all numbers API], [list single number API]
+- Add 5 new filters to AccountPhoneNumber - list all my numbers API:`renewal_date`, `renewal_date__gt`, `renewal_date__gte`,`renewal_date__lt` and `renewal_date__lte` (https://www.plivo.com/docs/numbers/api/account-phone-number#list-all-my-numbers)
+
+## [v5.26.0](https://github.com/plivo/plivo-dotnet/tree/v5.26.0) (2023-04-25)
+- Added new param `ReplacedSender` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
+## [v5.25.0](https://github.com/plivo/plivo-dotnet/tree/v5.25.0) (2023-04-11)
+**Feature - Added New Param 'source_ip' in GetCall and ListCalls**
+- Add `source_ip` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
+
+## [v5.24.0](https://github.com/plivo/plivo-dotnet/tree/v5.23.0) (2023-17-03)
+- Added New Param `CreatedAt` to the response for the [list all profiles API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-all-profiles) and the [get profile API](https://www.plivo.com/docs/sms/api/10dlc/profile#retrieve-a-specific-profile) and the [list all brands API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-all-brands) and the [get brand API](https://www.plivo.com/docs/sms/api/10dlc/brand#retrieve-a-specific-brand)  and the [list all campaigns API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-all-campaigns) and the [get campaign API](https://www.plivo.com/docs/sms/api/10dlc/campaign#retrieve-a-specific-campaign)
 
 ## [v5.23.0](https://github.com/plivo/plivo-dotnet/tree/v5.23.0) (2023-03-03)
 - Added new param `IsDomestic` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
