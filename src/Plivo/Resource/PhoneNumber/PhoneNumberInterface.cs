@@ -132,12 +132,13 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="number">Number.</param>
         /// <param name="appId">App identifier.</param>
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
-        public PhoneNumberBuyResponse Buy(string number, string appId = null, 
-                                          Dictionary<string, string> verificationInfo = null)
+        /// <param name="cnamLookup">Cnam Lookup</param>
+        public PhoneNumberBuyResponse Buy(string number, string appId = null, string cnamLookup = null,
+                                          Dictionary<string, string> verificationInfo = null )
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatoryParams, new {appId, verificationInfo});
+                mandatoryParams, new {appId, verificationInfo, cnamLookup});
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
@@ -157,12 +158,13 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="number">Number.</param>
         /// <param name="appId">App identifier.</param>
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
-        public async Task<PhoneNumberBuyResponse> BuyAsync(string number, string appId = null,
+        /// <param name="cnamLookup">Cnam Lookup</param>
+        public async Task<PhoneNumberBuyResponse> BuyAsync(string number, string appId = null, string cnamLookup = null,
                                           Dictionary<string, string> verificationInfo = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
-                mandatoryParams, new { appId, verificationInfo });
+                mandatoryParams, new { appId, verificationInfo, cnamLookup });
             var result = await Client.Update<PhoneNumberBuyResponse>(
                   Uri + number + "/",
                   data

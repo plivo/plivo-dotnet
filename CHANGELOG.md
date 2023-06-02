@@ -1,4 +1,12 @@
 # Change Log
+
+## [5.30.0](https://github.com/plivo/plivo-dotnet/tree/v5.30.0) (2023-05-02)
+**Feature - CNAM Lookup**
+- Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam_lookup` filter to AccountPhoneNumber - list all my numbers API.
+- Added `cnam_lookup` parameter to buy number[Buy a Phone Number]  to configure CNAM Lookup while buying a US number
+- Added `cnam_lookup` parameter to update number[Update an account phone number] to configure CNAM Lookup while buying a US number
+
 ## [v5.29.0](https://github.com/plivo/plivo-dotnet/tree/v5.23.1) (2023-03-16)
 **Feature - Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls**
 - Add `cnam_lookup_number_config` to the response for the [retrieve a call details API](https://www.plivo.com/docs/voice/api/call#retrieve-a-call) and the [retreive all call details API](https://www.plivo.com/docs/voice/api/call#retrieve-all-calls)
