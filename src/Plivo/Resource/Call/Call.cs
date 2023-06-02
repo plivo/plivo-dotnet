@@ -36,7 +36,7 @@ namespace Plivo.Resource.Call
         public string VoiceNetworkGroup { get; set; }
         public string StirAttestation { get; set; }
         public string SourceIp {get; set;}
-
+        public string CnamLookup { get; set; }
 
 
 
@@ -413,7 +413,8 @@ namespace Plivo.Resource.Call
                    "StirVerification: " + StirVerification + "\n" +
                    "VoiceNetworkGroup: " + VoiceNetworkGroup + "\n" +
                    "StirAttestation: " + StirAttestation + "\n" +
-                   "SourceIp: " + SourceIp + "\n";
+                   "SourceIp: " + SourceIp + "\n" + 
+                   "CnamLookup: " + CnamLookup + "\n";
         }
     }
 }
