@@ -36,7 +36,8 @@ namespace Plivo.Resource.RentedNumber
         public string TollFreeSmsVerification {get; set;}
         public string RenewalDate {get; set;}
         public string CnamLookup {get; set;}
-        
+        public string Cnam{get; set;}
+
         public override string ToString()
         {
             if (string.Compare(Carrier, "Plivo", StringComparison.Ordinal) == 0)
@@ -50,6 +51,7 @@ namespace Plivo.Resource.RentedNumber
                     "City: " + City + "\n" +
                     "Country: " + Country + "\n" +
                     "CnamLookup: " + CnamLookup + "\n" +
+                    "Cnam: " + Cnam + "\n" +
                     "MmsEnabled: " + MmsEnabled + "\n" +
                     "MmsRate: " + MmsRate + "\n" +
                     "MonthlyRentalRate: " + MonthlyRentalRate + "\n" +

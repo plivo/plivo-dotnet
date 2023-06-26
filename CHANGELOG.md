@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.31.0](https://github.com/plivo/plivo-dotnet/tree/v5.31.0) (2023-06-27)
+**Feature - CNAM**
+- Added New Param `cnam` in to the response of the [list all numbers API], [list single number API]
+- Added `cnam` parameter to buy number[Buy a Phone Number]  to configure CNAM while buying a US number
+- Added `callback_url` parameter to buy number[Buy a Phone Number]  to configure CNAM callback url while buying a US number
+- Added `callback_method` parameter to buy number[Buy a Phone Number]  to configure CNAM callback method while buying a US number
+- Added `cnam` parameter to update number[Update an account phone number] to configure CNAM while updating a US number
+- Added `callback_url` parameter to update number[Update an account phone number] to configure CNAM callback url while updating a US number
+- Added `callback_method` parameter to update number[Update an account phone number] to configure CNAM callback method while updating a US number
+
 ## [5.30.0](https://github.com/plivo/plivo-dotnet/tree/v5.30.0) (2023-05-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]
