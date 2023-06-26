@@ -72,6 +72,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="renewalDate_Gt">Renewal Date Greater Than</param>
         /// <param name="renewalDate_Gte">Renewal Date Greater Than or Equal</param>
         /// <param name="cnamLookup">Cnam Lookup configuration</param>
+        /// <param name="cnam">Cnam configuration</param>
         public ListResponse<RentedNumber> List(
             string type = null, string numberStartswith = null,
             string subaccount = null, string alias = null,
@@ -82,6 +83,7 @@ namespace Plivo.Resource.RentedNumber
             string renewalDate_Lt = null, string renewalDate_Lte = null,
             string renewalDate_Gt = null, string renewalDate_Gte = null,
             string cnamLookup = null,
+            string cnam = null,
             uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> {""};
@@ -103,6 +105,7 @@ namespace Plivo.Resource.RentedNumber
                     renewalDate_Gte,
                     renewalDate_Gt,
                     cnamLookup,
+                    cnam,
                     limit,
                     offset
                 });
@@ -228,7 +231,7 @@ namespace Plivo.Resource.RentedNumber
 
         #region Update
         /// <summary>
-        /// Update RentedNumber with the specified number, appId, subaccount and alias.
+        /// Update RentedNumber with the specified number, appId, subaccount, alias, cnamLookup, cnam , callbackUrl and callbackMethod.
         /// </summary>
         /// <returns>The update.</returns>
         /// <param name="number">Number.</param>
@@ -237,9 +240,13 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="alias">Alias.</param>
         /// <param name="verificationInfo">Verification Information.</param>
         /// <param name="cnamLookup">Cnam Lookup.</param>
+        /// <param name="cnam">Cnam</param>
+        /// <param name="callbackUrl">CallbackUrl</param>
+        /// <param name="callbackMethod">CallbackMethod</param>
         public UpdateResponse<RentedNumber> Update(
             string number, string appId = null, string subaccount = null,
-            string alias = null, Dictionary<string, string> verificationInfo = null, string cnamLookup = null)
+            string alias = null, Dictionary<string, string> verificationInfo = null, string cnamLookup = null,
+            string cnam = null, string callbackUrl = null, string callbackMethod = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -250,7 +257,10 @@ namespace Plivo.Resource.RentedNumber
                     subaccount,
                     alias,
                     verificationInfo,
-                    cnamLookup
+                    cnamLookup,
+                    cnam,
+                    callbackUrl,
+                    callbackMethod
                 });
             if (appId == "null") data["app_id"] = null;
 
@@ -265,7 +275,7 @@ namespace Plivo.Resource.RentedNumber
 			});
         }
         /// <summary>
-        /// Asynchronously update RentedNumber with the specified number, appId, subaccount and alias.
+        /// Asynchronously update RentedNumber with the specified number, appId, subaccount cnamLookup, cnam , callbackUrl and callbackMethod.
         /// </summary>
         /// <returns>The update.</returns>
         /// <param name="number">Number.</param>
@@ -274,9 +284,13 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="alias">Alias.</param>
         /// <param name="verificationInfo">Verification Information.</param>
         /// <param name="cnamLookup">Cnam Lookup.</param>
+        /// <param name="cnam">Cnam</param>
+        /// <param name="callbackUrl">CallbackUrl</param>
+        /// <param name="callbackMethod">CallbackMethod</param>
         public async Task<UpdateResponse<RentedNumber>> UpdateAsync(
             string number, string appId = null, string subaccount = null,
-            string alias = null, Dictionary<string, string> verificationInfo = null, string cnamLookup = null)
+            string alias = null, Dictionary<string, string> verificationInfo = null, string cnamLookup = null,
+            string cnam = null, string callbackUrl = null, string callbackMethod = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
@@ -287,7 +301,10 @@ namespace Plivo.Resource.RentedNumber
                     subaccount,
                     alias,
                     verificationInfo,
-                    cnamLookup
+                    cnamLookup,
+                    cnam,
+                    callbackUrl,
+                    callbackMethod
                 });
             if (appId == "null") data["app_id"] = null;
             var result = await Client.Update<UpdateResponse<RentedNumber>>(
