@@ -18,6 +18,9 @@ find /usr/src/app/src/Plivo/Client -type f -exec sed -i "s/$PLIVO_API_PROD_HOST/
 if [ ! -d $testDir ]; then
     echo "Creating test dir..."
     mkdir -p $testDir
+fi
+
+if [[ $( grep "Plivo.NetCore.Test" Plivo.sln ) ]]; then
     # Fix for library issue: See Dotnet section of https://plivo-team.atlassian.net/wiki/spaces/SMSTEAM/pages/3581313044/Local+Setup+for+SDKs
     sed -i '/Nerdbank.GitVersioning/ {
         n;
@@ -38,12 +41,15 @@ if [ ! -f $testDir/*.csproj ]; then
     dotnet restore
 fi
 
-echo -e "\n\nSDK setup complete!"
-echo "To test your changes:"
-echo -e "\t1. Add your test code to <path_to_cloned_sdk>/$testDir/Program.cs on host (or /usr/src/app/$testDir/Program.cs in the container)"
-echo -e "\t2. Run a terminal in the container using: $GREEN docker exec -it $HOSTNAME /bin/bash$NC"
-echo -e "\t3. Navigate to the test directory: $GREEN cd /usr/src/app/$testDir$NC"
-echo -e "\t4. Run your test file: $GREEN dotnet run Program.cs$NC"
+echo -e "\n\nSDK setup complete! You can test changes either on host or inside the docker container:"
+echo -e "\ta.To test your changes ON HOST:"
+echo -e "\t\t1. Add your test code to <path_to_cloned_sdk>/$testDir/Program.cs"
+echo -e "\t\t2. Run your test file using: $GREEN make run CONTAINER=$HOSTNAME$NC"
+echo
+echo -e "\tb. To test your changes INSIDE CONTAINER:"
+echo -e "\t\t1. Run a terminal in the container using: $GREEN docker exec -it $HOSTNAME /bin/bash$NC"
+echo -e "\t\t2. Add your test code in /usr/src/app/$testDir/Program.cs"
+echo -e "\t\t3. Run your test file using: $GREEN make run$NC"
 
 # To keep the container running post setup
 /bin/bash

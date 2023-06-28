@@ -88,10 +88,40 @@ namespace Plivo.Resource.Message
         public string PowerpackId { get; set; }
 
         /// <summary>
+        /// Gets or sets the tendlc_campaign_id.
+        /// </summary>
+        /// <value>The TendlcCampaignId.</value>
+        public string TendlcCampaignId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the TendlcRegistrationStatus.
+        /// </summary>
+        /// <value>The tendlc_registration_status.</value>
+        public string TendlcRegistrationStatus { get; set; }
+
+        /// <summary>
+        /// Gets or sets the destination_country_iso2.
+        /// </summary>
+        /// <value>The destination_country_iso2.</value>
+        public string DestinationCountryIso2 { get; set; }
+
+        /// <summary>
         /// Gets or sets the requester ip.
         /// </summary>
         /// <value>The requester ip.</value>
         public string RequesterIp { get; set; }
+
+        /// <summary>
+        /// Gets or sets the is domestic.
+        /// </summary>
+        /// <value>The is domestic.</value>
+        public bool? IsDomestic { get; set; }
+
+        /// <summary>
+        /// Gets or sets the replaced sender.
+        /// </summary>
+        /// <value> The replaced sender.</value>
+        public string ReplacedSender { get; set; }
 
         public override string ToString()
         {
@@ -110,7 +140,12 @@ namespace Plivo.Resource.Message
                    "TotalRate: " + TotalRate + "\n" +
                    "PowerpackID: " + PowerpackId + "\n" +
                    "Units: " + Units + "\n" +
-                   "RequesterIP: " + RequesterIp + "\n";
+                   "DestinationCountryIso2: " + DestinationCountryIso2 + "\n" +
+                   "TendlcCampaignId: " + TendlcCampaignId + "\n" +
+                   "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n" +
+                   "RequesterIP: " + RequesterIp + "\n" +
+                   "IsDomestic: " + IsDomestic + "\n" +
+                   "ReplacedSender: " + ReplacedSender + "\n";
         }
         #region ListMedia
         /// <summary>
