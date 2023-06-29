@@ -23,7 +23,8 @@ namespace Plivo.XML
                 "PreAnswer",
                 "Conference",
                 "DTMF",
-                "MultiPartyCall"
+                "MultiPartyCall",
+                "Stream"
             };
             ValidAttributes = new list() {""};
         }

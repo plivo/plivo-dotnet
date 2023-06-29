@@ -238,9 +238,19 @@ namespace Plivo.XML
             return Add(new DTMF(body, attributes));
         }
 
+        public PlivoElement AddStream(string body, dict parameters = null)
+        {
+            if (parameters == null) {
+                parameters = new Dictionary<string, string>();
+            }
+            return Add(new Stream(body, parameters));
+        }
+
         public override string ToString()
         {
-            return SerializeToXML().ToString().Replace("&amp;", "&");
+            return SerializeToXML().ToString()
+                .Replace("&amp;", "&")
+                .Replace("&quot;", "\"");
         }
 
         protected XDocument SerializeToXML()

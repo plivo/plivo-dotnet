@@ -1,5 +1,10 @@
 # Change Log
 
+## [v5.31.0](https://github.com/plivo/plivo-dotnet/tree/v5.31.0) (2023-06-28)
+**Feature - Streaming API and XML**
+- Added Stream API endpoints
+- Added Stream XML creation ability
+
 ## [5.30.0](https://github.com/plivo/plivo-dotnet/tree/v5.30.0) (2023-05-02)
 **Feature - CNAM Lookup**
 - Added New Param `cnam_lookup` in to the response of the [list all numbers API], [list single number API]

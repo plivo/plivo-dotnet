@@ -1264,5 +1264,251 @@ namespace Plivo.Resource.Call {
             return result.Object;
         }
         #endregion
+        
+        #region StartStream
+        /// <summary>
+        /// Starts the recording.
+        /// </summary>
+        /// <returns>The stream.</returns>
+        /// <param name="callUuid">Call UUID.</param>
+        /// <param name="serviceUrl">Call UUID.</param>
+        /// <param name="bidirectional">Time limit.</param>
+        /// <param name="audioTrack">File format.</param>
+        /// <param name="streamTimeout">Transaction type.</param>
+        /// <param name="statusCallbackUrl">Transaction URL.</param>
+        /// <param name="statusCallbackMethod">Transaction method.</param>
+        /// <param name="contentType">Callback URL.</param>
+        /// <param name="extraHeaders">Callback method.</param>
+        public StreamCreateResponse StartStream (
+            string callUuid = null, string serviceUrl = null, string bidirectional = null,
+            string audioTrack = null, string streamTimeout = null,
+            string statusCallbackUrl = null, string statusCallbackMethod = null,
+            string contentType = null, string extraHeaders = null) {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            var mandatoryParams = new List<string> { "serviceUrl" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams,
+                new {
+                    serviceUrl,
+                    bidirectional,
+                    audioTrack,
+                    streamTimeout,
+                    statusCallbackUrl,
+                    statusCallbackMethod,
+                    contentType,
+                    extraHeaders,
+                    isVoiceRequest
+                });
+            
+            return ExecuteWithExceptionUnwrap(() => 
+            {
+                var result = Task.Run (async () => await Client.Update<StreamCreateResponse> (Uri + callUuid + "/Stream/", data).ConfigureAwait (false)).Result;
+                result.Object.StatusCode = result.StatusCode;
+                JObject responseJson = JObject.Parse(result.Content);
+                result.Object.ApiId = responseJson["api_id"].ToString();
+                result.Object.StreamId = responseJson["stream_id"].ToString();
+                result.Object.Message = responseJson["message"].ToString();
+                return result.Object;
+            });
+        }
+        
+        /// <summary>
+        /// Asynchronously starts the recording.
+        /// </summary>
+        /// <returns>The stream.</returns>
+        /// <param name="callUuid">Call UUID.</param>
+        /// <param name="serviceUrl">Call UUID.</param>
+        /// <param name="bidirectional">Time limit.</param>
+        /// <param name="audioTrack">File format.</param>
+        /// <param name="streamTimeout">Transaction type.</param>
+        /// <param name="statusCallbackUrl">Transaction URL.</param>
+        /// <param name="statusCallbackMethod">Transaction method.</param>
+        /// <param name="contentType">Callback URL.</param>
+        /// <param name="extraHeaders">Callback method.</param>
+        public async Task<Stream.AsyncResponse> StartStreamAsync (
+            string callUuid = null, string serviceUrl = null, string bidirectional = null,
+            string audioTrack = null, string streamTimeout = null,
+            string statusCallbackUrl = null, string statusCallbackMethod = null,
+            string contentType = null, string extraHeaders = null) {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            var mandatoryParams = new List<string> { "serviceUrl" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams,
+                new {
+                    serviceUrl,
+                    bidirectional,
+                    audioTrack,
+                    streamTimeout,
+                    statusCallbackUrl,
+                    statusCallbackMethod,
+                    contentType,
+                    extraHeaders,
+                    isVoiceRequest
+                });
+
+            var result = Task.Run (async () => await Client.Update<Stream.AsyncResponse> (Uri + callUuid + "/Stream/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
+        }
+        #endregion
+        
+        #region GetStream
+        public ListResponse<Stream.Stream> GetAllStreams(
+            string callUuid = null) 
+            {
+                StreamUtils.ValidParamString("callUuid",callUuid,true);
+                var mandatoryParams = new List<string> { "callUuid" };
+                bool isVoiceRequest = true;
+                var data = CreateData(
+                    mandatoryParams,
+                    new 
+                    {
+                        callUuid,
+                        isVoiceRequest
+                    });
+
+            return ExecuteWithExceptionUnwrap (() => 
+            {
+                var resources = Task.Run (async () => await ListResources<ListResponse<Stream.Stream>>(callUuid + "/Stream" , data).ConfigureAwait(false)).Result;
+                resources.Objects.ForEach (
+                    (obj) => obj.Interface = this
+                );
+
+                return resources;
+            });
+        }
+        
+        public async Task<AsyncResponse> GetAllStreamsAsync(
+            string callUuid = null) 
+        {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            var mandatoryParams = new List<string> { "callUuid" };
+            bool isVoiceRequest = true;
+            var data = CreateData(
+                mandatoryParams,
+                new 
+                {
+                    callUuid,
+                    isVoiceRequest
+                });
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (callUuid + "/Stream" , data).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
+        }
+        
+        public Stream.Stream GetStream(string callUuid = null, string streamId = null)
+        {
+            StreamUtils.ValidParamString("callUuid", callUuid, true);
+            StreamUtils.ValidParamString("streamId", streamId, true);
+            
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var stream = Task.Run(async () =>
+                    await GetSecondaryResource<Stream.Stream>(callUuid,
+                        new Dictionary<string, object>() {{"is_voice_request", true}},
+                        "Stream", streamId).ConfigureAwait(false)).Result;
+                stream.Interface = this;
+                return stream;
+            });
+        }
+        
+        public async Task<AsyncResponse> GetStreamAsync(string callUuid = null, string streamId = null)
+        {
+            StreamUtils.ValidParamString("callUuid", callUuid, true);
+            StreamUtils.ValidParamString("streamId", streamId, true);
+            
+            var result = Task.Run (async () => await Client.Fetch<AsyncResponse> (
+                Uri + callUuid + "/Stream/" + streamId + "/", 
+                new Dictionary<string, object>() {{"is_voice_request", true}}).ConfigureAwait(false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            JObject responseJson = JObject.Parse(result.Content);
+            result.Object.ApiId = responseJson["api_id"].ToString();
+            result.Object.Message = responseJson["message"].ToString();
+            return result.Object;
+        }
+        #endregion
+
+        #region StopStream
+        public DeleteResponse<Stream.Stream> StopStream (string callUuid = null, string streamId = null) {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            StreamUtils.ValidParamString("streamId",streamId,true);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams, new { isVoiceRequest });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                var result = Task.Run (async () => 
+                    await Client.Delete<DeleteResponse<Stream.Stream>> (Uri + callUuid + "/Stream/" + streamId, data).
+                        ConfigureAwait (false)).Result;
+                try {
+                    result.Object.StatusCode = result.StatusCode;
+                } catch (System.NullReferenceException) {
+
+                }
+                return result.Object;
+            });
+        }
+
+        public async Task<AsyncResponse> StopStreamAsync (string callUuid = null, string streamId = null) {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            StreamUtils.ValidParamString("streamId",streamId,true);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams, new { isVoiceRequest });
+            
+            var result = Task.Run (async () => 
+                await Client.Delete<AsyncResponse> (Uri + callUuid + "/Stream/" + streamId, data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            return result.Object;
+        }
+        
+        public DeleteResponse<Stream.Stream> StopAllStreams (string callUuid = null) {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams, new { isVoiceRequest });
+
+            return ExecuteWithExceptionUnwrap (() => {
+                var result = Task.Run (async () => 
+                    await Client.Delete<DeleteResponse<Stream.Stream>> (Uri + callUuid + "/Stream/", data).
+                        ConfigureAwait (false)).Result;
+                try {
+                    result.Object.StatusCode = result.StatusCode;
+                } catch (System.NullReferenceException) {
+
+                }
+                return result.Object;
+            });
+        }
+
+        public async Task<AsyncResponse> StopAllStreamsAsync (string callUuid = null) {
+            StreamUtils.ValidParamString("callUuid",callUuid,true);
+            var mandatoryParams = new List<string> { "" };
+            bool isVoiceRequest = true;
+            var data = CreateData (
+                mandatoryParams, new { isVoiceRequest });
+            
+            var result = Task.Run (async () => 
+                await Client.Delete<AsyncResponse> (Uri + callUuid + "/Stream/", data).ConfigureAwait (false)).Result;
+            await Task.WhenAll();
+            result.Object.StatusCode = result.StatusCode;
+            return result.Object;
+        }
+        #endregion
     }
 }
