@@ -123,6 +123,24 @@ namespace Plivo.Resource.Message
         /// <value> The replaced sender.</value>
         public string ReplacedSender { get; set; }
 
+        /// <summary>
+        /// Gets or sets the dlt entity id.
+        /// </summary>
+        /// <value> DLT Entity ID.</value>
+        public string DltEntityId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dlt template id.
+        /// </summary>
+        /// <value> DLT Template ID.</value>
+        public string DltTemplateId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the dlt template category.
+        /// </summary>
+        /// <value> DLT Template Category.</value>
+        public string DltTemplateCategory { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -145,7 +163,10 @@ namespace Plivo.Resource.Message
                    "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n" +
                    "RequesterIP: " + RequesterIp + "\n" +
                    "IsDomestic: " + IsDomestic + "\n" +
-                   "ReplacedSender: " + ReplacedSender + "\n";
+                   "ReplacedSender: " + ReplacedSender + "\n" +
+                   "DLTEntityID: " + DltEntityId + "\n" +
+                   "DLTTemplateID: " + DltTemplateId + "\n" +
+                   "DLTTemplateCategory: " + DltTemplateCategory + "\n";
         }
         #region ListMedia
         /// <summary>

@@ -36,11 +36,16 @@ namespace Plivo.Resource.Message
         /// <param name="log">Log.</param>
         /// <param name="trackable">trackable.</param>
         /// <param name="powerpackUUID">powerpackUUID</param>
-        ///<param name="media_urls">media_urls</param>
-        ///<param name="media_ids">media_ids</param>
+        /// <param name="media_urls">media_urls</param>
+        /// <param name="media_ids">media_ids</param>
+        /// <param name="dlt_entity_id">dlt_entity_id</param>
+        /// <param name="dlt_template_id">dlt_template_id</param>
+        /// <param name="dlt_template_category">dlt_template_category</param>
         public MessageCreateResponse Create(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null,
+            string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
+            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null)
         {
 
             string _dst = string.Join("<", dst);
@@ -61,7 +66,10 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -79,7 +87,10 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
 
 
@@ -116,9 +127,14 @@ namespace Plivo.Resource.Message
         /// <param name="powerpackUUID">powerpackUUID</param>
         ///<param name="media_urls">media_urls</param>
         ///<param name="media_ids">media_ids</param>
+        /// <param name="dlt_entity_id">dlt_entity_id</param>
+        /// <param name="dlt_template_id">dlt_template_id</param>
+        /// <param name="dlt_template_category">dlt_template_category</param>
         public async Task<MessageCreateResponse> CreateAsync(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null,
+            string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
+            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null)
         {
 
             string _dst = string.Join("<", dst);
@@ -139,7 +155,10 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -157,7 +176,10 @@ namespace Plivo.Resource.Message
                     log,
                     trackable,
                     media_urls,
-                    media_ids
+                    media_ids,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
 
 
@@ -196,9 +218,15 @@ namespace Plivo.Resource.Message
         ///<param name="media_urls">media_urls</param>
         ///<param name="media_ids">media_ids</param>
         ///<param name="message_expiry">message_expiry</param>
+        /// <param name="dlt_entity_id">dlt_entity_id</param>
+        /// <param name="dlt_template_id">dlt_template_id</param>
+        /// <param name="dlt_template_category">dlt_template_category</param>
         public MessageCreateResponse Create(
             string dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null, uint? message_expiry = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null,
+            string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
+            uint? message_expiry = null, string dlt_entity_id = null, string dlt_template_id = null,
+            string dlt_template_category = null)
         {
             string _dst = dst;
             Dictionary<string, object> data = null;
@@ -219,7 +247,10 @@ namespace Plivo.Resource.Message
                     trackable,
                     media_urls,
                     media_ids,
-                    message_expiry
+                    message_expiry,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -238,7 +269,10 @@ namespace Plivo.Resource.Message
                     trackable,
                     media_urls,
                     media_ids,
-                    message_expiry
+                    message_expiry,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
 
 
@@ -276,9 +310,15 @@ namespace Plivo.Resource.Message
         ///<param name="media_urls">media_urls</param>
         ///<param name="media_ids">media_ids</param>
         ///<param name="message_expiry">message_expiry</param>
+        /// <param name="dlt_entity_id">dlt_entity_id</param>
+        /// <param name="dlt_template_id">dlt_template_id</param>
+        /// <param name="dlt_template_category">dlt_template_category</param>
         public async Task<MessageCreateResponse> CreateAsync(
             string dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, bool? log = null, bool? trackable = null, string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null, uint? message_expiry = null)
+            string url = null, string method = null, bool? log = null, bool? trackable = null,
+            string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
+            uint? message_expiry = null, string dlt_entity_id = null, string dlt_template_id = null,
+            string dlt_template_category = null)
         {
             string _dst = dst;
             Dictionary<string, object> data = null;
@@ -299,7 +339,10 @@ namespace Plivo.Resource.Message
                     trackable,
                     media_urls,
                     media_ids,
-                    message_expiry
+                    message_expiry,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -318,7 +361,10 @@ namespace Plivo.Resource.Message
                     trackable,
                     media_urls,
                     media_ids,
-                    message_expiry
+                    message_expiry,
+                    dlt_entity_id,
+                    dlt_template_id,
+                    dlt_template_category
                 });
 
 
