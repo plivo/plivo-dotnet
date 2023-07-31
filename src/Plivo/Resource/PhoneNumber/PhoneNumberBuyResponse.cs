@@ -9,7 +9,7 @@ namespace Plivo.Resource.PhoneNumber
 
         public override string ToString()
         {
-            return "StatusCode:" + Status +"\n"+"[Numbers]\n" + string.Join("\n", Numbers)+"\n"+"StatusCode:" + StatusCode + "\n";
+            return "Status:" + Status +"\n"+"[Numbers]\n" + string.Join("\n", Numbers)+"\n"+"StatusCode:" + StatusCode + "\n";
         }
 
     }
@@ -18,10 +18,15 @@ namespace Plivo.Resource.PhoneNumber
     {
         public string Number { get; set; }
         public string Status { get; set; }
+        public string NewCnam { get; set; }
+        public string CnamUpdateStatus { get; set; }
 
         public override string ToString()
         {
-            return "Number:" + Number + "\n";
+            if (NewCnam != "") {
+               return "Number:" + Number + "\n" + "Status:" + Status + "\n" + "NewCnam:" + NewCnam + "\n" +"CnamUpdateStatus:" + CnamUpdateStatus + "\n";
+            }
+            return "Number:" + Number + "\n" + "Status:" + Status + "\n";
         }
                 
     }
