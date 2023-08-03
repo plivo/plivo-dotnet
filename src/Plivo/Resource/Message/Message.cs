@@ -106,6 +106,25 @@ namespace Plivo.Resource.Message
         public string DestinationCountryIso2 { get; set; }
 
         /// <summary>
+        /// Gets or sets the destination_network.
+        /// </summary>
+        /// <value>The destination_network.</value>
+        public string DestinationNetwork { get; set; }
+
+        /// <summary>
+        /// Gets or sets the carrier_fees_rate.
+        /// </summary>
+        /// <value>The carrier_fees_rate.</value>
+        public string CarrierFeesRate { get; set; }
+
+
+        /// <summary>
+        /// Gets or sets the carrier_fees.
+        /// </summary>
+        /// <value>The carrier_fees.</value>
+        public string CarrierFees { get; set; }
+
+        /// <summary>
         /// Gets or sets the requester ip.
         /// </summary>
         /// <value>The requester ip.</value>
