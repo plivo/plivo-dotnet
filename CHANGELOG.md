@@ -1,5 +1,10 @@
 # Change Log
 
+## [v5.32.0](https://github.com/plivo/plivo-dotnet/tree/v5.32.0) (2023-08-03)
+**Feature - DLT parameters**
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the [send message API](https://www.plivo.com/docs/sms/api/message/send-a-message/)
+- Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the response for the [list all messages API](https://www.plivo.com/docs/sms/api/message/list-all-messages/) and the [get message details API](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)
+
 ## [v5.31.0](https://github.com/plivo/plivo-dotnet/tree/v5.31.0) (2023-06-28)
 **Feature - Streaming API and XML**
 - Added Stream API endpoints
