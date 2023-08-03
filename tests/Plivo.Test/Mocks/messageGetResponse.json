@@ -11,5 +11,8 @@
   "to_number": "911231231231",
   "total_amount": "0.00250",
   "total_rate": "0.00250",
-  "units": 1
+  "units": 1,
+  "dlt_entity_id": "1111",
+  "dlt_template_id": "2222",
+  "dlt_template_category": "promotional"
 }
