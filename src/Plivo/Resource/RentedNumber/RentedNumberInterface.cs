@@ -243,7 +243,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="cnam">Cnam</param>
         /// <param name="callback_url">callback_url</param>
         /// <param name="callback_method">callback_method</param>
-        public Number<RentedNumber> Update(
+        public NumberUpdateResponse<RentedNumber> Update(
             string number, string appId = null, string subaccount = null,
             string alias = null, Dictionary<string, string> verificationInfo = null, string cnamLookup = null,
             string cnam = null, string callback_url = null, string callback_method = null)
