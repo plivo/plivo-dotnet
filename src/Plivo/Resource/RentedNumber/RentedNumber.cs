@@ -106,7 +106,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="subAccount">SubAccount.</param>
         /// <param name="alias">Alias.</param>
-        public UpdateResponse<RentedNumber> Update(
+        public NumberUpdateResponse<RentedNumber> Update(
             string appId = null, string subAccount = null, string alias = null)
         {
             var updateResponse =
@@ -134,7 +134,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="subAccount">SubAccount.</param>
         /// <param name="alias">Alias.</param>
-        public async Task<UpdateResponse<RentedNumber>> UpdateAsync(
+        public async Task<NumberUpdateResponse<RentedNumber>> UpdateAsync(
             string appId = null, string subAccount = null, string alias = null)
         {
             var updateResponse = await ((RentedNumberInterface) Interface)
