@@ -130,18 +130,18 @@ namespace Plivo.Resource.PhoneNumber
         /// </summary>
         /// <returns>The buy.</returns>
         /// <param name="number">Number.</param>
-        /// <param name="appId">App identifier.</param>
+        /// <param name="app_id">App identifier.</param>
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
-        /// <param name="cnamLookup">Cnam Lookup</param>
+        /// <param name="cnam_lookup">Cnam Lookup</param>
         /// <param name="cnam">Cnam</param>
         /// <param name="callbackUrl">CallbackUrl</param>
         /// <param name="callbackMethod">CallbackMethod</param>
-        public PhoneNumberBuyResponse Buy(string number, string appId = null, string cnamLookup = null, string cnam = null, string callbackUrl = null, string callbackMethod = null,
+        public PhoneNumberBuyResponse Buy(string number, string app_id = null, string cnam_lookup = null, string cnam = null, string callbackUrl = null, string callbackMethod = null,
                                           Dictionary<string, string> verificationInfo = null )
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatoryParams, new {appId, verificationInfo, cnamLookup, cnam, callbackUrl, callbackMethod});
+                mandatoryParams, new {app_id, verificationInfo, cnam_lookup, cnam, callbackUrl, callbackMethod});
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
@@ -159,18 +159,18 @@ namespace Plivo.Resource.PhoneNumber
         /// </summary>
         /// <returns>The buy.</returns>
         /// <param name="number">Number.</param>
-        /// <param name="appId">App identifier.</param>
+        /// <param name="app_id">App identifier.</param>
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
-        /// <param name="cnamLookup">Cnam Lookup</param>
+        /// <param name="cnam_lookup">Cnam Lookup</param>
         /// <param name="cnam">Cnam</param>
         /// <param name="callbackUrl">CallbackUrl</param>
         /// <param name="callbackMethod">CallbackMethod</param>
-        public async Task<PhoneNumberBuyResponse> BuyAsync(string number, string appId = null, string cnamLookup = null, string cnam = null, string callbackUrl = null, string callbackMethod = null,
+        public async Task<PhoneNumberBuyResponse> BuyAsync(string number, string app_id = null, string cnam_lookup = null, string cnam = null, string callbackUrl = null, string callbackMethod = null,
                                           Dictionary<string, string> verificationInfo = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
-                mandatoryParams, new { appId, verificationInfo, cnamLookup, cnam, callbackUrl, callbackMethod});
+                mandatoryParams, new { appId, verificationInfo, cnam_lookup, cnam, callbackUrl, callbackMethod});
             var result = await Client.Update<PhoneNumberBuyResponse>(
                   Uri + number + "/",
                   data
