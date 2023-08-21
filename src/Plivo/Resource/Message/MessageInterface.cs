@@ -430,9 +430,6 @@ namespace Plivo.Resource.Message
         /// <param name="error_code">ErrorCode.</param>
         /// <param name="powerpack_id">PowerpackID.</param>
         /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
-        /// <param name="destination_network">DestinationNetwork.</param>
-        /// <param name="carrier_fees_rate">CarrierFeesRate.</param>
-        /// <param name="carrier_fees">CarrierFees.</param>
         /// <param name="tendlc_campaign_id">TendlcCampaignId.</param>
         /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
         public MessageListResponse<Message> List(
@@ -450,9 +447,6 @@ namespace Plivo.Resource.Message
             string powerpack_id = null ,
             string tendlc_campaign_id = null,
             string destination_country_iso2 = null,
-            string destination_network = null,
-            string carrier_fees_rate = null,
-            string carrier_fees = null,
             string tendlc_registration_status = null
             )
         {
@@ -479,9 +473,6 @@ namespace Plivo.Resource.Message
                     powerpack_id,
                     tendlc_campaign_id,
                     destination_country_iso2,
-                    destination_network,
-                    carrier_fees_rate,
-                    carrier_fees,
                     tendlc_registration_status
                 });
 
@@ -511,9 +502,6 @@ namespace Plivo.Resource.Message
         /// <param name="error_code">ErrorCode.</param>
         /// <param name="powerpack_id">PowerpackID.</param>
         /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
-        /// <param name="destination_network">DestinationNetwork.</param>
-        /// <param name="carrier_fees_rate">CarrierFeesRate.</param>
-        /// <param name="carrier_fees">CarrierFees.</param>
         /// <param name="tendlc_campaign_id">TendlcCampaignID.</param>
         /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
         public async Task<MessageListResponse<Message>> ListAsync(
@@ -531,9 +519,6 @@ namespace Plivo.Resource.Message
             string powerpack_id = null,
             string tendlc_campaign_id = null,
             string destination_country_iso2 = null,
-            string destination_network = null,
-            string carrier_fees_rate = null,
-            string carrier_fees = null,
             string tendlc_registration_status = null
             )
         {
@@ -560,9 +545,6 @@ namespace Plivo.Resource.Message
                     powerpack_id,
                     tendlc_campaign_id,
                     destination_country_iso2,
-                    destination_network,
-                    carrier_fees_rate,
-                    carrier_fees,
                     tendlc_registration_status
                 });
             var resources = await ListResources<MessageListResponse<Message>>(data);
