@@ -164,6 +164,9 @@ namespace Plivo.Resource.Message
                    "TendlcRegistrationStatus: "+ TendlcRegistrationStatus + "\n" +
                    "RequesterIP: " + RequesterIp + "\n" +
                    "IsDomestic: " + IsDomestic + "\n" +
+                   "DestinationNetwork: " + DestinationNetwork + "\n" +
+                   "CarrierFeesRate: " + CarrierFeesRate + "\n" +
+                   "CarrierFees: " + CarrierFees + "\n" +
                    "ReplacedSender: " + ReplacedSender + "\n";
         }
         #region ListMedia
