@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.31.0</version>
+    <version>5.32.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.32.0 Added New Params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory`.
       * 5.31.0 Added functionality to start, stop and fetch audio streams
       * 5.30.0 Added New Param 'cnam_lookup' in to the response of the [list all numbers API], [list single number API]
       * 5.29.0 Added New Param 'cnam_lookup_number_config' in GetCall and ListCalls 
