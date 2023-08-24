@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.33.0](https://github.com/plivo/plivo-dotnet/tree/v5.33.0) (2023-08-25)
+**Feature - Added New Param 'carrier_fees', 'carrier_fees_rate', 'destination_network' in Get Message and List Message APIs**
+- Added new params on message get and list response
+
 ## [v5.32.0](https://github.com/plivo/plivo-dotnet/tree/v5.32.0) (2023-08-03)
 **Feature - DLT parameters**
 - Added new params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory` to the [send message API](https://www.plivo.com/docs/sms/api/message/send-a-message/)
