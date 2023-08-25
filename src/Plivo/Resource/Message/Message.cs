@@ -185,7 +185,6 @@ namespace Plivo.Resource.Message
                    "DestinationNetwork: " + DestinationNetwork + "\n" +
                    "CarrierFeesRate: " + CarrierFeesRate + "\n" +
                    "CarrierFees: " + CarrierFees + "\n" +
-                   "ReplacedSender: " + ReplacedSender + "\n";
                    "ReplacedSender: " + ReplacedSender + "\n" +
                    "DLTEntityID: " + DltEntityId + "\n" +
                    "DLTTemplateID: " + DltTemplateId + "\n" +
