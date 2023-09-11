@@ -53,7 +53,8 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">usecase.</param>
-        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null)
+        /// <param name="campaign_source">campaign_source</param>
+        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null, string campaign_source="plivo")
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -61,7 +62,8 @@ namespace Plivo.Resource.Campaign
                 new
                 {
                     limit,
-                    offset
+                    offset,
+                    campaign_source
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -80,7 +82,8 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand">brand.</param>
         /// <param name="usecase">status.</param>
-        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null)
+        /// <param name="campaign_source">campaign_source</param>
+        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null, string campaign_source="plivo")
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -88,7 +91,8 @@ namespace Plivo.Resource.Campaign
                 new
                 {
                     limit,
-                    offset
+                    offset,
+                    campaign_source
                 });
 
             var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", data);
