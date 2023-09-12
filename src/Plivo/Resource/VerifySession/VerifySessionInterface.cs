@@ -96,10 +96,10 @@ namespace Plivo.Resource.VerifySession
 
         #region Get
         /// <summary>
-        /// Get Message with the specified messageUuid.
+        /// Get Session with the specified session_uuid.
         /// </summary>
         /// <returns>The get.</returns>
-        /// <param name="messageUuid">Message UUID.</param>
+        /// <param name="session_uuid">Session UUID.</param>
         public VerifySession Get(string session_uuid)
         {
             return ExecuteWithExceptionUnwrap(() =>
@@ -110,10 +110,10 @@ namespace Plivo.Resource.VerifySession
             });
         }
         /// <summary>
-        /// Asynchronously get Message with the specified messageUuid.
+        /// Asynchronously get Session with the specified session_uuid.
         /// </summary>
         /// <returns>The get.</returns>
-        /// <param name="messageUuid">Message UUID.</param>
+        /// <param name="session_uuid">Session UUID.</param>
         public async Task<VerifySession> GetAsync(string messageUuid)
         {
             var message = await GetResource<VerifySession>(messageUuid);
@@ -126,141 +126,129 @@ namespace Plivo.Resource.VerifySession
 
         #region List
         /// <summary>
-        /// List Message with the specified subaccount, limit and offset.
+        /// List Session with the specified params.
         /// </summary>
         /// <returns>The list.</returns>
-        /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
-        /// <param name="message_state">MessageState.</param>
-        /// <param name="message_direction">MessageDirection.</param>
-        /// <param name="message_time__gt">MessageTimeGT.</param>
-        /// <param name="message_time__gte">MessageTimeGTE.</param>
-        /// <param name="message_time__lt">MessageTimeLT.</param>
-        /// <param name="message_time__lte">MessageTimeLTE.</param>
-        /// <param name="message_time">MessageTime.</param>
-        /// <param name="error_code">ErrorCode.</param>
-        /// <param name="powerpack_id">PowerpackID.</param>
-        /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
-        /// <param name="tendlc_campaign_id">TendlcCampaignId.</param>
-        /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
+        /// <param name="status">Status.</param>
+        /// <param name="recipient">Recipient.</param>
+        /// <param name="app_uuid">AppUUID.</param>
+        /// <param name="country">Country.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="subaccount">Subaccount.</param>
+        /// <param name="session_time__gt">SessionTimeGT.</param>
+        /// <param name="session_time__gte">SessionTimeGTE.</param>
+        /// <param name="session_time__lt">SessionTimeLT.</param>
+        /// <param name="session_time__lte">SessionTimeLTE.</param>
+        /// <param name="session_time">SessionTime.</param>
         public VerifySessionListResponse<VerifySession> List(
-            string subaccount = null,
             uint? limit = null,
             uint? offset = null,
-            string message_state = null,
-            string message_direction = null,
-            DateTime? message_time__gt = null,
-            DateTime? message_time__gte = null,
-            DateTime? message_time__lt = null,
-            DateTime? message_time__lte = null,
-            DateTime? message_time = null,
-            uint? error_code = null,
-            string powerpack_id = null ,
-            string tendlc_campaign_id = null,
-            string destination_country_iso2 = null,
-            string tendlc_registration_status = null
+            string status = null,
+            string recipient = null,
+            string app_uuid = null,
+            string country = null,
+            string alias = null,
+            string subaccount = null,
+            DateTime? session_time__gt = null,
+            DateTime? session_time__gte = null,
+            DateTime? session_time__lt = null,
+            DateTime? session_time__lte = null,
+            DateTime? session_time = null
             )
         {
-            var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time__gte = message_time__gte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time__lt = message_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time__lte = message_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time = message_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__gt = session_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__gte = session_time__gte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__lt = session_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__lte = session_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time = session_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
                 mandatoryParams, new
                 {
-                    subaccount,
                     limit,
                     offset,
-                    message_state,
-                    message_direction,
-                    _message_time__gt,
-                    _message_time__gte,
-                    _message_time__lt,
-                    _message_time__lte,
-                    _message_time,
-                    error_code,
-                    powerpack_id,
-                    tendlc_campaign_id,
-                    destination_country_iso2,
-                    tendlc_registration_status
+                    status,
+                    recipient,
+                    app_uuid,
+                    country,
+                    alias,
+                    subaccount,
+                    _session_time__gt,
+                    _session_time__gte,
+                    _session_time__lt,
+                    _session_time__lte,
+                    _session_time
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () => await ListResources<VerifySessionListResponse<VerifySession>>(data).ConfigureAwait(false)).Result;
-                resources.Objects.ForEach(
+                resources.Sessions.ForEach(
                     (obj) => obj.Interface = this
                 );
                 return resources;
             });
         }
         /// <summary>
-        /// List Message with the specified subaccount, limit and offset.
+        /// List Session with the specified params.
         /// </summary>
         /// <returns>The list.</returns>
-        /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
-        /// <param name="message_state">MessageState.</param>
-        /// <param name="message_direction">MessageDirection.</param>
-        /// <param name="message_time__gt">MessageTimeGT.</param>
-        /// <param name="message_time__gte">MessageTimeGTE.</param>
-        /// <param name="message_time__lt">MessageTimeLT.</param>
-        /// <param name="message_time__lte">MessageTimeLTE.</param>
-        /// <param name="message_time">MessageTime.</param>
-        /// <param name="error_code">ErrorCode.</param>
-        /// <param name="powerpack_id">PowerpackID.</param>
-        /// <param name="destination_country_iso2">DestinationCountryIso2.</param>
-        /// <param name="tendlc_campaign_id">TendlcCampaignID.</param>
-        /// <param name="tendlc_registration_status">TendlcRegistrationStatus.</param>
+        /// <param name="status">Status.</param>
+        /// <param name="recipient">Recipient.</param>
+        /// <param name="app_uuid">AppUUID.</param>
+        /// <param name="country">Country.</param>
+        /// <param name="alias">Alias.</param>
+        /// <param name="subaccount">Subaccount.</param>
+        /// <param name="session_time__gt">SessionTimeGT.</param>
+        /// <param name="session_time__gte">SessionTimeGTE.</param>
+        /// <param name="session_time__lt">SessionTimeLT.</param>
+        /// <param name="session_time__lte">SessionTimeLTE.</param>
+        /// <param name="session_time">SessionTime.</param>
         public async Task<VerifySessionListResponse<VerifySession>> ListAsync(
-            string subaccount = null,
             uint? limit = null,
             uint? offset = null,
-            string message_state = null,
-            string message_direction = null,
-            DateTime? message_time__gt = null,
-            DateTime? message_time__gte = null,
-            DateTime? message_time__lt = null,
-            DateTime? message_time__lte = null,
-            DateTime? message_time = null,
-            uint? error_code = null,
-            string powerpack_id = null,
-            string tendlc_campaign_id = null,
-            string destination_country_iso2 = null,
-            string tendlc_registration_status = null
+            string status = null,
+            string recipient = null,
+            string app_uuid = null,
+            string country = null,
+            string alias = null,
+            string subaccount = null,
+            DateTime? session_time__gt = null,
+            DateTime? session_time__gte = null,
+            DateTime? session_time__lt = null,
+            DateTime? session_time__lte = null,
+            DateTime? session_time = null
             )
         {
-            var _message_time__gt = message_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time__gte = message_time__gte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time__lt = message_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time__lte = message_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
-            var _message_time = message_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__gt = session_time__gt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__gte = session_time__gte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__lt = session_time__lt?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time__lte = session_time__lte?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
+            var _session_time = session_time?.ToString("yyyy-MM-dd HH':'mm':'ss''") ?? null;
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
                 mandatoryParams, new
                 {
-                    subaccount,
                     limit,
                     offset,
-                    message_state,
-                    message_direction,
-                    _message_time__gt,
-                    _message_time__gte,
-                    _message_time__lt,
-                    _message_time__lte,
-                    _message_time,
-                    error_code,
-                    powerpack_id,
-                    tendlc_campaign_id,
-                    destination_country_iso2,
-                    tendlc_registration_status
+                    status,
+                    recipient,
+                    app_uuid,
+                    country,
+                    alias,
+                    subaccount,
+                    _session_time__gt,
+                    _session_time__gte,
+                    _session_time__lt,
+                    _session_time__lte,
+                    _session_time
                 });
             var resources = await ListResources<VerifySessionListResponse<VerifySession>>(data);
-            resources.Objects.ForEach(
+            resources.Sessions.ForEach(
                 (obj) => obj.Interface = this
             );
 

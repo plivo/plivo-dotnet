@@ -17,10 +17,10 @@ namespace Plivo.Resource
         /// <value>The meta.</value>
         public VerifySessionMeta Meta { get; set; }
         /// <summary>
-        /// Gets or sets the objects.
+        /// Gets or sets the sessions.
         /// </summary>
-        /// <value>The objects.</value>
-        public List<T> Objects { get; set; }
+        /// <value>The sessions.</value>
+        public List<T> Sessions { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.Resource.ListResponse`1"/> class.
@@ -33,11 +33,11 @@ namespace Plivo.Resource
         /// Initializes a new instance of the <see cref="T:plivo.Resource.ListResponse`1"/> class.
         /// </summary>
         /// <param name="meta">Meta.</param>
-        /// <param name="objects">Objects.</param>
-        public VerifySessionListResponse(VerifySessionMeta meta, List<T> objects)
+        /// <param name="sessions">Sessions.</param>
+        public VerifySessionListResponse(VerifySessionMeta meta, List<T> sessions)
         {
             Meta = meta ?? throw new ArgumentNullException(nameof(meta));
-            Objects = objects ?? throw new ArgumentNullException(nameof(objects));
+            Sessions = sessions ?? throw new ArgumentNullException(nameof(sessions));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace Plivo.Resource
         /// <returns>The enumerator.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            return ((IEnumerable<T>) Objects).GetEnumerator();
+            return ((IEnumerable<T>) Sessions).GetEnumerator();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Plivo.Resource
             return "Api Id: " + ApiId + "\n" +
                    "[Meta]\n" + Meta +
                    "StatusCode: " + StatusCode +
-                   "[Objects]\n" + string.Join("\n", Objects);
+                   "[Sessions]\n" + string.Join("\n", Sessions);
 
 
 
