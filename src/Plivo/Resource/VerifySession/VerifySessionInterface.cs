@@ -255,5 +255,63 @@ namespace Plivo.Resource.VerifySession
             return resources;
         }
         #endregion
+
+
+
+        #region Validate
+        /// <summary>
+        /// Validate VerifySession with the specified session_uuid, otp.
+        /// </summary>
+        /// <returns>The validate.</returns>
+        /// <param name="session_uuid">SessionUUID.</param>
+        /// <param name="otp">OTP.</param> 
+
+        public VerifySessionCreateResponse Validate(
+            string session_uuid=null, string otp = null)
+        {
+            Dictionary<string, object> data = null;
+            var mandatoryParams = new List<string> { "session_uuid", "otp" };
+            data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    session_uuid,
+                    otp
+                });
+
+            return ExecuteWithExceptionUnwrap(() =>
+            {
+                var result = Task.Run(async () => await Client.Update<VerifySessionCreateResponse>(Uri+session_uuid+"/", data).ConfigureAwait(false)).Result;
+                result.Object.StatusCode = result.StatusCode;
+                return result.Object;
+            });
+        }
+
+        /// <summary>
+        /// Asynchronously Validate VerifySession with the specified session_uuid, otp.
+        /// </summary>
+        /// <returns>The validate.</returns>
+        /// <param name="session_uuid">SessionUUID.</param>
+        /// <param name="otp">OTP.</param> 
+        /// 
+        public async Task<VerifySessionCreateResponse> ValidateAsync(
+            string session_uuid=null, string otp = null)
+        {
+            Dictionary<string, object> data = null;
+            var mandatoryParams = new List<string> { "session_uuid", "otp" };
+            data = CreateData(
+                mandatoryParams,
+                new
+                {
+                    session_uuid,
+                    otp
+                });
+
+            var result = await Client.Update<VerifySessionCreateResponse>(Uri+session_uuid+"/", data);
+            result.Object.StatusCode = result.StatusCode;
+            return result.Object;
+        }
+
+        #endregion
     }
 }

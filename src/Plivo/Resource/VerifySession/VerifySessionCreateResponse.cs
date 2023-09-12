@@ -15,7 +15,7 @@ public class VerifySessionCreateResponse : Resource
     public new string SessionUUID { get; set; }
 
     [JsonProperty("message")]
-    public new string Messgae { get; set; }
+    public new string Message { get; set; }
 
     [JsonProperty("error", NullValueHandling = NullValueHandling.Ignore)] // Ignore null values for "error"
     public string Error { get; set; }
