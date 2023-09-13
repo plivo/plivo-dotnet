@@ -61,7 +61,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
 
-            Assert.IsEmpty(ComparisonUtilities.Compare(response, Api.VerifySession.Get(session_uuid: "4124e518-a8c9-4feb-8cff-d86636ba9234")));
+            Assert.Empty(ComparisonUtilities.Compare(response, Api.VerifySession.Get(session_uuid: "4124e518-a8c9-4feb-8cff-d86636ba9234")));
             AssertRequest(request);
         }
 
