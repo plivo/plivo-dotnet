@@ -35,7 +35,7 @@ namespace Plivo.Resource.VerifySession
         /// 
 
         public VerifySessionCreateResponse Create(
-            string recipient=null, string app_uuid = null, string channel = null, string url = null,
+            string recipient, string app_uuid = null, string channel = null, string url = null,
             string method = null)
         {
             Dictionary<string, object> data = null;
@@ -70,7 +70,7 @@ namespace Plivo.Resource.VerifySession
         /// <param name="method">Method.</param>
         /// 
         public async Task<VerifySessionCreateResponse> CreateAsync(
-            string recipient=null, string app_uuid = null, string channel = null, string url = null,
+            string recipient, string app_uuid = null, string channel = null, string url = null,
             string method = null)
         {
             Dictionary<string, object> data = null;
