@@ -11,6 +11,12 @@ namespace Plivo.Resource
     [JsonObject]
     public class CampaignListResponse<T> : BaseResponse, IEnumerable<T>
     {
+
+        /// <summary>
+        /// Gets or sets the meta.
+        /// </summary>
+        /// <value>The meta.</value>
+        public CampaignMeta Meta { get; set; }
         /// <summary>
         /// Gets or sets the objects.
         /// </summary>
@@ -29,8 +35,9 @@ namespace Plivo.Resource
         /// </summary>
         /// <param name="meta">Meta.</param>
         /// <param name="Campaigns">Campaigns.</param>
-        public CampaignListResponse( List<T> campaigns)
+        public CampaignListResponse(CampaignMeta meta, List<T> campaigns)
         {
+            Meta = meta ?? throw new ArgumentNullException(nameof(meta));
             Campaigns = campaigns ?? throw new ArgumentNullException(nameof(campaigns));
         }
 
@@ -59,6 +66,7 @@ namespace Plivo.Resource
         public override string ToString()
         {
             return "Api Id: " + ApiId + "\n" +
+                   "[Meta]\n" + Meta +
                    "StatusCode: " + StatusCode +
                    "[Campaigns]\n" + string.Join("\n", Campaigns);
 
