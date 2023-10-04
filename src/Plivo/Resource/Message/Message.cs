@@ -160,6 +160,24 @@ namespace Plivo.Resource.Message
         /// <value> DLT Template Category.</value>
         public string DltTemplateCategory { get; set; }
 
+        /// <summary>
+        /// Gets or sets the conversation id.
+        /// </summary>
+        /// <value>The conversation id.</value>
+        public string ConversationID { get; set; }
+
+        /// <summary>
+        /// Gets or sets the conversation origin.
+        /// </summary>
+        /// <value>The conversation origin.</value>
+        public string ConversationOrigin { get; set; }
+
+        /// <summary>
+        /// Gets or sets the conversation expiration timestamp.
+        /// </summary>
+        /// <value>The conversation expiration timestamp.</value>
+        public string ConversationExpirationTimestamp { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -188,7 +206,10 @@ namespace Plivo.Resource.Message
                    "ReplacedSender: " + ReplacedSender + "\n" +
                    "DLTEntityID: " + DltEntityId + "\n" +
                    "DLTTemplateID: " + DltTemplateId + "\n" +
-                   "DLTTemplateCategory: " + DltTemplateCategory + "\n";
+                   "DLTTemplateCategory: " + DltTemplateCategory + "\n" +
+                   "ConversationID: " + ConversationID + "\n" +
+                   "ConversationOrigin: " + ConversationOrigin + "\n" +
+                   "ConversationExpirationTimestamp: " + ConversationExpirationTimestamp + "\n";
         }
         #region ListMedia
         /// <summary>
