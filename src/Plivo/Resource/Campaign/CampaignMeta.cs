@@ -35,6 +35,14 @@ namespace Plivo.Resource
         [JsonProperty("previous")]
         public string Previous { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets the total_count.
+        /// </summary>
+        /// <value>The total_count.</value>
+        [JsonProperty("total_count")]
+        public uint TotalCount { get; set; }
+
         /// <summary>
         /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:plivo.Resource.Meta"/>.
         /// </summary>
@@ -45,7 +53,8 @@ namespace Plivo.Resource
                 "Limit: " + Limit + "\n" +
                 "Next: " + Next + "\n" +
                 "Offset: " + Offset + "\n" +
-                "Previous: " + Previous + "\n";
+                "Previous: " + Previous + "\n" +
+                "TotalCount: " + TotalCount + "\n";
         }
     }
 }
