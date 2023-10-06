@@ -736,65 +736,114 @@ namespace Plivo.Resource.Message
         #endregion
     }
 
+    // Template structure required for whatsapp messages
     public class Template
     {
+        /// <summary>
+        /// Gets or sets the name of the template.
+        /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        /// <summary>
+        /// Gets or sets the language of the template.
+        /// </summary>
         [JsonProperty("language")]
         public string Language { get; set; }
 
+        /// <summary>
+        /// Gets or sets the list of components in the template.
+        /// </summary>
         [JsonProperty("components")]
         public List<Component> Components { get; set; }
     }
 
     public class Component
     {
+        /// <summary>
+        /// Gets or sets the type of the component.
+        /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
+        /// <summary>
+        /// Gets or sets the sub-type of the component.
+        /// </summary>
         [JsonProperty("sub_type")]
         public string SubType { get; set; }
 
+        /// <summary>
+        /// Gets or sets the index of the component.
+        /// </summary>
         [JsonProperty("index")]
         public string Index { get; set; }
 
+        /// <summary>
+        /// Gets or sets the list of parameters for the component.
+        /// </summary>
         [JsonProperty("parameters")]
         public List<Parameter> Parameters { get; set; }
     }
 
     public class Parameter
     {
+        /// <summary>
+        /// Gets or sets the type of the parameter.
+        /// </summary>
         [JsonProperty("type")]
         public string Type { get; set; }
 
+        /// <summary>
+        /// Gets or sets the text value of the parameter.
+        /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; }
 
+        /// <summary>
+        /// Gets or sets the media value of the parameter.
+        /// </summary>
         [JsonProperty("media")]
         public string Media { get; set; }
 
+        /// <summary>
+        /// Gets or sets the currency information for the parameter.
+        /// </summary>
         [JsonProperty("currency")]
         public Currency Currency { get; set; }
 
+        /// <summary>
+        /// Gets or sets the date and time value of the parameter.
+        /// </summary>
         [JsonProperty("date_time")]
         public DateTimeValue DateTime { get; set; }
     }
 
     public class Currency
     {
+        /// <summary>
+        /// Gets or sets the fallback value for the currency.
+        /// </summary>
         [JsonProperty("fallback_value")]
         public string FallbackValue { get; set; }
 
+        /// <summary>
+        /// Gets or sets the currency code for the currency.
+        /// </summary>
         [JsonProperty("currency_code")]
         public string CurrencyCode { get; set; }
 
+        /// <summary>
+        /// Gets or sets the amount in 1/1000th units for the currency.
+        /// </summary>
         [JsonProperty("amount_1000")]
         public int Amount1000 { get; set; }
     }
 
     public class DateTimeValue
     {
+        /// <summary>
+        /// Gets or sets the fallback value for the date and time.
+        /// </summary>
         [JsonProperty("fallback_value")]
         public string FallbackValue { get; set; }
     }
