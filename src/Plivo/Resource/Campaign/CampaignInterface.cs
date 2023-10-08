@@ -51,10 +51,10 @@ namespace Plivo.Resource.Campaign
         /// List campaign list type and status.
         /// </summary>
         /// <returns>The list.</returns>
-        /// <param name="brand">brand.</param>
+        /// <param name="brand_id">brand_id.</param>
         /// <param name="usecase">usecase.</param>
         /// <param name="campaign_source">campaign_source</param>
-        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null, string campaign_source="plivo")
+        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null, string brand_id =null, string usecase=null, string campaign_source="plivo")
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -63,7 +63,9 @@ namespace Plivo.Resource.Campaign
                 {
                     limit,
                     offset,
-                    campaign_source
+                    campaign_source,
+                    brand_id,
+                    usecase
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -80,10 +82,10 @@ namespace Plivo.Resource.Campaign
         /// List Brand list type and status.
         /// </summary>
         /// <returns>The list.</returns>
-        /// <param name="brand">brand.</param>
-        /// <param name="usecase">status.</param>
+        /// <param name="brand_id">brand_id.</param>
+        /// <param name="usecase">usercase.</param>
         /// <param name="campaign_source">campaign_source</param>
-        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null, string campaign_source="plivo")
+        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null, string brand_id =null, string usecase=null, string campaign_source="plivo")
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -92,7 +94,9 @@ namespace Plivo.Resource.Campaign
                 {
                     limit,
                     offset,
-                    campaign_source
+                    campaign_source,
+                    brand_id,
+                    usecase
                 });
 
             var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", data);
