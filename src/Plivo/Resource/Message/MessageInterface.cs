@@ -67,9 +67,9 @@ namespace Plivo.Resource.Message
                     template = JsonConvert.DeserializeObject<Template>(template_json_string, settings);
                 }
             }
-            if (template != null && (type == null || type != "whatsapp") )
+            if (template != null && type != null && type != "whatsapp")
             {
-                return getResponseValidation("Specify type as whatsapp in request params to send a templated message.");
+                return getResponseValidation("Template paramater is only applicable when type is whatsapp.");
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
@@ -185,9 +185,9 @@ namespace Plivo.Resource.Message
                     template = JsonConvert.DeserializeObject<Template>(template_json_string, settings);
                 }
             }
-            if (template != null && (type == null || type != "whatsapp") )
+            if (template != null && type != null && type != "whatsapp")
             {
-                return getResponseValidation("Specify type as whatsapp in request params to send a templated message.");
+                return getResponseValidation("Template paramater is only applicable when type is whatsapp.");
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
@@ -304,9 +304,9 @@ namespace Plivo.Resource.Message
                     template = JsonConvert.DeserializeObject<Template>(template_json_string, settings);
                 }
             }
-            if (template != null && (type == null || type != "whatsapp") )
+            if (template != null && type != null && type != "whatsapp")
             {
-                return getResponseValidation("Specify type as whatsapp in request params to send a templated message.");
+                return getResponseValidation("Template paramater is only applicable when type is whatsapp.");
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
@@ -425,9 +425,9 @@ namespace Plivo.Resource.Message
                     template = JsonConvert.DeserializeObject<Template>(template_json_string, settings);
                 }
             }
-            if (template != null && (type == null || type != "whatsapp") )
+            if (template != null && type != null && type != "whatsapp")
             {
-                return getResponseValidation("Specify type as whatsapp in request params to send a templated message.");
+                return getResponseValidation("Template paramater is only applicable when type is whatsapp.");
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
