@@ -164,7 +164,7 @@ namespace Plivo.Resource.Message
         /// Gets or sets the conversation id.
         /// </summary>
         /// <value>The conversation id.</value>
-        public string ConversationID { get; set; }
+        public string ConversationId { get; set; }
 
         /// <summary>
         /// Gets or sets the conversation origin.
@@ -207,7 +207,7 @@ namespace Plivo.Resource.Message
                    "DLTEntityID: " + DltEntityId + "\n" +
                    "DLTTemplateID: " + DltTemplateId + "\n" +
                    "DLTTemplateCategory: " + DltTemplateCategory + "\n" +
-                   "ConversationID: " + ConversationID + "\n" +
+                   "ConversationID: " + ConversationId + "\n" +
                    "ConversationOrigin: " + ConversationOrigin + "\n" +
                    "ConversationExpirationTimestamp: " + ConversationExpirationTimestamp + "\n";
         }
