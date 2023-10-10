@@ -73,11 +73,11 @@ namespace Plivo.Resource.Message
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
-                return getResponseValidation("template name must not be null or empty");
+                return getResponseValidation("Template name must not be null or empty.");
             }
             if (template != null && ( template.Language == null || template.Language.Length == 0 ))
             {
-                return getResponseValidation("template language must not be null or empty");
+                return getResponseValidation("Template language must not be null or empty.");
             }
             if (src != null && powerpack_uuid == null)
             {
@@ -175,7 +175,7 @@ namespace Plivo.Resource.Message
             // Adding validations for whatsapp cases with template passed
             if (template_json_string != null && template != null)
             {
-                return getResponseValidation("template parameter is already set.");
+                return getResponseValidation("Template parameter is already set.");
             }
             else 
             {
@@ -191,11 +191,11 @@ namespace Plivo.Resource.Message
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
-                return getResponseValidation("template name must not be null or empty");
+                return getResponseValidation("Template name must not be null or empty.");
             }
             if (template != null && ( template.Language == null || template.Language.Length == 0 ))
             {
-                return getResponseValidation("template language must not be null or empty");
+                return getResponseValidation("Template language must not be null or empty.");
             }
             if (src != null && powerpack_uuid == null)
             {
@@ -310,11 +310,11 @@ namespace Plivo.Resource.Message
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
-                return getResponseValidation("template name must not be null or empty");
+                return getResponseValidation("Template name must not be null or empty.");
             }
             if (template != null && ( template.Language == null || template.Language.Length == 0 ))
             {
-                return getResponseValidation("template language must not be null or empty");
+                return getResponseValidation("Template language must not be null or empty.");
             }
             if (src != null && powerpack_uuid == null)
             {
@@ -415,7 +415,7 @@ namespace Plivo.Resource.Message
             // Adding validations for whatsapp cases with template passed
             if (template_json_string != null && template != null)
             {
-                return getResponseValidation("template parameter is already set.");
+                return getResponseValidation("Template parameter is already set.");
             }
             else 
             {
@@ -431,11 +431,11 @@ namespace Plivo.Resource.Message
             }
             if (template != null && ( template.Name == null || template.Name.Length == 0))
             {
-                return getResponseValidation("template name must not be null or empty");
+                return getResponseValidation("Template name must not be null or empty.");
             }
             if (template != null && ( template.Language == null || template.Language.Length == 0 ))
             {
-                return getResponseValidation("template language must not be null or empty");
+                return getResponseValidation("Template language must not be null or empty.");
             }
             if (src != null && powerpack_uuid == null)
             {
