@@ -14,5 +14,8 @@
   "units": 1,
   "dlt_entity_id": "1111",
   "dlt_template_id": "2222",
-  "dlt_template_category": "promotional"
+  "dlt_template_category": "promotional",
+  "conversation_id": "",
+  "conversation_origin": "",
+  "conversation_expiration_timestamp": ""
 }
