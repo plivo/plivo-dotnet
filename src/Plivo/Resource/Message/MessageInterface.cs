@@ -57,7 +57,7 @@ namespace Plivo.Resource.Message
             // Adding validations for whatsapp cases with template passed
             if (template_json_string != null && template != null)
             {
-                return getResponseValidation("template parameter is already set.");
+                return getResponseValidation("Template parameter is already set.");
             }
             else 
             {
@@ -171,7 +171,6 @@ namespace Plivo.Resource.Message
             string _dst = string.Join("<", dst);
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "" };
-            // Adding validations for whatsapp cases with template passed
             // Adding validations for whatsapp cases with template passed
             if (template_json_string != null && template != null)
             {
@@ -294,7 +293,7 @@ namespace Plivo.Resource.Message
             // Adding validations for whatsapp cases with template passed
             if (template_json_string != null && template != null)
             {
-                return getResponseValidation("template parameter is already set.");
+                return getResponseValidation("Template parameter is already set.");
             }
             else 
             {
