@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.35.0](https://github.com/plivo/plivo-dotnet/tree/v5.35.0) (2023-10-17)
+**Feature - campaign_source field**
+- Added new param `campaign_source` in LIST / GET Camapign APIs
+
 ## [5.34.0](https://github.com/plivo/plivo-dotnet/tree/v5.34.0) (2023-10-13)
 **Feature - WhatsApp message support**
 - Added new params `template`, `template_json_string` and new message_type `whatsapp` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message)
