@@ -12,7 +12,11 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+<<<<<<< Updated upstream
       * 5.34.0 Added new params `template`, `template_json_string` and message_type `whatsapp`in send message API. Added new `message_state` (`read`), `message_type` (`whatsapp`), `conversation_id`, `conversation_origin`, `conversation_expiration_timestamp` in List Message and Get Message APIs.
+=======
+      * 5.35.0 Added New Params `DestinationNetwork`, `CarrierFeesRate`, `CarrierFees`.
+>>>>>>> Stashed changes
       * 5.33.0 Added New Params `DestinationNetwork`, `CarrierFeesRate`, `CarrierFees`.
       * 5.32.0 Added New Params `DLTEntityID`, `DLTTemplateID`, `DLTTemplateCategory`.
       * 5.31.0 Added functionality to start, stop and fetch audio streams
