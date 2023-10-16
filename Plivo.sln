@@ -4,8 +4,6 @@ VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plivo", "src\Plivo\Plivo.csproj", "{EF3352B6-54D2-4731-95B5-D07D01982713}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plivo.NetCore.Test", "tests_netcore\Plivo.NetCore.Test\Plivo.NetCore.Test.csproj", "{72465D60-EA64-47A8-8F6E-E44E2C99BD60}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
