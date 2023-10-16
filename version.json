@@ -1,9 +1,5 @@
 {
-<<<<<<< Updated upstream
-  "version": "5.34.0",
-=======
   "version": "5.35.0",
->>>>>>> Stashed changes
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
