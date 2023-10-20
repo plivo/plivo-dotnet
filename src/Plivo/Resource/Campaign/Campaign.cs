@@ -100,6 +100,10 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("created_at")]
         public string CreatedAt { get; set; }
+
+        [JsonProperty("campaign_source")]
+        public string CampaignSource { get; set; }
+
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -206,6 +210,9 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("created_at")]
         public string CreatedAt { get; set; }
+
+        [JsonProperty("campaign_source")]
+        public string CampaignSource { get; set; }
 
         public override string ToString()
         {
