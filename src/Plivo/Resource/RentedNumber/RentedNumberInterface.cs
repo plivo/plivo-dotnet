@@ -72,6 +72,7 @@ namespace Plivo.Resource.RentedNumber
         /// <param name="renewalDate_Gt">Renewal Date Greater Than</param>
         /// <param name="renewalDate_Gte">Renewal Date Greater Than or Equal</param>
         /// <param name="cnamLookup">Cnam Lookup configuration</param>
+        /// <param name="tollFreeSmsVerificationOrderStatus">TollFree SMS Verification Order Status</param>
         public ListResponse<RentedNumber> List(
             string type = null, string numberStartswith = null,
             string subaccount = null, string alias = null,
@@ -81,7 +82,7 @@ namespace Plivo.Resource.RentedNumber
             string renewalDate = null,
             string renewalDate_Lt = null, string renewalDate_Lte = null,
             string renewalDate_Gt = null, string renewalDate_Gte = null,
-            string cnamLookup = null,
+            string cnamLookup = null, string tollFreeSmsVerificationOrderStatus = null,
             uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> {""};
@@ -103,6 +104,7 @@ namespace Plivo.Resource.RentedNumber
                     renewalDate_Gte,
                     renewalDate_Gt,
                     cnamLookup,
+                    tollFreeSmsVerificationOrderStatus,
                     limit,
                     offset
                 });
