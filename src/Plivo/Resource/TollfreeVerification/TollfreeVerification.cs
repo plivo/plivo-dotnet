@@ -23,7 +23,8 @@ namespace Plivo.Resource.TollfreeVerification
         public string CallbackMethod { get; set; }
         public string Status { get; set; }
         public string RejectionReason { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public string CreatedAt { get; set; }
+        public string UpdatedAt { get; set; }
 
         public TollfreeVerification()
         {
@@ -156,7 +157,8 @@ namespace Plivo.Resource.TollfreeVerification
                    "CallbackMethod: " + CallbackMethod + "\n" +
                    "Status: " + Status + "\n" +
                    "RejectionReason: " + RejectionReason + "\n" +
-                   "CreatedAt: " + CreatedAt + "\n";
+                   "CreatedAt: " + CreatedAt + "\n" +
+                   "UpdatedAt: " + UpdatedAt + "\n";
         }
     }
 }
