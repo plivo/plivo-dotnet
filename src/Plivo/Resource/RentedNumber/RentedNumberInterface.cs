@@ -78,7 +78,7 @@ namespace Plivo.Resource.RentedNumber
             string subaccount = null, string alias = null,
             string services = null,
             string tendlcCampaignId = null, string tendlcRegistrationStatus = null,
-            PropertyInfo tollFreeSmsVerification = null,
+            string tollFreeSmsVerification = null,
             string renewalDate = null,
             string renewalDate_Lt = null, string renewalDate_Lte = null,
             string renewalDate_Gt = null, string renewalDate_Gte = null,

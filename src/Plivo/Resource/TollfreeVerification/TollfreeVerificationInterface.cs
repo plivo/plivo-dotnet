@@ -181,10 +181,10 @@ namespace Plivo.Resource.TollfreeVerification
         /// <param name="number">Number.</param>
         /// <param name="status">Status.</param>
         /// <param name="profileUuid">Profile UUID.</param>
-        /// <param name="created_gt">Created Time Greater Than.</param>
-        /// <param name="created_gte">Created Time Greater Than Equal.</param>
-        /// <param name="created_lt">Created Time Less Than.</param>
-        /// <param name="created_lte">Created Time Less Than Equal.</param>
+        /// <param name="created_Gt">Created Time Greater Than.</param>
+        /// <param name="created_Gte">Created Time Greater Than Equal.</param>
+        /// <param name="created_Lt">Created Time Less Than.</param>
+        /// <param name="created_Lte">Created Time Less Than Equal.</param>
         /// <param name="usecase">Usecase.</param>
         public TollfreeVerificationListResponse<TollfreeVerification> List(
             uint? limit = null,
@@ -193,10 +193,10 @@ namespace Plivo.Resource.TollfreeVerification
             string status = null,
             string profileUuid = null,
             string usecase = null,
-            string created_gt = null,
-            string created_gte = null,
-            string created_lt = null,
-            string created_lte = null
+            string created_Gt = null,
+            string created_Gte = null,
+            string created_Lt = null,
+            string created_Lte = null
         )
         {
             var mandatoryParams = new List<string> { "" };
@@ -208,10 +208,10 @@ namespace Plivo.Resource.TollfreeVerification
                     number,
                     status,
                     profileUuid,
-                    created_gt,
-                    created_gte,
-                    created_lt,
-                    created_lte,
+                    created_Gt,
+                    created_Gte,
+                    created_Lt,
+                    created_Lte,
                     usecase
                 });
 
