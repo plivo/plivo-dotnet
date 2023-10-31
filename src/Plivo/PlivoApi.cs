@@ -28,6 +28,7 @@ using Plivo.Resource.Brand;
 using Plivo.Resource.Campaign;
 using Plivo.Resource.Profile;
 using Plivo.Resource.Token;
+using Plivo.Resource.TollfreeVerification;
 
 namespace Plivo
 {
@@ -76,6 +77,7 @@ namespace Plivo
         private readonly Lazy<ComplianceApplicationInterface> _complianceApplication;
 
         private readonly Lazy<MultiPartyCallInterface> _multiPartyCall;
+        private readonly Lazy<TollfreeVerificationInterface> _tollfreeVerification;
         
         /// <summary>
         /// Gets the account.
@@ -190,7 +192,10 @@ namespace Plivo
         public ComplianceApplicationInterface ComplianceApplication => _complianceApplication.Value;
 
         public MultiPartyCallInterface MultiPartyCall => _multiPartyCall.Value;
-
+        
+        public TollfreeVerificationInterface TollfreeVerification => _tollfreeVerification.Value;
+           
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
@@ -240,6 +245,7 @@ namespace Plivo
             _complianceApplication =
                 new Lazy<ComplianceApplicationInterface>(() => new ComplianceApplicationInterface(Client));
             _multiPartyCall = new Lazy<MultiPartyCallInterface>(() => new MultiPartyCallInterface(Client));
+            _tollfreeVerification = new Lazy<TollfreeVerificationInterface>(() => new TollfreeVerificationInterface(Client));
         }
     }
 }
