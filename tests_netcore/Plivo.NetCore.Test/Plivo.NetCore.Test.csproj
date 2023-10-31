@@ -17,9 +17,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
 	<PackageReference Include="System.Net.Primitives" Version="4.3.0" />
-	<PackageReference Update="Nerdbank.GitVersioning">
-	  <Version>3.6.133</Version>
-	</PackageReference>
   </ItemGroup>
 
   <ItemGroup>
