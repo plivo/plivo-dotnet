@@ -22,9 +22,9 @@ namespace Plivo.Resource.TollfreeVerification
         public string CallbackUrl { get; set; }
         public string CallbackMethod { get; set; }
         public string Status { get; set; }
-        public string RejectionReason { get; set; }
-        public string CreatedAt { get; set; }
-        public string UpdatedAt { get; set; }
+        public string ErrorMessage { get; set; }
+        public string Created { get; set; }
+        public string LastModified { get; set; }
 
         public TollfreeVerification()
         {
@@ -156,9 +156,9 @@ namespace Plivo.Resource.TollfreeVerification
                    "CallbackUrl: " + CallbackUrl + "\n" +
                    "CallbackMethod: " + CallbackMethod + "\n" +
                    "Status: " + Status + "\n" +
-                   "RejectionReason: " + RejectionReason + "\n" +
-                   "CreatedAt: " + CreatedAt + "\n" +
-                   "UpdatedAt: " + UpdatedAt + "\n";
+                   "ErrorMessage: " + ErrorMessage + "\n" +
+                   "Created: " + Created + "\n" +
+                   "LastModified: " + LastModified + "\n";
         }
     }
 }

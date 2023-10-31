@@ -15,5 +15,6 @@
   "usecase": "FRAUD_ALERT",
   "usecase_summary": "summary up1",
   "uuid": "28f736dc-680c-5ae4-6765-01732884e41e",
-  "volume": "10"
+  "volume": "10",
+  "error_message": ""
 }
