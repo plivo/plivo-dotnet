@@ -52,9 +52,10 @@ namespace Plivo.Resource.Campaign
         /// </summary>
         /// <returns>The list.</returns>
         /// <param name="brand_id">brand_id.</param>
-        /// <param name="usecase">usecase.</param>
+        /// <param name="usecase">usecase.</param> 
+        /// <param name="registration_status">registration_status.</param>
         /// <param name="campaign_source">campaign_source</param>
-        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null, string brand_id =null, string usecase=null, string campaign_source="plivo")
+        public CampaignListResponse<ListCampaigns> List(uint? limit = null, uint? offset = null, string brand_id =null, string usecase=null, string registration_status=null, string campaign_source="plivo")
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -65,7 +66,8 @@ namespace Plivo.Resource.Campaign
                     offset,
                     campaign_source,
                     brand_id,
-                    usecase
+                    usecase,
+                    registration_status
                 });
 
 			return ExecuteWithExceptionUnwrap(() =>
@@ -84,8 +86,9 @@ namespace Plivo.Resource.Campaign
         /// <returns>The list.</returns>
         /// <param name="brand_id">brand_id.</param>
         /// <param name="usecase">usercase.</param>
+        /// <param name="registration_status">registration_status.</param>
         /// <param name="campaign_source">campaign_source</param>
-        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null, string brand_id =null, string usecase=null, string campaign_source="plivo")
+        public async Task<CampaignListResponse<ListCampaigns>> ListAsync(uint? limit = null, uint? offset = null, string brand_id =null, string usecase=null, string registration_status=null, string campaign_source="plivo")
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
@@ -96,7 +99,8 @@ namespace Plivo.Resource.Campaign
                     offset,
                     campaign_source,
                     brand_id,
-                    usecase
+                    usecase,
+                    registration_status
                 });
 
             var resources = await ListResources<CampaignListResponse<ListCampaigns>>("10dlc/Campaign", data);

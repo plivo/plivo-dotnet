@@ -62,6 +62,9 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("usecase")]
         public string Usecase { get; set; }  
 
+        [JsonProperty("registration_status")]
+        public string RegistrationStatus { get; set; }  
+
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; }
 
@@ -173,6 +176,9 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("usecase")]
         public string Usecase { get; set; } 
+        
+        [JsonProperty("registration_status")]
+        public string RegistrationStatus { get; set; }  
 
         [JsonProperty("sub_usecase")]
         public string SubUsecase { get; set; } 
