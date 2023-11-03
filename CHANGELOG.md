@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.38.0](https://github.com/plivo/plivo-dotnet/tree/v5.38.0) (2023-11-03)
+**Feature - registration_status field**
+- Added new param `registration_status` in LIST Campaign APIs
+
 ## [5.37.0](https://github.com/plivo/plivo-dotnet/tree/v5.37.0) (2023-10-31)
 **Feature - TollFree Verification API Support**
 - API support for Create, Update, Get, Delete and List Tollfree Verification.
