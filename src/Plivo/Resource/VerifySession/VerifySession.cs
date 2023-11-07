@@ -37,8 +37,6 @@ namespace Plivo.Resource.VerifySession
     public class VerifySession : Resource
     { 
 
-        [JsonProperty("api_id")]
-        public string ApiID { get; set; }
 
         [JsonProperty("session_uuid")]
         public string SessionUUID { get; set; }
