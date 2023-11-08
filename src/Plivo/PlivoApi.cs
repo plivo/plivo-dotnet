@@ -7,6 +7,7 @@ using Plivo.Resource.Call;
 using Plivo.Resource.Conference;
 using Plivo.Resource.Endpoint;
 using Plivo.Resource.Message;
+using Plivo.Resource.VerifySession;
 using Plivo.Resource.Lookup;
 using Plivo.Resource.Powerpack;
 using Plivo.Resource.RentedNumber;
@@ -56,6 +57,7 @@ namespace Plivo
         private readonly Lazy<TokenInterface>_token;
         private readonly Lazy<ConferenceInterface> _conference;
         private readonly Lazy<MessageInterface> _message;
+        private readonly Lazy<VerifySessionInterface> _verifySession;
         private readonly Lazy<LookupInterface> _lookup;
         private readonly Lazy<PowerpackInterface> _powerpack;
         private readonly Lazy<BrandInterface> _brand;
@@ -120,6 +122,12 @@ namespace Plivo
         /// </summary>
         /// <value>The message.</value>
         public MessageInterface Message => _message.Value;
+
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        /// <value>The message.</value>
+        public VerifySessionInterface VerifySession => _verifySession.Value;
 
         public PowerpackInterface Powerpacks => _powerpack.Value;
 
@@ -223,6 +231,7 @@ namespace Plivo
             _token = new Lazy<TokenInterface>(()=> new TokenInterface(Client));
             _conference = new Lazy<ConferenceInterface>(() => new ConferenceInterface(Client));
             _message = new Lazy<MessageInterface>(() => new MessageInterface(Client));
+            _verifySession = new Lazy<VerifySessionInterface>(() => new VerifySessionInterface(Client));
             _lookup = new Lazy<LookupInterface>(() => new LookupInterface(Client));
             _powerpack = new Lazy<PowerpackInterface>(() => new PowerpackInterface(Client));
             _brand = new Lazy<BrandInterface>(() => new BrandInterface(Client));
