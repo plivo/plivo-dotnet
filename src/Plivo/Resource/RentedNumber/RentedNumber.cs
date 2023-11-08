@@ -29,14 +29,16 @@ namespace Plivo.Resource.RentedNumber
         public bool VoiceEnabled { get; set; }
         public string VoiceRate { get; set; }
 
-        public string ComplianceApplicationId {get; set;}
-        public string ComplianceStatus {get; set;}
-        public string TendlcCampaignId {get; set;}
-        public string TendlcRegistrationStatus {get; set;}
-        public string TollFreeSmsVerification {get; set;}
-        public string RenewalDate {get; set;}
-        public string CnamLookup {get; set;}
-        
+        public string ComplianceApplicationId { get; set; }
+        public string ComplianceStatus { get; set; }
+        public string TendlcCampaignId { get; set; }
+        public string TendlcRegistrationStatus { get; set; }
+        public string TollFreeSmsVerification { get; set; }
+        public string RenewalDate { get; set; }
+        public string CnamLookup { get; set; }
+        public string TollFreeSmsVerificationOrderStatus { get; set; }
+        public string TollFreeSmsVerificationId { get; set; }
+
         public override string ToString()
         {
             if (string.Compare(Carrier, "Plivo", StringComparison.Ordinal) == 0)
@@ -69,6 +71,8 @@ namespace Plivo.Resource.RentedNumber
                     "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                     "TendlcRegistrationStatus: " + TendlcRegistrationStatus + "\n" +
                     "TollFreeSMSVerification: " + TollFreeSmsVerification + "\n" +
+                    "TollFreeSmsVerificationOrderStatus: " + TollFreeSmsVerificationOrderStatus + "\n" +
+                    "TollFreeSmsVerificationId: " + TollFreeSmsVerificationId + "\n" +
                     "VoiceRate: " + VoiceRate + "\n";
             }
             return
@@ -92,6 +96,8 @@ namespace Plivo.Resource.RentedNumber
                 "TendlcCampaignId: " + TendlcCampaignId + "\n" +
                 "TendlcRegistrationStatus: " + TendlcRegistrationStatus + "\n" +
                 "TollFreeSMSVerification: " + TollFreeSmsVerification + "\n" +
+                "TollFreeSmsVerificationOrderStatus: " + TollFreeSmsVerificationOrderStatus + "\n" +
+                "TollFreeSmsVerificationId: " + TollFreeSmsVerificationId + "\n" +
                 "VoiceRate: " + VoiceRate + "\n";
         }
 

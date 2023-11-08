@@ -30,7 +30,8 @@
                 "Verizon Wireless": {}
             },
             "reseller_id": "",
-            "usecase": "MIXED"
+            "usecase": "MIXED",
+            "campaign_source": "plivo"
         },
         {
             "brand_id": "BHYYNCK",
@@ -46,13 +47,15 @@
                 "Verizon Wireless": {}
             },
             "reseller_id": "RPDPPUM",
-            "usecase": "ACCOUNT_NOTIFICATION"
+            "usecase": "ACCOUNT_NOTIFICATION",
+            "campaign_source": "plivo"
         },
         {
             "brand_id": "B8OD95Z",
             "campaign_id": "CWOOIAT",
             "reseller_id": "",
-            "usecase": "2FA"
+            "usecase": "2FA",
+            "campaign_source": "plivo"
         },
         {
             "brand_id": "BHYYNCK",
@@ -70,7 +73,8 @@
                 }
             },
             "reseller_id": "",
-            "usecase": "MIXED"
+            "usecase": "MIXED",
+            "campaign_source": "plivo"
         },
         {
             "brand_id": "BRPXS6E",
@@ -86,7 +90,8 @@
                 "Verizon Wireless": {}
             },
             "reseller_id": "",
-            "usecase": "ACCOUNT_NOTIFICATION"
+            "usecase": "ACCOUNT_NOTIFICATION",
+            "campaign_source": "plivo"
         }
     ]
 }

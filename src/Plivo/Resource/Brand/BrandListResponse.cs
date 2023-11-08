@@ -12,6 +12,11 @@ namespace Plivo.Resource
     public class BrandListResponse<T> : BaseResponse, IEnumerable<T>
     {
         /// <summary>
+        /// Gets or sets the meta.
+        /// </summary>
+        /// <value>The meta.</value>
+        public BrandMeta Meta { get; set; }
+        /// <summary>
         /// Gets or sets the objects.
         /// </summary>
         /// <value>The objects.</value>
@@ -29,8 +34,9 @@ namespace Plivo.Resource
         /// </summary>
         /// <param name="meta">Meta.</param>
         /// <param name="brands">brands.</param>
-        public BrandListResponse( List<T> brands)
+        public BrandListResponse(BrandMeta meta, List<T> brands)
         {
+            Meta = meta ?? throw new ArgumentNullException(nameof(meta));
             Brands = brands ?? throw new ArgumentNullException(nameof(brands));
         }
 
@@ -59,6 +65,7 @@ namespace Plivo.Resource
         public override string ToString()
         {
             return "Api Id: " + ApiId + "\n" +
+                   "[Meta]\n" + Meta +
                    "StatusCode: " + StatusCode +
                    "[Brands]\n" + string.Join("\n", Brands);
 

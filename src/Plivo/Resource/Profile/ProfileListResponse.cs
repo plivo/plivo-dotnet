@@ -12,6 +12,11 @@ namespace Plivo.Resource
     public class ProfileListResponse<T> : BaseResponse, IEnumerable<T>
     {
         /// <summary>
+        /// Gets or sets the meta.
+        /// </summary>
+        /// <value>The meta.</value>
+        public ProfileMeta Meta { get; set; }
+        /// <summary>
         /// Gets or sets the objects.
         /// </summary>
         /// <value>The objects.</value>
@@ -29,8 +34,9 @@ namespace Plivo.Resource
         /// </summary>
         /// <param name="meta">Meta.</param>
         /// <param name="profiles">profiles.</param>
-        public ProfileListResponse( List<T> profiles)
+        public ProfileListResponse(ProfileMeta meta, List<T> profiles)
         {
+            Meta = meta ?? throw new ArgumentNullException(nameof(meta));
             Profiles = profiles ?? throw new ArgumentNullException(nameof(profiles));
         }
 
@@ -59,6 +65,7 @@ namespace Plivo.Resource
         public override string ToString()
         {
             return "Api Id: " + ApiId + "\n" +
+                   "[Meta]\n" + Meta +
                    "StatusCode: " + StatusCode +
                    "[profiles]\n" + string.Join("\n", Profiles);
 

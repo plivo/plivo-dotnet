@@ -33,6 +33,7 @@
           "subscriber_optout": false,
           "subscriber_help": false,
           "affiliate_marketing": false
-      }
+      },
+      "campaign_source": "plivo"
   }
 }
