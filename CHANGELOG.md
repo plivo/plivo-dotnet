@@ -3,10 +3,10 @@
 
 ## [5.38.0](https://github.com/plivo/plivo-dotnet/tree/v5.38.0) (2023-11-08)
 **Verify Service**
-- Create Session
-- Validate Session
-- Get Session
-- List Session
+- Create Session - To create a session
+- Validate Session - To validate the OTP
+- Get Session - To Get a particular session
+- List Session - To List all the session corresponding to an account.
 
 ## [5.37.0](https://github.com/plivo/plivo-dotnet/tree/v5.37.0) (2023-10-31)
 **Feature - TollFree Verification API Support**
