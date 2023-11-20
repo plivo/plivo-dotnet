@@ -1,5 +1,8 @@
 # Change Log
 
+## [5.39.0](https://github.com/plivo/plivo-dotnet/tree/v5.39.0) (2023-11-20)
+**Feature - campaign_source field**
+- Added new param `campaign_source` in LIST / GET Campaign APIs
 
 ## [5.38.0](https://github.com/plivo/plivo-dotnet/tree/v5.38.0) (2023-11-08)
 **Verify Service**

@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.38.0</version>
+    <version>5.39.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.39.0 Added New Params `error_code`, `error_reason` for GET and LIST Campaign.
       * 5.38.0 Adding verify service APIs.
       * 5.37.0 API support for Create, Update, Get, Delete and List Tollfree Verification.
       * 5.36.0 Added New Params `campaign_source`.

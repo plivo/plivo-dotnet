@@ -31,7 +31,9 @@
             },
             "reseller_id": "",
             "usecase": "MIXED",
-            "campaign_source": "plivo"
+            "campaign_source": "plivo",
+            "error_code": 1001,
+            "error_reason": "The campaign content falls under a prohibited content category."
         },
         {
             "brand_id": "BHYYNCK",
@@ -55,7 +57,9 @@
             "campaign_id": "CWOOIAT",
             "reseller_id": "",
             "usecase": "2FA",
-            "campaign_source": "plivo"
+            "campaign_source": "plivo",
+            "error_code": 1001,
+            "error_reason": "The campaign content falls under a prohibited content category."
         },
         {
             "brand_id": "BHYYNCK",
@@ -74,7 +78,9 @@
             },
             "reseller_id": "",
             "usecase": "MIXED",
-            "campaign_source": "plivo"
+            "campaign_source": "plivo",
+            "error_code": 1001,
+            "error_reason": "The campaign content falls under a prohibited content category."
         },
         {
             "brand_id": "BRPXS6E",
@@ -91,7 +97,9 @@
             },
             "reseller_id": "",
             "usecase": "ACCOUNT_NOTIFICATION",
-            "campaign_source": "plivo"
+            "campaign_source": "plivo",
+            "error_code": 1001,
+            "error_reason": "The campaign content falls under a prohibited content category."
         }
     ]
 }
