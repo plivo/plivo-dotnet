@@ -32,7 +32,7 @@
             "reseller_id": "",
             "usecase": "MIXED",
             "campaign_source": "plivo",
-            "error_code": 1001,
+            "error_code": "1001",
             "error_reason": "The campaign content falls under a prohibited content category."
         },
         {
@@ -58,7 +58,7 @@
             "reseller_id": "",
             "usecase": "2FA",
             "campaign_source": "plivo",
-            "error_code": 1001,
+            "error_code": "1001",
             "error_reason": "The campaign content falls under a prohibited content category."
         },
         {
@@ -79,7 +79,7 @@
             "reseller_id": "",
             "usecase": "MIXED",
             "campaign_source": "plivo",
-            "error_code": 1001,
+            "error_code": "1001",
             "error_reason": "The campaign content falls under a prohibited content category."
         },
         {
@@ -98,7 +98,7 @@
             "reseller_id": "",
             "usecase": "ACCOUNT_NOTIFICATION",
             "campaign_source": "plivo",
-            "error_code": 1001,
+            "error_code": "1001",
             "error_reason": "The campaign content falls under a prohibited content category."
         }
     ]
