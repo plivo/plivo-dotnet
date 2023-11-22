@@ -1,8 +1,12 @@
 # Change Log
 
-## [5.39.0](https://github.com/plivo/plivo-dotnet/tree/v5.39.0) (2023-11-09)
+## [5.40.0](https://github.com/plivo/plivo-dotnet/tree/v5.40.0) (2023-11-12)
 **Feature - registration_status field**
 - Added new param `registration_status` in LIST Campaign APIs
+
+## [v5.39.0](https://github.com/plivo/plivo-dotnet/tree/v5.39.0) (2023-11-10)
+**Feature - Verify Caller Id API support**
+- API support for verifying, updating, getting and deleting caller IDs.
 
 ## [5.38.0](https://github.com/plivo/plivo-dotnet/tree/v5.38.0) (2023-11-08)
 **Verify Service**
