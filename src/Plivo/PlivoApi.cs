@@ -30,6 +30,7 @@ using Plivo.Resource.Campaign;
 using Plivo.Resource.Profile;
 using Plivo.Resource.Token;
 using Plivo.Resource.TollfreeVerification;
+using Plivo.Resource.VerifyCallerId;
 
 namespace Plivo
 {
@@ -80,6 +81,7 @@ namespace Plivo
 
         private readonly Lazy<MultiPartyCallInterface> _multiPartyCall;
         private readonly Lazy<TollfreeVerificationInterface> _tollfreeVerification;
+        private readonly Lazy<VerifyCallerIdInterface> _verifyCallerId;
         
         /// <summary>
         /// Gets the account.
@@ -202,6 +204,8 @@ namespace Plivo
         public MultiPartyCallInterface MultiPartyCall => _multiPartyCall.Value;
         
         public TollfreeVerificationInterface TollfreeVerification => _tollfreeVerification.Value;
+        
+        public VerifyCallerIdInterface VerifyCallerId => _verifyCallerId.Value;
            
         
         /// <summary>
@@ -255,6 +259,7 @@ namespace Plivo
                 new Lazy<ComplianceApplicationInterface>(() => new ComplianceApplicationInterface(Client));
             _multiPartyCall = new Lazy<MultiPartyCallInterface>(() => new MultiPartyCallInterface(Client));
             _tollfreeVerification = new Lazy<TollfreeVerificationInterface>(() => new TollfreeVerificationInterface(Client));
+            _verifyCallerId = new Lazy<VerifyCallerIdInterface>(() => new VerifyCallerIdInterface(Client));
         }
     }
 }
