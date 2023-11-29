@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.41.0](https://github.com/plivo/plivo-dotnet/tree/v5.39.0) (2023-11-29)
+## [5.41.0](https://github.com/plivo/plivo-dotnet/tree/v5.41.0) (2023-11-29)
 **Feature - new response field error_code and error_reason**
 - Added new response field `error_code and error_reason`for LIST / GET Campaign APIs
 
