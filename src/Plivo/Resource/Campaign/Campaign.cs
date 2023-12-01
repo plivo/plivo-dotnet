@@ -107,6 +107,11 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("campaign_source")]
         public string CampaignSource { get; set; }
 
+        [JsonProperty("error_code")]
+        public string ErrorCode { get; set; }
+
+        [JsonProperty("error_reason")]
+        public string ErrorReason { get; set; }
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -219,6 +224,12 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("campaign_source")]
         public string CampaignSource { get; set; }
+
+        [JsonProperty("error_code")]
+        public string ErrorCode { get; set; }
+
+        [JsonProperty("error_reason")]
+        public string ErrorReason { get; set; }
 
         public override string ToString()
         {

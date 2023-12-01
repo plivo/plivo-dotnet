@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.41.0](https://github.com/plivo/plivo-dotnet/tree/v5.41.0) (2023-11-29)
+**Feature - new response field error_code and error_reason**
+- Added new response field `error_code and error_reason`for LIST / GET Campaign APIs
+
 ## [5.40.0](https://github.com/plivo/plivo-dotnet/tree/v5.40.0) (2023-11-12)
 **Feature - registration_status field**
 - Added new param `registration_status` in LIST Campaign APIs

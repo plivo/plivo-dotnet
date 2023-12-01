@@ -34,6 +34,8 @@
           "subscriber_help": false,
           "affiliate_marketing": false
       },
-      "campaign_source": "plivo"
+      "campaign_source": "plivo",
+      "error_code": "1001",
+      "error_reason": "The campaign content falls under a prohibited content category."
   }
 }
