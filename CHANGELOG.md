@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.42.0](https://github.com/plivo/plivo-dotnet/tree/v5.42.0) (2023-12-11)
+**Feature - added fields vertical and campaign_alias**
+- Added response field `vertical and campaign_alias`for LIST / GET Campaign APIs
+
 ## [5.41.0](https://github.com/plivo/plivo-dotnet/tree/v5.41.0) (2023-11-29)
 **Feature - new response field error_code and error_reason**
 - Added new response field `error_code and error_reason`for LIST / GET Campaign APIs
