@@ -580,6 +580,8 @@ namespace Plivo.Resource.Message
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="from_number">FromNumber.</param>
+        /// <param name="to_number">ToNumber.</param>
         /// <param name="message_state">MessageState.</param>
         /// <param name="message_type">MessageType.</param>
         /// <param name="message_direction">MessageDirection.</param>
@@ -599,6 +601,8 @@ namespace Plivo.Resource.Message
             string subaccount = null,
             uint? limit = null,
             uint? offset = null,
+            string from_number = null,
+            string to_number = null,
             string message_state = null,
             string message_type = null,
             string message_direction = null,
@@ -628,6 +632,8 @@ namespace Plivo.Resource.Message
                     subaccount,
                     limit,
                     offset,
+                    from_number,
+                    to_number,
                     message_state,
                     message_type,
                     message_direction,
@@ -661,6 +667,8 @@ namespace Plivo.Resource.Message
         /// <param name="subaccount">Subaccount.</param>
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
+        /// <param name="from_number">FromNumber.</param>
+        /// <param name="to_number">ToNumber.</param>
         /// <param name="message_state">MessageState.</param>
         /// <param name="message_type">MessageType.</param>
         /// <param name="message_direction">MessageDirection.</param>
@@ -680,6 +688,8 @@ namespace Plivo.Resource.Message
             string subaccount = null,
             uint? limit = null,
             uint? offset = null,
+            string from_number = null,
+            string to_number = null,
             string message_state = null,
             string message_type = null,
             string message_direction = null,
@@ -709,6 +719,8 @@ namespace Plivo.Resource.Message
                     subaccount,
                     limit,
                     offset,
+                    from_number,
+                    to_number,
                     message_state,
                     message_type,
                     message_direction,

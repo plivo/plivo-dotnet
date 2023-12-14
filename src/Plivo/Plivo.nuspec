@@ -13,6 +13,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
       * 5.42.0 Added Params `vertical`, `campaign_alias` for GET and LIST Campaigns.
+      * 5.41.1 Support Params `from_number` and `to_number` for LIST Message.
       * 5.41.0 Added New Params `error_code`, `error_reason` for GET and LIST Campaign.
       * 5.40.0 Added New Params `registration_status`.
       * 5.39.0 API support for verifying, updating, getting and deleting caller IDs.
