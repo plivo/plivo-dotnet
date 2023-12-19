@@ -275,14 +275,15 @@ namespace Plivo.Resource.Call
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="type">Type.</param>
         public UpdateResponse<Call> StartSpeaking(
             string text, string voice = null,
             string language = null, string legs = null, bool? loop = null,
-            bool? mix = null)
+            bool? mix = null, string type = null)
         {
             return ((CallInterface)Interface)
                 .StartSpeaking(
-                    Id, text, voice, language, legs, loop, mix);
+                    Id, text, voice, language, legs, loop, mix, type);
         }
         /// <summary>
         /// Asynchronously starts the speaking.
@@ -294,16 +295,17 @@ namespace Plivo.Resource.Call
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="type">Type.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
         public async Task<AsyncResponse> StartSpeakingAsync(
             string text, string voice = null,
             string language = null, string legs = null, bool? loop = null,
-            bool? mix = null, string callbackUrl = null, string callbackMethod = null)
+            bool? mix = null, string type = null, string callbackUrl = null, string callbackMethod = null)
         {
             return await ((CallInterface)Interface)
                 .StartSpeakingAsync(
-                    Id, text, voice, language, legs, loop, mix, callbackUrl, callbackMethod);
+                    Id, text, voice, language, legs, loop, mix, type, callbackUrl, callbackMethod);
         }
         #endregion
 
