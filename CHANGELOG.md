@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.43.0](https://github.com/plivo/plivo-dotnet/tree/v5.43.0) (2023-01-11)
+**Feature - Fixes for api-messaing list API meta data**
+- Fixed Meta data response for powerpack, media, and profile list
+
 ## [5.42.1](https://github.com/plivo/plivo-dotnet/tree/v5.42.1) (2023-12-19)
 **Feature - added param in speak api**
 - Added new field `type` for POST Speak APIs

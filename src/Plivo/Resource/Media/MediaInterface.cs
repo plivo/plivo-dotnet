@@ -127,7 +127,8 @@ namespace Plivo.Resource.Media
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () => await ListResources<ListResponse<Media>>(data).ConfigureAwait(false)).Result;
-
+                resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+                resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
                 resources.Objects.ForEach(
                     (obj) => obj.Interface = this
                 );
@@ -153,7 +154,8 @@ namespace Plivo.Resource.Media
                     offset
                 });
             var resources = await ListResources<ListResponse<Media>>(data);
-
+            resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+            resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
