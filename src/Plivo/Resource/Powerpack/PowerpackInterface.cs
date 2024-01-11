@@ -183,9 +183,11 @@ namespace Plivo.Resource.Powerpack
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Powerpack>>("Powerpack",data).ConfigureAwait(false)).Result;
-				resources.Objects.ForEach(
+                resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
+                resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+                resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
 
 				return resources;
 			});
@@ -211,7 +213,8 @@ namespace Plivo.Resource.Powerpack
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
-
+            resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+            resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
             return resources;
         }
         #endregion
@@ -306,7 +309,9 @@ namespace Plivo.Resource.Powerpack
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Numbers>>("NumberPool/"+uuid+"/Number", data).ConfigureAwait(false)).Result;
-				resources.Objects.ForEach(
+				resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+                resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
+                resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
 
@@ -342,6 +347,8 @@ namespace Plivo.Resource.Powerpack
                     service
                 });
             var resources = await ListResources<ListResponse<Numbers>>("NumberPool/"+uuid+"/Number", data);
+            resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+            resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -681,7 +688,9 @@ namespace Plivo.Resource.Powerpack
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Shortcode>>("NumberPool/"+uuid+"/Shortcode", data).ConfigureAwait(false)).Result;
-				resources.Objects.ForEach(
+				resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+                resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
+                resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
 
@@ -709,6 +718,8 @@ namespace Plivo.Resource.Powerpack
                     offset
                 });
             var resources = await ListResources<ListResponse<Shortcode>>("NumberPool/"+uuid+"/Shortcode", data);
+            resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+            resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
@@ -808,7 +819,9 @@ namespace Plivo.Resource.Powerpack
 			return ExecuteWithExceptionUnwrap(() =>
 			{
 				var resources = Task.Run(async () => await ListResources<ListResponse<Tollfree>>("NumberPool/"+uuid+"/Tollfree", data).ConfigureAwait(false)).Result;
-				resources.Objects.ForEach(
+				resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+                resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
+                resources.Objects.ForEach(
 					(obj) => obj.Interface = this
 				);
 
@@ -836,6 +849,8 @@ namespace Plivo.Resource.Powerpack
                     offset
                 });
             var resources = await ListResources<ListResponse<Tollfree>>("NumberPool/"+uuid+"/Tollfree", data);
+            resources.Meta.Previous = string.IsNullOrEmpty(resources.Meta.Previous) ? "null" : resources.Meta.Previous;
+            resources.Meta.Next = string.IsNullOrEmpty(resources.Meta.Next) ? "null" : resources.Meta.Next;
             resources.Objects.ForEach(
                 (obj) => obj.Interface = this
             );
