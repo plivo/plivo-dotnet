@@ -1,5 +1,17 @@
 # Change Log
 
+## [5.42.1](https://github.com/plivo/plivo-dotnet/tree/v5.42.1) (2023-12-19)
+**Feature - added param in speak api**
+- Added new field `type` for POST Speak APIs
+
+## [5.42.0](https://github.com/plivo/plivo-dotnet/tree/v5.42.0) (2023-12-14)
+**Feature - added two fields vertical and campaign_alias**
+- Added response fields `vertical and campaign_alias`for LIST / GET Campaign APIs
+
+## [5.41.1](https://github.com/plivo/plivo-dotnet/tree/v5.41.1) (2023-12-13)
+**Support from_number and to_number filters for List Message**
+- Supporting from_number and to_number params for List Message filtering
+
 ## [5.41.0](https://github.com/plivo/plivo-dotnet/tree/v5.41.0) (2023-11-29)
 **Feature - new response field error_code and error_reason**
 - Added new response field `error_code and error_reason`for LIST / GET Campaign APIs

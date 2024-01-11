@@ -1047,10 +1047,11 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="type">Type.</param>
         public UpdateResponse<Call> StartSpeaking (
             string callUuid = null, string text = null, string voice = null,
             string language = null, string legs = null, bool? loop = null,
-            bool? mix = null) {
+            bool? mix = null, string type = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "text" };
             bool isVoiceRequest = true;
@@ -1063,6 +1064,7 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
+                    type,
                     isVoiceRequest
                 });
 
@@ -1083,12 +1085,13 @@ namespace Plivo.Resource.Call {
         /// <param name="legs">Legs.</param>
         /// <param name="loop">Loop.</param>
         /// <param name="mix">Mix.</param>
+        /// <param name="type">Type.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
         public async Task<AsyncResponse> StartSpeakingAsync (
             string callUuid = null, string text = null, string voice = null,
             string language = null, string legs = null, bool? loop = null,
-            bool? mix = null, string callbackUrl = null, string callbackMethod = null) {
+            bool? mix = null, string type = null, string callbackUrl = null, string callbackMethod = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "text" };
             bool isVoiceRequest = true;
@@ -1101,6 +1104,7 @@ namespace Plivo.Resource.Call {
                     legs,
                     loop,
                     mix,
+                    type,
                     callbackUrl,
                     callbackMethod,
                     isVoiceRequest

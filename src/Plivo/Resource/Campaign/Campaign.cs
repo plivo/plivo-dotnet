@@ -112,6 +112,12 @@ namespace Plivo.Resource.Campaign
 
         [JsonProperty("error_reason")]
         public string ErrorReason { get; set; }
+
+        [JsonProperty("vertical")]
+        public string Vertical { get; set; }
+
+        [JsonProperty("campaign_alias")]
+        public string CampaignAlias { get; set; }
     }
 
    [JsonObject(MemberSerialization.OptIn)]
@@ -231,6 +237,12 @@ namespace Plivo.Resource.Campaign
         [JsonProperty("error_reason")]
         public string ErrorReason { get; set; }
 
+        [JsonProperty("vertical")]
+        public string Vertical { get; set; }
+
+        [JsonProperty("campaign_alias")]
+        public string CampaignAlias { get; set; }
+        
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
