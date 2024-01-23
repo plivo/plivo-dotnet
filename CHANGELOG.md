@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.42.2](https://github.com/plivo/plivo-dotnet/tree/v5.42.2) (2024-01-23)
+**Feature - added field in profile apis**
+- Added new field `alt_business_id` for POST create Profile, GET List Profiles, GET Profiles SDKs
+
 ## [5.42.1](https://github.com/plivo/plivo-dotnet/tree/v5.42.1) (2023-12-19)
 **Feature - added param in speak api**
 - Added new field `type` for POST Speak APIs

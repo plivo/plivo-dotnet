@@ -80,6 +80,9 @@ namespace Plivo.Resource.Profile
         [JsonProperty("address")]
         public Address Address { get; set; }
 
+        [JsonProperty("alt_business_id")]
+        public string AltBusinessId { get; set; }
+
         [JsonProperty("alt_business_id_type")]
         public string AltBusinessIdType { get; set; }
 
@@ -147,6 +150,9 @@ namespace Plivo.Resource.Profile
     { 
         [JsonProperty("address")]
         public Address Address { get; set; }
+
+        [JsonProperty("alt_business_id")]
+        public string AltBusinessId { get; set; }
 
         [JsonProperty("alt_business_id_type")]
         public string AltBusinessIdType { get; set; }
