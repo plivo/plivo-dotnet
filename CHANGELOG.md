@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.42.2](https://github.com/plivo/plivo-dotnet/tree/v5.42.2) (2024-01-23)
+## [5.42.2](https://github.com/plivo/plivo-dotnet/tree/v5.42.2) (2024-01-25)
 **Feature - added field in profile apis**
 - Added new field `alt_business_id` for POST create Profile, GET List Profiles, GET Profiles SDKs
 
