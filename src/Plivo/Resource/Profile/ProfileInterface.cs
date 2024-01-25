@@ -116,13 +116,14 @@ namespace Plivo.Resource.Profile
         /// <param name="ein_issuing_country">ein_issuing_country</param>
         /// <param name="stock_symbol">stock_symbol</param>
         /// <param name="stock_exchange">stock_exchange</param>
+        /// <param name="alt_business_id">alt_business_id</param>
         /// <param name="alt_business_id_type">alt_business_id_type</param>
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
 
         public ProfileResponse Create(string profile_alias, string plivo_subaccount,  string customer_type, 
             string entity_type, string company_name,  string ein, string vertical,
-            string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
+            string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id, string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
         {
         var mandatoryParams = new List<string>{"profile_alias"};
         Console.WriteLine(entity_type);
@@ -140,6 +141,7 @@ namespace Plivo.Resource.Profile
                 ein_issuing_country,
                 stock_symbol,
                 stock_exchange,
+                alt_business_id,
                 alt_business_id_type,
                 authorized_contact,
                 address,
@@ -167,12 +169,13 @@ namespace Plivo.Resource.Profile
         /// <param name="ein_issuing_country">ein_issuing_country</param>
         /// <param name="stock_symbol">stock_symbol</param>
         /// <param name="stock_exchange">stock_exchange</param>
+        /// <param name="alt_business_id">alt_business_id</param>
         /// <param name="alt_business_id_type">alt_business_id_type</param>
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
 		public async Task<ProfileResponse> CreateAsync(string profile_alias, string plivo_subaccount,  string customer_type, 
             string entity_type, string company_name,  string ein, string vertical, string website,
-            string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
+            string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id, string alt_business_id_type, AuthorizedContact authorized_contact, Address address)
 		{
          var mandatoryParams = new List<string>{"profile_alias"};
           var data = CreateData(
@@ -188,6 +191,7 @@ namespace Plivo.Resource.Profile
                 ein_issuing_country,
                 stock_symbol,
                 stock_exchange,
+                alt_business_id,
                 alt_business_id_type,
                 authorized_contact,
                 address,
