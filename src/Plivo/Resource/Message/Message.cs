@@ -178,6 +178,12 @@ namespace Plivo.Resource.Message
         /// <value>The conversation expiration timestamp.</value>
         public string ConversationExpirationTimestamp { get; set; }
 
+        /// <summary>
+        /// Gets or sets the log.
+        /// </summary>
+        /// <value>The log.</value>
+        public string Log { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -209,7 +215,8 @@ namespace Plivo.Resource.Message
                    "DLTTemplateCategory: " + DltTemplateCategory + "\n" +
                    "ConversationID: " + ConversationId + "\n" +
                    "ConversationOrigin: " + ConversationOrigin + "\n" +
-                   "ConversationExpirationTimestamp: " + ConversationExpirationTimestamp + "\n";
+                   "ConversationExpirationTimestamp: " + ConversationExpirationTimestamp + "\n" +
+                   "Log: " + Log + "\n";
         }
         #region ListMedia
         /// <summary>
