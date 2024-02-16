@@ -46,7 +46,7 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template_json_string</param>
         public MessageCreateResponse Create(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, string log = null, bool? trackable = null,
+            string url = null, string method = null, string? log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null)
         {
