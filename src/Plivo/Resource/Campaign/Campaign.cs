@@ -179,7 +179,7 @@ namespace Plivo.Resource.Campaign
         public new string CampaignId {get; set;}
 
         [JsonProperty("message")]
-        public new string Messgae {get; set;}
+        public new string Message {get; set;}
         
 
         public override string ToString()
