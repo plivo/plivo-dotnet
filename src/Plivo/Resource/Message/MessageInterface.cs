@@ -46,10 +46,26 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template_json_string</param>
         public MessageCreateResponse Create(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, string? log = null, bool? trackable = null,
+            string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null)
         {
+            // Check if log is a boolean
+            string logString="";
+            if (log is bool)
+            {
+                bool logValue = (bool)log;
+                logString = logValue ? "true" : "false";
+            }
+            // Check if log is a string
+            else if (log is string)
+            {
+                logString = (string)log;
+            }
+            else if (log != null)
+            {
+                throw new ArgumentException("Invalid type for log parameter. Expected boolean or string.");
+            }
 
             string _dst = string.Join("<", dst);
             Dictionary<string, object> data = null;
@@ -91,7 +107,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    log,
+                    logString,
                     trackable,
                     media_urls,
                     media_ids,
@@ -163,10 +179,25 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template_json_string</param>
         public async Task<MessageCreateResponse> CreateAsync(
             List<string> dst, string text = null, string src = null, string type = null,
-            string url = null, string method = null, string log = null, bool? trackable = null,
+            string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null)
         {
+            // Check if log is a boolean
+            if (log is bool)
+            {
+                bool logValue = (bool)log;
+                string logString = logValue ? "true" : "false";
+            }
+            // Check if log is a string
+            else if (log is string)
+            {
+                string logString = (string)log;
+            }
+            else if (log != null)
+            {
+                throw new ArgumentException("Invalid type for log parameter. Expected boolean or string.");
+            }
 
             string _dst = string.Join("<", dst);
             Dictionary<string, object> data = null;
