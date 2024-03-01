@@ -66,6 +66,7 @@ namespace Plivo.Resource.Message
             {
                 throw new ArgumentException("Invalid type for log parameter. Expected boolean or string.");
             }
+            log = logString;
 
             string _dst = string.Join("<", dst);
             Dictionary<string, object> data = null;
@@ -107,7 +108,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -129,7 +130,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -199,6 +200,8 @@ namespace Plivo.Resource.Message
             {
                 throw new ArgumentException("Invalid type for log parameter. Expected boolean or string.");
             }
+            log = logString;
+
 
             string _dst = string.Join("<", dst);
             Dictionary<string, object> data = null;
@@ -240,7 +243,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -262,7 +265,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -334,6 +337,7 @@ namespace Plivo.Resource.Message
             {
                 throw new ArgumentException("Invalid type for log parameter. Expected boolean or string.");
             }
+            log = logString;
             string _dst = dst;
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "" };
@@ -374,7 +378,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -397,7 +401,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -469,6 +473,7 @@ namespace Plivo.Resource.Message
             {
                 throw new ArgumentException("Invalid type for log parameter. Expected boolean or string.");
             }
+            log = logString;
             string _dst = dst;
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "" };
@@ -510,7 +515,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
@@ -533,7 +538,7 @@ namespace Plivo.Resource.Message
                     type,
                     url,
                     method,
-                    logString,
+                    log,
                     trackable,
                     media_urls,
                     media_ids,
