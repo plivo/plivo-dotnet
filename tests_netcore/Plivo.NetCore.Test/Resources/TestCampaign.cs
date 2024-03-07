@@ -98,7 +98,7 @@ namespace Plivo.NetCore.Test.Resources
             {
                 {"campaign_id", "CNTQ0OD"},
                 {"campaign_alias", "New Contact by vinay for ct"},
-                {"url", "/v1/Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/Import/"}, 
+                {"url", "http://plivobin.non-prod.plivops.com/1ojprmd1"}, 
                 {"method", "POST"}
             };
 
