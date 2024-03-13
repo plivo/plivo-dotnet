@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.43.2](https://github.com/plivo/plivo-dotnet/tree/v5.42.4) (2024-04-2)
+## [5.43.2](https://github.com/plivo/plivo-dotnet/tree/v5.43.2) (2024-04-2)
 **Feature - new response field decline_reasons field**
 - Added new response field `decline_reasons` for LIST / GET Brand APIs
 
