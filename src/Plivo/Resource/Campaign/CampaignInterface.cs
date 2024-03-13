@@ -252,6 +252,58 @@ namespace Plivo.Resource.Campaign
 		}
 		#endregion
 
+        #region Import
+        ///<summary>
+        /// Import Campaign with specified campaign_id, campaign_alias.
+        ///</summary>
+        /// <returns>The import.</returns>
+        /// <param name="campaign_id">campaign_id</param>
+        /// <param name="campaign_alias">campaign_alias</param>
+        public ImportCampaign Import(string campaign_id,string campaign_alias,string url=null, string method=null)
+
+        {
+        var mandatoryParams = new List<string>{"campaign_id","campaign_alias"};
+        var data = CreateData(
+            mandatoryParams,
+            new
+            {
+                campaign_id,
+                campaign_alias,
+                url,
+                method
+            });
+        return ExecuteWithExceptionUnwrap(() =>
+		{
+				var result = Task.Run(async () => await Client.Update<ImportCampaign>(Uri + "10dlc/Campaign/Import/", data).ConfigureAwait(false)).Result;
+				result.Object.StatusCode = result.StatusCode;
+                return result.Object;
+		});
+        }
+
+
+        /// <summary>
+        /// Import Campaign.
+        ///<returns> The import.</returns>
+        /// <param name="campaign_id">campaign_id</param>
+        /// <param name="campaign_alias">campaign_alias</param>
+        public async Task<ImportCampaign> ImportAsync(string campaign_id,string campaign_alias,string url=null, string method=null)
+        {
+            var mandatoryParams = new List<string>{"campaign_id","campaign_alias"};
+        var data = CreateData(
+            mandatoryParams,
+            new
+            {
+                campaign_id,
+                campaign_alias,
+                url,
+                method
+            });
+
+            var result = await Client.Update<ImportCampaign>(Uri + "10dlc/Campaign/Import/", data);
+            result.Object.StatusCode = result.StatusCode;
+			return result.Object;
+        }
+        #endregion
         #region Update
         /// <summary>
         /// Update Campaign with the specified sample, keyword etc.

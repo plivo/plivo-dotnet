@@ -170,6 +170,24 @@ namespace Plivo.Resource.Campaign
     }
 
     [JsonObject(MemberSerialization.OptIn)]
+    public class ImportCampaign: Resource
+    {   
+        [JsonProperty("api_id")]
+        public new string ApiId {get; set;}
+        
+        [JsonProperty("campaign_id")]
+        public new string CampaignId {get; set;}
+
+        [JsonProperty("message")]
+        public new string Message {get; set;}
+        
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this, Formatting.Indented);
+        }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
     public class ListCampaigns: Resource
     { 
 

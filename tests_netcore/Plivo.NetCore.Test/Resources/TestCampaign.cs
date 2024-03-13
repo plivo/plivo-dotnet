@@ -91,6 +91,40 @@ namespace Plivo.NetCore.Test.Resources
             AssertRequest(request);
         }
 
+        [Fact]
+        public void TestCampaignImport()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"campaign_id", "CNTQ0OD"},
+                {"campaign_alias", "New Contact by vinay for ct"},
+                {"url", "http://plivobin.non-prod.plivops.com/1ojprmd1"}, 
+                {"method", "POST"}
+            };
+
+            var request = 
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/Import/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/campaignImportResponse.json"
+                );
+            Setup<ImportCampaign>(
+                200,
+                response
+            );
+            Assert.Empty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Campaign.Import(campaign_id:"CNTQ0OD", campaign_alias:"New Contact by vinay for ct", url:"/v1/Account/MAXXXXXXXXXXXXXXXXXX/10dlc/Campaign/Import/",  method:"POST")));
+
+            AssertRequest(request);
+        }
+
 
         [Fact]
         public void TestCampaignUpdate()
