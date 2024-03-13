@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.43.0](https://github.com/plivo/plivo-dotnet/tree/v5.43.0) (2024-03-10)
+## [5.43.0](https://github.com/plivo/plivo-dotnet/tree/v5.43.0) (2024-03-13)
 **Feature - Import Campaign API**
 - Added: Import Campaign API
 
