@@ -183,6 +183,7 @@ namespace Plivo.Resource.Profile
             new
             {
                 profile_alias,
+                plivo_subaccount,
                 customer_type,
                 entity_type,
                 company_name,

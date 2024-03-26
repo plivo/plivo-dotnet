@@ -1,4 +1,7 @@
 # Change Log
+## [5.43.1](https://github.com/plivo/plivo-dotnet/tree/v5.43.1) (2024-03-26)
+**Bug Fix: Create profile API**
+- Addressed issue with profile creation for subaccount.
 
 ## [5.43.0](https://github.com/plivo/plivo-dotnet/tree/v5.43.0) (2024-03-13)
 **Feature - Import Campaign API**
