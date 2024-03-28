@@ -12,13 +12,13 @@ You can install this SDK either by referencing the .dll file or using NuGet.
 Use the following line to install the latest SDK using the NuGet CLI.
 
 ```
-PM> Install-Package Plivo -Version 5.43.1
+PM> Install-Package Plivo -Version 5.43.2
 ```
 
 You can also use the .NET CLI to install this package as follows
 
 ```
-> dotnet add package Plivo --version 5.43.
+> dotnet add package Plivo --version 5.43.2
 ```
 
 ## Getting started
