@@ -1,4 +1,9 @@
 # Change Log
+
+## [5.44.0](https://github.com/plivo/plivo-dotnet/tree/v5.44.0) (2024-04-12)
+**Feature - Support for dynamic payload in whatsapp templates**
+- Added new params `payload` in templates to support dynamic payload in templates
+
 ## [5.43.1](https://github.com/plivo/plivo-dotnet/tree/v5.43.1) (2024-03-26)
 **Bug Fix: Create profile API**
 - Addressed issue with profile creation for subaccount.
