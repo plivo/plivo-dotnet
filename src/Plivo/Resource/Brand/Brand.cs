@@ -47,9 +47,19 @@ namespace Plivo.Resource.Brand
         [JsonProperty("address")]
         public Address Address { get; set; }
 
+        [JsonProperty("declined_reasons")]
+        public TCRErrorDetail[] DeclinedReasons { get; set; }
+
         [JsonProperty("created_at")]
         public string CreatedAt { get; set; }
         
+    }
+
+     public class TCRErrorDetail {
+        [JsonProperty("code")]
+        public string Code { get; set; }
+        [JsonProperty("message")]
+        public string Message { get; set; }
     }
     
     public class Address {
@@ -167,6 +177,9 @@ namespace Plivo.Resource.Brand
 
         [JsonProperty("address")]
         public Address Address { get; set; }
+
+        [JsonProperty("declined_reasons")]
+        public TCRErrorDetail[] DeclinedReasons { get; set; }
         
         public override string ToString()
         {
