@@ -1,8 +1,12 @@
 # Change Log
 
-## [5.44.0](https://github.com/plivo/plivo-dotnet/tree/v5.44.0) (2024-04-12)
-**Feature - Support for dynamic payload in whatsapp templates**
-- Added new params `payload` in templates to support dynamic payload in templates
+## [5.44.0](https://github.com/plivo/plivo-dotnet/tree/v5.44.0) (2024-04-22)
+**Feature - Support for dynamic button components when sending a templated WhatsApp message**
+- Added new param `payload` in templates to support dynamic payload in templates
+
+## [5.43.2](https://github.com/plivo/plivo-dotnet/tree/v5.43.2) (2024-04-4)
+**Feature - new response field declined_reasons field**
+- Added new response field `declined_reasons` for LIST / GET Brand APIs
 
 ## [5.43.1](https://github.com/plivo/plivo-dotnet/tree/v5.43.1) (2024-03-26)
 **Bug Fix: Create profile API**
