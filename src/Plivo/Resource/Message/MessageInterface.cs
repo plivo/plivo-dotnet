@@ -884,6 +884,12 @@ namespace Plivo.Resource.Message
         public string Media { get; set; }
 
         /// <summary>
+        /// Gets or sets the payload value of the parameter.
+        /// </summary>
+        [JsonProperty("payload")]
+        public string Payload { get; set; }
+
+        /// <summary>
         /// Gets or sets the currency information for the parameter.
         /// </summary>
         [JsonProperty("currency")]
