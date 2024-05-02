@@ -1026,7 +1026,7 @@ namespace Plivo.Resource.Message
         public Footer Footer { get; set; }
 
         [JsonProperty("action")]
-        public Action Action { get; set; }
+        public MessageAction Action { get; set; }
     }
 
     public class Header
@@ -1053,7 +1053,7 @@ namespace Plivo.Resource.Message
         public string Text { get; set; }
     }
 
-    public class Action
+    public class MessageAction
     {
         [JsonProperty("buttons")]
         public List<Button> Buttons { get; set; }
