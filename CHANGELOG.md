@@ -1,8 +1,12 @@
 # Change Log
 
+## [6.0.0](https://github.com/plivo/plivo-dotnet/tree/v5.44.0) (2024-04-22)
+**Feature - Number Masking Feature Added**
+- Number Masking APIs added to create, update, delete and list sessions
+
 ## [5.44.0](https://github.com/plivo/plivo-dotnet/tree/v5.44.0) (2024-04-22)
-**Feature - Masking Session Functionality Added**
-- Added Masking Session APIs
+**Feature - Support for dynamic button components when sending a templated WhatsApp message**
+- Added new param `payload` in templates to support dynamic payload in templates
 
 ## [5.43.2](https://github.com/plivo/plivo-dotnet/tree/v5.43.2) (2024-04-4)
 **Feature - new response field declined_reasons field**
