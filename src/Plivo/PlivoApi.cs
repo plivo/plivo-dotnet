@@ -6,6 +6,7 @@ using Plivo.Resource.Application;
 using Plivo.Resource.Call;
 using Plivo.Resource.Conference;
 using Plivo.Resource.Endpoint;
+using Plivo.Resource.MaskingSession;
 using Plivo.Resource.Message;
 using Plivo.Resource.VerifySession;
 using Plivo.Resource.Lookup;
@@ -66,6 +67,7 @@ namespace Plivo
         private readonly Lazy<ProfileInterface> _profile;
         private readonly Lazy<MediaInterface> _media;
         private readonly Lazy<EndpointInterface> _endpoint;
+        private readonly Lazy<MaskingSessionInterface> _maskingSession;
         private readonly Lazy<PricingInterface> _pricing;
         private readonly Lazy<RecordingInterface> _recording;
         private readonly Lazy<RentedNumberInterface> _number;
@@ -148,7 +150,13 @@ namespace Plivo
         /// </summary>
         /// <value>The endpoint.</value>
         public EndpointInterface Endpoint => _endpoint.Value;
-
+        
+        /// <summary>
+        /// Gets the maskingSession.
+        /// </summary>
+        /// <value>The maskingSession.</value>
+        public MaskingSessionInterface MaskingSession => _maskingSession.Value;
+        
         /// <summary>
         /// Gets the pricing.
         /// </summary>
@@ -206,8 +214,7 @@ namespace Plivo
         public TollfreeVerificationInterface TollfreeVerification => _tollfreeVerification.Value;
         
         public VerifyCallerIdInterface VerifyCallerId => _verifyCallerId.Value;
-           
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
@@ -243,6 +250,7 @@ namespace Plivo
             _campiagn = new Lazy<CampaignInterface>(() => new CampaignInterface(Client));
             _media = new Lazy<MediaInterface>(() => new MediaInterface(Client));
             _endpoint = new Lazy<EndpointInterface>(() => new EndpointInterface(Client));
+            _maskingSession = new Lazy<MaskingSessionInterface>(() => new MaskingSessionInterface(Client));
             _pricing = new Lazy<PricingInterface>(() => new PricingInterface(Client));
             _recording = new Lazy<RecordingInterface>(() => new RecordingInterface(Client));
             _number = new Lazy<RentedNumberInterface>(() => new RentedNumberInterface(Client));
