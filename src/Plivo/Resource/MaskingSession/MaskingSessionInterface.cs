@@ -126,11 +126,13 @@ namespace Plivo.Resource.MaskingSession
         #region Get
         public MaskingSession Get(string sessionUuid)
         {
+            bool isVoiceRequest = true;
+            var data = CreateData(new List<string> {""}, new {isVoiceRequest});
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var endpoint = Task.Run(async () => await GetResource<MaskingSession>(sessionUuid, new Dictionary<string, object> () { {"is_voice_request", true} }).ConfigureAwait(false)).Result;
-                endpoint.Interface = this;
-                return endpoint;
+                var maskingSession = Task.Run(async () => await GetResource<MaskingSession>(sessionUuid, data).ConfigureAwait(false)).Result;
+                maskingSession.Interface = this;
+                return maskingSession;
             });
         }
 

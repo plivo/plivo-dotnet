@@ -47,44 +47,44 @@ namespace Plivo.Resource.MaskingSession
 
         public override string ToString()
         {
-            return  "api_id: " + ApiId + "\n"+
-                    "first_party: " + FirstParty + "\n"+
-                    "second_party: " + SecondParty + "\n"+
-                    "virtual_number: " + VirtualNumber + "\n"+
-                    "status: " + Status + "\n"+
-                    "initiate_call_to_first_party: " + InitiateCallToFirstParty + "\n"+
-                    "session_uuid: " + SessionUuid + "\n"+
-                    "callback_url: " + CallbackUrl + "\n"+
-                    "callback_method: " + CallbackMethod + "\n"+
-                    "created_time: " + CreatedTime + "\n"+
-                    "modified_time: " + ModifiedTime + "\n"+
-                    "expiry_time: " + ExpiryTime + "\n"+
-                    "duration: " + Duration + "\n"+
-                    "amount: " + Amount + "\n"+
-                    "call_time_limit: " + CallTimeLimit + "\n"+
-                    "ring_timeout: " + RingTimeout + "\n"+
-                    "first_party_play_url: " + FirstPartyPlayUrl + "\n"+
-                    "second_party_play_url: " + SecondPartyPlayUrl + "\n"+
-                    "record: " + Record + "\n"+
-                    "record_file_format: " + RecordFileFormat + "\n"+
-                    "recording_callback_url: " + RecordingCallbackUrl + "\n"+
-                    "recording_callback_method: " + RecordingCallbackMethod + "\n"+
-                    "interaction: " + Interaction + "\n"+
-                    "total_call_amount: " + TotalCallAmount + "\n"+
-                    "total_call_count: " + TotalCallCount + "\n"+
-                    "total_call_billed_duration: " + TotalCallBilledDuration + "\n"+
-                    "total_session_amount: " + TotalSessionAmount + "\n"+
-                    "last_interaction_time: " + LastInteractionTime + "\n"+
-                    "is_pin_authentication_required: " + IsPinAuthenticationRequired + "\n"+
-                    "generate_pin: " + GeneratePin + "\n"+
-                    "generate_pin_length: " + GeneratePinLength + "\n"+
-                    "first_party_pin: " + FirstPartyPin + "\n"+
-                    "second_party_pin: " + SecondPartyPin + "\n"+
-                    "pin_prompt_play: " + PinPromptPlay + "\n"+
-                    "pin_retry: " + PinRetry + "\n"+
-                    "pin_retry_wait: " + PinRetryWait + "\n"+
-                    "incorrect_pin_play: " + IncorrectPinPlay + "\n"+
-                    "unknown_caller_play: " + UnknownCallerPlay + "\n";
+            return  "ApiId: " + ApiId + "\n"+
+                    "FirstParty: " + FirstParty + "\n"+
+                    "SecondParty: " + SecondParty + "\n"+
+                    "VirtualNumber: " + VirtualNumber + "\n"+
+                    "Status: " + Status + "\n"+
+                    "InitiateCallToFirstParty: " + InitiateCallToFirstParty + "\n"+
+                    "SessionUuid: " + SessionUuid + "\n"+
+                    "CallbackUrl: " + CallbackUrl + "\n"+
+                    "CallbackMethod: " + CallbackMethod + "\n"+
+                    "CreatedTime: " + CreatedTime + "\n"+
+                    "ModifiedTime: " + ModifiedTime + "\n"+
+                    "ExpiryTime: " + ExpiryTime + "\n"+
+                    "Duration: " + Duration + "\n"+
+                    "Amount: " + Amount + "\n"+
+                    "CallTimeLimit: " + CallTimeLimit + "\n"+
+                    "RingTimeout: " + RingTimeout + "\n"+
+                    "FirstPartyPlayUrl: " + FirstPartyPlayUrl + "\n"+
+                    "SecondPartyPlayUrl: " + SecondPartyPlayUrl + "\n"+
+                    "Record: " + Record + "\n"+
+                    "RecordFileFormat: " + RecordFileFormat + "\n"+
+                    "RecordingCallbackUrl: " + RecordingCallbackUrl + "\n"+
+                    "RecordingCallbackMethod: " + RecordingCallbackMethod + "\n"+
+                    "Interaction: " + Interaction + "\n"+
+                    "TotalCallAmount: " + TotalCallAmount + "\n"+
+                    "TotalCallCount: " + TotalCallCount + "\n"+
+                    "TotalCallBilledDuration: " + TotalCallBilledDuration + "\n"+
+                    "TotalSessionAmount: " + TotalSessionAmount + "\n"+
+                    "LastInteractionTime: " + LastInteractionTime + "\n"+
+                    "IsPinAuthenticationRequired: " + IsPinAuthenticationRequired + "\n"+
+                    "GeneratePin: " + GeneratePin + "\n"+
+                    "GeneratePinLength: " + GeneratePinLength + "\n"+
+                    "FirstPartyPin: " + FirstPartyPin + "\n"+
+                    "SecondPartyPin: " + SecondPartyPin + "\n"+
+                    "PinPromptPlay: " + PinPromptPlay + "\n"+
+                    "PinRetry: " + PinRetry + "\n"+
+                    "PinRetryWait: " + PinRetryWait + "\n"+
+                    "IncorrectPinPlay: " + IncorrectPinPlay + "\n"+
+                    "UnknownCallerPlay: " + UnknownCallerPlay + "\n";
         }
 
         #region Delete
