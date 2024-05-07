@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.45.0](https://github.com/plivo/plivo-dotnet/tree/v5.45.0) (2024-05-07)
+**Feature - Adding support for interactive whatsapp messages**
+- Added new param `interactive` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support interactive `whatsapp` messages
+
 ## [5.44.0](https://github.com/plivo/plivo-dotnet/tree/v5.44.0) (2024-04-22)
 **Feature - Support for dynamic button components when sending a templated WhatsApp message**
 - Added new param `payload` in templates to support dynamic payload in templates

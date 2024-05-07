@@ -44,11 +44,13 @@ namespace Plivo.Resource.Message
         /// <param name="dlt_template_category">dlt_template_category</param>
         /// <param name="template">template</param>
         /// <param name="template_json_string">template_json_string</param>
+        /// <param name="interactive">interactive</param>
+        /// <param name="interactive_json_string">interactive_json_string</param>
         public MessageCreateResponse Create(
             List<string> dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
-            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null)
+            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
         {
             // Check if log is a boolean
             string logString="";
@@ -96,6 +98,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Template language must not be null or empty.");
             }
+            if (interactive_json_string != null && interactive != null)
+            {
+                return getResponseValidation("Interactive parameter is already set.");
+            }
+            else 
+            {
+                if (interactive_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    interactive = JsonConvert.DeserializeObject<Interactive>(interactive_json_string, settings);
+                }
+            }
+            if (interactive != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -115,7 +133,8 @@ namespace Plivo.Resource.Message
                     dlt_entity_id,
                     dlt_template_id,
                     dlt_template_category,
-                    template
+                    template,
+                    interactive
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -178,11 +197,13 @@ namespace Plivo.Resource.Message
         /// <param name="dlt_template_category">dlt_template_category</param>
         /// <param name="template">template</param>
         /// <param name="template_json_string">template_json_string</param>
+        /// <param name="interactive">interactive</param>
+        /// <param name="interactive_json_string">interactive_json_string</param>
         public async Task<MessageCreateResponse> CreateAsync(
             List<string> dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
-            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null)
+            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
         {
             // Check if log is a boolean
             string logString="";
@@ -231,6 +252,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Template language must not be null or empty.");
             }
+            if (interactive_json_string != null && interactive != null)
+            {
+                return getResponseValidation("Interactive parameter is already set.");
+            }
+            else 
+            {
+                if (interactive_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    interactive = JsonConvert.DeserializeObject<Interactive>(interactive_json_string, settings);
+                }
+            }
+            if (interactive != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -250,7 +287,8 @@ namespace Plivo.Resource.Message
                     dlt_entity_id,
                     dlt_template_id,
                     dlt_template_category,
-                    template
+                    template,
+                    interactive
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -315,12 +353,14 @@ namespace Plivo.Resource.Message
         /// <param name="dlt_template_category">dlt_template_category</param>
         /// <param name="template">template</param>
         /// <param name="template_json_string">template_json_string</param>
+        /// <param name="interactive">interactive</param>
+        /// <param name="interactive_json_string">interactive_json_string</param>
         public MessageCreateResponse Create(
             string dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             uint? message_expiry = null, string dlt_entity_id = null, string dlt_template_id = null,
-            string dlt_template_category = null, Template template = null, string template_json_string = null)
+            string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
         {
             string logString="";
             if (log is bool)
@@ -366,6 +406,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Template language must not be null or empty.");
             }
+            if (interactive_json_string != null && interactive != null)
+            {
+                return getResponseValidation("Interactive parameter is already set.");
+            }
+            else 
+            {
+                if (interactive_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    interactive = JsonConvert.DeserializeObject<Interactive>(interactive_json_string, settings);
+                }
+            }
+            if (interactive != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -386,7 +442,8 @@ namespace Plivo.Resource.Message
                     dlt_entity_id,
                     dlt_template_id,
                     dlt_template_category,
-                    template
+                    template,
+                    interactive
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -451,12 +508,14 @@ namespace Plivo.Resource.Message
         /// <param name="dlt_template_category">dlt_template_category</param>
         /// <param name="template">template</param>
         /// <param name="template_json_string">template</param>
+        /// <param name="interactive">interactive</param>
+        /// <param name="interactive_json_string">interactive_json_string</param>
         public async Task<MessageCreateResponse> CreateAsync(
             string dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             uint? message_expiry = null, string dlt_entity_id = null, string dlt_template_id = null,
-            string dlt_template_category = null, Template template = null, string template_json_string = null)
+            string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
         {
             string logString="";
             if (log is bool)
@@ -503,6 +562,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Template language must not be null or empty.");
             }
+            if (interactive_json_string != null && interactive != null)
+            {
+                return getResponseValidation("Interactive parameter is already set.");
+            }
+            else 
+            {
+                if (interactive_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    interactive = JsonConvert.DeserializeObject<Interactive>(interactive_json_string, settings);
+                }
+            }
+            if (interactive != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -523,7 +598,8 @@ namespace Plivo.Resource.Message
                     dlt_entity_id,
                     dlt_template_id,
                     dlt_template_category,
-                    template
+                    template,
+                    interactive
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -932,4 +1008,90 @@ namespace Plivo.Resource.Message
         public string FallbackValue { get; set; }
     }
 
+    /// <summary>
+    /// Represents an interactive WhatsApp message.
+    /// </summary>
+    public class Interactive
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("header")]
+        public Header Header { get; set; }
+
+        [JsonProperty("body")]
+        public Body Body { get; set; }
+
+        [JsonProperty("footer")]
+        public Footer Footer { get; set; }
+
+        [JsonProperty("action")]
+        public MessageAction Action { get; set; }
+    }
+
+    public class Header
+    {
+        [JsonProperty("type")]
+        public string Type { get; set; }
+
+        [JsonProperty("text")]
+        public string Text { get; set; }
+
+        [JsonProperty("media")]
+        public string Media { get; set; }
+    }
+
+    public class Body
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
+    }
+
+    public class Footer
+    {
+        [JsonProperty("text")]
+        public string Text { get; set; }
+    }
+
+    public class MessageAction
+    {
+        [JsonProperty("buttons")]
+        public List<Button> Buttons { get; set; }
+
+        [JsonProperty("sections")]
+        public List<Section> Sections { get; set; }
+    }
+
+    public class Button
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("cta_url")]
+        public string CtaUrl { get; set; }
+    }
+
+    public class Section
+    {
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("rows")]
+        public List<Row> Rows { get; set; }
+    }
+
+    public class Row
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("title")]
+        public string Title { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+    }
 }
