@@ -148,7 +148,7 @@ namespace Plivo.Resource.MaskingSession
             result.Object.StatusCode = result.StatusCode;
             JObject responseJson = JObject.Parse(result.Content);
             result.Object.ApiId = responseJson["api_id"].ToString();
-            result.Object.Message = responseJson["message"].ToString();
+            result.Object.Message = responseJson["response"].ToString();
             return result.Object;
         }
         #endregion
