@@ -10,7 +10,7 @@ namespace Plivo.Resource.MaskingSession
     {
         public MaskingSessionInterface(HttpClient client) : base(client)
         {
-            Uri = "Account/" + Client.GetAuthId() + "/Masking/Session";
+            Uri = "Account/" + Client.GetAuthId() + "/Masking/Session/";
         }
 
         #region Create
