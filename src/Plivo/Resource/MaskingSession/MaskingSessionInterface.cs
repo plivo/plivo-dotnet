@@ -150,6 +150,7 @@ namespace Plivo.Resource.MaskingSession
             result.Object.ApiId = responseJson["api_id"].ToString();
             result.Object.Message = responseJson["message"].ToString();
             
+            Console.WriteLine($"result: {result}");
             Console.WriteLine($"responseJson: {responseJson}");
             Console.WriteLine($"StatusCode: {result.StatusCode}");
             Console.WriteLine($"Content: {result.Content}");
