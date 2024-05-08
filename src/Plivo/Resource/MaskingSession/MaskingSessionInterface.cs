@@ -2,7 +2,6 @@ using Plivo.Client;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
-using System;
 
 namespace Plivo.Resource.MaskingSession
 {
@@ -149,20 +148,13 @@ namespace Plivo.Resource.MaskingSession
             JObject responseJson = JObject.Parse(result.Content);
             result.Object.ApiId = responseJson["api_id"].ToString();
             result.Object.Message = responseJson["message"].ToString();
-            
-            Console.WriteLine($"result: {result}");
-            Console.WriteLine($"responseJson: {responseJson}");
-            Console.WriteLine($"StatusCode: {result.StatusCode}");
-            Console.WriteLine($"Content: {result.Content}");
-            Console.WriteLine($"Object: {result.Object}");
-            
             return result.Object;
         }
         #endregion
 
         
         #region List
-        public ListResponse<MaskingSession> List(
+        public ListResponse<MaskingSessionListResponse> List(
         string first_party = null, string second_party = null, string virtual_number = null, string status = null,
         string created_time = null, string created_time__lt = null,string created_time__gt = null,string created_time__lte = null,
         string created_time__gte = null, string expiry_time = null,string expiry_time__lt = null,string expiry_time__gt = null,
@@ -200,12 +192,11 @@ namespace Plivo.Resource.MaskingSession
             });
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var resources = Task.Run(async () => await ListResources<ListResponse<MaskingSession>>(data).ConfigureAwait(false)).Result;
-
-                resources.Objects.ForEach(
-                    (obj) => obj.Interface = this
-                );
-
+                var resources = Task.Run(async () => await ListResources<ListResponse<MaskingSessionListResponse>>(data).ConfigureAwait(false)).Result;
+                resources.Meta = resources.Response.Meta;
+                JArray responseArray = resources.Response.Objects as JArray;
+                List<MaskingSessionListResponse> maskingSessionList = responseArray.ToObject<List<MaskingSessionListResponse>>();
+                resources.Objects = maskingSessionList;
                 return resources;
             });
         }

@@ -22,6 +22,8 @@ namespace Plivo.Resource
         /// <value>The objects.</value>
         public List<T> Objects { get; set; }
 
+        public NestedResponse Response;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.Resource.ListResponse`1"/> class.
         /// </summary>
@@ -66,11 +68,9 @@ namespace Plivo.Resource
         {
             return "Api Id: " + ApiId + "\n" +
                    "[Meta]\n" + Meta +
+                   "[Response]\n" + Response +
                    "StatusCode: " + StatusCode +
                    "[Objects]\n" + string.Join("\n", Objects);
-
-
-
         }
     }
 }
