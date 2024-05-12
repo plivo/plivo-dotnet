@@ -46,11 +46,16 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template_json_string</param>
         /// <param name="interactive">interactive</param>
         /// <param name="interactive_json_string">interactive_json_string</param>
+        /// <param name="location">location</param>
+        /// <param name="location_json_string">location_json_string</param>
         public MessageCreateResponse Create(
             List<string> dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
-            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
+            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null,
+             Template template = null, string template_json_string = null,
+             Interactive interactive = null, string interactive_json_string = null,
+             Location location = null, string location_json_string = null)
         {
             // Check if log is a boolean
             string logString="";
@@ -114,6 +119,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
             }
+            if (location_json_string != null && location != null)
+            {
+                return getResponseValidation("Location parameter is already set.");
+            }
+            else 
+            {
+                if (location_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    location = JsonConvert.DeserializeObject<Location>(location_json_string, settings);
+                }
+            }
+            if (location != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Location paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -134,7 +155,8 @@ namespace Plivo.Resource.Message
                     dlt_template_id,
                     dlt_template_category,
                     template,
-                    interactive
+                    interactive,
+                    location
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -199,11 +221,16 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template_json_string</param>
         /// <param name="interactive">interactive</param>
         /// <param name="interactive_json_string">interactive_json_string</param>
+        /// <param name="location">location</param>
+        /// <param name="location_json_string">location_json_string</param>
         public async Task<MessageCreateResponse> CreateAsync(
             List<string> dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
-            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
+            string dlt_entity_id = null, string dlt_template_id = null, string dlt_template_category = null, 
+            Template template = null, string template_json_string = null, 
+            Interactive interactive = null, string interactive_json_string = null,
+            Location location = null, string location_json_string = null)
         {
             // Check if log is a boolean
             string logString="";
@@ -268,6 +295,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
             }
+            if (location_json_string != null && location != null)
+            {
+                return getResponseValidation("Location parameter is already set.");
+            }
+            else 
+            {
+                if (location_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    location = JsonConvert.DeserializeObject<Location>(location_json_string, settings);
+                }
+            }
+            if (location != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Location paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -288,7 +331,8 @@ namespace Plivo.Resource.Message
                     dlt_template_id,
                     dlt_template_category,
                     template,
-                    interactive
+                    interactive,
+                    locaation
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -355,12 +399,17 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template_json_string</param>
         /// <param name="interactive">interactive</param>
         /// <param name="interactive_json_string">interactive_json_string</param>
+        /// <param name="location">location</param>
+        /// <param name="location_json_string">location_json_string</param>
         public MessageCreateResponse Create(
             string dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             uint? message_expiry = null, string dlt_entity_id = null, string dlt_template_id = null,
-            string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
+            string dlt_template_category = null, 
+            Template template = null, string template_json_string = null, 
+            Interactive interactive = null, string interactive_json_string = null,
+            Location location = null, string location_json_string = null)
         {
             string logString="";
             if (log is bool)
@@ -422,6 +471,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
             }
+            if (location_json_string != null && location != null)
+            {
+                return getResponseValidation("Location parameter is already set.");
+            }
+            else 
+            {
+                if (location_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    location = JsonConvert.DeserializeObject<Location>(location_json_string, settings);
+                }
+            }
+            if (location != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Location paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -443,7 +508,8 @@ namespace Plivo.Resource.Message
                     dlt_template_id,
                     dlt_template_category,
                     template,
-                    interactive
+                    interactive,
+                    location
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -510,12 +576,17 @@ namespace Plivo.Resource.Message
         /// <param name="template_json_string">template</param>
         /// <param name="interactive">interactive</param>
         /// <param name="interactive_json_string">interactive_json_string</param>
+        /// <param name="location">location</param>
+        /// <param name="location_json_string">location_json_string</param>
         public async Task<MessageCreateResponse> CreateAsync(
             string dst, string text = null, string src = null, string type = null,
             string url = null, string method = null, object log = null, bool? trackable = null,
             string powerpack_uuid = null, string[] media_urls = null, string[] media_ids = null,
             uint? message_expiry = null, string dlt_entity_id = null, string dlt_template_id = null,
-            string dlt_template_category = null, Template template = null, string template_json_string = null, Interactive interactive = null, string interactive_json_string = null)
+            string dlt_template_category = null, 
+            Template template = null, string template_json_string = null, 
+            Interactive interactive = null, string interactive_json_string = null,
+            Location location = null, string location_json_string = null)
         {
             string logString="";
             if (log is bool)
@@ -578,6 +649,22 @@ namespace Plivo.Resource.Message
             {
                 return getResponseValidation("Interactive paramater is only applicable when type is whatsapp.");
             }
+            if (location_json_string != null && location != null)
+            {
+                return getResponseValidation("Location parameter is already set.");
+            }
+            else 
+            {
+                if (location_json_string != null)
+                {
+                    var settings = new JsonSerializerSettings{NullValueHandling = NullValueHandling.Ignore};
+                    location = JsonConvert.DeserializeObject<Location>(location_json_string, settings);
+                }
+            }
+            if (location != null && type != null && type != "whatsapp")
+            {
+                return getResponseValidation("Location paramater is only applicable when type is whatsapp.");
+            }
             if (src != null && powerpack_uuid == null)
             {
                 data = CreateData(
@@ -599,7 +686,8 @@ namespace Plivo.Resource.Message
                     dlt_template_id,
                     dlt_template_category,
                     template,
-                    interactive
+                    interactive,
+                    loactaion
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -976,6 +1064,12 @@ namespace Plivo.Resource.Message
         /// </summary>
         [JsonProperty("date_time")]
         public DateTimeValue DateTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the location value of the parameter.
+        /// </summary>
+        [JsonProperty("location")]
+        public Location Location { get; set; }
     }
 
     public class Currency
@@ -1093,5 +1187,20 @@ namespace Plivo.Resource.Message
 
         [JsonProperty("description")]
         public string Description { get; set; }
+    }
+
+    public class Location
+    {
+        [JsonProperty("latitude")]
+        public string Latitude { get; set; }
+
+        [JsonProperty("longitude")]
+        public string Longitude { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("address")]
+        public string Address { get; set; }
     }
 }

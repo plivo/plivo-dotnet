@@ -12,7 +12,7 @@ You can install this SDK either by referencing the .dll file or using NuGet.
 Use the following line to install the latest SDK using the NuGet CLI.
 
 ```
-PM> Install-Package Plivo -Version 5.45.0
+PM> Install-Package Plivo -Version 5.46.0
 ```
 
 You can also use the .NET CLI to install this package as follows
@@ -117,6 +117,68 @@ This generates the following XML:
 <Response>
   <Speak>Hello, world!</Speak>
 </Response>
+```
+
+## WhatsApp Messaging
+Plivo's WhatsApp API allows you to send different types of messages over WhatsApp, including templated messages, free form messages and interactive messages. Below are some examples on how to use the Plivo Go SDK to send these types of messages.
+
+### Templated Messages
+Templated messages are a crucial to your WhatsApp messaging experience, as businesses can only initiate WhatsApp conversation with their customers using templated messages.
+
+WhatsApp templates support 4 components:  `header` ,  `body`,  `footer`  and `button`. At the point of sending messages, the template object you see in the code acts as a way to pass the dynamic values within these components.  `header`  can accomodate `text` or `media` (images, video, documents) content.  `body`  can accomodate text content.  `button`  can support dynamic values in a `url` button or to specify a developer-defined payload which will be returned when the WhatsApp user clicks on the `quick_reply` button. `footer`  cannot have any dynamic variables.
+
+Example:
+```csharp
+```
+
+### Free Form Messages
+Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-initiated conversation (Service conversation) or if there is an existing ongoing conversation created previously by sending a templated WhatsApp message.
+
+#### Free Form Text Message
+Example:
+```csharp
+```
+
+#### Free Form Media Message
+Example:
+```csharp
+```
+
+### Interactive Messages
+This guide shows how to send non-templated interactive messages to recipients using Plivo’s APIs.
+
+#### Quick Reply Buttons
+Quick reply buttons allow customers to quickly respond to your message with predefined options.
+
+Example:
+```csharp
+```
+
+#### Interactive Lists
+Interactive lists allow you to present customers with a list of options.
+
+Example:
+```csharp
+```
+
+#### Interactive CTA URLs
+CTA URL messages allow you to send links and call-to-action buttons.
+
+Example:
+```csharp
+```
+
+### Location Messages
+This guide shows how to send templated and non-templated location messages to recipients using Plivo’s APIs.
+
+#### Templated Location Messages
+Example:
+```csharp
+```
+
+#### Non-Templated Location Messages
+Example:
+```csharp
 ```
 
 ### More examples
