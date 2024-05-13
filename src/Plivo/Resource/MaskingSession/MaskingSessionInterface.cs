@@ -155,36 +155,36 @@ namespace Plivo.Resource.MaskingSession
         
         #region List
         public ListResponse<MaskingSessionListResponse> List(
-        string first_party = null, string second_party = null, string virtual_number = null, string status = null,
-        string created_time = null, string created_time__lt = null,string created_time__gt = null,string created_time__lte = null,
-        string created_time__gte = null, string expiry_time = null,string expiry_time__lt = null,string expiry_time__gt = null,
-        string expiry_time__lte = null,string expiry_time__gte = null, uint? duration = null,uint? duration__lt = null,
-        uint? duration__gt = null,uint? duration__lte = null,uint? duration__gte = null,uint? limit = null, uint? offset = null, 
+        string firstParty = null, string secondParty = null, string virtualNumber = null, string status = null,
+        string createdTime = null, string createdTime_Lt = null,string createdTime_Gt = null,string createdTime_Lte = null,
+        string createdTime_Gte = null, string expiryTime = null,string expiryTime_Lt = null,string expiryTime_Gt = null,
+        string expiryTime_Lte = null,string expiryTime_Gte = null, uint? duration = null,uint? duration_Lt = null,
+        uint? duration_Gt = null,uint? duration_Lte = null,uint? duration_Gte = null,uint? limit = null, uint? offset = null, 
         string subaccount=null)
         {
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(mandatoryParams,
             new { 
-                first_party,
-                second_party,
-                virtual_number,
+                firstParty,
+                secondParty,
+                virtualNumber,
                 status,
-                created_time,
-                created_time__lt,
-                created_time__gt,
-                created_time__lte,
-                created_time__gte,
-                expiry_time,
-                expiry_time__lt,
-                expiry_time__gt,
-                expiry_time__lte,
-                expiry_time__gte,
+                createdTime,
+                createdTime_Lt,
+                createdTime_Gt,
+                createdTime_Lte,
+                createdTime_Gte,
+                expiryTime,
+                expiryTime_Lt,
+                expiryTime_Gt,
+                expiryTime_Lte,
+                expiryTime_Gte,
                 duration,
-                duration__lt,
-                duration__gt,
-                duration__lte,
-                duration__gte,
+                duration_Lt,
+                duration_Gt,
+                duration_Lte,
+                duration_Gte,
                 limit,
                 offset,
                 subaccount, 
@@ -202,36 +202,36 @@ namespace Plivo.Resource.MaskingSession
         }
 
         public async Task<AsyncResponse> ListAsync(
-        string first_party = null, string second_party = null, string virtual_number = null, string status = null,
-        string created_time = null, string created_time__lt = null,string created_time__gt = null,string created_time__lte = null,
-        string created_time__gte = null, string expiry_time = null,string expiry_time__lt = null,string expiry_time__gt = null,
-        string expiry_time__lte = null,string expiry_time__gte = null, uint? duration = null,uint? duration__lt = null,
-        uint? duration__gt = null,uint? duration__lte = null,uint? duration__gte = null,uint? limit = null, uint? offset = null, 
+        string firstParty = null, string secondParty = null, string virtualNumber = null, string status = null,
+        string createdTime = null, string createdTime_Lt = null,string createdTime_Gt = null,string createdTime_Lte = null,
+        string createdTime_Gte = null, string expiryTime = null,string expiryTime_Lt = null,string expiryTime_Gt = null,
+        string expiryTime_Lte = null,string expiryTime_Gte = null, uint? duration = null,uint? duration_Lt = null,
+        uint? duration_Gt = null,uint? duration_Lte = null,uint? duration_Gte = null,uint? limit = null, uint? offset = null, 
         string subaccount=null)
         {
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(mandatoryParams,
             new { 
-                first_party,
-                second_party,
-                virtual_number,
+                firstParty,
+                secondParty,
+                virtualNumber,
                 status,
-                created_time,
-                created_time__lt,
-                created_time__gt,
-                created_time__lte,
-                created_time__gte,
-                expiry_time,
-                expiry_time__lt,
-                expiry_time__gt,
-                expiry_time__lte,
-                expiry_time__gte,
+                createdTime,
+                createdTime_Lt,
+                createdTime_Gt,
+                createdTime_Lte,
+                createdTime_Gte,
+                expiryTime,
+                expiryTime_Lt,
+                expiryTime_Gt,
+                expiryTime_Lte,
+                expiryTime_Gte,
                 duration,
-                duration__lt,
-                duration__gt,
-                duration__lte,
-                duration__gte,
+                duration_Lt,
+                duration_Gt,
+                duration_Lte,
+                duration_Gte,
                 limit,
                 offset,
                 subaccount, 
@@ -273,10 +273,10 @@ namespace Plivo.Resource.MaskingSession
 
 
         #region Update
-        public UpdateResponse<MaskingSession> Update(string sessionUuid, uint? session_expiry = null, uint? call_time_limit = null, 
-        bool? record = null, string record_file_format = null, string recording_callback_url = null, string callback_url = null, 
-        string callback_method = null, uint? ring_timeout = null, string first_party_play_url = null, string second_party_play_url = null, 
-        string recording_callback_method = null, string subaccount = null, bool? geomatch = null
+        public UpdateResponse<MaskingSession> Update(string sessionUuid, uint? sessionExpiry = null, uint? callTimeLimit = null, 
+        bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, string callbackUrl = null, 
+        string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, string secondPartyPlayUrl = null, 
+        string recordingCallbackMethod = null, string subaccount = null, bool? geomatch = null
         )
         {
             var mandatoryParams = new List<string> { "" };
@@ -285,17 +285,17 @@ namespace Plivo.Resource.MaskingSession
                 mandatoryParams,
                 new
                 {
-                    session_expiry,
-                    call_time_limit,
+                    sessionExpiry,
+                    callTimeLimit,
                     record,
-                    record_file_format,
-                    recording_callback_url,
-                    callback_url,
-                    callback_method,
-                    ring_timeout,
-                    first_party_play_url,
-                    second_party_play_url,
-                    recording_callback_method,
+                    recordFileFormat,
+                    recordingCallbackUrl,
+                    callbackUrl,
+                    callbackMethod,
+                    ringTimeout,
+                    firstPartyPlayUrl,
+                    secondPartyPlayUrl,
+                    recordingCallbackMethod,
                     subaccount,
                     geomatch,
                     isVoiceRequest
@@ -309,10 +309,10 @@ namespace Plivo.Resource.MaskingSession
             });
         }
 
-        public async Task<AsyncResponse> UpdateAsync(string sessionUuid, uint? session_expiry = null, uint? call_time_limit = null, 
-        bool? record = null, string record_file_format = null, string recording_callback_url = null, string callback_url = null, 
-        string callback_method = null, uint? ring_timeout = null, string first_party_play_url = null, string second_party_play_url = null, 
-        string recording_callback_method = null, string subaccount = null, bool? geomatch = null
+        public async Task<AsyncResponse> UpdateAsync(string sessionUuid, uint? sessionExpiry = null, uint? callTimeLimit = null, 
+        bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, string callbackUrl = null, 
+        string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, string secondPartyPlayUrl = null, 
+        string recordingCallbackMethod = null, string subaccount = null, bool? geomatch = null
         )
         {
             var mandatoryParams = new List<string> { "" };
@@ -321,22 +321,21 @@ namespace Plivo.Resource.MaskingSession
                 mandatoryParams,
                 new
                 {
-                    session_expiry,
-                    call_time_limit,
+                    sessionExpiry,
+                    callTimeLimit,
                     record,
-                    record_file_format,
-                    recording_callback_url,
-                    callback_url,
-                    callback_method,
-                    ring_timeout,
-                    first_party_play_url,
-                    second_party_play_url,
-                    recording_callback_method,
+                    recordFileFormat,
+                    recordingCallbackUrl,
+                    callbackUrl,
+                    callbackMethod,
+                    ringTimeout,
+                    firstPartyPlayUrl,
+                    secondPartyPlayUrl,
+                    recordingCallbackMethod,
                     subaccount,
                     geomatch,
                     isVoiceRequest
-                }
-            );
+                });
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + "/" + sessionUuid + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
