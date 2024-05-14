@@ -2,6 +2,7 @@ using Plivo.Client;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Plivo.Resource.MaskingSession
 {
@@ -273,7 +274,7 @@ namespace Plivo.Resource.MaskingSession
 
 
         #region Update
-        public UpdateResponse<MaskingSession> Update(string sessionUuid, uint? sessionExpiry = null, uint? callTimeLimit = null, 
+        public MaskingSessionUpdateResponse<MaskingSession> Update(string sessionUuid, uint? sessionExpiry = null, uint? callTimeLimit = null, 
         bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, string callbackUrl = null, 
         string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, string secondPartyPlayUrl = null, 
         string recordingCallbackMethod = null, string subaccount = null, bool? geomatch = null
@@ -303,7 +304,9 @@ namespace Plivo.Resource.MaskingSession
 
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var result = Task.Run(async () => await Client.Update<UpdateResponse<MaskingSession>>(Uri + "/" + sessionUuid + "/", data).ConfigureAwait(false)).Result;
+                var result = Task.Run(async () => await Client.Update<MaskingSessionUpdateResponse<MaskingSession>>(Uri  + sessionUuid + "/", data).ConfigureAwait(false)).Result;
+                var contentJson = JObject.Parse(result.Content);
+                result.Object.SessionUuid = contentJson["session"]["session_uuid"].ToString();
                 result.Object.StatusCode = result.StatusCode;
                 return result.Object;
             });
@@ -336,7 +339,7 @@ namespace Plivo.Resource.MaskingSession
                     geomatch,
                     isVoiceRequest
                 });
-            var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri + "/" + sessionUuid + "/", data).ConfigureAwait(false)).Result;
+            var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri  + sessionUuid + "/", data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
             result.Object.StatusCode = result.StatusCode;
             JObject responseJson = JObject.Parse(result.Content);

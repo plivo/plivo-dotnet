@@ -9,7 +9,6 @@ namespace Plivo.Resource
         public override string ToString()
         {
             return
-                "[Meta]\n" + Meta + "\n" +
                 "[Objects]\n" + string.Join("\n", Objects);
         }
     }

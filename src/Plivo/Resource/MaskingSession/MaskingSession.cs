@@ -29,7 +29,7 @@ namespace Plivo.Resource.MaskingSession
 
 
         #region Update
-        public UpdateResponse<MaskingSession> Update(string sessionUuid, uint? session_expiry = null, uint? call_time_limit = null, 
+        public MaskingSessionUpdateResponse<MaskingSession> Update(string sessionUuid, uint? session_expiry = null, uint? call_time_limit = null, 
         bool? record = null, string record_file_format = null, string recording_callback_url = null, string callback_url = null, 
         string callback_method = null, uint? ring_timeout = null, string first_party_play_url = null, string second_party_play_url = null, 
         string recording_callback_method = null, string subaccount = null, bool? geomatch = null
