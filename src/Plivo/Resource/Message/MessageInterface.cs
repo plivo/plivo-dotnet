@@ -308,7 +308,7 @@ namespace Plivo.Resource.Message
                     dlt_template_category,
                     template,
                     interactive,
-                    locaation
+                    location
                 });
             }
             else if (powerpack_uuid != null && src == null)
@@ -639,7 +639,7 @@ namespace Plivo.Resource.Message
                     dlt_template_category,
                     template,
                     interactive,
-                    loactaion
+                    location
                 });
             }
             else if (powerpack_uuid != null && src == null)
