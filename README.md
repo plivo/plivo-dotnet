@@ -145,8 +145,8 @@ namespace PlivoExamples
            string jsonString = "{\"name\":\"plivo_movieticket_confirmation\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"media\",\"media\":\"https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png\"}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"text\":\"Harry Potter\"},{\"type\":\"text\",\"text\":\"06:00 PM\"},{\"type\":\"text\",\"text\":\"Bengaluru\"},{\"type\":\"text\",\"text\":\"2\"}]}]}";
 
             var response = api.Message.Create(
-                src: "12027427353",
-                dst: "918105417328",
+                src: "14156667778",
+                dst: "14156667777",
                 type: "whatsapp",
                 template_json_string: jsonString);
             Console.WriteLine(response);
@@ -218,8 +218,8 @@ namespace PlivoExamples
             };
 
             var response = api.Message.Create(
-                src: "12027427353",
-                dst: "918105417328",
+                src: "14156667778",
+                dst: "14156667777",
                 type: "whatsapp",
                 template: template);
             Console.WriteLine(response);
