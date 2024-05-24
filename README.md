@@ -12,13 +12,13 @@ You can install this SDK either by referencing the .dll file or using NuGet.
 Use the following line to install the latest SDK using the NuGet CLI.
 
 ```
-PM> Install-Package Plivo -Version 5.46.0
+PM> Install-Package Plivo -Version 5.47.0
 ```
 
 You can also use the .NET CLI to install this package as follows
 
 ```
-> dotnet add package Plivo --version 5.46.0
+> dotnet add package Plivo --version 5.47.0
 ```
 
 ## Getting started
@@ -117,6 +117,478 @@ This generates the following XML:
 <Response>
   <Speak>Hello, world!</Speak>
 </Response>
+```
+
+
+## WhatsApp Messaging
+Plivo's WhatsApp API allows you to send different types of messages over WhatsApp, including templated messages, free form messages and interactive messages. Below are some examples on how to use the Plivo Go SDK to send these types of messages.
+
+### Templated Messages
+Templated messages are a crucial to your WhatsApp messaging experience, as businesses can only initiate WhatsApp conversation with their customers using templated messages.
+
+WhatsApp templates support 4 components:  `header` ,  `body`,  `footer`  and `button`. At the point of sending messages, the template object you see in the code acts as a way to pass the dynamic values within these components.  `header`  can accomodate `text` or `media` (images, video, documents) content.  `body`  can accomodate text content.  `button`  can support dynamic values in a `url` button or to specify a developer-defined payload which will be returned when the WhatsApp user clicks on the `quick_reply` button. `footer`  cannot have any dynamic variables.
+
+Example 1:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>", "<auth_token>");
+
+           string jsonString = "{\"name\":\"plivo_movieticket_confirmation\",\"language\":\"en_US\",\"components\":[{\"type\":\"header\",\"parameters\":[{\"type\":\"media\",\"media\":\"https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png\"}]},{\"type\":\"body\",\"parameters\":[{\"type\":\"text\",\"text\":\"Harry Potter\"},{\"type\":\"text\",\"text\":\"06:00 PM\"},{\"type\":\"text\",\"text\":\"Bengaluru\"},{\"type\":\"text\",\"text\":\"2\"}]}]}";
+
+            var response = api.Message.Create(
+                src: "14156667778",
+                dst: "14156667777",
+                type: "whatsapp",
+                template_json_string: jsonString);
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+Example 2:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+using Plivo.Resource.Message;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>", "<auth_token>");
+
+           var template = new Template
+            {
+                Name = "plivo_movieticket_confirmation",
+                Language = "en_US",
+                Components = new List<Component>
+                {
+                    new Component
+                    {
+                        Type = "header",
+                        Parameters = new List<Parameter>
+                        {
+                            new Parameter
+                            {
+                                Type = "media",
+                                Media = "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+                            }
+                        }
+                    },
+                    new Component
+                    {
+                        Type = "body",
+                        Parameters = new List<Parameter>
+                        {
+                            new Parameter
+                            {
+                                Type = "text",
+                                Text = "Harry Potter"
+                            },
+                            new Parameter
+                            {
+                                Type = "text",
+                                Text = "06:00 PM"
+                            },
+                            new Parameter
+                            {
+                                Type = "text",
+                                Text = "Bengaluru"
+                            },
+                            new Parameter
+                            {
+                                Type = "text",
+                                Text = "2"
+                            }
+                        }
+                    }
+                }
+            };
+
+            var response = api.Message.Create(
+                src: "14156667778",
+                dst: "14156667777",
+                type: "whatsapp",
+                template: template);
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+### Free Form Messages
+Non-templated or Free Form WhatsApp messages can be sent as a reply to a user-initiated conversation (Service conversation) or if there is an existing ongoing conversation created previously by sending a templated WhatsApp message.
+
+#### Free Form Text Message
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                text: "Hello, this is sample text",
+                url: "https://<yourdomain>.com/wa_status/");
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+#### Free Form Media Message
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                text: "Hello, this is sample text",
+                media_urls: new string[] { "https://sample-videos.com/img/Sample-png-image-1mb.png"},
+                url: "https://<yourdomain>.com/wa_status/");
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+### Interactive Messages
+This guide shows how to send non-templated interactive messages to recipients using Plivo’s APIs.
+
+#### Quick Reply Buttons
+Quick reply buttons allow customers to quickly respond to your message with predefined options.
+
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+using Plivo.Resource.Message;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>", "<auth_token>");
+
+            var interactive = new Interactive
+            {
+                Type = "button",
+                Header = new Header
+                {
+                    Type = "media",
+                    Media = "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+                },
+                Body = new Body
+                {
+                    Text = "Make your selection"
+                },
+                Action = new MessageAction
+                {
+                    Buttons = new List<Button>
+                    {
+                        new Button
+                        {
+                            Id = "bt1",
+                            Title = "Click here"
+                        },
+                        new Button
+                        {
+                            Id = "bt2",
+                            Title = "Know More"
+                        },
+                        new Button
+                        {
+                            Id = "bt3",
+                            Title = "Request Callback"
+                        }
+                    }
+                }
+            };
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                interactive: interactive);
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+#### Interactive Lists
+Interactive lists allow you to present customers with a list of options.
+
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+using Plivo.Resource.Message;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>", "<auth_token>");
+
+            var interactive = new Interactive
+            {
+                Type = "list",
+                Header = new Header
+                {
+                    Type = "text",
+                    Text = "Welcome to Plivo"
+                },
+                Body = new Body
+                {
+                    Text = "You can review the list of rewards we offer"
+                },
+                Footer = new Footer
+                {
+                    Text = "Yours Truly"
+                },
+                Action = new MessageAction
+                {
+                    Buttons = new List<Button>
+                    {
+                        new Button
+                        {
+                            Title = "Click here"
+                        }
+                    },
+                    Sections = new List<Section>
+                    {
+                        new Section
+                        {
+                            Title = "SECTION_1_TITLE",
+                            Rows = new List<Row>
+                            {
+                                new Row
+                                {
+                                    Id = "SECTION_1_ROW_1_ID",
+                                    Title = "SECTION_1_ROW_1_TITLE",
+                                    Description = "SECTION_1_ROW_1_DESCRIPTION"
+                                }
+                            }
+                        },
+                        new Section
+                        {
+                            Title = "SECTION_2_TITLE",
+                            Rows = new List<Row>
+                            {
+                                new Row
+                                {
+                                    Id = "SECTION_2_ROW_1_ID",
+                                    Title = "SECTION_2_ROW_1_TITLE",
+                                    Description = "SECTION_2_ROW_1_DESCRIPTION"
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                interactive: interactive);
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+#### Interactive CTA URLs
+CTA URL messages allow you to send links and call-to-action buttons.
+
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+
+           var interactive = new Interactive
+            {
+                Type = "cta_url",
+                Header = new Header
+                {
+                    Type = "media",
+                    Media = "https://media.geeksforgeeks.org/wp-content/uploads/20190712220639/ybearoutput-300x225.png"
+                },
+                Body = new Body
+                {
+                    Text = "Know More"
+                },
+                Action = new MessageAction
+                {
+                    Buttons = new List<Button>
+                    {
+                        new Button
+                        {
+                            Title = "Click here",
+                            CtaUrl = "https://www.plivo.com"
+                        }
+                    }
+                }
+            };
+
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                interactive: interactive);
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+### Location Messages
+This guide shows how to send templated and non-templated location messages to recipients using Plivo’s APIs.
+
+#### Templated Location Messages
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+
+            var template = new Template
+                {
+                    Name = "plivo_order_pickup",
+                    Language = "en_US",
+                    Components = new List<Component>
+                    {
+                        new Component
+                        {
+                            Type = "header",
+                            Parameters = new List<Parameter>
+                            {
+                                new Parameter
+                                {
+                                    Type = "location",
+                                    Location = new Location
+                                    {
+                                        Longitude = "122.148981",
+                                        Latitude = "37.483307",
+                                        Name = "Pablo Morales",
+                                        Address = "1 Hacker Way, Menlo Park, CA 94025"
+                                    }
+                                }
+                            }
+                        },
+                        new Component
+                        {
+                            Type = "body",
+                            Parameters = new List<Parameter>
+                            {
+                                new Parameter
+                                {
+                                    Type = "text",
+                                    Text = "Harry"
+                                }
+                            }
+                        }
+                    }
+                };
+
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                template: template);
+            Console.WriteLine(response);
+        }
+    }
+}
+```
+
+#### Non-Templated Location Messages
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+
+           var location = new Location
+            {
+                Longitude = "122.148981",
+                Latitude = "37.483307",
+                Name = "Pablo Morales",
+                Address = "1 Hacker Way, Menlo Park, CA 94025"
+            };
+
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                location: location);
+            Console.WriteLine(response);
+        }
+    }
+}
 ```
 
 ### More examples

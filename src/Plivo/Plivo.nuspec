@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.46.0</version>
+    <version>5.47.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
@@ -12,6 +12,7 @@
     <projectUrl>http://github.com/plivo/plivo-dotnet</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>
+      * 5.46.0 Added new param `location` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support location `whatsapp` messages. Also added new param `location` in templates to support location based templated messages
       * 5.45.0 Added new param `interactive` to in send message API to support interactive `whatsapp` messages
       * 5.44.0 Added new param `payload` in templates to support dynamic payload in templates
       * 5.43.2 Added New Param `declined_reasons` for GET and LIST Brand.

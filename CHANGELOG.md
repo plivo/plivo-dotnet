@@ -1,8 +1,13 @@
 # Change Log
 
-## [5.46.0](https://github.com/plivo/plivo-dotnet/tree/v5.46.0) (2024-05-09)
+## [5.47.0](https://github.com/plivo/plivo-dotnet/tree/v5.47.0) (2024-05-24)
 **Feature - Number Masking Feature Added**
 - Number Masking APIs added to create, update, delete and list sessions
+
+## [5.46.0](https://github.com/plivo/plivo-dotnet/tree/v5.46.0) (2024-05-20)
+**Feature - Adding support for location whatsapp messages**
+- Added new param `location` to [send message API](https://www.plivo.com/docs/sms/api/message#send-a-message) to support location `whatsapp` messages
+- Added new param `location` in templates to support location based templated messages
 
 ## [5.45.0](https://github.com/plivo/plivo-dotnet/tree/v5.45.0) (2024-05-07)
 **Feature - Adding support for interactive whatsapp messages**
