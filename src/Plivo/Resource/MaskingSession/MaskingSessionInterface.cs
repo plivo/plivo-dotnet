@@ -194,11 +194,15 @@ namespace Plivo.Resource.MaskingSession
             return ExecuteWithExceptionUnwrap(() =>
             {
                 var resources = Task.Run(async () => await ListResources<ListResponse<MaskingSessionListResponse>>(data).ConfigureAwait(false)).Result;
+                if (resources.Response == null) {
+                    return resources;
+                } else {
                 resources.Meta = resources.Response.Meta;
                 JArray responseArray = resources.Response.Objects as JArray;
                 List<MaskingSessionListResponse> maskingSessionList = responseArray.ToObject<List<MaskingSessionListResponse>>();
                 resources.Objects = maskingSessionList;
                 return resources;
+                }
             });
         }
 
