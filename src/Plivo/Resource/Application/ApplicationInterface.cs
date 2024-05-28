@@ -209,12 +209,12 @@ namespace Plivo.Resource.Application
         /// <param name="limit">Limit.</param>
         /// <param name="offset">Offset.</param>
         public ListResponse<Application> List(
-            string subaccount = null, uint? limit = null, uint? offset = null)
+            string subaccount = null, string appName = null, uint? limit = null, uint? offset = null)
         {
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
             var data = CreateData(
-                mandatoryParams, new { subaccount, limit, offset, isVoiceRequest });
+                mandatoryParams, new { subaccount, appName, limit, offset, isVoiceRequest });
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
