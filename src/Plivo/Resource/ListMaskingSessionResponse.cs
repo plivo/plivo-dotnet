@@ -9,7 +9,7 @@ namespace Plivo.Resource
     /// List response.
     /// </summary>
     [JsonObject]
-    public class ListResponse<T> : BaseResponse, IEnumerable<T>
+    public class ListMaskingSessionResponse<T> : BaseResponse, IEnumerable<T>
     {
         /// <summary>
         /// Gets or sets the meta.
@@ -22,10 +22,12 @@ namespace Plivo.Resource
         /// <value>The objects.</value>
         public List<T> Objects { get; set; }
 
+        public NestedResponse Response;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.Resource.ListResponse`1"/> class.
         /// </summary>
-        public ListResponse()
+        public ListMaskingSessionResponse()
         {
         }
 
@@ -34,7 +36,7 @@ namespace Plivo.Resource
         /// </summary>
         /// <param name="meta">Meta.</param>
         /// <param name="objects">Objects.</param>
-        public ListResponse(Meta meta, List<T> objects)
+        public ListMaskingSessionResponse(Meta meta, List<T> objects)
         {
             Meta = meta ?? throw new ArgumentNullException(nameof(meta));
             Objects = objects ?? throw new ArgumentNullException(nameof(objects));
@@ -55,7 +57,7 @@ namespace Plivo.Resource
         /// <returns>The enumerator.</returns>
         public IEnumerator<T> GetEnumerator()
         {
-            return ((IEnumerable<T>) Objects).GetEnumerator();
+            return ((IEnumerable<T>)Objects).GetEnumerator();
         }
 
         /// <summary>
@@ -66,11 +68,8 @@ namespace Plivo.Resource
         {
             return "Api Id: " + ApiId + "\n" +
                    "[Meta]\n" + Meta +
-                   "StatusCode: " + StatusCode +
-                   "[Objects]\n" + string.Join("\n", Objects);
-
-
-
+                   "[Response]\n" + Response + "\n" +
+                  "StatusCode:" + StatusCode;
         }
     }
 }

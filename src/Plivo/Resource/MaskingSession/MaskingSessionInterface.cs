@@ -155,7 +155,7 @@ namespace Plivo.Resource.MaskingSession
 
         
         #region List
-        public ListResponse<MaskingSessionListResponse> List(
+        public ListMaskingSessionResponse<MaskingSessionListResponse> List(
         string firstParty = null, string secondParty = null, string virtualNumber = null, string status = null,
         string createdTime = null, string createdTime_Lt = null,string createdTime_Gt = null,string createdTime_Lte = null,
         string createdTime_Gte = null, string expiryTime = null,string expiryTime_Lt = null,string expiryTime_Gt = null,
@@ -193,7 +193,7 @@ namespace Plivo.Resource.MaskingSession
             });
             return ExecuteWithExceptionUnwrap(() =>
             {
-                var resources = Task.Run(async () => await ListResources<ListResponse<MaskingSessionListResponse>>(data).ConfigureAwait(false)).Result;
+                var resources = Task.Run(async () => await ListResources<ListMaskingSessionResponse<MaskingSessionListResponse>>(data).ConfigureAwait(false)).Result;
                 if (resources.Response == null) {
                     return resources;
                 } else {
