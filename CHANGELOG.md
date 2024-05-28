@@ -1,6 +1,6 @@
 # Change Log
 
-## [5.47.0](https://github.com/plivo/plivo-dotnet/tree/v5.47.0) (2024-05-24)
+## [5.47.0](https://github.com/plivo/plivo-dotnet/tree/v5.47.0) (2024-05-28)
 **Feature - Number Masking Feature Added**
 - Number Masking APIs added to create, update, delete and list sessions
 
