@@ -2,78 +2,77 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Plivo.Http;
 using Plivo.Resource;
-using Plivo.Resource.Endpoint;
+using Plivo.Resource.MaskingSession;
 using Plivo.Utilities;
 
 namespace Plivo.Test.Resources {
     [TestFixture]
-    public class TestEndpoint : BaseTestCase {
+    public class TestMaskingSession : BaseTestCase {
         [Test]
-        public void TestEndpointCreate () {
-            var data = new Dictionary<string, object> () { { "username", "user" }, { "password", "pass" }, { "alias", "alias" }
-                };
+        public void TestMaskingSessionCreate () {
+            var data = new Dictionary<string, object> () { { "firstParty", "917708772011" }, { "secondParty", "918220568648" }};
 
             var request =
                 new PlivoRequest (
                     "POST",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Masking/Session/",
                     "",
                     data);
 
             var response =
                 System.IO.File.ReadAllText (
-                    SOURCE_DIR + @"Mocks/endpointCreateResponse.json"
+                    SOURCE_DIR + @"Mocks/maskingSessionCreateResponse.json"
                 );
-            Setup<EndpointCreateResponse> (
+            Setup<MaskingSessionCreateResponse> (
                 201,
                 response
             );
             Assert.IsEmpty (
                 ComparisonUtilities.Compare (
                     response,
-                    Api.Endpoint.Create ("user", "pass", "alias")));
+                    Api.MaskingSession.Create ("917708772011", "918220568648")));
             AssertRequest (request);
         }
 
         [Test]
-        public void TestEndpointList () {
+        public void TestMaskingSessionList () {
             var data = new Dictionary<string, object> () { { "limit", 10 }
                 };
             var request =
                 new PlivoRequest (
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Masking/Session/",
                     "",
                     data);
 
             var response =
                 System.IO.File.ReadAllText (
-                    SOURCE_DIR + @"Mocks/endpointListResponse.json"
+                    SOURCE_DIR + @"Mocks/maskingSessionListResponse.json"
                 );
-            Setup<ListResponse<Endpoint>> (
+            Setup<ListResponse<MaskingSession>> (
                 200,
                 response
             );
             Assert.IsEmpty (
                 ComparisonUtilities.Compare (
                     response,
-                    Api.Endpoint.List (limit: 10)));
+                    Api.MaskingSession.List (limit: 10)));
 
             AssertRequest (request);
         }
 
         [Test]
-        public void TestEndpointGet () {
+        public void TestMaskingSessionGet () {
             var id = "abcabcabc";
             var request =
                 new PlivoRequest (
                     "GET",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Masking/Session/" + id + "/",
                     "");
 
             var response =
                 System.IO.File.ReadAllText (
-                    SOURCE_DIR + @"Mocks/endpointGetResponse.json"
+                    SOURCE_DIR + @"Mocks/maskingSessionGetResponse.json"
                 );
             Setup<Endpoint> (
                 200,
@@ -82,56 +81,56 @@ namespace Plivo.Test.Resources {
             Assert.IsEmpty (
                 ComparisonUtilities.Compare (
                     response,
-                    Api.Endpoint.Get (id)));
+                    Api.MaskingSession.Get (id)));
 
             AssertRequest (request);
         }
 
         [Test]
-        public void TestEndpointUpdate () {
+        public void TestMaskingSessionUpdate () {
             var id = "abcabcabc";
-            var data = new Dictionary<string, object> () { { "alias", "alalaalalala" }
+            var data = new Dictionary<string, object> () { { "917708772011", "918220568648" }
                 };
 
             var request =
                 new PlivoRequest (
                     "POST",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Masking/Session/" + id + "/",
                     "",
                     data);
 
             var response =
                 System.IO.File.ReadAllText (
-                    SOURCE_DIR + @"Mocks/endpointUpdateResponse.json"
+                    SOURCE_DIR + @"Mocks/maskingSessionUpdateResponse.json"
                 );
-            Setup<UpdateResponse<Endpoint>> (
+            Setup<UpdateResponse<MaskingSession>> (
                 202,
                 response
             );
             Assert.IsEmpty (
                 ComparisonUtilities.Compare (
                     response,
-                    Api.Endpoint.Update (id, alias: "alalaalalala")));
+                    Api.MaskingSession.Update (id, alias: "918220568648")));
             AssertRequest (request);
         }
 
         [Test]
-        public void TestEndpointDelete () {
+        public void TestMaskingSessionDelete () {
             var id = "abcabcabc";
             var request =
                 new PlivoRequest (
                     "DELETE",
-                    "Account/MAXXXXXXXXXXXXXXXXXX/Endpoint/" + id + "/",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Masking/Session/" + id + "/",
                     "");
 
             var response = System.IO.File.ReadAllText (
-                SOURCE_DIR + @"Mocks/endpointUpdateResponse.json"
+                SOURCE_DIR + @"Mocks/maskingSessionUpdateResponse.json"
             );
-            Setup<UpdateResponse<Endpoint>> (
+            Setup<UpdateResponse<MaskingSession>> (
                 204,
                 response
             );
-            Assert.IsNull (Api.Endpoint.Delete (id));
+            Assert.IsNull (Api.MaskingSession.Delete (id));
             AssertRequest (request);
         }
     }
