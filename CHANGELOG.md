@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.47.1](https://github.com/plivo/plivo-dotnet/tree/v5.46.1) (2024-05-28)
+**Feature - Adding filter support for List Application API**
+- Added new filer param `appName` in list application API
+
 ## [5.47.0](https://github.com/plivo/plivo-dotnet/tree/v5.47.0) (2024-05-28)
 **Feature - Number Masking Feature Added**
 - Number Masking APIs added to create, update, delete and list sessions
