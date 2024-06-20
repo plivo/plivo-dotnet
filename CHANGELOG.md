@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.47.2](https://github.com/plivo/plivo-dotnet/tree/v5.47.2) (2024-06-20)
+**Feature - Adding support for Locale param in Create Session**
+- Added new request param `locale` in create Session API
+
 ## [5.47.1](https://github.com/plivo/plivo-dotnet/tree/v5.46.1) (2024-05-28)
 **Feature - Adding filter support for List Application API**
 - Added new filer param `appName` in list application API
