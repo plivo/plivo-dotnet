@@ -32,11 +32,11 @@ namespace Plivo.Resource.VerifySession
         /// <param name="channel">Channel.</param>
         /// <param name="url">URL.</param>
         /// <param name="method">Method.</param>
-        /// 
+        /// <param name="locale">Locale.</param>
 
         public VerifySessionCreateResponse Create(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null)
+            string method = null, string locale = null)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -48,7 +48,8 @@ namespace Plivo.Resource.VerifySession
                     app_uuid,
                     channel,
                     url,
-                    method
+                    method,
+                    locale
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -68,10 +69,11 @@ namespace Plivo.Resource.VerifySession
         /// <param name="channel">Channel.</param>
         /// <param name="url">URL.</param>
         /// <param name="method">Method.</param>
-        /// 
+        /// <param name="locale">Locale.</param>
+
         public async Task<VerifySessionCreateResponse> CreateAsync(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null)
+            string method = null, string locale = null)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -83,7 +85,8 @@ namespace Plivo.Resource.VerifySession
                     app_uuid,
                     channel,
                     url,
-                    method
+                    method,
+                    locale
                 });
 
             var result = await Client.Update<VerifySessionCreateResponse>(Uri, data);
