@@ -1,5 +1,9 @@
 # Change Log
 
+## [5.47.3](https://github.com/plivo/plivo-dotnet/tree/v5.47.3) (2024-07-09)
+**Feature - Adding support for Locale param in Get and List Session**
+- Support for param `locale` in get and list Session API Response
+
 ## [5.47.2](https://github.com/plivo/plivo-dotnet/tree/v5.47.2) (2024-06-20)
 **Feature - Adding support for Locale param in Create Session**
 - Added new request param `locale` in create Session API
