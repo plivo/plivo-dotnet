@@ -53,6 +53,9 @@ namespace Plivo.Resource.VerifySession
         [JsonProperty("channel")]
         public string Channel { get; set; } 
 
+        [JsonProperty("locale")]
+        public string Locale { get; set; }
+
         [JsonProperty("status")]
         public string Status { get; set; }
 
