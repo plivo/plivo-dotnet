@@ -35,10 +35,11 @@ namespace Plivo.Resource.VerifySession
         /// <param name="locale">Locale.</param>
         /// <param name="brand_name">BrandName.</param>
         /// <param name="app_hash">AppHash.</param>
+        /// <param name="code_length">CodeLength.</param>
 
         public VerifySessionCreateResponse Create(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null, string brand_name = null, string app_hash = null)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -53,7 +54,8 @@ namespace Plivo.Resource.VerifySession
                     method,
                     locale,
                     brand_name,
-                    app_hash
+                    app_hash,
+                    code_length
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -76,10 +78,11 @@ namespace Plivo.Resource.VerifySession
         /// <param name="locale">Locale.</param>
         /// <param name="brand_name">BrandName.</param>
         /// <param name="app_hash">AppHash.</param>
+        /// <param name="code_length">CodeLength.</param>
 
         public async Task<VerifySessionCreateResponse> CreateAsync(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null, string brand_name = null, string app_hash = null)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -94,7 +97,8 @@ namespace Plivo.Resource.VerifySession
                     method,
                     locale,
                     brand_name,
-                    app_hash
+                    app_hash,
+                    code_length
                 });
 
             var result = await Client.Update<VerifySessionCreateResponse>(Uri, data);
