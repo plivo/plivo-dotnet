@@ -31,6 +31,12 @@ namespace Plivo.Resource.VerifySession
         public string Status { get; set; }
         [JsonProperty("time")]
         public string Time { get; set; }
+        [JsonProperty("brand_name")]
+        public string BrandName {get; set;}
+        [JsonProperty("app_hash")]
+        public string AppHash {get; set;}
+        [JsonProperty("code_length")]
+        public int CodeLength {get; set;}
     }
 
     [JsonObject(MemberSerialization.OptIn)]
