@@ -26,7 +26,10 @@
       "dlt_template_category": "transactional",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -46,7 +49,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -66,7 +72,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -86,7 +95,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -106,7 +118,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -126,7 +141,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -146,7 +164,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -166,7 +187,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -186,7 +210,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -206,7 +233,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -226,7 +256,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -246,7 +279,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -266,7 +302,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -286,7 +325,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -306,7 +348,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": null,
@@ -326,7 +371,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -346,7 +394,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -366,7 +417,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -386,7 +440,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     },
     {
       "error_code": "000",
@@ -406,7 +463,10 @@
       "dlt_template_category": "",
       "conversation_id": "",
       "conversation_origin": "",
-      "conversation_expiration_timestamp": ""
+      "conversation_expiration_timestamp": "",
+      "message_sent_time": "2024-08-21 18:28:49.244057+05:30",
+      "message_updated_time": "2024-08-21 18:28:51.94772+05:30",
+      "error_message": ""
     }
   ]
 }

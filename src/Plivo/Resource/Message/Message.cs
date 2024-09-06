@@ -184,6 +184,24 @@ namespace Plivo.Resource.Message
         /// <value>The log.</value>
         public string Log { get; set; }
 
+        /// <summary>
+        /// Gets or sets the message_sent_time.
+        /// </summary>
+        /// <value>The message_sent_time.</value>
+        public string MessageSentTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the message_updated_time.
+        /// </summary>
+        /// <value>The message_updated_time.</value>
+        public string MessageUpdatedTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error_message.
+        /// </summary>
+        /// <value>The error_message.</value>
+        public string ErrorMessage { get; set; }
+
         public override string ToString()
         {
             return "\n" +
@@ -216,6 +234,9 @@ namespace Plivo.Resource.Message
                    "ConversationID: " + ConversationId + "\n" +
                    "ConversationOrigin: " + ConversationOrigin + "\n" +
                    "ConversationExpirationTimestamp: " + ConversationExpirationTimestamp + "\n" +
+                   "MessageSentTime: " + MessageSentTime + "\n" +
+                   "MessageUpdatedTime: " + MessageUpdatedTime + "\n" +
+                   "ErrorMessage: " + ErrorMessage + "\n" +
                    "Log: " + Log + "\n";
         }
         #region ListMedia

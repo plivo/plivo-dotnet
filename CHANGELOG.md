@@ -1,4 +1,7 @@
 # Change Log
+## [5.48.1](https://github.com/plivo/plivo-dotnet/tree/v5.48.1) (2024-09-06)
+**Feature - Adding more attribute on mdr object**
+- Added `message_sent_time`, `message_updated_time` and `error-message` on get and list Message API
 
 ## [5.48.0](https://github.com/plivo/plivo-dotnet/tree/v5.48.0) (2024-08-12)
 **Feature - Adding support for brand_name and app_hash in Create,Get and List Session**
