@@ -5,6 +5,10 @@
 - Added new request param `brand_name` and `app_hash` in create Session API
 - Added support for `brand_name` and `app_hash` param in get and list Session response
 
+## [5.47.4](https://github.com/plivo/plivo-dotnet/tree/v5.47.4) (2024-09-03)
+**Feature - Adding new element for Audio Stream XML **
+- Added `keepCallAlive` element in Audio Stream XML
+
 ## [5.47.3](https://github.com/plivo/plivo-dotnet/tree/v5.47.3) (2024-07-09)
 **Feature - Adding support for Locale param in Get and List Session**
 - Support for param `locale` in get and list Session API Response
