@@ -18,7 +18,8 @@ namespace Plivo.XML
                 "statusCallbackUrl",
                 "statusCallbackMethod",
                 "contentType",
-                "extraHeaders"
+                "extraHeaders",
+                "keepCallAlive"
             };
 
             if (body == null)

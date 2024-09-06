@@ -33,10 +33,13 @@ namespace Plivo.Resource.VerifySession
         /// <param name="url">URL.</param>
         /// <param name="method">Method.</param>
         /// <param name="locale">Locale.</param>
+        /// <param name="brand_name">BrandName.</param>
+        /// <param name="app_hash">AppHash.</param>
+        /// <param name="code_length">CodeLength.</param>
 
         public VerifySessionCreateResponse Create(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -49,7 +52,10 @@ namespace Plivo.Resource.VerifySession
                     channel,
                     url,
                     method,
-                    locale
+                    locale,
+                    brand_name,
+                    app_hash,
+                    code_length
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -70,10 +76,13 @@ namespace Plivo.Resource.VerifySession
         /// <param name="url">URL.</param>
         /// <param name="method">Method.</param>
         /// <param name="locale">Locale.</param>
+        /// <param name="brand_name">BrandName.</param>
+        /// <param name="app_hash">AppHash.</param>
+        /// <param name="code_length">CodeLength.</param>
 
         public async Task<VerifySessionCreateResponse> CreateAsync(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -86,7 +95,10 @@ namespace Plivo.Resource.VerifySession
                     channel,
                     url,
                     method,
-                    locale
+                    locale,
+                    brand_name,
+                    app_hash,
+                    code_length
                 });
 
             var result = await Client.Update<VerifySessionCreateResponse>(Uri, data);
@@ -145,6 +157,8 @@ namespace Plivo.Resource.VerifySession
         /// <param name="session_time__lt">SessionTimeLT.</param>
         /// <param name="session_time__lte">SessionTimeLTE.</param>
         /// <param name="session_time">SessionTime.</param>
+        /// <param name="brand_name">BrandName.</param>
+        /// <param name="app_hash">AppHash.</param>
         public VerifySessionListResponse<VerifySession> List(
             uint? limit = null,
             uint? offset = null,
@@ -154,6 +168,8 @@ namespace Plivo.Resource.VerifySession
             string country = null,
             string alias = null,
             string subaccount = null,
+            string brand_name = null,
+            string app_hash = null,
             DateTime? session_time__gt = null,
             DateTime? session_time__gte = null,
             DateTime? session_time__lt = null,
@@ -178,6 +194,8 @@ namespace Plivo.Resource.VerifySession
                     country,
                     alias,
                     subaccount,
+                    brand_name,
+                    app_hash,
                     _session_time__gt,
                     _session_time__gte,
                     _session_time__lt,
@@ -211,6 +229,8 @@ namespace Plivo.Resource.VerifySession
         /// <param name="session_time__lt">SessionTimeLT.</param>
         /// <param name="session_time__lte">SessionTimeLTE.</param>
         /// <param name="session_time">SessionTime.</param>
+        /// <param name="brand_name">BrandName.</param>
+        /// <param name="app_hash">AppHash.</param>
         public async Task<VerifySessionListResponse<VerifySession>> ListAsync(
             uint? limit = null,
             uint? offset = null,
@@ -220,6 +240,8 @@ namespace Plivo.Resource.VerifySession
             string country = null,
             string alias = null,
             string subaccount = null,
+            string brand_name = null,
+            string app_hash = null,
             DateTime? session_time__gt = null,
             DateTime? session_time__gte = null,
             DateTime? session_time__lt = null,
@@ -244,6 +266,8 @@ namespace Plivo.Resource.VerifySession
                     country,
                     alias,
                     subaccount,
+                    brand_name,
+                    app_hash,
                     _session_time__gt,
                     _session_time__gte,
                     _session_time__lt,
