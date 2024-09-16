@@ -29,7 +29,7 @@ namespace Plivo.Resource.MaskingSession
 
 
         #region Update
-        public MaskingSessionUpdateResponse<MaskingSession> Update(string sessionUuid, uint? session_expiry = null, uint? call_time_limit = null, 
+        public MaskingSessionUpdateResponse<MaskingSession> Update(string sessionUuid, string first_party = null, string second_party = null, uint? session_expiry = null, uint? call_time_limit = null, 
         bool? record = null, string record_file_format = null, string recording_callback_url = null, string callback_url = null, 
         string callback_method = null, uint? ring_timeout = null, string first_party_play_url = null, string second_party_play_url = null, 
         string recording_callback_method = null, string subaccount = null, bool? geomatch = null
@@ -37,13 +37,13 @@ namespace Plivo.Resource.MaskingSession
         {
             var updateResponse =
                 ((MaskingSessionInterface) Interface)
-                .Update(Id, session_expiry, call_time_limit, record, record_file_format, recording_callback_url, callback_url, 
+                .Update(Id, first_party, second_party, session_expiry, call_time_limit, record, record_file_format, recording_callback_url, callback_url, 
                 callback_method, ring_timeout, first_party_play_url, second_party_play_url, recording_callback_method, 
                 subaccount, geomatch);
             return updateResponse;
         }
 
-        public async Task<AsyncResponse> UpdateAsync(string sessionUuid, uint? session_expiry = null, uint? call_time_limit = null, 
+        public async Task<AsyncResponse> UpdateAsync(string sessionUuid, string first_party = null, string second_party = null,  uint? session_expiry = null, uint? call_time_limit = null, 
         bool? record = null, string record_file_format = null, string recording_callback_url = null, string callback_url = null, 
         string callback_method = null, uint? ring_timeout = null, string first_party_play_url = null, string second_party_play_url = null, 
         string recording_callback_method = null, string subaccount = null, bool? geomatch = null
@@ -51,7 +51,7 @@ namespace Plivo.Resource.MaskingSession
         {
             var updateResponse = await
                 ((MaskingSessionInterface)Interface)
-                .UpdateAsync(Id, session_expiry, call_time_limit, record, record_file_format, recording_callback_url, callback_url, 
+                .UpdateAsync(Id, first_party, second_party, session_expiry, call_time_limit, record, record_file_format, recording_callback_url, callback_url, 
                 callback_method, ring_timeout, first_party_play_url, second_party_play_url, recording_callback_method, 
                 subaccount, geomatch);
 
