@@ -208,17 +208,11 @@ namespace Plivo.Resource {
             var dict = new Dictionary<string, object> ();
             foreach (PropertyInfo pi in data.GetType ().GetProperties ()) {
                 if (propertyInfos.Contains (pi.Name)) {
-                    if(pi.Name == "firstParty" || pi.Name == "secondParty"){
-                        if(pi.GetValue (data) == null){
-                            throw new PlivoValidationException (pi.Name + "can not be null");
-                        }
-                    }
-                    else{
-                        if (string.IsNullOrEmpty (pi.GetValue (data)))
-                            throw new PlivoValidationException (pi.Name + " is mandatory, can not be null or empty");
-                    }
-                    
+                    var propertyValue = pi.GetValue(data);
+                    if (pi.Name != "firstParty" && pi.Name != "secondParty" && string.IsNullOrEmpty(propertyValue)) 
+                            throw new PlivoValidationException(pi.Name + " is mandatory, can not be null or empty");
                 }
+                
 
 
                 if (pi.Name.Equals ("limit")) {

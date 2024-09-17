@@ -15,7 +15,7 @@ namespace Plivo.Resource.MaskingSession
 
         #region Create
         public MaskingSessionCreateResponse Create(
-            string firstParty, string secondParty, uint? sessionExpiry = null, uint? callTimeLimit = null,
+            string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null,
             bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, bool? initiateCallToFirstParty = null,
             string callbackUrl = null, string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, 
             string secondPartyPlayUrl = null, string recordingCallbackMethod = null, bool? isPinAuthenticationRequired = null, 
@@ -25,7 +25,7 @@ namespace Plivo.Resource.MaskingSession
             bool? createSessionWithSingleParty= null, uint? virtualNumberCooloffPeriod = 0
             )
         {
-            var mandatoryParams = new List<string> { "firstParty", "secondParty" };
+            var mandatoryParams = new List<string> {  };
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
@@ -72,7 +72,7 @@ namespace Plivo.Resource.MaskingSession
         }
 
         public async Task<AsyncResponse> CreateAsync(
-            string firstParty, string secondParty, uint? sessionExpiry = null, uint? callTimeLimit = null,
+            string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null,
             bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, bool? initiateCallToFirstParty = null,
             string callbackUrl = null, string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, 
             string secondPartyPlayUrl = null, string recordingCallbackMethod = null, bool? isPinAuthenticationRequired = null, 
@@ -82,7 +82,7 @@ namespace Plivo.Resource.MaskingSession
             bool? createSessionWithSingleParty= null, uint? virtualNumberCooloffPeriod = 0
             )
         {
-            var mandatoryParams = new List<string> { "firstParty", "secondParty" };
+            var mandatoryParams = new List<string> {  };
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
