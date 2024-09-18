@@ -325,7 +325,7 @@ namespace Plivo.Resource.MaskingSession
             });
         }
 
-        public async Task<AsyncResponse> UpdateAsync(string sessionUuid,  string first_party = null, string second_party = null, uint? sessionExpiry = null, uint? callTimeLimit = null, 
+        public async Task<AsyncResponse> UpdateAsync(string sessionUuid,  string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null, 
         bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, string callbackUrl = null, 
         string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, string secondPartyPlayUrl = null, 
         string recordingCallbackMethod = null, string subaccount = null, bool? geomatch = null
@@ -336,8 +336,8 @@ namespace Plivo.Resource.MaskingSession
             var data = CreateData(
                 mandatoryParams,
                 new
-                {   first_party,
-                    second_party,
+                {   firstParty,
+                    secondParty,
                     sessionExpiry,
                     callTimeLimit,
                     record,
