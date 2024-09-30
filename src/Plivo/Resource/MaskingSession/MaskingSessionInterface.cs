@@ -15,16 +15,17 @@ namespace Plivo.Resource.MaskingSession
 
         #region Create
         public MaskingSessionCreateResponse Create(
-            string firstParty, string secondParty, uint? sessionExpiry = null, uint? callTimeLimit = null,
+            string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null,
             bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, bool? initiateCallToFirstParty = null,
             string callbackUrl = null, string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, 
             string secondPartyPlayUrl = null, string recordingCallbackMethod = null, bool? isPinAuthenticationRequired = null, 
             bool? generatePin = null, uint? generatePinLength = null, string firstPartyPin = null, string secondPartyPin = null, 
             string pinPromptPlay = null, uint? pinRetry = null, uint? pinRetryWait = null, string incorrectPinPlay = null, 
-            string unknownCallerPlay = null, string subaccount = null, bool? geomatch = null
+            string unknownCallerPlay = null, string subaccount = null, bool? geomatch = null, bool? forcePinAuthentication = null,
+            bool? createSessionWithSingleParty= null, uint? virtualNumberCooloffPeriod = 0
             )
         {
-            var mandatoryParams = new List<string> { "firstParty", "secondParty" };
+            var mandatoryParams = new List<string> {  };
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
@@ -56,7 +57,10 @@ namespace Plivo.Resource.MaskingSession
                     unknownCallerPlay,
                     subaccount,
                     geomatch,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    forcePinAuthentication,
+                    createSessionWithSingleParty,
+                    virtualNumberCooloffPeriod
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -68,16 +72,17 @@ namespace Plivo.Resource.MaskingSession
         }
 
         public async Task<AsyncResponse> CreateAsync(
-            string firstParty, string secondParty, uint? sessionExpiry = null, uint? callTimeLimit = null,
+            string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null,
             bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, bool? initiateCallToFirstParty = null,
             string callbackUrl = null, string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, 
             string secondPartyPlayUrl = null, string recordingCallbackMethod = null, bool? isPinAuthenticationRequired = null, 
             bool? generatePin = null, uint? generatePinLength = null, string firstPartyPin = null, string secondPartyPin = null, 
             string pinPromptPlay = null, uint? pinRetry = null, uint? pinRetryWait = null, string incorrectPinPlay = null, 
-            string unknownCallerPlay = null, string subaccount = null, bool? geomatch = null
+            string unknownCallerPlay = null, string subaccount = null, bool? geomatch = null, bool? forcePinAuthentication = null,
+            bool? createSessionWithSingleParty= null, uint? virtualNumberCooloffPeriod = 0
             )
         {
-            var mandatoryParams = new List<string> { "firstParty", "secondParty" };
+            var mandatoryParams = new List<string> {  };
             bool isVoiceRequest = true;
             var data = CreateData(
                 mandatoryParams,
@@ -109,7 +114,10 @@ namespace Plivo.Resource.MaskingSession
                     unknownCallerPlay,
                     subaccount,
                     geomatch,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    forcePinAuthentication,
+                    createSessionWithSingleParty,
+                    virtualNumberCooloffPeriod
                 });
 
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
@@ -278,7 +286,7 @@ namespace Plivo.Resource.MaskingSession
 
 
         #region Update
-        public MaskingSessionUpdateResponse<MaskingSession> Update(string sessionUuid, uint? sessionExpiry = null, uint? callTimeLimit = null, 
+        public MaskingSessionUpdateResponse<MaskingSession> Update(string sessionUuid,  string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null, 
         bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, string callbackUrl = null, 
         string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, string secondPartyPlayUrl = null, 
         string recordingCallbackMethod = null, string subaccount = null, bool? geomatch = null
@@ -289,7 +297,8 @@ namespace Plivo.Resource.MaskingSession
             var data = CreateData(
                 mandatoryParams,
                 new
-                {
+                {   firstParty, 
+                    secondParty,
                     sessionExpiry,
                     callTimeLimit,
                     record,
@@ -316,7 +325,7 @@ namespace Plivo.Resource.MaskingSession
             });
         }
 
-        public async Task<AsyncResponse> UpdateAsync(string sessionUuid, uint? sessionExpiry = null, uint? callTimeLimit = null, 
+        public async Task<AsyncResponse> UpdateAsync(string sessionUuid,  string firstParty = null, string secondParty = null, uint? sessionExpiry = null, uint? callTimeLimit = null, 
         bool? record = null, string recordFileFormat = null, string recordingCallbackUrl = null, string callbackUrl = null, 
         string callbackMethod = null, uint? ringTimeout = null, string firstPartyPlayUrl = null, string secondPartyPlayUrl = null, 
         string recordingCallbackMethod = null, string subaccount = null, bool? geomatch = null
@@ -327,7 +336,8 @@ namespace Plivo.Resource.MaskingSession
             var data = CreateData(
                 mandatoryParams,
                 new
-                {
+                {   firstParty,
+                    secondParty,
                     sessionExpiry,
                     callTimeLimit,
                     record,
