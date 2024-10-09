@@ -1,5 +1,5 @@
 # Change Log
-## [5.49.1](https://github.com/plivo/plivo-ruby/tree/v5.49.1) (2024-10-10)
+## [5.49.1](https://github.com/plivo/plivo-dotnet/tree/v5.49.1) (2024-10-10)
 **Feature - Dtmf param in Create, Get and List Session**
 - Support for the `dtmf` parameter in voice verify session request
 - Added support for `dtmf` in GET and LIST verify session
