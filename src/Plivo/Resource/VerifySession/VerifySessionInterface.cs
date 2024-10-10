@@ -36,10 +36,11 @@ namespace Plivo.Resource.VerifySession
         /// <param name="brand_name">BrandName.</param>
         /// <param name="app_hash">AppHash.</param>
         /// <param name="code_length">CodeLength.</param>
+        /// <param name="dtmf">dtmf.</param>
 
         public VerifySessionCreateResponse Create(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0, int? dtmf = null)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -55,7 +56,8 @@ namespace Plivo.Resource.VerifySession
                     locale,
                     brand_name,
                     app_hash,
-                    code_length
+                    code_length,
+                    dtmf
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -79,10 +81,11 @@ namespace Plivo.Resource.VerifySession
         /// <param name="brand_name">BrandName.</param>
         /// <param name="app_hash">AppHash.</param>
         /// <param name="code_length">CodeLength.</param>
+        ///<param name="dtmf">dtmf.</param>
 
         public async Task<VerifySessionCreateResponse> CreateAsync(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0,  int? dtmf = null)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -98,7 +101,8 @@ namespace Plivo.Resource.VerifySession
                     locale,
                     brand_name,
                     app_hash,
-                    code_length
+                    code_length,
+                    dtmf
                 });
 
             var result = await Client.Update<VerifySessionCreateResponse>(Uri, data);
