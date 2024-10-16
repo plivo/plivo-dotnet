@@ -39,6 +39,8 @@ namespace Plivo.Resource.VerifySession
         public int CodeLength {get; set;}
         [JsonProperty("dtmf")]
         public int? Dtmf {get; set;}
+        [JsonProperty("fraud_check")]
+        public string FraudCheck {get; set;}
     }
 
     [JsonObject(MemberSerialization.OptIn)]
