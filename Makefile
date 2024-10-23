@@ -10,4 +10,8 @@ run:
 
 start:
 	docker-compose up --build --remove-orphans --detach
-	docker attach $(shell docker-compose ps -q dotnetSDK)
+	# Wait for the container to be running before attaching
+	@while [ -z "$$(docker-compose ps -q dotnetSDK)" ]; do \
+		sleep 1; \
+	done
+	docker attach $$(docker-compose ps -q dotnetSDK)
