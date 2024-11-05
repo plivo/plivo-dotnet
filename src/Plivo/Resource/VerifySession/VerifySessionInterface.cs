@@ -36,10 +36,12 @@ namespace Plivo.Resource.VerifySession
         /// <param name="brand_name">BrandName.</param>
         /// <param name="app_hash">AppHash.</param>
         /// <param name="code_length">CodeLength.</param>
+        /// <param name="dtmf">dtmf.</param>
+        /// <param name="fraud_check">FraudCheck.</param>
 
         public VerifySessionCreateResponse Create(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0, int? dtmf = null, string fraud_check = null)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -55,7 +57,9 @@ namespace Plivo.Resource.VerifySession
                     locale,
                     brand_name,
                     app_hash,
-                    code_length
+                    code_length,
+                    dtmf,
+                    fraud_check
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -79,10 +83,12 @@ namespace Plivo.Resource.VerifySession
         /// <param name="brand_name">BrandName.</param>
         /// <param name="app_hash">AppHash.</param>
         /// <param name="code_length">CodeLength.</param>
+        /// <param name="dtmf">dtmf.</param>
+        /// <param name="fraud_check">FraudCheck.</param>
 
         public async Task<VerifySessionCreateResponse> CreateAsync(
             string recipient, string app_uuid = null, string channel = null, string url = null,
-            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0)
+            string method = null, string locale = null, string brand_name = null, string app_hash = null, int code_length = 0,  int? dtmf = null, string fraud_check = null)
         {
             Dictionary<string, object> data = null;
             var mandatoryParams = new List<string> { "recipient" };
@@ -98,7 +104,9 @@ namespace Plivo.Resource.VerifySession
                     locale,
                     brand_name,
                     app_hash,
-                    code_length
+                    code_length,
+                    dtmf,
+                    fraud_check
                 });
 
             var result = await Client.Update<VerifySessionCreateResponse>(Uri, data);
