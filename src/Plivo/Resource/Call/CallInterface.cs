@@ -26,8 +26,9 @@ namespace Plivo.Resource.Call {
         /// <summary>
         /// Create Call with the specified from, to, answerUrl, answerMethod, ringUrl, ringMethod, hangupUrl, hangupMethod,
         /// fallbackUrl, fallbackMethod, callerName, sendDigits, sendOnPreanswer, timeLimit, hangupOnRing,
-        /// machineDetection, machineDetectionTime, machineDetectionUrl, machineDetectionMethod, sipHeaders,
-        /// ringTimeout, parentCallUuid and errorIfrentNotFound.
+        /// machineDetection, machineDetectionTime, machineDetectionUrl, machineDetectionMethod, machineDetectionMaximumSpeechLength, 
+        /// machineDetectionInitialSilence, machineDetectionMaximumWords, machineDetectionInitialGreeting, machineDetectionSilence, machineDetectionAnswerTime,
+        /// sipHeaders,ringTimeout, parentCallUuid and errorIfrentNotFound.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="from">From.</param>
@@ -49,6 +50,12 @@ namespace Plivo.Resource.Call {
         /// <param name="machineDetectionTime">Machine detection time.</param>
         /// <param name="machineDetectionUrl">Machine detection URL.</param>
         /// <param name="machineDetectionMethod">Machine detection method.</param>
+        /// <param name="machineDetectionMaximumSpeechLength">Machine detection maximum speech length.</param>
+        /// <param name="machineDetectionInitialSilence">machine detection initial silence.</param>  
+        /// <param name="machineDetectionMaximumWords">Machine detection maximum words.</param>
+        /// <param name="machineDetectionInitialGreeting">Machine detection initial greeting.</param>
+        /// <param name="machineDetectionSilence">Machine detection silence.</param>
+        /// <param name="machineDetectionAnswerTime">Machine detection answer time .</param>
         /// <param name="sipHeaders">Sip headers.</param>
         /// <param name="ringTimeout">Ring timeout.</param>
         /// <param name="parentCallUuid">Parent call UUID.</param>
@@ -62,7 +69,10 @@ namespace Plivo.Resource.Call {
             bool? sendOnPreanswer = null, uint? timeLimit = null,
             uint? hangupOnRing = null, string machineDetection = null,
             uint? machineDetectionTime = null, string machineDetectionUrl = null,
-            string machineDetectionMethod = null, string sipHeaders = null,
+            string machineDetectionMethod = null,  uint? machineDetectionMaximumSpeechLength = null,
+            uint? machineDetectionInitialSilence = null, uint? machineDetectionMaximumWords = null,
+            uint? machineDetectionInitialGreeting = null, uint? machineDetectionSilence = null,
+            uint? machineDetectionAnswerTime = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
             bool? errorIfrentNotFound = null) 
             {
@@ -105,6 +115,12 @@ namespace Plivo.Resource.Call {
                     machineDetectionTime,
                     machineDetectionUrl,
                     machineDetectionMethod,
+                    machineDetectionMaximumSpeechLength,
+                    machineDetectionInitialSilence,
+                    machineDetectionMaximumWords,
+                    machineDetectionInitialGreeting,
+                    machineDetectionSilence,
+                    machineDetectionAnswerTime,
                     sipHeaders,
                     ringTimeout,
                     parentCallUuid,
@@ -126,8 +142,9 @@ namespace Plivo.Resource.Call {
         /// <summary>
         /// Asynchronously create Call with the specified from, to, answerUrl, answerMethod, ringUrl, ringMethod, hangupUrl, hangupMethod,
         /// fallbackUrl, fallbackMethod, callerName, sendDigits, sendOnPreanswer, timeLimit, hangupOnRing,
-        /// machineDetection, machineDetectionTime, machineDetectionUrl, machineDetectionMethod, sipHeaders,
-        /// ringTimeout, parentCallUuid and errorIfrentNotFound.
+        /// machineDetection, machineDetectionTime, machineDetectionUrl, machineDetectionMethod, machineDetectionMaximumSpeechLength, 
+        /// machineDetectionInitialSilence, machineDetectionMaximumWords, machineDetectionInitialGreeting, machineDetectionSilence, machineDetectionAnswerTime,
+        /// sipHeaders, ringTimeout, parentCallUuid and errorIfrentNotFound.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="from">From.</param>
@@ -149,6 +166,12 @@ namespace Plivo.Resource.Call {
         /// <param name="machineDetectionTime">Machine detection time.</param>
         /// <param name="machineDetectionUrl">Machine detection URL.</param>
         /// <param name="machineDetectionMethod">Machine detection method.</param>
+        /// <param name="machineDetectionMaximumSpeechLength">Machine detection maximum speech length.</param>
+        /// <param name="machineDetectionInitialSilence">machine detection initial silence.</param>  
+        /// <param name="machineDetectionMaximumWords">Machine detection maximum words.</param>
+        /// <param name="machineDetectionInitialGreeting">Machine detection initial greeting.</param>
+        /// <param name="machineDetectionSilence">Machine detection silence.</param>
+        /// <param name="machineDetectionAnswerTime">Machine detection answer time .</param>
         /// <param name="sipHeaders">Sip headers.</param>
         /// <param name="ringTimeout">Ring timeout.</param>
         /// <param name="parentCallUuid">Parent call UUID.</param>
@@ -164,7 +187,10 @@ namespace Plivo.Resource.Call {
             bool? sendOnPreanswer = null, uint? timeLimit = null,
             uint? hangupOnRing = null, string machineDetection = null,
             uint? machineDetectionTime = null, string machineDetectionUrl = null,
-            string machineDetectionMethod = null, string sipHeaders = null,
+            string machineDetectionMethod = null, uint? machineDetectionMaximumSpeechLength = null,
+            uint? machineDetectionInitialSilence = null, uint? machineDetectionMaximumWords = null,
+            uint? machineDetectionInitialGreeting = null, uint? machineDetectionSilence = null,
+            uint? machineDetectionAnswerTime = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
             bool? errorIfrentNotFound = null, string callbackUrl = null, string callbackMethod = "POST") 
             {
@@ -195,6 +221,12 @@ namespace Plivo.Resource.Call {
                     machineDetectionTime,
                     machineDetectionUrl,
                     machineDetectionMethod,
+                    machineDetectionMaximumSpeechLength,
+                    machineDetectionInitialSilence,
+                    machineDetectionMaximumWords,
+                    machineDetectionInitialGreeting,
+                    machineDetectionSilence,
+                    machineDetectionAnswerTime,
                     sipHeaders,
                     ringTimeout,
                     parentCallUuid,
