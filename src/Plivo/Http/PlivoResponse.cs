@@ -37,6 +37,13 @@ namespace Plivo.Http
         /// </summary>
         public PlivoRequest PlivoRequest;
 
+        private static readonly HashSet<string> GeoPermissionEndpoints = new HashSet<string>
+        {
+            "/Message/",
+            "/Session/",
+            "/Call/"
+        };
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.Http.PlivoResponse`1"/> class.
         /// </summary>
@@ -89,6 +96,16 @@ namespace Plivo.Http
                     throw new PlivoValidationException(message);
                 case 401:
                     throw new PlivoAuthenticationException(message);
+                case 403:
+                    if (PlivoRequest.Method == "POST" && 
+                        GeoPermissionEndpoints.Any(endpoint => PlivoRequest.Uri.EndsWith(endpoint)))
+                    {
+                        throw new PlivoGeoPermissionException(message);
+                    }
+                    else 
+                    {
+                        throw new PlivoRestException(message, StatusCode);
+                    }
                 case 404:
                     throw new PlivoNotFoundException(message);
                 case 405:
