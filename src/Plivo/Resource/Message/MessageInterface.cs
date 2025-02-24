@@ -988,6 +988,12 @@ namespace Plivo.Resource.Message
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or sets the name of the parameter.
+        /// </summary>
+        [JsonProperty("parameter_name")]
+        public string ParameterName { get; set; }
+
+        /// <summary>
         /// Gets or sets the text value of the parameter.
         /// </summary>
         [JsonProperty("text")]
