@@ -610,7 +610,7 @@ namespace PlivoExamples
 
             var template = new Template
                 {
-                    Name = "plivo_order_pickup",
+                    Name = "plivo_order_pickup_named_param",
                     Language = "en_US",
                     Components = new List<Component>
                     {
