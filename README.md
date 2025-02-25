@@ -592,7 +592,7 @@ namespace PlivoExamples
 ```
 
 #### Templated WhatsApp Messages With Named Parameter
-This guide shows how to send templated and non-templated location messages with named parameters.
+This guide shows how to send templated WhatsApp messages with named parameters.
 
 Example:
 ```csharp
