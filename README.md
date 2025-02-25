@@ -591,6 +591,72 @@ namespace PlivoExamples
 }
 ```
 
+#### Templated WhatsApp Messages With Named Parameter
+This guide shows how to send templated WhatsApp messages with named parameters.
+
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+using Plivo.Resource.Message;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+
+            var template = new Template
+                {
+                    Name = "template_name",
+                    Language = "en_US",
+                    Components = new List<Component>
+                    {
+                        new Component
+                        {
+                            Type = "header",
+                            Parameters = new List<Parameter>
+                            {
+                                new Parameter
+                                {
+                                    Type = "text",
+                                    ParameterName = "header_title",
+                                    Text = "WA-header"
+                                    
+                                }
+                            }
+                        },
+                        new Component
+                        {
+                            Type = "body",
+                            Parameters = new List<Parameter>
+                            {
+                                new Parameter
+                                {
+                                    Type = "text",
+                                    Text = "Saurabh",
+                                    ParameterName = "user_name"
+                                }
+                            }
+                        }
+                    }
+                };
+
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                template: template);
+            Console.WriteLine(response);
+        }
+    }
+}
+
+
+```
 ### More examples
 Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/net/introduction/overview) for more examples.
 
