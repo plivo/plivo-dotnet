@@ -599,6 +599,7 @@ Example:
 using System;
 using System.Collections.Generic;
 using Plivo;
+using Plivo.Resource.Message;
 
 namespace PlivoExamples
 {
@@ -610,7 +611,7 @@ namespace PlivoExamples
 
             var template = new Template
                 {
-                    Name = "plivo_order_pickup_named_param",
+                    Name = "template_name",
                     Language = "en_US",
                     Components = new List<Component>
                     {
@@ -621,15 +622,10 @@ namespace PlivoExamples
                             {
                                 new Parameter
                                 {
-                                    Type = "location",
-                                    ParameterName = "named_param_in_header",
-                                    Location = new Location
-                                    {
-                                        Longitude = "122.148981",
-                                        Latitude = "37.483307",
-                                        Name = "Pablo Morales",
-                                        Address = "1 Hacker Way, Menlo Park, CA 94025"
-                                    }
+                                    Type = "text",
+                                    ParameterName = "header_title",
+                                    Text = "WA-header"
+                                    
                                 }
                             }
                         },
@@ -641,8 +637,8 @@ namespace PlivoExamples
                                 new Parameter
                                 {
                                     Type = "text",
-                                    Text = "Harry",
-                                    ParameterName = "named_param_in_body"
+                                    Text = "Saurabh",
+                                    ParameterName = "user_name"
                                 }
                             }
                         }
