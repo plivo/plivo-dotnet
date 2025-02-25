@@ -591,6 +591,76 @@ namespace PlivoExamples
 }
 ```
 
+#### Templated WhatsApp Messages With Named Parameter
+This guide shows how to send templated and non-templated location messages with named parameters.
+
+Example:
+```csharp
+using System;
+using System.Collections.Generic;
+using Plivo;
+
+namespace PlivoExamples
+{
+    internal class Program
+    {
+        public static void Main(string[] args)
+        {
+            var api = new PlivoApi("<auth_id>","<auth_token>");
+
+            var template = new Template
+                {
+                    Name = "plivo_order_pickup",
+                    Language = "en_US",
+                    Components = new List<Component>
+                    {
+                        new Component
+                        {
+                            Type = "header",
+                            Parameters = new List<Parameter>
+                            {
+                                new Parameter
+                                {
+                                    Type = "location",
+                                    ParameterName = "named_param_in_header",
+                                    Location = new Location
+                                    {
+                                        Longitude = "122.148981",
+                                        Latitude = "37.483307",
+                                        Name = "Pablo Morales",
+                                        Address = "1 Hacker Way, Menlo Park, CA 94025"
+                                    }
+                                }
+                            }
+                        },
+                        new Component
+                        {
+                            Type = "body",
+                            Parameters = new List<Parameter>
+                            {
+                                new Parameter
+                                {
+                                    Type = "text",
+                                    Text = "Harry",
+                                    ParameterName = "named_param_in_body"
+                                }
+                            }
+                        }
+                    }
+                };
+
+            var response = api.Message.Create(
+                src: "+14151112221",
+                dst: "+14151112222",
+                type: "whatsapp",
+                template: template);
+            Console.WriteLine(response);
+        }
+    }
+}
+
+
+```
 ### More examples
 Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/net/introduction/overview) for more examples.
 
