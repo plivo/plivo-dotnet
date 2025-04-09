@@ -4,7 +4,7 @@
     <summary>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</summary>
     <description>A .NET SDK to make voice calls and send SMS using Plivo and to generate Plivo XML</description>
     <id>Plivo</id>
-    <version>5.49.5</version>
+    <version>5.50.0</version>
     <title>Plivo</title>
     <authors>Plivo SDKs Team</authors>
     <owners>Plivo, Inc.</owners>
