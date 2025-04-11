@@ -27,7 +27,7 @@ namespace Plivo.Resource.Call {
         /// Create Call with the specified from, to, answerUrl, answerMethod, ringUrl, ringMethod, hangupUrl, hangupMethod,
         /// fallbackUrl, fallbackMethod, callerName, sendDigits, sendOnPreanswer, timeLimit, hangupOnRing,
         /// machineDetection, machineDetectionTime, machineDetectionUrl, machineDetectionMethod, sipHeaders,
-        /// ringTimeout, parentCallUuid and errorIfrentNotFound.
+        /// ringTimeout, parentCallUuid, errorIfrentNotFound, statusUrl, statusMethod and statusEvents.
         /// </summary>
         /// <returns>The create.</returns>
         /// <param name="from">From.</param>
@@ -53,6 +53,9 @@ namespace Plivo.Resource.Call {
         /// <param name="ringTimeout">Ring timeout.</param>
         /// <param name="parentCallUuid">Parent call UUID.</param>
         /// <param name="errorIfrentNotFound">Error ifrent not found.</param>
+        /// <param name="statusUrl">Status Url</param>
+        /// <param name="statusMethod">Status Method</param>
+        /// <param name="statusEvents">Status Events</param>
         public CallCreateResponse Create (
             string from = null, List<string> to = null, string answerUrl = null, string answerMethod = null,
             string ringUrl = null, string ringMethod = null,
@@ -64,7 +67,8 @@ namespace Plivo.Resource.Call {
             uint? machineDetectionTime = null, string machineDetectionUrl = null,
             string machineDetectionMethod = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
-            bool? errorIfrentNotFound = null) 
+            bool? errorIfrentNotFound = null, string statusUrl = null, 
+            string statusMethod = null, List<string> statusEvents = null) 
             {
             to = to ?? new List<string>();
             string _to = string.Join("<", to);
@@ -109,6 +113,9 @@ namespace Plivo.Resource.Call {
                     ringTimeout,
                     parentCallUuid,
                     errorIfrentNotFound,
+                    statusUrl,
+                    statusMethod,
+                    statusEvents,
                     isVoiceRequest
                 });
 
