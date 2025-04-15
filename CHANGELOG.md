@@ -1,7 +1,11 @@
 # Change Log
+## [5.51.0](https://github.com/plivo/plivo-dotnet/tree/v5.51.0) (2025-04-21)
+**Feature - New Param added for Start Recording API.**
+- Support `record_channel_type` in Start Recording API and `recordChannelType` in Record XML.
+
 ## [5.50.0](https://github.com/plivo/plivo-dotnet/tree/v5.50.0) (2025-04-11)
-**Enhancement - Supporting new parameters in Make Call .**
-- Supporting following new parameters for MakeCall: statusUrl, statusMethod and statusEvents .
+**Enhancement - Supporting new parameters in Make Call.**
+- Supporting following new parameters for MakeCall: statusUrl, statusMethod and statusEvents.
 
 ## [5.49.5](https://github.com/plivo/plivo-dotnet/tree/v5.49.5) (2025-02-25)
 **Enhancement - Supporting parameter_name in WhatsApp Template .**

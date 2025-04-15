@@ -25,7 +25,8 @@ namespace Plivo.XML
                 "callbackMethod",
                 "transcriptionType",
                 "transcriptionUrl",
-                "transcriptionMethod"
+                "transcriptionMethod",
+                "recordChannelType"
             };
             addAttributes();
         }
