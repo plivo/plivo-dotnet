@@ -203,16 +203,17 @@ namespace Plivo.Resource.Call
         /// <param name="transactionMethod">Transaction method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
+        /// <param name="recordChannelType">Record Channel Type.</param>
         public RecordCreateResponse<Call> StartRecording(
             uint? timeLimit = null, string fileFormat = null,
             string transactionType = null, string transactionUrl = null,
             string transactionMethod = null, string callbackUrl = null,
-            string callbackMethod = null)
+            string callbackMethod = null, string recordChannelType = null)
         {
             return ((CallInterface)Interface)
                 .StartRecording(
                     Id, timeLimit, fileFormat, transactionType, transactionUrl,
-                    transactionMethod, callbackUrl, callbackMethod);
+                    transactionMethod, callbackUrl, callbackMethod, recordChannelType);
         }
         /// <summary>
         /// Asynchronously starts the recording.
@@ -225,16 +226,17 @@ namespace Plivo.Resource.Call
         /// <param name="transactionMethod">Transaction method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
+        /// <param name="recordChannelType">Record Channel Type.</param>
         public async Task<AsyncResponse> StartRecordingAsync(
             uint? timeLimit = null, string fileFormat = null,
             string transactionType = null, string transactionUrl = null,
             string transactionMethod = null, string callbackUrl = null,
-            string callbackMethod = null)
+            string callbackMethod = null, string recordChannelType = null)
         {
             return await ((CallInterface)Interface)
                 .StartRecordingAsync(
                     Id, timeLimit, fileFormat, transactionType, transactionUrl,
-                    transactionMethod, callbackUrl, callbackMethod);
+                    transactionMethod, callbackUrl, callbackMethod, recordChannelType);
         }
         #endregion
 
