@@ -912,11 +912,12 @@ namespace Plivo.Resource.Call {
         /// <param name="transactionMethod">Transaction method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
+        /// <param name="recordChannelType">Record Channel Type.</param>
         public RecordCreateResponse<Call> StartRecording (
             string callUuid = null, uint? timeLimit = null, string fileFormat = null,
             string transactionType = null, string transactionUrl = null,
             string transactionMethod = null, string callbackUrl = null,
-            string callbackMethod = null) {
+            string callbackMethod = null, string recordChannelType = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
@@ -930,7 +931,8 @@ namespace Plivo.Resource.Call {
                     transactionMethod,
                     callbackUrl,
                     callbackMethod,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    recordChannelType
                 });
 
             if (data.ContainsKey("callback_method") && callbackMethod == null) {
@@ -958,11 +960,12 @@ namespace Plivo.Resource.Call {
         /// <param name="transactionMethod">Transaction method.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
+        /// <param name="recordChannelType">Record Channel Type.</param>
         public async Task<AsyncResponse> StartRecordingAsync (
             string callUuid = null, uint? timeLimit = null, string fileFormat = null,
             string transactionType = null, string transactionUrl = null,
             string transactionMethod = null, string callbackUrl = null,
-            string callbackMethod = null) {
+            string callbackMethod = null, string recordChannelType = null) {
             MpcUtils.ValidParamString("callUuid",callUuid,true);
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
@@ -976,7 +979,8 @@ namespace Plivo.Resource.Call {
                     transactionMethod,
                     callbackUrl,
                     callbackMethod,
-                    isVoiceRequest
+                    isVoiceRequest,
+                    recordChannelType
                 });
             if (data.ContainsKey("callback_method") && callbackMethod == null) {
                 data.Remove("callback_method");
