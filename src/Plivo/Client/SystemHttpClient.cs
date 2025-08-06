@@ -194,14 +194,56 @@ namespace Plivo.Client
                                 case "jpg":
                                     fileHeader = "image/jpeg";
                                     break;
-                                case "png":
-                                    fileHeader = "image/png";
-                                    break;
                                 case "jpeg":
                                     fileHeader = "image/jpeg";
                                     break;
+                                case "png":
+                                    fileHeader = "image/png";
+                                    break;
+                                case "gif":
+                                    fileHeader = "image/gif";
+                                    break;
+                                case "mp3":
+                                    fileHeader = "audio/mp3";
+                                    break;
+                                case "mp4":
+                                    fileHeader = "video/mp4";
+                                    break;
+                                case "mpeg":
+                                    fileHeader = "audio/mpeg";
+                                    break;
+                                case "wav":
+                                    fileHeader = "audio/wav";
+                                    break;
+                                case "ogg":
+                                    fileHeader = "audio/ogg";
+                                    break;
+                                case "3gpp":
+                                    fileHeader = "video/3gpp";
+                                    break;
+                                case "3gpp2":
+                                    fileHeader = "video/3gpp2";
+                                    break;
+                                case "vcard":
+                                    fileHeader = "text/vcard";
+                                    break;
+                                case "csv":
+                                    fileHeader = "text/csv";
+                                    break;
                                 case "pdf":
                                     fileHeader = "application/pdf";
+                                    break;
+                                case "xls":
+                                    fileHeader = "application/vnd.ms-excel";
+                                    break;
+                                case "xlsx":
+                                    fileHeader = "application/vnd.ms-excel";
+                                    break;
+                                case "xcf":
+                                    fileHeader = "image/xcf";
+                                    break;
+                                case "plain":
+                                    fileHeader = "text/plain";
                                     break;
                             }
 
