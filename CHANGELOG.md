@@ -1,4 +1,6 @@
 # Change Log
+## [5.49.5](https://github.com/plivo/plivo-dotnet/tree/v5.49.5) (2025-09-25)
+**Feature - Campaign Error Desciption Field**
 
 ## [5.49.4](https://github.com/plivo/plivo-dotnet/tree/v5.49.4) (2025-02-25)
 **Enhancement - Supporting parameter_name in WhatsApp Template .**
