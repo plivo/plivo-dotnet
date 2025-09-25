@@ -1,4 +1,6 @@
 # Change Log
+## [5.51.2](https://github.com/plivo/plivo-dotnet/tree/v5.51.2) (2025-09-25)
+**Feature - Campaign Error Desciption Field**
 
 ## [5.51.1](https://github.com/plivo/plivo-dotnet/tree/v5.51.1) (2025-08-06)
 **Feature - Expanded Media Type Support for Media Upload**
