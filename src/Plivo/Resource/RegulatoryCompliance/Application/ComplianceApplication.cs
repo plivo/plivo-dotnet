@@ -28,8 +28,13 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
                          "EndUserId: " + EndUserId + "\n" +
                          "EndUserType: " + EndUserType + "\n" +
                          "NumberType: " + NumberType + "\n" +
-                         "Status: " + Status + "\n" +
-                         "RejectionReason: " + RejectionReason + "\n";
+                         "Status: " + Status + "\n";
+            
+            if (!string.IsNullOrEmpty(RejectionReason))
+            {
+                result += "RejectionReason: " + RejectionReason + "\n";
+            }
+            
             return StatusCode != 0 ? "ApiId: " + ApiId + "\n" + result : result;
         }
     }
