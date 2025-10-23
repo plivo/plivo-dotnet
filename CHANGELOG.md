@@ -1,4 +1,8 @@
 # Change Log
+## [5.51.3](https://github.com/plivo/plivo-dotnet/tree/v5.51.3) (2025-10-16)
+**Feature - Rejection Reason Field in ComplianceApplication APIs**
+- Added `rejection_reason` field to GET and LIST responses for ComplianceApplication APIs
+
 ## [5.51.2](https://github.com/plivo/plivo-dotnet/tree/v5.51.2) (2025-09-25)
 **Feature - Campaign Error Desciption Field**
 

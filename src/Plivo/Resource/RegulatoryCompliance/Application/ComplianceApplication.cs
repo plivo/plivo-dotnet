@@ -15,6 +15,7 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
         public string EndUserType { get; set; }
         public string NumberType { get; set; }
         public string Status { get; set; }
+        public string RejectionReason { get; set; }
 
         public override string ToString()
         {
@@ -28,6 +29,12 @@ namespace Plivo.Resource.RegulatoryCompliance.Application
                          "EndUserType: " + EndUserType + "\n" +
                          "NumberType: " + NumberType + "\n" +
                          "Status: " + Status + "\n";
+            
+            if (!string.IsNullOrEmpty(RejectionReason))
+            {
+                result += "RejectionReason: " + RejectionReason + "\n";
+            }
+            
             return StatusCode != 0 ? "ApiId: " + ApiId + "\n" + result : result;
         }
     }
