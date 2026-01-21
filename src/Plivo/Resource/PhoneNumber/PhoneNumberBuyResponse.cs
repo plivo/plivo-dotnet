@@ -18,11 +18,13 @@ namespace Plivo.Resource.PhoneNumber
     {
         public string Number { get; set; }
         public string Status { get; set; }
+        public string FallbackNumber { get; set; }
 
         public override string ToString()
         {
-            return "Number:" + Number + "\n";
+            return "Number:" + Number + "\n" +
+                   "FallbackNumber:" + FallbackNumber + "\n";
         }
-                
+
     }
 }

@@ -38,6 +38,7 @@ namespace Plivo.Resource.RentedNumber
         public string CnamLookup { get; set; }
         public string TollFreeSmsVerificationOrderStatus { get; set; }
         public string TollFreeSmsVerificationId { get; set; }
+        public string FallbackNumber { get; set; }
 
         public override string ToString()
         {
@@ -73,7 +74,8 @@ namespace Plivo.Resource.RentedNumber
                     "TollFreeSMSVerification: " + TollFreeSmsVerification + "\n" +
                     "TollFreeSmsVerificationOrderStatus: " + TollFreeSmsVerificationOrderStatus + "\n" +
                     "TollFreeSmsVerificationId: " + TollFreeSmsVerificationId + "\n" +
-                    "VoiceRate: " + VoiceRate + "\n";
+                    "VoiceRate: " + VoiceRate + "\n" +
+                    "FallbackNumber: " + FallbackNumber + "\n";
             }
             return
                 "Active: " + Active + "\n" +
@@ -98,7 +100,8 @@ namespace Plivo.Resource.RentedNumber
                 "TollFreeSMSVerification: " + TollFreeSmsVerification + "\n" +
                 "TollFreeSmsVerificationOrderStatus: " + TollFreeSmsVerificationOrderStatus + "\n" +
                 "TollFreeSmsVerificationId: " + TollFreeSmsVerificationId + "\n" +
-                "VoiceRate: " + VoiceRate + "\n";
+                "VoiceRate: " + VoiceRate + "\n" +
+                "FallbackNumber: " + FallbackNumber + "\n";
         }
 
         #region Update

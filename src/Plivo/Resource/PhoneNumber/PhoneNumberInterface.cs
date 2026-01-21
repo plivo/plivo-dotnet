@@ -133,12 +133,13 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
         /// <param name="cnamLookup">Cnam Lookup</param>
+        /// <param name="haEnabled">HA Enabled</param>
         public PhoneNumberBuyResponse Buy(string number, string appId = null, string cnamLookup = null,
-                                          Dictionary<string, string> verificationInfo = null )
+                                          Dictionary<string, string> verificationInfo = null, bool? haEnabled = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatoryParams, new {appId, verificationInfo, cnamLookup});
+                mandatoryParams, new {appId, verificationInfo, cnamLookup, haEnabled});
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
@@ -159,12 +160,13 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="appId">App identifier.</param>
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
         /// <param name="cnamLookup">Cnam Lookup</param>
+        /// <param name="haEnabled">HA Enabled</param>
         public async Task<PhoneNumberBuyResponse> BuyAsync(string number, string appId = null, string cnamLookup = null,
-                                          Dictionary<string, string> verificationInfo = null)
+                                          Dictionary<string, string> verificationInfo = null, bool? haEnabled = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
-                mandatoryParams, new { appId, verificationInfo, cnamLookup });
+                mandatoryParams, new { appId, verificationInfo, cnamLookup, haEnabled });
             var result = await Client.Update<PhoneNumberBuyResponse>(
                   Uri + number + "/",
                   data
