@@ -1,4 +1,9 @@
 # Change Log
+## [5.51.5](https://github.com/plivo/plivo-dotnet/tree/v5.51.5) (2026-01-22)
+**Feature - HA Number support**
+- Added `haEnabled` optional parameter to phone number Buy methods for enabling HA functionality during phone number rent
+- Added `fallbackNumber` optional field to phone number buy response, and list/get number response
+
 ## [5.51.4](https://github.com/plivo/plivo-dotnet/tree/v5.51.4) (2026-01-14)
 **Feature - Profile API business_contact_email support**
 - Added `business_contact_email` parameter support to Profile `create` and `update` methods for PUBLIC entity types

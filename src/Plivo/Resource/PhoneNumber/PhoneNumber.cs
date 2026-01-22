@@ -65,9 +65,10 @@ namespace Plivo.Resource.PhoneNumber
         /// <returns>The buy.</returns>
         /// <param name="appId">App identifier.</param>
         /// <param name="cnamLookup">CnamLookup.</param>
-        public PhoneNumberBuyResponse Buy(string appId = null, string cnamLookup = null)
+        /// <param name="haEnabled">HA Enabled.</param>
+        public PhoneNumberBuyResponse Buy(string appId = null, string cnamLookup = null, bool? haEnabled = null)
         {
-            return ((PhoneNumberInterface) Interface).Buy(Id, appId, cnamLookup);
+            return ((PhoneNumberInterface) Interface).Buy(Id, appId, cnamLookup, null, haEnabled);
         }
         /// <summary>
         /// Asynchronously buy PhoneNumber and associate it with
@@ -76,9 +77,10 @@ namespace Plivo.Resource.PhoneNumber
         /// <returns>The buy.</returns>
         /// <param name="appId">App identifier.</param>
         /// <param name="cnamLookup">Cnam Lookup</param>
-        public async Task<PhoneNumberBuyResponse> BuyAsync(string appId = null, string cnamLookup = null)
+        /// <param name="haEnabled">HA Enabled.</param>
+        public async Task<PhoneNumberBuyResponse> BuyAsync(string appId = null, string cnamLookup = null, bool? haEnabled = null)
         {
-            return await ((PhoneNumberInterface)Interface).BuyAsync(Id, appId, cnamLookup);
+            return await ((PhoneNumberInterface)Interface).BuyAsync(Id, appId, cnamLookup, null, haEnabled);
         }
         #endregion
     }
