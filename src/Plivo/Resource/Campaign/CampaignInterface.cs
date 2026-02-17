@@ -138,10 +138,10 @@ namespace Plivo.Resource.Campaign
         ///<param name="optin_message">optin_message<param>
         ///<param name="optout_keywords">optout_keywords<param>
          ///<param name="help_keywords">optout_keywords<param>
-        public CreateCampaign Create(string campaign_alias,string brand_id, string vertical,  string usecase, 
+        public CreateCampaign Create(string campaign_alias,string brand_id, string vertical,  string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
-            bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help,
+            bool affiliate_marketing, string sample1, string sample2, string sample3, string sample4, string sample5, string message_flow, string help_message, string optout_message, string terms_and_conditions_link, string privacy_policy_link, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
@@ -164,6 +164,9 @@ namespace Plivo.Resource.Campaign
                 affiliate_marketing,
                 sample1,
                 sample2,
+                sample3,
+                sample4,
+                sample5,
                 url,
                 method,
                 message_flow,
@@ -172,7 +175,9 @@ namespace Plivo.Resource.Campaign
                 optin_keywords,
                 optin_message,
                 optout_keywords,
-                help_keywords
+                help_keywords,
+                terms_and_conditions_link,
+                privacy_policy_link
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -210,8 +215,8 @@ namespace Plivo.Resource.Campaign
          ///<param name="help_keywords">optout_keywords<param>
 		public async Task<CreateCampaign> CreateAsync(string campaign_alias, string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
-            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help, 
-            bool affiliate_marketing, string sample1, string sample2, string message_flow, string help_message, string optout_message, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
+            bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help,
+            bool affiliate_marketing, string sample1, string sample2, string sample3, string sample4, string sample5, string message_flow, string help_message, string optout_message, string terms_and_conditions_link, string privacy_policy_link, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -235,6 +240,9 @@ namespace Plivo.Resource.Campaign
                 affiliate_marketing,
                 sample1,
                 sample2,
+                sample3,
+                sample4,
+                sample5,
                 url,
                 method,
                 message_flow,
@@ -244,6 +252,8 @@ namespace Plivo.Resource.Campaign
                 optin_message,
                 optout_keywords,
                 help_keywords,
+                terms_and_conditions_link,
+                privacy_policy_link
             });
 
 			var result = await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data);
@@ -321,19 +331,22 @@ namespace Plivo.Resource.Campaign
         ///<param name="optout_keywords">optout_keywords<param>
         ///<param name="optout_message">optout_message<param>
          ///<param name="help_keywords">help_keywords<param>
-        public UpdateCampaign Update(string campaign_id,string reseller_id="", string description="",  string sample1="", 
-            string sample2="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="", 
-            string optout_keywords="", string optout_message="", string help_keywords="")
+        public UpdateCampaign Update(string campaign_id,string reseller_id="", string description="",  string sample1="",
+            string sample2="", string sample3="", string sample4="", string sample5="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="",
+            string optout_keywords="", string optout_message="", string help_keywords="", string terms_and_conditions_link="", string privacy_policy_link="")
         {
             var mandatoryParams = new List<string>{};
             var data = CreateData(
                 mandatoryParams,
                 new
-                {   
+                {
                     reseller_id,
                     description,
                     sample1,
                     sample2,
+                    sample3,
+                    sample4,
+                    sample5,
                     message_flow,
                     help_message,
                     optin_keywords,
@@ -341,7 +354,8 @@ namespace Plivo.Resource.Campaign
                     optout_keywords,
                     optout_message,
                     help_keywords,
-                    
+                    terms_and_conditions_link,
+                    privacy_policy_link
                 });
             return ExecuteWithExceptionUnwrap(() =>
             {
@@ -367,20 +381,23 @@ namespace Plivo.Resource.Campaign
         ///<param name="optout_keywords">optout_keywords<param>
         ///<param name="optout_message">optout_message<param>
         ///<param name="help_keywords">help_keywords<param>
-		public async Task<UpdateCampaign> UpdateAsync(string campaign_id,string reseller_id="", string description="",  string sample1="", 
-            string sample2="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="", 
-            string optout_keywords="", string optout_message="", string help_keywords="")
+		public async Task<UpdateCampaign> UpdateAsync(string campaign_id,string reseller_id="", string description="",  string sample1="",
+            string sample2="", string sample3="", string sample4="", string sample5="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="",
+            string optout_keywords="", string optout_message="", string help_keywords="", string terms_and_conditions_link="", string privacy_policy_link="")
 		{
 
 			var mandatoryParams = new List<string>{};
             var data = CreateData(
                 mandatoryParams,
                 new
-                {   
+                {
                     reseller_id,
                     description,
                     sample1,
                     sample2,
+                    sample3,
+                    sample4,
+                    sample5,
                     message_flow,
                     help_message,
                     optin_keywords,
@@ -388,7 +405,8 @@ namespace Plivo.Resource.Campaign
                     optout_keywords,
                     optout_message,
                     help_keywords,
-                    
+                    terms_and_conditions_link,
+                    privacy_policy_link
                 });
 
 			var result = await Client.Update<UpdateCampaign>(Uri + "10dlc/Campaign/"+campaign_id+"/", data);
