@@ -141,13 +141,13 @@ namespace Plivo.Resource.Campaign
         public CreateCampaign Create(string campaign_alias,string brand_id, string vertical,  string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help,
-            bool affiliate_marketing, string sample1, string sample2, string sample3, string sample4, string sample5, string message_flow, string help_message, string optout_message, string terms_and_conditions_link, string privacy_policy_link, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
+            bool affiliate_marketing, string sample1, string sample2, string sample3, string sample4, string sample5, string message_flow, string help_message, string optout_message, string termsAndConditionsLink, string privacyPolicyLink, string[] sub_usecases= null, string url=null, string method=null,string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
         {
         var mandatoryParams = new List<string>{"brand_id", "vertical"};
         var data = CreateData(
             mandatoryParams,
             new
-            {   
+            {
                 campaign_alias,
                 brand_id,
                 vertical,
@@ -176,8 +176,8 @@ namespace Plivo.Resource.Campaign
                 optin_message,
                 optout_keywords,
                 help_keywords,
-                terms_and_conditions_link,
-                privacy_policy_link
+                terms_and_conditions_link = termsAndConditionsLink,
+                privacy_policy_link = privacyPolicyLink
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -216,7 +216,7 @@ namespace Plivo.Resource.Campaign
 		public async Task<CreateCampaign> CreateAsync(string campaign_alias, string brand_id, string vertical, string usecase,
             string description, bool embedded_link,  bool embedded_phone, bool age_gated,
             bool direct_lending, bool subscriber_optin, bool subscriber_optout, bool subscriber_help,
-            bool affiliate_marketing, string sample1, string sample2, string sample3, string sample4, string sample5, string message_flow, string help_message, string optout_message, string terms_and_conditions_link, string privacy_policy_link, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
+            bool affiliate_marketing, string sample1, string sample2, string sample3, string sample4, string sample5, string message_flow, string help_message, string optout_message, string termsAndConditionsLink, string privacyPolicyLink, string[] sub_usecases= null, string url=null, string method=null, string optin_keywords=null,string optin_message=null,string optout_keywords=null,string help_keywords=null)
 		{
 
 			 var mandatoryParams = new List<string>{"city", "vertical"};
@@ -252,8 +252,8 @@ namespace Plivo.Resource.Campaign
                 optin_message,
                 optout_keywords,
                 help_keywords,
-                terms_and_conditions_link,
-                privacy_policy_link
+                terms_and_conditions_link = termsAndConditionsLink,
+                privacy_policy_link = privacyPolicyLink
             });
 
 			var result = await Client.Update<CreateCampaign>(Uri + "10dlc/Campaign/", data);
@@ -333,7 +333,7 @@ namespace Plivo.Resource.Campaign
          ///<param name="help_keywords">help_keywords<param>
         public UpdateCampaign Update(string campaign_id,string reseller_id="", string description="",  string sample1="",
             string sample2="", string sample3="", string sample4="", string sample5="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="",
-            string optout_keywords="", string optout_message="", string help_keywords="", string terms_and_conditions_link="", string privacy_policy_link="")
+            string optout_keywords="", string optout_message="", string help_keywords="", string termsAndConditionsLink="", string privacyPolicyLink="")
         {
             var mandatoryParams = new List<string>{};
             var data = CreateData(
@@ -354,8 +354,8 @@ namespace Plivo.Resource.Campaign
                     optout_keywords,
                     optout_message,
                     help_keywords,
-                    terms_and_conditions_link,
-                    privacy_policy_link
+                    terms_and_conditions_link = termsAndConditionsLink,
+                    privacy_policy_link = privacyPolicyLink
                 });
             return ExecuteWithExceptionUnwrap(() =>
             {
@@ -383,7 +383,7 @@ namespace Plivo.Resource.Campaign
         ///<param name="help_keywords">help_keywords<param>
 		public async Task<UpdateCampaign> UpdateAsync(string campaign_id,string reseller_id="", string description="",  string sample1="",
             string sample2="", string sample3="", string sample4="", string sample5="", string message_flow="", string help_message="", string optin_keywords="", string optin_message="",
-            string optout_keywords="", string optout_message="", string help_keywords="", string terms_and_conditions_link="", string privacy_policy_link="")
+            string optout_keywords="", string optout_message="", string help_keywords="", string termsAndConditionsLink="", string privacyPolicyLink="")
 		{
 
 			var mandatoryParams = new List<string>{};
@@ -405,8 +405,8 @@ namespace Plivo.Resource.Campaign
                     optout_keywords,
                     optout_message,
                     help_keywords,
-                    terms_and_conditions_link,
-                    privacy_policy_link
+                    terms_and_conditions_link = termsAndConditionsLink,
+                    privacy_policy_link = privacyPolicyLink
                 });
 
 			var result = await Client.Update<UpdateCampaign>(Uri + "10dlc/Campaign/"+campaign_id+"/", data);
