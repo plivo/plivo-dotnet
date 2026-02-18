@@ -110,6 +110,8 @@ namespace Plivo.Http
                     throw new PlivoNotFoundException(message);
                 case 405:
                     throw new PlivoRequestException(message);
+                case 429:
+                    throw new PlivoTooManyRequestsException(message);
                 case 500:
                     throw new PlivoServerException(message);
                 default:
