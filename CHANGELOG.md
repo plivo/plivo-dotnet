@@ -1,5 +1,5 @@
 # Change Log
-## [5.51.7](https://github.com/plivo/plivo-dotnet/tree/v5.51.7) (2026-03-17)
+## [5.51.7](https://github.com/plivo/plivo-dotnet/tree/v5.51.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
 - Added `ein`, `ein_issuing_country`, `alt_business_id`, `alt_business_id_type` parameters to Profile `Update` and `UpdateAsync` methods
 
