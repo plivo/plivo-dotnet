@@ -223,8 +223,9 @@ namespace Plivo.Resource.Profile
         /// <param name="address">address</param>
         /// <param name="business_contact_email">business_contact_email</param>
 
-        public GetProfile Update(string profile_uuid, string company_name =null,  string website = null, 
-            string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null)
+        public GetProfile Update(string profile_uuid, string company_name =null,  string website = null,
+            string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null,
+            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null)
         {
              var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
@@ -237,7 +238,11 @@ namespace Plivo.Resource.Profile
                 authorized_contact,
                 address,
                 vertical,
-                business_contact_email
+                business_contact_email,
+                ein,
+                ein_issuing_country,
+                alt_business_id,
+                alt_business_id_type
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -260,8 +265,9 @@ namespace Plivo.Resource.Profile
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
         /// <param name="business_contact_email">business_contact_email</param>
-		public async Task<ProfileResponse> UpdateAsync(string profile_uuid, string company_name =null,  string website = null, 
-            string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null)
+		public async Task<ProfileResponse> UpdateAsync(string profile_uuid, string company_name =null,  string website = null,
+            string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null,
+            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null)
         {
              var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
@@ -274,7 +280,11 @@ namespace Plivo.Resource.Profile
                 authorized_contact,
                 address,
                 vertical,
-                business_contact_email
+                business_contact_email,
+                ein,
+                ein_issuing_country,
+                alt_business_id,
+                alt_business_id_type
             });
 			var result = await Client.Update<ProfileResponse>(Uri + "Profile/"+profile_uuid+"/", data);
             result.Object.StatusCode = result.StatusCode;
