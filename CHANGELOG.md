@@ -1,4 +1,13 @@
 # Change Log
+## [5.52.0](https://github.com/plivo/plivo-dotnet/tree/v5.52.0) (2026-04-08)
+**Feature - PhoneNumber Compliance API support**
+- Added `PhoneNumberComplianceRequirement` resource for discovering compliance requirements by country, number type, and user type
+- Added `PhoneNumberCompliance` resource with full CRUD support (Create, Get, List, Update, Delete) for compliance applications
+- Added `LinkNumbers` method for bulk linking phone numbers to accepted compliance applications
+- Added PATCH HTTP method support to `SystemHttpClient` and `HttpClient`
+- Fixed hardcoded `"file"` field name in multipart uploads to use dictionary key for indexed document fields
+- Create and update operations support multipart file uploads for compliance documents
+
 ## [5.51.7](https://github.com/plivo/plivo-dotnet/tree/v5.51.7) (2026-03-18)
 **Feature - Profile Update API additional fields support**
 - Added `ein`, `ein_issuing_country`, `alt_business_id`, `alt_business_id_type` parameters to Profile `Update` and `UpdateAsync` methods
