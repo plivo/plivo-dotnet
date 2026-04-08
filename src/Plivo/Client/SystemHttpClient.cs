@@ -248,7 +248,7 @@ namespace Plivo.Client
                             }
 
                             fileContents.Headers.Add("Content-Type", fileHeader);
-                            multipartContent.Add(fileContents, "file", fileName);
+                            multipartContent.Add(fileContents, key, fileName);
                         }
 
                         foreach (var key in data.Keys)
@@ -258,6 +258,103 @@ namespace Plivo.Client
                         }
 
                         request.Content = multipartContent;
+                    }
+
+                    break;
+
+                case "PATCH":
+                    request = new HttpRequestMessage(new HttpMethod("PATCH"), uri);
+
+                    if (filesToUpload == null)
+                    {
+                        request.Headers.Add("Accept", "application/json");
+                        request.Content = new StringContent(
+                            JsonConvert.SerializeObject(data),
+                            Encoding.UTF8,
+                            "application/json"
+                        );
+                    }
+                    else
+                    {
+                        MultipartFormDataContent patchMultipartContent = new MultipartFormDataContent();
+
+                        foreach (var key in filesToUpload.Keys)
+                        {
+                            FileInfo patchFileInfo = new FileInfo(filesToUpload[key]);
+                            string patchFileName = patchFileInfo.Name;
+                            HttpContent patchFileContents = new ByteArrayContent(File.ReadAllBytes(patchFileInfo.FullName));
+
+                            string patchFileHeader = null;
+
+                            switch (patchFileName.Split('.')[1].ToLower())
+                            {
+                                case "jpg":
+                                    patchFileHeader = "image/jpeg";
+                                    break;
+                                case "jpeg":
+                                    patchFileHeader = "image/jpeg";
+                                    break;
+                                case "png":
+                                    patchFileHeader = "image/png";
+                                    break;
+                                case "gif":
+                                    patchFileHeader = "image/gif";
+                                    break;
+                                case "mp3":
+                                    patchFileHeader = "audio/mp3";
+                                    break;
+                                case "mp4":
+                                    patchFileHeader = "video/mp4";
+                                    break;
+                                case "mpeg":
+                                    patchFileHeader = "audio/mpeg";
+                                    break;
+                                case "wav":
+                                    patchFileHeader = "audio/wav";
+                                    break;
+                                case "ogg":
+                                    patchFileHeader = "audio/ogg";
+                                    break;
+                                case "3gpp":
+                                    patchFileHeader = "video/3gpp";
+                                    break;
+                                case "3gpp2":
+                                    patchFileHeader = "video/3gpp2";
+                                    break;
+                                case "vcard":
+                                    patchFileHeader = "text/vcard";
+                                    break;
+                                case "csv":
+                                    patchFileHeader = "text/csv";
+                                    break;
+                                case "pdf":
+                                    patchFileHeader = "application/pdf";
+                                    break;
+                                case "xls":
+                                    patchFileHeader = "application/vnd.ms-excel";
+                                    break;
+                                case "xlsx":
+                                    patchFileHeader = "application/vnd.ms-excel";
+                                    break;
+                                case "xcf":
+                                    patchFileHeader = "image/xcf";
+                                    break;
+                                case "plain":
+                                    patchFileHeader = "text/plain";
+                                    break;
+                            }
+
+                            patchFileContents.Headers.Add("Content-Type", patchFileHeader);
+                            patchMultipartContent.Add(patchFileContents, key, patchFileName);
+                        }
+
+                        foreach (var key in data.Keys)
+                        {
+                            HttpContent stringContent = new StringContent((string) data[key].ToString());
+                            patchMultipartContent.Add(stringContent, key);
+                        }
+
+                        request.Content = patchMultipartContent;
                     }
 
                     break;
