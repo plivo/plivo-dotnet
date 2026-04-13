@@ -1,0 +1,38 @@
+{
+  "api_id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+  "meta": {
+    "limit": 20,
+    "next": null,
+    "offset": 0,
+    "previous": null,
+    "total_count": 2
+  },
+  "compliances": [
+    {
+      "compliance_id": "COMP-12345",
+      "status": "approved",
+      "alias": "My US Local Compliance",
+      "country_iso": "US",
+      "number_type": "local",
+      "user_type": "business",
+      "callback_url": "https://example.com/callback",
+      "callback_method": "POST",
+      "rejection_reason": null,
+      "created_at": "2025-01-01T00:00:00Z",
+      "updated_at": "2025-01-02T00:00:00Z"
+    },
+    {
+      "compliance_id": "COMP-67890",
+      "status": "pending",
+      "alias": "My DE Local Compliance",
+      "country_iso": "DE",
+      "number_type": "local",
+      "user_type": "individual",
+      "callback_url": null,
+      "callback_method": null,
+      "rejection_reason": null,
+      "created_at": "2025-01-03T00:00:00Z",
+      "updated_at": "2025-01-04T00:00:00Z"
+    }
+  ]
+}

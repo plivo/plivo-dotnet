@@ -1,0 +1,17 @@
+{
+  "api_id": "f6a7b8c9-d0e1-2345-fabc-456789012345",
+  "total_count": 2,
+  "updated_count": 2,
+  "report": [
+    {
+      "number": "+14151234567",
+      "compliance_id": "COMP-12345",
+      "status": "linked"
+    },
+    {
+      "number": "+14159876543",
+      "compliance_id": "COMP-12345",
+      "status": "linked"
+    }
+  ]
+}

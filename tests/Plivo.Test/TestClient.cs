@@ -27,6 +27,8 @@ namespace Plivo.Test
                     break;
                 case "DELETE":
                     break;
+                case "PATCH":
+                    break;
                 default:
                     throw new NotSupportedException(
                         method + " not supported");
