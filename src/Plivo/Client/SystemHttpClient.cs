@@ -187,6 +187,16 @@ namespace Plivo.Client
                             string fileName = fileInfo.Name;
                             HttpContent fileContents = new ByteArrayContent(File.ReadAllBytes(fileInfo.FullName));
 
+                            // Determine the multipart field name:
+                            // - "file0", "file1", etc. -> send as "file" (for Media.Upload multi-file)
+                            // - "documents[0].file", etc. -> send as-is (for PhoneNumber Compliance)
+                            // - "file" -> send as "file"
+                            string fieldName = key;
+                            if (System.Text.RegularExpressions.Regex.IsMatch(key, @"^file\d+$"))
+                            {
+                                fieldName = "file";
+                            }
+
                             string fileHeader = null;
 
                             switch (fileName.Split('.')[1].ToLower())
@@ -248,7 +258,7 @@ namespace Plivo.Client
                             }
 
                             fileContents.Headers.Add("Content-Type", fileHeader);
-                            multipartContent.Add(fileContents, key, fileName);
+                            multipartContent.Add(fileContents, fieldName, fileName);
                         }
 
                         foreach (var key in data.Keys)
@@ -283,6 +293,12 @@ namespace Plivo.Client
                             FileInfo patchFileInfo = new FileInfo(filesToUpload[key]);
                             string patchFileName = patchFileInfo.Name;
                             HttpContent patchFileContents = new ByteArrayContent(File.ReadAllBytes(patchFileInfo.FullName));
+
+                            string patchFieldName = key;
+                            if (System.Text.RegularExpressions.Regex.IsMatch(key, @"^file\d+$"))
+                            {
+                                patchFieldName = "file";
+                            }
 
                             string patchFileHeader = null;
 
@@ -345,7 +361,7 @@ namespace Plivo.Client
                             }
 
                             patchFileContents.Headers.Add("Content-Type", patchFileHeader);
-                            patchMultipartContent.Add(patchFileContents, key, patchFileName);
+                            patchMultipartContent.Add(patchFileContents, patchFieldName, patchFileName);
                         }
 
                         foreach (var key in data.Keys)

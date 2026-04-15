@@ -62,7 +62,7 @@ namespace Plivo.Resource.Media
             var filesToUpload = new Dictionary<string, string>();
             for (int i = 0; i < filePath.Length; i++)
             {
-                filesToUpload.Add("file", filePath[i]);
+                filesToUpload.Add("file" + i.ToString(), filePath[i]);
             }
             var result = await Client.Update<MediaUploadResponse>(Uri, data, filesToUpload);
             result.Object.StatusCode = result.StatusCode;

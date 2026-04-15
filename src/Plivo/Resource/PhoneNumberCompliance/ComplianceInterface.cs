@@ -55,7 +55,7 @@ namespace Plivo.Resource.PhoneNumberCompliance
 
         public ComplianceCreateResponse Create(string dataJson, Dictionary<string, string> documentFiles = null)
         {
-            var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(dataJson);
+            var data = new Dictionary<string, object> { { "data", dataJson } };
             var filesToUpload = documentFiles ?? new Dictionary<string, string>();
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -70,7 +70,7 @@ namespace Plivo.Resource.PhoneNumberCompliance
         public ComplianceUpdateResponse Update(string complianceId, string dataJson,
             Dictionary<string, string> documentFiles = null)
         {
-            var data = JsonConvert.DeserializeObject<Dictionary<string, object>>(dataJson);
+            var data = new Dictionary<string, object> { { "data", dataJson } };
             var filesToUpload = documentFiles ?? new Dictionary<string, string>();
 
             return ExecuteWithExceptionUnwrap(() =>
