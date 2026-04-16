@@ -32,6 +32,7 @@ using Plivo.Resource.Profile;
 using Plivo.Resource.Token;
 using Plivo.Resource.TollfreeVerification;
 using Plivo.Resource.VerifyCallerId;
+using Plivo.Resource.PhoneNumberCompliance;
 
 namespace Plivo
 {
@@ -80,6 +81,9 @@ namespace Plivo
         private readonly Lazy<RequirementInterface> _requirement;
         private readonly Lazy<DocumentInterface> _document;
         private readonly Lazy<ComplianceApplicationInterface> _complianceApplication;
+
+        private readonly Lazy<PhoneNumberComplianceRequirementInterface> _phoneNumberComplianceRequirement;
+        private readonly Lazy<ComplianceInterface> _compliance;
 
         private readonly Lazy<MultiPartyCallInterface> _multiPartyCall;
         private readonly Lazy<TollfreeVerificationInterface> _tollfreeVerification;
@@ -215,6 +219,10 @@ namespace Plivo
         
         public VerifyCallerIdInterface VerifyCallerId => _verifyCallerId.Value;
 
+        public PhoneNumberComplianceRequirementInterface PhoneNumberComplianceRequirement => _phoneNumberComplianceRequirement.Value;
+
+        public ComplianceInterface PhoneNumberCompliance => _compliance.Value;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:plivo.PlivoApi"/> class.
         /// </summary>
@@ -265,6 +273,8 @@ namespace Plivo
             _document = new Lazy<DocumentInterface>(() => new DocumentInterface(Client));
             _complianceApplication =
                 new Lazy<ComplianceApplicationInterface>(() => new ComplianceApplicationInterface(Client));
+            _phoneNumberComplianceRequirement = new Lazy<PhoneNumberComplianceRequirementInterface>(() => new PhoneNumberComplianceRequirementInterface(Client));
+            _compliance = new Lazy<ComplianceInterface>(() => new ComplianceInterface(Client));
             _multiPartyCall = new Lazy<MultiPartyCallInterface>(() => new MultiPartyCallInterface(Client));
             _tollfreeVerification = new Lazy<TollfreeVerificationInterface>(() => new TollfreeVerificationInterface(Client));
             _verifyCallerId = new Lazy<VerifyCallerIdInterface>(() => new VerifyCallerIdInterface(Client));

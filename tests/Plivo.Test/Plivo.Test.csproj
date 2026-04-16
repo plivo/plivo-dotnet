@@ -75,6 +75,7 @@
     <Compile Include="TestSignature.cs"/>
     <Compile Include="Resources\TestAddress.cs"/>
     <Compile Include="Resources\TestIdentity.cs"/>
+    <Compile Include="Resources\TestPhoneNumberCompliance.cs"/>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Mocks\accountGetResponse.json"/>
@@ -128,6 +129,16 @@
     <Content Include="Mocks\subaccountGetResponse.json"/>
     <Content Include="Mocks\subaccountListResponse.json"/>
     <Content Include="Mocks\subaccountModifyResponse.json"/>
+    <Content Include="Mocks\complianceRequirementGetResponse.json"/>
+    <Content Include="Mocks\complianceRequirementGetEmptyResponse.json"/>
+    <Content Include="Mocks\complianceCreateResponse.json"/>
+    <Content Include="Mocks\complianceListResponse.json"/>
+    <Content Include="Mocks\complianceListEmptyResponse.json"/>
+    <Content Include="Mocks\complianceGetResponse.json"/>
+    <Content Include="Mocks\complianceUpdateResponse.json"/>
+    <Content Include="Mocks\complianceDeleteResponse.json"/>
+    <Content Include="Mocks\complianceLinkResponse.json"/>
+    <Content Include="Mocks\complianceLinkEmptyReportResponse.json"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Plivo\Plivo.csproj">

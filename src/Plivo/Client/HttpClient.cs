@@ -76,6 +76,20 @@ namespace Plivo.Client
         }
 
         /// <summary>
+        /// Patch with the specified data.
+        /// </summary>
+        /// <returns>The patch.</returns>
+        /// <param name="uri">URI.</param>
+        /// <param name="data">Data.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        public async Task<PlivoResponse<T>> Patch<T>(string uri, Dictionary<string, object> data = null,
+            Dictionary<string, string> filesToUpload = null)
+            where T : new()
+        {
+            return await _client.SendRequest<T>("PATCH", uri, data ?? new Dictionary<string, object>(), filesToUpload);
+        }
+
+        /// <summary>
         /// Delete the specified uri with request parameters in data.
         /// </summary>
         /// <returns>The delete.</returns>
