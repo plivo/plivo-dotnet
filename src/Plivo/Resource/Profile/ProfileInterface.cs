@@ -122,9 +122,9 @@ namespace Plivo.Resource.Profile
         /// <param name="address">address</param>
         /// <param name="business_contact_email">business_contact_email</param>
 
-        public ProfileResponse Create(string profile_alias, string plivo_subaccount,  string customer_type, 
+        public ProfileResponse Create(string profile_alias, string plivo_subaccount,  string customer_type,
             string entity_type, string company_name,  string ein, string vertical,
-            string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id, string alt_business_id_type, AuthorizedContact authorized_contact, Address address, string business_contact_email = null)
+            string ein_issuing_country, string stock_symbol, string stock_exchange, string website,string alt_business_id, string alt_business_id_type, AuthorizedContact authorized_contact, Address address, string business_contact_email = null, string doing_business_as = null)
         {
         var mandatoryParams = new List<string>{"profile_alias"};
         Console.WriteLine(entity_type);
@@ -147,7 +147,8 @@ namespace Plivo.Resource.Profile
                 authorized_contact,
                 address,
                 website,
-                business_contact_email
+                business_contact_email,
+                doing_business_as
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -176,9 +177,9 @@ namespace Plivo.Resource.Profile
         /// <param name="authorized_contact">authorized_contact</param>
         /// <param name="address">address</param>
         /// <param name="business_contact_email">business_contact_email</param>
-		public async Task<ProfileResponse> CreateAsync(string profile_alias, string plivo_subaccount,  string customer_type, 
+		public async Task<ProfileResponse> CreateAsync(string profile_alias, string plivo_subaccount,  string customer_type,
             string entity_type, string company_name,  string ein, string vertical, string website,
-            string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id, string alt_business_id_type, AuthorizedContact authorized_contact, Address address, string business_contact_email = null)
+            string ein_issuing_country, string stock_symbol, string stock_exchange, string alt_business_id, string alt_business_id_type, AuthorizedContact authorized_contact, Address address, string business_contact_email = null, string doing_business_as = null)
 		{
          var mandatoryParams = new List<string>{"profile_alias"};
           var data = CreateData(
@@ -200,7 +201,8 @@ namespace Plivo.Resource.Profile
                 authorized_contact,
                 address,
                 website,
-                business_contact_email
+                business_contact_email,
+                doing_business_as
             });
 			var result = await Client.Update<ProfileResponse>(Uri + "Profile/", data);
             result.Object.StatusCode = result.StatusCode;
@@ -225,7 +227,7 @@ namespace Plivo.Resource.Profile
 
         public GetProfile Update(string profile_uuid, string company_name =null,  string website = null,
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null,
-            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null)
+            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null, string doing_business_as = null)
         {
              var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
@@ -242,7 +244,8 @@ namespace Plivo.Resource.Profile
                 ein,
                 ein_issuing_country,
                 alt_business_id,
-                alt_business_id_type
+                alt_business_id_type,
+                doing_business_as
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -267,7 +270,7 @@ namespace Plivo.Resource.Profile
         /// <param name="business_contact_email">business_contact_email</param>
 		public async Task<ProfileResponse> UpdateAsync(string profile_uuid, string company_name =null,  string website = null,
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null,
-            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null)
+            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null, string doing_business_as = null)
         {
              var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
@@ -284,7 +287,8 @@ namespace Plivo.Resource.Profile
                 ein,
                 ein_issuing_country,
                 alt_business_id,
-                alt_business_id_type
+                alt_business_id_type,
+                doing_business_as
             });
 			var result = await Client.Update<ProfileResponse>(Uri + "Profile/"+profile_uuid+"/", data);
             result.Object.StatusCode = result.StatusCode;

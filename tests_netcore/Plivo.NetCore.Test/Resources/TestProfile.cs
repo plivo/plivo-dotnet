@@ -52,6 +52,7 @@ namespace Plivo.NetCore.Test.Resources
                 response
             );
             var resp =  Api.Profile.Get(id);
+            Assert.Equal("ABC DBA", resp.Profile.DoingBusinessAs);
             AssertRequest(request);
         }
     }

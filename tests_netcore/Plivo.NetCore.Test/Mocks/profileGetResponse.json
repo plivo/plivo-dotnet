@@ -29,6 +29,7 @@
         "profile_uuid": "8a9f1eef-6273-4444-822a-a3c2941c51dd",
         "stock_symbol": "ABC",
         "vertical": "PROFESSIONAL",
-        "website": "google.com"
+        "website": "google.com",
+        "doing_business_as": "ABC DBA"
     }
 }
