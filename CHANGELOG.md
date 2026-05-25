@@ -1,4 +1,8 @@
 # Change Log
+## [5.52.1](https://github.com/plivo/plivo-dotnet/tree/v5.52.1) (2026-05-25)
+**Feature - Expose sub_account_name on RentedNumber resource**
+- Added `SubAccountName` property to the `RentedNumber` resource, surfacing the subaccount's name alongside the existing `SubAccount` (auth_id) on rented number listing and get APIs
+
 ## [5.52.0](https://github.com/plivo/plivo-dotnet/tree/v5.52.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**
 - Added `PhoneNumberComplianceRequirement` resource for discovering compliance requirements by country, number type, and user type
