@@ -1,4 +1,8 @@
 # Change Log
+## [5.53.0](https://github.com/plivo/plivo-dotnet/tree/v5.53.0) (2026-05-25)
+**Feature - Profile API DBA field support**
+- Added Doing Business As (DBA) field support to Profile API
+
 ## [5.52.0](https://github.com/plivo/plivo-dotnet/tree/v5.52.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**
 - Added `PhoneNumberComplianceRequirement` resource for discovering compliance requirements by country, number type, and user type
