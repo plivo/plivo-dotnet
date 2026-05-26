@@ -1,7 +1,10 @@
 # Change Log
-## [5.53.0](https://github.com/plivo/plivo-dotnet/tree/v5.53.0) (2026-05-25)
+## [5.52.1](https://github.com/plivo/plivo-dotnet/tree/v5.52.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API
+
+**Feature - Expose sub_account_name on RentedNumber resource**
+- Added `SubAccountName` property to the `RentedNumber` resource, surfacing the subaccount's name alongside the existing `SubAccount` (auth_id) on rented number listing and get APIs
 
 ## [5.52.0](https://github.com/plivo/plivo-dotnet/tree/v5.52.0) (2026-04-08)
 **Feature - PhoneNumber Compliance API support**

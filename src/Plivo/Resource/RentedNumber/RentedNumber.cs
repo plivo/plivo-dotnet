@@ -24,6 +24,7 @@ namespace Plivo.Resource.RentedNumber
         public bool SmsEnabled { get; set; }
         public string SmsRate { get; set; }
         public object SubAccount { get; set; }
+        public string SubAccountName { get; set; }
         public string Type { get; set; }
         public List<VerificationInfo> VerificationInfo { get; set; }
         public bool VoiceEnabled { get; set; }
@@ -64,6 +65,7 @@ namespace Plivo.Resource.RentedNumber
                     "SmsEnabled: " + SmsEnabled + "\n" +
                     "SmsRate: " + SmsRate + "\n" +
                     "SubAccount: " + SubAccount + "\n" +
+                    "SubAccountName: " + SubAccountName + "\n" +
                     "Type: " + Type + "\n" +
                     "VerificationInfo: " + VerificationInfo.ToString() + "\n" +
                     "VoiceEnabled: " + VoiceEnabled + "\n" +
@@ -93,6 +95,7 @@ namespace Plivo.Resource.RentedNumber
                 "SmsEnabled: " + SmsEnabled + "\n" +
                 "SmsRate: " + SmsRate + "\n" +
                 "SubAccount: " + SubAccount + "\n" +
+                "SubAccountName: " + SubAccountName + "\n" +
                 "Type: " + Type + "\n" +
                 "VoiceEnabled: " + VoiceEnabled + "\n" +
                 "TendlcCampaignId: " + TendlcCampaignId + "\n" +
