@@ -128,6 +128,9 @@ namespace Plivo.Resource.Profile
         [JsonProperty("created_at")]
         public string CreatedAt { get; set; }
 
+        [JsonProperty("doing_business_as")]
+        public string DoingBusinessAs { get; set; }
+
     }
 
     [JsonObject(MemberSerialization.OptIn)]
@@ -192,6 +195,9 @@ namespace Plivo.Resource.Profile
 
         [JsonProperty("authorized_contact")]
         public AuthorizedContact authorized_contact { get; set; }
+
+        [JsonProperty("doing_business_as")]
+        public string DoingBusinessAs { get; set; }
 
         public override string ToString()
         {
