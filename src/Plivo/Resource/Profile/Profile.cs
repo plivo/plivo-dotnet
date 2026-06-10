@@ -131,6 +131,12 @@ namespace Plivo.Resource.Profile
         [JsonProperty("doing_business_as")]
         public string DoingBusinessAs { get; set; }
 
+        // Allowed values (server-validated, not enforced client-side):
+        // BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500,
+        // BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
+        [JsonProperty("number_of_employees")]
+        public string NumberOfEmployees { get; set; }
+
     }
 
     [JsonObject(MemberSerialization.OptIn)]
@@ -198,6 +204,12 @@ namespace Plivo.Resource.Profile
 
         [JsonProperty("doing_business_as")]
         public string DoingBusinessAs { get; set; }
+
+        // Allowed values (server-validated, not enforced client-side):
+        // BETWEEN_1_AND_10, BETWEEN_11_AND_50, BETWEEN_51_AND_200, BETWEEN_201_AND_500,
+        // BETWEEN_501_AND_2000, BETWEEN_2001_AND_10000, MORE_THAN_10001
+        [JsonProperty("number_of_employees")]
+        public string NumberOfEmployees { get; set; }
 
         public override string ToString()
         {
