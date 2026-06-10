@@ -30,6 +30,7 @@
         "stock_symbol": "ABC",
         "vertical": "PROFESSIONAL",
         "website": "google.com",
-        "doing_business_as": "ABC DBA"
+        "doing_business_as": "ABC DBA",
+        "number_of_employees": "BETWEEN_1_AND_10"
     }
 }

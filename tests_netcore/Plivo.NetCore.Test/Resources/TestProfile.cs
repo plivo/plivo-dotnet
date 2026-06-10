@@ -53,6 +53,7 @@ namespace Plivo.NetCore.Test.Resources
             );
             var resp =  Api.Profile.Get(id);
             Assert.Equal("ABC DBA", resp.Profile.DoingBusinessAs);
+            Assert.Equal("BETWEEN_1_AND_10", resp.Profile.NumberOfEmployees);
             AssertRequest(request);
         }
     }
