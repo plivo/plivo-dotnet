@@ -134,12 +134,14 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
         /// <param name="cnamLookup">Cnam Lookup</param>
         /// <param name="haEnabled">HA Enabled</param>
+        /// <param name="complianceApplicationId">Compliance Application Id</param>
         public PhoneNumberBuyResponse Buy(string number, string appId = null, string cnamLookup = null,
-                                          Dictionary<string, string> verificationInfo = null, bool? haEnabled = null)
+                                          Dictionary<string, string> verificationInfo = null, bool? haEnabled = null,
+                                          string complianceApplicationId = null)
         {
             var mandatoryParams = new List<string> {""};
             var data = CreateData(
-                mandatoryParams, new {appId, verificationInfo, cnamLookup, haEnabled});
+                mandatoryParams, new {appId, verificationInfo, cnamLookup, haEnabled, complianceApplicationId});
 
 			return ExecuteWithExceptionUnwrap(() =>
 			{
@@ -161,12 +163,14 @@ namespace Plivo.Resource.PhoneNumber
         /// <param name="verificationInfo">Verification information. address_id and identity_id are the keys</param>
         /// <param name="cnamLookup">Cnam Lookup</param>
         /// <param name="haEnabled">HA Enabled</param>
+        /// <param name="complianceApplicationId">Compliance Application Id</param>
         public async Task<PhoneNumberBuyResponse> BuyAsync(string number, string appId = null, string cnamLookup = null,
-                                          Dictionary<string, string> verificationInfo = null, bool? haEnabled = null)
+                                          Dictionary<string, string> verificationInfo = null, bool? haEnabled = null,
+                                          string complianceApplicationId = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
-                mandatoryParams, new { appId, verificationInfo, cnamLookup, haEnabled });
+                mandatoryParams, new { appId, verificationInfo, cnamLookup, haEnabled, complianceApplicationId });
             var result = await Client.Update<PhoneNumberBuyResponse>(
                   Uri + number + "/",
                   data
