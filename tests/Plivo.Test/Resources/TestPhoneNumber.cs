@@ -71,5 +71,37 @@ namespace Plivo.Test.Resources
 
             AssertRequest(request);
         }
+
+        [Test]
+        public void TestPhoneNumberBuyWithComplianceApplicationId()
+        {
+            var id = "abcabcabc";
+            var data = new Dictionary<string, object>()
+            {
+                {"app_id", "123"},
+                {"compliance_application_id", "compAppId123"}
+            };
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/" + id + "/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"Mocks/phoneNumberCreateResponse.json"
+                );
+            Setup<PhoneNumberBuyResponse>(
+                201,
+                response
+            );
+            Assert.IsEmpty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.PhoneNumber.Buy(id, "123", complianceApplicationId: "compAppId123")));
+
+            AssertRequest(request);
+        }
     }
 }

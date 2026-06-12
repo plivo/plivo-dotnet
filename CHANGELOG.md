@@ -1,4 +1,8 @@
 # Change Log
+## [5.52.2](https://github.com/plivo/plivo-dotnet/tree/v5.52.2) (2026-06-11)
+**Feature - PhoneNumber Buy compliance application support**
+- Added optional `complianceApplicationId` parameter to PhoneNumber `Buy` and `BuyAsync` methods, sent as `compliance_application_id`, to link a regulatory compliance application at purchase time for regulated numbers
+
 ## [5.52.1](https://github.com/plivo/plivo-dotnet/tree/v5.52.1) (2026-05-26)
 **Feature - Profile API DBA field support**
 - Added Doing Business As (DBA) field support to Profile API
