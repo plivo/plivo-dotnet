@@ -39,7 +39,8 @@ namespace Plivo.Resource.TollfreeVerification
             string profileUuid, string number, string usecase,
             string usecaseSummary, string messageSample, string optinImageUrl, string optinType,
             string volume, string additionalInformation = null, string extraData = null, string callbackUrl = null,
-            string callbackMethod = null)
+            string callbackMethod = null, string termsAndConditionsLink = null, string privacyPolicyLink = null,
+            string optinMessage = null, string helpMessage = null)
         {
             var mandatoryParams = new List<string>
             {
@@ -60,7 +61,11 @@ namespace Plivo.Resource.TollfreeVerification
                     additionalInformation,
                     extraData,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    termsAndConditionsLink,
+                    privacyPolicyLink,
+                    optinMessage,
+                    helpMessage
                 });
             return ExecuteWithExceptionUnwrap(() =>
             {
@@ -96,7 +101,8 @@ namespace Plivo.Resource.TollfreeVerification
             string profileUuid, string number, string usecase,
             string usecaseSummary, string messageSample, string optinImageUrl, string optinType,
             string volume, string additionalInformation = null, string extraData = null, string callbackUrl = null,
-            string callbackMethod = null)
+            string callbackMethod = null, string termsAndConditionsLink = null, string privacyPolicyLink = null,
+            string optinMessage = null, string helpMessage = null)
         {
             var mandatoryParams = new List<string>
             {
@@ -118,7 +124,11 @@ namespace Plivo.Resource.TollfreeVerification
                     additionalInformation,
                     extraData,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    termsAndConditionsLink,
+                    privacyPolicyLink,
+                    optinMessage,
+                    helpMessage
                 });
 
 
@@ -303,7 +313,9 @@ namespace Plivo.Resource.TollfreeVerification
             string messageSample = null,
             string optinImageUrl = null, string optinType = null, string volume = null,
             string additionalInformation = null,
-            string extraData = null, string callbackUrl = null, string callbackMethod = null)
+            string extraData = null, string callbackUrl = null, string callbackMethod = null,
+            string termsAndConditionsLink = null, string privacyPolicyLink = null,
+            string optinMessage = null, string helpMessage = null)
         {
             var mandatoryParams = new List<string> { "" };
             var data = CreateData(
@@ -321,7 +333,11 @@ namespace Plivo.Resource.TollfreeVerification
                     additionalInformation,
                     extraData,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    termsAndConditionsLink,
+                    privacyPolicyLink,
+                    optinMessage,
+                    helpMessage
                 });
 
             return ExecuteWithExceptionUnwrap(() =>
@@ -357,7 +373,9 @@ namespace Plivo.Resource.TollfreeVerification
             string messageSample = null,
             string optinImageUrl = null, string optinType = null, string volume = null,
             string additionalInformation = null,
-            string extraData = null, string callbackUrl = null, string callbackMethod = null)
+            string extraData = null, string callbackUrl = null, string callbackMethod = null,
+            string termsAndConditionsLink = null, string privacyPolicyLink = null,
+            string optinMessage = null, string helpMessage = null)
         {
             MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
@@ -376,7 +394,11 @@ namespace Plivo.Resource.TollfreeVerification
                     additionalInformation,
                     extraData,
                     callbackUrl,
-                    callbackMethod
+                    callbackMethod,
+                    termsAndConditionsLink,
+                    privacyPolicyLink,
+                    optinMessage,
+                    helpMessage
                 });
             var result = Task.Run(async () =>
                 await Client.Update<AsyncResponse>(Uri + uuid + "/", data).ConfigureAwait(false)).Result;

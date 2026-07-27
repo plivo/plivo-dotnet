@@ -27,6 +27,10 @@ namespace Plivo.NetCore.Test.Resources
                 { "callback_method", "GET" },
                 { "additional_information", "test additional information" },
                 { "extra_data", "test extradata" },
+                { "terms_and_conditions_link", "https://www.test.com/terms" },
+                { "privacy_policy_link", "https://www.test.com/privacy" },
+                { "optin_message", "test optin message" },
+                { "help_message", "test help message" },
             };
             var request =
                 new PlivoRequest(
@@ -55,7 +59,11 @@ namespace Plivo.NetCore.Test.Resources
                         "test additional information",
                         "test extradata",
                         "https://testcallback.com",
-                        "GET"
+                        "GET",
+                        "https://www.test.com/terms",
+                        "https://www.test.com/privacy",
+                        "test optin message",
+                        "test help message"
                     )
                 ));
             AssertRequest(request);
@@ -78,6 +86,10 @@ namespace Plivo.NetCore.Test.Resources
                 { "callback_method", "POST" },
                 { "additional_information", "test additional information" },
                 { "extra_data", "test extradata" },
+                { "terms_and_conditions_link", "https://www.test.com/terms" },
+                { "privacy_policy_link", "https://www.test.com/privacy" },
+                { "optin_message", "test optin message" },
+                { "help_message", "test help message" },
             };
             var request =
                 new PlivoRequest(
@@ -106,7 +118,11 @@ namespace Plivo.NetCore.Test.Resources
                         "test additional information",
                         "test extradata",
                         "https://testcallback.com",
-                        "POST"
+                        "POST",
+                        "https://www.test.com/terms",
+                        "https://www.test.com/privacy",
+                        "test optin message",
+                        "test help message"
                     ).Result
                 ));
             AssertRequest(request);
@@ -234,6 +250,10 @@ namespace Plivo.NetCore.Test.Resources
                 { "callback_url", "http://updated.callback.url" },
                 { "callback_method", "POST" },
                 { "usecase", "2FA" },
+                { "terms_and_conditions_link", "https://www.test.com/terms" },
+                { "privacy_policy_link", "https://www.test.com/privacy" },
+                { "optin_message", "test optin message" },
+                { "help_message", "test help message" },
             };
 
             var request =
@@ -255,7 +275,9 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.TollfreeVerification.Update(uuid, usecase: "2FA", callbackUrl: "http://updated.callback.url",
-                        callbackMethod: "POST")));
+                        callbackMethod: "POST", termsAndConditionsLink: "https://www.test.com/terms",
+                        privacyPolicyLink: "https://www.test.com/privacy", optinMessage: "test optin message",
+                        helpMessage: "test help message")));
             AssertRequest(request);
         }
 
@@ -268,6 +290,10 @@ namespace Plivo.NetCore.Test.Resources
                 { "callback_url", "http://updated.callback.url" },
                 { "callback_method", "POST" },
                 { "usecase", "2FA" },
+                { "terms_and_conditions_link", "https://www.test.com/terms" },
+                { "privacy_policy_link", "https://www.test.com/privacy" },
+                { "optin_message", "test optin message" },
+                { "help_message", "test help message" },
             };
 
             var request =
@@ -286,7 +312,10 @@ namespace Plivo.NetCore.Test.Resources
                 ComparisonUtilities.Compare(
                     response,
                     Api.TollfreeVerification.UpdateAsync(uuid, usecase: "2FA",
-                        callbackUrl: "http://updated.callback.url", callbackMethod: "POST").Result
+                        callbackUrl: "http://updated.callback.url", callbackMethod: "POST",
+                        termsAndConditionsLink: "https://www.test.com/terms",
+                        privacyPolicyLink: "https://www.test.com/privacy", optinMessage: "test optin message",
+                        helpMessage: "test help message").Result
                 )
             );
             AssertRequest(request);
