@@ -32,8 +32,10 @@ namespace Plivo.Resource.Endpoint
         /// <param name="password">Password.</param>
         /// <param name="alias">Alias.</param>
         /// <param name="appId">App identifier.</param>
+        /// <param name="isInternal">Optional flag to mark the endpoint as internal. Serialized as <c>internal</c> on the wire (the C# keyword <c>internal</c> cannot be used as a parameter name).</param>
         public EndpointCreateResponse Create(
-            string username, string password, string alias, string appId = null)
+            string username, string password, string alias, string appId = null,
+            bool? isInternal = null)
         {
             var mandatoryParams = new List<string> { "" };
             bool isVoiceRequest = true;
@@ -47,6 +49,9 @@ namespace Plivo.Resource.Endpoint
                     appId,
                     isVoiceRequest
                 });
+            if (isInternal.HasValue) {
+                data["internal"] = isInternal.Value;
+            }
 
             return ExecuteWithExceptionUnwrap(() =>
             {
@@ -66,9 +71,11 @@ namespace Plivo.Resource.Endpoint
         /// <param name="appId">App identifier.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback Method.</param>
+        /// <param name="isInternal">Optional flag to mark the endpoint as internal. Serialized as <c>internal</c> on the wire (the C# keyword <c>internal</c> cannot be used as a parameter name).</param>
         public async Task<AsyncResponse> CreateAsync(
             string username, string password, string alias, string appId = null,
-            string callbackUrl = null, string callbackMethod = null)
+            string callbackUrl = null, string callbackMethod = null,
+            bool? isInternal = null)
         {
             MpcUtils.ValidUrl("callbackUrl", callbackUrl, true);
             var mandatoryParams = new List<string> { "" };
@@ -87,6 +94,9 @@ namespace Plivo.Resource.Endpoint
                 });
             if (data.ContainsKey("callback_method") && callbackMethod == null) {
                 data.Remove("callback_method");
+            }
+            if (isInternal.HasValue) {
+                data["internal"] = isInternal.Value;
             }
             var result = Task.Run(async () => await Client.Update<AsyncResponse>(Uri, data).ConfigureAwait(false)).Result;
             await Task.WhenAll();
