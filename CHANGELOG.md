@@ -1,4 +1,9 @@
 # Change Log
+## [5.52.4](https://github.com/plivo/plivo-dotnet/tree/v5.52.4) (2026-07-27)
+**Feature - Endpoint internal flag support**
+- Added optional `isInternal` (bool?) parameter to Endpoint `Create` and `CreateAsync` methods, sent as `internal` on the wire, to mark newly created SIP endpoints as internal at creation time
+- C# reserved-keyword workaround: parameter is named `isInternal` because `internal` is a C# keyword; the outgoing JSON key is still `internal`
+
 ## [5.52.2](https://github.com/plivo/plivo-dotnet/tree/v5.52.2) (2026-06-11)
 **Feature - PhoneNumber Buy compliance application support**
 - Added optional `complianceApplicationId` parameter to PhoneNumber `Buy` and `BuyAsync` methods, sent as `compliance_application_id`, to link a regulatory compliance application at purchase time for regulated numbers
