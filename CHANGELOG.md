@@ -1,5 +1,5 @@
 # Change Log
-## [5.52.3](https://github.com/plivo/plivo-dotnet/tree/v5.52.3) (2026-07-27)
+## [5.52.3](https://github.com/plivo/plivo-dotnet/tree/v5.52.3) (2026-07-28)
 **Feature - Toll-free verification terms, privacy, opt-in and help fields**
 - Added optional `termsAndConditionsLink`, `privacyPolicyLink`, `optinMessage` and `helpMessage` parameters to the toll-free verification create and update methods
 
