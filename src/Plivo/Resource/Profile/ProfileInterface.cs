@@ -227,7 +227,8 @@ namespace Plivo.Resource.Profile
 
         public GetProfile Update(string profile_uuid, string company_name =null,  string website = null,
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null,
-            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null, string doing_business_as = null)
+            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null, string doing_business_as = null,
+            bool? enable_caller_reputation = null, List<string> vetting_provider = null, string callback_url = null, string callback_method = null)
         {
              var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
@@ -245,7 +246,11 @@ namespace Plivo.Resource.Profile
                 ein_issuing_country,
                 alt_business_id,
                 alt_business_id_type,
-                doing_business_as
+                doing_business_as,
+                enable_caller_reputation,
+                vetting_provider,
+                callback_url,
+                callback_method
             });
 		return ExecuteWithExceptionUnwrap(() =>
 		{
@@ -270,7 +275,8 @@ namespace Plivo.Resource.Profile
         /// <param name="business_contact_email">business_contact_email</param>
 		public async Task<ProfileResponse> UpdateAsync(string profile_uuid, string company_name =null,  string website = null,
             string entity_type=null, string vertical= null,  AuthorizedContact authorized_contact=null, Address address=null, string business_contact_email = null,
-            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null, string doing_business_as = null)
+            string ein = null, string ein_issuing_country = null, string alt_business_id = null, string alt_business_id_type = null, string doing_business_as = null,
+            bool? enable_caller_reputation = null, List<string> vetting_provider = null, string callback_url = null, string callback_method = null)
         {
              var mandatoryParams = new List<string>{"profile_uuid"};
         var data = CreateData(
@@ -288,7 +294,11 @@ namespace Plivo.Resource.Profile
                 ein_issuing_country,
                 alt_business_id,
                 alt_business_id_type,
-                doing_business_as
+                doing_business_as,
+                enable_caller_reputation,
+                vetting_provider,
+                callback_url,
+                callback_method
             });
 			var result = await Client.Update<ProfileResponse>(Uri + "Profile/"+profile_uuid+"/", data);
             result.Object.StatusCode = result.StatusCode;
