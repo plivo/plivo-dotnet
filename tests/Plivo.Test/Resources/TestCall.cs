@@ -58,6 +58,51 @@ namespace Plivo.Test.Resources
         }
 
         [Test]
+        public void TestCallCreateWithRetryOn()
+        {
+            var data = new Dictionary<string, object>()
+            {
+                {"from", "+919999999999"},
+                {"to", "+919898989898<+919090909090"},
+                {"answer_url", "http://answer.com"},
+                {"answer_method", "POST"},
+                {"retry_on", "busy_line,no_answer"}
+            };
+
+            var request =
+                new PlivoRequest(
+                    "POST",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/",
+                    "",
+                    data);
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"Mocks/callCreateResponse.json"
+                );
+            Setup<CallCreateResponse>(201, response);
+
+            Assert.IsEmpty(
+                ComparisonUtilities.Compare(
+                    response,
+                    Api.Call.Create(
+                        "+919999999999",
+                        new List<string>()
+                        {
+                            {"+919898989898"},
+                            {"+919090909090"}
+                        },
+                        "http://answer.com",
+                        "POST",
+                        retryOn: "busy_line,no_answer"
+                    )
+                )
+            );
+
+            AssertRequest(request);
+        }
+
+        [Test]
         public void TestCallDelete()
         {
             var id = "abcabcabc";

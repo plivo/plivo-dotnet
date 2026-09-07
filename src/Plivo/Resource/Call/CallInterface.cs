@@ -56,6 +56,7 @@ namespace Plivo.Resource.Call {
         /// <param name="statusUrl">Status Url</param>
         /// <param name="statusMethod">Status Method</param>
         /// <param name="statusEvents">Status Events</param>
+        /// <param name="retryOn">Comma-separated list of failure reasons that should trigger the HA Secondary-Number Retry for this call. Valid values are busy_line, no_answer, rejected and ring_timeout. When set, it overrides the account-level retry reasons configuration.</param>
         public CallCreateResponse Create (
             string from = null, List<string> to = null, string answerUrl = null, string answerMethod = null,
             string ringUrl = null, string ringMethod = null,
@@ -68,7 +69,8 @@ namespace Plivo.Resource.Call {
             string machineDetectionMethod = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
             bool? errorIfrentNotFound = null, string statusUrl = null, 
-            string statusMethod = null, List<string> statusEvents = null) 
+            string statusMethod = null, List<string> statusEvents = null,
+            string retryOn = null) 
             {
             to = to ?? new List<string>();
             string _to = string.Join("<", to);
@@ -116,6 +118,7 @@ namespace Plivo.Resource.Call {
                     statusUrl,
                     statusMethod,
                     statusEvents,
+                    retryOn,
                     isVoiceRequest
                 });
 
@@ -162,6 +165,7 @@ namespace Plivo.Resource.Call {
         /// <param name="errorIfrentNotFound">Error ifrent not found.</param>
         /// <param name="callbackUrl">Callback URL.</param>
         /// <param name="callbackMethod">Callback method.</param>
+        /// <param name="retryOn">Comma-separated list of failure reasons that should trigger the HA Secondary-Number Retry for this call. Valid values are busy_line, no_answer, rejected and ring_timeout. When set, it overrides the account-level retry reasons configuration.</param>
         public async Task<AsyncResponse> CreateAsync(
             string from = null, List<string> to = null, string answerUrl = null, string answerMethod = null,
             string ringUrl = null, string ringMethod = null,
@@ -173,7 +177,8 @@ namespace Plivo.Resource.Call {
             uint? machineDetectionTime = null, string machineDetectionUrl = null,
             string machineDetectionMethod = null, string sipHeaders = null,
             uint? ringTimeout = null, string parentCallUuid = null,
-            bool? errorIfrentNotFound = null, string callbackUrl = null, string callbackMethod = "POST") 
+            bool? errorIfrentNotFound = null, string callbackUrl = null, string callbackMethod = "POST",
+            string retryOn = null) 
             {
             to = to ?? new List<string>();
             string _to = string.Join("<", to);
@@ -208,6 +213,7 @@ namespace Plivo.Resource.Call {
                     errorIfrentNotFound,
                     callbackUrl,
                     callbackMethod,
+                    retryOn,
                     isVoiceRequest
                 });
             
