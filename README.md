@@ -657,6 +657,23 @@ namespace PlivoExamples
 
 
 ```
+### Validating webhooks for scoped API tokens
+Webhooks triggered by an API call made with a scoped API token are signed (`X-Plivo-Signature-V3`) with a key derived from that token. Validate them with `VerifySignatureScoped`, which takes the same arguments as `VerifySignature` but with the scoped token in place of the auth token:
+
+```csharp
+using Plivo.Utilities;
+
+bool valid = XPlivoSignatureV3.VerifySignatureScoped(
+    "https://acme.example.com/sms/status",
+    Request.Headers["X-Plivo-Signature-V3-Nonce"],
+    Request.Headers["X-Plivo-Signature-V3"],
+    "<your scoped token>",
+    "POST",
+    parameters);
+```
+
+`XPlivoSignatureV3.DeriveSigningKey(scopedToken)` returns the raw 32-byte HMAC-SHA256 key if you use a custom validator.
+
 ### More examples
 Refer to the [Plivo API Reference](https://api-reference.plivo.com/latest/net/introduction/overview) for more examples.
 

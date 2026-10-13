@@ -117,10 +117,72 @@ namespace Plivo.Utilities
         public static string ComputeSignature(string uri, string nonce, string authToken,
             Dictionary<string, string> parameters, string method)
         {
+            return Sign(uri, nonce, Encoding.UTF8.GetBytes(authToken), parameters, method);
+        }
+
+        private static string Sign(string uri, string nonce, byte[] key,
+            Dictionary<string, string> parameters, string method)
+        {
             string payload = GenerateUrl(uri, parameters, method) + "." + nonce;
-            var hash = new HMACSHA256(Encoding.UTF8.GetBytes(authToken));
-            var computedHash = hash.ComputeHash(Encoding.UTF8.GetBytes(payload));
-            return Convert.ToBase64String(computedHash);
+            return Convert.ToBase64String(HmacSha256(key, Encoding.UTF8.GetBytes(payload)));
+        }
+
+        private static byte[] HmacSha256(byte[] key, byte[] data)
+        {
+            using (var hmac = new HMACSHA256(key))
+            {
+                return hmac.ComputeHash(data);
+            }
+        }
+
+        /// <summary>
+        /// Derive the raw 32-byte webhook signing key for a scoped API token (HKDF-SHA256, RFC 5869)
+        /// </summary>
+        public static byte[] DeriveSigningKey(string scopedToken)
+        {
+            if (scopedToken == null)
+            {
+                throw new ArgumentNullException(nameof(scopedToken));
+            }
+            var prk = HmacSha256(Encoding.UTF8.GetBytes("plivo-scoped-token-v1"), Encoding.UTF8.GetBytes(scopedToken));
+            var info = Encoding.UTF8.GetBytes("plivo-webhook-signing-v1\u0001");
+            return HmacSha256(prk, info);
+        }
+
+        public static string ComputeSignatureScoped(string uri, string nonce, string scopedToken,
+            Dictionary<string, string> parameters, string method)
+        {
+            return Sign(uri, nonce, DeriveSigningKey(scopedToken), parameters, method);
+        }
+
+        /// <summary>
+        /// Verify X-Plivo-Signature-V3 on a webhook caused by a scoped API token
+        /// </summary>
+        public static bool VerifySignatureScoped(string uri, string nonce, string xPlivoSignature, string scopedToken,
+            string method, Dictionary<string, string> parameters = null)
+        {
+            var expected = Encoding.UTF8.GetBytes(ComputeSignatureScoped(uri, nonce, scopedToken,
+                parameters ?? new Dictionary<string, string>(), method));
+            var valid = false;
+            foreach (var signature in xPlivoSignature.Split(','))
+            {
+                valid |= FixedTimeEquals(expected, Encoding.UTF8.GetBytes(signature.Trim()));
+            }
+            return valid;
+        }
+
+        private static bool FixedTimeEquals(byte[] a, byte[] b)
+        {
+            if (a.Length != b.Length)
+            {
+                return false;
+            }
+            var diff = 0;
+            for (var i = 0; i < a.Length; i++)
+            {
+                diff |= a[i] ^ b[i];
+            }
+            return diff == 0;
         }
 
         /// <summary>
