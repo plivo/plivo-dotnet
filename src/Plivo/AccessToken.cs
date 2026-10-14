@@ -22,6 +22,9 @@ namespace Plivo
         public AccessToken(String authId, String authToken, String username)
         {
             BasicAuth = new BasicAuth(authId, authToken);
+            if (authToken.Length == 46 && authToken.StartsWith("PLV", StringComparison.Ordinal)) {
+                throw new PlivoValidationException("AccessToken must be signed with the account auth token; scoped API tokens (PLV...) can't sign JWTs. Use the auth token, or create a token with the JWT API (POST /Account/{auth_id}/JWT/Token/).");
+            }
             if (username.Length == 0) {
                 throw new PlivoValidationException("username empty");
             }
