@@ -59,9 +59,10 @@ namespace Plivo.NetCore.Test
         }
 
         [Fact]
-        public void AuthTokenValidatorRejectsScopedSignature()
+        public void AuthTokenValidatorAcceptsScopedToken()
         {
-            Assert.False(XPlivoSignatureV3.VerifySignature(PostUrl, Nonce, PostSig, Token1, "POST", PostParams()));
+            Assert.True(XPlivoSignatureV3.VerifySignature(PostUrl, Nonce, PostSig + "," + AuthSig(), Token1, "POST", PostParams()));
+            Assert.False(XPlivoSignatureV3.VerifySignature(PostUrl, Nonce, AuthSig(), Token1, "POST", PostParams()));
         }
 
         private static string AuthSig()

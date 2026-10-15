@@ -208,7 +208,7 @@ namespace Plivo.Utilities
         }
 
         /// <summary>
-        /// Verify X-Plivo-Signature-V2
+        /// Verify X-Plivo-Signature-V3 with an auth token, or with a scoped API token (PLV..., 46 chars) via DeriveSigningKey
         /// </summary>
         /// <param name="uri"></param>
         /// <param name="nonce"></param>
@@ -218,6 +218,10 @@ namespace Plivo.Utilities
         public static bool VerifySignature(string uri, string nonce, string xPlivoSignature, string authToken,
             string method, Dictionary<string, string> parameters = null)
         {
+            if (authToken != null && authToken.Length == 46 && authToken.StartsWith("PLV", StringComparison.Ordinal))
+            {
+                return VerifySignatureScoped(uri, nonce, xPlivoSignature, authToken, method, parameters);
+            }
             if (parameters == null)
             {
                 parameters = new Dictionary<string, string>();
