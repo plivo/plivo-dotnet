@@ -3,6 +3,7 @@
 **Feature - Webhook signature validation for scoped API tokens**
 - Added `XPlivoSignatureV3.VerifySignatureScoped` and `XPlivoSignatureV3.ComputeSignatureScoped` to validate `X-Plivo-Signature-V3` on webhooks caused by scoped-token API calls
 - Added `XPlivoSignatureV3.DeriveSigningKey` (HKDF-SHA256) exposing the scoped-token webhook signing key
+- `XPlivoSignatureV3.VerifySignatureScoped` also accepts an `IEnumerable<string>` of keys (scoped tokens and/or auth token) and returns true if any of them signed the webhook
 
 ## [5.52.1](https://github.com/plivo/plivo-dotnet/tree/v5.52.1) (2026-05-26)
 **Feature - Profile API DBA field support**

@@ -9,6 +9,7 @@ namespace Plivo.NetCore.Test
     {
         private static readonly string Token1 = "PLV" + "obLD1OX2BxgpOktcbX6PkBEiM0RVZneImaq7zN3u_wA";
         private static readonly string Token2 = "PLV" + new string('A', 43);
+        private const string AuthToken = "test-auth-token";
         private const string Nonce = "01456268273535255990";
         private const string PostUrl = "https://acme.example.com/sms/status";
         private const string PostSig = "Kxo1ZuQEWE578HnfEhiJvLjXNzZXYPvkZDKNq9s4kvk=";
@@ -61,6 +62,48 @@ namespace Plivo.NetCore.Test
         public void AuthTokenValidatorRejectsScopedSignature()
         {
             Assert.False(XPlivoSignatureV3.VerifySignature(PostUrl, Nonce, PostSig, Token1, "POST", PostParams()));
+        }
+
+        private static string AuthSig()
+        {
+            return XPlivoSignatureV3.ComputeSignature(PostUrl, Nonce, AuthToken, PostParams(), "POST");
+        }
+
+        private static bool VerifyKeys(string header, IEnumerable<string> keys)
+        {
+            return XPlivoSignatureV3.VerifySignatureScoped(PostUrl, Nonce, header, keys, "POST", PostParams());
+        }
+
+        [Fact]
+        public void KeyListAcceptsScopedSignature()
+        {
+            Assert.Equal(PostSig, XPlivoSignatureV3.ComputeSignatureScoped(PostUrl, Nonce, Token1, PostParams(), "POST"));
+            Assert.True(VerifyKeys(PostSig, new[] {Token1, AuthToken}));
+        }
+
+        [Fact]
+        public void KeyListAcceptsAuthTokenSignature()
+        {
+            Assert.True(VerifyKeys(AuthSig(), new[] {Token1, AuthToken}));
+        }
+
+        [Fact]
+        public void KeyListMatchesAuthTokenAmongMultipleSignatures()
+        {
+            Assert.True(VerifyKeys(PostSig + "," + AuthSig(), new[] {Token2, AuthToken}));
+        }
+
+        [Fact]
+        public void KeyListRejectsWrongScopedToken()
+        {
+            Assert.False(VerifyKeys(PostSig, new[] {Token2}));
+        }
+
+        [Fact]
+        public void KeyListEmptyOrWithBlankEntries()
+        {
+            Assert.False(VerifyKeys(PostSig, new string[0]));
+            Assert.True(VerifyKeys(PostSig, new[] {null, "", Token1}));
         }
     }
 }

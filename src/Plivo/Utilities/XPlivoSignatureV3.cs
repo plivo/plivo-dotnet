@@ -161,12 +161,34 @@ namespace Plivo.Utilities
         public static bool VerifySignatureScoped(string uri, string nonce, string xPlivoSignature, string scopedToken,
             string method, Dictionary<string, string> parameters = null)
         {
-            var expected = Encoding.UTF8.GetBytes(ComputeSignatureScoped(uri, nonce, scopedToken,
-                parameters ?? new Dictionary<string, string>(), method));
+            return VerifySignatureScoped(uri, nonce, xPlivoSignature, new[] {scopedToken}, method, parameters);
+        }
+
+        /// <summary>
+        /// Verify X-Plivo-Signature-V3 against several keys; true if any of them signed the webhook.
+        /// Scoped API tokens (46 chars, starting with "PLV") are verified with the HKDF-derived signing key,
+        /// any other key is treated as an auth token. Null or empty keys are skipped.
+        /// </summary>
+        public static bool VerifySignatureScoped(string uri, string nonce, string xPlivoSignature, IEnumerable<string> keys,
+            string method, Dictionary<string, string> parameters = null)
+        {
+            parameters = parameters ?? new Dictionary<string, string>();
+            var candidates = xPlivoSignature.Split(',');
             var valid = false;
-            foreach (var signature in xPlivoSignature.Split(','))
+            foreach (var key in keys)
             {
-                valid |= FixedTimeEquals(expected, Encoding.UTF8.GetBytes(signature.Trim()));
+                if (string.IsNullOrEmpty(key))
+                {
+                    continue;
+                }
+                var computed = key.Length == 46 && key.StartsWith("PLV", StringComparison.Ordinal)
+                    ? ComputeSignatureScoped(uri, nonce, key, parameters, method)
+                    : ComputeSignature(uri, nonce, key, parameters, method);
+                var expected = Encoding.UTF8.GetBytes(computed);
+                foreach (var signature in candidates)
+                {
+                    valid |= FixedTimeEquals(expected, Encoding.UTF8.GetBytes(signature.Trim()));
+                }
             }
             return valid;
         }
