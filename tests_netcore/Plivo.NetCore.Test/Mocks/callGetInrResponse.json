@@ -1,0 +1,23 @@
+{
+  "answer_time": "2017-05-22 17:49:31+05:30",
+  "api_id": "95727cf4-3eeb-11e7-8edf-02ed609bd62b",
+  "bill_duration": 60,
+  "billed_duration": 60,
+  "call_direction": "outbound",
+  "call_duration": 60,
+  "call_status": "ANSWER",
+  "call_uuid": "4d04c52e-cea3-4458-bbdb-0bfc314ee7cd",
+  "end_time": "2017-05-22 17:49:40+05:30",
+  "from_number": "+919999900001",
+  "initiation_time": "2017-05-22 17:49:30+05:30",
+  "parent_call_uuid": null,
+  "resource_uri": "/v1/Account/MAXXXXXXXXXXXXXXXXXX/Call/4d04c52e-cea3-4458-bbdb-0bfc314ee7cd/",
+  "to_number": "919999900002",
+  "total_amount": "0.15000",
+  "total_amount_inr": "12.52500",
+  "total_rate": "0.03000",
+  "total_rate_inr": "2.50500",
+  "noise_cancellation_amount_inr": "32.14750",
+  "stir_verification": "Verified",
+  "stir_attestation": "A"
+}

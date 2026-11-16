@@ -11,11 +11,18 @@ namespace Plivo.Resource.VerifySession
         public string Channel { get; set; }
         [JsonProperty("charge")]
         public string Charge { get; set; }
+        // Present only for INR-billed accounts; null otherwise.
+        [JsonProperty("charge_inr")]
+        public string ChargeInr { get; set; }
     }
 
     public class Charges {
         [JsonProperty("total_charge")]
         public string TotalCharge { get; set; }
+        // Present only for INR-billed accounts when every attempt has an INR charge
+        // and there is no validation charge; null otherwise.
+        [JsonProperty("total_charge_inr")]
+        public string TotalChargeInr { get; set; }
         [JsonProperty("validation_charge")]
         public string ValidationCharge { get; set; }
         [JsonProperty("attempt_charges")]
@@ -31,6 +38,10 @@ namespace Plivo.Resource.VerifySession
         public string Status { get; set; }
         [JsonProperty("time")]
         public string Time { get; set; }
+        // JSON number (not a string like the charges fields). Present only for
+        // INR-billed accounts; null otherwise, so a real 0 stays distinct from absent.
+        [JsonProperty("amount_inr")]
+        public double? AmountInr { get; set; }
         [JsonProperty("brand_name")]
         public string BrandName {get; set;}
         [JsonProperty("app_hash")]

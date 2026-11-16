@@ -264,6 +264,78 @@ namespace Plivo.NetCore.Test.Resources
         }
         
         [Fact]
+        public void TestCallGetUsdAccountHasNoInrFields()
+        {
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/callGetResponse.json"
+                );
+            Setup<Call>(200, response);
+
+            var call = Api.Call.Get("abcabcabc");
+
+            Assert.Equal("0.00000", call.TotalAmount);
+            Assert.Null(call.TotalAmountInr);
+            Assert.Null(call.TotalRateInr);
+            Assert.Null(call.NoiseCancellationAmountInr);
+        }
+
+        [Fact]
+        public void TestCallGetInrAccount()
+        {
+            var id = "abcabcabc";
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Call/" + id + "/",
+                    "",
+                    new Dictionary<string, object>()
+                    {
+                        {"is_voice_request", true}
+                    });
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/callGetInrResponse.json"
+                );
+            Setup<Call>(200, response);
+
+            var call = Api.Call.Get(id);
+
+            Assert.Empty(ComparisonUtilities.Compare(response, call));
+            Assert.Equal("0.15000", call.TotalAmount);
+            Assert.Equal("12.52500", call.TotalAmountInr);
+            Assert.Equal("0.03000", call.TotalRate);
+            Assert.Equal("2.50500", call.TotalRateInr);
+            Assert.Equal("32.14750", call.NoiseCancellationAmountInr);
+            AssertRequest(request);
+        }
+
+        [Fact]
+        public void TestCallListInrAndUsdRows()
+        {
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/callListInrResponse.json"
+                );
+            Setup<ListResponse<Call>>(200, response);
+
+            var calls = Api.Call.List(endTime_Gt: DateTime.Parse("2017-06-07"));
+
+            Assert.Empty(ComparisonUtilities.Compare(response, calls));
+            Assert.Equal(2, calls.Objects.Count);
+            // INR-billed row without a noise cancellation amount: key present, empty string.
+            Assert.Equal("12.52500", calls.Objects[0].TotalAmountInr);
+            Assert.Equal("2.50500", calls.Objects[0].TotalRateInr);
+            Assert.Equal("", calls.Objects[0].NoiseCancellationAmountInr);
+            // USD-billed row: no _inr keys.
+            Assert.Equal("0.13600", calls.Objects[1].TotalAmount);
+            Assert.Null(calls.Objects[1].TotalAmountInr);
+            Assert.Null(calls.Objects[1].TotalRateInr);
+            Assert.Null(calls.Objects[1].NoiseCancellationAmountInr);
+        }
+
+        [Fact]
         public void TestCallGetAsync()
         {
             var id = "abcabcabc";

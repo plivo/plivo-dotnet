@@ -31,7 +31,12 @@ namespace Plivo.Resource.Call
         public string ResourceUri { get; set; }
         public string ToNumber { get; set; }
         public string TotalAmount { get; set; }
+        // *Inr fields: present only for INR-billed CDRs; null otherwise.
+        public string TotalAmountInr { get; set; }
         public string TotalRate { get; set; }
+        public string TotalRateInr { get; set; }
+        // Empty string when the call is INR-billed but has no noise cancellation amount.
+        public string NoiseCancellationAmountInr { get; set; }
         public string StirVerification { get; set; }
         public string VoiceNetworkGroup { get; set; }
         public string StirAttestation { get; set; }
@@ -482,7 +487,10 @@ namespace Plivo.Resource.Call
                    "ResourceUri: " + ResourceUri + "\n" +
                    "ToNumber: " + ToNumber + "\n" +
                    "TotalAmount: " + TotalAmount + "\n" +
+                   "TotalAmountInr: " + TotalAmountInr + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
+                   "TotalRateInr: " + TotalRateInr + "\n" +
+                   "NoiseCancellationAmountInr: " + NoiseCancellationAmountInr + "\n" +
                    "StirVerification: " + StirVerification + "\n" +
                    "VoiceNetworkGroup: " + VoiceNetworkGroup + "\n" +
                    "StirAttestation: " + StirAttestation + "\n" +

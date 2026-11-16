@@ -9,6 +9,8 @@ namespace Plivo.Resource.PhoneNumber
         public string Country { get; set; }
         public uint Lata { get; set; }
         public string MonthlyRentalRate { get; set; }
+        // *Inr fields: present only for INR-billed accounts; null otherwise.
+        public string MonthlyRentalRateInr { get; set; }
         public string Number { get; set; }
         public string Type { get; set; }
         public string Prefix { get; set; }
@@ -18,15 +20,19 @@ namespace Plivo.Resource.PhoneNumber
         public object Restriction { get; set; }
         public object RestrictionText { get; set; }
         public string SetupRate { get; set; }
+        public string SetupRateInr { get; set; }
         public bool SmsEnabled { get; set; }
         public string SmsRate { get; set; }
+        public string SmsRateInr { get; set; }
         public bool VoiceEnabled { get; set; }
         public string VoiceRate { get; set; }
+        public string VoiceRateInr { get; set; }
         public List<Prerequisite> Prerequisites { get; set; }
         public string City { get; set; }
 
         public bool MmsEnabled { get; set; }
         public string MmsRate { get; set; }
+        public string MmsRateInr { get; set; }
 
         public Requirement ComplianceRequirement { get; set; }
 
@@ -36,6 +42,7 @@ namespace Plivo.Resource.PhoneNumber
                 "Country: " + Country + "\n" +
                 "Lata: " + Lata + "\n" +
                 "MonthlyRentalRate: " + MonthlyRentalRate + "\n" +
+                "MonthlyRentalRateInr: " + MonthlyRentalRateInr + "\n" +
                 "Number: " + Number + "\n" +
                 "Type: " + Type + "\n" +
                 "Prefix: " + Prefix + "\n" +
@@ -45,13 +52,17 @@ namespace Plivo.Resource.PhoneNumber
                 "Restriction: " + Restriction + "\n" +
                 "RestrictionText: " + RestrictionText + "\n" +
                 "SetupRate: " + SetupRate + "\n" +
+                "SetupRateInr: " + SetupRateInr + "\n" +
                 "SmsEnabled: " + SmsEnabled + "\n" +
                 "SmsRate: " + SmsRate + "\n" +
+                "SmsRateInr: " + SmsRateInr + "\n" +
                 "VoiceEnabled: " + VoiceEnabled + "\n" +
                 "VoiceRate: " + VoiceRate + "\n" +
+                "VoiceRateInr: " + VoiceRateInr + "\n" +
                 "City: " + City + "\n" + 
                 "MmsEnabled: " + MmsEnabled + "\n" +
                 "MmsRate: " + MmsRate + "\n" +
+                "MmsRateInr: " + MmsRateInr + "\n" +
                 "ComplianceRequirement: " + ComplianceRequirement + "\n" +
                 "Prerequisites: " + Prerequisites + "\n";
                 
