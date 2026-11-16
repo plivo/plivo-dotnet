@@ -69,10 +69,22 @@ namespace Plivo.Resource.Message
         public string TotalAmount { get; set; }
 
         /// <summary>
+        /// Gets or sets the total amount in INR. Present only for INR-billed accounts; null otherwise.
+        /// </summary>
+        /// <value>The total amount in INR.</value>
+        public string TotalAmountInr { get; set; }
+
+        /// <summary>
         /// Gets or sets the total rate.
         /// </summary>
         /// <value>The total rate.</value>
         public string TotalRate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total rate in INR. Present only for INR-billed accounts; null otherwise.
+        /// </summary>
+        /// <value>The total rate in INR.</value>
+        public string TotalRateInr { get; set; }
 
         /// <summary>
         /// Gets or sets the units.
@@ -117,12 +129,24 @@ namespace Plivo.Resource.Message
         /// <value>The carrier_fees_rate.</value>
         public string CarrierFeesRate { get; set; }
 
+        /// <summary>
+        /// Gets or sets the carrier_fees_rate_inr. Present only for INR-billed accounts; null otherwise.
+        /// </summary>
+        /// <value>The carrier_fees_rate_inr.</value>
+        public string CarrierFeesRateInr { get; set; }
+
 
         /// <summary>
         /// Gets or sets the carrier_fees.
         /// </summary>
         /// <value>The carrier_fees.</value>
         public string CarrierFees { get; set; }
+
+        /// <summary>
+        /// Gets or sets the carrier_fees_inr. Present only for INR-billed accounts; null otherwise.
+        /// </summary>
+        /// <value>The carrier_fees_inr.</value>
+        public string CarrierFeesInr { get; set; }
 
         /// <summary>
         /// Gets or sets the requester ip.
@@ -216,7 +240,9 @@ namespace Plivo.Resource.Message
                    "ResourceUri: " + ResourceUri + "\n" +
                    "ToNumber: " + ToNumber + "\n" +
                    "TotalAmount: " + TotalAmount + "\n" +
+                   "TotalAmountInr: " + TotalAmountInr + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
+                   "TotalRateInr: " + TotalRateInr + "\n" +
                    "PowerpackID: " + PowerpackId + "\n" +
                    "Units: " + Units + "\n" +
                    "DestinationCountryIso2: " + DestinationCountryIso2 + "\n" +
@@ -226,7 +252,9 @@ namespace Plivo.Resource.Message
                    "IsDomestic: " + IsDomestic + "\n" +
                    "DestinationNetwork: " + DestinationNetwork + "\n" +
                    "CarrierFeesRate: " + CarrierFeesRate + "\n" +
+                   "CarrierFeesRateInr: " + CarrierFeesRateInr + "\n" +
                    "CarrierFees: " + CarrierFees + "\n" +
+                   "CarrierFeesInr: " + CarrierFeesInr + "\n" +
                    "ReplacedSender: " + ReplacedSender + "\n" +
                    "DLTEntityID: " + DltEntityId + "\n" +
                    "DLTTemplateID: " + DltTemplateId + "\n" +

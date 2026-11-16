@@ -115,5 +115,76 @@ namespace Plivo.NetCore.Test.Resources
 
             AssertRequest(request);
         }
+
+        [Fact]
+        public void TestMessageGetUsdAccountHasNoInrFields()
+        {
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/messageGetResponse.json"
+                );
+            Setup<Message>(200, response);
+
+            var message = Api.Message.Get("abcabcabc");
+
+            Assert.Equal("0.00250", message.TotalAmount);
+            Assert.Null(message.TotalAmountInr);
+            Assert.Null(message.TotalRateInr);
+            Assert.Null(message.CarrierFeesInr);
+            Assert.Null(message.CarrierFeesRateInr);
+        }
+
+        [Fact]
+        public void TestMessageGetInrAccount()
+        {
+            var id = "abcabcabc";
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/Message/" + id + "/",
+                    "");
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/messageGetInrResponse.json"
+                );
+            Setup<Message>(200, response);
+
+            var message = Api.Message.Get(id);
+
+            Assert.Empty(ComparisonUtilities.Compare(response, message));
+            Assert.Equal("0.00500", message.TotalAmount);
+            Assert.Equal("0.41500", message.TotalAmountInr);
+            Assert.Equal("0.00500", message.TotalRate);
+            Assert.Equal("0.41500", message.TotalRateInr);
+            Assert.Equal("0.00100", message.CarrierFees);
+            Assert.Equal("0.08300", message.CarrierFeesInr);
+            Assert.Equal("0.00100", message.CarrierFeesRate);
+            Assert.Equal("0.08300", message.CarrierFeesRateInr);
+            AssertRequest(request);
+        }
+
+        [Fact]
+        public void TestMessageListInrAccount()
+        {
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/messageListInrResponse.json"
+                );
+            Setup<ListResponse<Message>>(200, response);
+
+            var messages = Api.Message.List(limit: 10);
+
+            Assert.Empty(ComparisonUtilities.Compare(response, messages));
+            Assert.Equal(2, messages.Objects.Count);
+            Assert.Equal("0.41500", messages.Objects[0].TotalAmountInr);
+            Assert.Equal("0.41500", messages.Objects[0].TotalRateInr);
+            Assert.Equal("0.08300", messages.Objects[0].CarrierFeesInr);
+            Assert.Equal("0.08300", messages.Objects[0].CarrierFeesRateInr);
+            Assert.Equal("0.83000", messages.Objects[1].TotalAmountInr);
+            Assert.Equal("0.41500", messages.Objects[1].TotalRateInr);
+            Assert.Equal("0.16600", messages.Objects[1].CarrierFeesInr);
+            Assert.Equal("0.08300", messages.Objects[1].CarrierFeesRateInr);
+        }
     }
 }

@@ -1,0 +1,76 @@
+{
+  "api_id": "3c796fab-c610-4b23-930e-471adf6ab16c",
+  "meta": {
+    "limit": 20,
+    "offset": 0,
+    "next": null,
+    "previous": null
+  },
+  "sessions": [
+    {
+      "session_uuid": "7b28af5c-3e25-45e2-be1e-9235e00dc87a",
+      "app_uuid": "3cdec449-a367-435e-b4f9-40d777a7cfcc",
+      "recipient": "919999900004",
+      "channel": "sms",
+      "status": "verified",
+      "count": 1,
+      "attempt_details": [
+        {
+          "channel": "sms",
+          "attempt_uuid": "f26731c0-d076-42d3-b678-264b0a610b87",
+          "status": "delivered",
+          "time": "2023-07-20T08:02:18.981765Z",
+          "amount": 0.005,
+          "amount_inr": 0.415
+        }
+      ],
+      "charges": {
+        "total_charge": "0.00500",
+        "total_charge_inr": "0.41500",
+        "validation_charge": "0.0000",
+        "attempt_charges": [
+          {
+            "attempt_uuid": "f26731c0-d076-42d3-b678-264b0a610b87",
+            "channel": "sms",
+            "charge": "0.00500",
+            "charge_inr": "0.41500"
+          }
+        ]
+      },
+      "created_at": "2023-07-20T08:02:18.981765Z",
+      "updated_at": "2023-07-20T08:03:18.981765Z"
+    },
+    {
+      "session_uuid": "8c39bf6d-4f36-46f3-cf0a-a346f11ed98b",
+      "app_uuid": "3cdec449-a367-435e-b4f9-40d777a7cfcc",
+      "recipient": "919999900004",
+      "channel": "voice",
+      "status": "verified",
+      "count": 1,
+      "attempt_details": [
+        {
+          "channel": "voice",
+          "attempt_uuid": "a1b2c3d4-d076-42d3-b678-264b0a610b88",
+          "status": "completed",
+          "time": "2023-07-20T09:02:18.981765Z",
+          "amount": 0.01,
+          "amount_inr": 0.83
+        }
+      ],
+      "charges": {
+        "total_charge": "0.02000",
+        "validation_charge": "0.01000",
+        "attempt_charges": [
+          {
+            "attempt_uuid": "a1b2c3d4-d076-42d3-b678-264b0a610b88",
+            "channel": "voice",
+            "charge": "0.01000",
+            "charge_inr": "0.83000"
+          }
+        ]
+      },
+      "created_at": "2023-07-20T09:02:18.981765Z",
+      "updated_at": "2023-07-20T09:03:18.981765Z"
+    }
+  ]
+}

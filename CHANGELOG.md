@@ -1,4 +1,13 @@
 # Change Log
+## [5.53.1](https://github.com/plivo/plivo-dotnet/tree/v5.53.1) (2026-11-16)
+**Feature - INR amount fields on API responses**
+- Added `TotalAmountInr`, `TotalRateInr`, `CarrierFeesInr` and `CarrierFeesRateInr` to the `Message` resource (Get and List)
+- Added `TotalAmountInr`, `TotalRateInr` and `NoiseCancellationAmountInr` to the `Call` resource (Get and List)
+- Added `SetupRateInr`, `MonthlyRentalRateInr`, `SmsRateInr`, `MmsRateInr` and `VoiceRateInr` to the `PhoneNumber` resource (Search)
+- Added `MonthlyRentalRateInr`, `SmsRateInr`, `MmsRateInr` and `VoiceRateInr` to the `RentedNumber` resource (Get and List)
+- Added `Charges.TotalChargeInr`, `AttemptCharge.ChargeInr` and `AttemptDetail.AmountInr` (`double?`) to the `VerifySession` resource (Get and List)
+- The INR fields are set only for INR-billed accounts and are `null` for USD accounts. Backward-compatible additive response fields
+
 ## [5.53.0](https://github.com/plivo/plivo-dotnet/tree/v5.53.0) (2026-08-19)
 **Feature - Caller Reputation profile-first API**
 - Added optional `enable_caller_reputation`, `caller_reputation_carriers`, `url` and `method` parameters to `Profile.Update` and `Profile.UpdateAsync`, serialized to the matching wire keys

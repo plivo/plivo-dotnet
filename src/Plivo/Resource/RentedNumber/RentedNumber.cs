@@ -16,19 +16,24 @@ namespace Plivo.Resource.RentedNumber
         public string Country { get; set; }
         public bool MmsEnabled { get; set; }
         public string MmsRate { get; set; }
+        // *Inr fields: present only for INR-billed accounts; null otherwise.
+        public string MmsRateInr { get; set; }
         public string MonthlyRentalRate { get; set; }
+        public string MonthlyRentalRateInr { get; set; }
         public string Number { get; set; }
         public string NumberType { get; set; }
         public string Region { get; set; }
         public string ResourceUri { get; set; }
         public bool SmsEnabled { get; set; }
         public string SmsRate { get; set; }
+        public string SmsRateInr { get; set; }
         public object SubAccount { get; set; }
         public string SubAccountName { get; set; }
         public string Type { get; set; }
         public List<VerificationInfo> VerificationInfo { get; set; }
         public bool VoiceEnabled { get; set; }
         public string VoiceRate { get; set; }
+        public string VoiceRateInr { get; set; }
 
         public string ComplianceApplicationId { get; set; }
         public string ComplianceStatus { get; set; }
@@ -56,7 +61,9 @@ namespace Plivo.Resource.RentedNumber
                     "CnamLookup: " + CnamLookup + "\n" +
                     "MmsEnabled: " + MmsEnabled + "\n" +
                     "MmsRate: " + MmsRate + "\n" +
+                    "MmsRateInr: " + MmsRateInr + "\n" +
                     "MonthlyRentalRate: " + MonthlyRentalRate + "\n" +
+                    "MonthlyRentalRateInr: " + MonthlyRentalRateInr + "\n" +
                     "Number: " + Number + "\n" +
                     "NumberType: " + NumberType + "\n" +
                     "Region: " + Region + "\n" +
@@ -64,6 +71,7 @@ namespace Plivo.Resource.RentedNumber
                     "ResourceUri: " + ResourceUri + "\n" +
                     "SmsEnabled: " + SmsEnabled + "\n" +
                     "SmsRate: " + SmsRate + "\n" +
+                    "SmsRateInr: " + SmsRateInr + "\n" +
                     "SubAccount: " + SubAccount + "\n" +
                     "SubAccountName: " + SubAccountName + "\n" +
                     "Type: " + Type + "\n" +
@@ -77,6 +85,7 @@ namespace Plivo.Resource.RentedNumber
                     "TollFreeSmsVerificationOrderStatus: " + TollFreeSmsVerificationOrderStatus + "\n" +
                     "TollFreeSmsVerificationId: " + TollFreeSmsVerificationId + "\n" +
                     "VoiceRate: " + VoiceRate + "\n" +
+                    "VoiceRateInr: " + VoiceRateInr + "\n" +
                     "FallbackNumber: " + FallbackNumber + "\n";
             }
             return
@@ -87,6 +96,7 @@ namespace Plivo.Resource.RentedNumber
                 "Carrier: " + Carrier + "\n" +
                 "CnamLookup: " + CnamLookup + "\n" +
                 "MonthlyRentalRate: " + MonthlyRentalRate + "\n" +
+                "MonthlyRentalRateInr: " + MonthlyRentalRateInr + "\n" +
                 "Number: " + Number + "\n" +
                 "NumberType: " + NumberType + "\n" +
                 "Region: " + Region + "\n" +
@@ -94,6 +104,7 @@ namespace Plivo.Resource.RentedNumber
                 "ResourceUri: " + ResourceUri + "\n" +
                 "SmsEnabled: " + SmsEnabled + "\n" +
                 "SmsRate: " + SmsRate + "\n" +
+                "SmsRateInr: " + SmsRateInr + "\n" +
                 "SubAccount: " + SubAccount + "\n" +
                 "SubAccountName: " + SubAccountName + "\n" +
                 "Type: " + Type + "\n" +
@@ -104,6 +115,7 @@ namespace Plivo.Resource.RentedNumber
                 "TollFreeSmsVerificationOrderStatus: " + TollFreeSmsVerificationOrderStatus + "\n" +
                 "TollFreeSmsVerificationId: " + TollFreeSmsVerificationId + "\n" +
                 "VoiceRate: " + VoiceRate + "\n" +
+                "VoiceRateInr: " + VoiceRateInr + "\n" +
                 "FallbackNumber: " + FallbackNumber + "\n";
         }
 

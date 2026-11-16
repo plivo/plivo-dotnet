@@ -41,6 +41,61 @@ namespace Plivo.NetCore.Test.Resources
         }
 
         [Fact]
+        public void TestPhoneNumberListUsdAccountHasNoInrFields()
+        {
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/phoneNumberListResponse.json"
+                );
+            Setup<ListResponse<PhoneNumber>>(200, response);
+
+            var numbers = Api.PhoneNumber.List("IN", limit: 12);
+
+            Assert.Equal("0.80000", numbers.Objects[0].MonthlyRentalRate);
+            Assert.Null(numbers.Objects[0].SetupRateInr);
+            Assert.Null(numbers.Objects[0].MonthlyRentalRateInr);
+            Assert.Null(numbers.Objects[0].SmsRateInr);
+            Assert.Null(numbers.Objects[0].MmsRateInr);
+            Assert.Null(numbers.Objects[0].VoiceRateInr);
+        }
+
+        [Fact]
+        public void TestPhoneNumberListInrAccount()
+        {
+            var request =
+                new PlivoRequest(
+                    "GET",
+                    "Account/MAXXXXXXXXXXXXXXXXXX/PhoneNumber/",
+                    "",
+                    new Dictionary<string, object>()
+                    {
+                        {"country_iso", "US"},
+                        {"limit", 2}
+                    });
+
+            var response =
+                System.IO.File.ReadAllText(
+                    SOURCE_DIR + @"../Mocks/phoneNumberListInrResponse.json"
+                );
+            Setup<ListResponse<PhoneNumber>>(200, response);
+
+            var numbers = Api.PhoneNumber.List("US", limit: 2);
+
+            Assert.Empty(ComparisonUtilities.Compare(response, numbers));
+            Assert.Equal(2, numbers.Objects.Count);
+            Assert.Equal("0.00000", numbers.Objects[0].SetupRateInr);
+            Assert.Equal("66.40000", numbers.Objects[0].MonthlyRentalRateInr);
+            Assert.Equal("0.66400", numbers.Objects[0].SmsRateInr);
+            Assert.Equal("1.49400", numbers.Objects[0].MmsRateInr);
+            Assert.Equal("0.41500", numbers.Objects[0].VoiceRateInr);
+            Assert.Equal("83.00000", numbers.Objects[1].SetupRateInr);
+            // MMS disabled: neither mms_rate nor mms_rate_inr is sent.
+            Assert.Null(numbers.Objects[1].MmsRate);
+            Assert.Null(numbers.Objects[1].MmsRateInr);
+            AssertRequest(request);
+        }
+
+        [Fact]
         public void TestPhoneNumberBuy()
         {
             var id = "abcabcabc";
