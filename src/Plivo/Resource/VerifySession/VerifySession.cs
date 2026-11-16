@@ -38,6 +38,12 @@ namespace Plivo.Resource.VerifySession
         public string Status { get; set; }
         [JsonProperty("time")]
         public string Time { get; set; }
+        /// <summary>
+        /// Gets or sets the attempt amount. JSON number (not a string like the charges fields).
+        /// </summary>
+        /// <value>The attempt amount.</value>
+        [JsonProperty("amount")]
+        public double? Amount { get; set; }
         // JSON number (not a string like the charges fields). Present only for
         // INR-billed accounts; null otherwise, so a real 0 stays distinct from absent.
         [JsonProperty("amount_inr")]

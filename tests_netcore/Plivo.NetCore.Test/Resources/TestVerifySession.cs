@@ -80,6 +80,7 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Null(session.Charges.TotalChargeInr);
             Assert.Equal("0.00500", session.Charges.AttemptCharges[0].Charge);
             Assert.Null(session.Charges.AttemptCharges[0].ChargeInr);
+            Assert.Equal(0.005, session.AttemptDetails[0].Amount);
             Assert.Null(session.AttemptDetails[0].AmountInr);
         }
 
@@ -106,8 +107,10 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Equal("0.41500", session.Charges.AttemptCharges[0].ChargeInr);
             Assert.Equal("0.00000", session.Charges.AttemptCharges[1].ChargeInr);
             Assert.Equal(2, session.AttemptDetails.Length);
+            Assert.Equal(0.005, session.AttemptDetails[0].Amount);
             Assert.Equal(0.415, session.AttemptDetails[0].AmountInr);
             // A genuine zero stays distinguishable from "absent".
+            Assert.Equal(0.0, session.AttemptDetails[1].Amount);
             Assert.Equal(0.0, session.AttemptDetails[1].AmountInr);
             AssertRequest(request);
         }
@@ -126,12 +129,14 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Equal(2, sessions.Sessions.Count);
             Assert.Equal("0.41500", sessions.Sessions[0].Charges.TotalChargeInr);
             Assert.Equal("0.41500", sessions.Sessions[0].Charges.AttemptCharges[0].ChargeInr);
+            Assert.Equal(0.005, sessions.Sessions[0].AttemptDetails[0].Amount);
             Assert.Equal(0.415, sessions.Sessions[0].AttemptDetails[0].AmountInr);
             // Validation charge has no INR value, so the session total is omitted
             // while the per-attempt INR charge is still present.
             Assert.Null(sessions.Sessions[1].Charges.TotalChargeInr);
             Assert.Equal("0.83000", sessions.Sessions[1].Charges.AttemptCharges[0].ChargeInr);
-            Assert.Null(sessions.Sessions[1].AttemptDetails[0].AmountInr);
+            Assert.Equal(0.01, sessions.Sessions[1].AttemptDetails[0].Amount);
+            Assert.Equal(0.83, sessions.Sessions[1].AttemptDetails[0].AmountInr);
         }
 
         [Fact]

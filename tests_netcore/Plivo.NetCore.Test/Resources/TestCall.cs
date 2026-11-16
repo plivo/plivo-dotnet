@@ -307,6 +307,7 @@ namespace Plivo.NetCore.Test.Resources
             Assert.Equal("12.52500", call.TotalAmountInr);
             Assert.Equal("0.03000", call.TotalRate);
             Assert.Equal("2.50500", call.TotalRateInr);
+            Assert.Equal("0.38500", call.NoiseCancellationAmount);
             Assert.Equal("32.14750", call.NoiseCancellationAmountInr);
             AssertRequest(request);
         }
@@ -327,11 +328,13 @@ namespace Plivo.NetCore.Test.Resources
             // INR-billed row without a noise cancellation amount: key present, empty string.
             Assert.Equal("12.52500", calls.Objects[0].TotalAmountInr);
             Assert.Equal("2.50500", calls.Objects[0].TotalRateInr);
+            Assert.Equal("", calls.Objects[0].NoiseCancellationAmount);
             Assert.Equal("", calls.Objects[0].NoiseCancellationAmountInr);
             // USD-billed row: no _inr keys.
             Assert.Equal("0.13600", calls.Objects[1].TotalAmount);
             Assert.Null(calls.Objects[1].TotalAmountInr);
             Assert.Null(calls.Objects[1].TotalRateInr);
+            Assert.Equal("", calls.Objects[1].NoiseCancellationAmount);
             Assert.Null(calls.Objects[1].NoiseCancellationAmountInr);
         }
 

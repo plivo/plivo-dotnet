@@ -35,6 +35,12 @@ namespace Plivo.Resource.Call
         public string TotalAmountInr { get; set; }
         public string TotalRate { get; set; }
         public string TotalRateInr { get; set; }
+        /// <summary>
+        /// Gets or sets the noise cancellation amount. Empty string when the call has no
+        /// noise cancellation amount.
+        /// </summary>
+        /// <value>The noise cancellation amount.</value>
+        public string NoiseCancellationAmount { get; set; }
         // Empty string when the call is INR-billed but has no noise cancellation amount.
         public string NoiseCancellationAmountInr { get; set; }
         public string StirVerification { get; set; }
@@ -490,6 +496,7 @@ namespace Plivo.Resource.Call
                    "TotalAmountInr: " + TotalAmountInr + "\n" +
                    "TotalRate: " + TotalRate + "\n" +
                    "TotalRateInr: " + TotalRateInr + "\n" +
+                   "NoiseCancellationAmount: " + NoiseCancellationAmount + "\n" +
                    "NoiseCancellationAmountInr: " + NoiseCancellationAmountInr + "\n" +
                    "StirVerification: " + StirVerification + "\n" +
                    "VoiceNetworkGroup: " + VoiceNetworkGroup + "\n" +

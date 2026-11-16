@@ -25,6 +25,7 @@
       "total_amount_inr": "12.52500",
       "total_rate": "0.03000",
       "total_rate_inr": "2.50500",
+      "noise_cancellation_amount": "",
       "noise_cancellation_amount_inr": "",
       "stir_verification": "Not Verified",
       "stir_attestation": ""
@@ -44,6 +45,7 @@
       "to_number": "14155550101",
       "total_amount": "0.13600",
       "total_rate": "0.00850",
+      "noise_cancellation_amount": "",
       "stir_verification": "Not Verified",
       "stir_attestation": ""
     }

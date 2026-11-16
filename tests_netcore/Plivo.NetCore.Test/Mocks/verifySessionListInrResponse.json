@@ -53,7 +53,8 @@
           "attempt_uuid": "a1b2c3d4-d076-42d3-b678-264b0a610b88",
           "status": "completed",
           "time": "2023-07-20T09:02:18.981765Z",
-          "amount": 0.01
+          "amount": 0.01,
+          "amount_inr": 0.83
         }
       ],
       "charges": {
